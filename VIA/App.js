@@ -6,16 +6,16 @@
 //  * @flow
 //  */
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Button,
-} from 'react-native';
+// import React, {Fragment} from 'react';
+// import {
+//   SafeAreaView,
+//   StyleSheet,
+//   ScrollView,
+//   View,
+//   Text,
+//   StatusBar,
+//   Button,
+// } from 'react-native';
 
 // import {
 //   Header,
@@ -96,43 +96,74 @@ import {
 // });
 
 // export default App;
-class ProfileScreen extends React.Component {
-  static navigationOptions = {
-    title: 'ProfileScreen',
-  };
-  render() {
-    const {navigate} = this.props.navigation;
-    return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigate('Profile', {name: 'Jane'})}
-      />
-    );
-  }
-}
+// class ProfileScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'ProfileScreen',
+//   };
+//   render() {
+//     const {navigate} = this.props.navigation;
+//     return (
+//       <Button
+//         title="Go to Jane's profile"
+//         onPress={() => navigate('Profile', {name: 'Jane'})}
+//       />
+//     );
+//   }
+// }
+
+// class HomeScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'Welcome',
+//   };
+//   render() {
+//     const {navigate} = this.props.navigation;
+//     return (
+//       <Button
+//         title="Go to Jane's profile"
+//         onPress={() => navigate('Profile', {name: 'Jane'})}
+//       />
+//     );
+//   }
+// }
+
+// import {createStackNavigator, createAppContainer} from 'react-navigation';
+
+// const MainNavigator = createStackNavigator({
+//   Home: {screen: HomeScreen},
+//   Profile: {screen: ProfileScreen},
+// });
+
+// const App = createAppContainer(MainNavigator);
+
+// export default App;
+
+import React from 'react';
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
   render() {
-    const {navigate} = this.props.navigation;
     return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigate('Profile', {name: 'Jane'})}
-      />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
+      </View>
     );
   }
 }
 
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
 
-const MainNavigator = createStackNavigator({
-  Home: {screen: HomeScreen},
-  Profile: {screen: ProfileScreen},
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Settings: SettingsScreen,
 });
 
-const App = createAppContainer(MainNavigator);
-
-export default App;
+export default createAppContainer(TabNavigator);
