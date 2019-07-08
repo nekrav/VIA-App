@@ -140,12 +140,51 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Database, Projects, Habits } from './db'
+import { ProjectsScreen } from './screens'
+
 
 class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    
+      numberOfProjects: 0,
+
+    };
+  }
+  componentDidMount() {
+    this.loadProjects();
+}
+
+loadProjects() {
+  const projArr = []
+  console.warn("Bob")
+  const finishedProjArr = []
+  Database.getAll(Projects.TABLE_NAME)
+      .then((res) => {
+          const len = res.rows.length;
+          console.warn(len)
+          let p = {}
+          for (let i = 0; i < len; i++) {
+              p = res.rows.item(i)
+              console.warn(p)
+              projArr.push({ key: JSON.stringify(p.id), name: p.name, value: p })
+              if (p.completed === 'true') {
+                  finishedProjArr.push({ key: JSON.stringify(p.id), name: p.name, value: p })
+              }
+          }
+          this.setState({
+              numberOfProjects: len,
+              numberOfCompletedProjects: finishedProjArr.length
+          })
+      })
+}
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Home!</Text>
+        <Text>{this.state.numberOfProjects}</Text>
       </View>
     );
   }
@@ -161,9 +200,14 @@ class SettingsScreen extends React.Component {
   }
 }
 
+
+
 const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
   Settings: SettingsScreen,
 });
+// Database.mock();
+Database.init();
+// Database.mockaw();
 
 export default createAppContainer(TabNavigator);
