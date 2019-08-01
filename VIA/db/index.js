@@ -1,5 +1,6 @@
 // import SQLite from 'react-native-sqlite-storage'
 import { AsyncStorage } from 'react-native'
+var uuid = require('react-native-uuid');
 let SQLite = require('react-native-sqlite-storage')
 //SQLite.DEBUG(true)
 SQLite.enablePromise(true);
@@ -8,6 +9,7 @@ import { Projects } from './projects'
 import { Habits } from './habits'
 import { Tasks } from './tasks'
 import { Random } from './random'
+import { restElement } from '@babel/types';
 
 
 export class Database {
@@ -205,7 +207,7 @@ export class Database {
     }
 
     static tables(tx) {
-        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
         // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE if NOT EXISTS ${Projects.TABLE_CREATE}`);
         // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
@@ -220,7 +222,6 @@ export class Database {
             // SQLite.openDatabase({ name: 'a', createFromLocation: '~initial.db', location: 'Library' }, this.openCB, this.errorCB)
                 .then(db => {
                     this.database = db
-                    console.warn(db);
                     return Promise.resolve()
                 })
                 .then(() => this.database.transaction(tx => {
@@ -237,7 +238,6 @@ export class Database {
                     reject(err)
                 })
         })
-        console.warn(this.initPromise)
         return this.initPromise
     }
 
@@ -261,9 +261,11 @@ export class Database {
     }
 
     static mock(tx) {
+        this.clearAll()
+        var id = uuid.v4
         //Note these IDs will intentionally break the UUID constraint for the API
         // tx.executeSql('INSERT INTO projects (id, name, created_date) VALUES ("faefewfaewf", "aweff", "awefwef");');
-        tx.executeSql('INSERT INTO projects (id) VALUES (?)', ['55ko'])
+        // tx.executeSql('INSERT INTO projects (id) VALUES (?)', [id.toString()])
         // tx.executeSql('INSERT INTO Exercise (id, name, description, duration) VALUES (?,?,?,?)', ['1', 'First One', 'desck awef awef ', 3])
     }
 }

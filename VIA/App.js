@@ -205,8 +205,7 @@ const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
   Settings: SettingsScreen,
 });
-// Database.mock();
+
 Database.init();
-// Database.mockaw();
 
 export default createAppContainer(TabNavigator);
