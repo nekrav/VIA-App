@@ -7,7 +7,7 @@ SQLite.enablePromise(true);
 import { Projects } from './projects'
 import { Habits } from './habits'
 import { Tasks } from './tasks'
-import { RandomTasks } from './random'
+import { Random } from './random'
 
 export class Database {
     constructor() {
@@ -21,7 +21,6 @@ export class Database {
         if (where.length > 0) {
             query += ' WHERE '
             const conditions = where.map(c => `${c[0]}=${c[1]}`)
-
             query += conditions
         }
 
@@ -34,7 +33,6 @@ export class Database {
         })
     }
     
-
     static clear(tableName) {
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
@@ -68,9 +66,6 @@ export class Database {
         })
     }
 
-
-    
-
     static getOne(tableName, id) {
         noQuotes = id.replace(/["']/g, "")
         query = `SELECT * FROM ${tableName} WHERE id = '${noQuotes}'`
@@ -97,9 +92,7 @@ export class Database {
 
     static deleteOne(tableName, id) {
         noQuotes = id.replace(/["']/g, "")
-
         const deleteQuery = `DELETE FROM ${tableName} WHERE id = '${noQuotes}'`
-
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
                 tx.executeSql(deleteQuery)
@@ -111,7 +104,6 @@ export class Database {
 
     static deleteOneProject(tableName, id) {
         const deleteQuery = `DELETE FROM ${tableName} WHERE project_id = '${id}'`
-
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
                 tx.executeSql(deleteQuery)
@@ -123,7 +115,6 @@ export class Database {
 
     static deleteOneByName(tableName, name) {
         const deleteQuery = `DELETE FROM ${tableName} WHERE name = '${name}'`
-
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
                 tx.executeSql(deleteQuery)
@@ -132,7 +123,6 @@ export class Database {
                 .catch(reject)
         })
     }
-
 
     static save(tableName, object) {
         let cols = ''
@@ -215,7 +205,9 @@ export class Database {
 
     static tables(tx) {
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Projects.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
     }
 
     static init() {
@@ -231,7 +223,6 @@ export class Database {
                 })
                 .then(() => this.database.transaction(tx => {
                     this.tables(tx)
-                    this.mock(tx)
                 }))
                 .then(() => {
                     return Promise.resolve()
@@ -247,7 +238,7 @@ export class Database {
         tx.executeSql(`DROP TABLE IF EXISTS ${Projects.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Habits.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Tasks.TABLE_NAME}`)
-        tx.executeSql(`DROP TABLE IF EXISTS ${RandomTasks.TABLE_NAME}`)
+        tx.executeSql(`DROP TABLE IF EXISTS ${Random.TABLE_NAME}`)
     }
 
     static mockaw() {
@@ -272,5 +263,5 @@ export class Database {
 export { Projects } from './projects'
 export { Habits } from './habits'
 export { Tasks } from './tasks'
-export { RandomTasks } from './random'
+export { Random } from './random'
 

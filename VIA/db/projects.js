@@ -1,19 +1,27 @@
-// const uuidv4 = require('uuid/v4');
+var uuid = require('react-native-uuid');
 
 export class Projects {
     constructor(props) {
-        this.id = props.id
+        this.id = uuid.v4
         this.name = props.name
-        this.description = props.description
-        this.percentage = props.percentage
+        this.created_date = props.created_date
+        this.due_date = props.due_date
+        this.importance = props.importance
+        this.percentage_done = props.percentage_done
+        this.completed = props.completed
+        this.time_spent = props.time_spent
     }
 
     static get TABLE_CREATE() {
         return `${Projects.TABLE_NAME} (` +
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
-        'description text, ' +
-        'percentage integer' +
+        'created_date NOT NULL, ' +
+        'due_date text, ' +
+        'importance integer, ' +
+        'percentage_done integer, ' +
+        'completed text, ' +
+        'time_spent text '
         ')'
     }
 

@@ -1,19 +1,29 @@
-// const uuidv4 = require('uuid/v4');
+var uuid = require('react-native-uuid');
 
-export class RandomTasks {
+export class Random {
     constructor(props) {
-        this.id = props.id
+        this.id = uuid.v4
         this.name = props.name
-        this.description = props.description
+        this.created_date = props.created_date
+        this.due_date = props.due_date
+        this.importance = props.importance
+        this.percentage_done = props.percentage_done
         this.completed = props.completed
+        this.time_spent = props.time_spent
+        this.only_today = props.only_today
     }
 
     static get TABLE_CREATE() {
-        return `${RandomTasks.TABLE_NAME} (` +
+        return `${Random.TABLE_NAME} (` +
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
-        'description text, ' +
-        'done text' +
+        'created_date text NOT NULL, ' +
+        'due_date text, ' +
+        'importance text, ' +
+        'percentage_done integer, ' +
+        'completed text, ' +
+        'time_spent text, ' +
+        'only_today text' +
         ')'
     }
 
