@@ -9,6 +9,7 @@ import { Habits } from './habits'
 import { Tasks } from './tasks'
 import { Random } from './random'
 
+
 export class Database {
     constructor() {
         this.database = null
@@ -204,10 +205,10 @@ export class Database {
     }
 
     static tables(tx) {
-        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
-        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
-        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Projects.TABLE_CREATE}`);
-        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
+        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
+        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
+        //tx.executeSql(`CREATE TABLE IF NOT EXISTS projects`);
+        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
     }
 
     static init() {
@@ -215,22 +216,30 @@ export class Database {
             return this.initPromise
         }
         this.initPromise = new Promise((resolve, reject) => {
-            SQLite.openDatabase({ name: 'initialDb.db', createFromLocation: '~initial.db', location: 'Library' }, this.openCB, this.errorCB)
+            SQLite.openDatabase("test.db", "1.0", "Test Database", 200000, this.openCB, this.errorCB)
+            // SQLite.openDatabase({ name: 'a', createFromLocation: '~initial.db', location: 'Library' }, this.openCB, this.errorCB)
                 .then(db => {
-                    this.database = db
 
+                    this.database = db
+                    console.warn(db);
                     return Promise.resolve()
                 })
                 .then(() => this.database.transaction(tx => {
+                    console.warn("Creates tables")
                     this.tables(tx)
                 }))
                 .then(() => {
+                    console.warn("Does resolve")
                     return Promise.resolve()
                 })
                 .then(resolve)
-                .catch(err => reject(err))
+                .catch(err => {
+                    console.warn("Error")
+                    console.warn(err)
+                    reject(err)
+                })
         })
-
+        console.warn(this.initPromise)
         return this.initPromise
     }
 

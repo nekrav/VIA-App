@@ -159,7 +159,6 @@ class HomeScreen extends React.Component {
 
 loadProjects() {
   const projArr = []
-  console.warn("Bob")
   const finishedProjArr = []
   Database.getAll(Projects.TABLE_NAME)
       .then((res) => {
