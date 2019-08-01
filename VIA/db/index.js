@@ -207,7 +207,7 @@ export class Database {
     static tables(tx) {
         // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
         // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
-        //tx.executeSql(`CREATE TABLE IF NOT EXISTS projects`);
+        tx.executeSql(`CREATE TABLE if NOT EXISTS ${Projects.TABLE_CREATE}`);
         // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
     }
 
@@ -219,17 +219,15 @@ export class Database {
             SQLite.openDatabase("test.db", "1.0", "Test Database", 200000, this.openCB, this.errorCB)
             // SQLite.openDatabase({ name: 'a', createFromLocation: '~initial.db', location: 'Library' }, this.openCB, this.errorCB)
                 .then(db => {
-
                     this.database = db
                     console.warn(db);
                     return Promise.resolve()
                 })
                 .then(() => this.database.transaction(tx => {
-                    console.warn("Creates tables")
                     this.tables(tx)
+                    this.mock(tx)
                 }))
                 .then(() => {
-                    console.warn("Does resolve")
                     return Promise.resolve()
                 })
                 .then(resolve)
@@ -253,8 +251,9 @@ export class Database {
     static mockaw() {
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
-                this.mock(tx)
                 this.tables(tx)
+                this.mock(tx)
+                
                
             })
                 .catch(reject)
@@ -263,8 +262,8 @@ export class Database {
 
     static mock(tx) {
         //Note these IDs will intentionally break the UUID constraint for the API
-        tx.executeSql('INSERT INTO projects (id, name, description, percentage) VALUES (2, "aweff", "awefwef", 1);');
-        // tx.executeSql('INSERT INTO projects (id, name, date_created, completed) VALUES (?, ?, ?, ?)', ['1', 'Initial Fake Project', 'now', 'false'])
+        // tx.executeSql('INSERT INTO projects (id, name, created_date) VALUES ("faefewfaewf", "aweff", "awefwef");');
+        tx.executeSql('INSERT INTO projects (id) VALUES (?)', ['55ko'])
         // tx.executeSql('INSERT INTO Exercise (id, name, description, duration) VALUES (?,?,?,?)', ['1', 'First One', 'desck awef awef ', 3])
     }
 }

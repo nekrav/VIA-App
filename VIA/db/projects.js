@@ -21,7 +21,7 @@ export class Projects {
         'importance integer, ' +
         'percentage_done integer, ' +
         'completed text, ' +
-        'time_spent text '
+        'time_spent text ' +
         ')'
     }
 
