@@ -138,7 +138,7 @@
 // export default App;
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button, Modal, TouchableHighlight } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Projects, Habits } from './db'
 import { ProjectsScreen } from './screens'
@@ -148,42 +148,75 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    
-      numberOfProjects: 0,
+      addModalVisible: false,
+      numberOfHabits: 0,
 
     };
   }
   componentDidMount() {
-    this.loadProjects();
-}
+    this.loadHabits();
+  }
 
-loadProjects() {
-  const projArr = []
-  const finishedProjArr = []
-  Database.getAll(Projects.TABLE_NAME)
+  loadHabits() {
+    const habArr = []
+    const finishedHabArr = []
+    Database.getAll(Habits.TABLE_NAME)
       .then((res) => {
-          const len = res.rows.length;
-          console.warn(len)
-          let p = {}
-          for (let i = 0; i < len; i++) {
-              p = res.rows.item(i)
-              console.warn(p)
-              projArr.push({ key: JSON.stringify(p.id), name: p.name, value: p })
-              if (p.completed === 'true') {
-                  finishedProjArr.push({ key: JSON.stringify(p.id), name: p.name, value: p })
-              }
+        const len = res.rows.length;
+        console.warn(len)
+        let h = {}
+        for (let i = 0; i < len; i++) {
+          h = res.rows.item(i)
+          console.warn(h)
+          habArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
+          if (h.completed === 'true') {
+            finishedHabArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
           }
-          this.setState({
-              numberOfProjects: len,
-              numberOfCompletedProjects: finishedProjArr.length
-          })
+        }
+        this.setState({
+          numberOfHabits: len,
+          numberOfCompletedHabits: finishedHabArr.length
+        })
       })
-}
+  }
+
+  setModalVisible(visible) {
+    this.setState({ addModalVisible: visible });
+  }
+
+  showAddModal() {
+    return <Modal
+      animationType="slide"
+      transparent={false}
+      visible={this.state.addModalVisible}
+      onRequestClose={() => {
+        alert('Modal has been closed.');
+      }}>
+      <View style={{ marginTop: 22 }}>
+        <View>
+          <Text>Hello World!</Text>
+
+          <TouchableHighlight
+            onPress={() => {
+              this.setModalVisible(!this.state.addModalVisible);
+            }}>
+            <Text>Hide Modal</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </Modal>
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {this.showAddModal()}
         <Text>Home!</Text>
-        <Text>{this.state.numberOfProjects}</Text>
+        <Text>{this.state.numberOfHabits}</Text>
+        <Button
+          title="Add Habit"
+          onPress={() => {
+            this.setModalVisible(true);}} />
       </View>
     );
   }
