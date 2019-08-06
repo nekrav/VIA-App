@@ -2,14 +2,25 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput } from 'react-native'; // Version can be specified in package.json
 
 export class CreateHabit extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            newHabit: this.props.newHabit,
+            addModalVisible: false,
+            numberOfHabits: 0,
+        };
+    }
     render() {
+        let habit = this.state.newHabit;
+
         return (
             <Modal
                 animationType={this.props.animationType}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-                <View style={{marginTop: 22, alignItems: "center" }}>
+                <View style={{ marginTop: 22, alignItems: "center" }}>
                     <Text>Add Habit</Text>
                 </View>
                 <View>
@@ -66,6 +77,7 @@ export class CreateHabit extends React.Component {
                         onChangeText={this.props.days_to_do}>
                     </TextInput>
                 </View>
+                
                 <View>
                     <TouchableOpacity onPress={this.props.closeModal}>
                         <Text>Close</Text>

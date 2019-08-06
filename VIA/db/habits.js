@@ -18,7 +18,7 @@ export class Habits {
         return `${Habits.TABLE_NAME} (` +
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
-        'created_date NOT NULL, ' +
+        'created_date text NOT NULL, ' +
         'due_time text, ' +
         'importance integer, ' +
         'percentage_done integer, ' +

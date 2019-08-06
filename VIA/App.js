@@ -4,7 +4,8 @@ import { Text, View, Button, Modal, TouchableHighlight, TextInput } from 'react-
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Projects, Habits } from './db'
 import { ProjectsScreen } from './screens'
-import { CreateHabit} from './modals'
+import { CreateHabit } from './modals'
+var uuid = require('react-native-uuid');
 
 
 class HomeScreen extends React.Component {
@@ -47,48 +48,54 @@ class HomeScreen extends React.Component {
     this.setState({ addModalVisible: visible });
   }
 
+  save(name, createdDate, dueTime, importance, percentageDone, completed, timeToSpend, notificationTime, daysToDo) {
+    let newHabit = {}
+    newHabit.id = uuid.v4();
+    newHabit.name = name;
+    newHabit.created_date = createdDate;
+    newHabit.due_time = "awef"
+    newHabit.importance = "awef"
+    newHabit.percentage_done = 0
+    newHabit.completed = "awef"
+    newHabit.time_to_spend = "awef"
+    newHabit.notification_time = "awef"
+    newHabit.days_to_do = "awef"
+    Database.save(Habits.TABLE_NAME, newHabit)
+  }
+
   showAddModal() {
     if (this.state.addModalVisible) {
       return <CreateHabit
-      closeModal={() => { this.setAddModalVisible(false) }}
+        animationType="slide"
+        transparent={false}
+        
+        name={newName => this.setState({ newName })}
+        created_date={newCreatedDate => this.setState({ newCreatedDate })}
+        due_time={newDueTime => this.setState({ newDueTime })}
+        importance={newImportance => this.setState({ newImportance })}
+        percentage_done={newPercentageDone => this.setState({ newPercentageDone })}
+        completed={newCompleted => this.setState({ newCompleted })}
+        time_to_spend={newTimeToSpend => this.setState({ newTimeToSpend })}
+        notification_time={newNotificationTime => this.setState({ newNotificationTime })}
+        days_to_do={newDaysToDo => this.setState({ newDaysToDo })}
+
+        closeModal={() => { this.setAddModalVisible(false) }}
+        save={() => { 
+          this.save(
+            this.state.newName,
+            this.state.newCreatedDate = new Date().getDate().toString(),
+            this.state.newDueTime ? this.state.newDueTime : '',
+            this.state.newImportance ? this.state.newImportance : '',
+            this.state.newPercentageDone ? this.state.newPercentageDone : '',
+            this.state.newCompleted ? this.state.newCompleted : '',
+            this.state.newTimeToSpend ? this.state.newTimeToSpend : '',
+            this.state.newNotificationTime ? this.state.newNotificationTime : '',
+            this.state.newDaysToDo ? this.state.newDaysToDo : '',
+            ); 
+            
+            this.setAddModalVisible(false); this.loadHabits(); }}
       ></CreateHabit>
     }
-   
-    // return <Modal
-    //   animationType="slide"
-    //   transparent={false}
-    //   visible={this.state.addModalVisible}
-    //   onRequestClose={() => {
-    //     alert('Modal has been closed.');
-    //   }}>
-    //   <View style={{ marginTop: 22, alignItems: "center" }}>
-    //     <View>
-    //       <Text>Hello World!</Text>
-
-    //       <TextInput
-    //         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-    //         onChangeText={(text) =>
-    //           this.setState({ text })
-    //         }
-    //         value={this.state.text}></TextInput>
-
-    //       <View style={{ marginTop: 22, flexDirection: "row", alignItems: "center" }}>
-    //         <TouchableHighlight
-    //           onPress={() => {
-    //             this.setModalVisible(!this.state.addModalVisible);
-    //           }}>
-    //           <Text>Save</Text>
-    //         </TouchableHighlight>
-    //         <TouchableHighlight
-    //           onPress={() => {
-    //             this.setModalVisible(!this.state.addModalVisible);
-    //           }}>
-    //           <Text>Close</Text>
-    //         </TouchableHighlight>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </Modal>
   }
 
   render() {
