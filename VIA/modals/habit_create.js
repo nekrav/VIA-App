@@ -30,33 +30,15 @@ export class CreateHabit extends React.Component {
                     </TextInput>
                 </View>
                 <View>
-                    <Text>Create Date</Text>
-                    <TextInput
-                        onChangeText={this.props.created_date}>
-                    </TextInput>
-                </View>
-                <View>
                     <Text>Due Time</Text>
                     <TextInput
                         onChangeText={this.props.due_time}>
                     </TextInput>
                 </View>
                 <View>
-                    <Text>Imporance</Text>
+                    <Text>Importance</Text>
                     <TextInput
                         onChangeText={this.props.importance}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Percentage Done</Text>
-                    <TextInput
-                        onChangeText={this.props.percentage_done}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Completed</Text>
-                    <TextInput
-                        onChangeText={this.props.completed}>
                     </TextInput>
                 </View>
                 <View>

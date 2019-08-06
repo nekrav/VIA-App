@@ -48,18 +48,19 @@ class HomeScreen extends React.Component {
     this.setState({ addModalVisible: visible });
   }
 
-  save(name, createdDate, dueTime, importance, percentageDone, completed, timeToSpend, notificationTime, daysToDo) {
+  save(name, dueTime, importance, timeToSpend, notificationTime, daysToDo) {
     let newHabit = {}
     newHabit.id = uuid.v4();
     newHabit.name = name;
-    newHabit.created_date = createdDate;
-    newHabit.due_time = "awef"
-    newHabit.importance = "awef"
+    newHabit.created_date = new Date().getDate().toString();
+    newHabit.due_time = dueTime
+    newHabit.importance = importance
     newHabit.percentage_done = 0
-    newHabit.completed = "awef"
-    newHabit.time_to_spend = "awef"
-    newHabit.notification_time = "awef"
-    newHabit.days_to_do = "awef"
+    newHabit.completed = "false"
+    newHabit.time_to_spend = timeToSpend
+    newHabit.notification_time = notificationTime
+    newHabit.days_to_do = daysToDo
+
     Database.save(Habits.TABLE_NAME, newHabit)
   }
 
@@ -70,11 +71,8 @@ class HomeScreen extends React.Component {
         transparent={false}
         
         name={newName => this.setState({ newName })}
-        created_date={newCreatedDate => this.setState({ newCreatedDate })}
         due_time={newDueTime => this.setState({ newDueTime })}
-        importance={newImportance => this.setState({ newImportance })}
-        percentage_done={newPercentageDone => this.setState({ newPercentageDone })}
-        completed={newCompleted => this.setState({ newCompleted })}
+        importance={newImportance => this.setState({ newImportance })}        completed={newCompleted => this.setState({ newCompleted })}
         time_to_spend={newTimeToSpend => this.setState({ newTimeToSpend })}
         notification_time={newNotificationTime => this.setState({ newNotificationTime })}
         days_to_do={newDaysToDo => this.setState({ newDaysToDo })}
@@ -83,11 +81,8 @@ class HomeScreen extends React.Component {
         save={() => { 
           this.save(
             this.state.newName,
-            this.state.newCreatedDate = new Date().getDate().toString(),
             this.state.newDueTime ? this.state.newDueTime : '',
             this.state.newImportance ? this.state.newImportance : '',
-            this.state.newPercentageDone ? this.state.newPercentageDone : '',
-            this.state.newCompleted ? this.state.newCompleted : '',
             this.state.newTimeToSpend ? this.state.newTimeToSpend : '',
             this.state.newNotificationTime ? this.state.newNotificationTime : '',
             this.state.newDaysToDo ? this.state.newDaysToDo : '',
