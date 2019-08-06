@@ -11,7 +11,7 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addModalVisible: true,
+      addModalVisible: false,
       numberOfHabits: 0,
 
     };
@@ -43,14 +43,17 @@ class HomeScreen extends React.Component {
       })
   }
 
-  setModalVisible(visible) {
+  setAddModalVisible(visible) {
     this.setState({ addModalVisible: visible });
   }
 
   showAddModal() {
-    return <CreateHabit
-    
-    ></CreateHabit>
+    if (this.state.addModalVisible) {
+      return <CreateHabit
+      closeModal={() => { this.setAddModalVisible(false) }}
+      ></CreateHabit>
+    }
+   
     // return <Modal
     //   animationType="slide"
     //   transparent={false}
@@ -97,7 +100,7 @@ class HomeScreen extends React.Component {
         <Button
           title="Add Habit"
           onPress={() => {
-            this.setModalVisible(true);
+            this.setAddModalVisible(true);
           }} />
       </View>
     );
