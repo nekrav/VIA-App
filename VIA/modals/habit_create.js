@@ -12,8 +12,6 @@ export class CreateHabit extends React.Component {
         };
     }
     render() {
-        let habit = this.state.newHabit;
-
         return (
             <Modal
                 animationType={this.props.animationType}
@@ -59,7 +57,6 @@ export class CreateHabit extends React.Component {
                         onChangeText={this.props.days_to_do}>
                     </TextInput>
                 </View>
-                
                 <View>
                     <TouchableOpacity onPress={this.props.closeModal}>
                         <Text>Close</Text>
