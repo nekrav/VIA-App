@@ -218,15 +218,15 @@ export class Database {
             return this.initPromise
         }
         this.initPromise = new Promise((resolve, reject) => {
-            SQLite.openDatabase("test.db", "1.0", "Test Database", 200000, this.openCB, this.errorCB)
-            // SQLite.openDatabase({ name: 'a', createFromLocation: '~initial.db', location: 'Library' }, this.openCB, this.errorCB)
+            // SQLite.openDatabase("test.db", "1.0", "Test Database", 200000, this.openCB, this.errorCB)
+            SQLite.openDatabase({ name: 'a', createFromLocation: '~tasks_via.db', location: 'Library' }, this.openCB, this.errorCB)
                 .then(db => {
                     this.database = db
                     return Promise.resolve()
                 })
                 .then(() => this.database.transaction(tx => {
                     this.tables(tx)
-                    this.mock(tx)
+                    // this.mock(tx)
                 }))
                 .then(() => {
                     return Promise.resolve()

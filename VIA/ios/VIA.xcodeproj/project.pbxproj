@@ -18,7 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* VIATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VIATests.m */; };
 		35A25DD8A2D4632B2649B6BD /* libPods-VIA-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3420D493C6A37DAAC7D4930 /* libPods-VIA-tvOSTests.a */; };
-		B349479522D30AB20005400C /* www in Resources */ = {isa = PBXBuildFile; fileRef = B349479422D30AB20005400C /* www */; };
+		B354AEF52344826D0006D474 /* www in Resources */ = {isa = PBXBuildFile; fileRef = B354AEF42344826D0006D474 /* www */; };
 		CB97965A45E29B8E42CB7A82 /* libPods-VIA-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AA73D9BB79F6521019046D /* libPods-VIA-tvOS.a */; };
 		E19391D4E7FCF060632CF98C /* libPods-VIATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0123613F05E5BB55109C3751 /* libPods-VIATests.a */; };
 /* End PBXBuildFile section */
@@ -79,7 +79,7 @@
 		A7AA73D9BB79F6521019046D /* libPods-VIA-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VIA-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7D3EDFAE47883A9BCB46E51 /* Pods-VIA-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIA-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VIA-tvOSTests/Pods-VIA-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B349478222D303780005400C /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
-		B349479422D30AB20005400C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		B354AEF42344826D0006D474 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		CCB0BB9B40AF288C36841F8F /* Pods-VIA-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIA-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VIA-tvOS/Pods-VIA-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -142,7 +142,7 @@
 		13B07FAE1A68108700A75B9A /* VIA */ = {
 			isa = PBXGroup;
 			children = (
-				B349479422D30AB20005400C /* www */,
+				B354AEF42344826D0006D474 /* www */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -391,9 +391,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B354AEF52344826D0006D474 /* www in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B349479522D30AB20005400C /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +695,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sarkentech.VIA;
 				PRODUCT_NAME = VIA;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -716,7 +716,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sarkentech.VIA;
 				PRODUCT_NAME = VIA;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
