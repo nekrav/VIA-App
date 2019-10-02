@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Text, View, Button, TouchableOpacity, FlatList, CheckBox } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
