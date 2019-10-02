@@ -111,15 +111,6 @@ export class HabitsScreen extends React.Component {
                     renderItem={({ item }) => <TouchableOpacity
                         onPress={() => { this.goToTask(item.key) }}>
                         <View>
-                            {/* <Switch
-                                key={item}
-                                disabled={JSON.parse(item.value.completed)}
-                                checkBoxColor={'white'}
-                                onClick={() => { this.finishTask(item.key) }}
-                                isChecked={JSON.parse(item.value.completed)}
-                                leftTextStyle={{ color: 'white' }}
-                                leftText={item.name}
-                            /> */}
                             <CheckBox
                                 center
                                 title='Click Here'
