@@ -96,7 +96,6 @@ export class HabitsScreen extends React.Component {
     }
 
     goToHabit(habitToGoTo) {
-        console.warn("Go to habit:" + habitToGoTo)
         this.setViewHabitVisible(true);
         global.selectedHabit = habitToGoTo;
     }
@@ -107,9 +106,17 @@ export class HabitsScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 selectedHabit={global.selectedHabit}
-                closeModal={() => { this.setAddModalVisible(false) }}>
+                deleteHabit={() => {this.deleteHabit(global.selectedHabit)}}
+                closeModal={() => { this.setViewHabitVisible(false) }}>
             </ViewHabit>
         }
+    }
+
+    deleteHabit(id)
+    {
+        Database.deleteOne(Habits.TABLE_NAME, id)
+        this.loadHabits()
+        this.setViewHabitVisible(false);
     }
 
     setViewHabitVisible(visible) {
@@ -128,7 +135,6 @@ export class HabitsScreen extends React.Component {
                     onPress={() => {
                         this.setAddModalVisible(true);
                     }} />
-
                 <FlatList
                     data={this.state.habits}
                     renderItem={({ item }) => <TouchableOpacity

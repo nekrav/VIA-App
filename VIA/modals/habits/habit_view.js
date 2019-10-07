@@ -8,8 +8,6 @@ export class ViewHabit extends React.Component {
         super(props);
         this.state = {
             selectedHabit: global.selectedHabit,
-            addModalVisible: false,
-            numberOfHabits: 0,
         };
     }
 
@@ -24,6 +22,7 @@ export class ViewHabit extends React.Component {
             this.setState({ selectedHabit: selectedHabit })
         })
     }
+
     render() {
         return (
             <Modal
@@ -37,7 +36,7 @@ export class ViewHabit extends React.Component {
                 <View>
                     <Text>Name</Text>
                     <TextInput
-                    value={this.state.selectedHabit.name}
+                        value={this.state.selectedHabit.name}
                         onChangeText={this.props.name}>
                     </TextInput>
                 </View>
@@ -77,6 +76,9 @@ export class ViewHabit extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.props.save}>
                         <Text>Save</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.props.deleteHabit}>
+                        <Text>Delete</Text>
                     </TouchableOpacity>
                 </View>
             </Modal>

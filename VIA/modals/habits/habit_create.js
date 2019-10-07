@@ -7,8 +7,6 @@ export class CreateHabit extends React.Component {
         super(props);
         this.state = {
             newHabit: this.props.newHabit,
-            addModalVisible: false,
-            numberOfHabits: 0,
         };
     }
     render() {
