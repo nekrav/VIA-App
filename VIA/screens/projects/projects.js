@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity, Button, StatusBar, TouchableHighlight } from 'react-native';
-import { Database, Projects } from '../db'
+import { Database, Projects } from '../../db'
 // import Icon from 'react-native-vector-icons/MaterialIcons'; // Version can be specified in package.json
 // import ActionButton from 'react-native-action-button';
 // import { CreateProject } from '../modals'

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
-import { Database, Habits } from '../db'
-import { CreateHabit } from '../modals'
+import { Database, Habits } from '../../db'
+import { CreateHabit, ViewHabit } from '../../modals'
 
 var uuid = require('react-native-uuid');
 
@@ -14,6 +14,7 @@ export class HabitsScreen extends React.Component {
         super(props);
         this.state = {
             addModalVisible: false,
+            viewHabitVisible: false,
             numberOfHabits: 0,
 
         };
@@ -94,10 +95,32 @@ export class HabitsScreen extends React.Component {
         }
     }
 
+    goToHabit(habitToGoTo) {
+        console.warn("Go to habit:" + habitToGoTo)
+        this.setViewHabitVisible(true);
+        global.selectedHabit = habitToGoTo;
+    }
+
+    showViewHabit() {
+        if (this.state.viewHabitVisible) {
+            return <ViewHabit
+                animationType="slide"
+                transparent={false}
+                selectedHabit={global.selectedHabit}
+                closeModal={() => { this.setAddModalVisible(false) }}>
+            </ViewHabit>
+        }
+    }
+
+    setViewHabitVisible(visible) {
+        this.setState({ viewHabitVisible: visible })
+    }
+
     render() {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 {this.showAddModal()}
+                {this.showViewHabit()}
                 <Text>Home!</Text>
                 <Text>{this.state.numberOfHabits}</Text>
                 <Button
@@ -109,7 +132,7 @@ export class HabitsScreen extends React.Component {
                 <FlatList
                     data={this.state.habits}
                     renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => { this.goToTask(item.key) }}>
+                        onPress={() => { this.goToHabit(item.key) }}>
                         <View>
                             <CheckBox
                                 center
