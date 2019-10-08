@@ -110,12 +110,17 @@ export class HabitsScreen extends React.Component {
     showViewHabit() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedHabit != {}) {
-                theHabit = this.state.selectedHabit 
+                theHabit = this.state.selectedHabit
                 return <ViewHabit
                     animationType="slide"
                     transparent={false}
-                    editName={newName => this.setState({ newName: newName })}
-                    selectedHabit={this.state.selectedHabit }
+                    editName={
+                        (newName) => {
+                            console.warn(newName)
+                            theHabit.name = newName;
+                        }
+                    }
+                    selectedHabit={theHabit}
                     deleteHabit={() => { console.warn("bob") }}
                     closeModal={() => { this.setViewModalVisible(false) }}>
                 </ViewHabit>
