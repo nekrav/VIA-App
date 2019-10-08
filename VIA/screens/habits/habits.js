@@ -114,8 +114,6 @@ export class HabitsScreen extends React.Component {
         })
     }
 
-    
-
     showViewHabit() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedHabit != {}) {
@@ -124,11 +122,42 @@ export class HabitsScreen extends React.Component {
                     animationType="slide"
                     transparent={false}
                     editName={
-                        (newName) => {
-                            theHabit.name = newName;
+                        (text) => {
+                            theHabit.name = text;
                             this.setState({selectedHabit: theHabit})
                         }
                     }
+                    editDueTime={
+                        (text) => {
+                            theHabit.due_time = text;
+                            this.setState({selectedHabit: theHabit})
+                        }
+                    }
+                    editImportance={
+                        (text) => {
+                            theHabit.importance = text;
+                            this.setState({selectedHabit: theHabit})
+                        }
+                    }
+                    editTimeToSpend={
+                        (text) => {
+                            theHabit.time_to_spend = text;
+                            this.setState({selectedHabit: theHabit})
+                        }
+                    }
+                    editNotificationTime={
+                        (text) => {
+                            theHabit.notification_time = text;
+                            this.setState({selectedHabit: theHabit})
+                        }
+                    }
+                    editDaysToDo={
+                        (text) => {
+                            theHabit.days_to_do = text;
+                            this.setState({selectedHabit: theHabit})
+                        }
+                    }
+
                     save={() => {this.save(theHabit)}}
                     selectedHabit={theHabit}
                     deleteHabit={() => { console.warn("bob") }}

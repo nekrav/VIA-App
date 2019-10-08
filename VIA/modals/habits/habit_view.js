@@ -34,12 +34,12 @@ export class ViewHabit extends React.Component {
                             onChangeText={this.props.editName}>
                         </TextInput>
                     </View>
-                    {/* <View>
+                    <View>
                         <Text>Due Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.due_time}
-                            onChangeText={this.props.due_time}>
+                            onChangeText={this.props.editDueTime}>
                         </TextInput>
                     </View>
                     <View>
@@ -47,7 +47,7 @@ export class ViewHabit extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.importance}
-                            onChangeText={this.props.importance}>
+                            onChangeText={this.props.editImportance}>
                         </TextInput>
                     </View>
                     <View>
@@ -55,7 +55,7 @@ export class ViewHabit extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.time_to_spend}
-                            onChangeText={this.props.time_to_spend}>
+                            onChangeText={this.props.editTimeToSpend}>
                         </TextInput>
                     </View>
                     <View>
@@ -63,7 +63,7 @@ export class ViewHabit extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.notification_time}
-                            onChangeText={this.props.notification_time}>
+                            onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
                     <View>
@@ -71,9 +71,9 @@ export class ViewHabit extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.days_to_do}
-                            onChangeText={this.props.days_to_do}>
+                            onChangeText={this.props.editDaysToDo}>
                         </TextInput>
-                    </View> */}
+                    </View>
                     <View>
                         <TouchableOpacity onPress={this.props.closeModal}>
                             <Text>Close</Text>
