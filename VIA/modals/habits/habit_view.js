@@ -31,11 +31,7 @@ export class ViewHabit extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedHabit.name}
-                            // onChangeText={value => {this.props.selectedHabit.name = value}}>
-                                onChangeText={this.props.editName}>
-                                
-                        {/* // onChangeText={this.props.editName} */}
-                        
+                            onChangeText={this.props.editName}>
                         </TextInput>
                     </View>
                     {/* <View>
