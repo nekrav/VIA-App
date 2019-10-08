@@ -11,8 +11,8 @@ const HabitStack = createStackNavigator({
   ViewHabit: HabitView,
 }, {
   initialRouteName: 'AllHabits',
-    // header: null,
-    // headerMode: 'float',
+    header: null,
+    headerMode: 'none',
     // navigationOptions: {
     //   header: null
     // }
@@ -22,6 +22,10 @@ const HabitStack = createStackNavigator({
 const TabNavigator = createBottomTabNavigator({
   Home: HabitStack,
   Settings: ProjectsScreen,
+},
+{
+  headerMode: 'none',
+  header: null,
 });
 
 
