@@ -108,24 +108,15 @@ export class HabitsScreen extends React.Component {
     }
 
     showViewHabit() {
-        // let habitToGoTo = global.selectedHabit;
-        //  Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
-        //     selectedHabit = res.rows.item(0)
-        //     this.setState({ selectedHabit: selectedHabit })
-        // })
         if (this.state.viewModalVisible) {
             if (this.state.selectedHabit != {}) {
-                console.warn(this.state.selectedHabit)
-                let b = this.state.selectedHabit
+                theHabit = this.state.selectedHabit 
                 return <ViewHabit
                     animationType="slide"
                     transparent={false}
-                    // editName={newName => {
-                    //     this.setState({ newName: newName })
-                    // }
-                    // }
-                    selectedHabit={b}
-                    deleteHabit={() => { console.warn("bob")}}
+                    editName={newName => this.setState({ newName: newName })}
+                    selectedHabit={this.state.selectedHabit }
+                    deleteHabit={() => { console.warn("bob") }}
                     closeModal={() => { this.setViewModalVisible(false) }}>
                 </ViewHabit>
             }
@@ -147,7 +138,7 @@ export class HabitsScreen extends React.Component {
                 <FlatList
                     data={this.state.habits}
                     renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => { this.goToHabit(item.value.id)}}>
+                        onPress={() => { this.goToHabit(item.value.id) }}>
                         <View>
                             <CheckBox
                                 center

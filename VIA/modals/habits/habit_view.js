@@ -8,24 +8,7 @@ export class ViewHabit extends React.Component {
         super(props);
         this.state = {
             canEdit: false,
-            newName: selectedHabit.name,
-            selectedHabit: {}
         };
-    }
-
-    componentDidMount() {
-        if (this.props.selectedHabit != {}) {
-            this.loadHabit(this.props.selectedHabit.id);
-        }
-
-    }
-
-    loadHabit(id) {
-        let selectedHabit = {};
-        Database.getOne(Habits.TABLE_NAME, this.props.selectedHabit.id).then((res) => {
-            selectedHabit = res.rows.item(0)
-            this.setState({ selectedHabit: selectedHabit })
-        })
     }
 
     canEdit() {
@@ -33,8 +16,7 @@ export class ViewHabit extends React.Component {
     }
 
     render() {
-        // console.warn(this.state.selectedHabit)
-        if (this.state.selectedHabit != {}) {
+        if (this.props.selectedHabit != {}) {
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -48,8 +30,8 @@ export class ViewHabit extends React.Component {
                         <Text>Name</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={"gaeg"}
-                        // onChangeText={text => this.state.selectedHabit.name = text}
+                            value={this.props.selectedHabit.name}
+                            onChangeText={this.props.editName}
                         // onChangeText={this.props.editName}
                         >
                         </TextInput>

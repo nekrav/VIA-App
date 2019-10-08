@@ -57,16 +57,20 @@ export class Database {
     }
 
     static getTasksByProjId(id) {
-        noQuotes = id.replace(/["']/g, "")
-        query = `SELECT * FROM tasks WHERE project = '${noQuotes}'`
-        return new Promise((resolve, reject) => {
-            this.database.transaction(tx => {
-                tx.executeSql(query)
-                    .then(([tex, res]) =>  resolve(res)
-                    )
+        if (id != {})
+        {
+            noQuotes = id.replace(/["']/g, "")
+            query = `SELECT * FROM tasks WHERE project = '${noQuotes}'`
+            return new Promise((resolve, reject) => {
+                this.database.transaction(tx => {
+                    tx.executeSql(query)
+                        .then(([tex, res]) =>  resolve(res)
+                        )
+                })
+                    .catch(reject)
             })
-                .catch(reject)
-        })
+        }
+        
     }
 
     static getOne(tableName, id) {
