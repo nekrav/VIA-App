@@ -6,19 +6,19 @@ import { CreateHabit, ViewHabit } from '../../modals'
 
 var uuid = require('react-native-uuid');
 
-const uuidv4 = require('uuid/v4');
-
 export class HabitsScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             addModalVisible: false,
-            viewHabitVisible: false,
+            viewModalVisible: false,
             numberOfHabits: 0,
-
+            numberOfFinishedHabits: 0,
+            selectedHabit: {}
         };
     }
+
     componentDidMount() {
         this.loadHabits();
     }
@@ -40,7 +40,7 @@ export class HabitsScreen extends React.Component {
                 this.setState({
                     habits: habArr,
                     numberOfHabits: len,
-                    numberOfCompletedHabits: finishedHabArr.length
+                    numberOfFinishedHabits: finishedHabArr.length
                 })
             })
     }
@@ -49,11 +49,15 @@ export class HabitsScreen extends React.Component {
         this.setState({ addModalVisible: visible });
     }
 
+    setViewModalVisible(visible) {
+        this.setState({ viewModalVisible: visible })
+    }
+
     save(name, dueTime, importance, timeToSpend, notificationTime, daysToDo) {
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = name;
-        newHabit.created_date = new Date().getDate().toString();
+        newHabit.created_date = new Date().getDate();
         newHabit.due_time = dueTime
         newHabit.importance = importance
         newHabit.percentage_done = 0
@@ -96,31 +100,36 @@ export class HabitsScreen extends React.Component {
     }
 
     goToHabit(habitToGoTo) {
-        this.setViewHabitVisible(true);
-        global.selectedHabit = habitToGoTo;
+        this.setViewModalVisible(true);
+        Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
+            selectedHabit = res.rows.item(0)
+            this.setState({ selectedHabit: selectedHabit })
+        })
     }
 
     showViewHabit() {
-        if (this.state.viewHabitVisible) {
-            return <ViewHabit
-                animationType="slide"
-                transparent={false}
-                selectedHabit={global.selectedHabit}
-                deleteHabit={() => {this.deleteHabit(global.selectedHabit)}}
-                closeModal={() => { this.setViewHabitVisible(false) }}>
-            </ViewHabit>
+        // let habitToGoTo = global.selectedHabit;
+        //  Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
+        //     selectedHabit = res.rows.item(0)
+        //     this.setState({ selectedHabit: selectedHabit })
+        // })
+        if (this.state.viewModalVisible) {
+            if (this.state.selectedHabit != {}) {
+                console.warn(this.state.selectedHabit)
+                let b = this.state.selectedHabit
+                return <ViewHabit
+                    animationType="slide"
+                    transparent={false}
+                    // editName={newName => {
+                    //     this.setState({ newName: newName })
+                    // }
+                    // }
+                    selectedHabit={b}
+                    deleteHabit={() => { console.warn("bob")}}
+                    closeModal={() => { this.setViewModalVisible(false) }}>
+                </ViewHabit>
+            }
         }
-    }
-
-    deleteHabit(id)
-    {
-        Database.deleteOne(Habits.TABLE_NAME, id)
-        this.loadHabits()
-        this.setViewHabitVisible(false);
-    }
-
-    setViewHabitVisible(visible) {
-        this.setState({ viewHabitVisible: visible })
     }
 
     render() {
@@ -138,7 +147,7 @@ export class HabitsScreen extends React.Component {
                 <FlatList
                     data={this.state.habits}
                     renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => { this.goToHabit(item.key) }}>
+                        onPress={() => { this.goToHabit(item.value.id)}}>
                         <View>
                             <CheckBox
                                 center
