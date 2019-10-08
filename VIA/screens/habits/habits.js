@@ -114,6 +114,13 @@ export class HabitsScreen extends React.Component {
         })
     }
 
+    delete(habit) {
+        Database.deleteOne(Habits.TABLE_NAME, habit.id).then(() => {
+            this.setViewModalVisible(false)
+            this.loadHabits();
+        })
+    }
+
     showViewHabit() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedHabit != {}) {
@@ -160,7 +167,7 @@ export class HabitsScreen extends React.Component {
 
                     save={() => {this.save(theHabit)}}
                     selectedHabit={theHabit}
-                    deleteHabit={() => { console.warn("bob") }}
+                    deleteHabit={() => { this.delete(theHabit) }}
                     closeModal={() => { this.setViewModalVisible(false) }}>
                 </ViewHabit>
             }
