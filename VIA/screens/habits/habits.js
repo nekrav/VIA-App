@@ -9,7 +9,9 @@ const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
 
-const habitsController = new Controller;
+const controller = new Controller;
+
+const dbTableName = Habits.TABLE_NAME
 
 export class HabitsScreen extends React.Component {
 
@@ -21,12 +23,12 @@ export class HabitsScreen extends React.Component {
             items: [],
             numberOfItems: 0,
             numberOfFinishedItems: 0,
-            selectedHabit: {}
+            selectedItem: {}
         };
     }
 
     componentDidMount() {
-        habitsController.loadAll(this, Habits.TABLE_NAME)
+        controller.loadAll(this, dbTableName)
     }
 
     saveNew(habit) {
@@ -42,9 +44,9 @@ export class HabitsScreen extends React.Component {
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ""
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ""
 
-        Database.save(Habits.TABLE_NAME, newHabit).then(() => {
-            habitsController.setAddModalVisible(this, false)
-            habitsController.loadAll(this, Habits.TABLE_NAME)
+        Database.save(dbTableName, newHabit).then(() => {
+            controller.setAddModalVisible(this, false)
+            controller.loadAll(this, dbTableName)
         })
     }
 
@@ -60,7 +62,7 @@ export class HabitsScreen extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 notification_time={(text) => { newHabit.notification_time = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
-                closeModal={() => { habitsController.setAddModalVisible(this, false) }}
+                closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newHabit) }}
             ></CreateHabit>
         }
@@ -68,8 +70,8 @@ export class HabitsScreen extends React.Component {
 
     showViewHabit() {
         if (this.state.viewModalVisible) {
-            if (this.state.selectedHabit != {}) {
-                theHabit = this.state.selectedHabit
+            if (this.state.selectedItem != {}) {
+                theHabit = this.state.selectedItem
                 return <ViewHabit
                     animationType="slide"
                     transparent={false}
@@ -98,13 +100,13 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedHabit: theHabit })
                     }}
 
-                    save={() => { habitsController.saveExisting(this, Habits.TABLE_NAME, theHabit) }}
+                    save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
 
                     selectedHabit={theHabit}
 
-                    deleteHabit={() => { habitsController.delete(this, Habits.TABLE_NAME, theHabit) }}
+                    deleteHabit={() => { controller.delete(this, dbTableName, theHabit) }}
 
-                    closeModal={() => { habitsController.setViewModalVisible(this, false) }}>
+                    closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewHabit>
             }
         }
@@ -120,13 +122,13 @@ export class HabitsScreen extends React.Component {
                 <Button style={styles.addButton}
                     title="Add Habit"
                     onPress={() => {
-                        habitsController.setAddModalVisible(this, true);
+                        controller.setAddModalVisible(this, true);
                     }} />
                 <FlatList
                     data={this.state.items}
                     renderItem={({ item }) => <TouchableOpacity
-                    style={styles.itemButton}
-                        onPress={() => { habitsController.goToItem(this, Habits.TABLE_NAME, item.value.id) }}>
+                        style={styles.itemButton}
+                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
                         <View style={styles.listItem}>
                             <CheckBox
                                 style={styles.checkBox}
