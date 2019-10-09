@@ -7,7 +7,7 @@ import { Controller } from '../controller'
 
 var uuid = require('react-native-uuid');
 
-const b = new Controller;
+const controller = new Controller;
 
 export class HabitsScreen extends React.Component {
 
@@ -16,40 +16,44 @@ export class HabitsScreen extends React.Component {
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
+
+            items: [],
+            numberOfItems: 0,
+            numberOfFinishedItems: 0,
+
             numberOfHabits: 0,
             numberOfFinishedHabits: 0,
+
             selectedHabit: {}
         };
     }
 
-    
-
     componentDidMount() {
-       
-        this.loadHabits();
+        controller.loadAll(Habits.TABLE_NAME, this)
+        // this.loadHabits();
     }
 
-    loadHabits() {
-        const habArr = []
-        const finishedHabArr = []
-        Database.getAll(Habits.TABLE_NAME)
-            .then((res) => {
-                const len = res.rows.length;
-                let h = {}
-                for (let i = 0; i < len; i++) {
-                    h = res.rows.item(i)
-                    habArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
-                    if (h.completed === 'true') {
-                        finishedHabArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
-                    }
-                }
-                this.setState({
-                    habits: habArr,
-                    numberOfHabits: len,
-                    numberOfFinishedHabits: finishedHabArr.length
-                })
-            })
-    }
+    // loadHabits() {
+    //     const habArr = []
+    //     const finishedHabArr = []
+    //     Database.getAll(Habits.TABLE_NAME)
+    //         .then((res) => {
+    //             const len = res.rows.length;
+    //             let h = {}
+    //             for (let i = 0; i < len; i++) {
+    //                 h = res.rows.item(i)
+    //                 habArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
+    //                 if (h.completed === 'true') {
+    //                     finishedHabArr.push({ key: JSON.stringify(h.id), name: h.name, value: h })
+    //                 }
+    //             }
+    //             this.setState({
+    //                 habits: habArr,
+    //                 numberOfHabits: len,
+    //                 numberOfFinishedHabits: finishedHabArr.length
+    //             })
+    //         })
+    // }
 
     setAddModalVisible(visible) {
         this.setState({ addModalVisible: visible });
@@ -99,33 +103,18 @@ export class HabitsScreen extends React.Component {
                         this.state.newDaysToDo ? this.state.newDaysToDo : '',
                     );
 
-                    this.setAddModalVisible(false); this.loadHabits();
+                    this.setAddModalVisible(false); controller.loadAll(Habits.TABLE_NAME, this);
                 }}
             ></CreateHabit>
         }
     }
 
     goToHabit(habitToGoTo) {
-        // this.setViewModalVisible(true);
-        b.setAddModalVisible(this, true);
         Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
             selectedHabit = res.rows.item(0)
             this.setState({ selectedHabit: selectedHabit })
         })
-    }
-
-    save(habit) {
-        Database.update(Habits.TABLE_NAME, habit).then(() => {
-            this.setViewModalVisible(false)
-            this.loadHabits();
-        })
-    }
-
-    delete(habit) {
-        Database.deleteOne(Habits.TABLE_NAME, habit.id).then(() => {
-            this.setViewModalVisible(false)
-            this.loadHabits();
-        })
+        this.setViewModalVisible(this, true);
     }
 
     showViewHabit() {
@@ -187,14 +176,14 @@ export class HabitsScreen extends React.Component {
                 {this.showAddModal()}
                 {this.showViewHabit()}
                 <Text>Home!</Text>
-                <Text>{this.state.numberOfHabits}</Text>
+                <Text>{this.state.numberOfItems}</Text>
                 <Button
                     title="Add Habit"
                     onPress={() => {
                         this.setAddModalVisible(true);
                     }} />
                 <FlatList
-                    data={this.state.habits}
+                    data={this.state.items}
                     renderItem={({ item }) => <TouchableOpacity
                         onPress={() => { this.goToHabit(item.value.id) }}>
                         <View>
@@ -205,7 +194,7 @@ export class HabitsScreen extends React.Component {
                                 uncheckedIcon='circle-o'
                                 checked={this.state.checked}
                             />
-                            <Text>{item.name}</Text>
+                            <Text>{item.value.name}</Text>
                         </View>
                     </TouchableOpacity>}
                 />
