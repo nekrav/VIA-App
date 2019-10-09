@@ -19,8 +19,8 @@ export class Tasks {
         'name text NOT NULL, ' +
         'created_date NOT NULL, ' +
         'due_date text, ' +
-        'importance integer, ' +
-        'percentage_done integer, ' +
+        'importance text, ' +
+        'percentage_done text, ' +
         'completed text, ' +
         'project text,' +
         'time_spent text '

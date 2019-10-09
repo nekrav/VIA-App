@@ -20,7 +20,7 @@ export class Random {
         'created_date text NOT NULL, ' +
         'due_date text, ' +
         'importance text, ' +
-        'percentage_done integer, ' +
+        'percentage_done text, ' +
         'completed text, ' +
         'time_spent text, ' +
         'only_today text' +
