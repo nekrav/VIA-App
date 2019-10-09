@@ -32,7 +32,14 @@ export class Controller extends React.Component {
             })
     }
 
-    goToItem(object, item) {
+    goToItem(object, tableName, item) {
+        Database.getOne(tableName, item).then((res) => {
+            selectedHabit = res.rows.item(0)
+            object.setState({ selectedHabit: selectedHabit })
+        })
+        this.setViewModalVisible(object, true);
 
     }
+
+      
 }
