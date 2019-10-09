@@ -99,12 +99,9 @@ export class HabitsScreen extends React.Component {
         }
     }
 
-    goToHabit(habitToGoTo) {
-        this.setViewModalVisible(true);
-        Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
-            selectedHabit = res.rows.item(0)
-            this.setState({ selectedHabit: selectedHabit })
-        })
+    goToHabit(habit) {
+        global.selectedHabit = habit
+        this.props.navigation.replace('ViewHabit', { updateList: this.update })
     }
 
     save(habit) {

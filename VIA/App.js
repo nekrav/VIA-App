@@ -13,9 +13,9 @@ const HabitStack = createStackNavigator({
   initialRouteName: 'AllHabits',
     header: null,
     headerMode: 'none',
-    // navigationOptions: {
-    //   header: null
-    // }
+    navigationOptions: {
+
+    }
   });
 
 
@@ -27,11 +27,6 @@ const TabNavigator = createBottomTabNavigator({
   headerMode: 'none',
   header: null,
 });
-
-
-
-
-
 
 Database.init();
 
