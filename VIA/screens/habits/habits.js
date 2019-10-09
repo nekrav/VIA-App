@@ -7,7 +7,7 @@ import { Controller } from '../controller'
 
 var uuid = require('react-native-uuid');
 
-const controller = new Controller;
+const habitsController = new Controller;
 
 export class HabitsScreen extends React.Component {
 
@@ -24,12 +24,11 @@ export class HabitsScreen extends React.Component {
     }
 
     componentDidMount() {
-        controller.loadAll(this, Habits.TABLE_NAME)
+        habitsController.loadAll(this, Habits.TABLE_NAME)
     }
 
     saveNew(habit) {
         let newHabit = {}
-        console.warn(habit)
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
@@ -42,8 +41,8 @@ export class HabitsScreen extends React.Component {
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ""
 
         Database.save(Habits.TABLE_NAME, newHabit).then(() => {
-            controller.setAddModalVisible(this, false)
-            controller.loadAll(this, Habits.TABLE_NAME)
+            habitsController.setAddModalVisible(this, false)
+            habitsController.loadAll(this, Habits.TABLE_NAME)
         })
     }
 
@@ -59,7 +58,7 @@ export class HabitsScreen extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 notification_time={(text) => { newHabit.notification_time = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
-                closeModal={() => { controller.setAddModalVisible(this, false) }}
+                closeModal={() => { habitsController.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newHabit) }}
             ></CreateHabit>
         }
@@ -97,13 +96,13 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedHabit: theHabit })
                     }}
 
-                    save={() => { controller.saveExisting(this, Habits.TABLE_NAME, theHabit) }}
+                    save={() => { habitsController.saveExisting(this, Habits.TABLE_NAME, theHabit) }}
 
                     selectedHabit={theHabit}
 
-                    deleteHabit={() => { controller.delete(this, Habits.TABLE_NAME, theHabit) }}
+                    deleteHabit={() => { habitsController.delete(this, Habits.TABLE_NAME, theHabit) }}
 
-                    closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                    closeModal={() => { habitsController.setViewModalVisible(this, false) }}>
                 </ViewHabit>
             }
         }
@@ -119,12 +118,12 @@ export class HabitsScreen extends React.Component {
                 <Button
                     title="Add Habit"
                     onPress={() => {
-                        controller.setAddModalVisible(this, true);
+                        habitsController.setAddModalVisible(this, true);
                     }} />
                 <FlatList
                     data={this.state.items}
                     renderItem={({ item }) => <TouchableOpacity
-                        onPress={() => { controller.goToItem(this, Habits.TABLE_NAME, item.value.id) }}>
+                        onPress={() => { habitsController.goToItem(this, Habits.TABLE_NAME, item.value.id) }}>
                         <View>
                             <CheckBox
                                 center
@@ -135,7 +134,7 @@ export class HabitsScreen extends React.Component {
                             />
                             <Text>{item.value.name}</Text>
                         </View>
-                    </TouchableOpacity>}/>
+                    </TouchableOpacity>} />
             </View>
         );
     }
