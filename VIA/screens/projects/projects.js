@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
 import { Database, Projects} from '../../db'
-import { CreateHabit, ViewHabit } from '../../modals'
+import { CreateProject, ViewProject} from '../../modals'
 import { Controller } from '../controller'
 
 const styles = require('./styles');
@@ -50,7 +50,7 @@ saveNew(project) {
 showAddModal() {
     let newProject = {};
     if (this.state.addModalVisible) {
-        return <CreateHabit
+        return <CreateProject
             animationType="slide"
             transparent={false}
             name={(text) => { newProject.name = text }}
@@ -59,7 +59,7 @@ showAddModal() {
             time_spent={(text) => { newProject.time_spent = text }}
             closeModal={() => { controller.setAddModalVisible(this, false) }}
             save={() => { this.saveNew(newProject) }}
-        ></CreateHabit>
+        ></CreateProject>
     }
 }
 
@@ -67,7 +67,7 @@ showViewHabit() {
     if (this.state.viewModalVisible) {
         if (this.state.selectedProject != {}) {
             theProject = this.state.selectedProject
-            return <ViewHabit
+            return <ViewProject
                 animationType="slide"
                 transparent={false}
                 editName={(text) => {
@@ -102,7 +102,7 @@ showViewHabit() {
                 deleteProject={() => { controller.delete(this, dbTableName, theProject) }}
 
                 closeModal={() => { controller.setViewModalVisible(this, false) }}>
-            </ViewHabit>
+            </ViewProject>
         }
     }
 }
@@ -112,10 +112,10 @@ render() {
         <View style={styles.outerView}>
             {this.showAddModal()}
             {this.showViewHabit()}
-            <Text style={styles.title}>Home!</Text>
+            <Text style={styles.title}>Projects</Text>
             <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
             <Button style={styles.addButton}
-                title="Add Habit"
+                title="Add Project"
                 onPress={() => {
                     controller.setAddModalVisible(this, true);
                 }} />

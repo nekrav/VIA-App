@@ -7,8 +7,8 @@ import { CreateHabit } from './modals'
 var uuid = require('react-native-uuid');
 
 const TabNavigator = createBottomTabNavigator({
-  Home: HabitsScreen,
-  Settings: ProjectsScreen,
+  Habits: HabitsScreen,
+  Projects: ProjectsScreen,
 });
 
 Database.init();

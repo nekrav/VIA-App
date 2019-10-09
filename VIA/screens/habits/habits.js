@@ -102,7 +102,7 @@ export class HabitsScreen extends React.Component {
 
                     save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
 
-                    selectedHabit={theHabit}
+                    selectedItem={theHabit}
 
                     deleteHabit={() => { controller.delete(this, dbTableName, theHabit) }}
 
@@ -117,7 +117,7 @@ export class HabitsScreen extends React.Component {
             <View style={styles.outerView}>
                 {this.showAddModal()}
                 {this.showViewHabit()}
-                <Text style={styles.title}>Home!</Text>
+                <Text style={styles.title}>Habits</Text>
                 <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
                 <Button style={styles.addButton}
                     title="Add Habit"

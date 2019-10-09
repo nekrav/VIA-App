@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
-import { Database, Habits } from '../../db'
+import { Database, Projects } from '../../db'
 
-export class ViewHabit extends React.Component {
+export class ViewProject extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export class ViewHabit extends React.Component {
     }
 
     render() {
-        if (this.props.selectedItem != {}) {
+        if (this.props.selectedProject != {}) {
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -30,15 +30,15 @@ export class ViewHabit extends React.Component {
                         <Text>Name</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.name}
+                            value={this.props.selectedHabit.name}
                             onChangeText={this.props.editName}>
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Due Time</Text>
+                        <Text>Due Date</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.due_time}
+                            value={this.props.selectedHabit.due_time}
                             onChangeText={this.props.editDueTime}>
                         </TextInput>
                     </View>
@@ -46,7 +46,7 @@ export class ViewHabit extends React.Component {
                         <Text>Importance</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.importance}
+                            value={this.props.selectedHabit.importance}
                             onChangeText={this.props.editImportance}>
                         </TextInput>
                     </View>
@@ -54,7 +54,7 @@ export class ViewHabit extends React.Component {
                         <Text>Time to Spend</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.time_to_spend}
+                            value={this.props.selectedHabit.time_to_spend}
                             onChangeText={this.props.editTimeToSpend}>
                         </TextInput>
                     </View>
@@ -62,7 +62,7 @@ export class ViewHabit extends React.Component {
                         <Text>Notification Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.notification_time}
+                            value={this.props.selectedHabit.notification_time}
                             onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
@@ -70,7 +70,7 @@ export class ViewHabit extends React.Component {
                         <Text>Days to do</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.days_to_do}
+                            value={this.props.selectedHabit.days_to_do}
                             onChangeText={this.props.editDaysToDo}>
                         </TextInput>
                     </View>
