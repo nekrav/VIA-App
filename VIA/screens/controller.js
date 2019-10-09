@@ -38,8 +38,19 @@ export class Controller extends React.Component {
             object.setState({ selectedHabit: selectedHabit })
         })
         this.setViewModalVisible(object, true);
-
     }
 
-      
+    saveExisting(object, tableName, habit) {
+        Database.update(tableName, habit).then(() => {
+            this.setViewModalVisible(object, false)
+            this.loadAll(object, tableName);
+        })
+    }
+
+    delete(object, tableName, habit) {
+        Database.deleteOne(tableName, habit.id).then(() => {
+            this.setViewModalVisible(object, false)
+            this.loadAll(object, tableName);
+        })
+    }
 }
