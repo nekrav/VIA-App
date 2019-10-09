@@ -13,7 +13,10 @@ const backgroundColor = '#0b132b'
 module.exports = StyleSheet.create({
 
     //#region Shared
-    outerView: { flex: 1, 
+    outerView: { 
+        flex: 1,
+        flexDirection: 'column',
+        marginTop: "5%", 
         justifyContent: 'center', 
         alignItems: 'center' 
     },
