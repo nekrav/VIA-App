@@ -14,15 +14,15 @@ export class Projects {
 
     static get TABLE_CREATE() {
         return `${Projects.TABLE_NAME} (` +
-        'id text not null primary key unique, ' +
-        'name text NOT NULL, ' +
-        'created_date text NOT NULL, ' +
-        'due_date text, ' +
-        'importance text, ' +
-        'percentage_done text, ' +
-        'completed text, ' +
-        'time_spent text ' +
-        ')'
+            'id text not null primary key unique, ' +
+            'name text NOT NULL, ' +
+            'created_date text NOT NULL, ' +
+            'due_date text, ' +
+            'importance text, ' +
+            'percentage_done text, ' +
+            'completed text, ' +
+            'time_spent text ' +
+            ')'
     }
 
     static get TABLE_NAME() {

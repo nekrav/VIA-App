@@ -16,17 +16,17 @@ export class Habits {
 
     static get TABLE_CREATE() {
         return `${Habits.TABLE_NAME} (` +
-        'id text not null primary key unique, ' +
-        'name text NOT NULL, ' +
-        'created_date text NOT NULL, ' +
-        'due_time text, ' +
-        'importance text, ' +
-        'percentage_done text, ' +
-        'completed text, ' +
-        'time_to_spend text, ' +
-        'notification_time text, ' +
-        'days_to_do text' +
-        ')'
+            'id text not null primary key unique, ' +
+            'name text NOT NULL, ' +
+            'created_date text NOT NULL, ' +
+            'due_time text, ' +
+            'importance text, ' +
+            'percentage_done text, ' +
+            'completed text, ' +
+            'time_to_spend text, ' +
+            'notification_time text, ' +
+            'days_to_do text' +
+            ')'
     }
 
     static get TABLE_NAME() {

@@ -16,7 +16,7 @@ export class ViewProject extends React.Component {
     }
 
     render() {
-        if (this.props.selectedProject != {}) {
+        if (this.props.selectedItem != {}) {
             return (
                 <Modal
                     animationType={this.props.animationType}
