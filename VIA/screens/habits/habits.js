@@ -5,6 +5,8 @@ import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
 import { Controller } from '../controller'
 
+const styles = require('./styles');
+
 var uuid = require('react-native-uuid');
 
 const habitsController = new Controller;
@@ -110,12 +112,12 @@ export class HabitsScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.outerView}>
                 {this.showAddModal()}
                 {this.showViewHabit()}
-                <Text>Home!</Text>
-                <Text>{this.state.numberOfItems}</Text>
-                <Button
+                <Text style={styles.title}>Home!</Text>
+                <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
+                <Button style={styles.addButton}
                     title="Add Habit"
                     onPress={() => {
                         habitsController.setAddModalVisible(this, true);
@@ -123,16 +125,18 @@ export class HabitsScreen extends React.Component {
                 <FlatList
                     data={this.state.items}
                     renderItem={({ item }) => <TouchableOpacity
+                    style={styles.itemButton}
                         onPress={() => { habitsController.goToItem(this, Habits.TABLE_NAME, item.value.id) }}>
-                        <View>
+                        <View style={styles.listItem}>
                             <CheckBox
+                                style={styles.checkBox}
                                 center
                                 title='Click Here'
                                 checkedIcon='dot-circle-o'
                                 uncheckedIcon='circle-o'
                                 checked={this.state.checked}
                             />
-                            <Text>{item.value.name}</Text>
+                            <Text style={styles.itemName}>{item.value.name}</Text>
                         </View>
                     </TouchableOpacity>} />
             </View>
