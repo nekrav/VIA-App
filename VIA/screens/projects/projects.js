@@ -35,12 +35,12 @@ export class ProjectsScreen extends React.Component {
         newProject.id = uuid.v4();
         newProject.name = project.name;
         newProject.created_date = new Date().getDate();
-        newProject.due_date = project.due_date ? project.due_date : ""
-        newProject.importance = project.importance ? project.importance : ""
-        newProject.percentage_done = 0
-        newProject.completed = "false"
-        newProject.time_spent = 0
-
+        newProject.due_date = project.due_date ? project.due_date : "";
+        newProject.importance = project.importance ? project.importance : "";
+        newProject.percentage_done = 0;
+        newProject.completed = "false";
+        newProject.time_spent = 0;
+       
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)

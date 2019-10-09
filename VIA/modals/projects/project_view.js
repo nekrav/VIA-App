@@ -17,6 +17,7 @@ export class ViewProject extends React.Component {
 
     render() {
         if (this.props.selectedItem != {}) {
+            console.warn(this.props.selectedItem)
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -63,7 +64,7 @@ export class ViewProject extends React.Component {
                         <TextInput
                             editable={this.state.canEdit}
                             value={this.props.selectedItem.percentage_done}
-                            onChangeText={this.props.editPercentageDone}>
+                            onChangeText={this.props.editTimeSpent}>
                         </TextInput>
                     </View>
                     <View>
