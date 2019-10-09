@@ -3,8 +3,11 @@ import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
 import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
+import { Controller } from '../controller'
 
 var uuid = require('react-native-uuid');
+
+const b = new Controller;
 
 export class HabitsScreen extends React.Component {
 
@@ -19,7 +22,10 @@ export class HabitsScreen extends React.Component {
         };
     }
 
+    
+
     componentDidMount() {
+       
         this.loadHabits();
     }
 
@@ -100,7 +106,8 @@ export class HabitsScreen extends React.Component {
     }
 
     goToHabit(habitToGoTo) {
-        this.setViewModalVisible(true);
+        // this.setViewModalVisible(true);
+        b.setAddModalVisible(this, true);
         Database.getOne(Habits.TABLE_NAME, habitToGoTo).then((res) => {
             selectedHabit = res.rows.item(0)
             this.setState({ selectedHabit: selectedHabit })
