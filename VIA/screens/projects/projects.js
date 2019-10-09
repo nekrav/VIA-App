@@ -22,7 +22,7 @@ export class ProjectsScreen extends React.Component {
         items: [],
         numberOfItems: 0,
         numberOfFinishedItems: 0,
-        selectedProject: {}
+        selectedItem: {}
     };
 }
 
@@ -63,10 +63,10 @@ showAddModal() {
     }
 }
 
-showViewHabit() {
+showViewProject() {
     if (this.state.viewModalVisible) {
-        if (this.state.selectedProject != {}) {
-            theProject = this.state.selectedProject
+        if (this.state.selectedItem != {}) {
+            theProject = this.state.selectedItem
             return <ViewProject
                 animationType="slide"
                 transparent={false}
@@ -90,16 +90,12 @@ showViewHabit() {
                   theProject.percentage_done = text;
                     this.setState({ selectedProject: theProject })
                 }}
-                editDaysToDo={(text) => {
-                  theProject.days_to_do = text;
-                    this.setState({ selectedProject: theProject })
-                }}
 
                 save={() => { controller.saveExisting(this, dbTableName, theProject) }}
 
-                selectedProject={theProject}
+                selectedItem={theProject}
 
-                deleteProject={() => { controller.delete(this, dbTableName, theProject) }}
+                delete={() => { controller.delete(this, dbTableName, theProject) }}
 
                 closeModal={() => { controller.setViewModalVisible(this, false) }}>
             </ViewProject>
@@ -111,7 +107,7 @@ render() {
     return (
         <View style={styles.outerView}>
             {this.showAddModal()}
-            {this.showViewHabit()}
+            {this.showViewProject()}
             <Text style={styles.title}>Projects</Text>
             <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
             <Button style={styles.addButton}

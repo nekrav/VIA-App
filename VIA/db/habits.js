@@ -20,8 +20,8 @@ export class Habits {
         'name text NOT NULL, ' +
         'created_date text NOT NULL, ' +
         'due_time text, ' +
-        'importance integer, ' +
-        'percentage_done integer, ' +
+        'importance text, ' +
+        'percentage_done text, ' +
         'completed text, ' +
         'time_to_spend text, ' +
         'notification_time text, ' +

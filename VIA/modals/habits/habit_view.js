@@ -81,7 +81,7 @@ export class ViewHabit extends React.Component {
                         <TouchableOpacity onPress={this.props.save}>
                             <Text>Save</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={this.props.deleteHabit}>
+                        <TouchableOpacity onPress={this.props.delete}>
                             <Text>Delete</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.canEdit()}>

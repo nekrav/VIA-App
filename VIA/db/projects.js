@@ -16,10 +16,10 @@ export class Projects {
         return `${Projects.TABLE_NAME} (` +
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
-        'created_date NOT NULL, ' +
+        'created_date text NOT NULL, ' +
         'due_date text, ' +
-        'importance integer, ' +
-        'percentage_done integer, ' +
+        'importance text, ' +
+        'percentage_done text, ' +
         'completed text, ' +
         'time_spent text ' +
         ')'

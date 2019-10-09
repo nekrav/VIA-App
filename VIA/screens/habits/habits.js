@@ -77,34 +77,34 @@ export class HabitsScreen extends React.Component {
                     transparent={false}
                     editName={(text) => {
                         theHabit.name = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editDueTime={(text) => {
                         theHabit.due_time = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editImportance={(text) => {
                         theHabit.importance = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editTimeToSpend={(text) => {
                         theHabit.time_to_spend = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editNotificationTime={(text) => {
                         theHabit.notification_time = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editDaysToDo={(text) => {
                         theHabit.days_to_do = text;
-                        this.setState({ selectedHabit: theHabit })
+                        this.setState({ selectedItem: theHabit })
                     }}
 
                     save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
 
                     selectedItem={theHabit}
 
-                    deleteHabit={() => { controller.delete(this, dbTableName, theHabit) }}
+                    delete={() => { controller.delete(this, dbTableName, theHabit) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewHabit>

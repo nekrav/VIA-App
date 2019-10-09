@@ -24,13 +24,13 @@ export class ViewProject extends React.Component {
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
                     <View style={{ marginTop: 22, alignItems: "center" }}>
-                        <Text>View Habit</Text>
+                        <Text>View Project</Text>
                     </View>
                     <View>
                         <Text>Name</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedHabit.name}
+                            value={this.props.selectedItem.name}
                             onChangeText={this.props.editName}>
                         </TextInput>
                     </View>
@@ -38,40 +38,32 @@ export class ViewProject extends React.Component {
                         <Text>Due Date</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedHabit.due_time}
-                            onChangeText={this.props.editDueTime}>
+                            value={this.props.selectedItem.due_date}
+                            onChangeText={this.props.editDueDate}>
                         </TextInput>
                     </View>
                     <View>
                         <Text>Importance</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedHabit.importance}
+                            value={this.props.selectedItem.importance}
                             onChangeText={this.props.editImportance}>
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Time to Spend</Text>
+                        <Text>Time Spent</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedHabit.time_to_spend}
-                            onChangeText={this.props.editTimeToSpend}>
+                            value={this.props.selectedItem.time_spent}
+                            onChangeText={this.props.editTimeSpent}>
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Notification Time</Text>
+                        <Text>Percentage Done</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedHabit.notification_time}
-                            onChangeText={this.props.editNotificationTime}>
-                        </TextInput>
-                    </View>
-                    <View>
-                        <Text>Days to do</Text>
-                        <TextInput
-                            editable={this.state.canEdit}
-                            value={this.props.selectedHabit.days_to_do}
-                            onChangeText={this.props.editDaysToDo}>
+                            value={this.props.selectedItem.percentage_done}
+                            onChangeText={this.props.editPercentageDone}>
                         </TextInput>
                     </View>
                     <View>
@@ -81,7 +73,7 @@ export class ViewProject extends React.Component {
                         <TouchableOpacity onPress={this.props.save}>
                             <Text>Save</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={this.props.deleteHabit}>
+                        <TouchableOpacity onPress={this.props.delete}>
                             <Text>Delete</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.canEdit()}>
