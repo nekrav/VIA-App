@@ -6,7 +6,11 @@ export class Controller extends React.Component {
         object.setState({ addModalVisible: visible });
     }
 
-    loadAll(tableName, object) {
+    setViewModalVisible(object, visible) {
+        object.setState({ viewModalVisible: visible })
+    }
+
+    loadAll(object, tableName) {
         const itemsArr = []
         const finishedArr = []
         Database.getAll(tableName)
@@ -26,5 +30,9 @@ export class Controller extends React.Component {
                     numberOfFinishedItems: finishedArr.length
                 })
             })
+    }
+
+    goToItem(object, item) {
+
     }
 }
