@@ -9,6 +9,7 @@ import { Projects } from './projects'
 import { Habits } from './habits'
 import { Tasks } from './tasks'
 import { Random } from './random'
+import { Routines } from './routines'
 import { restElement } from '@babel/types';
 
 
@@ -248,6 +249,7 @@ export class Database {
     static restart(tx) {
         tx.executeSql(`DROP TABLE IF EXISTS ${Projects.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Habits.TABLE_NAME}`)
+        tx.executeSql(`DROP TABLE IF EXISTS ${Routines.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Tasks.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Random.TABLE_NAME}`)
     }
@@ -276,6 +278,7 @@ export class Database {
 
 export { Projects } from './projects'
 export { Habits } from './habits'
+export { Routines } from './routines'
 export { Tasks } from './tasks'
 export { Random } from './random'
 

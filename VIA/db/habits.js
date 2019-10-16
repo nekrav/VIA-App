@@ -12,6 +12,7 @@ export class Habits {
         this.time_to_spend = props.time_to_spend
         this.notification_time = props.notification_time
         this.days_to_do = props.days_to_do
+        this.routine = props.routine
     }
 
     static get TABLE_CREATE() {
@@ -25,7 +26,8 @@ export class Habits {
             'completed text, ' +
             'time_to_spend text, ' +
             'notification_time text, ' +
-            'days_to_do text' +
+            'days_to_do text, ' +
+            'routine text ' +
             ')'
     }
 

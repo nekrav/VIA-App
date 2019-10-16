@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
-import { Database, Projects } from '../../db'
+import { Database, Routines } from '../../db'
 import { CreateProject, ViewProject } from '../../modals'
 import { Controller } from '../controller'
 
@@ -11,9 +11,9 @@ var uuid = require('react-native-uuid');
 
 const controller = new Controller;
 
-const dbTableName = Projects.TABLE_NAME
+const dbTableName = Routines.TABLE_NAME
 
-export class ProjectsScreen extends React.Component {
+export class RoutinesScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
