@@ -37,7 +37,7 @@ export class RoutinesScreen extends React.Component {
         newRoutine.created_date = new Date().getDate();
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
         newRoutine.end_time = routine.end_time ? routine.end_time : "";
-       
+        newRoutine.notification_time = routine.notification_time ? routine.notification_time : "";
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -51,7 +51,7 @@ export class RoutinesScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 name={(text) => { newRoutine.name = text }}
-                start_time={(text) => { newRoutine.due_date = text }}
+                start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}
                 notification_time={(text) => { newRoutine.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -63,36 +63,33 @@ export class RoutinesScreen extends React.Component {
     showViewRoutine() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedItem != {}) {
-                theProject = this.state.selectedItem
+                theRoutine = this.state.selectedItem
                 return <ViewRoutine
                     animationType="slide"
                     transparent={false}
                     editName={(text) => {
                         theRoutine.name = text;
-                        this.setState({ selectedProject: theRoutine })
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     editStartTime={(text) => {
-                        theProject.due_date = text;
-                        this.setState({ selectedProject: theRoutine })
+                        theRoutine.start_time = text;
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     editEndTime={(text) => {
-                        theProject.importance = text;
-                        this.setState({ selectedProject: theProject })
+                        theRoutine.end_time = text;
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
-                    editTimeSpent={(text) => {
-                        theProject.time_spent = text;
-                        this.setState({ selectedProject: theProject })
+                    editNotificationTime={(text) => {
+                        theRoutine.notification_time = text;
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
-                    editPercentageDone={(text) => {
-                        theProject.percentage_done = text;
-                        this.setState({ selectedProject: theProject })
-                    }}
+                
 
-                    save={() => { controller.saveExisting(this, dbTableName, theProject) }}
+                    save={() => { controller.saveExisting(this, dbTableName, theRoutine) }}
 
-                    selectedItem={theProject}
+                    selectedItem={theRoutine}
 
-                    delete={() => { controller.delete(this, dbTableName, theProject) }}
+                    delete={() => { controller.delete(this, dbTableName, theRoutine) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewRoutine>

@@ -1,17 +1,17 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput } from 'react-native'; // Version can be specified in package.json
 
-export class CreateProject extends React.Component {
+export class CreateTask extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            newProject: this.props.newProject,
+            newTask: this.props.newTask,
         };
     }
     render() {
         return (
-            <Modal
+<Modal
                 animationType={this.props.animationType}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
@@ -35,6 +35,18 @@ export class CreateProject extends React.Component {
                     <Text>Importance</Text>
                     <TextInput
                         onChangeText={this.props.importance}>
+                    </TextInput>
+                </View>
+                <View>
+                    <Text>Project</Text>
+                    <TextInput
+                        onChangeText={this.props.project}>
+                    </TextInput>
+                </View>
+                <View>
+                    <Text>Notification Time</Text>
+                    <TextInput
+                        onChangeText={this.props.notification_time}>
                     </TextInput>
                 </View>
                 <View>

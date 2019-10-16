@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
 
-export class ViewProject extends React.Component {
+export class ViewTask extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,7 +23,7 @@ export class ViewProject extends React.Component {
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
                     <View style={{ marginTop: 22, alignItems: "center" }}>
-                        <Text>View Project</Text>
+                        <Text>View Task</Text>
                     </View>
                     <View>
                         <Text>Name</Text>
@@ -31,6 +31,13 @@ export class ViewProject extends React.Component {
                             editable={this.state.canEdit}
                             value={this.props.selectedItem.name}
                             onChangeText={this.props.editName}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Created Date</Text>
+                        <TextInput
+                            editable={false}
+                            value={this.props.selectedItem.created_date}>
                         </TextInput>
                     </View>
                     <View>
@@ -50,6 +57,30 @@ export class ViewProject extends React.Component {
                         </TextInput>
                     </View>
                     <View>
+                        <Text>Percentage Done</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.percentage_done}
+                            onChangeText={this.props.editPercentageDone}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Completed</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.completed}
+                            onChangeText={this.props.editCompleted}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Project</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.project}
+                            onChangeText={this.props.editProject}>
+                        </TextInput>
+                    </View>
+                    <View>
                         <Text>Time Spent</Text>
                         <TextInput
                             editable={this.state.canEdit}
@@ -58,11 +89,11 @@ export class ViewProject extends React.Component {
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Percentage Done</Text>
+                        <Text>Notification Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.percentage_done}
-                            onChangeText={this.props.editPercentageDone}>
+                            value={this.props.selectedItem.notification_time}
+                            onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
                     <View>

@@ -6,6 +6,7 @@ export class Routines {
         this.name = props.name
         this.created_date = props.created_date
         this.start_time = props.start_time
+        this.end_time = props.end_time
         this.notification_time = props.notification_time
     }
 
@@ -15,6 +16,7 @@ export class Routines {
             'name text NOT NULL, ' +
             'created_date text NOT NULL, ' +
             'start_time text, ' +
+            'end_time text, ' +
             'notification_time text ' +
             ')'
     }
