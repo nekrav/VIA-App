@@ -1,8 +1,8 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
-import { Database, Routines } from '../../db'
-import { CreateProject, ViewProject } from '../../modals'
+import { Database, Routines, Habits } from '../../db'
+import { CreateRoutine, ViewRoutine } from '../../modals'
 import { Controller } from '../controller'
 
 const styles = require('./styles');
@@ -30,55 +30,52 @@ export class RoutinesScreen extends React.Component {
         controller.loadAll(this, dbTableName)
     }
 
-    saveNew(project) {
-        let newProject = {}
-        newProject.id = uuid.v4();
-        newProject.name = project.name;
-        newProject.created_date = new Date().getDate();
-        newProject.due_date = project.due_date ? project.due_date : "";
-        newProject.importance = project.importance ? project.importance : "";
-        newProject.percentage_done = 0;
-        newProject.completed = "false";
-        newProject.time_spent = 0;
+    saveNew(routine) {
+        let newRoutine = {}
+        newRoutine.id = uuid.v4();
+        newRoutine.name = routine.name;
+        newRoutine.created_date = new Date().getDate();
+        newRoutine.start_time = routine.start_time ? routine.start_time : "";
+        newRoutine.end_time = routine.end_time ? routine.end_time : "";
        
-        Database.save(dbTableName, newProject).then(() => {
+        Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
         })
     }
 
     showAddModal() {
-        let newProject = {};
+        let newRoutine = {};
         if (this.state.addModalVisible) {
-            return <CreateProject
+            return <CreateRoutine
                 animationType="slide"
                 transparent={false}
-                name={(text) => { newProject.name = text }}
-                due_date={(text) => { newProject.due_date = text }}
-                importance={(text) => { newProject.importance = text }}
-                time_spent={(text) => { newProject.time_spent = text }}
+                name={(text) => { newRoutine.name = text }}
+                start_time={(text) => { newRoutine.due_date = text }}
+                end_time={(text) => { newRoutine.end_time = text }}
+                notification_time={(text) => { newRoutine.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newProject) }}
-            ></CreateProject>
+                save={() => { this.saveNew(newRoutine) }}
+            ></CreateRoutine>
         }
     }
 
-    showViewProject() {
+    showViewRoutine() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedItem != {}) {
                 theProject = this.state.selectedItem
-                return <ViewProject
+                return <ViewRoutine
                     animationType="slide"
                     transparent={false}
                     editName={(text) => {
-                        theProject.name = text;
-                        this.setState({ selectedProject: theProject })
+                        theRoutine.name = text;
+                        this.setState({ selectedProject: theRoutine })
                     }}
-                    editDueDate={(text) => {
+                    editStartTime={(text) => {
                         theProject.due_date = text;
-                        this.setState({ selectedProject: theProject })
+                        this.setState({ selectedProject: theRoutine })
                     }}
-                    editImportance={(text) => {
+                    editEndTime={(text) => {
                         theProject.importance = text;
                         this.setState({ selectedProject: theProject })
                     }}
@@ -98,7 +95,7 @@ export class RoutinesScreen extends React.Component {
                     delete={() => { controller.delete(this, dbTableName, theProject) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
-                </ViewProject>
+                </ViewRoutine>
             }
         }
     }
@@ -107,11 +104,11 @@ export class RoutinesScreen extends React.Component {
         return (
             <View style={styles.outerView}>
                 {this.showAddModal()}
-                {this.showViewProject()}
-                <Text style={styles.title}>Projects</Text>
+                {this.showViewRoutine()}
+                <Text style={styles.title}>Routines</Text>
                 <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
                 <Button style={styles.addButton}
-                    title="Add Project"
+                    title="Add Routine"
                     onPress={() => {
                         controller.setAddModalVisible(this, true);
                     }} />

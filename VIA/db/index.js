@@ -213,9 +213,11 @@ export class Database {
 
     static tables(tx) {
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Habits.TABLE_CREATE}`);
-        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Random.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE if NOT EXISTS ${Projects.TABLE_CREATE}`);
-        // tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Routines.TABLE_CREATE}`);
+
     }
 
     static init() {
@@ -259,8 +261,6 @@ export class Database {
             this.database.transaction(tx => {
                 this.tables(tx)
                 this.mock(tx)
-                
-               
             })
                 .catch(reject)
         })
