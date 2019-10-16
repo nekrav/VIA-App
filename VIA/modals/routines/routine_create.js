@@ -6,7 +6,7 @@ export class CreateRoutine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newProject: this.props.newProject,
+            newRoutine: this.props.newRoutine,
         };
     }
     render() {
@@ -17,7 +17,7 @@ export class CreateRoutine extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <View style={{ marginTop: 22, alignItems: "center" }}>
-                    <Text>Add Project</Text>
+                    <Text>Add Routine</Text>
                 </View>
                 <View>
                     <Text>Name</Text>
@@ -26,15 +26,21 @@ export class CreateRoutine extends React.Component {
                     </TextInput>
                 </View>
                 <View>
-                    <Text>Due Date</Text>
+                    <Text>Start Time</Text>
                     <TextInput
-                        onChangeText={this.props.due_date}>
+                        onChangeText={this.props.start_time}>
                     </TextInput>
                 </View>
                 <View>
-                    <Text>Importance</Text>
+                    <Text>End Time</Text>
                     <TextInput
-                        onChangeText={this.props.importance}>
+                        onChangeText={this.props.end_time}>
+                    </TextInput>
+                </View>
+                <View>
+                    <Text>Notification Time</Text>
+                    <TextInput
+                        onChangeText={this.props.notification_time}>
                     </TextInput>
                 </View>
                 <View>

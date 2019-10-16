@@ -24,7 +24,7 @@ export class ViewRoutine extends React.Component {
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
                     <View style={{ marginTop: 22, alignItems: "center" }}>
-                        <Text>View Project</Text>
+                        <Text>View Routine</Text>
                     </View>
                     <View>
                         <Text>Name</Text>
@@ -35,35 +35,27 @@ export class ViewRoutine extends React.Component {
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Due Date</Text>
+                        <Text>Start Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.due_date}
-                            onChangeText={this.props.editDueDate}>
+                            value={this.props.selectedItem.start_time}
+                            onChangeText={this.props.editStartTime}>
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Importance</Text>
+                        <Text>End Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.importance}
-                            onChangeText={this.props.editImportance}>
+                            value={this.props.selectedItem.end_time}
+                            onChangeText={this.props.editEndTime}>
                         </TextInput>
                     </View>
                     <View>
-                        <Text>Time Spent</Text>
+                        <Text>Notification Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.time_spent}
-                            onChangeText={this.props.editTimeSpent}>
-                        </TextInput>
-                    </View>
-                    <View>
-                        <Text>Percentage Done</Text>
-                        <TextInput
-                            editable={this.state.canEdit}
-                            value={this.props.selectedItem.percentage_done}
-                            onChangeText={this.props.editPercentageDone}>
+                            value={this.props.selectedItem.notification_time}
+                            onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
                     <View>
