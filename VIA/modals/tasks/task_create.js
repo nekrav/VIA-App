@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
 
 export class CreateTask extends React.Component {
 
@@ -17,7 +17,7 @@ export class CreateTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <View style={{ marginTop: 22, alignItems: "center" }}>
-                    <Text>Add Project</Text>
+                    <Text>Add Task</Text>
                 </View>
                 <View>
                     <Text>Name</Text>
@@ -47,6 +47,12 @@ export class CreateTask extends React.Component {
                     <Text>Notification Time</Text>
                     <TextInput
                         onChangeText={this.props.notification_time}>
+                    </TextInput>
+                </View>
+                <View>
+                    <Text>Notes</Text>
+                    <TextInput
+                        onChangeText={this.props.notes}>
                     </TextInput>
                 </View>
                 <View>

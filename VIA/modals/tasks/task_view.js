@@ -97,6 +97,14 @@ export class ViewTask extends React.Component {
                         </TextInput>
                     </View>
                     <View>
+                        <Text>Notes</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.notes}
+                            onChangeText={this.props.editNotes}>
+                        </TextInput>
+                    </View>
+                    <View>
                         <TouchableOpacity onPress={this.props.closeModal}>
                             <Text>Close</Text>
                         </TouchableOpacity>
