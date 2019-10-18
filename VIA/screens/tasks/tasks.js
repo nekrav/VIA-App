@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
 import { Database, Projects, Tasks} from '../../db'
-import { CreateProject, ViewProject } from '../../modals'
+import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 
 const styles = require('./styles');
@@ -30,75 +30,98 @@ export class TasksScreen extends React.Component {
         controller.loadAll(this, dbTableName)
     }
 
-    saveNew(project) {
-        let newProject = {}
-        newProject.id = uuid.v4();
-        newProject.name = project.name;
-        newProject.created_date = new Date().getDate();
-        newProject.due_date = project.due_date ? project.due_date : "";
-        newProject.importance = project.importance ? project.importance : "";
-        newProject.percentage_done = 0;
-        newProject.completed = "false";
-        newProject.time_spent = 0;
+    saveNew(task) {
+        let newTask = {}
+        newTask.id = uuid.v4();
+        newTask.name = task.name;
+        newTask.created_date = new Date().getDate();
+        newTask.due_date = task.due_date ? task.due_date : "";
+        newTask.importance = task.importance ? task.importance : "";
+        newTask.percentage_done = 0;
+        newTask.completed = "false";
+        newTask.project = task.project ? task.project : "";
+        newTask.time_spent = 0;
+        newTask.notes = task.notes ? task.notes : "";
+        newTask.notification_time = task.notification_time ? task.notification_time : "";
        
-        Database.save(dbTableName, newProject).then(() => {
+        Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
         })
     }
 
     showAddModal() {
-        let newProject = {};
+        let newTask = {};
         if (this.state.addModalVisible) {
-            return <CreateProject
+            return <CreateTask
                 animationType="slide"
                 transparent={false}
-                name={(text) => { newProject.name = text }}
-                due_date={(text) => { newProject.due_date = text }}
-                importance={(text) => { newProject.importance = text }}
-                time_spent={(text) => { newProject.time_spent = text }}
+                name={(text) => { newTask.name = text }}
+                due_date={(text) => { newTask.due_date = text }}
+                importance={(text) => { newTask.importance = text }}
+                project={(text) => { newTask.project = text }}
+                time_spent={(text) => { newTask.time_spent = text }}
+                notes={(text) => { newTask.notes = text }}
+                notification_time={(text) => { newTask.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newProject) }}
-            ></CreateProject>
+                save={() => { this.saveNew(newTask) }}
+            ></CreateTask>
         }
     }
 
-    showViewProject() {
+    showViewTask() {
         if (this.state.viewModalVisible) {
             if (this.state.selectedItem != {}) {
-                theProject = this.state.selectedItem
-                return <ViewProject
+                theTask = this.state.selectedItem
+                return <ViewTask
                     animationType="slide"
                     transparent={false}
                     editName={(text) => {
-                        theProject.name = text;
-                        this.setState({ selectedProject: theProject })
+                        theTask.name = text;
+                        this.setState({ selectedTask: theTask })
                     }}
                     editDueDate={(text) => {
-                        theProject.due_date = text;
-                        this.setState({ selectedProject: theProject })
+                        theTask.due_date = text;
+                        this.setState({ selectedTask: theTask })
                     }}
                     editImportance={(text) => {
-                        theProject.importance = text;
-                        this.setState({ selectedProject: theProject })
-                    }}
-                    editTimeSpent={(text) => {
-                        theProject.time_spent = text;
-                        this.setState({ selectedProject: theProject })
+                        theTask.importance = text;
+                        this.setState({ selectedTask: theTask })
                     }}
                     editPercentageDone={(text) => {
-                        theProject.percentage_done = text;
-                        this.setState({ selectedProject: theProject })
+                        theTask.percentage_done = text;
+                        this.setState({ selectedTask: theTask })
                     }}
+                    editCompleted={(text) => {
+                        theTask.completed = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editProject={(text) => {
+                        theTask.project = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editTimeSpent={(text) => {
+                        theTask.time_spent = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editNotes={(text) => {
+                        theTask.notes = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editNotificationTime={(text) => {
+                        theTask.notification_time = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                  
 
-                    save={() => { controller.saveExisting(this, dbTableName, theProject) }}
+                    save={() => { controller.saveExisting(this, dbTableName, theTask) }}
 
-                    selectedItem={theProject}
+                    selectedItem={theTask}
 
-                    delete={() => { controller.delete(this, dbTableName, theProject) }}
+                    delete={() => { controller.delete(this, dbTableName, theTask) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
-                </ViewProject>
+                </ViewTask>
             }
         }
     }
@@ -107,11 +130,11 @@ export class TasksScreen extends React.Component {
         return (
             <View style={styles.outerView}>
                 {this.showAddModal()}
-                {this.showViewProject()}
-                <Text style={styles.title}>Projects</Text>
+                {this.showViewTask()}
+                <Text style={styles.title}>Tasks</Text>
                 <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
                 <Button style={styles.addButton}
-                    title="Add Project"
+                    title="Add Task"
                     onPress={() => {
                         controller.setAddModalVisible(this, true);
                     }} />

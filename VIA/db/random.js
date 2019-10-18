@@ -24,7 +24,7 @@ export class Random {
         'percentage_done text, ' +
         'completed text, ' +
         'time_spent text, ' +
-        'notes, ' +
+        'notes, text' +
         'only_today text' +
         ')'
     }

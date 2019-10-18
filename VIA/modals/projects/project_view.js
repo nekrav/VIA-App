@@ -34,6 +34,13 @@ export class ViewProject extends React.Component {
                         </TextInput>
                     </View>
                     <View>
+                        <Text>Created Date</Text>
+                        <TextInput
+                            editable={false}
+                            value={this.props.selectedItem.created_date}>
+                        </TextInput>
+                    </View>
+                    <View>
                         <Text>Due Date</Text>
                         <TextInput
                             editable={this.state.canEdit}

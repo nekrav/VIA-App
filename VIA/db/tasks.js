@@ -19,14 +19,14 @@ export class Tasks {
         return `${Tasks.TABLE_NAME} (` +
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
-        'created_date NOT NULL, ' +
+        'created_date text NOT NULL, ' +
         'due_date text, ' +
         'importance text, ' +
         'percentage_done text, ' +
         'completed text, ' +
         'project text,' +
         'time_spent text, ' +
-        'notes,' + 
+        'notes text,' + 
         'notification_time ' +
         ')'
     }
