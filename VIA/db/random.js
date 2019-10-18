@@ -10,6 +10,7 @@ export class Random {
         this.percentage_done = props.percentage_done
         this.completed = props.completed
         this.time_spent = props.time_spent
+        this.notes = props.notes
         this.only_today = props.only_today
     }
 
@@ -23,6 +24,7 @@ export class Random {
         'percentage_done text, ' +
         'completed text, ' +
         'time_spent text, ' +
+        'notes, ' +
         'only_today text' +
         ')'
     }

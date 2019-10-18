@@ -40,6 +40,7 @@ export class ProjectsScreen extends React.Component {
         newProject.percentage_done = 0;
         newProject.completed = "false";
         newProject.time_spent = 0;
+        newProject.notes = 0;
        
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
@@ -57,6 +58,7 @@ export class ProjectsScreen extends React.Component {
                 due_date={(text) => { newProject.due_date = text }}
                 importance={(text) => { newProject.importance = text }}
                 time_spent={(text) => { newProject.time_spent = text }}
+                notes={(text) => { newProject.notes = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newProject) }}
             ></CreateProject>
@@ -88,6 +90,10 @@ export class ProjectsScreen extends React.Component {
                     }}
                     editPercentageDone={(text) => {
                         theProject.percentage_done = text;
+                        this.setState({ selectedProject: theProject })
+                    }}
+                    editNotes={(text) => {
+                        theProject.notes = text;
                         this.setState({ selectedProject: theProject })
                     }}
 

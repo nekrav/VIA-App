@@ -38,6 +38,12 @@ export class CreateProject extends React.Component {
                     </TextInput>
                 </View>
                 <View>
+                    <Text>Notes</Text>
+                    <TextInput
+                        onChangeText={this.props.notes}>
+                    </TextInput>
+                </View>
+                <View>
                     <TouchableOpacity onPress={this.props.closeModal}>
                         <Text>Close</Text>
                     </TouchableOpacity>

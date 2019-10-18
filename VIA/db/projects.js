@@ -10,6 +10,7 @@ export class Projects {
         this.percentage_done = props.percentage_done
         this.completed = props.completed
         this.time_spent = props.time_spent
+        this.notes = notes
     }
 
     static get TABLE_CREATE() {
@@ -21,7 +22,8 @@ export class Projects {
             'importance text, ' +
             'percentage_done text, ' +
             'completed text, ' +
-            'time_spent text ' +
+            'time_spent text, ' +
+            'notes' + 
             ')'
     }
 
