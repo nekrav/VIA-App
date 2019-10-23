@@ -9,25 +9,26 @@ export class ViewTask extends React.Component {
 
     constructor(props) {
         super(props);
-        console.warn(props)
         this.state = {
             canEdit: false,
             selectedItem: this.props.selectedItem,
-            // project: controller.getOne(this, Projects.TABLE_NAME, this.props.selectedItem.project),
+            proj: null,
         };
     }
 
-    // componentDidMount() {
-    //     // controller.getOne(this, Projects.TABLE_NAME, this.state.project)
-    // }
+    componentDidMount() {
+        Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
+            this.setState({ proj: res.rows.item(0) })
+        })
+    }
 
     canEdit() {
         this.setState({ canEdit: true })
     }
 
     render() {
-        // if (this.state.project != {}) {
-            // console.warn(this.state.project)
+        if (this.state.proj != null) {
+            console.warn(this.state.proj)
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -88,7 +89,7 @@ export class ViewTask extends React.Component {
                         <Text>Project</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            // value={this.state.project}
+                            value={this.state.proj.name}
                             onChangeText={this.props.editProject}>
                         </TextInput>
                     </View>
@@ -133,6 +134,6 @@ export class ViewTask extends React.Component {
                 </Modal>
             );
         }
-    // }
-
+        return null;
+    }
 }
