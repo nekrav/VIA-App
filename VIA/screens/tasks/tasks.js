@@ -40,7 +40,7 @@ export class TasksScreen extends React.Component {
         newTask.importance = task.importance ? task.importance : "";
         newTask.percentage_done = 0;
         newTask.completed = "false";
-        newTask.project = task.project ? task.project.id : "";
+        newTask.project = task.project ? task.project : "";
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : "";

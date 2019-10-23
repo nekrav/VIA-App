@@ -9,6 +9,7 @@ export class ViewTask extends React.Component {
 
     constructor(props) {
         super(props);
+        console.warn(this.props.selectedItem);
         this.state = {
             canEdit: false,
             selectedItem: this.props.selectedItem,
@@ -17,7 +18,9 @@ export class ViewTask extends React.Component {
     }
 
     componentDidMount() {
+
         if (this.state.selectedItem.project != null) {
+            console.warn(this.state.selectedItem);
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0) })
             })
@@ -30,7 +33,6 @@ export class ViewTask extends React.Component {
 
     renderProjectSection() {
         if (this.state.proj != null) {
-
             return (<View>
                 <Text>Project</Text>
                 <TextInput
@@ -47,7 +49,6 @@ export class ViewTask extends React.Component {
     }
 
     render() {
-        console.warn(this.state.proj)
         return (
             <Modal
                 animationType={this.props.animationType}
