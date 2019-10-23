@@ -10,6 +10,7 @@ export class SelectionModal extends React.Component {
         };
     }
     render() {
+        console.warn(this.props.items)
         return (
             <Modal
                 animationType={this.props.animationType}
@@ -23,20 +24,24 @@ export class SelectionModal extends React.Component {
                         <Text>Select {this.props.itemName} </Text>
                     </View>
                     <FlatList
-                        data={this.state.items}
+                        data={this.props.items}
                         renderItem={({ item }) => <TouchableOpacity
-                            style={styles.itemButton}
+                            // style={}
                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                            <View style={styles.listItem}>
-                                <CheckBox
-                                    style={styles.checkBox}
+                            <View
+                            // style={styles.listItem}
+                            >
+                                {/* <CheckBox
+                                    // style={styles.checkBox}
                                     center
                                     title='Click Here'
                                     checkedIcon='dot-circle-o'
                                     uncheckedIcon='circle-o'
                                     checked={this.state.checked}
-                                />
-                                <Text style={styles.itemName}>{item.value.name}</Text>
+                                /> */}
+                                <Text
+                                // style={styles.itemName}
+                                >{item.value.name}</Text>
                             </View>
                         </TouchableOpacity>} />
                     <View>

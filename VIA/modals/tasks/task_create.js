@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
-import { SelectionModal} from '../selectionModal'
+import { SelectionModal} from '../selectionModal/selectionModal'
+import { Database, Projects} from '../../db'
+import { Controller } from '../controller'
+
+const controller = new Controller;
 
 export class CreateTask extends React.Component {
 
@@ -9,7 +13,36 @@ export class CreateTask extends React.Component {
         this.state = {
             newTask: this.props.newTask,
             projectSelectionModalVisible: false,
+            items: [],
+            projects: [],
         };
+    }
+    componentDidMount() {
+        // controller.loadAll(this, Projects.TABLE_NAME);
+        console.warn("called mount")
+        this.getProjects();
+
+    }
+
+    getProjects() {
+        console.warn("called get project");
+        // controller.loadAll(this, Projects.TABLE_NAME).bind(this);
+        const itemsArr = []
+        Database.getAll(Projects.TABLE_NAME)
+        .then((res) => {
+            console.warn("Got into db")
+            const len = res.rows.length;
+            console.warn(len)
+            let item = {}
+            for (let i = 0; i < len; i++) {
+                item = res.rows.item(i)
+                console.warn(i)
+                itemsArr.push({ key: JSON.stringify(item.id), value: item })      
+            }
+            this.setState({
+                items: itemsArr
+            })
+        })
     }
 
 
@@ -17,6 +50,8 @@ export class CreateTask extends React.Component {
         if (this.state.projectSelectionModalVisible) {
             return <SelectionModal
                 animationType="slide"
+                items={this.state.items}
+                itemName="Projects"
                 transparent={true}
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
