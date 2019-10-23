@@ -32,6 +32,7 @@ export class TasksScreen extends React.Component {
 
     saveNew(task) {
         let newTask = {}
+        console.warn(task)
         newTask.id = uuid.v4();
         newTask.name = task.name;
         newTask.created_date = new Date().getDate();
@@ -39,7 +40,7 @@ export class TasksScreen extends React.Component {
         newTask.importance = task.importance ? task.importance : "";
         newTask.percentage_done = 0;
         newTask.completed = "false";
-        newTask.project = task.project ? task.project : "";
+        newTask.project = task.project ? task.project.id : "";
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : "";
