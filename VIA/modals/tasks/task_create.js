@@ -29,9 +29,8 @@ export class CreateTask extends React.Component {
                 itemName="Projects"
                 transparent={true}
                 selectProject={(item) => {
-                    this.props.project(item)
-                    this.setState({ theSelectedProject: item }, () => {
-                        
+                    this.props.project(item.key)
+                    this.setState({ theSelectedProject: item.value.name }, () => {    
                     })
                 }}
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>

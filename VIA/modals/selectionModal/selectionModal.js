@@ -30,7 +30,7 @@ export class SelectionModal extends React.Component {
                                 onPress={
                                     () => {
                                         this.props.closeModal();
-                                        this.props.selectProject(item.key);
+                                        this.props.selectProject(item);
                                     }
                                 }>
                                 <View
