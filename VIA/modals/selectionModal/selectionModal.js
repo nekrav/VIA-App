@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList } from 'react-native'; // Version can be specified in package.json
 
+const styles = require('./styles');
+
 export class SelectionModal extends React.Component {
 
     constructor(props) {
@@ -17,27 +19,23 @@ export class SelectionModal extends React.Component {
                     transparent={true}
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    <View style={styles.outerView}>
                         {this.props.children}
-
-                        <View style={{ marginTop: 22, alignItems: "center" }}>
+                        <View style={styles.title}>
                             <Text>Select {this.props.itemName} </Text>
                         </View>
                         <FlatList
                             data={this.props.items}
                             renderItem={({ item }) => <TouchableOpacity
-                                // style={}
-                                onPress={
-                                    () => {
-                                        this.props.closeModal();
-                                        this.props.selectProject(item);
-                                    }
-                                }>
+                                style={styles.itemButton}
+                                onPress={() => {
+                                    this.props.closeModal();
+                                    this.props.selectProject(item)
+                                }}>
                                 <View
-                                // style={styles.listItem}
-                                >
+                                    style={styles.listItem}>
                                     <Text
-                                    // style={styles.itemName}
+                                        style={styles.itemName}
                                     >{item.value.name}</Text>
                                 </View>
                             </TouchableOpacity>} />

@@ -14,8 +14,13 @@ export class ViewTask extends React.Component {
         this.setState({ canEdit: true })
     }
 
+    getProjectName() {
+
+    }
+
     render() {
         if (this.props.selectedItem != {}) {
+            console.warn(this.props.selectedItem)
             return (
                 <Modal
                     animationType={this.props.animationType}
