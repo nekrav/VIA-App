@@ -27,8 +27,8 @@ export class CreateTask extends React.Component {
                 items={this.state.items}
                 itemName="Projects"
                 transparent={true}
-                selectProject={() => {
-                    console.warn("in task create project select")
+                selectProject={(item) => {
+                    console.warn(item)
                     this.props.selectProject
                 }}
 
