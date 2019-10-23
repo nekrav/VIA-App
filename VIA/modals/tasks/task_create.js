@@ -18,13 +18,17 @@ export class CreateTask extends React.Component {
             return <SelectionModal
                 animationType="slide"
                 transparent={true}
-                closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
         }
     }
 
     setProjectSelectionModalVisible() {
         this.setState({ projectSelectionModalVisible: true })
+    }
+
+    setProjectSelectionModalNotVisible() {
+        this.setState({ projectSelectionModalVisible: false })
     }
 
     render() {
