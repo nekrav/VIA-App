@@ -24,9 +24,9 @@ export class CreateTask extends React.Component {
     showProjectSelectionModal() {
         if (this.state.projectSelectionModalVisible) {
             return <SelectionModal
-                animationType="slide"
+                animationType="fade"
                 items={this.state.items}
-                itemName="Projects"
+                itemName="Project"
                 transparent={true}
                 selectProject={(item) => {
                     this.props.project(item)
