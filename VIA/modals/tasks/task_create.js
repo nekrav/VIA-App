@@ -14,37 +14,11 @@ export class CreateTask extends React.Component {
             newTask: this.props.newTask,
             projectSelectionModalVisible: false,
             items: [],
-            projects: [],
         };
     }
     componentDidMount() {
-        // controller.loadAll(this, Projects.TABLE_NAME);
-        console.warn("called mount")
-        this.getProjects();
-
+        controller.loadAll(this, Projects.TABLE_NAME);
     }
-
-    getProjects() {
-        console.warn("called get project");
-        // controller.loadAll(this, Projects.TABLE_NAME).bind(this);
-        const itemsArr = []
-        Database.getAll(Projects.TABLE_NAME)
-        .then((res) => {
-            console.warn("Got into db")
-            const len = res.rows.length;
-            console.warn(len)
-            let item = {}
-            for (let i = 0; i < len; i++) {
-                item = res.rows.item(i)
-                console.warn(i)
-                itemsArr.push({ key: JSON.stringify(item.id), value: item })      
-            }
-            this.setState({
-                items: itemsArr
-            })
-        })
-    }
-
 
     showProjectSelectionModal() {
         if (this.state.projectSelectionModalVisible) {
@@ -53,6 +27,11 @@ export class CreateTask extends React.Component {
                 items={this.state.items}
                 itemName="Projects"
                 transparent={true}
+                selectProject={() => {
+                    console.warn("in task create project select")
+                    this.props.selectProject
+                }}
+
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
         }

@@ -10,7 +10,6 @@ export class SelectionModal extends React.Component {
         };
     }
     render() {
-        console.warn(this.props.items)
         return (
             <Modal
                 animationType={this.props.animationType}
@@ -27,18 +26,17 @@ export class SelectionModal extends React.Component {
                         data={this.props.items}
                         renderItem={({ item }) => <TouchableOpacity
                             // style={}
-                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                            onPress={
+                                () => {
+                                    // console.warn("on proj press")
+                                    this.props.closeModal();
+                                    this.props.selectProject();
+                                
+                            }
+                        }>
                             <View
                             // style={styles.listItem}
                             >
-                                {/* <CheckBox
-                                    // style={styles.checkBox}
-                                    center
-                                    title='Click Here'
-                                    checkedIcon='dot-circle-o'
-                                    uncheckedIcon='circle-o'
-                                    checked={this.state.checked}
-                                /> */}
                                 <Text
                                 // style={styles.itemName}
                                 >{item.value.name}</Text>
