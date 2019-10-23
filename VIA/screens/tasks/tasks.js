@@ -32,6 +32,7 @@ export class TasksScreen extends React.Component {
 
     saveNew(task) {
         let newTask = {}
+        // console.warn(task)
         newTask.id = uuid.v4();
         newTask.name = task.name;
         newTask.created_date = new Date().getDate();

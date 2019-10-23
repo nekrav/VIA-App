@@ -29,8 +29,10 @@ export class CreateTask extends React.Component {
                 itemName="Projects"
                 transparent={true}
                 selectProject={(item) => {
-                    this.setState({ theSelectedProject: item })
-                    // this.props.selectProject(item)
+                    this.props.project(item)
+                    this.setState({ theSelectedProject: item }, () => {
+                        
+                    })
                 }}
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
@@ -45,12 +47,16 @@ export class CreateTask extends React.Component {
         this.setState({ projectSelectionModalVisible: false })
     }
 
+    passProject = (proj) => {
+        this.props.selectProject(proj);
+    }
+
     renderProjectSelection() {
         if (this.state.theSelectedProject != "") {
+            this.props.project = this.state.theSelectedProject;
             return (
                 <TouchableOpacity onPress={() => {
-                    console.warn("pres")
-                    this.setProjectSelectionModalVisible()
+                    this.setProjectSelectionModalVisible();
                 }}>
                     <Text>{this.state.theSelectedProject}</Text>
                 </TouchableOpacity>
