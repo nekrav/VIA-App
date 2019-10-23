@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
+import { SelectionModal} from '../selectionModal'
 
 export class CreateTask extends React.Component {
 
@@ -7,16 +8,35 @@ export class CreateTask extends React.Component {
         super(props);
         this.state = {
             newTask: this.props.newTask,
+            projectSelectionModalVisible: false,
         };
     }
+
+
+    showProjectSelectionModal() {
+        if (this.state.projectSelectionModalVisible) {
+            return <SelectionModal
+                animationType="slide"
+                transparent={true}
+                closeModal={() => { controller.setViewModalVisible(this, false) }}>
+            </SelectionModal>
+        }
+    }
+
+    setProjectSelectionModalVisible() {
+        this.setState({ projectSelectionModalVisible: true })
+    }
+
     render() {
         return (
-<Modal
+            <Modal
                 animationType={this.props.animationType}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
+                {this.showProjectSelectionModal()}
                 <View style={{ marginTop: 22, alignItems: "center" }}>
+
                     <Text>Add Task</Text>
                 </View>
                 <View>
@@ -39,9 +59,9 @@ export class CreateTask extends React.Component {
                 </View>
                 <View>
                     <Text>Project</Text>
-                    <TextInput
-                        onChangeText={this.props.project}>
-                    </TextInput>
+                    <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
+                        <Text>Select Project</Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <Text>Notification Time</Text>
