@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
-import { SelectionModal} from '../selectionModal/selectionModal'
-import { Database, Projects} from '../../db'
+import { SelectionModal } from '../selectionModal/selectionModal'
+import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
 
 const controller = new Controller;
@@ -14,6 +14,7 @@ export class CreateTask extends React.Component {
             newTask: this.props.newTask,
             projectSelectionModalVisible: false,
             items: [],
+            theSelectedProject: "",
         };
     }
     componentDidMount() {
@@ -28,10 +29,9 @@ export class CreateTask extends React.Component {
                 itemName="Projects"
                 transparent={true}
                 selectProject={(item) => {
-                    console.warn(item)
-                    this.props.selectProject
+                    this.setState({ theSelectedProject: item })
+                    // this.props.selectProject(item)
                 }}
-
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
         }
@@ -43,6 +43,27 @@ export class CreateTask extends React.Component {
 
     setProjectSelectionModalNotVisible() {
         this.setState({ projectSelectionModalVisible: false })
+    }
+
+    renderProjectSelection() {
+        // console.warn(this.state.theSelectedProject)
+        if (this.state.theSelectedProject != "") {
+            console.warn(this.state.theSelectedProject)
+            return (
+                <TouchableOpacity onPress={() => {
+                    // this.forceUpdate();
+                    this.setProjectSelectionModalVisible.bind(this)
+                }}>
+                    <Text>{this.state.theSelectedProject}</Text>
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
+                    <Text>Select Project</Text>
+                </TouchableOpacity>
+            );
+        }
     }
 
     render() {
@@ -77,9 +98,10 @@ export class CreateTask extends React.Component {
                 </View>
                 <View>
                     <Text>Project</Text>
-                    <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
+                    {this.renderProjectSelection()}
+                    {/* <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
                         <Text>Select Project</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
                 <View>
                     <Text>Notification Time</Text>
