@@ -76,6 +76,7 @@ export class Database {
 
     static getOne(tableName, id) {
         noQuotes = id.replace(/["']/g, "")
+        console.warn(noQuotes)
         query = `SELECT * FROM ${tableName} WHERE id = '${noQuotes}'`
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {

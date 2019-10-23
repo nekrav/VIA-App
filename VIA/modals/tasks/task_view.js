@@ -1,26 +1,33 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
+import { Controller } from '../controller';
+import { Database, Projects, Tasks } from '../../db'
+
+const controller = new Controller;
 
 export class ViewTask extends React.Component {
 
     constructor(props) {
         super(props);
+        console.warn(props)
         this.state = {
             canEdit: false,
+            selectedItem: this.props.selectedItem,
+            // project: controller.getOne(this, Projects.TABLE_NAME, this.props.selectedItem.project),
         };
     }
+
+    // componentDidMount() {
+    //     // controller.getOne(this, Projects.TABLE_NAME, this.state.project)
+    // }
 
     canEdit() {
         this.setState({ canEdit: true })
     }
 
-    getProjectName() {
-
-    }
-
     render() {
-        if (this.props.selectedItem != {}) {
-            console.warn(this.props.selectedItem)
+        // if (this.state.project != {}) {
+            // console.warn(this.state.project)
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -81,7 +88,7 @@ export class ViewTask extends React.Component {
                         <Text>Project</Text>
                         <TextInput
                             editable={this.state.canEdit}
-                            value={this.props.selectedItem.project}
+                            // value={this.state.project}
                             onChangeText={this.props.editProject}>
                         </TextInput>
                     </View>
@@ -126,5 +133,6 @@ export class ViewTask extends React.Component {
                 </Modal>
             );
         }
-    }
+    // }
+
 }

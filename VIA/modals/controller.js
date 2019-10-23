@@ -26,6 +26,14 @@ export class Controller extends React.Component {
             })
     }
 
+    getOne(object, tableName, item) {
+        Database.getOne(tableName, item).then((res) => {
+            return res.rows.item(0);
+            // selectedItem = res.rows.item(0)
+            // object.setState({ selectedParentItem: selectedItem })
+        })
+    }
+
     goToItem(object, tableName, item) {
         Database.getOne(tableName, item).then((res) => {
             selectedItem = res.rows.item(0)

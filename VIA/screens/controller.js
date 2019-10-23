@@ -35,9 +35,10 @@ export class Controller extends React.Component {
     goToItem(object, tableName, item) {
         Database.getOne(tableName, item).then((res) => {
             selectedItem = res.rows.item(0)
-            object.setState({ selectedItem: selectedItem })
+            object.setState({ selectedItem: selectedItem }, () => {
+                this.setViewModalVisible(object, true);
+            })
         })
-        this.setViewModalVisible(object, true);
     }
 
     saveExisting(object, tableName, habit) {
