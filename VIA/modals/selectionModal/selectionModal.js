@@ -11,6 +11,7 @@ export class SelectionModal extends React.Component {
             items: this.props.items,
         };
     }
+    
     render() {
         if (this.state.items != null) {
             return (
@@ -48,6 +49,5 @@ export class SelectionModal extends React.Component {
                 </Modal>
             );
         }
-
     }
 }
