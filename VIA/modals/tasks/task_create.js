@@ -46,13 +46,11 @@ export class CreateTask extends React.Component {
     }
 
     renderProjectSelection() {
-        // console.warn(this.state.theSelectedProject)
         if (this.state.theSelectedProject != "") {
-            console.warn(this.state.theSelectedProject)
             return (
                 <TouchableOpacity onPress={() => {
-                    // this.forceUpdate();
-                    this.setProjectSelectionModalVisible.bind(this)
+                    console.warn("pres")
+                    this.setProjectSelectionModalVisible()
                 }}>
                     <Text>{this.state.theSelectedProject}</Text>
                 </TouchableOpacity>
@@ -99,9 +97,6 @@ export class CreateTask extends React.Component {
                 <View>
                     <Text>Project</Text>
                     {this.renderProjectSelection()}
-                    {/* <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
-                        <Text>Select Project</Text>
-                    </TouchableOpacity> */}
                 </View>
                 <View>
                     <Text>Notification Time</Text>
