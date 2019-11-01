@@ -9,7 +9,6 @@ export class ViewTask extends React.Component {
 
     constructor(props) {
         super(props);
-        console.warn(this.props.selectedItem);
         this.state = {
             canEdit: false,
             selectedItem: this.props.selectedItem,
