@@ -46,10 +46,6 @@ export class CreateTask extends React.Component {
         this.setState({ projectSelectionModalVisible: false })
     }
 
-    passProject = (proj) => {
-        this.props.selectProject(proj);
-    }
-
     renderProjectSelection() {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;

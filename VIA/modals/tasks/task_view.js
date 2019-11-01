@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
+import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
 
 const controller = new Controller;
@@ -12,19 +13,67 @@ export class ViewTask extends React.Component {
         this.state = {
             canEdit: false,
             selectedItem: this.props.selectedItem,
+            projectSelectionModalVisible: false,
+            items: [],
             proj: null,
+            theSelectedProject: "",
         };
     }
 
     componentDidMount() {
-
+        controller.loadAll(this, Projects.TABLE_NAME);
         if (this.state.selectedItem.project != null) {
-            console.warn(this.state.selectedItem);
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0) })
             })
         }
     }
+
+    showProjectSelectionModal() {
+        if (this.state.projectSelectionModalVisible) {
+            return <SelectionModal
+                animationType="fade"
+                items={this.state.items}
+                itemName="Project"
+                transparent={true}
+                selectProject={(item) => {
+                    this.props.project(item.key)
+                    this.setState({ theSelectedProject: item.value.name }, () => {
+                    })
+                }}
+                closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
+            </SelectionModal>
+        }
+        // return null;
+    }
+
+    setProjectSelectionModalVisible() {
+        this.setState({ projectSelectionModalVisible: true })
+    }
+
+    setProjectSelectionModalNotVisible() {
+        this.setState({ projectSelectionModalVisible: false })
+    }
+
+    // renderProjectSelection() {
+    //     if (this.state.theSelectedProject != "") {
+    //         this.props.project = this.state.theSelectedProject;
+    //         return (
+    //             <TouchableOpacity onPress={() => {
+    //                 this.setProjectSelectionModalVisible();
+    //             }}>
+    //                 <Text>{this.state.theSelectedProject}</Text>
+    //             </TouchableOpacity>
+    //         );
+    //     } else {
+    //         return (
+    //             <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
+    //                 <Text>Select Project</Text>
+    //             </TouchableOpacity>
+    //         );
+    //     }
+    // }
+
 
     canEdit() {
         this.setState({ canEdit: true })
@@ -34,11 +83,12 @@ export class ViewTask extends React.Component {
         if (this.state.proj != null) {
             return (<View>
                 <Text>Project</Text>
-                <TextInput
-                    editable={this.state.canEdit}
-                    value={this.state.proj.name}
-                    onChangeText={this.props.editProject}>
-                </TextInput>
+                <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setProjectSelectionModalVisible();
+                    }}>
+                    <Text>{this.state.proj.name}</Text>
+                </TouchableOpacity>
             </View>);
         }
         return (<View>
@@ -54,9 +104,11 @@ export class ViewTask extends React.Component {
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
+                {this.showProjectSelectionModal()}
                 <View style={{ marginTop: 22, alignItems: "center" }}>
                     <Text>View Task</Text>
                 </View>
+
                 <View>
                     <Text>Name</Text>
                     <TextInput
