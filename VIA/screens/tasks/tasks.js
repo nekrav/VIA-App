@@ -98,7 +98,6 @@ export class TasksScreen extends React.Component {
                     }}
                     editProject={(text) => {
                         theTask.project = text;
-                        console.warn(theTask.project);
                         this.setState({ selectedTask: theTask })
                     }}
                     editTimeSpent={(text) => {
