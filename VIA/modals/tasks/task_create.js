@@ -28,7 +28,7 @@ export class CreateTask extends React.Component {
                 items={this.state.items}
                 itemName="Project"
                 transparent={true}
-                selectProject={(item) => {
+                selectItem={(item) => {
                     this.props.project(item.key)
                     this.setState({ theSelectedProject: item.value.name }, () => {
                     })

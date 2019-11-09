@@ -31,7 +31,7 @@ export class SelectionModal extends React.Component {
                                 style={styles.itemButton}
                                 onPress={() => {
                                     this.props.closeModal();
-                                    this.props.selectProject(item)
+                                    this.props.selectItem(item)
                                 }}>
                                 <View
                                     style={styles.listItem}>

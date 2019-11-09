@@ -39,7 +39,7 @@ export class ViewTask extends React.Component {
                 items={this.state.items}
                 itemName="Project"
                 transparent={true}
-                selectProject={(item) => {
+                selectItem={(item) => {
                     this.props.editProject(item.value.id)
                     this.setState({ projName: item.value.name })
                 }}
