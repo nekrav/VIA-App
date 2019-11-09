@@ -39,6 +39,7 @@ export class HabitsScreen extends React.Component {
         newHabit.due_time = habit.due_time ? habit.due_time : ""
         newHabit.importance = habit.importance ? habit.importance : ""
         newHabit.percentage_done = 0
+        newHabit.routine = habit.routine ? habit.routine : "";
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ""
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ""
@@ -61,6 +62,7 @@ export class HabitsScreen extends React.Component {
                 importance={(text) => { newHabit.importance = text }}
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 notification_time={(text) => { newHabit.notification_time = text }}
+                routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newHabit) }}
