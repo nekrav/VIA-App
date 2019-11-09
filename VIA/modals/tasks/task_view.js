@@ -6,6 +6,8 @@ import { Database, Projects, Tasks } from '../../db'
 
 const controller = new Controller;
 
+const styles = require('./styles');
+
 export class ViewTask extends React.Component {
 
     constructor(props) {
@@ -23,9 +25,9 @@ export class ViewTask extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
-        if (this.state.selectedItem.project != null) {
+        if (this.state.selectedItem.project != "") {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-                this.setState({ proj: res.rows.item(0) , projName: res.rows.item(0).name})
+                this.setState({ proj: res.rows.item(0), projName:res.rows.item(0).name })
             })
         }
     }
@@ -79,9 +81,25 @@ export class ViewTask extends React.Component {
                 </TouchableOpacity>
             </View>);
         }
+        if (this.state.projName != "") {
+            return (<View>
+                <Text>Project</Text>
+                <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setProjectSelectionModalVisible();
+                    }}>
+                    <Text>{this.state.projName}</Text>
+                </TouchableOpacity>
+            </View>);
+        }
         return (<View>
             <Text>Project</Text>
+            <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setProjectSelectionModalVisible();
+                    }}>
             <Text>No Project Selected</Text>
+            </TouchableOpacity>
         </View>);
     }
 
@@ -100,6 +118,7 @@ export class ViewTask extends React.Component {
                 <View>
                     <Text>Name</Text>
                     <TextInput
+                    style={styles.textInput}
                         editable={this.state.canEdit}
                         value={this.props.selectedItem.name}
                         onChangeText={this.props.editName}>
