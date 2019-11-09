@@ -1,18 +1,105 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
-import { Database, Habits } from '../../db'
+import { Controller } from '../controller';
 
+import { SelectionModal } from '../selectionModal/selectionModal'
+import { Database, Routines, Habits} from '../../db'
+
+const controller = new Controller;
 export class ViewHabit extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             canEdit: false,
+            selectedItem: this.props.selectedItem,
+            routineSelectionModalVisible: false,
+            items: [],
+            routine: null,
+            routineName: "",
+            theSelectedRoutine: "",
         };
+    }
+
+    componentDidMount() {
+        controller.loadAll(this, Routines.TABLE_NAME);
+        if (this.state.selectedItem.routine != "") {
+            Database.getOne(Routines.TABLE_NAME, this.state.selectedItem.routine).then((res) => {
+                this.setState({ routine: res.rows.item(0), routineName:res.rows.item(0).name })
+            })
+        }
+    }
+
+    showRoutineSelectionModal() {
+        if (this.state.routineSelectionModalVisible) {
+            return <SelectionModal
+                animationType="fade"
+                items={this.state.items}
+                itemName="Routine"
+                transparent={true}
+                selectItem={(item) => {
+                    this.props.editRoutine(item.value.id)
+                    this.setState({ routineName: item.value.name })
+                }}
+                closeModal={() => { this.setRoutineSelectionModalNotVisible() }}>
+            </SelectionModal>
+        }
+        // return null;
+    }
+
+    setRoutineSelectionModalVisible() {
+        this.setState({ routineSelectionModalVisible: true })
+    }
+
+    setRoutineSelectionModalNotVisible() {
+        this.setState({ routineSelectionModalVisible: false })
     }
 
     canEdit() {
         this.setState({ canEdit: true })
+    }
+
+
+    renderRoutineName() {
+        if (this.state.selectRoutine != "")
+        {
+            return this.state.selectRoutine 
+        }
+        return this.state.routine.name
+    }
+
+    renderRoutineSection() {
+        if (this.state.routine != null) {
+            return (<View>
+                <Text>Routine</Text>
+                <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setRoutineSelectionModalVisible();
+                    }}>
+                    <Text>{this.state.routineName}</Text>
+                </TouchableOpacity>
+            </View>);
+        }
+        if (this.state.routineName != "") {
+            return (<View>
+                <Text>Routine</Text>
+                <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setRoutineSelectionModalVisible();
+                    }}>
+                    <Text>{this.state.routineName}</Text>
+                </TouchableOpacity>
+            </View>);
+        }
+        return (<View>
+            <Text>Routine</Text>
+            <TouchableOpacity disabled={!this.state.canEdit}
+                     onPress={() => {
+                        this.setRoutineSelectionModalVisible();
+                    }}>
+            <Text>No Routine Selected</Text>
+            </TouchableOpacity>
+        </View>);
     }
 
     render() {
@@ -23,6 +110,7 @@ export class ViewHabit extends React.Component {
                     transparent={this.props.transparent}
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
+                    {this.showRoutineSelectionModal()}
                     <View style={{ marginTop: 22, alignItems: "center" }}>
                         <Text>View Habit</Text>
                     </View>
@@ -73,6 +161,7 @@ export class ViewHabit extends React.Component {
                             onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
+                    {this.renderRoutineSection()}
                     <View>
                         <Text>Days to do</Text>
                         <TextInput
