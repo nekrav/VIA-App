@@ -8,7 +8,7 @@ const titleFontSize = 24
 const textColor = '#effcff'
 const bodyFontSize = 20
 const fontFamiy = 'Arial'
-const backgroundColor = '#0b132b'
+const backgroundColor = '#ff1'
 
 module.exports = StyleSheet.create({
 
@@ -16,13 +16,34 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        marginTop: "5%",
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: backgroundColor,
+        // padding: "3%",
+        // margin: "3%",
+        // marginTop: "10%",
+        // marginBottom: "10%",
+        // marginLeft: "5%",
+        // justifyContent: 'center',
+        // alignItems: 'center'
+    },
+    topNav: {
+        // flex: 1,
+        flexDirection: 'column',
+        backgroundColor: "#f0f",
+        // marginTop: "2%",
+        // marginTop: "1%",
+        // marginLeft: "3%",
+        // marginBottom: "10%"
+    },
+    backButton: {
+        marginTop:"12%",
+        marginBottom:"5%",
+        marginLeft: "5%",
     },
     textInput: {
         color: "black",
+    },
+    nameContainer: {
+        backgroundColor: "#ff0000",
     },
     title: {
         marginTop: 22,

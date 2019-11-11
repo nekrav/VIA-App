@@ -3,6 +3,8 @@ import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, Bac
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
 
 const controller = new Controller;
 
@@ -27,7 +29,7 @@ export class ViewTask extends React.Component {
         controller.loadAll(this, Projects.TABLE_NAME);
         if (this.state.selectedItem.project != "") {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-                this.setState({ proj: res.rows.item(0), projName:res.rows.item(0).name })
+                this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
             })
         }
     }
@@ -62,9 +64,8 @@ export class ViewTask extends React.Component {
     }
 
     renderProjName() {
-        if (this.state.selectProject != "")
-        {
-            return this.state.selectProject 
+        if (this.state.selectProject != "") {
+            return this.state.selectProject
         }
         return this.state.proj.name
     }
@@ -74,7 +75,7 @@ export class ViewTask extends React.Component {
             return (<View>
                 <Text>Project</Text>
                 <TouchableOpacity disabled={!this.state.canEdit}
-                     onPress={() => {
+                    onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
                     <Text>{this.state.projName}</Text>
@@ -85,7 +86,7 @@ export class ViewTask extends React.Component {
             return (<View>
                 <Text>Project</Text>
                 <TouchableOpacity disabled={!this.state.canEdit}
-                     onPress={() => {
+                    onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
                     <Text>{this.state.projName}</Text>
@@ -95,10 +96,10 @@ export class ViewTask extends React.Component {
         return (<View>
             <Text>Project</Text>
             <TouchableOpacity disabled={!this.state.canEdit}
-                     onPress={() => {
-                        this.setProjectSelectionModalVisible();
-                    }}>
-            <Text>No Project Selected</Text>
+                onPress={() => {
+                    this.setProjectSelectionModalVisible();
+                }}>
+                <Text>No Project Selected</Text>
             </TouchableOpacity>
         </View>);
     }
@@ -111,96 +112,101 @@ export class ViewTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
-                <View style={{ marginTop: 22, alignItems: "center" }}>
-                    <Text>View Task</Text>
-                </View>
+                <View style={styles.outerView}>
+                    <View style={styles.topNav}>
+                        <TouchableOpacity style={styles.backButton} 
+                        onPress={this.props.closeModal}>
+                        <Icon name="arrow-left" size={35} color="#000" />
+                        </TouchableOpacity>
+                    </View>
 
-                <View>
-                    <Text>Name</Text>
-                    <TextInput
-                    style={styles.textInput}
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.name}
-                        onChangeText={this.props.editName}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Created Date</Text>
-                    <TextInput
-                        editable={false}
-                        value={this.props.selectedItem.created_date}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Due Date</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.due_date}
-                        onChangeText={this.props.editDueDate}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Importance</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.importance}
-                        onChangeText={this.props.editImportance}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Percentage Done</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.percentage_done}
-                        onChangeText={this.props.editPercentageDone}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Completed</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.completed}
-                        onChangeText={this.props.editCompleted}>
-                    </TextInput>
-                </View>
-                {this.renderProjectSection()}
-                <View>
-                    <Text>Time Spent</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.time_spent}
-                        onChangeText={this.props.editTimeSpent}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Notification Time</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.notification_time}
-                        onChangeText={this.props.editNotificationTime}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Notes</Text>
-                    <TextInput
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.notes}
-                        onChangeText={this.props.editNotes}>
-                    </TextInput>
-                </View>
-                <View>
-                    <TouchableOpacity onPress={this.props.closeModal}>
-                        <Text>Close</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this.props.save}>
-                        <Text>Save</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this.props.delete}>
-                        <Text>Delete</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.canEdit()}>
-                        <Text>Edit</Text>
-                    </TouchableOpacity>
+                    <View style={styles.nameContainer}>
+                        <Text>Name</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.name}
+                            onChangeText={this.props.editName}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Created Date</Text>
+                        <TextInput
+                            editable={false}
+                            value={this.props.selectedItem.created_date}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Due Date</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.due_date}
+                            onChangeText={this.props.editDueDate}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Importance</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.importance}
+                            onChangeText={this.props.editImportance}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Percentage Done</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.percentage_done}
+                            onChangeText={this.props.editPercentageDone}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Completed</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.completed}
+                            onChangeText={this.props.editCompleted}>
+                        </TextInput>
+                    </View>
+                    {this.renderProjectSection()}
+                    <View>
+                        <Text>Time Spent</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.time_spent}
+                            onChangeText={this.props.editTimeSpent}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Notification Time</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.notification_time}
+                            onChangeText={this.props.editNotificationTime}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <Text>Notes</Text>
+                        <TextInput
+                            editable={this.state.canEdit}
+                            value={this.props.selectedItem.notes}
+                            onChangeText={this.props.editNotes}>
+                        </TextInput>
+                    </View>
+                    <View>
+                        <TouchableOpacity onPress={this.props.closeModal}>
+                            <Text>Close</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.props.save}>
+                            <Text>Save</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.props.delete}>
+                            <Text>Delete</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.canEdit()}>
+                            <Text>Edit</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </Modal>
         );
