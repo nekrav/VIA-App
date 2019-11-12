@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* VIATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* VIATests.m */; };
 		043535A12C5E4508864D3B8D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0096D8D6364299A524140D /* FontAwesome5_Brands.ttf */; };
@@ -37,6 +36,10 @@
 		D5DEFC7A706C45B28B8D7434 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C44C7A71DEF4B29BD267064 /* Ionicons.ttf */; };
 		E19391D4E7FCF060632CF98C /* libPods-VIATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0123613F05E5BB55109C3751 /* libPods-VIATests.a */; };
 		F53132B5D72B439285383643 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BDD8ED54D374CF3828215F1 /* Feather.ttf */; };
+		CE760414141E407CB909A502 /* VIAFontBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4DDD27D6E1423091BC4809 /* VIAFontBold.ttf */; };
+		1F525F7118BB48408BC117A5 /* VIAFontLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1E3BC2CA1644F3A6890D91 /* VIAFontLight.ttf */; };
+		87A14138413840EC8BCE701F /* VIAFontReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983216C975E14FEA9D007B5E /* VIAFontReg.ttf */; };
+		DA9D7B2291FC47B4B12CB76C /* VIAFontSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FE73FC1C3CA4E5792FF95AE /* VIAFontSemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,10 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FA4AED0BC581D9FCE6FBF608 /* Pods-VIA-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIA-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VIA-tvOS/Pods-VIA-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		FFE133A7EC964C07A88F4C0F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		9C4DDD27D6E1423091BC4809 /* VIAFontBold.ttf */ = {isa = PBXFileReference; name = "VIAFontBold.ttf"; path = "../assets/fonts/VIAFontBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8C1E3BC2CA1644F3A6890D91 /* VIAFontLight.ttf */ = {isa = PBXFileReference; name = "VIAFontLight.ttf"; path = "../assets/fonts/VIAFontLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		983216C975E14FEA9D007B5E /* VIAFontReg.ttf */ = {isa = PBXFileReference; name = "VIAFontReg.ttf"; path = "../assets/fonts/VIAFontReg.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0FE73FC1C3CA4E5792FF95AE /* VIAFontSemiBold.ttf */ = {isa = PBXFileReference; name = "VIAFontSemiBold.ttf"; path = "../assets/fonts/VIAFontSemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +275,10 @@
 				FFE133A7EC964C07A88F4C0F /* Octicons.ttf */,
 				521124A293AB47DAAC50BB50 /* SimpleLineIcons.ttf */,
 				AD07EBC8C99948A29C475AFA /* Zocial.ttf */,
+				9C4DDD27D6E1423091BC4809 /* VIAFontBold.ttf */,
+				8C1E3BC2CA1644F3A6890D91 /* VIAFontLight.ttf */,
+				983216C975E14FEA9D007B5E /* VIAFontReg.ttf */,
+				0FE73FC1C3CA4E5792FF95AE /* VIAFontSemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -466,6 +477,10 @@
 				5DC9E53B5914427DA842657E /* Octicons.ttf in Resources */,
 				BE4802A661954CFE8999C40B /* SimpleLineIcons.ttf in Resources */,
 				608B88DBA22944DF9A4331D8 /* Zocial.ttf in Resources */,
+				CE760414141E407CB909A502 /* VIAFontBold.ttf in Resources */,
+				1F525F7118BB48408BC117A5 /* VIAFontLight.ttf in Resources */,
+				87A14138413840EC8BCE701F /* VIAFontReg.ttf in Resources */,
+				DA9D7B2291FC47B4B12CB76C /* VIAFontSemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@ const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const textColor = '#effcff'
 const bodyFontSize = 20
-const fontFamiy = 'Arial'
+const fontFamiy = 'Montserrat'
 const backgroundColor = '#ff1'
 
 module.exports = StyleSheet.create({
@@ -40,6 +40,7 @@ module.exports = StyleSheet.create({
         marginLeft: "5%",
     },
     textInput: {
+        fontFamily: fontFamiy,
         color: "black",
     },
     nameContainer: {
