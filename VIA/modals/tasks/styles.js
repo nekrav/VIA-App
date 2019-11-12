@@ -7,7 +7,7 @@ const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const textColor = '#effcff'
 const bodyFontSize = 20
-const fontFamiy = 'Montserrat'
+const fontFamily = 'VIAFontReg'
 const backgroundColor = '#ff1'
 
 module.exports = StyleSheet.create({
@@ -40,7 +40,8 @@ module.exports = StyleSheet.create({
         marginLeft: "5%",
     },
     textInput: {
-        fontFamily: fontFamiy,
+        
+        fontFamily: "Calibri",
         color: "black",
     },
     nameContainer: {
