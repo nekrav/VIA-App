@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, SafeAreaView} from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
@@ -104,6 +104,23 @@ export class ViewTask extends React.Component {
         </View>);
     }
 
+    renderDueDate() {
+        if (this.state.selectedItem.due_date != "") {
+            return (
+                <TextInput
+                    editable={this.state.canEdit}
+                    value={this.props.selectedItem.due_date}
+                    onChangeText={this.props.editDueDate}>
+                </TextInput>)
+        }
+        return(
+            <TextInput
+                editable={this.state.canEdit}
+                value="No Due Date"
+                onChangeText={this.props.editDueDate}>
+            </TextInput>)
+    }
+
     render() {
         return (
             <Modal
@@ -112,22 +129,22 @@ export class ViewTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
-                <View style={styles.outerView}>
+                <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>
-                        <TouchableOpacity style={styles.backButton} 
-                        onPress={this.props.closeModal}>
-                        <Icon name="arrow-left" size={35} color="#000" />
+                        <TouchableOpacity style={styles.backButton}
+                            onPress={this.props.closeModal}>
+                            <Icon name="arrow-left" size={35} color="#000" />
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.nameContainer}>
-                        <Text>Name</Text>
                         <TextInput
                             style={styles.textInput}
                             editable={this.state.canEdit}
                             value={this.props.selectedItem.name}
                             onChangeText={this.props.editName}>
                         </TextInput>
+                        {this.renderDueDate()}
                     </View>
                     <View>
                         <Text>Created Date</Text>
@@ -207,7 +224,7 @@ export class ViewTask extends React.Component {
                             <Text>Edit</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </SafeAreaView>
             </Modal>
         );
     }
