@@ -23,6 +23,7 @@ export class ViewTask extends React.Component {
             proj: null,
             projName: "",
             theSelectedProject: "",
+            importance: this.props.selectedItem.importance,
         };
     }
 
@@ -161,15 +162,16 @@ export class ViewTask extends React.Component {
                         <View style={styles.verticalSlider}>
                             <Text>Importance</Text>
                             <VerticalSlider
-                                value={1}
+                                value={parseInt(this.state.importance)}
                                 disabled={false}
                                 min={0}
                                 max={100}
                                 onChange={(value: number) => {
-                                   
+                                    // this.setState({importance : value})
+                                    // this.props.editImportance(value)
                                 }}
                                 onComplete={(value: number) => {
-                                    
+                                    this.props.editImportance
                                 }}
                                 width={50}
                                 height={300}
