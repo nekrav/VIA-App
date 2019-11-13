@@ -4,7 +4,7 @@ import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import VerticalSlider from "rn-vertical-slider";
+import { VerticalSlider } from "../../components";
 
 
 const controller = new Controller;
