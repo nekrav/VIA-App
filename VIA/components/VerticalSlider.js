@@ -185,6 +185,7 @@ export class VerticalSlider extends Component<Props, State> {
           ]}
           {...this.state.panResponder.panHandlers}
         >
+          
           <Animated.View
             style={[
               styles.slider,
@@ -197,6 +198,7 @@ export class VerticalSlider extends Component<Props, State> {
               }
             ]}
           />
+          <Text style={styles.centerSliderText}>{this.state.value}</Text>
         </View>
         {this.props.showBallIndicator ? (
           <Animated.View
@@ -254,10 +256,16 @@ const styles = StyleSheet.create({
     fontWeight: "900"
   },
   container: {
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
     overflow: "hidden"
   },
   slider: {
     position: "absolute",
     bottom: 0
+  },
+  centerSliderText: {
+    textAlign: "center"
   }
 });
