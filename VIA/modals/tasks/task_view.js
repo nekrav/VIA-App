@@ -162,16 +162,15 @@ export class ViewTask extends React.Component {
                         <View style={styles.verticalSlider}>
                             <Text>Importance</Text>
                             <VerticalSlider
-                                value={parseInt(this.state.importance)}
+                                value={parseInt(this.state.selectedItem.importance)}
                                 disabled={false}
                                 min={0}
                                 max={100}
                                 onChange={(value: number) => {
-                                    // this.setState({importance : value})
                                     // this.props.editImportance(value)
                                 }}
                                 onComplete={(value: number) => {
-                                    this.props.editImportance
+                                    this.props.editImportance(value)
                                 }}
                                 width={50}
                                 height={300}
