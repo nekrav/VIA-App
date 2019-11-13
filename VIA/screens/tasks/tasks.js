@@ -128,7 +128,9 @@ export class TasksScreen extends React.Component {
 
     render() {
         return (
+            
             <View style={styles.outerView}>
+            
                 {this.showAddModal()}
                 {this.showViewTask()}
                 <Text style={styles.title}>Tasks</Text>

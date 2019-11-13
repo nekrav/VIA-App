@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
 import { Controller } from '../controller'
@@ -120,6 +120,7 @@ export class HabitsScreen extends React.Component {
 
     render() {
         return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.outerView}>
                 {this.showAddModal()}
                 {this.showViewHabit()}
@@ -148,6 +149,7 @@ export class HabitsScreen extends React.Component {
                         </View>
                     </TouchableOpacity>} />
             </View>
+             </TouchableWithoutFeedback>
         );
     }
 }

@@ -12,49 +12,34 @@ const backgroundColor = '#ff1'
 
 module.exports = StyleSheet.create({
 
-    //#region Shared
     outerView: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: backgroundColor,
-        // padding: "3%",
-        // margin: "3%",
-        // marginTop: "10%",
-        // marginBottom: "10%",
-        // marginLeft: "5%",
-        // justifyContent: 'center',
-        // alignItems: 'center'
+
     },
     topNav: {
-        // flex: 1,
-        // flexDirection: 'column',
+
         backgroundColor: "#f0f",
-        // marginTop: "2%",
-        // marginTop: "1%",
-        // marginLeft: "3%",
-        // marginBottom: "10%"
     },
     backButton: {
-        // marginTop:"%",
-        // marginBottom:"5%",
         marginLeft: "8%",
     },
-    textInput: {
-        marginTop:"%",
-        marginBottom:"5%",
-        marginLeft:"5%",
-        marginRight: "5%",
-        fontSize: 20,
+    nameTextInput: {
+        fontSize: 28,
         fontFamily: fontFamily,
         color: "black",
     },
-    nameContainer: {
+    titleContainer: {
         backgroundColor: "#ff0000",
         flexDirection: "row"
     },
-    title: {
-        // marginTop: 22,
-        alignItems: "center"
+    verticalSlider: {
+        marginLeft: "20%",
+    },
+    sliders: {
+        flexDirection: "row",
+        flex: 1
     },
     numberOfItems: {
 
