@@ -137,7 +137,9 @@ export class ViewTask extends React.Component {
                
                 backdropOpacity={0}
                 animationIn='slideInRight'
+                animationInTiming={400}
                 animationOut='slideOutRight'
+                animationOutTiming={400}
                 isVisible={this.props.visible}
                 style={{ margin: 0 }}
                 onSwipeComplete={this.props.closeModal}
