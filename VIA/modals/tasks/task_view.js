@@ -158,10 +158,14 @@ export class ViewTask extends React.Component {
                         </View>
                         {this.renderDueDate()}
                     </View>
-                    <View style={styles.completeButtonContainer}><TouchableOpacity
-                       style={styles.completeButtonBody}
-                        onPress={() => this.props.editCompleted("true")}
-                    ><Text style={styles.completeButtonText}>Complete</Text></TouchableOpacity></View>
+                    {/* <View style={styles.completeButtonContainer}> */}
+                        <TouchableOpacity
+                        style={styles.completeButtonBody}
+                        onPress={() => this.props.editCompleted("true")}>
+                        <Text style={styles.completeButtonText}>Complete</Text>
+                    </TouchableOpacity>
+                    {/* </View> */}
+
                     <View style={styles.sliders}>
                         <View style={styles.verticalSliderContainer}>
                             <Text>Importance</Text>

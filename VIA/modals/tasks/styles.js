@@ -41,10 +41,11 @@ module.exports = StyleSheet.create({
         margin: 10,
     },
     completeButtonBody: {
-        flex: 1,
+        // flex: 1,
+        margin: 10,
         borderColor: "#fff",
         backgroundColor: "#fff",
-        padding: 20,
+        // padding: 20,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
