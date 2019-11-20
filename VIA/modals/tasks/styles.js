@@ -34,7 +34,7 @@ module.exports = StyleSheet.create({
         backgroundColor: "#ff0000",
         flexDirection: "row"
     },
-    verticalSlider: {
+    verticalSliderContainer: {
         // marginLeft: "20%",
     },
     sliders: {

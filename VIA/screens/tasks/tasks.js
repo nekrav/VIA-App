@@ -85,7 +85,6 @@ export class TasksScreen extends React.Component {
                         this.setState({ selectedTask: theTask })
                     }}
                     editImportance={(text) => {
-                        console.warn(text)
                         theTask.importance = text;
                         this.setState({ selectedTask: theTask })
                     }}

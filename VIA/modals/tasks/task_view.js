@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, SafeAreaView } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
@@ -158,8 +158,13 @@ export class ViewTask extends React.Component {
                         </View>
                         {this.renderDueDate()}
                     </View>
+                    <View style={styles.completeButtonContainer}><Button
+                        title="Complete"
+                        color="#f194ff"
+                        onPress={() => this.props.editCompleted("true")}
+                    /></View>
                     <View style={styles.sliders}>
-                        <View style={styles.verticalSlider}>
+                        <View style={styles.verticalSliderContainer}>
                             <Text>Importance</Text>
                             <VerticalSlider
                                 value={parseInt(this.state.selectedItem.importance)}
@@ -168,9 +173,11 @@ export class ViewTask extends React.Component {
                                 max={100}
                                 onChange={(value: number) => {
                                     // this.props.editImportance(value)
+                                    this.props.editImportance(value)
                                 }}
                                 onComplete={(value: number) => {
                                     this.props.editImportance(value)
+                                    this.props.editCompleted("true")
                                 }}
                                 width={50}
                                 height={300}
@@ -178,7 +185,7 @@ export class ViewTask extends React.Component {
                                 borderRadius={5}
                                 minimumTrackTintColor={"gray"}
                                 maximumTrackTintColor={"tomato"}
-                             
+
                                 ballIndicatorColor={"gray"}
                                 ballIndicatorTextColor={"white"}
                             />
