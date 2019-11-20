@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { VerticalSlider } from "../../components";
+import Modal from "react-native-modal";
 
 
 const controller = new Controller;
@@ -133,7 +134,15 @@ export class ViewTask extends React.Component {
     render() {
         return (
             <Modal
-                animationType={this.props.animationType}
+                // backdropOpacity={0}
+                hasBackdrop={false}
+                animationIn="slideInLeft"
+                animationOut="slideOutRight"
+                // coverScreen={true}
+                style={{ margin: 0 }}
+                // onSwipeMove={this.props.closeModal}
+                onSwipeComplete={this.props.closeModal}
+                swipeDirection={"right"}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
@@ -159,7 +168,7 @@ export class ViewTask extends React.Component {
                         {this.renderDueDate()}
                     </View>
                     {/* <View style={styles.completeButtonContainer}> */}
-                        <TouchableOpacity
+                    <TouchableOpacity
                         style={styles.completeButtonBody}
                         onPress={() => this.props.editCompleted("true")}>
                         <Text style={styles.completeButtonText}>Complete</Text>

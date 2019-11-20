@@ -16,7 +16,6 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: backgroundColor,
-
     },
     topNav: {
 
