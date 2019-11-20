@@ -134,18 +134,18 @@ export class ViewTask extends React.Component {
     render() {
         return (
             <Modal
-            isVisible={() => this.props.visible}
+               
                 backdropOpacity={0}
                 // hasBackdrop={false}
-                animationIn='slideInUp'	
-                animationInTiming="500"
+                animationIn='slideInUp'
                 // backdropTransitionOutTiming={0}
                 animationOut='zoomInDown'
+                isVisible={this.props.visible}
                 // coverScreen={true}
                 style={{ margin: 0 }}
-                onSwipeComplete={this.props.closeModal}
+                // onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}
-                >
+            >
                 {/* {this.showProjectSelectionModal()} */}
                 <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>

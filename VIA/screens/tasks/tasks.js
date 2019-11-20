@@ -75,6 +75,7 @@ export class TasksScreen extends React.Component {
                 theTask = this.state.selectedItem
                 return <ViewTask
                     animationType="slide"
+                    visible={this.state.viewModalVisible}
                     transparent={false}
                     editName={(text) => {
                         theTask.name = text;
