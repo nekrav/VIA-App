@@ -140,15 +140,11 @@ export class ViewTask extends React.Component {
                 animationIn='slideInUp'	
                 animationInTiming="500"
                 // backdropTransitionOutTiming={0}
-                // animationOut='zoomInDown'
+                animationOut='zoomInDown'
                 // coverScreen={true}
                 style={{ margin: 0 }}
-                // onSwipeMove={this.props.closeModal}
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}
-                // transparent={this.props.transparent}
-               
-                // onRequestClose={this.props.onRequestClose}
                 >
                 {/* {this.showProjectSelectionModal()} */}
                 <SafeAreaView style={styles.outerView}>
