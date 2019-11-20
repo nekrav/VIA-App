@@ -36,8 +36,8 @@ export class TasksScreen extends React.Component {
         newTask.name = task.name;
         newTask.created_date = new Date().getDate();
         newTask.due_date = task.due_date ? task.due_date : "";
-        newTask.importance = task.importance ? task.importance : "";
-        newTask.percentage_done = 0;
+        newTask.importance = task.importance ? task.importance : 0;
+        newTask.percentage_done = "0";
         newTask.completed = "false";
         newTask.project = task.project ? task.project : "";
         newTask.time_spent = 0;
