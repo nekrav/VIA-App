@@ -143,7 +143,7 @@ export class ViewTask extends React.Component {
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}
             >
-                {/* {this.showProjectSelectionModal()} */}
+                {this.showProjectSelectionModal()}
                 <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
