@@ -34,6 +34,26 @@ module.exports = StyleSheet.create({
         backgroundColor: "#ff0000",
         flexDirection: "row"
     },
+    completeButtonContainer: {
+        // flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 10,
+    },
+    completeButtonBody: {
+        flex: 1,
+        borderColor: "#fff",
+        backgroundColor: "#fff",
+        padding: 20,
+        borderWidth: 5,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    completeButtonText: {
+        margin: 10,
+        color: "#000",
+    },
     verticalSliderContainer: {
         // marginLeft: "20%",
     },
