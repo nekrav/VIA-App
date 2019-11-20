@@ -7,7 +7,6 @@ export class Controller extends React.Component {
     }
 
     setViewModalVisible(object, visible) {
-        console.warn("bobob")
         object.setState({ viewModalVisible: visible })
     }
 

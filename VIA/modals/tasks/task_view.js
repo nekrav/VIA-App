@@ -136,14 +136,11 @@ export class ViewTask extends React.Component {
             <Modal
                
                 backdropOpacity={0}
-                // hasBackdrop={false}
-                animationIn='slideInUp'
-                // backdropTransitionOutTiming={0}
-                animationOut='zoomInDown'
+                animationIn='slideInRight'
+                animationOut='slideOutRight'
                 isVisible={this.props.visible}
-                // coverScreen={true}
                 style={{ margin: 0 }}
-                // onSwipeComplete={this.props.closeModal}
+                onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}
             >
                 {/* {this.showProjectSelectionModal()} */}
