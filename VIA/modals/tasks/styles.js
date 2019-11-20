@@ -41,19 +41,19 @@ module.exports = StyleSheet.create({
         margin: 10,
     },
     completeButtonBody: {
-        // flex: 1,
         margin: 10,
         borderColor: "#fff",
         backgroundColor: "#fff",
-        // padding: 20,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "center"
     },
     completeButtonText: {
-        margin: 10,
+        // margin: 10,
+        fontFamily:"Futura",
         color: "#000",
+        fontSize: 30,
     },
     verticalSliderContainer: {
         // marginLeft: "20%",
