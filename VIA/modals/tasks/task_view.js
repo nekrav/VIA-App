@@ -76,8 +76,9 @@ export class ViewTask extends React.Component {
     renderProjectSection() {
         if (this.state.proj != null) {
             return (<View>
-                <Text>Project</Text>
-                <TouchableOpacity disabled={!this.state.canEdit}
+                <TouchableOpacity 
+                style={styles.projectSelectionButton}
+                disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
@@ -87,8 +88,9 @@ export class ViewTask extends React.Component {
         }
         if (this.state.projName != "") {
             return (<View>
-                <Text>Project</Text>
-                <TouchableOpacity disabled={!this.state.canEdit}
+                <TouchableOpacity 
+                style={styles.projectSelectionButton}
+                disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
@@ -97,8 +99,9 @@ export class ViewTask extends React.Component {
             </View>);
         }
         return (<View>
-            <Text>Project</Text>
-            <TouchableOpacity disabled={!this.state.canEdit}
+            <TouchableOpacity 
+            style={styles.projectSelectionButton}
+            disabled={!this.state.canEdit}
                 onPress={() => {
                     this.setProjectSelectionModalVisible();
                 }}>

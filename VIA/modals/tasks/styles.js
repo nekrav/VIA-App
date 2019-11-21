@@ -66,6 +66,11 @@ module.exports = StyleSheet.create({
     verticalSliderContainer: {
         // marginLeft: "20%",
     },
+    projectSelectionButton: {
+        borderWidth: 5,
+        borderColor: "#db275a",
+        backgroundColor: "#db275a",
+    },
     numberOfItems: {
 
     },
