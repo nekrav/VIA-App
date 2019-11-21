@@ -228,23 +228,6 @@ export class ViewTask extends React.Component {
                                 ballIndicatorTextColor={"white"}
                             />
                         </View>
-                    
-                        <View>
-                            <Text>Time Spent</Text>
-                            <TextInput
-                                editable={this.state.canEdit}
-                                value={this.props.selectedItem.time_spent}
-                                onChangeText={this.props.editTimeSpent}>
-                            </TextInput>
-                        </View>
-                    </View>
-                    <View>
-                        <Text>Completed</Text>
-                        <TextInput
-                            editable={this.state.canEdit}
-                            value={this.props.selectedItem.completed}
-                            onChangeText={this.props.editCompleted}>
-                        </TextInput>
                     </View>
                     {this.renderProjectSection()}
                     <View>

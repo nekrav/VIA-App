@@ -18,10 +18,11 @@ module.exports = StyleSheet.create({
         backgroundColor: backgroundColor,
     },
     topNav: {
-
+        flexDirection: "row",
         backgroundColor: "#f0f",
     },
     backButton: {
+        backgroundColor: '#2a27db',
         marginLeft: "8%",
     },
     nameTextInput: {
@@ -57,6 +58,9 @@ module.exports = StyleSheet.create({
     
     slidersContainer: {
         flexDirection: "row",
+        backgroundColor:"#52eb34",
+        justifyContent: 'center',
+        alignContent: "center",
         flex: 1
     },
     verticalSliderContainer: {
