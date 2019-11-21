@@ -174,7 +174,7 @@ export class ViewTask extends React.Component {
                     </TouchableOpacity>
                     {/* </View> */}
 
-                    <View style={styles.sliders}>
+                    <View style={styles.slidersContainer}>
                         <View style={styles.verticalSliderContainer}>
                             <Text>Importance</Text>
                             <VerticalSlider
@@ -200,20 +200,34 @@ export class ViewTask extends React.Component {
                                 ballIndicatorColor={"gray"}
                                 ballIndicatorTextColor={"white"}
                             />
-                            {/* <TextInput
-                            editable={this.state.canEdit}
-                            value={this.props.selectedItem.importance}
-                            onChangeText={this.props.editImportance}>
-                        </TextInput> */}
                         </View>
-                        <View>
-                            <Text>Percentage Done</Text>
-                            <TextInput
-                                editable={this.state.canEdit}
-                                value={this.props.selectedItem.percentage_done}
-                                onChangeText={this.props.editPercentageDone}>
-                            </TextInput>
+                        <View style={styles.verticalSliderContainer}>
+                            <Text>% Done</Text>
+                            <VerticalSlider
+                                value={parseInt(this.state.selectedItem.percentage_done)}
+                                disabled={false}
+                                min={0}
+                                max={100}
+                                onChange={(value: number) => {
+                                    // this.props.editImportance(value)
+                                    this.props.editPercentageDone(value)
+                                }}
+                                onComplete={(value: number) => {
+                                    this.props.editPercentageDone(value)
+                                    this.props.editCompleted("true")
+                                }}
+                                width={50}
+                                height={300}
+                                step={1}
+                                borderRadius={5}
+                                minimumTrackTintColor={"gray"}
+                                maximumTrackTintColor={"tomato"}
+
+                                ballIndicatorColor={"gray"}
+                                ballIndicatorTextColor={"white"}
+                            />
                         </View>
+                    
                         <View>
                             <Text>Time Spent</Text>
                             <TextInput

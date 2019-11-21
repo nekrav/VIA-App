@@ -54,12 +54,13 @@ module.exports = StyleSheet.create({
         color: "#000",
         fontSize: 30,
     },
-    verticalSliderContainer: {
-        // marginLeft: "20%",
-    },
-    sliders: {
+    
+    slidersContainer: {
         flexDirection: "row",
         flex: 1
+    },
+    verticalSliderContainer: {
+        // marginLeft: "20%",
     },
     numberOfItems: {
 
