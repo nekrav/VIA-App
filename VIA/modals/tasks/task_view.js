@@ -184,7 +184,8 @@ export class ViewTask extends React.Component {
                                 max={100}
                                 onChange={(value: number) => {
                                     // this.props.editImportance(value)
-                                    this.props.editImportance(value)
+                                    this.props.save;
+                                    this.props.editImportance(value);
                                 }}
                                 onComplete={(value: number) => {
                                     this.props.editImportance(value)
@@ -210,11 +211,11 @@ export class ViewTask extends React.Component {
                                 max={100}
                                 onChange={(value: number) => {
                                     // this.props.editImportance(value)
-                                    this.props.editPercentageDone(value)
+                                    this.props.editPercentageDone(value);
                                 }}
                                 onComplete={(value: number) => {
                                     this.props.editPercentageDone(value)
-                                    this.props.editCompleted("true")
+                                    this.props.save();
                                 }}
                                 width={50}
                                 height={300}
@@ -266,7 +267,10 @@ export class ViewTask extends React.Component {
                         <TouchableOpacity onPress={this.props.closeModal}>
                             <Text>Close</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={this.props.save}>
+                        <TouchableOpacity onPress={() => {
+                            this.props.closeModal();
+                            this.props.save()
+                        }}>
                             <Text>Save</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={this.props.delete}>

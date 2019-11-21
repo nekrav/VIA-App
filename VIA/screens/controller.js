@@ -43,7 +43,6 @@ export class Controller extends React.Component {
 
     saveExisting(object, tableName, habit) {
         Database.update(tableName, habit).then(() => {
-            this.setViewModalVisible(object, false)
             this.loadAll(object, tableName);
         })
     }

@@ -115,7 +115,9 @@ export class TasksScreen extends React.Component {
                     }}
                   
 
-                    save={() => { controller.saveExisting(this, dbTableName, theTask) }}
+                    save={() => { 
+                        controller.saveExisting(this, dbTableName, theTask) 
+                    }}
 
                     selectedItem={theTask}
 
