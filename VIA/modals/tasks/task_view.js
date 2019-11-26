@@ -76,9 +76,9 @@ export class ViewTask extends React.Component {
     renderProjectSection() {
         if (this.state.proj != null) {
             return (<View>
-                <TouchableOpacity 
-                style={styles.projectSelectionButton}
-                disabled={!this.state.canEdit}
+                <TouchableOpacity
+                    style={styles.projectSelectionButton}
+                    // disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
@@ -88,9 +88,9 @@ export class ViewTask extends React.Component {
         }
         if (this.state.projName != "") {
             return (<View>
-                <TouchableOpacity 
-                style={styles.projectSelectionButton}
-                disabled={!this.state.canEdit}
+                <TouchableOpacity
+                    style={styles.projectSelectionButton}
+                    // disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
@@ -99,15 +99,30 @@ export class ViewTask extends React.Component {
             </View>);
         }
         return (<View>
-            <TouchableOpacity 
-            style={styles.projectSelectionButton}
-            disabled={!this.state.canEdit}
+            <TouchableOpacity
+                style={styles.projectSelectionButton}
+                // disabled={!this.state.canEdit}
                 onPress={() => {
                     this.setProjectSelectionModalVisible();
                 }}>
                 <Text>No Project Selected</Text>
             </TouchableOpacity>
         </View>);
+    }
+
+    renderCompleteButton() {
+        return (<TouchableOpacity
+            style={styles.completeButtonBody}
+            onPress={() => this.props.editCompleted("true")}>
+           {this.renderCompleteButtonText()}
+        </TouchableOpacity>)
+    }
+
+    renderCompleteButtonText() {
+        if (this.state.selectedItem.completed == "true")
+            return (<Text style={styles.completeButtonText}>Done</Text>)
+        else
+            return (<Text style={styles.completeButtonText}>Complete</Text>)
     }
 
     renderDueDate() {
@@ -137,7 +152,7 @@ export class ViewTask extends React.Component {
     render() {
         return (
             <Modal
-               
+
                 backdropOpacity={0}
                 animationIn='slideInRight'
                 animationInTiming={400}
@@ -170,11 +185,7 @@ export class ViewTask extends React.Component {
                         {this.renderDueDate()}
                     </View>
                     {/* <View style={styles.completeButtonContainer}> */}
-                    <TouchableOpacity
-                        style={styles.completeButtonBody}
-                        onPress={() => this.props.editCompleted("true")}>
-                        <Text style={styles.completeButtonText}>Complete</Text>
-                    </TouchableOpacity>
+                    {this.renderCompleteButton()}
                     {/* </View> */}
 
                     <View style={styles.slidersContainer}>
