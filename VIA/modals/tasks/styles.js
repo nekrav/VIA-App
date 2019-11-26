@@ -8,21 +8,29 @@ const titleFontSize = 24
 const textColor = '#effcff'
 const bodyFontSize = 20
 const fontFamily = "Futura"
-const backgroundColor = '#ff1'
+
+const whiteColor = "#fff"
+const blackColor = "#000"
+const limeColor = "#52eb34"
+const burgundyColor = "#db275a"
+const yellowColor = '#ff1'
+const redColor = "#ff0000"
+const blueColor = '#2a27db'
+const pinkColor = "#f0f"
 
 module.exports = StyleSheet.create({
 
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: yellowColor,
     },
     topNav: {
         flexDirection: "row",
-        backgroundColor: "#f0f",
+        backgroundColor: pinkColor,
     },
     backButton: {
-        backgroundColor: '#2a27db',
+        backgroundColor: blueColor,
         marginLeft: "8%",
     },
     nameTextInput: {
@@ -31,7 +39,7 @@ module.exports = StyleSheet.create({
         color: "black",
     },
     titleContainer: {
-        backgroundColor: "#ff0000",
+        backgroundColor: redColor,
         flexDirection: "row"
     },
     completeButtonContainer: {
@@ -42,8 +50,8 @@ module.exports = StyleSheet.create({
     },
     completeButtonBody: {
         margin: 10,
-        borderColor: "#fff",
-        backgroundColor: "#fff",
+        borderColor: whiteColor,
+        backgroundColor: whiteColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
@@ -52,13 +60,13 @@ module.exports = StyleSheet.create({
     completeButtonText: {
         // margin: 10,
         fontFamily:"Futura",
-        color: "#000",
+        color: blackColor,
         fontSize: 30,
     },
     
     slidersContainer: {
         flexDirection: "row",
-        backgroundColor:"#52eb34",
+        backgroundColor:limeColor,
         justifyContent: 'center',
         alignContent: "center",
         flex: 1
@@ -68,8 +76,16 @@ module.exports = StyleSheet.create({
     },
     projectSelectionButton: {
         borderWidth: 5,
-        borderColor: "#db275a",
-        backgroundColor: "#db275a",
+        borderColor: burgundyColor,
+        backgroundColor: burgundyColor,
+    },
+    notesContainer: {
+        backgroundColor: limeColor,
+        height: "20%",
+    },
+    notesTextInput: {
+        flex: 2,
+        height: "20%",
     },
     numberOfItems: {
 

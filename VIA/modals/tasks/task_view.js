@@ -254,15 +254,18 @@ export class ViewTask extends React.Component {
                             onChangeText={this.props.editNotificationTime}>
                         </TextInput>
                     </View>
-                    <View>
+                    <View style={styles.notesContainer}>
                         <Text>Notes</Text>
                         <TextInput
-                            editable={this.state.canEdit}
+                        style={styles.notesTextInput}
+                            placeholder={"Notes"}
+                            multiline={true}
+                            numberOfLines={2}
                             value={this.props.selectedItem.notes}
                             onChangeText={this.props.editNotes}>
                         </TextInput>
                     </View>
-                    <View>
+                    {/* <View>
                         <TouchableOpacity onPress={this.props.closeModal}>
                             <Text>Close</Text>
                         </TouchableOpacity>
@@ -278,7 +281,7 @@ export class ViewTask extends React.Component {
                         <TouchableOpacity onPress={() => this.canEdit()}>
                             <Text>Edit</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </SafeAreaView>
             </Modal>
         );
