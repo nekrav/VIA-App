@@ -113,6 +113,7 @@ export class ViewTask extends React.Component {
     renderCompleteButton() {
         return (<TouchableOpacity
             style={styles.completeButtonBody}
+            onLongPress={() => this.props.editCompleted("false")}
             onPress={() => this.props.editCompleted("true")}>
            {this.renderCompleteButtonText()}
         </TouchableOpacity>)
