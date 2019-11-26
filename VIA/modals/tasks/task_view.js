@@ -6,6 +6,11 @@ import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
+import {
+    TextField,
+    FilledTextField,
+    OutlinedTextField,
+} from 'react-native-material-textfield';
 
 
 const controller = new Controller;
@@ -88,7 +93,7 @@ export class ViewTask extends React.Component {
                     }}
                     onComplete={(value: number) => {
                         this.props.editImportance(value)
-                       
+
                     }}
                     width={50}
                     height={300}
@@ -173,7 +178,7 @@ export class ViewTask extends React.Component {
             style={styles.completeButtonBody}
             onLongPress={() => this.props.editCompleted("false")}
             onPress={() => this.props.editCompleted("true")}>
-           {this.renderCompleteButtonText()}
+            {this.renderCompleteButtonText()}
         </TouchableOpacity>)
     }
 
@@ -255,15 +260,17 @@ export class ViewTask extends React.Component {
                         </TextInput>
                     </View>
                     <View style={styles.notesContainer}>
+                        <TouchableOpacity
+                        onPress={() => this.props.editCompleted("true")}>
                         <Text>Notes</Text>
-                        <TextInput
+                        <Text
                         style={styles.notesTextInput}
-                            placeholder={"Notes"}
                             multiline={true}
-                            numberOfLines={2}
-                            value={this.props.selectedItem.notes}
+                            value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "Notes"}
                             onChangeText={this.props.editNotes}>
-                        </TextInput>
+                        </Text>
+                        </TouchableOpacity>
+                       
                     </View>
                     {/* <View>
                         <TouchableOpacity onPress={this.props.closeModal}>
