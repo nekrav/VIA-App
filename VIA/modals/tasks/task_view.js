@@ -56,7 +56,7 @@ export class ViewTask extends React.Component {
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
         }
-        // return null;
+        return null;
     }
 
     setProjectSelectionModalVisible() {
@@ -260,17 +260,17 @@ export class ViewTask extends React.Component {
                         </TextInput>
                     </View>
                     <View style={styles.notesContainer}>
-                        <TouchableOpacity
-                        onPress={() => this.props.editCompleted("true")}>
                         <Text>Notes</Text>
-                        <Text
-                        style={styles.notesTextInput}
+                        <TextInput
+                            style={styles.notesTextInput}
                             multiline={true}
-                            value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "Notes"}
+                            value={this.props.selectedItem.notes}
                             onChangeText={this.props.editNotes}>
-                        </Text>
-                        </TouchableOpacity>
-                       
+                        </TextInput>
+
+
+
+
                     </View>
                     {/* <View>
                         <TouchableOpacity onPress={this.props.closeModal}>
