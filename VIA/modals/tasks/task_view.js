@@ -52,6 +52,7 @@ export class ViewTask extends React.Component {
                 selectItem={(item) => {
                     this.props.editProject(item.value.id)
                     this.setState({ projName: item.value.name })
+                    this.props.save();
                 }}
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
