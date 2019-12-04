@@ -264,7 +264,7 @@ export class ViewTask extends React.Component {
                         <TextInput
                             style={styles.notesTextInput}
                             multiline={true}
-                            value={this.props.selectedItem.notes}
+                            value={this.props.selectedItem.notes ?this.props.selectedItem.notes : "..."}
                             onChangeText={this.props.editNotes}>
                         </TextInput>
 
