@@ -12,7 +12,8 @@ const TabNavigator = createBottomTabNavigator({
   Routines: RoutinesScreen,
   Home: {
     screen: HabitsScreen,
-    navigationOptions: ({ navigation, screenProps }) => ({
+    navigationOptions: ({ navigation }) => ({
+      title: "",
       tabBarIcon: 
       <HomeButton
        nav = {navigation} ></HomeButton> // Plus button component

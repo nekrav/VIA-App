@@ -15,6 +15,7 @@ class HomeButton extends React.Component {
     render() {
         return (
             <View style={{
+                marginTop: "10%",
                 position: 'absolute',
                 alignItems: 'center'
             }}>
