@@ -12,8 +12,10 @@ const TabNavigator = createBottomTabNavigator({
   Routines: RoutinesScreen,
   Home: {
     screen: HabitsScreen,
-    navigationOptions: () => ({
-      tabBarIcon: <HomeButton /> // Plus button component
+    navigationOptions: ({ navigation, screenProps }) => ({
+      tabBarIcon: 
+      <HomeButton
+       nav = {navigation} ></HomeButton> // Plus button component
   })
   },
   Projects: ProjectsScreen,
