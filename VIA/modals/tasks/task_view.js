@@ -4,6 +4,12 @@ import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import EIcon from 'react-native-vector-icons/dist/Entypo';
+import IonIcon from 'react-native-vector-icons/dist/Ionicons';
+import MIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import MDIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
 import {
@@ -233,7 +239,7 @@ export class ViewTask extends React.Component {
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
                             onPress={this.props.closeModal}>
-                            <Icon name="arrow-left" size={35} color="#000" />
+                            <SIcon name="arrow-left" size={40} color="#000" />
                         </TouchableOpacity>
                     </View>
 
