@@ -42,6 +42,9 @@ module.exports = StyleSheet.create({
         backgroundColor: redColor,
         flexDirection: "row"
     },
+    dateContainer: {
+        backgroundColor: whiteColor,
+    },
     completeButtonContainer: {
         // flex: 1,
         alignItems: "center",

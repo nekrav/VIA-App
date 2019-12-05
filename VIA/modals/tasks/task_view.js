@@ -247,11 +247,16 @@ export class ViewTask extends React.Component {
                                 onChangeText={this.props.editName}>
                             </TextInput>
                         </View>
+
+                    </View>
+                    <View style={styles.dateContainer}>
                         {this.renderDueDate()}
                     </View>
-                    {this.renderCompleteButton()}
+
                     {this.renderSliderSection()}
+                    {this.renderCompleteButton()}
                     {this.renderProjectSection()}
+
                     <View>
                         <Text>Notification Time</Text>
                         <TextInput
@@ -265,7 +270,7 @@ export class ViewTask extends React.Component {
                         <TextInput
                             style={styles.notesTextInput}
                             multiline={true}
-                            value={this.props.selectedItem.notes ?this.props.selectedItem.notes : "..."}
+                            value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "..."}
                             onChangeText={this.props.editNotes}>
                         </TextInput>
 
