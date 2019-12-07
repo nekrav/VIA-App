@@ -1,27 +1,18 @@
 import React from 'react';
-import { Animated, Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button, Keyboard } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, TextInput, SafeAreaView } from 'react-native';
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
-import { Database, Projects, Tasks } from '../../db'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import EIcon from 'react-native-vector-icons/dist/Entypo';
-import IonIcon from 'react-native-vector-icons/dist/Ionicons';
-import MIcon from 'react-native-vector-icons/dist/MaterialIcons';
-import MDIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
-import {
-    TextField,
-    FilledTextField,
-    OutlinedTextField,
-} from 'react-native-material-textfield';
-
 
 const controller = new Controller;
 
 const styles = require('./styles');
+
+const empty = ""
 
 export class ViewTask extends React.Component {
 
@@ -33,8 +24,8 @@ export class ViewTask extends React.Component {
             projectSelectionModalVisible: false,
             items: [],
             proj: null,
-            projName: "",
-            theSelectedProject: "",
+            projName: empty,
+            theSelectedProject: empty,
             importance: this.props.selectedItem.importance,
             showDate: false,
             dueDate: ''
@@ -43,11 +34,17 @@ export class ViewTask extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
-        if (this.state.selectedItem.project != "") {
+        if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
             })
         }
+    }
+
+
+
+    setProjectSelectionModalVisibility(visible) {
+        this.setState({ projectSelectionModalVisible: visible })
     }
 
     showProjectSelectionModal() {
@@ -68,23 +65,15 @@ export class ViewTask extends React.Component {
         return null;
     }
 
-    setProjectSelectionModalVisibility(visible) {
-        this.setState({ projectSelectionModalVisible: visible })
-    }
-
     setDateModalVisibility(visible) {
         this.setState({ showDate: visible })
-    }
-
-    canEdit() {
-        this.setState({ canEdit: true })
     }
 
     renderShowDate() {
         if (this.state.showDate) {
             return <DateModal
                 animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
+                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
                 itemName="Project"
                 transparent={true}
                 setDate={(item) => {
@@ -98,8 +87,12 @@ export class ViewTask extends React.Component {
         return null;
     }
 
+    canEdit() {
+        this.setState({ canEdit: true })
+    }
+
     renderProjName() {
-        if (this.state.selectProject != "") {
+        if (this.state.selectProject != empty) {
             return this.state.selectProject
         }
         return this.state.proj.name
@@ -175,43 +168,34 @@ export class ViewTask extends React.Component {
     renderProjectSection() {
         if (this.state.proj != null) {
             return (
-                // <View>
                 <TouchableOpacity
                     style={styles.projectSelectionButton}
-                    // disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
                     <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
                 </TouchableOpacity>
-                // </View>
             );
         }
-        if (this.state.projName != "") {
+        if (this.state.projName != empty) {
             return (
-                // <View>
                 <TouchableOpacity
                     style={styles.projectSelectionButton}
-                    // disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
                     <Text style={styles.projectSelectionButtonText} >{this.state.projName}</Text>
                 </TouchableOpacity>
-                // </View>
             );
         }
         return (
-            // <View>
             <TouchableOpacity
                 style={styles.projectSelectionButton}
-                // disabled={!this.state.canEdit}
                 onPress={() => {
                     this.setProjectSelectionModalVisibility(true);
                 }}>
                 <Text style={styles.projectSelectionButtonText}>No Project Selected</Text>
             </TouchableOpacity>
-            // </View>
         );
     }
 
@@ -232,7 +216,7 @@ export class ViewTask extends React.Component {
     }
 
     renderDueDate() {
-        if (this.state.selectedItem.due_date != "") {
+        if (this.state.selectedItem.due_date != empty) {
             return (
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
@@ -318,27 +302,11 @@ export class ViewTask extends React.Component {
                             value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "..."}
                             onChangeText={this.props.editNotes}>
                         </TextInput>
-
-
-
-
                     </View>
                     <View>
-                        {/* <TouchableOpacity onPress={this.props.closeModal}>
-                            <Text>Close</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {
-                            this.props.closeModal();
-                            this.props.save()
-                        }}>
-                            <Text>Save</Text>
-                        </TouchableOpacity> */}
                         <TouchableOpacity onPress={this.props.delete}>
                             <Text>Delete</Text>
                         </TouchableOpacity>
-                        {/* <TouchableOpacity onPress={() => this.canEdit()}>
-                            <Text>Edit</Text>
-                        </TouchableOpacity> */}
                     </View>
                 </SafeAreaView>
             </Modal>
