@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button } from 'react-native'; // Version can be specified in package.json
+import { Animated, Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { Database, Projects, Tasks } from '../../db'
@@ -235,7 +235,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}
             >
                 {this.showProjectSelectionModal()}
-                <SafeAreaView style={styles.outerView}>
+                <SafeAreaView  style={styles.outerView}>
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
                             onPress={this.props.closeModal}>
@@ -245,8 +245,9 @@ export class ViewTask extends React.Component {
 
                     <View style={styles.titleContainer}>
                         <View style={styles.nameContainer}>
-
                             <TextInput
+                                maxLength={40}
+                                onEndEditing={this.props.save()}
                                 style={styles.nameTextInput}
                                 multiline={true}
                                 value={this.props.selectedItem.name}
@@ -284,8 +285,8 @@ export class ViewTask extends React.Component {
 
 
                     </View>
-                    {/* <View>
-                        <TouchableOpacity onPress={this.props.closeModal}>
+                    <View>
+                        {/* <TouchableOpacity onPress={this.props.closeModal}>
                             <Text>Close</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => {
@@ -293,14 +294,14 @@ export class ViewTask extends React.Component {
                             this.props.save()
                         }}>
                             <Text>Save</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <TouchableOpacity onPress={this.props.delete}>
                             <Text>Delete</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.canEdit()}>
+                        {/* <TouchableOpacity onPress={() => this.canEdit()}>
                             <Text>Edit</Text>
-                        </TouchableOpacity>
-                    </View> */}
+                        </TouchableOpacity> */}
+                    </View>
                 </SafeAreaView>
             </Modal>
         );
