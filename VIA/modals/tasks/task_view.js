@@ -210,6 +210,7 @@ export class ViewTask extends React.Component {
             return (
                 <View style={styles.dueDateView}>
                     <TextInput
+                    style={styles.dateText}
                         editable={this.state.canEdit}
                         value={this.props.selectedItem.due_date}
                         onChangeText={this.props.editDueDate}>
@@ -248,7 +249,7 @@ export class ViewTask extends React.Component {
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
                             onPress={this.props.closeModal}>
-                            <SIcon name="arrow-left" size={40} color="#000" />
+                            <SIcon name="arrow-left" size={30} color="#000" />
                         </TouchableOpacity>
                     </View>
 

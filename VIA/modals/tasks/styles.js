@@ -26,6 +26,7 @@ module.exports = StyleSheet.create({
         backgroundColor: yellowColor,
     },
     topNav: {
+        marginBottom: 5,
         flexDirection: "row",
         backgroundColor: pinkColor,
     },
@@ -60,23 +61,22 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
+    dateText: {
+        fontFamily: fontFamily
+    },
     completeButtonText: {
         // margin: 10,
-        fontFamily:"Futura",
+        fontFamily: fontFamily,
         color: blackColor,
         fontSize: 30,
     },
     sliderTitleContainer: {
-        width: 100,
         backgroundColor: "#f0f",
-        alignContent: "center",
-        justifyContent: 'center',
         alignItems: "center",
-        // justifyContent: 'center',
-        // textAlign: 'center',
-        // alignContent: "center",
+        marginBottom: 5,
     },
     sliderTitle: {
+        fontFamily: fontFamily,
         fontSize: 20,
     
     },
