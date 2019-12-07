@@ -97,9 +97,15 @@ module.exports = StyleSheet.create({
         // marginLeft: "20%",
     },
     projectSelectionButton: {
+        marginLeft: 5,
         borderWidth: 5,
+        borderRadius: 10,
         borderColor: burgundyColor,
         backgroundColor: burgundyColor,
+    },
+    projectSelectionButtonText: {
+        fontFamily: fontFamily,
+        fontSize: 20,
     },
     notesContainer: {
         backgroundColor: limeColor,

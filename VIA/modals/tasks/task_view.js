@@ -154,39 +154,45 @@ export class ViewTask extends React.Component {
 
     renderProjectSection() {
         if (this.state.proj != null) {
-            return (<View>
-                <TouchableOpacity
-                    style={styles.projectSelectionButton}
-                    // disabled={!this.state.canEdit}
-                    onPress={() => {
-                        this.setProjectSelectionModalVisible();
-                    }}>
-                    <Text>{this.state.projName}</Text>
-                </TouchableOpacity>
-            </View>);
+            return (
+                // <View>
+                    <TouchableOpacity
+                        style={styles.projectSelectionButton}
+                        // disabled={!this.state.canEdit}
+                        onPress={() => {
+                            this.setProjectSelectionModalVisible();
+                        }}>
+                        <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
+                    </TouchableOpacity>
+                // </View>
+                );
         }
         if (this.state.projName != "") {
-            return (<View>
+            return (
+            // <View>
                 <TouchableOpacity
                     style={styles.projectSelectionButton}
                     // disabled={!this.state.canEdit}
                     onPress={() => {
                         this.setProjectSelectionModalVisible();
                     }}>
-                    <Text>{this.state.projName}</Text>
+                    <Text style={styles.projectSelectionButtonText} >{this.state.projName}</Text>
                 </TouchableOpacity>
-            </View>);
+            // </View>
+            );
         }
-        return (<View>
+        return (
+        // <View>
             <TouchableOpacity
                 style={styles.projectSelectionButton}
                 // disabled={!this.state.canEdit}
                 onPress={() => {
                     this.setProjectSelectionModalVisible();
                 }}>
-                <Text>No Project Selected</Text>
+                <Text style={styles.projectSelectionButtonText}>No Project Selected</Text>
             </TouchableOpacity>
-        </View>);
+        // </View>
+        );
     }
 
     renderCompleteButton() {
@@ -210,7 +216,7 @@ export class ViewTask extends React.Component {
             return (
                 <View style={styles.dueDateView}>
                     <TextInput
-                    style={styles.dateText}
+                        style={styles.dateText}
                         editable={this.state.canEdit}
                         value={this.props.selectedItem.due_date}
                         onChangeText={this.props.editDueDate}>
