@@ -62,22 +62,18 @@ export class ViewTask extends React.Component {
                     this.setState({ projName: item.value.name })
                     this.props.save();
                 }}
-                closeModal={() => { this.setShowDateNotVisible() }}>
+                closeModal={() => { this.setProjectSelectionModalVisibility(false) }}>
             </SelectionModal>
         }
         return null;
     }
 
-    setProjectSelectionModalVisible() {
-        this.setState({ projectSelectionModalVisible: true })
+    setProjectSelectionModalVisibility(visible) {
+        this.setState({ projectSelectionModalVisible: visible })
     }
 
-    setProjectSelectionModalNotVisible() {
-        this.setState({ projectSelectionModalVisible: false })
-    }
-
-    setShowDateNotVisible() {
-        this.setState({ showDate: false })
+    setDateModalVisibility(visible) {
+        this.setState({ showDate: visible })
     }
 
     canEdit() {
@@ -96,7 +92,7 @@ export class ViewTask extends React.Component {
                     this.setState({ dueDate: item })
                     this.props.save();
                 }}
-                closeModal={() => { this.setShowDateNotVisible() }}>
+                closeModal={() => { this.setDateModalVisibility() }}>
             </DateModal>
         }
         return null;
@@ -184,7 +180,7 @@ export class ViewTask extends React.Component {
                     style={styles.projectSelectionButton}
                     // disabled={!this.state.canEdit}
                     onPress={() => {
-                        this.setProjectSelectionModalVisible();
+                        this.setProjectSelectionModalVisibility(true);
                     }}>
                     <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
                 </TouchableOpacity>
@@ -198,7 +194,7 @@ export class ViewTask extends React.Component {
                     style={styles.projectSelectionButton}
                     // disabled={!this.state.canEdit}
                     onPress={() => {
-                        this.setProjectSelectionModalVisible();
+                        this.setProjectSelectionModalVisibility(true);
                     }}>
                     <Text style={styles.projectSelectionButtonText} >{this.state.projName}</Text>
                 </TouchableOpacity>
@@ -211,7 +207,7 @@ export class ViewTask extends React.Component {
                 style={styles.projectSelectionButton}
                 // disabled={!this.state.canEdit}
                 onPress={() => {
-                    this.setProjectSelectionModalVisible();
+                    this.setProjectSelectionModalVisibility(true);
                 }}>
                 <Text style={styles.projectSelectionButtonText}>No Project Selected</Text>
             </TouchableOpacity>
@@ -239,7 +235,7 @@ export class ViewTask extends React.Component {
         if (this.state.selectedItem.due_date != "") {
             return (
                 <View style={styles.dueDateView}>
-                    <TouchableOpacity onPress={() => this.setState({ showDate: true })}>
+                    <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
                             {this.props.selectedItem.due_date}
                         </Text>
@@ -248,7 +244,7 @@ export class ViewTask extends React.Component {
         }
         return (
             <View style={styles.dueDateView}>
-                <TouchableOpacity onPress={() => this.setState({ showDate: true })}>
+                <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                     <Text style={styles.dateText}>
                         No Due Date
                         </Text>

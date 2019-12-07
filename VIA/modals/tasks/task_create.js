@@ -1,10 +1,13 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
+import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
 
 const controller = new Controller;
+
+const styles = require('./styles');
 
 export class CreateTask extends React.Component {
 
@@ -15,6 +18,7 @@ export class CreateTask extends React.Component {
             projectSelectionModalVisible: false,
             items: [],
             theSelectedProject: "",
+            showDate: false,
         };
     }
     componentDidMount() {
@@ -36,6 +40,12 @@ export class CreateTask extends React.Component {
                 closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
             </SelectionModal>
         }
+    }
+
+    
+
+    setDateModalVisibility(visible) {
+        this.setState({ showDate: visible })
     }
 
     setProjectSelectionModalVisible() {
@@ -65,6 +75,35 @@ export class CreateTask extends React.Component {
         }
     }
 
+    renderShowDate() {
+        if (this.state.showDate) {
+            return <DateModal
+                animationType="fade"
+                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
+                itemName="Project"
+                transparent={true}
+                setDate={(item) => {
+                    this.props.editDueDate(item)
+                    this.setState({ dueDate: item })
+                    this.props.save();
+                }}
+                closeModal={() => { this.setDateModalVisibility(false) }}>
+            </DateModal>
+        }
+        return null;
+    }
+
+    renderDueDate() {
+        return (
+            <View style={styles.dueDateView}>
+                <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
+                    <Text style={styles.dateText}>
+                        When do you want to finish this? 
+                        </Text>
+                </TouchableOpacity>
+            </View>)
+    }
+
     render() {
         return (
             <Modal
@@ -73,6 +112,7 @@ export class CreateTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
+                {this.renderShowDate()}
                 <View style={{ marginTop: 22, alignItems: "center" }}>
 
                     <Text>Add Task</Text>
@@ -85,9 +125,7 @@ export class CreateTask extends React.Component {
                 </View>
                 <View>
                     <Text>Due Date</Text>
-                    <TextInput
-                        onChangeText={this.props.due_date}>
-                    </TextInput>
+                   {this.renderDueDate()}
                 </View>
                 <View>
                     <Text>Importance</Text>
