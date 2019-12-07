@@ -86,60 +86,69 @@ export class ViewTask extends React.Component {
     }
 
     renderSliderSection() {
-        return (<View style={styles.slidersContainer}>
-            <View style={styles.verticalSliderContainer}>
-                <Text>Importance</Text>
-                <VerticalSlider
-                    value={parseInt(this.state.selectedItem.importance)}
-                    disabled={false}
-                    min={0}
-                    max={100}
-                    onChange={(value: number) => {
-                        this.props.save;
-                        this.props.editImportance(value);
-                    }}
-                    onComplete={(value: number) => {
-                        this.props.editImportance(value)
+        return (
+            <View style={styles.slidersContainer}>
+                <View style={styles.verticalSliderContainer}>
+                    <View style={styles.sliderTitleContainer}>
+                        <Text style={styles.sliderTitle}>
+                            Importance
+                        </Text>
+                    </View>
+                    <VerticalSlider
+                        value={parseInt(this.state.selectedItem.importance)}
+                        disabled={false}
+                        min={0}
+                        max={100}
+                        onChange={(value: number) => {
+                            this.props.save;
+                            this.props.editImportance(value);
+                        }}
+                        onComplete={(value: number) => {
+                            this.props.editImportance(value)
 
-                    }}
-                    width={50}
-                    height={300}
-                    step={1}
-                    borderRadius={5}
-                    minimumTrackTintColor={"gray"}
-                    maximumTrackTintColor={"tomato"}
+                        }}
+                        width={50}
+                        height={300}
+                        step={1}
+                        borderRadius={5}
+                        minimumTrackTintColor={"gray"}
+                        maximumTrackTintColor={"tomato"}
 
-                    ballIndicatorColor={"gray"}
-                    ballIndicatorTextColor={"white"}
-                />
-            </View>
-            <View style={styles.verticalSliderContainer}>
-                <Text>% Done</Text>
-                <VerticalSlider
-                    value={parseInt(this.state.selectedItem.percentage_done)}
-                    disabled={false}
-                    min={0}
-                    max={100}
-                    onChange={(value: number) => {
-                        // this.props.editImportance(value)
-                        this.props.editPercentageDone(value);
-                    }}
-                    onComplete={(value: number) => {
-                        this.props.editPercentageDone(value)
-                        this.props.save();
-                    }}
-                    width={50}
-                    height={300}
-                    step={1}
-                    borderRadius={5}
-                    minimumTrackTintColor={"gray"}
-                    maximumTrackTintColor={"tomato"}
+                        ballIndicatorColor={"gray"}
+                        ballIndicatorTextColor={"white"}
+                    />
+                </View>
+                <View style={styles.verticalSliderContainer}>
+                    <View style={styles.sliderTitleContainer}>
+                        <Text style={styles.sliderTitle}>
+                            % Done
+                        </Text>
+                    </View>
+                    <VerticalSlider
+                        value={parseInt(this.state.selectedItem.percentage_done)}
+                        disabled={false}
+                        min={0}
+                        max={100}
+                        onChange={(value: number) => {
+                            // this.props.editImportance(value)
+                            this.props.editPercentageDone(value);
+                        }}
+                        onComplete={(value: number) => {
+                            this.props.editPercentageDone(value)
+                            this.props.save();
+                        }}
+                        width={50}
+                        height={300}
+                        step={1}
+                        borderRadius={5}
+                        minimumTrackTintColor={"gray"}
+                        maximumTrackTintColor={"tomato"}
 
-                    ballIndicatorColor={"gray"}
-                    ballIndicatorTextColor={"white"}
-                />
-            </View>
-        </View>)
+                        ballIndicatorColor={"gray"}
+                        ballIndicatorTextColor={"white"}
+                    />
+                </View>
+            </View>)
 
     }
 
@@ -235,7 +244,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}
             >
                 {this.showProjectSelectionModal()}
-                <SafeAreaView  style={styles.outerView}>
+                <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
                             onPress={this.props.closeModal}>

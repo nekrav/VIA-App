@@ -66,15 +66,34 @@ module.exports = StyleSheet.create({
         color: blackColor,
         fontSize: 30,
     },
+    sliderTitleContainer: {
+        width: 100,
+        backgroundColor: "#f0f",
+        alignContent: "center",
+        justifyContent: 'center',
+        alignItems: "center",
+        // justifyContent: 'center',
+        // textAlign: 'center',
+        // alignContent: "center",
+    },
+    sliderTitle: {
+        fontSize: 20,
     
+    },
     slidersContainer: {
         flexDirection: "row",
         backgroundColor:limeColor,
         justifyContent: 'center',
+        
         alignContent: "center",
-        flex: 1
+        // flex: 1
     },
     verticalSliderContainer: {
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 20,
+        marginBottom: 20,
+        alignItems: "center",
         // marginLeft: "20%",
     },
     projectSelectionButton: {
