@@ -22,7 +22,7 @@ export class DateModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemDate: dateInDate
+            itemDate: this.props.itemDate ? this.props.itemDate : dateInDate
         };
     }
 

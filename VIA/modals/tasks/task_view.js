@@ -88,10 +88,9 @@ export class ViewTask extends React.Component {
         if (this.state.showDate) {
             return <DateModal
                 animationType="fade"
-                date={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
+                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
                 itemName="Project"
                 transparent={true}
-                // itemDate= {this.props.selectItem.dueDate ? this.props.selectItem.dueDate : ""}
                 setDate={(item) => {
                     this.props.editDueDate(item)
                     this.setState({ dueDate: item })
