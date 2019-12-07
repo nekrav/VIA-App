@@ -19,6 +19,7 @@ export class CreateTask extends React.Component {
             items: [],
             theSelectedProject: "",
             showDate: false,
+            itemDate: ""
         };
     }
     componentDidMount() {
@@ -37,19 +38,19 @@ export class CreateTask extends React.Component {
                     this.setState({ theSelectedProject: item.value.name }, () => {
                     })
                 }}
-                closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
+                closeModal={() => { this.setProjectSelectionModalVisibility(false) }}>
             </SelectionModal>
         }
     }
 
-    
+
 
     setDateModalVisibility(visible) {
         this.setState({ showDate: visible })
     }
 
-    setProjectSelectionModalVisible() {
-        this.setState({ projectSelectionModalVisible: true })
+    setProjectSelectionModalVisibility(visible) {
+        this.setState({ projectSelectionModalVisible: visible })
     }
 
     setProjectSelectionModalNotVisible() {
@@ -61,14 +62,14 @@ export class CreateTask extends React.Component {
             this.props.project = this.state.theSelectedProject;
             return (
                 <TouchableOpacity onPress={() => {
-                    this.setProjectSelectionModalVisible();
+                    this.setProjectSelectionModalVisibility(true);
                 }}>
                     <Text>{this.state.theSelectedProject}</Text>
                 </TouchableOpacity>
             );
         } else {
             return (
-                <TouchableOpacity onPress={this.setProjectSelectionModalVisible.bind(this)}>
+                <TouchableOpacity onPress={this.setProjectSelectionModalVisibility.bind(this)}>
                     <Text>Select Project</Text>
                 </TouchableOpacity>
             );
@@ -79,13 +80,10 @@ export class CreateTask extends React.Component {
         if (this.state.showDate) {
             return <DateModal
                 animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
-                itemName="Project"
                 transparent={true}
                 setDate={(item) => {
-                    this.props.editDueDate(item)
-                    this.setState({ dueDate: item })
-                    this.props.save();
+                    this.props.due_date(item)
+                    this.setState({itemDate: item})
                 }}
                 closeModal={() => { this.setDateModalVisibility(false) }}>
             </DateModal>
@@ -94,11 +92,21 @@ export class CreateTask extends React.Component {
     }
 
     renderDueDate() {
+        if (this.state.itemDate != "") {
+            return (
+                <View style={styles.dueDateView}>
+                    <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
+                        <Text style={styles.dateText}>
+                            {this.state.itemDate}
+                        </Text>
+                    </TouchableOpacity>
+                </View>)
+        }
         return (
             <View style={styles.dueDateView}>
                 <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                     <Text style={styles.dateText}>
-                        When do you want to finish this? 
+                        When do you want to finish this?
                         </Text>
                 </TouchableOpacity>
             </View>)
@@ -125,7 +133,7 @@ export class CreateTask extends React.Component {
                 </View>
                 <View>
                     <Text>Due Date</Text>
-                   {this.renderDueDate()}
+                    {this.renderDueDate()}
                 </View>
                 <View>
                     <Text>Importance</Text>
