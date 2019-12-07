@@ -1,8 +1,8 @@
 import React from 'react';
 import { Animated, Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
-import { SelectionModal} from '../selectionModal/selectionModal'
-import { DateModal} from '../dateModal/dateModal'
+import { SelectionModal } from '../selectionModal/selectionModal'
+import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import EIcon from 'react-native-vector-icons/dist/Entypo';
@@ -37,6 +37,7 @@ export class ViewTask extends React.Component {
             theSelectedProject: "",
             importance: this.props.selectedItem.importance,
             showDate: false,
+            dueDate: ''
         };
     }
 
@@ -86,19 +87,20 @@ export class ViewTask extends React.Component {
     renderShowDate() {
         if (this.state.showDate) {
             return <DateModal
-            animationType="fade"
-            date={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
-            itemName="Project"
-            transparent={true}
-            selectItem={(item) => {
-                this.props.editProject(item.value.id)
-                this.setState({ projName: item.value.name })
-                this.props.save();
-            }}
-            closeModal={() => { this.setShowDateNotVisible() }}>
-        </DateModal>
-    }
-    return null;
+                animationType="fade"
+                date={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
+                itemName="Project"
+                transparent={true}
+                // itemDate= {this.props.selectItem.dueDate ? this.props.selectItem.dueDate : ""}
+                setDate={(item) => {
+                    this.props.editDueDate(item)
+                    this.setState({ dueDate: item })
+                    this.props.save();
+                }}
+                closeModal={() => { this.setShowDateNotVisible() }}>
+            </DateModal>
+        }
+        return null;
     }
 
     renderProjName() {
@@ -238,17 +240,12 @@ export class ViewTask extends React.Component {
         if (this.state.selectedItem.due_date != "") {
             return (
                 <View style={styles.dueDateView}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setState({ showDate: true })}>
                         <Text style={styles.dateText}>
-                            aefawef
+                            {this.props.selectedItem.due_date}
                         </Text>
                     </TouchableOpacity>
-                    <TextInput
-                        style={styles.dateText}
-                        editable={this.state.canEdit}
-                        value={this.props.selectedItem.due_date}
-                        onChangeText={this.props.editDueDate}>
-                    </TextInput></View>)
+                </View>)
         }
         return (
             <View style={styles.dueDateView}>
