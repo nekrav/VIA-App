@@ -62,7 +62,8 @@ module.exports = StyleSheet.create({
         justifyContent: "center"
     },
     dateText: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: 18,
     },
     completeButtonText: {
         // margin: 10,

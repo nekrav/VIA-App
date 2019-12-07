@@ -1,14 +1,14 @@
 import React from 'react';
 import { Animated, Text, View, TouchableOpacity, TouchableHighlight, TextInput, BackHandler, SafeAreaView, Button, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { Controller } from '../controller';
-import { SelectionModal } from '../selectionModal/selectionModal'
+import { SelectionModal} from '../selectionModal/selectionModal'
+import { DateModal} from '../dateModal/dateModal'
 import { Database, Projects, Tasks } from '../../db'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import EIcon from 'react-native-vector-icons/dist/Entypo';
 import IonIcon from 'react-native-vector-icons/dist/Ionicons';
 import MIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import MDIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
@@ -36,6 +36,7 @@ export class ViewTask extends React.Component {
             projName: "",
             theSelectedProject: "",
             importance: this.props.selectedItem.importance,
+            showDate: false,
         };
     }
 
@@ -60,7 +61,7 @@ export class ViewTask extends React.Component {
                     this.setState({ projName: item.value.name })
                     this.props.save();
                 }}
-                closeModal={() => { this.setProjectSelectionModalNotVisible() }}>
+                closeModal={() => { this.setShowDateNotVisible() }}>
             </SelectionModal>
         }
         return null;
@@ -74,8 +75,30 @@ export class ViewTask extends React.Component {
         this.setState({ projectSelectionModalVisible: false })
     }
 
+    setShowDateNotVisible() {
+        this.setState({ showDate: false })
+    }
+
     canEdit() {
         this.setState({ canEdit: true })
+    }
+
+    renderShowDate() {
+        if (this.state.showDate) {
+            return <DateModal
+            animationType="fade"
+            date={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : ""}
+            itemName="Project"
+            transparent={true}
+            selectItem={(item) => {
+                this.props.editProject(item.value.id)
+                this.setState({ projName: item.value.name })
+                this.props.save();
+            }}
+            closeModal={() => { this.setShowDateNotVisible() }}>
+        </DateModal>
+    }
+    return null;
     }
 
     renderProjName() {
@@ -156,20 +179,20 @@ export class ViewTask extends React.Component {
         if (this.state.proj != null) {
             return (
                 // <View>
-                    <TouchableOpacity
-                        style={styles.projectSelectionButton}
-                        // disabled={!this.state.canEdit}
-                        onPress={() => {
-                            this.setProjectSelectionModalVisible();
-                        }}>
-                        <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.projectSelectionButton}
+                    // disabled={!this.state.canEdit}
+                    onPress={() => {
+                        this.setProjectSelectionModalVisible();
+                    }}>
+                    <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
+                </TouchableOpacity>
                 // </View>
-                );
+            );
         }
         if (this.state.projName != "") {
             return (
-            // <View>
+                // <View>
                 <TouchableOpacity
                     style={styles.projectSelectionButton}
                     // disabled={!this.state.canEdit}
@@ -178,11 +201,11 @@ export class ViewTask extends React.Component {
                     }}>
                     <Text style={styles.projectSelectionButtonText} >{this.state.projName}</Text>
                 </TouchableOpacity>
-            // </View>
+                // </View>
             );
         }
         return (
-        // <View>
+            // <View>
             <TouchableOpacity
                 style={styles.projectSelectionButton}
                 // disabled={!this.state.canEdit}
@@ -191,7 +214,7 @@ export class ViewTask extends React.Component {
                 }}>
                 <Text style={styles.projectSelectionButtonText}>No Project Selected</Text>
             </TouchableOpacity>
-        // </View>
+            // </View>
         );
     }
 
@@ -215,6 +238,11 @@ export class ViewTask extends React.Component {
         if (this.state.selectedItem.due_date != "") {
             return (
                 <View style={styles.dueDateView}>
+                    <TouchableOpacity>
+                        <Text style={styles.dateText}>
+                            aefawef
+                        </Text>
+                    </TouchableOpacity>
                     <TextInput
                         style={styles.dateText}
                         editable={this.state.canEdit}
@@ -224,11 +252,12 @@ export class ViewTask extends React.Component {
         }
         return (
             <View style={styles.dueDateView}>
-                <TextInput
-                    editable={this.state.canEdit}
-                    value="No Due Date"
-                    onChangeText={this.props.editDueDate}>
-                </TextInput></View>)
+                <TouchableOpacity onPress={() => this.setState({ showDate: true })}>
+                    <Text style={styles.dateText}>
+                        No Due Date
+                        </Text>
+                </TouchableOpacity>
+            </View>)
     }
 
     handlerClick = () => {
@@ -250,6 +279,7 @@ export class ViewTask extends React.Component {
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}
             >
+                {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
                 <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>
