@@ -287,6 +287,11 @@ export class ViewTask extends React.Component {
                     {this.renderProjectSection()}
 
                     <View>
+                    <View>
+                        <TouchableOpacity onPress={this.props.delete}>
+                            <Text>Delete</Text>
+                        </TouchableOpacity>
+                    </View>
                         <Text>Notification Time</Text>
                         <TextInput
                             editable={this.state.canEdit}
@@ -303,11 +308,7 @@ export class ViewTask extends React.Component {
                             onChangeText={this.props.editNotes}>
                         </TextInput>
                     </View>
-                    <View>
-                        <TouchableOpacity onPress={this.props.delete}>
-                            <Text>Delete</Text>
-                        </TouchableOpacity>
-                    </View>
+                    
                 </SafeAreaView>
             </Modal>
         );

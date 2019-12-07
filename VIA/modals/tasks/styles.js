@@ -40,7 +40,7 @@ module.exports = StyleSheet.create({
         color: "black",
     },
     titleContainer: {
-        backgroundColor: redColor,
+        backgroundColor: blueColor,
         flexDirection: "row"
     },
     dateContainer: {
