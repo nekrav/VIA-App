@@ -28,7 +28,12 @@ module.exports = StyleSheet.create({
     topNav: {
         marginBottom: 5,
         flexDirection: "row",
+        justifyContent: 'space-between',
         backgroundColor: pinkColor,
+    },
+    trashButton: {
+        backgroundColor: blueColor,
+        marginRight: "8%",
     },
     backButton: {
         backgroundColor: blueColor,

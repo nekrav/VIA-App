@@ -299,6 +299,10 @@ export class ViewTask extends React.Component {
                             onPress={this.props.closeModal}>
                             <SIcon name="arrow-left" size={30} color="#000" />
                         </TouchableOpacity>
+                        <TouchableOpacity style={styles.trashButton}
+                            onPress={this.props.delete}>
+                            <SIcon name="trash" size={30} color="#000" />
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.titleContainer}>
@@ -321,7 +325,6 @@ export class ViewTask extends React.Component {
                     {this.renderCompleteButton()}
                     {this.renderProjectSection()}
                     <View style={styles.projectsNotificationsSection}>
-                        {this.renderDeleteSection()}
                         {this.renderNotificationTimesSection()}
                     </View>
 
