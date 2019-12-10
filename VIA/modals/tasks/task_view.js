@@ -28,7 +28,8 @@ export class ViewTask extends React.Component {
             theSelectedProject: empty,
             importance: this.props.selectedItem.importance,
             showDate: false,
-            dueDate: ''
+            dueDate: '',
+            notificationTimesModal: false,
         };
     }
 
@@ -41,10 +42,12 @@ export class ViewTask extends React.Component {
         }
     }
 
-
-
     setProjectSelectionModalVisibility(visible) {
         this.setState({ projectSelectionModalVisible: visible })
+    }
+
+    setNotificationTimesVisibility(visible) {
+        this.setState({ notificationTimesModal: visible })
     }
 
     showProjectSelectionModal() {
@@ -165,6 +168,28 @@ export class ViewTask extends React.Component {
 
     }
 
+    renderDeleteSection() {
+        return (
+            <TouchableOpacity
+                style={styles.projectSelectionButton}
+                onPress={this.props.delete}>
+                <Text style={styles.projectSelectionButtonText} >Delete</Text>
+            </TouchableOpacity>);
+
+    }
+
+    renderNotificationTimesSection() {
+        return (
+            <TouchableOpacity
+                style={styles.projectSelectionButton}
+                onPress={() => {
+                    this.setNotificationTimesVisibility(true);
+                }}>
+                <Text style={styles.projectSelectionButtonText} >Notification Times</Text>
+            </TouchableOpacity>);
+
+    }
+
     renderProjectSection() {
         if (this.state.proj != null) {
             return (
@@ -236,15 +261,9 @@ export class ViewTask extends React.Component {
             </View>)
     }
 
-    handlerClick = () => {
-        //handler for Long Click
-        Alert.alert(' Button Long Pressed');
-    };
-
     render() {
         return (
             <Modal
-
                 backdropOpacity={0}
                 animationIn='slideInRight'
                 animationInTiming={400}
@@ -253,8 +272,7 @@ export class ViewTask extends React.Component {
                 isVisible={this.props.visible}
                 style={{ margin: 0 }}
                 onSwipeComplete={this.props.closeModal}
-                swipeDirection={"right"}
-            >
+                swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
                 <SafeAreaView style={styles.outerView}>
@@ -276,7 +294,6 @@ export class ViewTask extends React.Component {
                                 onChangeText={this.props.editName}>
                             </TextInput>
                         </View>
-
                     </View>
                     <View style={styles.dateContainer}>
                         {this.renderDueDate()}
@@ -285,20 +302,9 @@ export class ViewTask extends React.Component {
                     {this.renderSliderSection()}
                     {this.renderCompleteButton()}
                     {this.renderProjectSection()}
+                    {this.renderDeleteSection()}
+                    {this.renderNotificationTimesSection()}
 
-                    <View>
-                    <View>
-                        <TouchableOpacity onPress={this.props.delete}>
-                            <Text>Delete</Text>
-                        </TouchableOpacity>
-                    </View>
-                        <Text>Notification Time</Text>
-                        <TextInput
-                            editable={this.state.canEdit}
-                            value={this.props.selectedItem.notification_time}
-                            onChangeText={this.props.editNotificationTime}>
-                        </TextInput>
-                    </View>
                     <View style={styles.notesContainer}>
                         <Text>Notes</Text>
                         <TextInput
@@ -308,11 +314,9 @@ export class ViewTask extends React.Component {
                             onChangeText={this.props.editNotes}>
                         </TextInput>
                     </View>
-                    
+
                 </SafeAreaView>
             </Modal>
         );
     }
-
-
 }
