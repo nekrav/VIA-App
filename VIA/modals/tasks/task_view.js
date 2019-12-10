@@ -318,12 +318,16 @@ export class ViewTask extends React.Component {
                         </View>
                     </View>
                     <View style={styles.dateContainer}>
+                        {this.renderProjectSection()}
+                    </View>
+
+                    <View style={styles.dateContainer}>
                         {this.renderDueDate()}
                     </View>
 
                     {this.renderSliderSection()}
                     {this.renderCompleteButton()}
-                    {this.renderProjectSection()}
+                    {/* {this.renderProjectSection()} */}
                     <View style={styles.projectsNotificationsSection}>
                         {this.renderNotificationTimesSection()}
                     </View>
