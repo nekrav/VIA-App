@@ -79,13 +79,13 @@ module.exports = StyleSheet.create({
     sliderTitle: {
         fontFamily: fontFamily,
         fontSize: 20,
-    
+
     },
     slidersContainer: {
         flexDirection: "row",
-        backgroundColor:limeColor,
+        backgroundColor: limeColor,
         justifyContent: 'center',
-        
+
         alignContent: "center",
         // flex: 1
     },
@@ -96,6 +96,11 @@ module.exports = StyleSheet.create({
         marginBottom: 20,
         alignItems: "center",
         // marginLeft: "20%",
+    },
+    projectSectionView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
     },
     projectSelectionButton: {
         marginLeft: 5,
@@ -120,14 +125,14 @@ module.exports = StyleSheet.create({
     },
     projectsNotificationsSection: {
         // marginLeft: "2%",
-        
+
         marginLeft: 10,
-        marginRight:10,
+        marginRight: 10,
         marginTop: 15,
         marginBottom: 15,
         flexDirection: "row",
         justifyContent: "center",
-        backgroundColor:"#f0f"
+        backgroundColor: "#f0f"
     },
     numberOfItems: {
 

@@ -173,7 +173,7 @@ export class ViewTask extends React.Component {
             <TouchableOpacity
                 style={styles.projectSelectionButton}
                 onPress={this.props.delete}>
-                      <SIcon name="close" size={30} color="#000" />
+                <SIcon name="close" size={30} color="#000" />
                 <Text style={styles.projectSelectionButtonText} >Delete</Text>
             </TouchableOpacity>);
 
@@ -194,34 +194,50 @@ export class ViewTask extends React.Component {
     renderProjectSection() {
         if (this.state.proj != null) {
             return (
-                <TouchableOpacity
-                    style={styles.projectSelectionButton}
-                    onPress={() => {
-                        this.setProjectSelectionModalVisibility(true);
-                    }}>
-                    <Text style={styles.projectSelectionButtonText}>{this.state.projName}</Text>
-                </TouchableOpacity>
+                <View>
+                    <Text style={styles.projectSelectionButtonText}>
+                        {this.state.projName}
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.projectSelectionButton}
+                        onPress={() => {
+                            this.setProjectSelectionModalVisibility(true);
+                        }}>
+                        <SIcon name="pencil" size={30} color="#000" />
+                    </TouchableOpacity>
+                </View>
+
             );
         }
         if (this.state.projName != empty) {
             return (
+                <View>
+                    <Text style={styles.projectSelectionButtonText}>
+                        {this.state.projName}
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.projectSelectionButton}
+                        onPress={() => {
+                            this.setProjectSelectionModalVisibility(true);
+                        }}>
+ <SIcon name="pencil" size={30} color="#000" />
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+        return (
+            <View style={styles.projectSectionView}>
+                <Text style={styles.projectSelectionButtonText}>
+                    No Project Selected
+                     </Text>
                 <TouchableOpacity
                     style={styles.projectSelectionButton}
                     onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
-                    <Text style={styles.projectSelectionButtonText} >{this.state.projName}</Text>
+ <SIcon name="pencil" size={30} color="#000" />
                 </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.projectSelectionButton}
-                onPress={() => {
-                    this.setProjectSelectionModalVisibility(true);
-                }}>
-                <Text style={styles.projectSelectionButtonText}>No Project Selected</Text>
-            </TouchableOpacity>
+            </View>
         );
     }
 
@@ -304,10 +320,10 @@ export class ViewTask extends React.Component {
                     {this.renderCompleteButton()}
                     {this.renderProjectSection()}
                     <View style={styles.projectsNotificationsSection}>
-                    {this.renderDeleteSection()}
+                        {this.renderDeleteSection()}
                         {this.renderNotificationTimesSection()}
                     </View>
-                
+
 
                     <View style={styles.notesContainer}>
                         <Text>Notes</Text>
