@@ -116,6 +116,13 @@ module.exports = StyleSheet.create({
         flex: 2,
         height: "20%",
     },
+    projectsNotificationsSection: {
+        marginLeft: 5,
+        marginRight: 15,
+        marginTop: 5,
+        marginBottom: 5,
+        flexDirection: "row"
+    },
     numberOfItems: {
 
     },

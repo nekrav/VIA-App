@@ -301,9 +301,11 @@ export class ViewTask extends React.Component {
 
                     {this.renderSliderSection()}
                     {this.renderCompleteButton()}
-                    {this.renderProjectSection()}
+                    <View style={styles.projectsNotificationsSection}>
+                        {this.renderProjectSection()}
+                        {this.renderNotificationTimesSection()}
+                    </View>
                     {this.renderDeleteSection()}
-                    {this.renderNotificationTimesSection()}
 
                     <View style={styles.notesContainer}>
                         <Text>Notes</Text>
