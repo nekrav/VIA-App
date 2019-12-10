@@ -5,6 +5,7 @@ import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
 
@@ -203,7 +204,7 @@ export class ViewTask extends React.Component {
                         onPress={() => {
                             this.setProjectSelectionModalVisibility(true);
                         }}>
-                        <SIcon name="pencil" size={30} color="#000" />
+                        <FIcon name="edit-2" size={20} color="#000" />
                     </TouchableOpacity>
                 </View>
 
@@ -220,7 +221,7 @@ export class ViewTask extends React.Component {
                         onPress={() => {
                             this.setProjectSelectionModalVisibility(true);
                         }}>
- <SIcon name="pencil" size={30} color="#000" />
+                        <FIcon name="edit-2" size={20} color="#000" />
                     </TouchableOpacity>
                 </View>
             );
@@ -235,7 +236,7 @@ export class ViewTask extends React.Component {
                     onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
- <SIcon name="pencil" size={30} color="#000" />
+                    <FIcon name="edit-2" size={20} color="#000" />
                 </TouchableOpacity>
             </View>
         );

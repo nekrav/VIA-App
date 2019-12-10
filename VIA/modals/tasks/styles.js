@@ -100,6 +100,7 @@ module.exports = StyleSheet.create({
     projectSectionView: {
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: pinkColor
 
     },
     projectSelectionButton: {
