@@ -23,7 +23,6 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        // justifyContent: "center",
         backgroundColor: yellowColor,
     },
     topNav: {
@@ -120,8 +119,8 @@ module.exports = StyleSheet.create({
     projectsNotificationsSection: {
         // marginLeft: "2%",
         
-        // marginLeft: 10,
-        // marginRight:10,
+        marginLeft: 10,
+        marginRight:10,
         marginTop: 15,
         marginBottom: 15,
         flexDirection: "row",

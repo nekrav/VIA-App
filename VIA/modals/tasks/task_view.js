@@ -173,6 +173,7 @@ export class ViewTask extends React.Component {
             <TouchableOpacity
                 style={styles.projectSelectionButton}
                 onPress={this.props.delete}>
+                      <SIcon name="close" size={30} color="#000" />
                 <Text style={styles.projectSelectionButtonText} >Delete</Text>
             </TouchableOpacity>);
 
@@ -286,7 +287,7 @@ export class ViewTask extends React.Component {
                     <View style={styles.titleContainer}>
                         <View style={styles.nameContainer}>
                             <TextInput
-                                maxLength={40}
+                                maxLengh={40}
                                 onEndEditing={this.props.save()}
                                 style={styles.nameTextInput}
                                 multiline={true}
