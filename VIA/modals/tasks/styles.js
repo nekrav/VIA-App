@@ -23,6 +23,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
+        // justifyContent: "center",
         backgroundColor: yellowColor,
     },
     topNav: {
@@ -98,7 +99,7 @@ module.exports = StyleSheet.create({
         // marginLeft: "20%",
     },
     projectSelectionButton: {
-        marginLeft: 5,
+        // marginLeft: 5,
         borderWidth: 5,
         borderRadius: 10,
         borderColor: burgundyColor,
@@ -117,11 +118,15 @@ module.exports = StyleSheet.create({
         height: "20%",
     },
     projectsNotificationsSection: {
-        marginLeft: 5,
-        marginRight: 15,
-        marginTop: 5,
-        marginBottom: 5,
-        flexDirection: "row"
+        // marginLeft: "2%",
+        
+        // marginLeft: 10,
+        // marginRight:10,
+        marginTop: 15,
+        marginBottom: 15,
+        flexDirection: "row",
+        justifyContent: "center",
+        backgroundColor:"#f0f"
     },
     numberOfItems: {
 
