@@ -66,6 +66,12 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
+    dueDateView: {
+        marginLeft: 5, 
+        marginRight: 5,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+    },
     dateText: {
         fontFamily: fontFamily,
         fontSize: 18,

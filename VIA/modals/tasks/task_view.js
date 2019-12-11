@@ -269,11 +269,10 @@ export class ViewTask extends React.Component {
                         <Text style={styles.dateText}>
                             {Moment(this.props.selectedItem.due_date).format(dateFormat)}
                         </Text>
-
-                        <Text style={styles.dateText}>
-                            {Moment(this.props.selectedItem.due_date).diff({todayDate}, "days")}
-                        </Text>
                     </TouchableOpacity>
+                    <Text style={styles.dateText}>
+                            {Moment(this.props.selectedItem.due_date).diff({todayDate}, "days") + " days left"}
+                        </Text>
                 </View>)
         }
         return (
