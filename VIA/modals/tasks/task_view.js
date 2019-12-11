@@ -15,7 +15,7 @@ const controller = new Controller;
 const styles = require('./styles');
 
 const empty = ""
-const dateFormat = 'dddd, MMM Do, YY'
+const dateFormat = 'ddd, MMM Do, YY'
 
 export class ViewTask extends React.Component {
 
