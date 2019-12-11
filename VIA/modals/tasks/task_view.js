@@ -310,7 +310,7 @@ export class ViewTask extends React.Component {
                     <View style={styles.titleContainer}>
                         <View style={styles.nameContainer}>
                             <TextInput
-                                maxLengh={40}
+                                maxLength={40}
                                 onEndEditing={this.props.save()}
                                 style={styles.nameTextInput}
                                 multiline={true}
