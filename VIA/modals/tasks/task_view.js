@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
@@ -15,6 +15,7 @@ const controller = new Controller;
 const styles = require('./styles');
 
 const empty = ""
+const todayDate = new Date();
 const dateFormat = 'ddd, MMM Do, YY'
 
 export class ViewTask extends React.Component {
@@ -267,6 +268,10 @@ export class ViewTask extends React.Component {
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
                             {Moment(this.props.selectedItem.due_date).format(dateFormat)}
+                        </Text>
+
+                        <Text style={styles.dateText}>
+                            {Moment(this.props.selectedItem.due_date).diff({todayDate}, "days")}
                         </Text>
                     </TouchableOpacity>
                 </View>)
