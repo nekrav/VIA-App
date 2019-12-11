@@ -128,7 +128,7 @@ export class ViewTask extends React.Component {
 
                         }}
                         width={50}
-                        height={300}
+                        height={200}
                         step={1}
                         borderRadius={5}
                         minimumTrackTintColor={"gray"}
@@ -158,7 +158,7 @@ export class ViewTask extends React.Component {
                             this.props.save();
                         }}
                         width={50}
-                        height={300}
+                        height={200}
                         step={1}
                         borderRadius={5}
                         minimumTrackTintColor={"gray"}
@@ -186,11 +186,14 @@ export class ViewTask extends React.Component {
     renderNotificationTimesSection() {
         return (
             <TouchableOpacity
-                style={styles.projectSelectionButton}
+                style={styles.notificationTimesButton}
                 onPress={() => {
                     this.setNotificationTimesVisibility(true);
                 }}>
-                <Text style={styles.projectSelectionButtonText} >Notification Times</Text>
+                   
+               <Text style={styles.projectSelectionButtonText} >Notification</Text>
+               <SIcon name="clock" size={30} color="#000" />
+               <Text style={styles.projectSelectionButtonText} >Times</Text>
             </TouchableOpacity>);
 
     }

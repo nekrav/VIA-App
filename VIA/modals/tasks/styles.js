@@ -67,7 +67,7 @@ module.exports = StyleSheet.create({
         justifyContent: "center"
     },
     dueDateView: {
-        marginLeft: 5, 
+        marginLeft: 5,
         marginRight: 5,
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -123,9 +123,23 @@ module.exports = StyleSheet.create({
         backgroundColor: burgundyColor,
         alignItems: 'center',
     },
+    notificationTimesButton: {
+        width: 100,
+        height: 100,
+        marginLeft: 5,
+        marginRight: 5,
+        borderRadius: 50,
+        backgroundColor: burgundyColor,
+        justifyContent: 'center',
+        alignItems: 'center'
+        // alignItems: 'center',
+        // justifyContent: "center",
+    },
     projectSelectionButtonText: {
         fontFamily: fontFamily,
-        fontSize: 20,
+        fontSize: 12,
+        alignItems: 'center',
+        justifyContent: "center",
     },
     notesContainer: {
         backgroundColor: limeColor,
