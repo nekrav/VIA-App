@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, SafeAreaView } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
@@ -295,6 +295,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
                     <View style={styles.topNav}>
                         <TouchableOpacity style={styles.backButton}
@@ -344,8 +345,10 @@ export class ViewTask extends React.Component {
                             onChangeText={this.props.editNotes}>
                         </TextInput>
                     </View>
+      
 
                 </SafeAreaView>
+                </TouchableWithoutFeedback>
             </Modal>
         );
     }
