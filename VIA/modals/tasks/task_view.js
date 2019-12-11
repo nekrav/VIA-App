@@ -8,12 +8,14 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { VerticalSlider } from "../../components";
 import Modal from "react-native-modal";
+import Moment from 'moment';
 
 const controller = new Controller;
 
 const styles = require('./styles');
 
 const empty = ""
+const dateFormat = 'dddd, MMM Do, YY'
 
 export class ViewTask extends React.Component {
 
@@ -264,7 +266,7 @@ export class ViewTask extends React.Component {
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
-                            {this.props.selectedItem.due_date}
+                            {Moment(this.props.selectedItem.due_date).format(dateFormat)}
                         </Text>
                     </TouchableOpacity>
                 </View>)
