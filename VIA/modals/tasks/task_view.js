@@ -128,7 +128,7 @@ export class ViewTask extends React.Component {
 
                         }}
                         width={50}
-                        height={200}
+                        height={250}
                         step={1}
                         borderRadius={5}
                         minimumTrackTintColor={"gray"}
@@ -158,7 +158,7 @@ export class ViewTask extends React.Component {
                             this.props.save();
                         }}
                         width={50}
-                        height={200}
+                        height={250}
                         step={1}
                         borderRadius={5}
                         minimumTrackTintColor={"gray"}
