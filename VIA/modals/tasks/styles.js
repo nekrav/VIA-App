@@ -57,15 +57,7 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 10,
     },
-    completeButtonBody: {
-        margin: 10,
-        borderColor: whiteColor,
-        backgroundColor: whiteColor,
-        borderWidth: 5,
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center"
-    },
+   
     dueDateView: {
         marginLeft: 5,
         marginRight: 5,
@@ -132,8 +124,6 @@ module.exports = StyleSheet.create({
         backgroundColor: burgundyColor,
         justifyContent: 'center',
         alignItems: 'center'
-        // alignItems: 'center',
-        // justifyContent: "center",
     },
     projectSelectionButtonText: {
         fontFamily: fontFamily,
@@ -149,12 +139,21 @@ module.exports = StyleSheet.create({
         flex: 2,
         height: "20%",
     },
+    completeButtonBody: {
+        margin: 10,
+        flex: 1,
+        borderColor: whiteColor,
+        backgroundColor: whiteColor,
+        borderWidth: 5,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center"
+    },
     completeAndNotifSection: {
         flexDirection: "row",
+        justifyContent: 'center',
     },
     projectsNotificationsSection: {
-        // marginLeft: "2%",
-
         marginLeft: 10,
         marginRight: 10,
         marginTop: 15,
