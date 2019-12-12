@@ -270,11 +270,11 @@ export class ViewTask extends React.Component {
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
-                            {Moment(this.props.selectedItem.due_date).format(dateFormat)}
+                            {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
                         </Text>
                     </TouchableOpacity>
                     <Text style={styles.dateText}>
-                            {Moment(this.props.selectedItem.due_date).diff({todayDate}, "days") + " days left"}
+                            {Moment(new Date(this.props.selectedItem.due_date)).diff({todayDate}, "days") + " days left"}
                         </Text>
                 </View>)
         }
