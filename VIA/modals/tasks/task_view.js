@@ -190,10 +190,10 @@ export class ViewTask extends React.Component {
                 onPress={() => {
                     this.setNotificationTimesVisibility(true);
                 }}>
-                   
-               <Text style={styles.projectSelectionButtonText} >Notification</Text>
-               <SIcon name="clock" size={30} color="#000" />
-               <Text style={styles.projectSelectionButtonText} >Times</Text>
+
+                <Text style={styles.projectSelectionButtonText} >Notification</Text>
+                <SIcon name="clock" size={30} color="#000" />
+                <Text style={styles.projectSelectionButtonText} >Times</Text>
             </TouchableOpacity>);
 
     }
@@ -274,8 +274,8 @@ export class ViewTask extends React.Component {
                         </Text>
                     </TouchableOpacity>
                     <Text style={styles.dateText}>
-                            {Moment(new Date(this.props.selectedItem.due_date)).diff({todayDate}, "days") + " days left"}
-                        </Text>
+                        {Moment(new Date(this.props.selectedItem.due_date)).diff({ todayDate }, "days") + " days left"}
+                    </Text>
                 </View>)
         }
         return (
@@ -303,58 +303,60 @@ export class ViewTask extends React.Component {
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
-                    <View style={styles.topNav}>
-                        <TouchableOpacity style={styles.backButton}
-                            onPress={this.props.closeModal}>
-                            <SIcon name="arrow-left" size={30} color="#000" />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.trashButton}
-                            onPress={this.props.delete}>
-                            <SIcon name="trash" size={30} color="#000" />
-                        </TouchableOpacity>
-                    </View>
+                    <SafeAreaView style={styles.outerView}>
+                        <View style={styles.topNav}>
+                            <TouchableOpacity style={styles.backButton}
+                                onPress={this.props.closeModal}>
+                                <SIcon name="arrow-left" size={30} color="#000" />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.trashButton}
+                                onPress={this.props.delete}>
+                                <SIcon name="trash" size={30} color="#000" />
+                            </TouchableOpacity>
+                        </View>
 
-                    <View style={styles.titleContainer}>
-                        <View style={styles.nameContainer}>
+                        <View style={styles.titleContainer}>
+                            <View style={styles.nameContainer}>
+                                <TextInput
+                                    maxLength={40}
+                                    onEndEditing={this.props.save()}
+                                    style={styles.nameTextInput}
+                                    multiline={true}
+                                    value={this.props.selectedItem.name}
+                                    onChangeText={this.props.editName}>
+                                </TextInput>
+                            </View>
+                        </View>
+                        <View style={styles.dateContainer}>
+                            {this.renderProjectSection()}
+                        </View>
+
+                        <View style={styles.dateContainer}>
+                            {this.renderDueDate()}
+                        </View>
+
+                        {this.renderSliderSection()}
+                        <View style={styles.completeAndNotifSection}>
+                            {this.renderCompleteButton()}
+                            {/* {this.renderProjectSection()} */}
+                            <View style={styles.projectsNotificationsSection}>
+                                {this.renderNotificationTimesSection()}
+                            </View>
+                        </View>
+
+
+                        <View style={styles.notesContainer}>
+                            <Text>Notes</Text>
                             <TextInput
-                                maxLength={40}
-                                onEndEditing={this.props.save()}
-                                style={styles.nameTextInput}
+                                style={styles.notesTextInput}
                                 multiline={true}
-                                value={this.props.selectedItem.name}
-                                onChangeText={this.props.editName}>
+                                value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "..."}
+                                onChangeText={this.props.editNotes}>
                             </TextInput>
                         </View>
-                    </View>
-                    <View style={styles.dateContainer}>
-                        {this.renderProjectSection()}
-                    </View>
-
-                    <View style={styles.dateContainer}>
-                        {this.renderDueDate()}
-                    </View>
-
-                    {this.renderSliderSection()}
-                    {this.renderCompleteButton()}
-                    {/* {this.renderProjectSection()} */}
-                    <View style={styles.projectsNotificationsSection}>
-                        {this.renderNotificationTimesSection()}
-                    </View>
 
 
-                    <View style={styles.notesContainer}>
-                        <Text>Notes</Text>
-                        <TextInput
-                            style={styles.notesTextInput}
-                            multiline={true}
-                            value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "..."}
-                            onChangeText={this.props.editNotes}>
-                        </TextInput>
-                    </View>
-      
-
-                </SafeAreaView>
+                    </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
         );

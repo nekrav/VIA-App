@@ -149,6 +149,9 @@ module.exports = StyleSheet.create({
         flex: 2,
         height: "20%",
     },
+    completeAndNotifSection: {
+        flexDirection: "row",
+    },
     projectsNotificationsSection: {
         // marginLeft: "2%",
 
