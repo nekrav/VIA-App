@@ -338,7 +338,6 @@ export class ViewTask extends React.Component {
                         {this.renderSliderSection()}
                         <View style={styles.completeAndNotifSection}>
                             {this.renderCompleteButton()}
-                            {/* {this.renderProjectSection()} */}
                             <View style={styles.projectsNotificationsSection}>
                                 {this.renderNotificationTimesSection()}
                             </View>
