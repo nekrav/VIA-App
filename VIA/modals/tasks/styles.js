@@ -127,17 +127,20 @@ module.exports = StyleSheet.create({
     },
     projectSelectionButtonText: {
         fontFamily: fontFamily,
-        fontSize: 12,
+        fontSize: 18,
         alignItems: 'center',
         justifyContent: "center",
     },
     notesContainer: {
         backgroundColor: limeColor,
-        height: "20%",
+        height: "100%",
+    },
+    notesTitle:{
+        fontSize: 18,
     },
     notesTextInput: {
         flex: 2,
-        height: "20%",
+        fontSize: 18,
     },
     completeButtonBody: {
         margin: 10,

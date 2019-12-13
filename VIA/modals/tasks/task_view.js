@@ -201,7 +201,7 @@ export class ViewTask extends React.Component {
     renderProjectSection() {
         if (this.state.proj != null) {
             return (
-                <View>
+                <View style={styles.projectSectionView}>
                     <Text style={styles.projectSelectionButtonText}>
                         {this.state.projName}
                     </Text>
@@ -346,11 +346,12 @@ export class ViewTask extends React.Component {
 
 
                         <View style={styles.notesContainer}>
-                            <Text>Notes</Text>
+                            <Text style={styles.notesTitle}>Notes</Text>
                             <TextInput
                                 style={styles.notesTextInput}
                                 multiline={true}
-                                value={this.props.selectedItem.notes ? this.props.selectedItem.notes : "..."}
+                                placeholder={"..."}
+                                value={this.props.selectedItem.notes ? this.props.selectedItem.notes : ""}
                                 onChangeText={this.props.editNotes}>
                             </TextInput>
                         </View>
