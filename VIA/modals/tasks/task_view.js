@@ -191,9 +191,9 @@ export class ViewTask extends React.Component {
                     this.setNotificationTimesVisibility(true);
                 }}>
 
-                <Text style={styles.projectSelectionButtonText} >Notification</Text>
+                <Text style={styles.notificationTimesText} >Notification</Text>
                 <SIcon name="clock" size={30} color="#000" />
-                <Text style={styles.projectSelectionButtonText} >Times</Text>
+                <Text style={styles.notificationTimesText} >Times</Text>
             </TouchableOpacity>);
 
     }
@@ -210,7 +210,7 @@ export class ViewTask extends React.Component {
                         onPress={() => {
                             this.setProjectSelectionModalVisibility(true);
                         }}>
-                        <FIcon name="edit-2" size={20} color="#000" />
+                        <FIcon name="edit-2" size={20} color="#068ae8" />
                     </TouchableOpacity>
                 </View>
 
@@ -218,7 +218,7 @@ export class ViewTask extends React.Component {
         }
         if (this.state.projName != empty) {
             return (
-                <View>
+                <View style={styles.projectSectionView}>
                     <Text style={styles.projectSelectionButtonText}>
                         {this.state.projName}
                     </Text>
@@ -227,7 +227,7 @@ export class ViewTask extends React.Component {
                         onPress={() => {
                             this.setProjectSelectionModalVisibility(true);
                         }}>
-                        <FIcon name="edit-2" size={20} color="#000" />
+                        <FIcon name="edit-2" size={20} color="#068ae8" />
                     </TouchableOpacity>
                 </View>
             );
@@ -242,7 +242,7 @@ export class ViewTask extends React.Component {
                     onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
-                    <FIcon name="edit-2" size={20} color="#000" />
+                    <FIcon name="edit-2" size={20} color="#068ae8" />
                 </TouchableOpacity>
             </View>
         );
@@ -311,7 +311,7 @@ export class ViewTask extends React.Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.trashButton}
                                 onPress={this.props.delete}>
-                                <SIcon name="trash" size={30} color="#000" />
+                                <SIcon name="trash" size={30} color="#f00" />
                             </TouchableOpacity>
                         </View>
 

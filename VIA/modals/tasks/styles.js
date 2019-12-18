@@ -5,18 +5,23 @@ import { StyleSheet, PixelRatio } from 'react-native';
 
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
-const textColor = '#effcff'
 const bodyFontSize = 20
 const fontFamily = "Futura"
 
-const whiteColor = "#fff"
+const backgroundColor = "#f2f2f2"
+const textColor = "#2d3142"
+const buttonColor = "#068ae8"
+const otherTextColor = "#4f5d75"
+const finishedBackgroundColor = "#a8ffe0"
+
+const whiteColor = "#068ae8"
 const blackColor = "#000"
-const limeColor = "#52eb34"
-const burgundyColor = "#db275a"
-const yellowColor = '#ff1'
-const redColor = "#ff0000"
-const blueColor = '#2a27db'
-const pinkColor = "#f0f"
+const limeColor = backgroundColor
+const burgundyColor = backgroundColor
+const yellowColor = backgroundColor
+const redColor = backgroundColor
+const blueColor = backgroundColor
+const pinkColor = backgroundColor
 
 module.exports = StyleSheet.create({
 
@@ -75,7 +80,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
     },
     sliderTitleContainer: {
-        backgroundColor: "#f0f",
+        backgroundColor: pinkColor,
         alignItems: "center",
         marginBottom: 5,
     },
@@ -88,9 +93,7 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         backgroundColor: limeColor,
         justifyContent: 'center',
-
         alignContent: "center",
-        // flex: 1
     },
     verticalSliderContainer: {
         marginLeft: 20,
@@ -98,12 +101,14 @@ module.exports = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         alignItems: "center",
-        // marginLeft: "20%",
     },
     projectSectionView: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: pinkColor
+        backgroundColor: pinkColor,
+        borderColor: textColor,
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
 
     },
     projectSelectionButton: {
@@ -132,6 +137,8 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
     },
     notesContainer: {
+        borderTopColor: textColor,
+        borderTopWidth: 2,
         backgroundColor: limeColor,
         height: "100%",
     },
@@ -163,24 +170,12 @@ module.exports = StyleSheet.create({
         marginBottom: 15,
         flexDirection: "row",
         justifyContent: "center",
-        backgroundColor: "#f0f"
+        backgroundColor: pinkColor,
     },
-    numberOfItems: {
-
-    },
-    addButton: {
-
-    },
-    itemButton: {
-
-    },
-    listItem: {
-
-    },
-    checkBox: {
-
-    },
-    itemName: {
-
+    notificationTimesText: {
+        fontFamily: fontFamily,
+        fontSize: 14,
+        alignItems: 'center',
+        justifyContent: "center",
     },
 })
