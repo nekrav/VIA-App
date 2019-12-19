@@ -259,7 +259,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    overflow: "hidden"
+    overflow: "hidden",
+    borderWidth: 2,
   },
   slider: {
     position: "absolute",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar } from 'react-native';
 import { Database, Projects, Tasks} from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
@@ -27,6 +27,8 @@ export class TasksScreen extends React.Component {
     }
 
     componentDidMount() {
+        StatusBar.setBackgroundColor="#000"
+        
         controller.loadAll(this, dbTableName)
     }
 
@@ -133,7 +135,7 @@ export class TasksScreen extends React.Component {
         return (
             
             <View style={styles.outerView}>
-            
+             <StatusBar backgroundColor="#ecf0f1" />
                 {this.showAddModal()}
                 {this.showViewTask()}
                 <Text style={styles.title}>Tasks</Text>

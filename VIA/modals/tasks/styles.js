@@ -6,6 +6,7 @@ import { StyleSheet, PixelRatio } from 'react-native';
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
+const leftMargin = 5
 const fontFamily = "Futura"
 
 const backgroundColor = "#f2f2f2"
@@ -48,6 +49,7 @@ module.exports = StyleSheet.create({
         fontSize: 28,
         fontFamily: fontFamily,
         color: "black",
+        marginLeft: leftMargin,
     },
     titleContainer: {
         backgroundColor: blueColor,
@@ -135,6 +137,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         alignItems: 'center',
         justifyContent: "center",
+        marginLeft: leftMargin,
     },
     notesContainer: {
         borderTopColor: textColor,

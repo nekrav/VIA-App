@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
@@ -7,6 +7,7 @@ import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { VerticalSlider } from "../../components";
+import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 
@@ -105,6 +106,12 @@ export class ViewTask extends React.Component {
         return this.state.proj.name
     }
 
+    finishTask() {
+        console.warn("Finih task")
+        this.setState({selectedItem})
+        this.props.editCompleted("true")
+    }
+
     renderSliderSection() {
         return (
             <View style={styles.slidersContainer}>
@@ -125,17 +132,16 @@ export class ViewTask extends React.Component {
                         }}
                         onComplete={(value: number) => {
                             this.props.editImportance(value)
-
                         }}
                         width={50}
                         height={250}
                         step={1}
                         borderRadius={5}
                         minimumTrackTintColor={"gray"}
-                        maximumTrackTintColor={"tomato"}
+                        maximumTrackTintColor={"#f2f2f2"}
 
                         ballIndicatorColor={"gray"}
-                        ballIndicatorTextColor={"white"}
+                        ballIndicatorTextColor={"#f2f2f2"}
                     />
                 </View>
                 <View style={styles.verticalSliderContainer}>
@@ -155,6 +161,9 @@ export class ViewTask extends React.Component {
                         }}
                         onComplete={(value: number) => {
                             this.props.editPercentageDone(value)
+                            if (value == 100) {
+                                this.finishTask();
+                            }
                             this.props.save();
                         }}
                         width={50}
@@ -188,6 +197,7 @@ export class ViewTask extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButton}
                 onPress={() => {
+                    console.warn(this.state.notificationTimesModal)
                     this.setNotificationTimesVisibility(true);
                 }}>
 
@@ -302,6 +312,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
+           
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
                         <View style={styles.topNav}>
