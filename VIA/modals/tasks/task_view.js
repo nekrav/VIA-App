@@ -35,6 +35,7 @@ export class ViewTask extends React.Component {
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
+            percentVal: this.props.selectedItem.percentage_done
         };
     }
 
@@ -114,87 +115,59 @@ export class ViewTask extends React.Component {
 
     renderSliderSection() {
         return (
-            <View style={styles.slidersContainer}>
-                <View style={styles.verticalSliderContainer}>
-                    
-                    <View style={styles.sliderTitleContainer}>
-                        
-                        <Text style={styles.sliderTitle}>
-                            Importance
-                        </Text>
-                    </View>
-{/*                     
-                    <VerticalSlider
-                        value={parseInt(this.state.selectedItem.importance)}
-                        disabled={false}
-                        min={0}
-                        max={100}
-                        onChange={(value: number) => {
-                            this.props.save;
-                            this.props.editImportance(value);
-                        }}
-                        onComplete={(value: number) => {
-                            this.props.editImportance(value)
-                        }}
-                        width={50}
-                        height={250}
-                        step={1}
-                        borderRadius={5}
-                        minimumTrackTintColor={"gray"}
-                        maximumTrackTintColor={"#f2f2f2"}
-
-                        ballIndicatorColor={"gray"}
-                        ballIndicatorTextColor={"#f2f2f2"}
-                    /> */}
-                    <Slider
-                        style={{ width: "80%", height: 40 }}
-                        minimumValue={0}
-                        maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
-                        maximumTrackTintColor="#000000"
-                    />
-                </View>
-                <View style={styles.verticalSliderContainer}>
+            <View style={styles.slidersSection}>
+                <View style={styles.slidersTitlesContainer}>
                     <View style={styles.sliderTitleContainer}>
                         <Text style={styles.sliderTitle}>
                             % Done
                         </Text>
                     </View>
-                    {/* <VerticalSlider
-                        value={parseInt(this.state.selectedItem.percentage_done)}
-                        disabled={false}
-                        min={0}
-                        max={100}
-                        onChange={(value: number) => {
-                            // this.props.editImportance(value)
-                            this.props.editPercentageDone(value);
-                        }}
-                        onComplete={(value: number) => {
-                            this.props.editPercentageDone(value)
-                            if (value == 100) {
-                                this.finishTask();
-                            }
-                            this.props.save();
-                        }}
-                        width={50}
-                        height={250}
-                        step={1}
-                        borderRadius={5}
-                        minimumTrackTintColor={"gray"}
-                        maximumTrackTintColor={"tomato"}
-
-                        ballIndicatorColor={"gray"}
-                        ballIndicatorTextColor={"white"}
-                    /> */}
-                    <Slider
-                        style={{ width: "80%", height: 40 }}
-                        minimumValue={0}
-                        maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
-                        maximumTrackTintColor="#000000"
-                    />
+                    <View style={styles.sliderTitleContainer}>
+                        <Text style={styles.sliderTitle}>
+                            Importance
+                        </Text>
+                    </View>
                 </View>
-            </View>)
+                <View style={styles.slidersContainer}>
+                    <View style={styles.sliderContainerLeft}>
+                        <Slider
+                            style={{ backgroundColor: "black", width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={1}
+                            minimumTrackTintColor="#FFFFFF"
+                            maximumTrackTintColor="#000000"
+                            value={parseInt(this.state.selectedItem.importance)}
+                            onValueChange={(value) => {
+                                this.props.save;
+                                this.props.editImportance(value);
+                            }}
+                            onSlidingComplete={(value) => {
+                                this.props.editImportance(value)
+                            }} />
+                    </View>
+                    <View style={styles.sliderContainerRight}>
+                        <Slider
+                            style={{ backgroundColor: "white", width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor="#FFFFFF"
+                            maximumTrackTintColor="#000000"
+                            value={parseInt(this.state.percentVal)}
+                            onSlidingComplete={(value) => {
+                                this.props.editPercentageDone(value)
+                                if (value == 100) {
+                                    this.finishTask();
+                                }
+                                this.props.save();
+                            }}
+                            onValueChange={(value) => {
+                                this.props.editPercentageDone(value);
+                            }}
+                        />
+                    </View>
+                </View>
+            </View>
+        )
 
     }
 

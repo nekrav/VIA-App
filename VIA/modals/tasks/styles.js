@@ -81,29 +81,6 @@ module.exports = StyleSheet.create({
         color: blackColor,
         fontSize: 30,
     },
-    sliderTitleContainer: {
-        backgroundColor: pinkColor,
-        alignItems: "center",
-        marginBottom: 5,
-    },
-    sliderTitle: {
-        fontFamily: fontFamily,
-        fontSize: 20,
-
-    },
-    slidersContainer: {
-        flexDirection: "column",
-        backgroundColor: limeColor,
-        justifyContent: 'center',
-        alignContent: "center",
-    },
-    verticalSliderContainer: {
-        // marginLeft: 20,
-        // marginRight: 20,
-        // marginTop: 20,
-        // marginBottom: 20,
-        alignItems: "center",
-    },
     projectSectionView: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -181,4 +158,36 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
     },
+    slidersSection: {
+        flexDirection: "column",
+        backgroundColor: limeColor,
+        justifyContent: 'center',
+    },
+    slidersTitlesContainer: {
+        flexDirection: "row",
+        justifyContent: 'center',
+    },
+    sliderTitleContainer: {
+        marginTop: "2%",
+    },
+    sliderTitle: {
+        fontFamily: fontFamily,
+        fontSize: 24,
+    },
+    slidersContainer: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        marginTop: 150,
+        marginBottom: "30%",
+    },
+    sliderContainerLeft: {
+        marginRight: -40,
+    },
+    sliderContainerRight: {
+        marginLeft: -40,
+    },
+
+
+
+
 })

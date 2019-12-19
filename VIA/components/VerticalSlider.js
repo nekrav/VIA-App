@@ -127,7 +127,7 @@ export class VerticalSlider extends Component<Props, State> {
     } else if (ballPosition - ballHeight <= 0) {
       ballPosition = 0;
     } else {
-      ballPosition = ballPosition - ballHeight / 2;
+      ballPosition = ballPosition - ballHeight / 1;
     }
     Animated.parallel([
       Animated.timing(this.state.sliderHeight, {
