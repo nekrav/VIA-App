@@ -132,11 +132,11 @@ export class ViewTask extends React.Component {
                 <View style={styles.slidersContainer}>
                     <View style={styles.sliderContainerLeft}>
                         <Slider
-                            style={{width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
                             minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#f2f2f2"
+                            maximumTrackTintColor="#2d3142"
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
                                 this.props.save;
@@ -152,7 +152,7 @@ export class ViewTask extends React.Component {
                             minimumValue={0}
                             maximumValue={100}
                             minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#f2f2f2"
+                            maximumTrackTintColor="#2d3142"
                             value={parseInt(this.state.percentVal)}
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
@@ -289,6 +289,13 @@ export class ViewTask extends React.Component {
             </View>)
     }
 
+    getStyleIfDone() {
+        if(this.props.selectedItem.completed == "true") {          
+            return styles.outerViewDone
+        }
+        return styles.outerView;
+    }
+
     render() {
         return (
             <Modal
@@ -305,7 +312,7 @@ export class ViewTask extends React.Component {
                 {this.showProjectSelectionModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={styles.outerView}>
+                    <SafeAreaView style={this.getStyleIfDone()}>
                         <View style={styles.topNav}>
                             <TouchableOpacity style={styles.backButton}
                                 onPress={this.props.closeModal}>

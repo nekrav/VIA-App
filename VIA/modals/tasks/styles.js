@@ -31,6 +31,11 @@ module.exports = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: yellowColor,
     },
+    outerViewDone: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: finishedBackgroundColor,
+    },
     topNav: {
         marginBottom: 5,
         flexDirection: "row",
@@ -100,11 +105,12 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     notificationTimesButton: {
-        width: 100,
-        height: 100,
+        width: 120,
+        height: 120,
         marginLeft: 5,
         marginRight: 5,
-        borderRadius: 50,
+        borderRadius: 60,
+        borderWidth: 1,
         backgroundColor: burgundyColor,
         justifyContent: 'center',
         alignItems: 'center'
@@ -157,6 +163,7 @@ module.exports = StyleSheet.create({
         fontSize: 14,
         alignItems: 'center',
         justifyContent: "center",
+        margin: 2,
     },
     slidersSection: {
         flexDirection: "column",
