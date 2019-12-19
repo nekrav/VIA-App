@@ -134,10 +134,8 @@ export class CreateTask extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
                 {this.renderShowDate()}
-            
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
-                    <KeyboardAvoidingView contentContainerStyle={styles.outerView} behavior="padding" enabled>
                         <View style={styles.topNav}>
                             <TouchableOpacity style={styles.backButton}
                                 onPress={this.props.closeModal}>
@@ -224,7 +222,6 @@ export class CreateTask extends React.Component {
                                 <Text>Save</Text>
                             </TouchableOpacity>
                         </View>
-                        </KeyboardAvoidingView>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             
