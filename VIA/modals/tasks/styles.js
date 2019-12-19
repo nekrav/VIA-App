@@ -167,7 +167,12 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
     },
-    sliderTitleContainer: {
+    sliderTitleContainerLeft: {
+        marginRight: "8%",
+        marginTop: "2%",
+    },
+    sliderTitleContainerRight: {
+        marginLeft: "10%",
         marginTop: "2%",
     },
     sliderTitle: {

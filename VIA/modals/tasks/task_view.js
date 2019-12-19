@@ -35,7 +35,8 @@ export class ViewTask extends React.Component {
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
-            percentVal: this.props.selectedItem.percentage_done
+            percentVal: this.props.selectedItem.percentage_done,
+            importanceVal: this.props.selectedItem.importance
         };
     }
 
@@ -117,12 +118,12 @@ export class ViewTask extends React.Component {
         return (
             <View style={styles.slidersSection}>
                 <View style={styles.slidersTitlesContainer}>
-                    <View style={styles.sliderTitleContainer}>
+                    <View style={styles.sliderTitleContainerLeft}>
                         <Text style={styles.sliderTitle}>
                             % Done
                         </Text>
                     </View>
-                    <View style={styles.sliderTitleContainer}>
+                    <View style={styles.sliderTitleContainerRight}>
                         <Text style={styles.sliderTitle}>
                             Importance
                         </Text>
@@ -133,10 +134,10 @@ export class ViewTask extends React.Component {
                         <Slider
                             style={{ backgroundColor: "black", width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
-                            maximumValue={1}
+                            maximumValue={100}
                             minimumTrackTintColor="#FFFFFF"
                             maximumTrackTintColor="#000000"
-                            value={parseInt(this.state.selectedItem.importance)}
+                            value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
                                 this.props.save;
                                 this.props.editImportance(value);
