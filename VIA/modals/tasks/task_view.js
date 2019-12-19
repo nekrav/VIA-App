@@ -137,23 +137,8 @@ export class ViewTask extends React.Component {
                             maximumValue={100}
                             minimumTrackTintColor="#068ae8"
                             maximumTrackTintColor="#2d3142"
-                            value={parseInt(this.state.importanceVal)}
-                            onValueChange={(value) => {
-                                this.props.save;
-                                this.props.editImportance(value);
-                            }}
-                            onSlidingComplete={(value) => {
-                                this.props.editImportance(value)
-                            }} />
-                    </View>
-                    <View style={styles.sliderContainerRight}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
                             value={parseInt(this.state.percentVal)}
+
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
                                 if (value == 100) {
@@ -163,6 +148,24 @@ export class ViewTask extends React.Component {
                             }}
                             onValueChange={(value) => {
                                 this.props.editPercentageDone(value);
+                            }}
+                        />
+                 
+                    </View>
+                    <View style={styles.sliderContainerRight}>
+                        <Slider
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#2d3142"
+                            value={parseInt(this.state.importanceVal)}
+                            onValueChange={(value) => {
+                                this.props.save;
+                                this.props.editImportance(value);
+                            }}
+                            onSlidingComplete={(value) => {
+                                this.props.editImportance(value)
                             }}
                         />
                     </View>
@@ -290,7 +293,7 @@ export class ViewTask extends React.Component {
     }
 
     getStyleIfDone() {
-        if(this.props.selectedItem.completed == "true") {          
+        if (this.props.selectedItem.completed == "true") {
             return styles.outerViewDone
         }
         return styles.outerView;

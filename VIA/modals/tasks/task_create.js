@@ -7,6 +7,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import Moment from 'moment';
+import Slider from '@react-native-community/slider';
 
 const controller = new Controller;
 const dateFormat = 'ddd, MMM Do, YY'
@@ -165,6 +166,32 @@ export class CreateTask extends React.Component {
                  <View style={styles.dateContainer}>
                     {this.renderDueDate()}
                 </View>
+                <View style={styles.slidersSection}>
+                <View style={styles.slidersTitlesContainer}>
+                    <View style={styles.sliderTitleContainerRight}>
+                        <Text style={styles.sliderTitle}>
+                            Importance
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.slidersContainer}>
+                    <View style={styles.sliderContainerRight}>
+                        <Slider
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#2d3142"
+                            onSlidingComplete={(value) => {
+                                this.props.importance(value)
+                            }}
+                            onValueChange={(value) => {
+                                this.props.importance(value)
+                            }}
+                        />
+                    </View>
+                </View>
+            </View>
                 <View>
                     <Text>Importance</Text>
                     <TextInput
