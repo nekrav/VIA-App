@@ -40,14 +40,14 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         flexDirection: "row",
         justifyContent: 'space-between',
-        backgroundColor: pinkColor,
+        // backgroundColor: pinkColor,
     },
     trashButton: {
-        backgroundColor: blueColor,
+        // backgroundColor: blueColor,
         marginRight: "8%",
     },
     backButton: {
-        backgroundColor: blueColor,
+        // backgroundColor: blueColor,
         marginLeft: "8%",
     },
     nameTextInput: {
@@ -57,7 +57,7 @@ module.exports = StyleSheet.create({
         marginLeft: leftMargin,
     },
     titleContainer: {
-        backgroundColor: blueColor,
+        // backgroundColor: blueColor,
         flexDirection: "row"
     },
     dateContainer: {
@@ -111,7 +111,7 @@ module.exports = StyleSheet.create({
         marginRight: 5,
         borderRadius: 60,
         borderWidth: 1,
-        backgroundColor: burgundyColor,
+        // backgroundColor: burgundyColor,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -125,7 +125,7 @@ module.exports = StyleSheet.create({
     notesContainer: {
         borderTopColor: textColor,
         borderTopWidth: 2,
-        backgroundColor: limeColor,
+        // backgroundColor: limeColor,
         height: "100%",
     },
     notesTitle:{
@@ -156,7 +156,7 @@ module.exports = StyleSheet.create({
         marginBottom: 15,
         flexDirection: "row",
         justifyContent: "center",
-        backgroundColor: pinkColor,
+        // backgroundColor: pinkColor,
     },
     notificationTimesText: {
         fontFamily: fontFamily,
@@ -167,7 +167,7 @@ module.exports = StyleSheet.create({
     },
     slidersSection: {
         flexDirection: "column",
-        backgroundColor: limeColor,
+        // backgroundColor: limeColor,
         justifyContent: 'center',
     },
     slidersTitlesContainer: {
@@ -198,8 +198,4 @@ module.exports = StyleSheet.create({
     sliderContainerRight: {
         marginLeft: -40,
     },
-
-
-
-
 })
