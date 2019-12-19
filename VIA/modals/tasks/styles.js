@@ -92,16 +92,16 @@ module.exports = StyleSheet.create({
 
     },
     slidersContainer: {
-        flexDirection: "row",
+        flexDirection: "column",
         backgroundColor: limeColor,
         justifyContent: 'center',
         alignContent: "center",
     },
     verticalSliderContainer: {
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 20,
-        marginBottom: 20,
+        // marginLeft: 20,
+        // marginRight: 20,
+        // marginTop: 20,
+        // marginBottom: 20,
         alignItems: "center",
     },
     projectSectionView: {

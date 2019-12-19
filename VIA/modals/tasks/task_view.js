@@ -108,7 +108,7 @@ export class ViewTask extends React.Component {
 
     finishTask() {
         console.warn("Finih task")
-        this.setState({selectedItem})
+        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 
@@ -116,11 +116,14 @@ export class ViewTask extends React.Component {
         return (
             <View style={styles.slidersContainer}>
                 <View style={styles.verticalSliderContainer}>
+                    
                     <View style={styles.sliderTitleContainer}>
+                        
                         <Text style={styles.sliderTitle}>
                             Importance
                         </Text>
                     </View>
+{/*                     
                     <VerticalSlider
                         value={parseInt(this.state.selectedItem.importance)}
                         disabled={false}
@@ -142,6 +145,13 @@ export class ViewTask extends React.Component {
 
                         ballIndicatorColor={"gray"}
                         ballIndicatorTextColor={"#f2f2f2"}
+                    /> */}
+                    <Slider
+                        style={{ width: "80%", height: 40 }}
+                        minimumValue={0}
+                        maximumValue={1}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="#000000"
                     />
                 </View>
                 <View style={styles.verticalSliderContainer}>
@@ -150,7 +160,7 @@ export class ViewTask extends React.Component {
                             % Done
                         </Text>
                     </View>
-                    <VerticalSlider
+                    {/* <VerticalSlider
                         value={parseInt(this.state.selectedItem.percentage_done)}
                         disabled={false}
                         min={0}
@@ -175,6 +185,13 @@ export class ViewTask extends React.Component {
 
                         ballIndicatorColor={"gray"}
                         ballIndicatorTextColor={"white"}
+                    /> */}
+                    <Slider
+                        style={{ width: "80%", height: 40 }}
+                        minimumValue={0}
+                        maximumValue={1}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="#000000"
                     />
                 </View>
             </View>)
@@ -312,7 +329,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
-           
+
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
                         <View style={styles.topNav}>
