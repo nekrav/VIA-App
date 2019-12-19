@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects } from '../../db'
@@ -66,17 +66,21 @@ export class CreateTask extends React.Component {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
             return (
-                <TouchableOpacity onPress={() => {
-                    this.setProjectSelectionModalVisibility(true);
-                }}>
-                    <Text>{this.state.theSelectedProject}</Text>
-                </TouchableOpacity>
+                <View style={styles.projectSectionView}>
+                    <TouchableOpacity style={styles.projectSelectionButtonText} onPress={() => {
+                        this.setProjectSelectionModalVisibility(true);
+                    }}>
+                        <Text style={styles.projectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                    </TouchableOpacity>
+                </View>
             );
         } else {
             return (
-                <TouchableOpacity onPress={this.setProjectSelectionModalVisibility.bind(this)}>
-                    <Text>Select Project</Text>
-                </TouchableOpacity>
+                <View style={styles.projectSectionView}>
+                    <TouchableOpacity style={styles.projectSelectionButtonText} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
+                        <Text style={styles.projectSelectionButtonText}>Select Project</Text>
+                    </TouchableOpacity>
+                </View>
             );
         }
     }
@@ -88,7 +92,7 @@ export class CreateTask extends React.Component {
                 transparent={true}
                 setDate={(item) => {
                     this.props.due_date(item)
-                    this.setState({itemDate: item})
+                    this.setState({ itemDate: item })
                 }}
                 closeModal={() => { this.setDateModalVisibility(false) }}>
             </DateModal>
@@ -102,7 +106,7 @@ export class CreateTask extends React.Component {
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
-                        {Moment(new Date(this.state.itemDate)).format(dateFormat)}
+                            {Moment(new Date(this.state.itemDate)).format(dateFormat)}
                             {/* {this.state.itemDate} */}
                         </Text>
                     </TouchableOpacity>
@@ -130,9 +134,11 @@ export class CreateTask extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
                 {this.renderShowDate()}
+            
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
-                <View style={styles.topNav}>
+                    <SafeAreaView style={styles.outerView}>
+                    <KeyboardAvoidingView contentContainerStyle={styles.outerView} behavior="padding" enabled>
+                        <View style={styles.topNav}>
                             <TouchableOpacity style={styles.backButton}
                                 onPress={this.props.closeModal}>
                                 <SIcon name="arrow-left" size={30} color="#000" />
@@ -142,11 +148,11 @@ export class CreateTask extends React.Component {
                                 <Text style={styles.topNavText}>Add Task</Text>
                             </View>
                         </View>
-                <View style={{ marginTop: 22, alignItems: "center" }}>
+                        <View style={{ marginTop: 22, alignItems: "center" }}>
 
-                   
-                </View>
-                <View style={styles.titleContainer}>
+
+                        </View>
+                        <View style={styles.titleContainer}>
                             <View style={styles.nameContainer}>
                                 <TextInput
                                     maxLength={40}
@@ -157,73 +163,71 @@ export class CreateTask extends React.Component {
                                 </TextInput>
                             </View>
                         </View>
-                {/* <View>
+                        {/* <View>
                     <Text>Name</Text>
                     <TextInput
                         onChangeText={this.props.name}>
                     </TextInput>
                 </View> */}
-                 <View style={styles.dateContainer}>
-                    {this.renderDueDate()}
-                </View>
-                <View style={styles.slidersSection}>
-                <View style={styles.slidersTitlesContainer}>
-                    <View style={styles.sliderTitleContainerRight}>
-                        <Text style={styles.sliderTitle}>
-                            Importance
+                        <View style={styles.dateContainer}>
+                            {this.renderDueDate()}
+                        </View>
+                        <View style={styles.slidersSection}>
+                            <View style={styles.slidersTitlesContainer}>
+                                <View style={styles.sliderTitleContainerCenter}>
+                                    <Text style={styles.sliderTitle}>
+                                        Importance
                         </Text>
-                    </View>
-                </View>
-                <View style={styles.slidersContainer}>
-                    <View style={styles.sliderContainerRight}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
-                            onSlidingComplete={(value) => {
-                                this.props.importance(value)
-                            }}
-                            onValueChange={(value) => {
-                                this.props.importance(value)
-                            }}
-                        />
-                    </View>
-                </View>
-            </View>
-                <View>
-                    <Text>Importance</Text>
-                    <TextInput
-                        onChangeText={this.props.importance}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Project</Text>
-                    {this.renderProjectSelection()}
-                </View>
-                <View>
-                    <Text>Notification Time</Text>
-                    <TextInput
-                        onChangeText={this.props.notification_time}>
-                    </TextInput>
-                </View>
-                <View>
-                    <Text>Notes</Text>
-                    <TextInput
-                        onChangeText={this.props.notes}>
-                    </TextInput>
-                </View>
-                <View>
-                    <TouchableOpacity onPress={this.props.closeModal}>
-                        <Text>Close</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this.props.save}>
-                        <Text>Save</Text>
-                    </TouchableOpacity>
-                </View>
-                </SafeAreaView>
+                                </View>
+                            </View>
+                            <View style={styles.slidersContainer}>
+                                <View style={styles.sliderContainerCenter}>
+                                    <Slider
+                                        style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                                        minimumValue={0}
+                                        maximumValue={100}
+                                        minimumTrackTintColor="#068ae8"
+                                        maximumTrackTintColor="#2d3142"
+                                        onSlidingComplete={(value) => {
+                                            this.props.importance(value)
+                                        }}
+                                        onValueChange={(value) => {
+                                            this.props.importance(value)
+                                        }}
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.projectSectionContainer}>
+                            {this.renderProjectSelection()}
+                        </View>
+                        <View>
+                            <Text>Notification Time</Text>
+                            <TextInput
+                                onChangeText={this.props.notification_time}>
+                            </TextInput>
+                        </View>
+                        <View style={styles.notesContainer}>
+                            <Text style={styles.notesTitle}>Notes</Text>
+                            <TextInput
+                                style={styles.notesTextInput}
+                                multiline={true}
+                                placeholder={"..."}
+                                onChangeText={this.props.notes}>
+                            </TextInput>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={this.props.closeModal}>
+                                <Text>Close</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.props.save}>
+                                <Text>Save</Text>
+                            </TouchableOpacity>
+                        </View>
+                        </KeyboardAvoidingView>
+                    </SafeAreaView>
                 </TouchableWithoutFeedback>
+            
             </Modal>
         );
     }

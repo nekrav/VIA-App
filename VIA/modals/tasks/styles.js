@@ -118,7 +118,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
     },
     notesTextInput: {
-        flex: 2,
+        // flex: 2,
         fontSize: 18,
     },
     completeButtonBody: {
@@ -166,6 +166,9 @@ module.exports = StyleSheet.create({
         marginLeft: "10%",
         marginTop: "2%",
     },
+    sliderTitleContainerCenter: {
+        marginTop: "2%",
+    },
     sliderTitle: {
         fontFamily: fontFamily,
         fontSize: 24,
@@ -181,5 +184,8 @@ module.exports = StyleSheet.create({
     },
     sliderContainerRight: {
         marginLeft: -40,
+    },
+    sliderContainerCenter: {
+        marginTop: "2%",
     },
 })
