@@ -10,26 +10,17 @@ const leftMargin = 5
 const fontFamily = "Futura"
 
 const backgroundColor = "#f2f2f2"
+const blueColor = "#068ae8"
 const textColor = "#2d3142"
-const buttonColor = "#068ae8"
-const otherTextColor = "#4f5d75"
 const finishedBackgroundColor = "#a8ffe0"
 
-const whiteColor = "#068ae8"
-const blackColor = "#000"
-const limeColor = backgroundColor
-const burgundyColor = backgroundColor
-const yellowColor = backgroundColor
-const redColor = backgroundColor
-const blueColor = backgroundColor
-const pinkColor = backgroundColor
 
 module.exports = StyleSheet.create({
 
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: yellowColor,
+        backgroundColor: backgroundColor,
     },
     outerViewDone: {
         flex: 1,
@@ -40,14 +31,11 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         flexDirection: "row",
         justifyContent: 'space-between',
-        // backgroundColor: pinkColor,
     },
     trashButton: {
-        // backgroundColor: blueColor,
         marginRight: "8%",
     },
     backButton: {
-        // backgroundColor: blueColor,
         marginLeft: "8%",
     },
     nameTextInput: {
@@ -57,19 +45,20 @@ module.exports = StyleSheet.create({
         marginLeft: leftMargin,
     },
     titleContainer: {
-        // backgroundColor: blueColor,
         flexDirection: "row"
     },
+    projectSectionContainer: {
+
+    },
     dateContainer: {
-        backgroundColor: whiteColor,
+        backgroundColor: blueColor,
     },
     completeButtonContainer: {
-        // flex: 1,
         alignItems: "center",
         justifyContent: "center",
         margin: 10,
     },
-   
+
     dueDateView: {
         marginLeft: 5,
         marginRight: 5,
@@ -81,27 +70,20 @@ module.exports = StyleSheet.create({
         fontSize: 18,
     },
     completeButtonText: {
-        // margin: 10,
         fontFamily: fontFamily,
-        color: blackColor,
+        color: textColor,
         fontSize: 30,
     },
     projectSectionView: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: pinkColor,
         borderColor: textColor,
         borderTopWidth: 2,
         borderBottomWidth: 2,
-
     },
     projectSelectionButton: {
         marginLeft: 5,
         marginRight: 5,
-        borderWidth: 5,
-        borderRadius: 10,
-        borderColor: burgundyColor,
-        backgroundColor: burgundyColor,
         alignItems: 'center',
     },
     notificationTimesButton: {
@@ -111,7 +93,6 @@ module.exports = StyleSheet.create({
         marginRight: 5,
         borderRadius: 60,
         borderWidth: 1,
-        // backgroundColor: burgundyColor,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -125,7 +106,6 @@ module.exports = StyleSheet.create({
     notesContainer: {
         borderTopColor: textColor,
         borderTopWidth: 2,
-        // backgroundColor: limeColor,
         height: "100%",
     },
     notesTitle:{
@@ -138,8 +118,8 @@ module.exports = StyleSheet.create({
     completeButtonBody: {
         margin: 10,
         flex: 1,
-        borderColor: whiteColor,
-        backgroundColor: whiteColor,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
@@ -156,7 +136,6 @@ module.exports = StyleSheet.create({
         marginBottom: 15,
         flexDirection: "row",
         justifyContent: "center",
-        // backgroundColor: pinkColor,
     },
     notificationTimesText: {
         fontFamily: fontFamily,
@@ -167,7 +146,6 @@ module.exports = StyleSheet.create({
     },
     slidersSection: {
         flexDirection: "column",
-        // backgroundColor: limeColor,
         justifyContent: 'center',
     },
     slidersTitlesContainer: {

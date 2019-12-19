@@ -336,7 +336,7 @@ export class ViewTask extends React.Component {
                                 </TextInput>
                             </View>
                         </View>
-                        <View style={styles.dateContainer}>
+                        <View style={styles.projectSectionContainer}>
                             {this.renderProjectSection()}
                         </View>
 
