@@ -132,11 +132,11 @@ export class ViewTask extends React.Component {
                 <View style={styles.slidersContainer}>
                     <View style={styles.sliderContainerLeft}>
                         <Slider
-                            style={{ backgroundColor: "black", width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            style={{width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor="#FFFFFF"
-                            maximumTrackTintColor="#000000"
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#f2f2f2"
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
                                 this.props.save;
@@ -148,11 +148,11 @@ export class ViewTask extends React.Component {
                     </View>
                     <View style={styles.sliderContainerRight}>
                         <Slider
-                            style={{ backgroundColor: "white", width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor="#FFFFFF"
-                            maximumTrackTintColor="#000000"
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#f2f2f2"
                             value={parseInt(this.state.percentVal)}
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
