@@ -34,6 +34,12 @@ module.exports = StyleSheet.create({
     },
     trashButton: {
         marginRight: "8%",
+        justifyContent: "center",
+       
+    },
+    topNavText: {
+        fontFamily: fontFamily,
+        fontSize: titleFontSize
     },
     backButton: {
         marginLeft: "8%",

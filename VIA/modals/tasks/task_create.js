@@ -1,12 +1,16 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
+import Moment from 'moment';
 
 const controller = new Controller;
-
+const dateFormat = 'ddd, MMM Do, YY'
+const todayDate = new Date();
 const styles = require('./styles');
 
 export class CreateTask extends React.Component {
@@ -97,9 +101,13 @@ export class CreateTask extends React.Component {
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                         <Text style={styles.dateText}>
-                            {this.state.itemDate}
+                        {Moment(new Date(this.state.itemDate)).format(dateFormat)}
+                            {/* {this.state.itemDate} */}
                         </Text>
                     </TouchableOpacity>
+                    <Text style={styles.dateText}>
+                        {Moment(new Date(this.state.itemDate)).diff({ todayDate }, "days") + " days left"}
+                    </Text>
                 </View>)
         }
         return (
@@ -121,18 +129,40 @@ export class CreateTask extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
                 {this.renderShowDate()}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <SafeAreaView style={styles.outerView}>
+                <View style={styles.topNav}>
+                            <TouchableOpacity style={styles.backButton}
+                                onPress={this.props.closeModal}>
+                                <SIcon name="arrow-left" size={30} color="#000" />
+                            </TouchableOpacity>
+                            <View style={styles.trashButton}
+                                onPress={this.props.delete}>
+                                <Text style={styles.topNavText}>Add Task</Text>
+                            </View>
+                        </View>
                 <View style={{ marginTop: 22, alignItems: "center" }}>
 
-                    <Text>Add Task</Text>
+                   
                 </View>
-                <View>
+                <View style={styles.titleContainer}>
+                            <View style={styles.nameContainer}>
+                                <TextInput
+                                    maxLength={40}
+                                    style={styles.nameTextInput}
+                                    multiline={true}
+                                    placeholder={"Name"}
+                                    onChangeText={this.props.name}>
+                                </TextInput>
+                            </View>
+                        </View>
+                {/* <View>
                     <Text>Name</Text>
                     <TextInput
                         onChangeText={this.props.name}>
                     </TextInput>
-                </View>
-                <View>
-                    <Text>Due Date</Text>
+                </View> */}
+                 <View style={styles.dateContainer}>
                     {this.renderDueDate()}
                 </View>
                 <View>
@@ -165,6 +195,8 @@ export class CreateTask extends React.Component {
                         <Text>Save</Text>
                     </TouchableOpacity>
                 </View>
+                </SafeAreaView>
+                </TouchableWithoutFeedback>
             </Modal>
         );
     }
