@@ -177,8 +177,8 @@ module.exports = StyleSheet.create({
     slidersContainer: {
         flexDirection: "row",
         justifyContent: 'center',
-        marginTop: 150,
-        marginBottom: "30%",
+        marginTop: "35%",
+        marginBottom: "35%",
     },
     sliderContainerLeft: {
         marginRight: -40,
