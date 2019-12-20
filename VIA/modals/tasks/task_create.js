@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button, Dimensions } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { Database, Projects } from '../../db'
@@ -8,11 +8,18 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
-import SlidingUpPanel from 'rn-sliding-up-panel';
+import SlidingPanel from 'react-native-sliding-up-down-panels';
 const controller = new Controller;
 const dateFormat = 'ddd, MMM Do, YY'
 const todayDate = new Date();
 const styles = require('./styles');
+import { getInset } from 'react-native-safe-area-view';
+
+const { width, height } = Dimensions.get('window');
+
+const landScape = width > height;
+const topPadding = getInset('top', landScape);
+const bottomPadding = getInset('bottom', landScape);
 
 export class CreateTask extends React.Component {
 
@@ -28,6 +35,7 @@ export class CreateTask extends React.Component {
         };
     }
     componentDidMount() {
+
         controller.loadAll(this, Projects.TABLE_NAME);
     }
 
@@ -207,26 +215,13 @@ export class CreateTask extends React.Component {
                         </View>
                         <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
-                            <SlidingUpPanel ref={c => this._panel = c}>
-                                <View style={{
-                                    flex: 1,
-                                    backgroundColor: 'white',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}><Button title='Hide' onPress={() => this._panel.hide()} /><Text
-                                    style={styles.notesTextInput}
-                                    multiline={true}
-                                    placeholder={"..."}
-                                    onChangeText={this.props.notes}>
-                                    </Text></View>
-                            </SlidingUpPanel>
-                            <TouchableOpacity onPress={() => this._panel.show()}>
-                                <Text
-                                    style={styles.notesTextInput}
-                                    multiline={true}
-                                    placeholder={"..."}
-                                    onChangeText={this.props.notes}>
-                                </Text></TouchableOpacity>
+                            <TouchableOpacity>
+                            <Text
+                                style={styles.notesTextInput}
+                                multiline={true}
+                                onChangeText={this.props.notes}>...
+                            </Text>
+                            </TouchableOpacity>
                         </View>
                         <View>
                             <TouchableOpacity onPress={this.props.closeModal}>
@@ -238,7 +233,6 @@ export class CreateTask extends React.Component {
                         </View>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
-
             </Modal>
         );
     }

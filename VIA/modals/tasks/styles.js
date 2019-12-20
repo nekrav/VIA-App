@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio } from 'react-native';
+import { StyleSheet, PixelRatio, Dimensions } from 'react-native';
 
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
@@ -13,6 +13,8 @@ const backgroundColor = "#f2f2f2"
 const blueColor = "#068ae8"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#a8ffe0"
+
+const { width, height } = Dimensions.get('window');
 
 
 module.exports = StyleSheet.create({
@@ -113,6 +115,7 @@ module.exports = StyleSheet.create({
         borderTopColor: textColor,
         borderTopWidth: 2,
         height: "100%",
+        flex: 1,
     },
     notesTitle:{
         fontSize: 18,
