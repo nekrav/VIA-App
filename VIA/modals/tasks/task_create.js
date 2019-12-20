@@ -154,10 +154,7 @@ export class CreateTask extends React.Component {
                                 <Text style={styles.topNavText}>Add Task</Text>
                             </View>
                         </View>
-                        <View style={{ marginTop: 22, alignItems: "center" }}>
-
-
-                        </View>
+                 
                         <View style={styles.titleContainer}>
                             <View style={styles.nameContainer}>
                                 <TextInput
@@ -223,12 +220,12 @@ export class CreateTask extends React.Component {
                             </Text>
                             </TouchableOpacity>
                         </View>
-                        <View>
-                            <TouchableOpacity onPress={this.props.closeModal}>
-                                <Text>Close</Text>
+                        <View style={styles.bottomButtonsContainer}>
+                            <TouchableOpacity style={styles.bottomButton} onPress={this.props.closeModal}>
+                                <Text style={styles.bottomButtonText} >Close</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={this.props.save}>
-                                <Text>Save</Text>
+                            <TouchableOpacity style={styles.bottomButton} onPress={this.props.save}>
+                                <Text style={styles.bottomButtonText} >Save</Text>
                             </TouchableOpacity>
                         </View>
                     </SafeAreaView>

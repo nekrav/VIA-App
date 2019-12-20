@@ -191,4 +191,16 @@ module.exports = StyleSheet.create({
     sliderContainerCenter: {
         marginTop: "2%",
     },
+    bottomButtonsContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginLeft: 5,
+    },
+    bottomButton: {
+
+    },
+    bottomButtonText: {
+        fontSize: 18,
+        fontFamily: fontFamily,
+    },
 })
