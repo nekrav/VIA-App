@@ -196,8 +196,11 @@ module.exports = StyleSheet.create({
         justifyContent: "space-between",
         marginLeft: 5,
     },
-    bottomButton: {
-
+    bottomButtonLeft: {
+        marginLeft: 50,
+    },
+    bottomButtonRight: {
+        marginRight: 50,
     },
     bottomButtonText: {
         fontSize: 18,

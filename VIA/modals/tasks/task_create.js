@@ -154,7 +154,7 @@ export class CreateTask extends React.Component {
                                 <Text style={styles.topNavText}>Add Task</Text>
                             </View>
                         </View>
-                 
+
                         <View style={styles.titleContainer}>
                             <View style={styles.nameContainer}>
                                 <TextInput
@@ -213,19 +213,19 @@ export class CreateTask extends React.Component {
                         <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TouchableOpacity>
-                            <Text
-                                style={styles.notesTextInput}
-                                multiline={true}
-                                onChangeText={this.props.notes}>...
+                                <Text
+                                    style={styles. notesTextInput}
+                                    multiline={true}
+                                    onChangeText={this.props.notes}>...
                             </Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.bottomButtonsContainer}>
-                            <TouchableOpacity style={styles.bottomButton} onPress={this.props.closeModal}>
-                                <Text style={styles.bottomButtonText} >Close</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.bottomButton} onPress={this.props.save}>
+                            <TouchableOpacity style={styles.bottomButtonLeft} onPress={this.props.save}>
                                 <Text style={styles.bottomButtonText} >Save</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.bottomButtonRight} onPress={this.props.closeModal}>
+                                <Text style={styles.bottomButtonText} >Close</Text>
                             </TouchableOpacity>
                         </View>
                     </SafeAreaView>
