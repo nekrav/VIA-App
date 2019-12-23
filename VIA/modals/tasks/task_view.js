@@ -328,7 +328,6 @@ export class ViewTask extends React.Component {
                         </View>
 
                         <View style={styles.titleContainer}>
-                            <View style={styles.nameContainer}>
                                 <TextInput
                                     maxLength={40}
                                     onEndEditing={this.props.save()}
@@ -337,7 +336,6 @@ export class ViewTask extends React.Component {
                                     value={this.props.selectedItem.name}
                                     onChangeText={this.props.editName}>
                                 </TextInput>
-                            </View>
                         </View>
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSection()}

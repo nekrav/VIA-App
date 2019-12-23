@@ -149,22 +149,16 @@ export class CreateTask extends React.Component {
                                 onPress={this.props.closeModal}>
                                 <SIcon name="arrow-left" size={30} color="#000" />
                             </TouchableOpacity>
-                            <View style={styles.trashButton}
-                                onPress={this.props.delete}>
-                                <Text style={styles.topNavText}>Add Task</Text>
-                            </View>
                         </View>
 
-                        <View style={styles.titleContainer}>
-                            <View style={styles.nameContainer}>
-                                <TextInput
-                                    maxLength={40}
-                                    style={styles.nameTextInput}
-                                    multiline={true}
-                                    placeholder={"Name"}
-                                    onChangeText={this.props.name}>
-                                </TextInput>
-                            </View>
+                        <View style={styles.createTitleContainer}>
+                            <TextInput
+                                maxLength={40}
+                                style={styles.createNameTextInput}
+                                multiline={true}
+                                placeholder={"Name"}
+                                onChangeText={this.props.name}>
+                            </TextInput>
                         </View>
                         {/* <View>
                     <Text>Name</Text>
@@ -214,7 +208,7 @@ export class CreateTask extends React.Component {
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TouchableOpacity>
                                 <Text
-                                    style={styles. notesTextInput}
+                                    style={styles.notesTextInput}
                                     multiline={true}
                                     onChangeText={this.props.notes}>...
                             </Text>

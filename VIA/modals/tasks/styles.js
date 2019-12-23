@@ -52,6 +52,15 @@ module.exports = StyleSheet.create({
         color: "black",
         marginLeft: leftMargin,
     },
+    createNameTextInput: {
+        fontSize: 28,
+        fontFamily: fontFamily,
+        color: "black",
+    },
+    createTitleContainer: {
+        marginRight: 10,
+        flexDirection: "row-reverse"
+    },
     titleContainer: {
         flexDirection: "row"
     },
@@ -192,18 +201,39 @@ module.exports = StyleSheet.create({
         marginTop: "2%",
     },
     bottomButtonsContainer: {
+        borderTopColor: textColor,
+        paddingTop: 18,
+        borderTopWidth: 2,
         flexDirection: "row",
         justifyContent: "space-between",
-        marginLeft: 5,
+        marginBottom: 10,
     },
     bottomButtonLeft: {
         marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
     },
     bottomButtonRight: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: backgroundColor,
         marginRight: 50,
     },
     bottomButtonText: {
         fontSize: 18,
+        textAlign:'center',
         fontFamily: fontFamily,
     },
 })
