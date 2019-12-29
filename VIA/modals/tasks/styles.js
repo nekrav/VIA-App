@@ -56,9 +56,9 @@ module.exports = StyleSheet.create({
         fontSize: 28,
         fontFamily: fontFamily,
         color: "black",
+        marginRight: 10,
     },
     createTitleContainer: {
-        marginRight: 10,
         flexDirection: "row-reverse"
     },
     titleContainer: {

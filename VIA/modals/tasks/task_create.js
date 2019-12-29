@@ -160,12 +160,6 @@ export class CreateTask extends React.Component {
                                 onChangeText={this.props.name}>
                             </TextInput>
                         </View>
-                        {/* <View>
-                    <Text>Name</Text>
-                    <TextInput
-                        onChangeText={this.props.name}>
-                    </TextInput>
-                </View> */}
                         <View style={styles.dateContainer}>
                             {this.renderDueDate()}
                         </View>
