@@ -33,6 +33,7 @@ export class CreateTask extends React.Component {
             showDate: false,
             itemDate: "",
             newTaskImportance: 0,
+            notificationTimesModal: false,
         };
     }
     componentDidMount() {
@@ -109,6 +110,10 @@ export class CreateTask extends React.Component {
         return null;
     }
 
+    setNotificationTimesVisibility(visibility) {
+        this.setState({ notificationTimesModal: visible })
+    }
+
     renderDueDate() {
         if (this.state.itemDate != "") {
             return (
@@ -161,7 +166,7 @@ export class CreateTask extends React.Component {
                             </TextInput>
                         </View>
                         {/* <View style={styles.dateContainer}> */}
-                            {this.renderDueDate()}
+                        {this.renderDueDate()}
                         {/* </View> */}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
@@ -180,11 +185,11 @@ export class CreateTask extends React.Component {
                                         minimumTrackTintColor="#068ae8"
                                         maximumTrackTintColor="#ABABAB"
                                         onSlidingComplete={(value) => {
-                                            this.setState({newTaskImportance: value})
+                                            this.setState({ newTaskImportance: value })
                                             this.props.importance(value)
                                         }}
                                         onValueChange={(value) => {
-                                            this.setState({newTaskImportance: value})
+                                            this.setState({ newTaskImportance: value })
                                             this.props.importance(value)
                                         }}
                                     />
@@ -194,12 +199,16 @@ export class CreateTask extends React.Component {
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSelection()}
                         </View>
-                        <View>
-                            <Text>Notification Time</Text>
-                            <TextInput
-                                onChangeText={this.props.notification_time}>
-                            </TextInput>
-                        </View>
+                        
+                            <TouchableOpacity
+                                style={styles.notificationTimesButtonContainer}
+                                onPress={() => {
+                                    this.setNotificationTimesVisibility(true);
+                                }}>
+                                <Text style={styles.notificationTimeButtonText} >When would you like to be notified about this?</Text>
+                                <SIcon name="clock" size={20} color="#000" />
+                            
+                            </TouchableOpacity>
                         <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TouchableOpacity>

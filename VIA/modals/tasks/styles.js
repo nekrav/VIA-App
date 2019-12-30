@@ -142,6 +142,18 @@ module.exports = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
     },
+    notificationTimesButtonContainer: {
+        marginBottom: 5,
+        marginTop: 5,
+        marginRight: 5,
+        marginLeft: 5,
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    notificationTimeButtonText: {
+        textAlign: "center",
+        fontSize: 16,
+    },
     selectedProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
