@@ -205,8 +205,10 @@ export class CreateTask extends React.Component {
                                 onPress={() => {
                                     this.setNotificationTimesVisibility(true);
                                 }}>
-                                <Text style={styles.notificationTimeButtonText} >When would you like to be notified about this?</Text>
-                                <SIcon name="clock" size={20} color="#000" />
+                                <Text style={styles.notificationTimeButtonText} >When would you like to be notified?  </Text>
+                               
+                                <Text style={styles.notificationTimeButtonText} > <SIcon name="clock" size={20} color="#ABABAB" /> </Text>
+                               
                             
                             </TouchableOpacity>
                         <View style={styles.notesContainer}>
