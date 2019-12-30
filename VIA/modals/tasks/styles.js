@@ -53,12 +53,12 @@ module.exports = StyleSheet.create({
         marginLeft: leftMargin,
     },
     createNameTextInput: {
-        fontSize: 20,
+        fontSize: 30,
         fontFamily: fontFamily,
         color: "black",
         marginLeft: 8,
-        padding: 20,
-        // marginBottom: 20,
+        // padding: 20,
+        marginBottom: 5,
         // height:2,
     },
     createTitleContainer: {
@@ -72,8 +72,8 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
-        // marginBottom: 5,
-        // marginTop: 2,
+        marginBottom: 5,
+        marginTop: 2,
     },
     titleContainer: {
         flexDirection: "row"
