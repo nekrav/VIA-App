@@ -225,6 +225,8 @@ PODS:
     - React
   - RNGestureHandler (1.4.1):
     - React
+  - RNSVG (9.13.6):
+    - React
   - RNVectorIcons (6.6.0):
     - React
   - Yoga (1.14.0)
@@ -261,6 +263,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
@@ -325,6 +328,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -360,6 +365,7 @@ SPEC CHECKSUMS:
   ReactCommon: 4fba5be89efdf0b5720e0adb3d8d7edf6e532db0
   RNDateTimePicker: 68e542a59ff1b73563744145bfc45c2b88a3deea
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078
 
