@@ -84,9 +84,9 @@ export class CreateTask extends React.Component {
             );
         } else {
             return (
-                <View style={styles.projectSectionView}>
+                <View style={styles.createTitleContainer}>
                     <TouchableOpacity style={styles.projectSelectionButtonText} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
-                        <Text style={styles.projectSelectionButtonText}>Select Project</Text>
+                        <Text style={styles.projectSelectionButtonText}>Is this part of a bigger project?</Text>
                     </TouchableOpacity>
                 </View>
             );
@@ -113,12 +113,11 @@ export class CreateTask extends React.Component {
             return (
                 <View style={styles.dueDateView}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
-                        <Text style={styles.dateText}>
+                        <Text style={styles.selectedDateText}>
                             {Moment(new Date(this.state.itemDate)).format(dateFormat)}
-                            {/* {this.state.itemDate} */}
                         </Text>
                     </TouchableOpacity>
-                    <Text style={styles.dateText}>
+                    <Text style={styles.selectedDateText}>
                         {Moment(new Date(this.state.itemDate)).diff({ todayDate }, "days") + " days left"}
                     </Text>
                 </View>)
@@ -178,7 +177,7 @@ export class CreateTask extends React.Component {
                                         minimumValue={0}
                                         maximumValue={100}
                                         minimumTrackTintColor="#068ae8"
-                                        maximumTrackTintColor="#2d3142"
+                                        maximumTrackTintColor="#ABABAB"
                                         onSlidingComplete={(value) => {
                                             this.props.importance(value)
                                         }}

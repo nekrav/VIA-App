@@ -76,7 +76,6 @@ module.exports = StyleSheet.create({
         flexDirection: "row"
     },
     projectSectionContainer: {
-
     },
     dateContainer: {
         backgroundColor: blueColor,
@@ -86,7 +85,6 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 10,
     },
-
     dueDateView: {
         marginLeft: 5,
         marginRight: 5,
@@ -97,6 +95,14 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         fontFamily: fontFamily,
         color: placeholderColor,
+        marginLeft: 10,
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    selectedDateText: {
+        fontSize: 18,
+        fontFamily: fontFamily,
+        color: textColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -129,11 +135,22 @@ module.exports = StyleSheet.create({
         alignItems: 'center'
     },
     projectSelectionButtonText: {
-        fontFamily: fontFamily,
+        // fontSize: 30,
+        // fontFamily: fontFamily,
+        // color: "black",
+        // marginLeft: 10,
+        // marginBottom: 5,
+        // fontFamily: fontFamily,
+        // fontSize: 18,
+        // alignItems: 'center',
+        // justifyContent: "center",
+        // marginLeft: leftMargin,
         fontSize: 18,
-        alignItems: 'center',
-        justifyContent: "center",
-        marginLeft: leftMargin,
+        fontFamily: fontFamily,
+        color: placeholderColor,
+        marginLeft: 10,
+        marginTop: 5,
+        marginBottom: 5,
     },
     notesContainer: {
         borderTopColor: textColor,
