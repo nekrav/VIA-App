@@ -9,10 +9,12 @@ const bodyFontSize = 20
 const leftMargin = 5
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium" 
 
-const backgroundColor = "#f2f2f2"
+const backgroundColor = "#ffffff"
 const blueColor = "#068ae8"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#a8ffe0"
+const grayColor = "#ededed"
+const placeholderColor = "#ABABAB"
 
 const { width, height } = Dimensions.get('window');
 
@@ -56,19 +58,14 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         color: "black",
-        marginLeft: 8,
-        // padding: 20,
+        marginLeft: 10,
         marginBottom: 5,
-        // height:2,
     },
     createTitleContainer: {
-        // padding: 2,
-        
-        borderRadius: 50,
-        backgroundColor: "#e6e6e6",
-       
+        borderRadius: 10,
+        backgroundColor: grayColor,
         borderTopWidth: 2,
-        borderTopColor: "#e8e8e8",
+        borderTopColor: grayColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -97,8 +94,12 @@ module.exports = StyleSheet.create({
         justifyContent: 'space-between',
     },
     dateText: {
-        fontFamily: fontFamily,
         fontSize: 18,
+        fontFamily: fontFamily,
+        color: placeholderColor,
+        marginLeft: 10,
+        marginTop: 5,
+        marginBottom: 5,
     },
     completeButtonText: {
         fontFamily: fontFamily,

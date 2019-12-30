@@ -124,7 +124,7 @@ export class CreateTask extends React.Component {
                 </View>)
         }
         return (
-            <View style={styles.dueDateView}>
+            <View style={styles.createTitleContainer}>
                 <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                     <Text style={styles.dateText}>
                         When do you want to finish this?
@@ -156,13 +156,13 @@ export class CreateTask extends React.Component {
                                 maxLength={40}
                                 style={styles.createNameTextInput}
                                 multiline={true}
-                                placeholder={"Namejjjj"}
+                                placeholder={"Name"}
                                 onChangeText={this.props.name}>
                             </TextInput>
                         </View>
-                        <View style={styles.dateContainer}>
+                        {/* <View style={styles.dateContainer}> */}
                             {this.renderDueDate()}
-                        </View>
+                        {/* </View> */}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
                                 <View style={styles.sliderTitleContainerCenter}>
