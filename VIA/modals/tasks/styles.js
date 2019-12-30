@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions } from 'react-native';
+import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
 const leftMargin = 5
-const fontFamily = "Futura"
+const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium" 
 
 const backgroundColor = "#f2f2f2"
 const blueColor = "#068ae8"
@@ -53,22 +53,27 @@ module.exports = StyleSheet.create({
         marginLeft: leftMargin,
     },
     createNameTextInput: {
-        fontSize: 28,
+        fontSize: 20,
         fontFamily: fontFamily,
         color: "black",
-        marginLeft: 5,
-       
+        marginLeft: 8,
+        padding: 20,
+        // marginBottom: 20,
+        // height:2,
     },
     createTitleContainer: {
-        padding: 4,
-        marginRight: 10,
-        marginLeft: 10,
+        // padding: 2,
+        
         borderRadius: 50,
         backgroundColor: "#e6e6e6",
-        marginTop: 2,
+       
         borderTopWidth: 2,
         borderTopColor: "#e8e8e8",
-        flexDirection: "row"
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        // marginBottom: 5,
+        // marginTop: 2,
     },
     titleContainer: {
         flexDirection: "row"

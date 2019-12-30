@@ -156,7 +156,7 @@ export class CreateTask extends React.Component {
                                 maxLength={40}
                                 style={styles.createNameTextInput}
                                 multiline={true}
-                                placeholder={"Name"}
+                                placeholder={"Namejjjj"}
                                 onChangeText={this.props.name}>
                             </TextInput>
                         </View>
