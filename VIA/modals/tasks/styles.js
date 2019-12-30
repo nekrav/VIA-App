@@ -71,6 +71,13 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0
+        }
     },
     titleContainer: {
         flexDirection: "row"
@@ -132,7 +139,7 @@ module.exports = StyleSheet.create({
         borderRadius: 60,
         borderWidth: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     projectSelectionButtonText: {
         fontSize: 18,
@@ -155,6 +162,13 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         marginTop: 2,
         justifyContent: 'space-between',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0
+        }
         
     },
     notificationTimeButtonText: {
