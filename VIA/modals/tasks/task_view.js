@@ -191,7 +191,6 @@ export class ViewTask extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButton}
                 onPress={() => {
-                    console.warn(this.state.notificationTimesModal)
                     this.setNotificationTimesVisibility(true);
                 }}>
 
