@@ -7,7 +7,7 @@ const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
 const leftMargin = 5
-const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium" 
+const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#ffffff"
 const blueColor = "#068ae8"
@@ -39,7 +39,7 @@ module.exports = StyleSheet.create({
     trashButton: {
         marginRight: "8%",
         justifyContent: "center",
-       
+
     },
     topNavText: {
         fontFamily: fontFamily,
@@ -75,8 +75,8 @@ module.exports = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
-          height: 1,
-          width: 0
+            height: 1,
+            width: 0
         }
     },
     titleContainer: {
@@ -166,10 +166,10 @@ module.exports = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
-          height: 1,
-          width: 0
+            height: 1,
+            width: 0
         }
-        
+
     },
     notificationTimeButtonText: {
         fontSize: 16,
@@ -178,6 +178,7 @@ module.exports = StyleSheet.create({
         marginLeft: 8,
         marginTop: 5,
         marginBottom: 5,
+        fontFamily: fontFamily
     },
     selectedProjectSelectionButtonText: {
         fontSize: 18,
@@ -193,7 +194,40 @@ module.exports = StyleSheet.create({
         height: "100%",
         flex: 1,
     },
-    notesTitle:{
+
+    /* #region  Create Notes Section */
+    createNotesContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignContent: "center",
+        borderRadius: 10,
+        backgroundColor: grayColor,
+        borderTopWidth: 2,
+        borderTopColor: grayColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        justifyContent: 'space-between',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        height: "100%",
+    },
+    createNotesText: {
+        color: placeholderColor,
+        marginTop: 5,
+        marginLeft: 7,
+        fontFamily: fontFamily
+    },
+    /* #endregion */
+
+    notesTitle: {
         fontSize: 18,
     },
     notesTextInput: {
@@ -306,7 +340,7 @@ module.exports = StyleSheet.create({
     },
     bottomButtonText: {
         fontSize: 18,
-        textAlign:'center',
+        textAlign: 'center',
         fontFamily: fontFamily,
     },
 })

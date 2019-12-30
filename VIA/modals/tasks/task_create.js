@@ -199,28 +199,29 @@ export class CreateTask extends React.Component {
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSelection()}
                         </View>
-                        
-                            <TouchableOpacity
-                                style={styles.notificationTimesButtonContainer}
-                                onPress={() => {
-                                    this.setNotificationTimesVisibility(true);
-                                }}>
-                                <Text style={styles.notificationTimeButtonText} >When would you like to be notified?  </Text>
-                               
-                                <Text style={styles.notificationTimeButtonText} > <SIcon name="clock" size={20} color="#ABABAB" /> </Text>
-                               
-                            
-                            </TouchableOpacity>
-                        <View style={styles.notesContainer}>
-                            <Text style={styles.notesTitle}>Notes</Text>
-                            <TouchableOpacity>
-                                <Text
-                                    style={styles.notesTextInput}
-                                    multiline={true}
-                                    onChangeText={this.props.notes}>...
+
+                        <TouchableOpacity
+                            style={styles.notificationTimesButtonContainer}
+                            onPress={() => {
+                                this.setNotificationTimesVisibility(true);
+                            }}>
+                            <Text style={styles.notificationTimeButtonText}>
+                                When would you like to be notified?
+                                </Text>
+
+                            <Text style={styles.notificationTimeButtonText}>
+                                <SIcon name="clock" size={20} color="#ABABAB" />
                             </Text>
-                            </TouchableOpacity>
-                        </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.createNotesContainer}>
+                            <Text
+                                style={styles.createNotesText}
+                                multiline={true}
+                                onChangeText={this.props.notes}>Notes ...
+                            </Text>
+                        </TouchableOpacity>
+
                         <View style={styles.bottomButtonsContainer}>
                             <TouchableOpacity style={styles.bottomButtonLeft} onPress={this.props.save}>
                                 <Text style={styles.bottomButtonText} >Save</Text>
