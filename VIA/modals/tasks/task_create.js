@@ -75,11 +75,11 @@ export class CreateTask extends React.Component {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
             return (
-                <View style={styles.projectSectionView}>
+                <View style={styles.createTitleContainer}>
                     <TouchableOpacity style={styles.projectSelectionButtonText} onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
-                        <Text style={styles.projectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                        <Text style={styles.selectedProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
                     </TouchableOpacity>
                 </View>
             );
