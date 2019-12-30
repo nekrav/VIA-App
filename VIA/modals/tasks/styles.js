@@ -213,7 +213,13 @@ module.exports = StyleSheet.create({
     sliderTitleContainerCenter: {
         marginTop: "2%",
     },
+    sliderTitleNull: {
+        fontFamily: fontFamily,
+        fontSize: 24,
+        color: textColor,
+    },
     sliderTitle: {
+        color: placeholderColor,
         fontFamily: fontFamily,
         fontSize: 24,
     },

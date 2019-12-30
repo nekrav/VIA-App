@@ -31,7 +31,8 @@ export class CreateTask extends React.Component {
             items: [],
             theSelectedProject: "",
             showDate: false,
-            itemDate: ""
+            itemDate: "",
+            newTaskImportance: 0,
         };
     }
     componentDidMount() {
@@ -165,7 +166,7 @@ export class CreateTask extends React.Component {
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
                                 <View style={styles.sliderTitleContainerCenter}>
-                                    <Text style={styles.sliderTitle}>
+                                    <Text style={this.state.newTaskImportance > 0 ? styles.sliderTitleNull : styles.sliderTitle}>
                                         Importance
                         </Text>
                                 </View>
@@ -179,9 +180,11 @@ export class CreateTask extends React.Component {
                                         minimumTrackTintColor="#068ae8"
                                         maximumTrackTintColor="#ABABAB"
                                         onSlidingComplete={(value) => {
+                                            this.setState({newTaskImportance: value})
                                             this.props.importance(value)
                                         }}
                                         onValueChange={(value) => {
+                                            this.setState({newTaskImportance: value})
                                             this.props.importance(value)
                                         }}
                                     />
