@@ -34,6 +34,7 @@ export class CreateTask extends React.Component {
             itemDate: "",
             newTaskImportance: 0,
             notificationTimesModal: false,
+            newTaskName: '',
         };
     }
     componentDidMount() {
@@ -161,7 +162,9 @@ export class CreateTask extends React.Component {
                                 style={styles.createNameText}
                                 multiline={true}
                                 placeholder={"Name"}
-                                onChangeText={this.props.name}>
+                                onChangeText={value => {
+                                    this.setState({newTaskName: value})
+                                    this.props.name(value)}}>
                             </TextInput>
                         </TouchableOpacity>
                         {this.renderDueDate()}
@@ -220,7 +223,10 @@ export class CreateTask extends React.Component {
                         </TouchableOpacity>
 
                         <View style={styles.bottomButtonsContainer}>
-                            <TouchableOpacity style={styles.bottomButtonLeft} onPress={this.props.save}>
+                            <TouchableOpacity 
+                            disabled={this.state.newTaskName != '' ? false : true}
+                            style={this.state.newTaskName != '' ? styles.bottomButtonLeft : styles.bottomButtonLeftDisabled} 
+                            onPress={this.props.save}>
                                 <Text style={styles.bottomButtonText} >Save</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.bottomButtonRight} onPress={this.props.closeModal}>

@@ -162,7 +162,7 @@ module.exports = StyleSheet.create({
     createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: "black",
+        color: textColor,
         marginLeft: 10,
         marginBottom: 5,
     },
@@ -335,11 +335,11 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+
     notesTitle: {
         fontSize: 18,
     },
     notesTextInput: {
-        // flex: 2,
         fontSize: 18,
     },
     completeButtonBody: {
@@ -371,13 +371,31 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 2,
     },
+
+    /* #region Create Bottom Buttons Section */
     bottomButtonsContainer: {
-        borderTopColor: textColor,
         paddingTop: 18,
-        borderTopWidth: 2,
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 10,
+    },
+    bottomButtonLeftDisabled: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: placeholderColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
     },
     bottomButtonLeft: {
         marginLeft: 50,
@@ -389,6 +407,13 @@ module.exports = StyleSheet.create({
         borderWidth: 2,
         borderColor: blueColor,
         backgroundColor: blueColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
     },
     bottomButtonRight: {
         marginLeft: 50,
@@ -398,13 +423,21 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: blueColor,
+        borderColor: placeholderColor,
         backgroundColor: backgroundColor,
         marginRight: 50,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
     },
     bottomButtonText: {
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
     },
+    /* #endregion */
 })
