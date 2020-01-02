@@ -76,21 +76,21 @@ export class CreateTask extends React.Component {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
             return (
-                <View style={styles.createTitleContainer}>
-                    <TouchableOpacity style={styles.projectSelectionButtonText} onPress={() => {
+                // <View style={styles.createTitleContainer}>
+                    <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={() => {
                         this.setProjectSelectionModalVisibility(true);
                     }}>
-                        <Text style={styles.selectedProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                        <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
                     </TouchableOpacity>
-                </View>
+                // </View>
             );
         } else {
             return (
-                <View style={styles.createTitleContainer}>
-                    <TouchableOpacity style={styles.projectSelectionButtonText} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
-                        <Text style={styles.projectSelectionButtonText}>Is this part of a bigger project?</Text>
+                // <View style={styles.createTitleContainer}>
+                    <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
+                        <Text style={styles.createProjectSelectionButtonText}>Is this part of a bigger project?</Text>
                     </TouchableOpacity>
-                </View>
+                // </View>
             );
         }
     }
@@ -117,13 +117,13 @@ export class CreateTask extends React.Component {
     renderDueDate() {
         if (this.state.itemDate != "") {
             return (
-                <View style={styles.dueDateView}>
+                <View style={styles.createDueDateContainer}>
                     <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
-                        <Text style={styles.selectedDateText}>
+                        <Text style={styles.createSelectedDateText}>
                             {Moment(new Date(this.state.itemDate)).format(dateFormat)}
                         </Text>
                     </TouchableOpacity>
-                    <Text style={styles.selectedDateText}>
+                    <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemDate)).diff({ todayDate }, "days") + " days left"}
                     </Text>
                 </View>)
@@ -131,7 +131,7 @@ export class CreateTask extends React.Component {
         return (
             <View style={styles.createTitleContainer}>
                 <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
-                    <Text style={styles.dateText}>
+                    <Text style={styles.createDateText}>
                         When do you want to finish this?
                         </Text>
                 </TouchableOpacity>
@@ -165,9 +165,7 @@ export class CreateTask extends React.Component {
                                 onChangeText={this.props.name}>
                             </TextInput>
                         </View>
-                        {/* <View style={styles.dateContainer}> */}
                         {this.renderDueDate()}
-                        {/* </View> */}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
                                 <View style={styles.sliderTitleContainerCenter}>

@@ -92,12 +92,15 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 10,
     },
+
     dueDateView: {
         marginLeft: 5,
         marginRight: 5,
         flexDirection: "row",
         justifyContent: 'space-between',
     },
+
+    
     dateText: {
         fontSize: 18,
         fontFamily: fontFamily,
@@ -106,6 +109,7 @@ module.exports = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
     },
+
     selectedDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
@@ -141,14 +145,79 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    projectSelectionButtonText: {
+
+
+
+    selectedProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
-        marginLeft: 5,
+        color: textColor,
+        marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
     },
+    notesContainer: {
+        borderTopColor: textColor,
+        borderTopWidth: 2,
+        height: "100%",
+        flex: 1,
+    },
+
+    /* #region Create Due Date */
+        createDueDateContainer: {
+            marginLeft: 5,
+            marginRight: 5,
+            flexDirection: "row",
+            justifyContent: 'space-between',
+        },
+        createDateText: {
+            fontSize: 18,
+            fontFamily: fontFamily,
+            color: placeholderColor,
+            marginLeft: 10,
+            marginTop: 5,
+            marginBottom: 5,
+        },
+        createSelectedDateText: {
+            fontSize: 18,
+            fontFamily: fontFamily,
+            color: textColor,
+            marginLeft: 10,
+            marginTop: 5,
+            marginBottom: 5,
+        },
+        /* #endregion */
+
+    /* #region  Create Project Selection Section */
+        createProjectSelectionContainer: {
+            borderRadius: 10,
+            backgroundColor: grayColor,
+            borderTopWidth: 2,
+            borderTopColor: grayColor,
+            flexDirection: "row",
+            marginRight: 10,
+            marginLeft: 10,
+            marginBottom: 5,
+            marginTop: 2,
+            shadowColor: "#000000",
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
+            shadowOffset: {
+                height: 1,
+                width: 0
+            }
+        },
+        createProjectSelectionButtonText: {
+            fontSize: 18,
+            fontFamily: fontFamily,
+            color: placeholderColor,
+            marginLeft: 5,
+            marginTop: 5,
+            marginBottom: 5,
+        },
+        /* #endregion */
+
+    /* #region Create Notification Times Section  */
     notificationTimesButtonContainer: {
         flexDirection: "row",
         alignContent: "center",
@@ -180,22 +249,11 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         fontFamily: fontFamily
     },
-    selectedProjectSelectionButtonText: {
-        fontSize: 18,
-        fontFamily: fontFamily,
-        color: textColor,
-        marginLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    notesContainer: {
-        borderTopColor: textColor,
-        borderTopWidth: 2,
-        height: "100%",
-        flex: 1,
-    },
+    /* #endregion */
 
     /* #region  Create Notes Section */
+
+
     createNotesContainer: {
         flex: 1,
         flexDirection: "row",
