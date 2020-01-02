@@ -193,6 +193,53 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  Sliders Section */
+    slidersSection: {
+        flexDirection: "column",
+        justifyContent: 'center',
+    },
+    slidersTitlesContainer: {
+        flexDirection: "row",
+        justifyContent: 'center',
+    },
+    sliderTitleContainerLeft: {
+        marginRight: "8%",
+        marginTop: "2%",
+    },
+    sliderTitleContainerRight: {
+        marginLeft: "10%",
+        marginTop: "2%",
+    },
+    sliderTitleContainerCenter: {
+        marginTop: "2%",
+    },
+    sliderTitleNull: {
+        fontFamily: fontFamily,
+        fontSize: 24,
+        color: textColor,
+    },
+    sliderTitle: {
+        color: placeholderColor,
+        fontFamily: fontFamily,
+        fontSize: 24,
+    },
+    slidersContainer: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        marginTop: "35%",
+        marginBottom: "35%",
+    },
+    sliderContainerLeft: {
+        marginRight: -40,
+    },
+    sliderContainerRight: {
+        marginLeft: -40,
+    },
+    sliderContainerCenter: {
+        marginTop: "2%",
+    },
+    /* #endregion */
+
     /* #region  Create Project Selection Section */
     createProjectSelectionContainer: {
         borderRadius: 10,
@@ -323,50 +370,6 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
         margin: 2,
-    },
-    slidersSection: {
-        flexDirection: "column",
-        justifyContent: 'center',
-    },
-    slidersTitlesContainer: {
-        flexDirection: "row",
-        justifyContent: 'center',
-    },
-    sliderTitleContainerLeft: {
-        marginRight: "8%",
-        marginTop: "2%",
-    },
-    sliderTitleContainerRight: {
-        marginLeft: "10%",
-        marginTop: "2%",
-    },
-    sliderTitleContainerCenter: {
-        marginTop: "2%",
-    },
-    sliderTitleNull: {
-        fontFamily: fontFamily,
-        fontSize: 24,
-        color: textColor,
-    },
-    sliderTitle: {
-        color: placeholderColor,
-        fontFamily: fontFamily,
-        fontSize: 24,
-    },
-    slidersContainer: {
-        flexDirection: "row",
-        justifyContent: 'center',
-        marginTop: "35%",
-        marginBottom: "35%",
-    },
-    sliderContainerLeft: {
-        marginRight: -40,
-    },
-    sliderContainerRight: {
-        marginLeft: -40,
-    },
-    sliderContainerCenter: {
-        marginTop: "2%",
     },
     bottomButtonsContainer: {
         borderTopColor: textColor,
