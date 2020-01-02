@@ -76,21 +76,17 @@ export class CreateTask extends React.Component {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
             return (
-                // <View style={styles.createTitleContainer}>
-                    <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={() => {
-                        this.setProjectSelectionModalVisibility(true);
-                    }}>
-                        <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
-                    </TouchableOpacity>
-                // </View>
+                <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={() => {
+                    this.setProjectSelectionModalVisibility(true);
+                }}>
+                    <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                </TouchableOpacity>
             );
         } else {
             return (
-                // <View style={styles.createTitleContainer}>
-                    <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
-                        <Text style={styles.createProjectSelectionButtonText}>Is this part of a bigger project?</Text>
-                    </TouchableOpacity>
-                // </View>
+                <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
+                    <Text style={styles.createProjectSelectionButtonText}>Is this part of a bigger project?</Text>
+                </TouchableOpacity>
             );
         }
     }
@@ -129,7 +125,7 @@ export class CreateTask extends React.Component {
                 </View>)
         }
         return (
-            <View style={styles.createTitleContainer}>
+            <View style={styles.createNameContainer}>
                 <TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
                     <Text style={styles.createDateText}>
                         When do you want to finish this?
@@ -156,15 +152,18 @@ export class CreateTask extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={styles.createTitleContainer}>
+                        <TouchableOpacity
+                            onPress={() => { this.nameTextInput.focus(); }}
+                            style={styles.createNameContainer}>
                             <TextInput
+                                ref={(input) => { this.nameTextInput = input; }}
                                 maxLength={40}
-                                style={styles.createNameTextInput}
+                                style={styles.createNameText}
                                 multiline={true}
                                 placeholder={"Name"}
                                 onChangeText={this.props.name}>
                             </TextInput>
-                        </View>
+                        </TouchableOpacity>
                         {this.renderDueDate()}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
