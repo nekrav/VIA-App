@@ -335,43 +335,6 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-
-    notesTitle: {
-        fontSize: 18,
-    },
-    notesTextInput: {
-        fontSize: 18,
-    },
-    completeButtonBody: {
-        margin: 10,
-        flex: 1,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
-        borderWidth: 5,
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    completeAndNotifSection: {
-        flexDirection: "row",
-        justifyContent: 'center',
-    },
-    projectsNotificationsSection: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 15,
-        marginBottom: 15,
-        flexDirection: "row",
-        justifyContent: "center",
-    },
-    notificationTimesText: {
-        fontFamily: fontFamily,
-        fontSize: 14,
-        alignItems: 'center',
-        justifyContent: "center",
-        margin: 2,
-    },
-
     /* #region Create Bottom Buttons Section */
     bottomButtonsContainer: {
         paddingTop: 18,
@@ -440,4 +403,40 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
     },
     /* #endregion */
+    
+    notesTitle: {
+        fontSize: 18,
+    },
+    notesTextInput: {
+        fontSize: 18,
+    },
+    completeButtonBody: {
+        margin: 10,
+        flex: 1,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
+        borderWidth: 5,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    completeAndNotifSection: {
+        flexDirection: "row",
+        justifyContent: 'center',
+    },
+    projectsNotificationsSection: {
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 15,
+        marginBottom: 15,
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    notificationTimesText: {
+        fontFamily: fontFamily,
+        fontSize: 14,
+        alignItems: 'center',
+        justifyContent: "center",
+        margin: 2,
+    },
 })
