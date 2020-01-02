@@ -194,6 +194,12 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #region  Sliders Section */
+
+    sliderSlider:{
+        width: 250, 
+        height: 1, 
+        transform: [{ rotate: '270deg' }] 
+    },
     slidersSection: {
         flexDirection: "column",
         justifyContent: 'center',

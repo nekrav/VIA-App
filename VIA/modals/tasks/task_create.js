@@ -15,11 +15,6 @@ const todayDate = new Date();
 const styles = require('./styles');
 import { getInset } from 'react-native-safe-area-view';
 
-const { width, height } = Dimensions.get('window');
-
-const landScape = width > height;
-const topPadding = getInset('top', landScape);
-const bottomPadding = getInset('bottom', landScape);
 
 export class CreateTask extends React.Component {
 
@@ -179,11 +174,11 @@ export class CreateTask extends React.Component {
                             <View style={styles.slidersContainer}>
                                 <View style={styles.sliderContainerCenter}>
                                     <Slider
-                                        style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                                        style={styles.sliderSlider}
                                         minimumValue={0}
                                         maximumValue={100}
-                                        minimumTrackTintColor="#068ae8"
-                                        maximumTrackTintColor="#ABABAB"
+                                        minimumTrackTintColor={styles.blueColor}
+                                        maximumTrackTintColor={styles.placeholderColor}
                                         onSlidingComplete={(value) => {
                                             this.setState({ newTaskImportance: value })
                                             this.props.importance(value)
