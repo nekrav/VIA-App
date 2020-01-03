@@ -15,6 +15,7 @@ const textColor = "#2d3142"
 const finishedBackgroundColor = "#a8ffe0"
 const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
+const homeColorButton = "#48A2F8"
 
 const { width, height } = Dimensions.get('window');
 
@@ -172,9 +173,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor: homeColorButton,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor: homeColorButton,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
