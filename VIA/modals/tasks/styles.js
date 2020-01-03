@@ -201,7 +201,7 @@ module.exports = StyleSheet.create({
     createSelectedDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: textColor,
+        color: backgroundColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
