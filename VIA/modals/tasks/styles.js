@@ -22,41 +22,6 @@ const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
-    outerView: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: backgroundColor,
-    },
-    outerViewDone: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: finishedBackgroundColor,
-    },
-    topNav: {
-        marginBottom: 5,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-    },
-    trashButton: {
-        marginRight: "8%",
-        justifyContent: "center",
-
-    },
-    topNavText: {
-        fontFamily: fontFamily,
-        fontSize: titleFontSize
-    },
-    backButton: {
-        marginLeft: "8%",
-    },
-    nameTextInput: {
-        fontSize: 28,
-        fontFamily: fontFamily,
-        color: "black",
-        marginLeft: leftMargin,
-    },
-
-
     titleContainer: {
         flexDirection: "row"
     },
@@ -141,6 +106,35 @@ module.exports = StyleSheet.create({
         flex: 1,
     },
 
+    /* #region Outer Structure */
+    outerView: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: backgroundColor,
+    },
+    outerViewDone: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: finishedBackgroundColor,
+    },
+    /* #endregion */
+
+    /* #region  Top Navigation */
+    topNav: {
+        marginBottom: 5,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+    },
+    trashButton: {
+        marginRight: "8%",
+        justifyContent: "center",
+
+    },
+    topNavBackButton: {
+        marginLeft: "8%",
+    },
+    /* #endregion */
+
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
@@ -188,7 +182,7 @@ module.exports = StyleSheet.create({
             height: 1,
             width: 0
         }
-       
+
     },
     createDateText: {
         fontSize: 18,
@@ -211,10 +205,10 @@ module.exports = StyleSheet.create({
 
     /* #region  Sliders Section */
 
-    sliderSlider:{
-        width: 250, 
-        height: 1, 
-        transform: [{ rotate: '270deg' }] 
+    sliderSlider: {
+        width: 250,
+        height: 1,
+        transform: [{ rotate: '270deg' }]
     },
     slidersSection: {
         flexDirection: "column",
@@ -426,7 +420,7 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
     },
     /* #endregion */
-    
+
     notesTitle: {
         fontSize: 18,
     },

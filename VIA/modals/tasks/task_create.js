@@ -148,7 +148,7 @@ export class CreateTask extends React.Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
                         <View style={styles.topNav}>
-                            <TouchableOpacity style={styles.backButton}
+                            <TouchableOpacity style={styles.topNavBackButton}
                                 onPress={this.props.closeModal}>
                                 <SIcon name="arrow-left" size={30} color="#000" />
                             </TouchableOpacity>

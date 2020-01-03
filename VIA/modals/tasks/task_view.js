@@ -316,7 +316,7 @@ export class ViewTask extends React.Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
                         <View style={styles.topNav}>
-                            <TouchableOpacity style={styles.backButton}
+                            <TouchableOpacity style={styles.topNavBackButton}
                                 onPress={this.props.closeModal}>
                                 <SIcon name="arrow-left" size={30} color="#000" />
                             </TouchableOpacity>
@@ -330,7 +330,7 @@ export class ViewTask extends React.Component {
                                 <TextInput
                                     maxLength={40}
                                     onEndEditing={this.props.save()}
-                                    style={styles.nameTextInput}
+                                    style={styles.createNameText}
                                     multiline={true}
                                     value={this.props.selectedItem.name}
                                     onChangeText={this.props.editName}>
