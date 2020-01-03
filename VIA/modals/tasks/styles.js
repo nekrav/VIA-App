@@ -170,10 +170,24 @@ module.exports = StyleSheet.create({
 
     /* #region Create Due Date Section */
     createDueDateContainer: {
-        marginLeft: 5,
-        marginRight: 5,
-        flexDirection: "row",
         justifyContent: 'space-between',
+        borderRadius: 10,
+        backgroundColor: grayColor,
+        borderTopWidth: 2,
+        borderTopColor: grayColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+       
     },
     createDateText: {
         fontSize: 18,
@@ -190,6 +204,7 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
+        marginRight: 5
     },
     /* #endregion */
 
