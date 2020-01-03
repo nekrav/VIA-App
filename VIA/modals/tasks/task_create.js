@@ -76,12 +76,18 @@ export class CreateTask extends React.Component {
                     this.setProjectSelectionModalVisibility(true);
                 }}>
                     <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                    <Text style={styles.notificationTimeButtonText}>
+                                <SIcon name="layers" size={20} color="#ABABAB" />
+                            </Text>
                 </TouchableOpacity>
             );
         } else {
             return (
                 <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
                     <Text style={styles.createProjectSelectionButtonText}>Is this part of a bigger project?</Text>
+                    <Text style={styles.notificationTimeButtonText}>
+                                <SIcon name="layers" size={20} color="#ABABAB" />
+                            </Text>
                 </TouchableOpacity>
             );
         }

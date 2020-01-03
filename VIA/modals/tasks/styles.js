@@ -266,6 +266,7 @@ module.exports = StyleSheet.create({
     createProjectSelectionContainer: {
         borderRadius: 10,
         backgroundColor: grayColor,
+        justifyContent: 'space-between',
         borderTopWidth: 2,
         borderTopColor: grayColor,
         flexDirection: "row",
