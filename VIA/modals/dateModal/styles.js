@@ -184,6 +184,24 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
+    bottomButtonCenter: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
     bottomButtonRight: {
         marginLeft: 50,
         paddingLeft: 35,

@@ -26,7 +26,7 @@ export class DateModal extends React.Component {
         };
     }
 
-    setDate = (date) => {
+    setDate = (event, date) => {
         console.war
         this.props.setDate(date.toString())
         this.setState({
@@ -57,16 +57,26 @@ export class DateModal extends React.Component {
                     /></View>
                     <View style={styles.bottomButtonsContainer}>
                     <TouchableOpacity style={styles.bottomButtonLeft} 
+                    onPress={() => { 
+                        this.setDate(null ,itemDate)
+                        this.props.closeModal()}}>
+                        <Text style={styles.bottomButtonText}>Select</Text>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={styles.bottomButtonCenter} 
                     onPress={() => {
                         this.setDate(itemDate)
                         this.props.closeModal}}>
-                        <Text style={styles.bottomButtonText}>Select</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.bottomButtonRight} 
-                    onPress={() => {
-                        this.props.closeModal}}>
+                        <Text style={styles.bottomButtonText}>Today's date</Text>
+                    </TouchableOpacity> */}
+                     <TouchableOpacity style={styles.bottomButtonRight} 
+                    onPress={
+                        this.props.closeModal}>
                         <Text style={styles.bottomButtonText}>Close</Text>
-                    </TouchableOpacity></View>
+                    </TouchableOpacity>
+                   </View>
+                   {/* <View style={styles.bottomButtonsContainer}> */}
+                  
+                    {/* </View> */}
                 </View>
             </Modal>
         );
