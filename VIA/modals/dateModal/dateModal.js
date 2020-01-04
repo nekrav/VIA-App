@@ -43,15 +43,12 @@ export class DateModal extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 <View style={styles.outerView}>
                     {this.props.children}
-                    <View style={styles.title}>
-                        <Text>Select {this.props.itemName} </Text>
-                    </View>
                     <DateTimePicker
                         value={itemDate}
                         mode='date'
                         is24Hour={true}
                         minimumDate={dateInDate}
-                        display="default"
+                        display="spinner"
                         onChange={this.setDate}
                     />
                     <View>
