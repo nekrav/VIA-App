@@ -26,7 +26,8 @@ export class DateModal extends React.Component {
         };
     }
 
-    setDate = (event, date) => {
+    setDate = (date) => {
+        console.war
         this.props.setDate(date.toString())
         this.setState({
             itemDate: date
@@ -34,7 +35,9 @@ export class DateModal extends React.Component {
     }
 
     render() {
+       
         const { itemDate } = this.state
+        console.warn(itemDate)
         return (
             <Modal
                 animationType={this.props.animationType}
@@ -52,9 +55,18 @@ export class DateModal extends React.Component {
                         display="spinner"
                         onChange={this.setDate}
                     /></View>
-                    <TouchableOpacity style={styles.closeButton} onPress={this.props.closeModal}>
-                        <Text style={styles.closeButtonText}>Select</Text>
+                    <View style={styles.bottomButtonsContainer}>
+                    <TouchableOpacity style={styles.bottomButtonLeft} 
+                    onPress={() => {
+                        this.setDate(itemDate)
+                        this.props.closeModal}}>
+                        <Text style={styles.bottomButtonText}>Select</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.bottomButtonRight} 
+                    onPress={() => {
+                        this.props.closeModal}}>
+                        <Text style={styles.bottomButtonText}>Close</Text>
+                    </TouchableOpacity></View>
                 </View>
             </Modal>
         );

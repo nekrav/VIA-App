@@ -63,22 +63,101 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    /* #region  Close Button */
-    closeButton: {
-        // flex: 1,
-        // marginLeft: 50,
-        marginTop: 20,
-        marginLeft: "32%",
-        marginRight: "32%",
+    /* #region  Bottom Buttons */
+    bottomButtonsContainer: {
+        paddingTop: 18,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 10,
+    },
+
+    // /* #region  Close Button */
+    // closeButton: {
+    //     // flex: 1,
+    //     // marginLeft: 50,
+    //     marginTop: 20,
+    //     // marginLeft: "32%",
+    //     // marginRight: "32%",
+    //     paddingLeft: 35,
+    //     paddingRight: 35,
+    //     paddingTop: 10,
+    //     paddingBottom: 10,
+    //     borderRadius: 20,
+    //     borderWidth: 2,
+    //     borderColor: blueColor,
+    //     backgroundColor: blueColor,
+    //     alignItems: 'center',
+    //     shadowColor: "#000000",
+    //     shadowOpacity: 0.8,
+    //     shadowRadius: 2,
+    //     shadowOffset: {
+    //         height: 1,
+    //         width: 0
+    //     }
+    // },
+    // closeButtonText: {
+    //     justifyContent: "center",
+    //     color: textColor,
+    //     fontSize: buttonFontSize,
+    //     fontFamily: fontFamily
+    // },
+
+    // /* #endregion */
+
+    // /* #region  Close Button */
+    // closeButton: {
+    //     // flex: 1,
+    //     // marginLeft: 50,
+    //     marginTop: 20,
+    //     marginLeft: "32%",
+    //     marginRight: "32%",
+    //     paddingLeft: 35,
+    //     paddingRight: 35,
+    //     paddingTop: 10,
+    //     paddingBottom: 10,
+    //     borderRadius: 20,
+    //     borderWidth: 2,
+    //     borderColor: blueColor,
+    //     backgroundColor: blueColor,
+    //     alignItems: 'center',
+    //     shadowColor: "#000000",
+    //     shadowOpacity: 0.8,
+    //     shadowRadius: 2,
+    //     shadowOffset: {
+    //         height: 1,
+    //         width: 0
+    //     }
+    // },
+    // closeButtonText: {
+    //     justifyContent: "center",
+    //     color: textColor,
+    //     fontSize: buttonFontSize,
+    //     fontFamily: fontFamily
+    // },
+
+    // /* #endregion */
+
+    // /* #endregion */
+    
+
+
+     /* #region Create Bottom Buttons Section */
+     bottomButtonsContainer: {
+        paddingTop: 18,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 10,
+    },
+    bottomButtonLeftDisabled: {
+        marginLeft: 50,
         paddingLeft: 35,
         paddingRight: 35,
         paddingTop: 10,
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
-        alignItems: 'center',
+        borderColor: placeholderColor,
+        backgroundColor: placeholderColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -87,13 +166,48 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
-    closeButtonText: {
-        justifyContent: "center",
-        color: textColor,
-        fontSize: buttonFontSize,
-        fontFamily: fontFamily
+    bottomButtonLeft: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
     },
-    
+    bottomButtonRight: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        marginRight: 50,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
+    bottomButtonText: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+    },
     /* #endregion */
 
 })
