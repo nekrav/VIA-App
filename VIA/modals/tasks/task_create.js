@@ -77,8 +77,8 @@ export class CreateTask extends React.Component {
                 }}>
                     <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
                     <Text style={styles.notificationTimeButtonText}>
-                                <SIcon name="layers" size={20} color="#ABABAB" />
-                            </Text>
+                        <SIcon name="layers" size={20} color="#ABABAB" />
+                    </Text>
                 </TouchableOpacity>
             );
         } else {
@@ -86,8 +86,8 @@ export class CreateTask extends React.Component {
                 <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
                     <Text style={styles.createProjectSelectionButtonText}>Is this part of a bigger project?</Text>
                     <Text style={styles.notificationTimeButtonText}>
-                                <SIcon name="layers" size={20} color="#ABABAB" />
-                            </Text>
+                        <SIcon name="layers" size={20} color="#ABABAB" />
+                    </Text>
                 </TouchableOpacity>
             );
         }
@@ -144,7 +144,7 @@ export class CreateTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 {this.showProjectSelectionModal()}
-                {this.renderShowDate()}
+
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
                         <View style={styles.topNav}>
@@ -164,8 +164,9 @@ export class CreateTask extends React.Component {
                                 multiline={true}
                                 placeholder={"Name"}
                                 onChangeText={value => {
-                                    this.setState({newTaskName: value})
-                                    this.props.name(value)}}>
+                                    this.setState({ newTaskName: value })
+                                    this.props.name(value)
+                                }}>
                             </TextInput>
                         </TouchableOpacity>
                         {this.renderDueDate()}
@@ -177,7 +178,9 @@ export class CreateTask extends React.Component {
                         </Text>
                                 </View>
                             </View>
+
                             <View style={styles.slidersContainer}>
+                            {this.renderShowDate()}
                                 <View style={styles.sliderContainerCenter}>
                                     <Slider
                                         style={styles.sliderSlider}
@@ -224,10 +227,10 @@ export class CreateTask extends React.Component {
                         </TouchableOpacity>
 
                         <View style={styles.bottomButtonsContainer}>
-                            <TouchableOpacity 
-                            disabled={this.state.newTaskName != '' ? false : true}
-                            style={this.state.newTaskName != '' ? styles.bottomButtonLeft : styles.bottomButtonLeftDisabled} 
-                            onPress={this.props.save}>
+                            <TouchableOpacity
+                                disabled={this.state.newTaskName != '' ? false : true}
+                                style={this.state.newTaskName != '' ? styles.bottomButtonLeft : styles.bottomButtonLeftDisabled}
+                                onPress={this.props.save}>
                                 <Text style={styles.bottomButtonText} >Save</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.bottomButtonRight} onPress={this.props.closeModal}>

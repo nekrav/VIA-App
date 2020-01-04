@@ -6,7 +6,7 @@ import Moment from 'moment'
 const styles = require('./styles');
 
 var date = new Date().getDate(); //Current Date
-var month = new Date().getMonth() + 1; //Current Month
+var month = new Date().getMonth(); //Current Month
 var year = new Date().getFullYear(); //Current Year
 var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
@@ -34,7 +34,7 @@ export class DateModal extends React.Component {
     }
 
     render() {
-        const {itemDate} = this.state
+        const { itemDate } = this.state
         return (
             <Modal
                 animationType={this.props.animationType}
@@ -43,6 +43,7 @@ export class DateModal extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 <View style={styles.outerView}>
                     {this.props.children}
+                    <View style={styles.datePickerView}> 
                     <DateTimePicker
                         value={itemDate}
                         mode='date'
@@ -50,15 +51,12 @@ export class DateModal extends React.Component {
                         minimumDate={dateInDate}
                         display="spinner"
                         onChange={this.setDate}
-                    />
-                    <View>
-                        <TouchableOpacity onPress={this.props.closeModal}>
-                            <Text>Close</Text>
-                        </TouchableOpacity>
-                    </View>
+                    /></View>
+                    <TouchableOpacity style={styles.closeButton} onPress={this.props.closeModal}>
+                        <Text style={styles.closeButtonText}>Select</Text>
+                    </TouchableOpacity>
                 </View>
             </Modal>
         );
     }
-
 }

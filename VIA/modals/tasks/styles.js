@@ -7,6 +7,7 @@ const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
 const leftMargin = 5
+const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#ffffff"

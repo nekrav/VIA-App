@@ -6,6 +6,7 @@ import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
+const buttonFontSize = 20
 const leftMargin = 5
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
@@ -25,17 +26,26 @@ module.exports = StyleSheet.create({
     /* #region Outer Structure */
     outerView: {
         flex: 1,
+        // opacity:1,
         flexDirection: 'column',
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
+        backgroundColor: 'rgba(26, 26, 26, 0.9)',
         justifyContent: 'center',
+        alignContent: 'center'
+        // alignItems: "center",
 
     },
     outerViewDone: {
-        flex: 1,
+        flex: 2,
         flexDirection: 'column',
         backgroundColor: finishedBackgroundColor,
     },
     /* #endregion */
+
+    datePickerView: {
+        // flex: 2,
+        // alignItems: 'center'
+
+    },
 
     /* #region  Top Navigation */
     topNav: {
@@ -53,6 +63,37 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-
+    /* #region  Close Button */
+    closeButton: {
+        // flex: 1,
+        // marginLeft: 50,
+        marginTop: 20,
+        marginLeft: "32%",
+        marginRight: "32%",
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
+        alignItems: 'center',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
+    closeButtonText: {
+        justifyContent: "center",
+        color: textColor,
+        fontSize: buttonFontSize,
+        fontFamily: fontFamily
+    },
+    
+    /* #endregion */
 
 })
