@@ -71,8 +71,8 @@ module.exports = StyleSheet.create({
         marginBottom: 10,
     },
 
-     /* #region Create Bottom Buttons Section */
-     bottomButtonsContainer: {
+    /* #region Create Bottom Buttons Section */
+    bottomButtonsContainer: {
         paddingTop: 18,
         flexDirection: "row",
         justifyContent: "space-between",
@@ -156,6 +156,67 @@ module.exports = StyleSheet.create({
         textAlign: 'center',
         fontFamily: fontFamily,
     },
+    /* #endregion */
+
+    weekdayNotificationContainer: {
+        backgroundColor: backgroundColor,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    addTimeButtonContainer: {
+       
+        // paddingLeft: 5,
+        // paddingRight: 5,
+        // paddingTop: 5,
+        // paddingBottom: 5,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+        
+    },
+
+
+
+    /* #region  Weekday notification checkbox */
+    weekSelectionContainer: {
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        marginRight: 50,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
+
+    checkboxText: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+    }
     /* #endregion */
 
 })
