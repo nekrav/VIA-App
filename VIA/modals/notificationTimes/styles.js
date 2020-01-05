@@ -163,19 +163,9 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    /* #region  Add Notification Time Button */
     addTimeButtonContainer: {
-        // borderRadius: 20,
         flex: 1,
-        // borderWidth: 1,
-        // borderColor: placeholderColor,
-        // backgroundColor: backgroundColor,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // },
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
@@ -183,6 +173,8 @@ module.exports = StyleSheet.create({
     addTimeButtonContainerView: {
         marginLeft: 10,
         borderRadius: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
         flex: 1,
         borderWidth: 1,
         borderColor: placeholderColor,
@@ -203,6 +195,7 @@ module.exports = StyleSheet.create({
         textAlign: 'center',
         fontFamily: fontFamily,
     },
+    /* #endregion */
 
 
 
