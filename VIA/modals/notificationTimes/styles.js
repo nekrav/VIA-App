@@ -164,13 +164,27 @@ module.exports = StyleSheet.create({
         justifyContent: 'space-between'
     },
     addTimeButtonContainer: {
-       
-        // paddingLeft: 5,
-        // paddingRight: 5,
-        // paddingTop: 5,
-        // paddingBottom: 5,
+        // borderRadius: 20,
+        flex: 1,
+        // borderWidth: 1,
+        // borderColor: placeholderColor,
+        // backgroundColor: backgroundColor,
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // },
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonContainerView: {
+        marginLeft: 10,
         borderRadius: 20,
-        borderWidth: 2,
+        flex: 1,
+        borderWidth: 1,
         borderColor: placeholderColor,
         backgroundColor: backgroundColor,
         shadowColor: "#000000",
@@ -180,6 +194,7 @@ module.exports = StyleSheet.create({
             height: 1,
             width: 0
         },
+        marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -187,7 +202,6 @@ module.exports = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         fontFamily: fontFamily,
-        
     },
 
 

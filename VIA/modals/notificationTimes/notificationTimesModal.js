@@ -59,7 +59,12 @@ export class NotificationTimesModal extends React.Component {
                             containerStyle={styles.weekSelectionContainer}
                             onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
                         />
-                        <TouchableOpacity style={styles.addTimeButtonContainer}><SIcon name="plus" size={16} color="#000" /><Text style={styles.addTimeButtonText}>Add Time</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}>
+                            <View style={styles.addTimeButtonContainerView}>
+                            <SIcon style={{marginLeft: 10,}} name="plus" size={16} color="#000" />
+                            <Text style={styles.addTimeButtonText}> Add Time</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
 
                     <TouchableOpacity style={styles.bottomButtonRight}
