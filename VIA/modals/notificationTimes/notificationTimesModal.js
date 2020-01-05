@@ -28,7 +28,6 @@ export class NotificationTimesModal extends React.Component {
     }
 
     setDate = (event, date) => {
-        console.war
         this.props.setDate(date.toString())
         this.setState({
             itemDate: date
