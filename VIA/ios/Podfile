@@ -49,6 +49,8 @@ target 'VIA' do
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
+  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
+
   target 'VIATests' do
     inherit! :search_paths
     # Pods for testing
