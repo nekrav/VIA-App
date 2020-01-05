@@ -160,6 +160,12 @@ module.exports = StyleSheet.create({
 
     weekdayNotificationContainer: {
         backgroundColor: backgroundColor,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+
+    weekdayNotificationButtonsContainer: {
+        backgroundColor: backgroundColor,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
@@ -223,7 +229,17 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-    }
+    },
     /* #endregion */
+
+    weekdayNotificationTimesContainer: {
+       
+    },
+    weekdayNotificationTimeContainer: {
+        flexDirection: 'row',
+    }, 
+    weekdayNotificationTimeText: {
+        
+    }
 
 })

@@ -5,6 +5,7 @@ import Moment from 'moment'
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { CheckBox } from 'react-native-elements'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const styles = require('./styles');
 
@@ -48,23 +49,42 @@ export class NotificationTimesModal extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 <View style={styles.outerView}>
                     <View style={styles.weekdayNotificationContainer}>
-                        <CheckBox
-                            center
-                            title='Monday'
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
+                        <View style={styles.weekdayNotificationButtonsContainer}>
+                            <CheckBox
+                                center
+                                title='Monday'
+                                checkedIcon='dot-circle-o'
+                                uncheckedIcon='circle-o'
 
-                            checked={this.state.mondayChecked}
-                            textStyle={styles.checkboxText}
-                            containerStyle={styles.weekSelectionContainer}
-                            onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
-                        />
-                        <TouchableOpacity style={styles.addTimeButtonContainer}>
-                            <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{marginLeft: 10,}} name="plus" size={16} color="#000" />
-                            <Text style={styles.addTimeButtonText}> Add Time</Text>
-                            </View>
-                        </TouchableOpacity>
+                                checked={this.state.mondayChecked}
+                                textStyle={styles.checkboxText}
+                                containerStyle={styles.weekSelectionContainer}
+                                onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
+                            />
+                            <TouchableOpacity style={styles.addTimeButtonContainer}>
+                                <View style={styles.addTimeButtonContainerView}>
+                                    <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                    <Text style={styles.addTimeButtonText}> Add Time</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <ScrollView
+                            horizontal={true}
+                            style={styles.weekdayNotificationTimesContainer}>
+                            <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#000" />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                            </TouchableOpacity>
+                        </ScrollView>
                     </View>
 
                     <TouchableOpacity style={styles.bottomButtonRight}
