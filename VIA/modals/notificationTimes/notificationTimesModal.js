@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, Fla
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment'
 import { TabView, SceneMap } from 'react-native-tab-view';
-
+import { CheckBox } from 'react-native-elements'
 const styles = require('./styles');
 
 var date = new Date().getDate(); //Current Date
@@ -23,7 +23,8 @@ export class NotificationTimesModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemDate: this.props.itemDate ? new Date(this.props.itemDate) : dateInDate
+            itemDate: this.props.itemDate ? new Date(this.props.itemDate) : dateInDate,
+            mondayChecked: false,
         };
     }
 
@@ -35,7 +36,7 @@ export class NotificationTimesModal extends React.Component {
     }
 
     render() {
-       
+
         const { itemDate } = this.state
         console.warn(itemDate)
         return (
@@ -45,38 +46,23 @@ export class NotificationTimesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <View style={styles.outerView}>
-                    {this.props.children}
-                    <View style={styles.datePickerView}> 
-                    <DateTimePicker
-                        value={itemDate}
-                        mode='date'
-                        is24Hour={true}
-                        minimumDate={dateInDate}
-                        display="spinner"
-                        onChange={this.setDate}
-                    /></View>
-                    <View style={styles.bottomButtonsContainer}>
-                    <TouchableOpacity style={styles.bottomButtonLeft} 
-                    onPress={() => { 
-                        this.setDate(null ,itemDate)
-                        this.props.closeModal()}}>
-                        <Text style={styles.bottomButtonText}>Select</Text>
-                    </TouchableOpacity>
-                    {/* <TouchableOpacity style={styles.bottomButtonCenter} 
-                    onPress={() => {
-                        this.setDate(itemDate)
-                        this.props.closeModal}}>
-                        <Text style={styles.bottomButtonText}>Today's date</Text>
-                    </TouchableOpacity> */}
-                     <TouchableOpacity style={styles.bottomButtonRight} 
-                    onPress={
-                        this.props.closeModal}>
+
+                    <CheckBox
+                        style={styles.checkBox}
+                        center
+                        title='Click Here'
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        checked={this.state.mondayChecked}
+                        onPress={() => this.setState({mondayChecked: !this.state.mondayChecked})}
+                    />
+
+                    <TouchableOpacity style={styles.bottomButtonRight}
+                        onPress={
+                            this.props.closeModal}>
                         <Text style={styles.bottomButtonText}>Close</Text>
                     </TouchableOpacity>
-                   </View>
-                   {/* <View style={styles.bottomButtonsContainer}> */}
-                  
-                    {/* </View> */}
+
                 </View>
             </Modal>
         );
