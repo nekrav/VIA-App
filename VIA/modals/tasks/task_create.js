@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button, Dimensions } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
+import { notificationTimesModal, NotificationTimesModal} from '../notificationTimes/notificationTimesModal'
 import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -108,8 +109,23 @@ export class CreateTask extends React.Component {
         return null;
     }
 
-    setNotificationTimesVisibility(visibility) {
+    setNotificationTimesVisibility(visible) {
         this.setState({ notificationTimesModal: visible })
+    }
+
+    renderNotificationTimesModal() {
+        if (this.state.notificationTimesModal) {
+            return <NotificationTimesModal
+                animationType="fade"
+                transparent={true}
+                setDate={(item) => {
+                    this.props.due_date(item)
+                    this.setState({ itemDate: item })
+                }}
+                closeModal={() => { this.setNotificationTimesVisibility(false) }}>
+            </NotificationTimesModal>
+        }
+        return null;
     }
 
     renderDueDate() {
@@ -170,6 +186,7 @@ export class CreateTask extends React.Component {
                             </TextInput>
                         </TouchableOpacity>
                         {this.renderDueDate()}
+                        {this.renderNotificationTimesModal()}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
                                 <View style={styles.sliderTitleContainerCenter}>

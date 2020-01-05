@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList } from 'react-native'; // Version can be specified in package.json
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment'
+import { TabView, SceneMap } from 'react-native-tab-view';
 
 const styles = require('./styles');
 
