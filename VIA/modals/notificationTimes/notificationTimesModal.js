@@ -72,7 +72,6 @@ export class NotificationTimesModal extends React.Component {
 
 
     render() {
-
         const { itemDate } = this.state
         return (
             <Modal

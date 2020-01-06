@@ -35,9 +35,7 @@ export class DateModal extends React.Component {
     }
 
     render() {
-       
         const { itemDate } = this.state
-        console.warn(itemDate)
         return (
             <Modal
                 animationType={this.props.animationType}
