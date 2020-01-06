@@ -28,6 +28,7 @@ export class NotificationTimesModal extends React.Component {
         this.state = {
             itemDate: this.props.itemDate ? new Date(this.props.itemDate) : dateInDate,
             mondayChecked: false,
+            items: ['1', '2', '3', '4', '5','6']
         };
     }
 
@@ -68,34 +69,51 @@ export class NotificationTimesModal extends React.Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        <ScrollView
+    
+                        <View
+                          
+                            style={styles.weekdayNotificationTimesContainer}>
+                        <FlatList
+                            horizontal={true}
+                            data={this.state.items}
+                            renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                            <View style={styles.weekdayNotificationTimeContainerView}>
+                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                            </View>
+                        </TouchableOpacity>
+                        } /></View>
+
+
+
+                        {/* <ScrollView
                             horizontal={true}
                             style={styles.weekdayNotificationTimesContainer}>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                 <View style={styles.weekdayNotificationTimeContainerView}>
-                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
-                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                    <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                    <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                 <View style={styles.weekdayNotificationTimeContainerView}>
-                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
-                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                    <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                    <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                 <View style={styles.weekdayNotificationTimeContainerView}>
-                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
-                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                    <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                    <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                 <View style={styles.weekdayNotificationTimeContainerView}>
-                                <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
-                                <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                    <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                    <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                 </View>
                             </TouchableOpacity>
-                        </ScrollView>
+                        </ScrollView> */}
                     </View>
 
                     <TouchableOpacity style={styles.bottomButtonRight}
