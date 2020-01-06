@@ -48,7 +48,6 @@ export class DateModal extends React.Component {
                     {this.props.children}
                     <View style={styles.datePickerView}> 
                     <DateTimePicker
-
                         value={itemDate}
                         mode={this.props.pickerMode}
                         is24Hour={true}

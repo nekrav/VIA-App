@@ -22,6 +22,8 @@ var sec = new Date().getSeconds(); //Current Seconds
 const todaysDate = year + '-' + month + '-' + date;
 const dateInDate = new Date(year, month, date);
 
+const currentTime = hours + ":" + min
+
 
 export class NotificationTimesModal extends React.Component {
 
@@ -88,7 +90,6 @@ export class NotificationTimesModal extends React.Component {
                                 title='Monday'
                                 checkedIcon='dot-circle-o'
                                 uncheckedIcon='circle-o'
-
                                 checked={this.state.mondayChecked}
                                 textStyle={styles.checkboxText}
                                 containerStyle={styles.weekSelectionContainer}
