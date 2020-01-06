@@ -6,6 +6,8 @@ import { TabView, SceneMap } from 'react-native-tab-view';
 import { CheckBox } from 'react-native-elements'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { DateModal } from '../dateModal/dateModal'
+
 
 const styles = require('./styles');
 
@@ -28,7 +30,8 @@ export class NotificationTimesModal extends React.Component {
         this.state = {
             itemDate: this.props.itemDate ? new Date(this.props.itemDate) : dateInDate,
             mondayChecked: false,
-            mondayNotificationTimes: []
+            mondayNotificationTimes: [],
+            notificationTimeSelectionModalVisibility: false,
         };
     }
 
@@ -45,6 +48,28 @@ export class NotificationTimesModal extends React.Component {
         this.setState({ mondayNotificationTimes: newTimesArray})
     }
 
+    toggleNotificationTimeSelectionModal(visibility) {
+        this.setState({notificationTimeSelectionModalVisibility: visibility})
+    }
+
+    renderShowNotificationTimeSelection() {
+        if (this.state.notificationTimeSelectionModalVisibility) {
+            return <DateModal
+                pickerMode="time"
+                animationType="fade"
+                transparent={true}
+                setDate={(item) => {
+                    var newArray = this.state.mondayNotificationTimes.concat(item)
+                    this.props.due_date(item)
+                    this.setState({ itemDate: item })
+                }}
+                closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
+            </DateModal>
+        }
+        return null;
+    }
+
+
     render() {
 
         const { itemDate } = this.state
@@ -54,6 +79,7 @@ export class NotificationTimesModal extends React.Component {
                 transparent={true}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
+                    {this.renderShowNotificationTimeSelection()}
                 <View style={styles.outerView}>
                     <View style={styles.weekdayNotificationContainer}>
                         <View style={styles.weekdayNotificationButtonsContainer}>
@@ -68,7 +94,8 @@ export class NotificationTimesModal extends React.Component {
                                 containerStyle={styles.weekSelectionContainer}
                                 onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
                             />
-                            <TouchableOpacity style={styles.addTimeButtonContainer}>
+                            <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => { this.toggleNotificationTimeSelectionModal(true) }}>
                                 <View style={styles.addTimeButtonContainerView}>
                                     <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
                                     <Text style={styles.addTimeButtonText}> Add Time</Text>

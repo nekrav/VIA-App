@@ -97,6 +97,7 @@ export class CreateTask extends React.Component {
     renderShowDate() {
         if (this.state.showDate) {
             return <DateModal
+                pickerMode="date"
                 animationType="fade"
                 transparent={true}
                 setDate={(item) => {
