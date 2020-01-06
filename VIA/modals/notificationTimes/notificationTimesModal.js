@@ -72,8 +72,10 @@ export class NotificationTimesModal extends React.Component {
                             horizontal={true}
                             style={styles.weekdayNotificationTimesContainer}>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                <View style={styles.weekdayNotificationTimeContainerView}>
                                 <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
                                 <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#000" />
+                                </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                 <Text style={styles.weekdayNotificationTimeText}>10:15</Text>

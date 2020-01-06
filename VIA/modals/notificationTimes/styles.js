@@ -236,8 +236,34 @@ module.exports = StyleSheet.create({
        
     },
     weekdayNotificationTimeContainer: {
+        flex: 1,
+        marginRight: 5,
         flexDirection: 'row',
+        alignItems: 'center',
+        
     }, 
+    weekdayNotificationTimeContainerView: {
+        marginLeft: 14,
+        borderRadius: 20,
+        paddingTop: 3,
+        paddingBottom: 3,
+        flex: 1,
+        borderWidth: 1,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft: 5,
+        paddingRight: 5,
+    },
     weekdayNotificationTimeText: {
         
     }
