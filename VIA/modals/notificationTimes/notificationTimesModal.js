@@ -28,7 +28,7 @@ export class NotificationTimesModal extends React.Component {
         this.state = {
             itemDate: this.props.itemDate ? new Date(this.props.itemDate) : dateInDate,
             mondayChecked: false,
-            items: ['1', '2', '3', '4', '5', '6']
+            mondayNotificationTimes: []
         };
     }
 
@@ -39,9 +39,10 @@ export class NotificationTimesModal extends React.Component {
         });
     }
 
-    addNotificationTime(dayOfTheWeek, hour)
+    addNotificationTime(hour)
     {
-        
+        var newTimesArray = this.state.mondayNotificationTimes.concat(hour)
+        this.setState({ mondayNotificationTimes: newTimesArray})
     }
 
     render() {
@@ -79,7 +80,7 @@ export class NotificationTimesModal extends React.Component {
                             style={styles.weekdayNotificationTimesContainer}>
                             <FlatList
                                 horizontal={true}
-                                data={this.state.items}
+                                data={this.state.mondayNotificationTimes}
                                 renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                     <View style={styles.weekdayNotificationTimeContainerView}>
                                         <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
