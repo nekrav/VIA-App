@@ -62,8 +62,8 @@ export class NotificationTimesModal extends React.Component {
                 transparent={true}
                 setDate={(item) => {
                     var newArray = this.state.mondayNotificationTimes.concat(item)
-                    this.props.due_date(item)
-                    this.setState({ itemDate: item })
+                    this.setState({ mondayNotificationTimes: newArray })
+                    this.toggleNotificationTimeSelectionModal(false)
                 }}
                 closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
             </DateModal>
