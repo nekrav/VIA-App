@@ -63,7 +63,6 @@ export class NotificationTimesModal extends React.Component {
                 setDate={(item) => {
                     var newArray = this.state.mondayNotificationTimes.concat(item)
                     this.setState({ mondayNotificationTimes: newArray })
-                    this.toggleNotificationTimeSelectionModal(false)
                 }}
                 closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
             </DateModal>
@@ -111,7 +110,7 @@ export class NotificationTimesModal extends React.Component {
                                 data={this.state.mondayNotificationTimes}
                                 renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                     <View style={styles.weekdayNotificationTimeContainerView}>
-                                        <Text style={styles.weekdayNotificationTimeText}>10:15</Text>
+                                        <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
                                         <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                     </View>
                                 </TouchableOpacity>
