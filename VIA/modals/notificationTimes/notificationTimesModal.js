@@ -18,6 +18,7 @@ var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
 
+const timeFormat = 'hh:mm'
 
 const todaysDate = year + '-' + month + '-' + date;
 const dateInDate = new Date(year, month, date);
@@ -56,15 +57,17 @@ export class NotificationTimesModal extends React.Component {
 
     renderShowNotificationTimeSelection() {
         if (this.state.notificationTimeSelectionModalVisibility) {
+            var newArray = this.state.mondayNotificationTimes
             return <DateModal
                 pickerMode="time"
                 animationType="fade"
                 transparent={true}
                 setDate={(item) => {
-                    var newArray = this.state.mondayNotificationTimes.concat(item)
-                    this.setState({ mondayNotificationTimes: newArray })
+                    newArray = this.state.mondayNotificationTimes.concat( Moment(new Date(item)).format(timeFormat))
+                   
                 }}
-                closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
+                
+                closeModal={() => {  this.setState({ mondayNotificationTimes: newArray }); this.toggleNotificationTimeSelectionModal(false) }}>
             </DateModal>
         }
         return null;
