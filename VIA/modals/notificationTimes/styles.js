@@ -233,14 +233,14 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     weekdayNotificationTimesContainer: {
-       
+       marginTop: 10,
+       marginBottom: 10,
     },
     weekdayNotificationTimeContainer: {
         flex: 1,
         marginRight: 5,
         flexDirection: 'row',
-        alignItems: 'center',
-        
+        alignItems: 'center',        
     }, 
     weekdayNotificationTimeContainerView: {
         marginLeft: 14,
@@ -261,11 +261,13 @@ module.exports = StyleSheet.create({
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 5,
-        paddingRight: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginBottom: 5
     },
     weekdayNotificationTimeText: {
-        
+        fontFamily: fontFamily,
+        fontSize: 16
     }
 
 })
