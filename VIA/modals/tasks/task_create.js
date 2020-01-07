@@ -104,6 +104,11 @@ export class CreateTask extends React.Component {
                     this.props.due_date(item)
                     this.setState({ itemDate: item })
                 }}
+                onSubmit={(item) => {
+                    this.props.due_date(item)
+                    this.setState({ itemDate: item })
+                    this.setDateModalVisibility(false)
+                }}
                 closeModal={() => { this.setDateModalVisibility(false) }}>
             </DateModal>
         }
