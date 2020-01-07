@@ -62,9 +62,13 @@ export class NotificationTimesModal extends React.Component {
                 pickerMode="time"
                 animationType="fade"
                 transparent={true}
-                setDate={(item) => {
+                onSubmit={(item) => {
                     newArray = this.state.mondayNotificationTimes.concat( Moment(new Date(item)).format(timeFormat))
                     this.setState({ mondayNotificationTimes: newArray });
+                }}
+                setDate={(item) => {
+                    newArray = this.state.mondayNotificationTimes.concat( Moment(new Date(item)).format(timeFormat))
+                    // this.setState({ mondayNotificationTimes: newArray });
                 }}
                 closeModal={() => {   this.toggleNotificationTimeSelectionModal(false) }}>
             </DateModal>
