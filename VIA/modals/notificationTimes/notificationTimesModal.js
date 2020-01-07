@@ -35,6 +35,7 @@ export class NotificationTimesModal extends React.Component {
             mondayChecked: false,
             mondayNotificationTimes: [],
             notificationTimeSelectionModalVisibility: false,
+            selectedDayToAddTimeTo: '',
             times: [
                 {
                     key: 'Monday',
@@ -98,9 +99,10 @@ export class NotificationTimesModal extends React.Component {
         return (
 
             <FlatList
-                data={this.state.times}
+                data={arr}
                 renderItem={(day) =>
                     <View style={styles.weekdayNotificationContainer}>
+                        {this.renderShowNotificationTimeSelection(day.item.key, arr)}
                         <View style={styles.weekdayNotificationButtonsContainer}>
                             <CheckBox
                                 center
@@ -113,12 +115,15 @@ export class NotificationTimesModal extends React.Component {
                                 containerStyle={styles.weekSelectionContainer}
                                 onPress={() => {
                                     day.item.checked = !day.item.checked
-                                    const arr = this.state.times
-                                    this.setState({ times: arr})
+                                    this.setState({ times: arr })
                                 }}
                             />
                             <TouchableOpacity style={styles.addTimeButtonContainer}
-                                onPress={() => { this.toggleNotificationTimeSelectionModal(true) }}>
+                                onPress={() => {
+                                    this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
+                                        this.toggleNotificationTimeSelectionModal(true)
+                                    })
+                                }}>
                                 <View style={styles.addTimeButtonContainerView}>
                                     <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
                                     <Text style={styles.addTimeButtonText}> Add Time</Text>
@@ -130,7 +135,7 @@ export class NotificationTimesModal extends React.Component {
                             style={styles.weekdayNotificationTimesContainer}>
                             <FlatList
                                 horizontal={true}
-                                data={this.state.mondayNotificationTimes}
+                                data={day.item.times}
                                 renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                                     <View style={styles.weekdayNotificationTimeContainerView}>
                                         <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
@@ -140,28 +145,27 @@ export class NotificationTimesModal extends React.Component {
                                 } />
                         </View>
                     </View>
-
-
-
-
-
                 } />
         )
     }
 
-    renderShowNotificationTimeSelection() {
+    renderShowNotificationTimeSelection(day, arr) {
+        // console.warn(day)
         if (this.state.notificationTimeSelectionModalVisibility) {
-            var newArray = this.state.mondayNotificationTimes
             return <DateModal
                 pickerMode="time"
                 animationType="fade"
                 transparent={true}
                 onSubmit={(item) => {
-                    newArray = this.state.mondayNotificationTimes.concat(Moment(new Date(item)).format(timeFormat))
-                    this.setState({ mondayNotificationTimes: newArray });
+                    console.warn(this.state.selectedDayToAddTimeTo)
+                    // console.warn(arr.find(theDay=> theDay.key === day))
+                    // newArray = arr.find(theDay=> theDay.key === day.key).times.concat(Moment(new Date(item)).format(timeFormat))
+                    // day.times = newArray
+                    // console.warn(arr)
+                    // this.setState({ times: arr });
                 }}
                 setDate={(item) => {
-                    newArray = this.state.mondayNotificationTimes.concat(Moment(new Date(item)).format(timeFormat))
+                    newArray = day.times.concat(Moment(new Date(item)).format(timeFormat))
                     // this.setState({ mondayNotificationTimes: newArray });
                 }}
                 closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
@@ -179,7 +183,7 @@ export class NotificationTimesModal extends React.Component {
                 transparent={true}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-                {this.renderShowNotificationTimeSelection()}
+
                 <View style={styles.outerView}>
                     {this.renderDaysOfWeekTimeSelection()}
                     {/* <View style={styles.weekdayNotificationContainer}>
