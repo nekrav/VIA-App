@@ -37,37 +37,37 @@ export class NotificationTimesModal extends React.Component {
             notificationTimeSelectionModalVisibility: false,
             times: [
                 {
-                    key: 'monday',
+                    key: 'Monday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'tuesday',
+                    key: 'Tuesday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'wednesday',
+                    key: 'Wednesday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'thursday',
+                    key: 'Thursday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'friday',
+                    key: 'Friday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'saturday',
+                    key: 'Saturday',
                     checked: false,
                     times: []
                 },
                 {
-                    key: 'sunday',
+                    key: 'Sunday',
                     checked: false,
                     times: []
                 },
@@ -100,15 +100,6 @@ export class NotificationTimesModal extends React.Component {
             <FlatList
                 data={this.state.times}
                 renderItem={(day) =>
-                    // <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
-                    //     <View style={styles.weekdayNotificationTimeContainerView}>
-                    // <Text style={styles.weekdayNotificationTimeText}>{day.item.key}</Text>
-                    // <Text style={styles.weekdayNotificationTimeText}>{index}</Text>
-                    //         <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
-                    //     </View>
-                    // </TouchableOpacity>
-
-
                     <View style={styles.weekdayNotificationContainer}>
                         <View style={styles.weekdayNotificationButtonsContainer}>
                             <CheckBox
@@ -120,7 +111,11 @@ export class NotificationTimesModal extends React.Component {
                                 checked={day.item.checked}
                                 textStyle={styles.checkboxText}
                                 containerStyle={styles.weekSelectionContainer}
-                                // onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
+                                onPress={() => {
+                                    day.item.checked = !day.item.checked
+                                    const arr = this.state.times
+                                    this.setState({ times: arr})
+                                }}
                             />
                             <TouchableOpacity style={styles.addTimeButtonContainer}
                                 onPress={() => { this.toggleNotificationTimeSelectionModal(true) }}>
