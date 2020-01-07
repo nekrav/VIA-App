@@ -102,11 +102,54 @@ export class NotificationTimesModal extends React.Component {
                 renderItem={(day) =>
                     // <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
                     //     <View style={styles.weekdayNotificationTimeContainerView}>
-                    <Text style={styles.weekdayNotificationTimeText}>{day.item.key}</Text>
+                    // <Text style={styles.weekdayNotificationTimeText}>{day.item.key}</Text>
                     // <Text style={styles.weekdayNotificationTimeText}>{index}</Text>
                     //         <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                     //     </View>
                     // </TouchableOpacity>
+
+
+                    <View style={styles.weekdayNotificationContainer}>
+                        <View style={styles.weekdayNotificationButtonsContainer}>
+                            <CheckBox
+                                center
+                                key={day.item.key}
+                                title={day.item.key}
+                                checkedIcon='dot-circle-o'
+                                uncheckedIcon='circle-o'
+                                checked={day.item.checked}
+                                textStyle={styles.checkboxText}
+                                containerStyle={styles.weekSelectionContainer}
+                                // onPress={() => this.setState({ mondayChecked: !this.state.mondayChecked })}
+                            />
+                            <TouchableOpacity style={styles.addTimeButtonContainer}
+                                onPress={() => { this.toggleNotificationTimeSelectionModal(true) }}>
+                                <View style={styles.addTimeButtonContainerView}>
+                                    <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                    <Text style={styles.addTimeButtonText}> Add Time</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View
+                            style={styles.weekdayNotificationTimesContainer}>
+                            <FlatList
+                                horizontal={true}
+                                data={this.state.mondayNotificationTimes}
+                                renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
+                                    <View style={styles.weekdayNotificationTimeContainerView}>
+                                        <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
+                                        <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                    </View>
+                                </TouchableOpacity>
+                                } />
+                        </View>
+                    </View>
+
+
+
+
+
                 } />
         )
     }
