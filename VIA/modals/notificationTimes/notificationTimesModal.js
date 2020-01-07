@@ -78,10 +78,10 @@ export class NotificationTimesModal extends React.Component {
     }
 
     setDate = (event, date) => {
-        this.props.setDate(date.toString())
-        this.setState({
-            itemDate: date
-        });
+        this.props.setDate(JSON.stringify(date))
+        // this.setState({
+        //     itemDate: date
+        // });
     }
 
     addNotificationTime(hour) {
@@ -157,12 +157,9 @@ export class NotificationTimesModal extends React.Component {
                 animationType="fade"
                 transparent={true}
                 onSubmit={(item) => {
-                    console.warn(this.state.selectedDayToAddTimeTo)
-                    // console.warn(arr.find(theDay=> theDay.key === day))
-                    selectedDay = arr.find(theDay=> theDay.key === this.state.selectedDayToAddTimeTo)
+                    selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
                     newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
                     selectedDay.times = newArray
-                    console.warn(arr)
                     this.setState({ times: arr });
                 }}
                 setDate={(item) => {
@@ -224,8 +221,10 @@ export class NotificationTimesModal extends React.Component {
                     </View> */}
 
                     <TouchableOpacity style={styles.bottomButtonRight}
-                        onPress={
-                            this.props.closeModal}>
+                        onPress={() => {
+                            this.setDate(null, this.state.times)
+                            this.props.closeModal()
+                        }}>
                         <Text style={styles.bottomButtonText}>Close</Text>
                     </TouchableOpacity>
 

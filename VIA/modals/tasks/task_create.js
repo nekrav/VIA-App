@@ -28,6 +28,7 @@ export class CreateTask extends React.Component {
             theSelectedProject: "",
             showDate: false,
             itemDate: "",
+            itemNotificationTimes: '',
             newTaskImportance: 0,
             notificationTimesModal: false,
             newTaskName: '',
@@ -125,8 +126,8 @@ export class CreateTask extends React.Component {
                 animationType="fade"
                 transparent={true}
                 setDate={(item) => {
-                    this.props.due_date(item)
-                    this.setState({ itemDate: item })
+                    this.props.notification_time(item)
+                    this.setState({ itemNotificationTimes: item })
                 }}
                 closeModal={() => { this.setNotificationTimesVisibility(false) }}>
             </NotificationTimesModal>

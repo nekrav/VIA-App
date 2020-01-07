@@ -33,6 +33,7 @@ export class TasksScreen extends React.Component {
     }
 
     saveNew(task) {
+        // console.warn(task)
         let newTask = {}
         newTask.id = uuid.v4();
         newTask.name = task.name;
@@ -66,7 +67,8 @@ export class TasksScreen extends React.Component {
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => { newTask.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newTask) }}
+                save={() => {  console.warn(newTask)
+                    this.saveNew(newTask) }}
             ></CreateTask>
         }
     }
