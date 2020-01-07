@@ -102,7 +102,7 @@ export class NotificationTimesModal extends React.Component {
                 data={arr}
                 renderItem={(day) =>
                     <View style={styles.weekdayNotificationContainer}>
-                        {this.renderShowNotificationTimeSelection(day.item.key, arr)}
+                        {this.renderShowNotificationTimeSelection(arr)}
                         <View style={styles.weekdayNotificationButtonsContainer}>
                             <CheckBox
                                 center
@@ -149,7 +149,7 @@ export class NotificationTimesModal extends React.Component {
         )
     }
 
-    renderShowNotificationTimeSelection(day, arr) {
+    renderShowNotificationTimeSelection(arr) {
         // console.warn(day)
         if (this.state.notificationTimeSelectionModalVisibility) {
             return <DateModal
@@ -159,13 +159,14 @@ export class NotificationTimesModal extends React.Component {
                 onSubmit={(item) => {
                     console.warn(this.state.selectedDayToAddTimeTo)
                     // console.warn(arr.find(theDay=> theDay.key === day))
-                    // newArray = arr.find(theDay=> theDay.key === day.key).times.concat(Moment(new Date(item)).format(timeFormat))
-                    // day.times = newArray
-                    // console.warn(arr)
-                    // this.setState({ times: arr });
+                    selectedDay = arr.find(theDay=> theDay.key === this.state.selectedDayToAddTimeTo)
+                    newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
+                    selectedDay.times = newArray
+                    console.warn(arr)
+                    this.setState({ times: arr });
                 }}
                 setDate={(item) => {
-                    newArray = day.times.concat(Moment(new Date(item)).format(timeFormat))
+                    // newArray = day.times.concat(Moment(new Date(item)).format(timeFormat))
                     // this.setState({ mondayNotificationTimes: newArray });
                 }}
                 closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
