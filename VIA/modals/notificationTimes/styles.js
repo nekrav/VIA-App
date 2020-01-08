@@ -228,16 +228,17 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     weekdayNotificationTimesContainer: {
-        borderTopWidth: 1,
-        borderTopColor: textColor,
-        paddingLeft: 35,
-        paddingRight: 35,
-        paddingTop: 10,
-        paddingBottom: 10,
+        // borderTopWidth: 1,
+        // borderTopColor: textColor,
+        // paddingLeft: 35,
+        // paddingRight: 35,
+        // paddingTop: 10,
+        // paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 0,
         borderColor: placeholderColor,
         backgroundColor: backgroundColor,
+        justifyContent: 'center',
         marginRight: 10,
         marginLeft: 10,
         shadowColor: "#000000",
@@ -277,6 +278,7 @@ module.exports = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         marginBottom: 5,
+        marginTop: 5,
     },
     weekdayNotificationTimeText: {
         fontFamily: fontFamily,
