@@ -30,7 +30,8 @@ module.exports = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'rgba(26, 26, 26, 0.9)',
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        // marginTop: 100,
         // alignItems: "center",
 
     },
@@ -162,9 +163,14 @@ module.exports = StyleSheet.create({
     },
 
     weekdayNotificationButtonsContainer: {
-        backgroundColor: backgroundColor,
+        backgroundColor: blueColor,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        // marginRight: 10,
+        // marginLeft: 10,
+        // flex: 1,
+        // justifyContent: 'space-around',
+        // alignContent: 'stretch',
+        // justifyContent: 'space-between'
     },
     /* #region  Add Notification Time Button */
     addTimeButtonContainer: {
@@ -174,11 +180,9 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     addTimeButtonContainerView: {
-        marginLeft: 10,
         borderRadius: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        flex: 1,
         borderWidth: 1,
         borderColor: placeholderColor,
         backgroundColor: backgroundColor,
@@ -197,11 +201,14 @@ module.exports = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         fontFamily: fontFamily,
+        marginLeft: 10,
+        marginRight: 10,
     },
     /* #endregion */
 
     /* #region  Weekday notification checkbox */
     weekSelectionContainer: {
+        // alignSelf: 'flex-start',
         // paddingLeft: 35,
         // paddingRight: 35,
         // paddingTop: 10,

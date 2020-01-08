@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView } from 'react-native'; // Version can be specified in package.json
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment'
 import { TabView, SceneMap } from 'react-native-tab-view';
@@ -180,7 +180,7 @@ export class NotificationTimesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
 
-                <View style={styles.outerView}>
+                <SafeAreaView style={styles.outerView}>
                     {this.renderDaysOfWeekTimeSelection()}
                     <TouchableOpacity style={styles.bottomButtonRight}
                         onPress={() => {
@@ -190,7 +190,7 @@ export class NotificationTimesModal extends React.Component {
                         <Text style={styles.bottomButtonText}>Close</Text>
                     </TouchableOpacity>
 
-                </View>
+                </SafeAreaView>
             </Modal>
         );
     }
