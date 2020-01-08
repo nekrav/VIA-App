@@ -42,9 +42,6 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     datePickerView: {
-        // flex: 2,
-        // alignItems: 'center'
-
     },
 
     /* #region  Top Navigation */
@@ -203,26 +200,24 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-
-
     /* #region  Weekday notification checkbox */
     weekSelectionContainer: {
-        paddingLeft: 35,
-        paddingRight: 35,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: placeholderColor,
+        // paddingLeft: 35,
+        // paddingRight: 35,
+        // paddingTop: 10,
+        // paddingBottom: 10,
+        // borderRadius: 20,
+        borderWidth: 0,
+        // borderColor: placeholderColor,
         backgroundColor: backgroundColor,
         marginRight: 50,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
     },
 
     checkboxText: {
@@ -233,15 +228,33 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     weekdayNotificationTimesContainer: {
-       marginTop: 10,
-       marginBottom: 10,
+        borderTopWidth: 1,
+        borderTopColor: textColor,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 0,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        marginRight: 10,
+        marginLeft: 10,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginTop: 10,
+        marginBottom: 10,
     },
     weekdayNotificationTimeContainer: {
         flex: 1,
-        // marginRight: ,
         flexDirection: 'row',
-        alignItems: 'center',        
-    }, 
+        alignItems: 'center',
+    },
     weekdayNotificationTimeContainerView: {
         marginLeft: 8,
         borderRadius: 20,

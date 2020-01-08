@@ -131,12 +131,7 @@ export class NotificationTimesModal extends React.Component {
                                 renderItem={({ item }) =>
                                     <TouchableOpacity style={styles.weekdayNotificationTimeContainer}
                                         onPress={() => {
-                                            // var chosenTime = item
-                                            // console.warn(day.item.times)
                                             var index = day.item.times.indexOf(item)
-                                            // console.warn(index)
-                                            // console.warn(day.item.times.)
-                                           
                                             if (index !== -1) {
                                                 var newArr = day.item.times
                                                 newArr.splice(index, 1)
