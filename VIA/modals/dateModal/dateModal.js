@@ -54,27 +54,15 @@ export class DateModal extends React.Component {
                     /></View>
                     <View style={styles.bottomButtonsContainer}>
                     <TouchableOpacity style={styles.bottomButtonLeft} 
-                    // onPress={() => { 
-                    //     this.setDate(null ,itemDate)
-                    //     this.props.closeModal()}}>
                     onPress={() => this.props.onSubmit(this.state.itemDate)}>
                         <Text style={styles.bottomButtonText}>Select</Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity style={styles.bottomButtonCenter} 
-                    onPress={() => {
-                        this.setDate(itemDate)
-                        this.props.closeModal}}>
-                        <Text style={styles.bottomButtonText}>Today's date</Text>
-                    </TouchableOpacity> */}
                      <TouchableOpacity style={styles.bottomButtonRight} 
                     onPress={
                         this.props.closeModal}>
                         <Text style={styles.bottomButtonText}>Close</Text>
                     </TouchableOpacity>
                    </View>
-                   {/* <View style={styles.bottomButtonsContainer}> */}
-                  
-                    {/* </View> */}
                 </View>
             </Modal>
         );
