@@ -28,7 +28,6 @@ export class NotificationTimesModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemTime: this.props.itemDate ? new Date(this.props.currentTime) : currentTime,
             mondayChecked: false,
             mondayNotificationTimes: [],
             notificationTimeSelectionModalVisibility: false,
@@ -129,12 +128,29 @@ export class NotificationTimesModal extends React.Component {
                             <FlatList
                                 horizontal={true}
                                 data={day.item.times}
-                                renderItem={({ item }) => <TouchableOpacity style={styles.weekdayNotificationTimeContainer}>
-                                    <View style={styles.weekdayNotificationTimeContainerView}>
-                                        <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
-                                        <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
-                                    </View>
-                                </TouchableOpacity>} />
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity style={styles.weekdayNotificationTimeContainer}
+                                        onPress={() => {
+                                            // var chosenTime = item
+                                            // console.warn(day.item.times)
+                                            var index = day.item.times.indexOf(item)
+                                            // console.warn(index)
+                                            // console.warn(day.item.times.)
+                                           
+                                            if (index !== -1) {
+                                                var newArr = day.item.times
+                                                newArr.splice(index, 1)
+                                                console.warn(newArr)
+                                                day.item.times = newArr
+                                                var newMain = this.state.times
+                                                this.setState({ times: newMain })
+                                            }
+                                        }}>
+                                        <View style={styles.weekdayNotificationTimeContainerView}>
+                                            <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
+                                            <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
+                                        </View>
+                                    </TouchableOpacity>} />
                         </View>
                     </View>
                 } />
@@ -142,18 +158,16 @@ export class NotificationTimesModal extends React.Component {
     }
 
     renderShowNotificationTimeSelection(arr) {
-        console.warn(this.state.itemTime)
         if (this.state.notificationTimeSelectionModalVisibility) {
             return <DateModal
                 pickerMode="time"
-                timeValue={this.state.itemTime}
                 animationType="fade"
                 transparent={true}
                 onSubmit={(item) => {
                     selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
                     newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
                     selectedDay.times = newArray
-                    this.setState({ times: arr, itemTime: item });
+                    this.setState({ times: arr });
                 }}
                 setDate={(item) => { }}
                 closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
@@ -164,7 +178,6 @@ export class NotificationTimesModal extends React.Component {
 
 
     render() {
-        const { itemDate } = this.state
         return (
             <Modal
                 animationType={this.props.animationType}
