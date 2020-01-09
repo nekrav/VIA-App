@@ -26,14 +26,10 @@ module.exports = StyleSheet.create({
     /* #region Outer Structure */
     outerView: {
         flex: 1,
-        // opacity:1,
         flexDirection: 'column',
         backgroundColor: 'rgba(26, 26, 26, 0.9)',
         justifyContent: 'center',
         alignContent: 'center',
-        // marginTop: 100,
-        // alignItems: "center",
-
     },
     outerViewDone: {
         flex: 2,
@@ -41,9 +37,6 @@ module.exports = StyleSheet.create({
         backgroundColor: finishedBackgroundColor,
     },
     /* #endregion */
-
-    datePickerView: {
-    },
 
     /* #region  Top Navigation */
     topNav: {
@@ -61,76 +54,8 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    /* #region  Bottom Buttons */
-    bottomButtonsContainer: {
-        paddingTop: 18,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 10,
-    },
-
-    /* #region Create Bottom Buttons Section */
-    bottomButtonsContainer: {
-        paddingTop: 18,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 10,
-    },
-    bottomButtonLeftDisabled: {
-        marginLeft: 50,
-        paddingLeft: 35,
-        paddingRight: 35,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: placeholderColor,
-        backgroundColor: placeholderColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-    },
-    bottomButtonLeft: {
-        marginLeft: 50,
-        paddingLeft: 35,
-        paddingRight: 35,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-    },
-    bottomButtonCenter: {
-        marginLeft: 50,
-        paddingLeft: 35,
-        paddingRight: 35,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-    },
-    bottomButtonRight: {
+    /* #region Close Bottom Buttons Section */
+    bottomButtonContainer: {
         marginLeft: 50,
         paddingLeft: 35,
         paddingRight: 35,
@@ -156,14 +81,13 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  Weekday Notifications container */
     weekdayNotificationContainer: {
         backgroundColor: backgroundColor,
         flexDirection: 'column',
         justifyContent: 'space-between',
         borderRadius: 20,
         flex: 1,
-        // paddingTop: 5,
-        // paddingBottom: 5,
         borderWidth: 1,
         borderColor: placeholderColor,
         backgroundColor: backgroundColor,
@@ -180,17 +104,15 @@ module.exports = StyleSheet.create({
         marginTop: 10,
     },
 
+
     weekdayNotificationButtonsContainer: {
         flexGrow: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // marginRight: 10,
-        // marginLeft: 10,
-        // flex: 1,
-        // justifyContent: 'space-around',
-        // alignContent: 'stretch',
-        // justifyContent: 'space-between'
+
     },
+    /* #endregion */
+
     /* #region  Add Notification Time Button */
     addTimeButtonContainer: {
         flex: 1,
@@ -226,59 +148,23 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #region  Weekday notification checkbox */
+
     weekSelectionContainer: {
-        // alignSelf: 'flex-start',
-        // paddingLeft: 35,
-        // paddingRight: 35,
-        // paddingTop: 10,
-        // paddingBottom: 10,
-        // borderRadius: 20,
         borderWidth: 0,
-        // borderColor: placeholderColor,
         width: '40%',
         backgroundColor: backgroundColor,
         marginRight: 70,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
     },
 
     checkboxText: {
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        
+
     },
     /* #endregion */
 
-    weekdayNotificationTimesContainer: {
-        // borderTopWidth: 1,
-        // borderTopColor: textColor,
-        // paddingLeft: 35,
-        // paddingRight: 35,
-        // paddingTop: 10,
-        // paddingBottom: 10,
-        borderRadius: 20,
-        borderWidth: 0,
-        borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
-        justifyContent: 'center',
-        marginRight: 10,
-        marginLeft: 10,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
-        marginTop: 10,
-        marginBottom: 10,
-    },
+    /* #region  Weekday Notification Time Bubble */
     weekdayNotificationTimeContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -314,4 +200,5 @@ module.exports = StyleSheet.create({
         color: backgroundColor,
     }
 
+    /* #endregion */
 })
