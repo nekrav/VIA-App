@@ -123,8 +123,8 @@ export class NotificationTimesModal extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                        <View
-                            style={styles.weekdayNotificationTimesContainer}>
+                        {/* <View
+                            style={styles.weekdayNotificationTimesContainer}> */}
                             <FlatList
                                 horizontal={true}
                                 data={day.item.times}
@@ -135,7 +135,7 @@ export class NotificationTimesModal extends React.Component {
                                             if (index !== -1) {
                                                 var newArr = day.item.times
                                                 newArr.splice(index, 1)
-                                                console.warn(newArr)
+                                                // console.warn(newArr)
                                                 day.item.times = newArr
                                                 var newMain = this.state.times
                                                 this.setState({ times: newMain })
@@ -146,7 +146,7 @@ export class NotificationTimesModal extends React.Component {
                                             <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                         </View>
                                     </TouchableOpacity>} />
-                        </View>
+                        {/* </View> */}
                     </View>
                 } />
         )
