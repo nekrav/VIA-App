@@ -215,6 +215,7 @@ export class CreateTask extends React.Component {
             return <NotesModal
                 animationType="fade"
                 transparent={true}
+                placeholder={"Notes..."}
                 setDate={(item) => {
                     this.props.notes(item)
                     this.setState({ itemNotes: item })
@@ -226,15 +227,15 @@ export class CreateTask extends React.Component {
     }
 
     renderNotesSection() {
-        if (this.state.itemNotes != null) {
+        if (this.state.itemNotes != '') {
             return (
-                <TouchableOpacity style={styles.createNotesContainer}
+                <TouchableOpacity style={styles.hasNotesContainer}
                     onPress={() => {
                         this.setNotesModalVisibility(true)}}>
                     <Text
-                        style={styles.createNotesText}
+                        style={styles.hasNotesText}
                         multiline={true}
-                        onChangeText={this.props.notes}>Notes ...
+                        onChangeText={this.props.notes}>{this.state.itemNotes}
                 </Text>
                 </TouchableOpacity>
             )

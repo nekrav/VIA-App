@@ -27,7 +27,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'rgba(26, 26, 26, 0.9)',
+        backgroundColor: "#ffffff",
         justifyContent: 'center',
         alignContent: 'center',
     },
@@ -53,6 +53,19 @@ module.exports = StyleSheet.create({
         marginLeft: "8%",
     },
     /* #endregion */
+
+    notesContainer: {
+        flex: 1,
+        alignItems: 'flex-start',
+        
+    },
+    notesTextInput: {
+        fontSize: 18,
+        fontFamily: fontFamily,
+        color: "#000",
+        marginRight: 5,
+        width: "100%"
+    },
 
     /* #region Close Bottom Buttons Section */
     bottomButtonContainer: {

@@ -423,8 +423,37 @@ module.exports = StyleSheet.create({
         },
         height: "100%",
     },
+    hasNotesContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignContent: "center",
+        borderRadius: 10,
+        backgroundColor: blueColor,
+        borderTopWidth: 2,
+        borderTopColor: blueColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        justifyContent: 'space-between',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        height: "100%",
+    },
     createNotesText: {
         color: placeholderColor,
+        marginTop: 5,
+        marginLeft: 7,
+        fontFamily: fontFamily
+    },
+    hasNotesText: {
+        color: backgroundColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
