@@ -28,9 +28,30 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    title: {
-        marginTop: 22,
-        alignItems: "center"
+    titleView: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        marginRight: 50,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        width: '90%',
+    },
+    titleText: {
+        fontSize: 28,
+        textAlign: 'center',
+        fontFamily: fontFamily,
     },
 
     /* #region Close Bottom Buttons Section */
