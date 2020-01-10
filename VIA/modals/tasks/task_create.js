@@ -160,8 +160,32 @@ export class CreateTask extends React.Component {
     }
 
     renderNotificationTimes() {
-        if (this.state.itemNotificationTimes != '') {
-            console.warn(this.state.itemNotificationTimes.length)
+        var daysWithNotifications = ""
+            var arr = this.state.itemNotificationTimes
+
+            Object.keys(arr).map(key => {
+                console.warn(arr[key].checked)
+                if (arr[key].times.length > 0 && arr[key].checked == true) {
+                    console.warn(arr[key].name)
+                    daysWithNotifications = daysWithNotifications.concat(arr[key].name + ', ')
+                }
+            })
+        if (daysWithNotifications != '') {
+            return (
+                <TouchableOpacity
+                    style={styles.notificationTimesButtonContainer}
+                    onPress={() => {
+                        this.setNotificationTimesVisibility(true);
+                    }}>
+                    <Text style={styles.notificationTimeButtonText}>
+                    {daysWithNotifications}
+                </Text>
+
+                    <Text style={styles.notificationTimeButtonText}>
+                        <SIcon name="clock" size={20} color="#ABABAB" />
+                    </Text>
+                </TouchableOpacity>
+            )
         }
         return (<TouchableOpacity
             style={styles.notificationTimesButtonContainer}
