@@ -161,15 +161,15 @@ export class CreateTask extends React.Component {
 
     renderNotificationTimes() {
         var daysWithNotifications = ""
-            var arr = this.state.itemNotificationTimes
+        var arr = this.state.itemNotificationTimes
 
-            Object.keys(arr).map(key => {
-                console.warn(arr[key].checked)
-                if (arr[key].times.length > 0 && arr[key].checked == true) {
-                    console.warn(arr[key].name)
-                    daysWithNotifications = daysWithNotifications.concat(arr[key].name + ', ')
-                }
-            })
+        Object.keys(arr).map(key => {
+            console.warn(arr[key].checked)
+            if (arr[key].times.length > 0 && arr[key].checked == true) {
+                console.warn(arr[key].name)
+                daysWithNotifications = daysWithNotifications.concat(arr[key].name + ', ')
+            }
+        })
         if (daysWithNotifications != '') {
             return (
                 <TouchableOpacity
@@ -178,11 +178,11 @@ export class CreateTask extends React.Component {
                         this.setNotificationTimesVisibility(true);
                     }}>
                     <Text style={styles.hasNotificationTimeButtonText}>
-                    {daysWithNotifications}
-                </Text>
+                        {daysWithNotifications}
+                    </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="clock" size={20} color="#ffffff"/>
+                        <SIcon name="clock" size={20} color="#ffffff" />
                     </Text>
                 </TouchableOpacity>
             )
@@ -287,7 +287,7 @@ export class CreateTask extends React.Component {
                                 disabled={this.state.newTaskName != '' ? false : true}
                                 style={this.state.newTaskName != '' ? styles.bottomButtonLeft : styles.bottomButtonLeftDisabled}
                                 onPress={this.props.save}>
-                                <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText } >Save</Text>
+                                <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText} >Save</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.bottomButtonRight} onPress={this.props.closeModal}>
                                 <Text style={styles.bottomButtonText} >Close</Text>
