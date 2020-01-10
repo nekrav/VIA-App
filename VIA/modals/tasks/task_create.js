@@ -74,12 +74,12 @@ export class CreateTask extends React.Component {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
             return (
-                <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={() => {
+                <TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
                     this.setProjectSelectionModalVisibility(true);
                 }}>
-                    <Text style={styles.createProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
+                    <Text style={styles.hasProjectSelectionButtonText}>{this.state.theSelectedProject}</Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ABABAB" />
+                        <SIcon name="layers" size={20} color="#ffffff" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -287,7 +287,7 @@ export class CreateTask extends React.Component {
                                 disabled={this.state.newTaskName != '' ? false : true}
                                 style={this.state.newTaskName != '' ? styles.bottomButtonLeft : styles.bottomButtonLeftDisabled}
                                 onPress={this.props.save}>
-                                <Text style={styles.bottomButtonText} >Save</Text>
+                                <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText } >Save</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.bottomButtonRight} onPress={this.props.closeModal}>
                                 <Text style={styles.bottomButtonText} >Close</Text>

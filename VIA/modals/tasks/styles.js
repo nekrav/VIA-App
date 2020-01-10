@@ -186,9 +186,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: homeColorButton,
+        backgroundColor: blueColor,
         borderTopWidth: 2,
-        borderTopColor: homeColorButton,
+        borderTopColor: blueColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -295,10 +295,37 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
+    hasProjectSelectionContainer: {
+        borderRadius: 10,
+        backgroundColor: blueColor,
+        justifyContent: 'space-between',
+        borderTopWidth: 2,
+        borderTopColor: blueColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
     createProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
         color: placeholderColor,
+        marginLeft: 5,
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    hasProjectSelectionButtonText: {
+        fontSize: 18,
+        fontFamily: fontFamily,
+        color: backgroundColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -470,6 +497,13 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
+        color: textColor,
+    },
+    bottomButtonTextDisabled: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+        color: backgroundColor,
     },
     /* #endregion */
 
