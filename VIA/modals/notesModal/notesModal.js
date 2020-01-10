@@ -32,9 +32,9 @@ export class NotesModal extends React.Component {
             mondayNotificationTimes: [],
             notificationTimeSelectionModalVisibility: false,
             selectedDayToAddTimeTo: '',
+            notes: this.props.existingNotes ? this.props.existingNotes : ''
         };
     }
-
 
     render() {
         return (
@@ -57,12 +57,16 @@ export class NotesModal extends React.Component {
                                 multiline={true}
                                 placeholderTextColor="#B0B0B0"
                                 placeholder={this.props.placeholder}
-                                style={styles.notesTextInput}>
+                                style={styles.notesTextInput}
+                                value={this.state.notes}
+                                onChangeText={value => {
+                                    this.setState({notes: value})
+                                    this.props.setNotes(value)
+                                }}>
                             </TextInput>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bottomButtonContainer}
                             onPress={() => {
-                                this.setDate(null, this.state.times)
                                 this.props.closeModal()
                             }}>
                             <Text style={styles.bottomButtonText}>Close</Text>

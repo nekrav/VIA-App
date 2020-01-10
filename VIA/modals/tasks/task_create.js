@@ -214,8 +214,9 @@ export class CreateTask extends React.Component {
             return <NotesModal
                 animationType="fade"
                 transparent={true}
+                existingNotes={this.state.itemNotes}
                 placeholder={"Notes..."}
-                setDate={(item) => {
+                setNotes={(item) => {
                     this.props.notes(item)
                     this.setState({ itemNotes: item })
                 }}
