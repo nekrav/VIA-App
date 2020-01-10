@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, Fla
 
 const styles = require('./styles');
 
+
 export class SelectionModal extends React.Component {
 
     constructor(props) {
@@ -38,8 +39,8 @@ export class SelectionModal extends React.Component {
                                     >{item.value.name}</Text>
                             </TouchableOpacity>} />
                         <View>
-                            <TouchableOpacity style={styles.closeButtonContainer} onPress={this.props.closeModal}>
-                                <Text style={styles.closeButtonText}>Close</Text>
+                            <TouchableOpacity style={styles.bottomButtonContainer} onPress={this.props.closeModal}>
+                                <Text style={styles.bottomButtonText}>Close</Text>
                             </TouchableOpacity>
                         </View>
                     </SafeAreaView>
