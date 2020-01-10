@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView } from 'react-native'; // Version can be specified in package.json
 
 const styles = require('./styles');
 
@@ -20,32 +20,29 @@ export class SelectionModal extends React.Component {
                     transparent={true}
                     visible={this.props.visible}
                     onRequestClose={this.props.onRequestClose}>
-                    <View style={styles.outerView}>
+                    <SafeAreaView style={styles.outerView}>
                         {this.props.children}
-                        <View style={styles.title}>
-                            <Text>Select {this.props.itemName} </Text>
+                        <View style={styles.titleView}>
+                            <Text style={styles.titleText}>Select {this.props.itemName} </Text>
                         </View>
                         <FlatList
                             data={this.props.items}
                             renderItem={({ item }) => <TouchableOpacity
-                                style={styles.itemButton}
+                                style={styles.projectContainer}
                                 onPress={() => {
                                     this.props.closeModal();
                                     this.props.selectItem(item)
                                 }}>
-                                <View
-                                    style={styles.listItem}>
                                     <Text
-                                        style={styles.itemName}
+                                        style={styles.projectText}
                                     >{item.value.name}</Text>
-                                </View>
                             </TouchableOpacity>} />
                         <View>
-                            <TouchableOpacity onPress={this.props.closeModal}>
-                                <Text>Close</Text>
+                            <TouchableOpacity style={styles.closeButtonContainer} onPress={this.props.closeModal}>
+                                <Text style={styles.closeButtonText}>Close</Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </SafeAreaView>
                 </Modal>
             );
         }

@@ -17,30 +17,11 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: 'rgba(0,0,0,0.5)',
-        marginTop: "5%",
         justifyContent: 'center',
         alignItems: 'center'
     },
     title: {
         marginTop: 22,
         alignItems: "center"
-    },
-    numberOfItems: {
-
-    },
-    addButton: {
-
-    },
-    itemButton: {
-
-    },
-    listItem: {
-
-    },
-    checkBox: {
-
-    },
-    itemName: {
-
     },
 })
