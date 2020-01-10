@@ -36,8 +36,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
         marginRight: 50,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
@@ -52,6 +52,7 @@ module.exports = StyleSheet.create({
         fontSize: 28,
         textAlign: 'center',
         fontFamily: fontFamily,
+        color: backgroundColor,
     },
 
     /* #region Close Bottom Buttons Section */
@@ -80,4 +81,36 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
     },
     /* #endregion */
+
+    projectContainerView: {
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+    },
+    projectContainer: {
+        flex: 1,
+        marginTop: 10,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginLeft: 5,
+        marginRight: 5
+    },
+    projectText: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+    },
 })
