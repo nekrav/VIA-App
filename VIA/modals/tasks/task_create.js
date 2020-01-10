@@ -212,7 +212,7 @@ export class CreateTask extends React.Component {
     renderNotesModal() {
         if (this.state.notesModalVisible) {
             return <NotesModal
-                animationType="fade"
+                animationType="slide"
                 transparent={true}
                 existingNotes={this.state.itemNotes}
                 placeholder={"Notes..."}
