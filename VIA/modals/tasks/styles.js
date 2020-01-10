@@ -155,10 +155,28 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
+    hasNameTextInputContainer: {
+        borderRadius: 10,
+        backgroundColor: blueColor,
+        borderTopWidth: 2,
+        borderTopColor: blueColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
     createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: textColor,
+        color: backgroundColor,
         marginLeft: 10,
         marginBottom: 5,
     },

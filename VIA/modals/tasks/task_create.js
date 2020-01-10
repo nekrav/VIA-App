@@ -224,7 +224,7 @@ export class CreateTask extends React.Component {
 
                         <TouchableOpacity
                             onPress={() => { this.nameTextInput.focus(); }}
-                            style={styles.createNameContainer}>
+                            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
                             <TextInput
                                 ref={(input) => { this.nameTextInput = input; }}
                                 maxLength={40}
