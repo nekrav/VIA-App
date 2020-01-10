@@ -310,9 +310,42 @@ module.exports = StyleSheet.create({
         }
 
     },
+
+    hasNotificationTimesButtonContainer: {
+        flexDirection: "row",
+        alignContent: "center",
+        borderRadius: 10,
+        backgroundColor: blueColor,
+        borderTopWidth: 2,
+        borderTopColor: blueColor,
+        flexDirection: "row",
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        marginTop: 2,
+        justifyContent: 'space-between',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+
+    },
     notificationTimeButtonText: {
         fontSize: 16,
         color: placeholderColor,
+        marginRight: 5,
+        marginLeft: 8,
+        marginTop: 5,
+        marginBottom: 5,
+        fontFamily: fontFamily
+    },
+
+    hasNotificationTimeButtonText: {
+        fontSize: 16,
+        color: backgroundColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,

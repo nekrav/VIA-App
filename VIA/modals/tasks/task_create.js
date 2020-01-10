@@ -173,16 +173,16 @@ export class CreateTask extends React.Component {
         if (daysWithNotifications != '') {
             return (
                 <TouchableOpacity
-                    style={styles.notificationTimesButtonContainer}
+                    style={styles.hasNotificationTimesButtonContainer}
                     onPress={() => {
                         this.setNotificationTimesVisibility(true);
                     }}>
-                    <Text style={styles.notificationTimeButtonText}>
+                    <Text style={styles.hasNotificationTimeButtonText}>
                     {daysWithNotifications}
                 </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="clock" size={20} color="#ABABAB" />
+                        <SIcon name="clock" size={20} color="#ffffff"/>
                     </Text>
                 </TouchableOpacity>
             )
