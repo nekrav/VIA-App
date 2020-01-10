@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button, Dimensions } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
-import { notificationTimesModal, NotificationTimesModal} from '../notificationTimes/notificationTimesModal'
+import { notificationTimesModal, NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -159,6 +159,27 @@ export class CreateTask extends React.Component {
             </View>)
     }
 
+    renderNotificationTimes() {
+        if (this.state.itemNotificationTimes != '') {
+            console.warn(this.state.itemNotificationTimes.length)
+        }
+        return (<TouchableOpacity
+            style={styles.notificationTimesButtonContainer}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}>
+            <Text style={styles.notificationTimeButtonText}>
+                When would you like to be notified?
+                </Text>
+
+            <Text style={styles.notificationTimeButtonText}>
+                <SIcon name="clock" size={20} color="#ABABAB" />
+            </Text>
+        </TouchableOpacity>
+        )
+
+    }
+
     render() {
         return (
             <Modal
@@ -204,7 +225,7 @@ export class CreateTask extends React.Component {
                             </View>
 
                             <View style={styles.slidersContainer}>
-                            {this.renderShowDate()}
+                                {this.renderShowDate()}
                                 <View style={styles.sliderContainerCenter}>
                                     <Slider
                                         style={styles.sliderSlider}
@@ -227,20 +248,7 @@ export class CreateTask extends React.Component {
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSelection()}
                         </View>
-
-                        <TouchableOpacity
-                            style={styles.notificationTimesButtonContainer}
-                            onPress={() => {
-                                this.setNotificationTimesVisibility(true);
-                            }}>
-                            <Text style={styles.notificationTimeButtonText}>
-                                When would you like to be notified?
-                                </Text>
-
-                            <Text style={styles.notificationTimeButtonText}>
-                                <SIcon name="clock" size={20} color="#ABABAB" />
-                            </Text>
-                        </TouchableOpacity>
+                        {this.renderNotificationTimes()}
 
                         <TouchableOpacity style={styles.createNotesContainer}>
                             <Text

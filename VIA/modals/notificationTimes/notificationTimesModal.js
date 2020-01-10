@@ -74,7 +74,7 @@ export class NotificationTimesModal extends React.Component {
     }
 
     setDate = (event, date) => {
-        this.props.setDate(JSON.stringify(date))
+        this.props.setDate(date)
     }
 
     addNotificationTime(hour) {
