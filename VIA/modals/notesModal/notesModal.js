@@ -32,7 +32,8 @@ export class NotesModal extends React.Component {
             mondayNotificationTimes: [],
             notificationTimeSelectionModalVisibility: false,
             selectedDayToAddTimeTo: '',
-            notes: this.props.existingNotes ? this.props.existingNotes : ''
+            notes: this.props.existingNotes ? this.props.existingNotes : '',
+            startingNotes: this.props.existingNotes ? this.props.existingNotes : ''
         };
     }
 
@@ -65,11 +66,11 @@ export class NotesModal extends React.Component {
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bottomButtonContainer}
+                        <TouchableOpacity style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonContainer : styles.bottomButtonContainer}
                             onPress={() => {
                                 this.props.closeModal()
                             }}>
-                            <Text style={styles.bottomButtonText}>Close</Text>
+                            <Text style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonText : styles.bottomButtonText}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
                         </TouchableOpacity>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>

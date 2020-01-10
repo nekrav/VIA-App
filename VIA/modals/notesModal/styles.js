@@ -89,131 +89,36 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
+    modifiedBottomButtonContainer: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: blueColor,
+        backgroundColor: blueColor,
+        marginRight: 50,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
     bottomButtonText: {
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
+        color: textColor,
     },
-    /* #endregion */
-
-    /* #region  Weekday Notifications container */
-    weekdayNotificationContainer: {
-        backgroundColor: backgroundColor,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        borderRadius: 20,
-        flex: 1,
-        borderWidth: 1,
-        borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
-        marginRight: 5,
-        alignItems: 'center',
-        marginBottom: 10,
-        marginTop: 10,
-    },
-
-
-    weekdayNotificationButtonsContainer: {
-        flexGrow: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-
-    },
-    /* #endregion */
-
-    /* #region  Add Notification Time Button */
-    addTimeButtonContainer: {
-        flex: 1,
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    addTimeButtonContainerView: {
-        borderRadius: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderWidth: 1,
-        borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    addTimeButtonText: {
-        fontSize: 14,
-        textAlign: 'center',
-        fontFamily: fontFamily,
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    /* #endregion */
-
-    /* #region  Weekday notification checkbox */
-
-    weekSelectionContainer: {
-        borderWidth: 0,
-        width: '40%',
-        backgroundColor: backgroundColor,
-        marginRight: 70,
-    },
-
-    checkboxText: {
+    modifiedBottomButtonText: {
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-
-    },
-    /* #endregion */
-
-    /* #region  Weekday Notification Time Bubble */
-    weekdayNotificationTimeContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    weekdayNotificationTimeContainerView: {
-        marginLeft: 8,
-        borderRadius: 20,
-        paddingTop: 3,
-        paddingBottom: 3,
-        flex: 1,
-        borderWidth: 1,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginBottom: 5,
-        marginTop: 5,
-    },
-    weekdayNotificationTimeText: {
-        fontFamily: fontFamily,
-        fontSize: 16,
         color: backgroundColor,
-    }
-
+    },
     /* #endregion */
 })
