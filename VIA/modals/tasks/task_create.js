@@ -39,7 +39,6 @@ export class CreateTask extends React.Component {
         };
     }
     componentDidMount() {
-
         controller.loadAll(this, Projects.TABLE_NAME);
     }
 

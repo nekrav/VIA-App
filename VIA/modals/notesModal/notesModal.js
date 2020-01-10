@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native'; // Version can be specified in package.json
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment'
 import { TabView, SceneMap } from 'react-native-tab-view';
@@ -43,20 +43,32 @@ export class NotesModal extends React.Component {
                 transparent={true}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-
-                <SafeAreaView style={styles.outerView}>
-                    <View style={styles.notesContainer}>
-                        <TextInput  placeholderTextColor="#B0B0B0" placeholder={this.props.placeholder} style={styles.notesTextInput}></TextInput>
-                    </View>
-                   
-                    <TouchableOpacity style={styles.bottomButtonContainer}
-                        onPress={() => {
-                            this.setDate(null, this.state.times)
-                            this.props.closeModal()
-                        }}>
-                        <Text style={styles.bottomButtonText}>Close</Text>
-                    </TouchableOpacity>
-                </SafeAreaView>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    <SafeAreaView style={styles.outerView}>
+                        <TouchableOpacity
+                            onPress={() => { 
+                                if (this.notesTextInput.isFocused) {
+                                    Keyboard.dismiss()
+                                }
+                                this.notesTextInput.focus(); 
+                            }}
+                            style={styles.notesContainer}>
+                            <TextInput ref={(input) => { this.notesTextInput = input; }}
+                                multiline={true}
+                                placeholderTextColor="#B0B0B0"
+                                placeholder={this.props.placeholder}
+                                style={styles.notesTextInput}>
+                            </TextInput>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.bottomButtonContainer}
+                            onPress={() => {
+                                this.setDate(null, this.state.times)
+                                this.props.closeModal()
+                            }}>
+                            <Text style={styles.bottomButtonText}>Close</Text>
+                        </TouchableOpacity>
+                    </SafeAreaView>
+                </TouchableWithoutFeedback>
             </Modal>
         );
     }

@@ -54,18 +54,20 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  Notes Section */
     notesContainer: {
         flex: 1,
         alignItems: 'flex-start',
-        
+
     },
     notesTextInput: {
-        fontSize: 18,
+        fontSize: 24,
         fontFamily: fontFamily,
         color: "#000",
-        marginRight: 5,
-        width: "100%"
+        marginLeft: 10,
+        marginRight: 10,
     },
+    /* #endregion */
 
     /* #region Close Bottom Buttons Section */
     bottomButtonContainer: {
