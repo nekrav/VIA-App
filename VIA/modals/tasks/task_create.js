@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button, Dimensions } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
+import { NotesModal } from '../notesModal/notesModal';
 import { notificationTimesModal, NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Projects } from '../../db'
 import { Controller } from '../controller'
@@ -15,6 +16,8 @@ const dateFormat = 'ddd, MMM Do, YY'
 const todayDate = new Date();
 const styles = require('./styles');
 import { getInset } from 'react-native-safe-area-view';
+import { ThemeProvider } from 'styled-components';
+
 
 
 export class CreateTask extends React.Component {
@@ -32,6 +35,7 @@ export class CreateTask extends React.Component {
             newTaskImportance: 0,
             notificationTimesModal: false,
             newTaskName: '',
+            itemNotes: '',
         };
     }
     componentDidMount() {
@@ -164,9 +168,7 @@ export class CreateTask extends React.Component {
         var arr = this.state.itemNotificationTimes
 
         Object.keys(arr).map(key => {
-            console.warn(arr[key].checked)
             if (arr[key].times.length > 0 && arr[key].checked == true) {
-                console.warn(arr[key].name)
                 daysWithNotifications = daysWithNotifications.concat(arr[key].name + ', ')
             }
         })
@@ -204,6 +206,49 @@ export class CreateTask extends React.Component {
 
     }
 
+    setNotesModalVisibility(visible) {
+        this.setState({ notesModalVisible: visible })
+    }
+
+    renderNotesModal() {
+        if (this.state.notesModalVisible) {
+            return <NotesModal
+                animationType="fade"
+                transparent={true}
+                setDate={(item) => {
+                    this.props.notes(item)
+                    this.setState({ itemNotes: item })
+                }}
+                closeModal={() => { this.setNotesModalVisibility(false) }}>
+            </NotesModal>
+        }
+        return null;
+    }
+
+    renderNotesSection() {
+        if (this.state.itemNotes != null) {
+            return (
+                <TouchableOpacity style={styles.createNotesContainer}
+                    onPress={() => {
+                        this.setNotesModalVisibility(true)}}>
+                    <Text
+                        style={styles.createNotesText}
+                        multiline={true}
+                        onChangeText={this.props.notes}>Notes ...
+                </Text>
+                </TouchableOpacity>
+            )
+        }
+        return (<TouchableOpacity style={styles.createNotesContainer} onPress={() => {
+            this.setNotesModalVisibility(true)}}>
+            <Text
+                style={styles.createNotesText}
+                multiline={true}
+                onChangeText={this.props.notes}>Notes ...
+                            </Text>
+        </TouchableOpacity>)
+    }
+
     render() {
         return (
             <Modal
@@ -239,6 +284,7 @@ export class CreateTask extends React.Component {
                         </TouchableOpacity>
                         {this.renderDueDate()}
                         {this.renderNotificationTimesModal()}
+                        {this.renderNotesModal()}
                         <View style={styles.slidersSection}>
                             <View style={styles.slidersTitlesContainer}>
                                 <View style={styles.sliderTitleContainerCenter}>
@@ -274,13 +320,7 @@ export class CreateTask extends React.Component {
                         </View>
                         {this.renderNotificationTimes()}
 
-                        <TouchableOpacity style={styles.createNotesContainer}>
-                            <Text
-                                style={styles.createNotesText}
-                                multiline={true}
-                                onChangeText={this.props.notes}>Notes ...
-                            </Text>
-                        </TouchableOpacity>
+                        {this.renderNotesSection()}
 
                         <View style={styles.bottomButtonsContainer}>
                             <TouchableOpacity
