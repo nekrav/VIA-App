@@ -1,16 +1,14 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Button, Dimensions } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
-import { notificationTimesModal, NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
-import { Database, Projects } from '../../db'
+import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
+import { Projects } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import FIcon from 'react-native-vector-icons/dist/Feather';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
-import SlidingPanel from 'react-native-sliding-up-down-panels';
 const controller = new Controller;
 const dateFormat = 'ddd, MMM Do, YY'
 const todayDate = new Date();

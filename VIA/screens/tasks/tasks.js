@@ -1,9 +1,10 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar } from 'react-native';
-import { Database, Projects, Tasks} from '../../db'
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard } from 'react-native';
+import { Database, Projects, Tasks } from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 
 const styles = require('./styles');
 
@@ -27,13 +28,12 @@ export class TasksScreen extends React.Component {
     }
 
     componentDidMount() {
-        StatusBar.setBackgroundColor="#000"
-        
+        StatusBar.setBackgroundColor = "#000"
+
         controller.loadAll(this, dbTableName)
     }
 
     saveNew(task) {
-        // console.warn(task)
         let newTask = {}
         newTask.id = uuid.v4();
         newTask.name = task.name;
@@ -46,7 +46,7 @@ export class TasksScreen extends React.Component {
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : "";
-       
+
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -67,8 +67,10 @@ export class TasksScreen extends React.Component {
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => { newTask.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => {  console.warn(newTask)
-                    this.saveNew(newTask) }}
+                save={() => {
+                    console.warn(newTask)
+                    this.saveNew(newTask)
+                }}
             ></CreateTask>
         }
     }
@@ -117,10 +119,10 @@ export class TasksScreen extends React.Component {
                         theTask.notification_time = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                  
 
-                    save={() => { 
-                        controller.saveExisting(this, dbTableName, theTask) 
+
+                    save={() => {
+                        controller.saveExisting(this, dbTableName, theTask)
                     }}
 
                     selectedItem={theTask}
@@ -135,36 +137,45 @@ export class TasksScreen extends React.Component {
 
     render() {
         return (
-            
-            <View style={styles.outerView}>
-             <StatusBar backgroundColor="#ecf0f1" />
-                {this.showAddModal()}
-                {this.showViewTask()}
-                <Text style={styles.title}>Tasks</Text>
-                <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
-                <Button style={styles.addButton}
-                    title="Add Task"
-                    onPress={() => {
-                        controller.setAddModalVisible(this, true);
-                    }} />
-                <FlatList
-                    data={this.state.items}
-                    renderItem={({ item }) => <TouchableOpacity
-                        style={styles.itemButton}
-                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                        <View style={styles.listItem}>
-                            <CheckBox
-                                style={styles.checkBox}
-                                center
-                                title='Click Here'
-                                checkedIcon='dot-circle-o'
-                                uncheckedIcon='circle-o'
-                                checked={this.state.checked}
-                            />
-                            <Text style={styles.itemName}>{item.value.name}</Text>
-                        </View>
-                    </TouchableOpacity>} />
-            </View>
+
+
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <SafeAreaView style={styles.outerView}>
+                    {this.showAddModal()}
+                    {this.showViewTask()}
+                    <View style={styles.topNav}>
+                        <View style={styles.centerTitleContainer}><Text style={styles.centerTitleText}>Tasks</Text></View>
+                        <TouchableOpacity style={styles.addItemButtonContainer}
+                            onPress={this.props.closeModal}>
+                            <SIcon style={styles.addItemButtonText} name="arrow-left" size={30} color="#2d3142" />
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.topTitle}>Tasks</Text>
+                    <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
+                    <Button style={styles.addButton}
+                        title="Add Task"
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }} />
+                    <FlatList
+                        data={this.state.items}
+                        renderItem={({ item }) => <TouchableOpacity
+                            style={styles.itemButton}
+                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                            <View style={styles.listItem}>
+                                <CheckBox
+                                    style={styles.checkBox}
+                                    center
+                                    title='Click Here'
+                                    checkedIcon='dot-circle-o'
+                                    uncheckedIcon='circle-o'
+                                    checked={this.state.checked}
+                                />
+                                <Text style={styles.itemName}>{item.value.name}</Text>
+                            </View>
+                        </TouchableOpacity>} />
+                </SafeAreaView>
+            </TouchableWithoutFeedback>
         );
     }
 }

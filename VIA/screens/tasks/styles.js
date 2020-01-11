@@ -1,44 +1,53 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio } from 'react-native';
+import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+
 
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
-const textColor = '#effcff'
 const bodyFontSize = 20
-const fontFamiy = 'Arial'
-const backgroundColor = '#0b132b'
+const leftMargin = 5
+const buttonFontSize = 20
+const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
+
+const backgroundColor = "#ffffff"
+const blueColor = "#068ae8"
+const textColor = "#2d3142"
+const finishedBackgroundColor = "#a8ffe0"
+const grayColor = "#ededed"
+const placeholderColor = "#ABABAB"
+const homeColorButton = "#48A2F8"
+
+const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
-    //#region Shared
-    outerView: { 
+     /* #region Outer Structure */
+     outerView: {
         flex: 1,
         flexDirection: 'column',
-        marginTop: "5%", 
-        justifyContent: 'center', 
-        alignItems: 'center' 
+        backgroundColor: backgroundColor,
     },
-    title: { 
+    /* #endregion */
 
+    /* #region  Top Navigation */
+    topNav: {
+        marginBottom: 5,
+        backgroundColor: blueColor,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        marginLeft: 5,
+        marginRight: 5,
     },
-    numberOfItems: { 
-        
+    addItemButtonContainer: {
+        justifyContent: "center",
     },
-    addButton: { 
-        
+    addItemButtonText: {
+        justifyContent: "center",
     },
-    itemButton: { 
-        
+    topNavBackButton: {
+        marginLeft: 5
     },
-    listItem: { 
-        
-    },
-    checkBox: { 
-        
-    },
-    itemName: { 
-        
-    },
+    /* #endregion */
 })
