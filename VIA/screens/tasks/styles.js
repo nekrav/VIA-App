@@ -107,10 +107,9 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
+        alignItems: 'stretch',
         flexDirection: "row",
         justifyContent: 'space-between',
-       
         alignItems: "center",
         alignContent: "center",
         borderRadius: 10,
@@ -144,7 +143,6 @@ module.exports = StyleSheet.create({
     },
     checkbox: {
         backgroundColor: blueColor,
-        marginRight: 1000,
     },
     listItemActionButtonsContainer: {
         flexDirection: 'row',

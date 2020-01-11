@@ -137,6 +137,11 @@ export class TasksScreen extends React.Component {
         }
     }
 
+    deleteItem(tableName, item)
+    {
+
+    }
+
     render() {
         return (
 
@@ -174,16 +179,26 @@ export class TasksScreen extends React.Component {
                                     <TextInput style={styles.itemName}>{item.value.name}</TextInput>
 
                                     <View style={styles.listItemActionButtonsContainer}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                        <SIcon  style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                            <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
+                                        </TouchableOpacity>
 
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
-                            </View>
-
-                            // </TouchableOpacity>
-                        } />
+                            </View>}/>
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
