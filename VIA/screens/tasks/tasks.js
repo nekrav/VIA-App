@@ -5,6 +5,8 @@ import { Database, Projects, Tasks } from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
+
 
 const styles = require('./styles');
 
@@ -144,19 +146,15 @@ export class TasksScreen extends React.Component {
                     {this.showAddModal()}
                     {this.showViewTask()}
                     <View style={styles.topNav}>
-                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitle}>Tasks</Text></View>
-                        <Text style={styles.topNavCenterTitle}>{this.state.numberOfItems}</Text>
+                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Tasks</Text></View>
+                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
-                            onPress={this.props.closeModal}>
-                            <SIcon style={styles.addItemButtonText} name="trash" size={30} color="#2d3142" />
+                            onPress={() => {
+                                controller.setAddModalVisible(this, true);
+                            }}>
+                            <FIcon style={styles.addItemButtonText} name="plus" size={40} color="#2d3142" />
                         </TouchableOpacity>
                     </View>
-                   
-                    <Button style={styles.addButton}
-                        title="Add Task"
-                        onPress={() => {
-                            controller.setAddModalVisible(this, true);
-                        }} />
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) => <TouchableOpacity
