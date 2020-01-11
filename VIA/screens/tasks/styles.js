@@ -39,6 +39,9 @@ module.exports = StyleSheet.create({
         justifyContent: 'space-between',
         marginLeft: 5,
         marginRight: 5,
+        alignItems: "center",
+        alignContent: "center",
+
     },
     addItemButtonContainer: {
         justifyContent: "center",
@@ -46,8 +49,14 @@ module.exports = StyleSheet.create({
     addItemButtonText: {
         justifyContent: "center",
     },
-    topNavBackButton: {
-        marginLeft: 5
+    topNavLeftTitle: {
+        fontSize: 30,
+        fontFamily: fontFamily,
+    },
+    topNavCenterTitle: {
+        fontSize: 30,
+        fontFamily: fontFamily,
+        marginLeft: -45,
     },
     /* #endregion */
 })

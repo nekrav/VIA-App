@@ -144,14 +144,14 @@ export class TasksScreen extends React.Component {
                     {this.showAddModal()}
                     {this.showViewTask()}
                     <View style={styles.topNav}>
-                        <View style={styles.centerTitleContainer}><Text style={styles.centerTitleText}>Tasks</Text></View>
+                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitle}>Tasks</Text></View>
+                        <Text style={styles.topNavCenterTitle}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
                             onPress={this.props.closeModal}>
-                            <SIcon style={styles.addItemButtonText} name="arrow-left" size={30} color="#2d3142" />
+                            <SIcon style={styles.addItemButtonText} name="trash" size={30} color="#2d3142" />
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.topTitle}>Tasks</Text>
-                    <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
+                   
                     <Button style={styles.addButton}
                         title="Add Task"
                         onPress={() => {
