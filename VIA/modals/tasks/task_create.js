@@ -231,17 +231,19 @@ export class CreateTask extends React.Component {
             return (
                 <TouchableOpacity style={styles.hasNotesContainer}
                     onPress={() => {
-                        this.setNotesModalVisibility(true)}}>
+                        this.setNotesModalVisibility(true)
+                    }}>
                     <Text
                         style={styles.hasNotesText}
                         multiline={true}
                         onChangeText={this.props.notes}>{this.state.itemNotes}
-                </Text>
+                    </Text>
                 </TouchableOpacity>
             )
         }
         return (<TouchableOpacity style={styles.createNotesContainer} onPress={() => {
-            this.setNotesModalVisibility(true)}}>
+            this.setNotesModalVisibility(true)
+        }}>
             <Text
                 style={styles.createNotesText}
                 multiline={true}
@@ -264,7 +266,15 @@ export class CreateTask extends React.Component {
                         <View style={styles.topNav}>
                             <TouchableOpacity style={styles.topNavBackButton}
                                 onPress={this.props.closeModal}>
-                                <SIcon name="arrow-left" size={30} color="#000" />
+                                <SIcon style={{
+                                    shadowColor: "#ABABAB",
+                                    shadowOpacity: 0.8,
+                                    shadowRadius: 1.5,
+                                    shadowOffset: {
+                                        height: 1,
+                                        width: 0
+                                    }
+                                }} name="arrow-left" size={30} color="#2d3142" />
                             </TouchableOpacity>
                         </View>
 
