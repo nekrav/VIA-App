@@ -120,8 +120,8 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
      
         marginTop: 2,
-        paddingRight: 10,
-        paddingLeft: 10,
+        // paddingRight: 10,
+        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -142,7 +142,16 @@ module.exports = StyleSheet.create({
         alignItems: "center",
 
     },
-    listItemActionButtons: {
+    checkbox: {
+        backgroundColor: blueColor,
+        marginRight: 1000,
+    },
+    listItemActionButtonsContainer: {
+        flexDirection: 'row',
+        alignItems: "center",
+
+    },
+    listItemActionButton: {
         flexDirection: 'row',
         alignItems: "center",
 

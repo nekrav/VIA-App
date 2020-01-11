@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Projects, Tasks } from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
@@ -164,19 +164,19 @@ export class TasksScreen extends React.Component {
                             <View style={styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
-                                        style={styles.checkBox}
+                                        containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='dot-circle-o'
                                         uncheckedIcon='square-o'
                                         size={35}
                                         checked={this.state.checked}
                                     />
-                                    <Text style={styles.itemName}>{item.value.name}</Text>
+                                    <TextInput style={styles.itemName}>{item.value.name}</TextInput>
 
-                                    <View style={styles.listItemActionButtons}>
-                                        <SIcon name="close" size={30} color="#000" />
-                                        <SIcon name="close" size={30} color="#000" />
-                                        <SIcon name="close" size={30} color="#000" />
+                                    <View style={styles.listItemActionButtonsContainer}>
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                        <SIcon  style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
 
                                     </View>
                                 </View>
