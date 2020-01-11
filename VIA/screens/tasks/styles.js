@@ -56,7 +56,7 @@ module.exports = StyleSheet.create({
     topNavCenterTitle: {
         fontSize: 30,
         fontFamily: fontFamily,
-        marginLeft: -45,
+        marginLeft: "-14%",
     },
     /* #endregion */
 })
