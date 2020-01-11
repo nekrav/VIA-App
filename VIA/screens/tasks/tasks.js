@@ -157,21 +157,33 @@ export class TasksScreen extends React.Component {
                     </View>
                     <FlatList
                         data={this.state.items}
-                        renderItem={({ item }) => <TouchableOpacity
-                            style={styles.itemButton}
-                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                            <View style={styles.listItem}>
-                                <CheckBox
-                                    style={styles.checkBox}
-                                    center
-                                    title='Click Here'
-                                    checkedIcon='dot-circle-o'
-                                    uncheckedIcon='circle-o'
-                                    checked={this.state.checked}
-                                />
-                                <Text style={styles.itemName}>{item.value.name}</Text>
+                        renderItem={({ item }) =>
+                            // <TouchableOpacity
+                            //     style={styles.listItemContainer}
+                            //     onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                            <View style={styles.listItemContainer}>
+                                <View style={styles.checkboxAndNameContainer}>
+                                    <CheckBox
+                                        style={styles.checkBox}
+                                        center
+                                        checkedIcon='dot-circle-o'
+                                        uncheckedIcon='square-o'
+                                        size={35}
+                                        checked={this.state.checked}
+                                    />
+                                    <Text style={styles.itemName}>{item.value.name}</Text>
+
+                                    <View style={styles.listItemActionButtons}>
+                                        <SIcon name="close" size={30} color="#000" />
+                                        <SIcon name="close" size={30} color="#000" />
+                                        <SIcon name="close" size={30} color="#000" />
+
+                                    </View>
+                                </View>
                             </View>
-                        </TouchableOpacity>} />
+
+                            // </TouchableOpacity>
+                        } />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

@@ -102,4 +102,49 @@ module.exports = StyleSheet.create({
         }
     },
     /* #endregion */
+
+    listItemContainer: {
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+
+        flexDirection: "row",
+        justifyContent: 'space-between',
+       
+        alignItems: "center",
+        alignContent: "center",
+        borderRadius: 10,
+        backgroundColor: placeholderColor,
+        borderTopWidth: 2,
+        borderTopColor: placeholderColor,
+        flexDirection: "row",
+     
+        marginTop: 2,
+        paddingRight: 10,
+        paddingLeft: 10,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+
+    },
+    listItemText: {
+
+    },
+    listItemIcon: {
+
+    },
+    checkboxAndNameContainer: {
+        flexDirection: 'row',
+        alignItems: "center",
+
+    },
+    listItemActionButtons: {
+        flexDirection: 'row',
+        alignItems: "center",
+
+    }
 })
