@@ -104,34 +104,33 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     listItemContainer: {
-        marginRight: 10,
-        marginLeft: 10,
-        marginBottom: 5,
-        alignItems: 'stretch',
-        flexDirection: "row",
-        justifyContent: 'space-between',
-        alignItems: "center",
-        alignContent: "center",
-        borderRadius: 10,
+        flex: 1,
         backgroundColor: placeholderColor,
-        borderTopWidth: 2,
-        borderTopColor: placeholderColor,
-        flexDirection: "row",
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        // marginRight: 10,
+        // marginLeft: 10,
+        // marginBottom: 5,
+
+        // borderRadius: 10,
+        // borderTopWidth: 2,
+        // borderTopColor: placeholderColor,
+        // flexDirection: "row",
      
-        marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        // marginTop: 2,
+        // // paddingRight: 10,
+        // // paddingLeft: 10,
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
 
     },
     listItemText: {
-
+        color: textColor,
     },
     listItemIcon: {
 
@@ -147,11 +146,16 @@ module.exports = StyleSheet.create({
     listItemActionButtonsContainer: {
         flexDirection: 'row',
         alignItems: "center",
+        justifyContent: 'space-evenly',
+        // marginLeft: 100,
 
     },
     listItemActionButton: {
+        marginLeft: "5%",
+        marginLeft: "5%",
         flexDirection: 'row',
         alignItems: "center",
+        // marginLeft: 10,
 
     }
 })

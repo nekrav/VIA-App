@@ -70,7 +70,6 @@ export class TasksScreen extends React.Component {
                 notification_time={(text) => { newTask.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
-                    console.warn(newTask)
                     this.saveNew(newTask)
                 }}
             ></CreateTask>
@@ -137,11 +136,6 @@ export class TasksScreen extends React.Component {
         }
     }
 
-    deleteItem(tableName, item)
-    {
-
-    }
-
     render() {
         return (
 
@@ -176,29 +170,35 @@ export class TasksScreen extends React.Component {
                                         size={35}
                                         checked={this.state.checked}
                                     />
-                                    <TextInput style={styles.itemName}>{item.value.name}</TextInput>
-
-                                    <View style={styles.listItemActionButtonsContainer}>
-                                        <TouchableOpacity
-                                            style={styles.listItemActionButton}
-                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
-                                            <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
-                                        </TouchableOpacity>
-
-                                        <TouchableOpacity
-                                            style={styles.listItemActionButton}
-                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                        </TouchableOpacity>
-
-                                        <TouchableOpacity
-                                            style={styles.listItemActionButton}
-                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
-                                        </TouchableOpacity>
-                                    </View>
+                                    <TextInput style={styles.listItemText}>{item.value.name}</TextInput>
                                 </View>
-                            </View>}/>
+
+
+                                
+                                <View style={styles.listItemActionButtonsContainer}>
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                    // onPress={() => { controller.delete(this, dbTableName, item.value) }}
+                                    >
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => {
+                                            controller.silenceAlarms(this, dbTableName, item.value)
+                                        }}>
+                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                    </TouchableOpacity>
+                                </View>
+
+                            </View>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

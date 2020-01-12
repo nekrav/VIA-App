@@ -41,16 +41,34 @@ export class Controller extends React.Component {
         })
     }
 
-    saveExisting(object, tableName, habit) {
-        Database.update(tableName, habit).then(() => {
+    saveExisting(object, tableName, item) {
+        Database.update(tableName, item).then(() => {
             this.loadAll(object, tableName);
         })
     }
 
-    delete(object, tableName, habit) {
-        Database.deleteOne(tableName, habit.id).then(() => {
+    delete(object, tableName, item) {
+        Database.deleteOne(tableName, item.id).then(() => {
             this.setViewModalVisible(object, false)
             this.loadAll(object, tableName);
         })
     }
+
+    silenceAlarms(object, tableName, item) {
+        // console.warn(item.notification_time)
+        // console.warn("bob")
+        // if (item.notification_time != "") {
+            // console.warn(item.notification_time)
+
+            // Object.keys(item.notification_time).map(key => {
+            //     if (item.notification_time[key].times.length > 0) {
+            //         item.notification_time[key].checked = !item.notification_time[key].checked;
+            //     }
+            // })
+
+
+
+        // }
+    }
+
 }
