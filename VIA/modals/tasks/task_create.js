@@ -67,10 +67,6 @@ export class CreateTask extends React.Component {
         this.setState({ projectSelectionModalVisible: visible })
     }
 
-    setProjectSelectionModalNotVisible() {
-        this.setState({ projectSelectionModalVisible: false })
-    }
-
     renderProjectSelection() {
         if (this.state.theSelectedProject != "") {
             this.props.project = this.state.theSelectedProject;
