@@ -136,6 +136,10 @@ export class TasksScreen extends React.Component {
         }
     }
 
+    getChecked(item) {
+        return checked = item.value.completed === "true"
+    }
+
     render() {
         return (
 
@@ -163,13 +167,19 @@ export class TasksScreen extends React.Component {
                                         containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='dot-circle-o'
-                                        uncheckedIcon='square-o'
+                                        uncheckedIcon='circle-o'
                                         size={35}
-                                        checked={this.state.checked}/>
+                                        onPress={() => {
+                                            item.value.completed   = !this.getChecked(item)
+                                            console.warn(item.value)
+                                            controller.saveExisting(this, dbTableName, item.value)
+                                        }}
+                                        checked={this.getChecked(item)}/>
                                     <View style={styles.listItemTextContainer}>
-                                    <TextInput 
-                                    value={item.value.name} 
-                                    style={styles.listItemText}/></View>
+                                    <Text
+                                    numberOfLines={1}
+                                    multiline={false}
+                                    style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
 
 
@@ -177,7 +187,7 @@ export class TasksScreen extends React.Component {
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                    // onPress={() => { controller.delete(this, dbTableName, item.value) }}
+                                    onPress={() => { controller.delete(this, dbTableName, item.value) }}
                                     >
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
                                     </TouchableOpacity>
