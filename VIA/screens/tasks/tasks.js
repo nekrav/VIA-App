@@ -176,7 +176,7 @@ export class TasksScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={styles.listItemContainer}>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished: styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         containerStyle={styles.checkBox}
@@ -206,13 +206,13 @@ export class TasksScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => {
                                             controller.silenceAlarms(this, dbTableName, item.value)
                                         }}>
                                         <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}

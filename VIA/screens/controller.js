@@ -55,24 +55,16 @@ export class Controller extends React.Component {
     }
 
     silenceAlarms(object, tableName, item) {
-        console.warn(item.notification_time)
-        console.warn(JSON.parse('[' +  item.notification_time + ']'))
         if (item.notification_time != "") {
-            
-            for (let i = 0; i < item.notification_time.length; i++) {
-                // console.warn(JSON.parse('{' + item.notification_time[i] + '}'))
-            }
-        //     console.warn(item.notification_time)
-
-            Object.keys(item.notification_time).map(key => {
-            //     // if (item.notification_time[key].times.length > 0) {
-            //         console.warn(key)
-            //         // item.notification_time[key].checked = !item.notification_time[key].checked;
-            //     // }
+            var timesObj = JSON.parse('[' + item.notification_time + ']');
+            Object.keys(timesObj).map(key => {
+                timesObj[key].checked = "false"
+                item.notification_time = timesObj
+                console.warn(item)
+            }, () => {
+                this.saveExisting(object, tableName, item)
+                // console.warn(item)
             })
-
-
-
         }
     }
 

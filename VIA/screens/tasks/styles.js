@@ -130,6 +130,32 @@ module.exports = StyleSheet.create({
         }
 
     },
+
+    listItemContainerFinished:{
+        backgroundColor: finishedBackgroundColor,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        // height: '100%',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+
+        borderRadius: 10,
+        borderTopWidth: 2,
+        borderTopColor: placeholderColor,
+        flexDirection: "row",
+     
+        marginTop: 2,
+        // paddingRight: 10,
+        // paddingLeft: 10,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
     listItemTextContainer: {
         // flex: 1,
         // flexGrow: 1,
