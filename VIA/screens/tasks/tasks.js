@@ -157,9 +157,6 @@ export class TasksScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            // <TouchableOpacity
-                            //     style={styles.listItemContainer}
-                            //     onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
                             <View style={styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
@@ -168,9 +165,11 @@ export class TasksScreen extends React.Component {
                                         checkedIcon='dot-circle-o'
                                         uncheckedIcon='square-o'
                                         size={35}
-                                        checked={this.state.checked}
-                                    />
-                                    <TextInput style={styles.listItemText}>{item.value.name}</TextInput>
+                                        checked={this.state.checked}/>
+                                    <View style={styles.listItemTextContainer}>
+                                    <TextInput 
+                                    value={item.value.name} 
+                                    style={styles.listItemText}/></View>
                                 </View>
 
 
