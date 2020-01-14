@@ -62,12 +62,27 @@ export class TasksScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 name={(text) => { newTask.name = text }}
-                due_date={(text) => { newTask.due_date = text }}
+                due_date={(text) => { 
+                    newTask.due_date = text }}
                 importance={(text) => { newTask.importance = text }}
                 project={(text) => { newTask.project = text }}
                 time_spent={(text) => { newTask.time_spent = text }}
                 notes={(text) => { newTask.notes = text }}
-                notification_time={(text) => { newTask.notification_time = text }}
+                notification_time={(text) => { 
+                    if (text)
+                    {
+                        // console.warn("initial")
+                        // console.warn(text)
+                        // console.warn("after json")
+                        var times = text.map(function(time)
+                        {
+                            // console.warn(time.)
+                            return JSON.stringify(time)
+                        })
+                        newTask.notification_time = times
+                    }
+                    // newTask.notification_time = text
+                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
                     this.saveNew(newTask)
@@ -171,7 +186,6 @@ export class TasksScreen extends React.Component {
                                         size={35}
                                         onPress={() => {
                                             item.value.completed   = !this.getChecked(item)
-                                            console.warn(item.value)
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}/>

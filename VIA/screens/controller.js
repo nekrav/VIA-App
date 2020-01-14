@@ -55,20 +55,24 @@ export class Controller extends React.Component {
     }
 
     silenceAlarms(object, tableName, item) {
-        // console.warn(item.notification_time)
-        // console.warn("bob")
-        // if (item.notification_time != "") {
-            // console.warn(item.notification_time)
+        console.warn(JSON.parse(item.notification_time))
+        if (item.notification_time != "") {
+            
+            for (let i = 0; i < item.notification_time.length; i++) {
+                // console.warn(JSON.stringify(item.notification_time[i]))
+            }
+        //     console.warn(item.notification_time)
 
-            // Object.keys(item.notification_time).map(key => {
-            //     if (item.notification_time[key].times.length > 0) {
-            //         item.notification_time[key].checked = !item.notification_time[key].checked;
-            //     }
-            // })
+            Object.keys(item.notification_time).map(key => {
+            //     // if (item.notification_time[key].times.length > 0) {
+            //         console.warn(key)
+            //         // item.notification_time[key].checked = !item.notification_time[key].checked;
+            //     // }
+            })
 
 
 
-        // }
+        }
     }
 
 }
