@@ -55,11 +55,12 @@ export class Controller extends React.Component {
     }
 
     silenceAlarms(object, tableName, item) {
-        console.warn(JSON.parse(item.notification_time))
+        console.warn(item.notification_time)
+        console.warn(JSON.parse('[' +  item.notification_time + ']'))
         if (item.notification_time != "") {
             
             for (let i = 0; i < item.notification_time.length; i++) {
-                // console.warn(JSON.stringify(item.notification_time[i]))
+                // console.warn(JSON.parse('{' + item.notification_time[i] + '}'))
             }
         //     console.warn(item.notification_time)
 

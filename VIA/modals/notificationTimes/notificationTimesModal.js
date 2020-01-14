@@ -18,7 +18,7 @@ var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
 
-const timeFormat = 'hh:mm'
+const timeFormat = "hh:mm"
 
 const currentTime = hours + ":" + min
 
@@ -35,43 +35,43 @@ export class NotificationTimesModal extends React.Component {
             times: [
                 {
                     key: "1",
-                    name: 'Monday',
+                    name: "Monday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "2",
-                    name: 'Tuesday',
+                    name: "Tuesday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "3",
-                    name: 'Wednesday',
+                    name: "Wednesday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "4",
-                    name: 'Thursday',
+                    name: "Thursday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "5",
-                    name: 'Friday',
+                    name: "Friday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "6",
-                    name: 'Saturday',
+                    name: "Saturday",
                     checked: false,
                     times: []
                 },
                 {
                     key: "7",
-                    name: 'Sunday',
+                    name: "Sunday",
                     checked: false,
                     times: []
                 },
