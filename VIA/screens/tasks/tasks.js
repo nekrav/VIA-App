@@ -151,7 +151,7 @@ export class TasksScreen extends React.Component {
                             onPress={() => {
                                 controller.setAddModalVisible(this, true);
                             }}>
-                            <FIcon style={styles.addItemButtonText} name="plus" size={40} color="#2d3142" />
+                            <FIcon style={styles.addItemButtonText} name="plus"/>
                         </TouchableOpacity>
                     </View>
                     <FlatList

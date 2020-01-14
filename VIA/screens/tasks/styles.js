@@ -42,7 +42,6 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: blueColor,
         borderTopWidth: 2,
         borderTopColor: blueColor,
         flexDirection: "row",
@@ -67,39 +66,40 @@ module.exports = StyleSheet.create({
     addItemButtonText: {
         justifyContent: "center",
         color: backgroundColor,
-        fontSize: 30,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        fontSize: 50,
+        color: backgroundColor
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         color: backgroundColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
         color: backgroundColor,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
     },
     /* #endregion */
 
