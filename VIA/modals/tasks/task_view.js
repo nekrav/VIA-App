@@ -314,6 +314,8 @@ export class ViewTask extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
+
+                        {/* Top Bar Section */}
                         <View style={styles.topNav}>
                             <TouchableOpacity style={styles.topNavBackButton}
                                 onPress={this.props.closeModal}>
@@ -325,25 +327,41 @@ export class ViewTask extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={styles.titleContainer}>
-                                <TextInput
-                                    maxLength={40}
-                                    onEndEditing={this.props.save()}
-                                    style={styles.createNameText}
-                                    multiline={true}
-                                    value={this.props.selectedItem.name}
-                                    onChangeText={this.props.editName}>
-                                </TextInput>
-                        </View>
+                        {/* Name Section */}
+                        <TouchableOpacity
+                            onPress={() => { this.nameTextInput.focus(); }}
+                            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
+                            <TextInput
+                                ref={(input) => { this.nameTextInput = input; }}
+                                maxLength={40}
+                                onEndEditing={this.props.save()}
+                                style={styles.createNameText}
+                                multiline={true}
+                                value={this.props.selectedItem.name}
+                                onChangeText={this.props.editName}>
+                            </TextInput>
+                        </TouchableOpacity>
+
+
+
+                         {/* Project Section*/}
+
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSection()}
                         </View>
+
+                         {/* Due Date Section*/}
 
                         <View style={styles.dateContainer}>
                             {this.renderDueDate()}
                         </View>
 
+                         {/* Sliders Section*/}
+
                         {this.renderSliderSection()}
+
+                         {/* Complete Button and Notification Times Section*/}
+
                         <View style={styles.completeAndNotifSection}>
                             {this.renderCompleteButton()}
                             <View style={styles.projectsNotificationsSection}>
@@ -351,7 +369,7 @@ export class ViewTask extends React.Component {
                             </View>
                         </View>
 
-
+                         {/* Notes Section*/}
                         <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TextInput
