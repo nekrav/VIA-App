@@ -380,8 +380,6 @@ export class ViewTask extends React.Component {
                                 onChangeText={this.props.editNotes}>
                             </TextInput>
                         </View>
-
-
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
