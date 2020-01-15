@@ -152,7 +152,13 @@ export class TasksScreen extends React.Component {
     }
 
     getChecked(item) {
-        return checked = item.value.completed === "true"
+        if (item != null)
+        var checked = false
+        {
+            return checked = item.value.completed === "true"
+        }
+        // console.warn(item.value.completed)
+       
     }
 
     render() {
@@ -188,7 +194,8 @@ export class TasksScreen extends React.Component {
                                             item.value.completed   = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
-                                        checked={this.getChecked(item)}/>
+                                        checked={this.getChecked(item)}
+                                        />
                                     <View style={styles.listItemTextContainer}>
                                     <Text
                                     numberOfLines={1}
@@ -203,7 +210,7 @@ export class TasksScreen extends React.Component {
                                         style={styles.listItemActionButton}
                                     onPress={() => { controller.delete(this, dbTableName, item.value) }}
                                     >
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
 
                                     {/* <TouchableOpacity
