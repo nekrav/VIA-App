@@ -41,7 +41,7 @@ export class ProjectsScreen extends React.Component {
         newProject.completed = "false";
         newProject.time_spent = 0;
         newProject.notes = 0;
-       
+
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -111,34 +111,38 @@ export class ProjectsScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.outerView}>
-                {this.showAddModal()}
-                {this.showViewProject()}
-                <Text style={styles.title}>Projects</Text>
-                <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
-                <Button style={styles.addButton}
-                    title="Add Project"
-                    onPress={() => {
-                        controller.setAddModalVisible(this, true);
-                    }} />
-                <FlatList
-                    data={this.state.items}
-                    renderItem={({ item }) => <TouchableOpacity
-                        style={styles.itemButton}
-                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                        <View style={styles.listItem}>
-                            <CheckBox
-                                style={styles.checkBox}
-                                center
-                                title='Click Here'
-                                checkedIcon='dot-circle-o'
-                                uncheckedIcon='circle-o'
-                                checked={this.state.checked}
-                            />
-                            <Text style={styles.itemName}>{item.value.name}</Text>
-                        </View>
-                    </TouchableOpacity>} />
-            </View>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <SafeAreaView style={styles.outerView}>
+                    {this.showAddModal()}
+                    {this.showViewProject()}
+                    <View style={styles.topNav}>
+                        <Text style={styles.title}>Projects</Text>
+                        <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
+                        <Button style={styles.addButton}
+                            title="Add Project"
+                            onPress={() => {
+                                controller.setAddModalVisible(this, true);
+                            }} />
+                        <FlatList
+                            data={this.state.items}
+                            renderItem={({ item }) => <TouchableOpacity
+                                style={styles.itemButton}
+                                onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                <View style={styles.listItem}>
+                                    <CheckBox
+                                        style={styles.checkBox}
+                                        center
+                                        title='Click Here'
+                                        checkedIcon='dot-circle-o'
+                                        uncheckedIcon='circle-o'
+                                        checked={this.state.checked}
+                                    />
+                                    <Text style={styles.itemName}>{item.value.name}</Text>
+                                </View>
+                            </TouchableOpacity>} />
+                    </View>
+                </SafeAreaView>
+            </TouchableWithoutFeedback>
         );
     }
 }
