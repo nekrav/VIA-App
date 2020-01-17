@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
-import { Database, Projects, Tasks } from '../../db'
+import { Database, Routines } from '../../db'
 import { CreateRoutine, ViewRoutine } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -14,7 +14,7 @@ var uuid = require('react-native-uuid');
 
 const controller = new Controller;
 
-const dbTableName = Tasks.TABLE_NAME
+const dbTableName = Routines.TABLE_NAME
 
 export class RoutinesScreen extends React.Component {
     constructor(props) {
@@ -175,7 +175,6 @@ export class RoutinesScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
                                     </TouchableOpacity>
                                 </View>
-
                             </View>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>

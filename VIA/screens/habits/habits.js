@@ -1,9 +1,12 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
 import { Controller } from '../controller'
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
+
 
 const styles = require('./styles');
 
@@ -118,38 +121,81 @@ export class HabitsScreen extends React.Component {
         }
     }
 
+    getChecked(item) {
+        if (item != null)
+            var checked = false
+        return checked = item.value.completed === "true"
+
+    }
+
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-            <View style={styles.outerView}>
-                {this.showAddModal()}
-                {this.showViewHabit()}
-                <Text style={styles.title}>Habits</Text>
-                <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
-                <Button style={styles.addButton}
-                    title="Add Habit"
-                    onPress={() => {
-                        controller.setAddModalVisible(this, true);
-                    }} />
-                <FlatList
-                    data={this.state.items}
-                    renderItem={({ item }) => <TouchableOpacity
-                        style={styles.itemButton}
-                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                        <View style={styles.listItem}>
-                            <CheckBox
-                                style={styles.checkBox}
-                                center
-                                title='Click Here'
-                                checkedIcon='dot-circle-o'
-                                uncheckedIcon='circle-o'
-                                checked={this.state.checked}
-                            />
-                            <Text style={styles.itemName}>{item.value.name}</Text>
-                        </View>
-                    </TouchableOpacity>} />
-            </View>
-             </TouchableWithoutFeedback>
+                <SafeAreaView style={styles.outerView}>
+
+                    {/* Modals Region */}
+                    {this.showAddModal()}
+                    {this.showViewHabit()}
+
+                    {/* /* #region Top Navigation Section  */}
+                    <View style={styles.topNav}>
+                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Habits</Text></View>
+                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
+                        <TouchableOpacity style={styles.addItemButtonContainer}
+                            onPress={() => {
+                                controller.setAddModalVisible(this, true);
+                            }}>
+                            <FIcon style={styles.addItemButtonText} name="plus" />
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* List Region */}
+                    <FlatList
+                        data={this.state.items}
+                        renderItem={({ item }) =>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                                <View style={styles.checkboxAndNameContainer}>
+                                    <CheckBox
+                                        containerStyle={styles.checkBox}
+                                        center
+                                        checkedIcon='dot-circle-o'
+                                        uncheckedIcon='circle-o'
+                                        size={35}
+                                        onPress={() => {
+                                            item.value.completed = !this.getChecked(item)
+                                            controller.saveExisting(this, dbTableName, item.value)
+                                        }}
+                                        checked={this.getChecked(item)} />
+                                    <View style={styles.listItemTextContainer}>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.listItemText}>{item.value.name} </Text></View>
+                                </View>
+                                <View style={styles.listItemActionButtonsContainer}>
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                    </TouchableOpacity>
+
+                                    {/* <TouchableOpacity
+                                    style={styles.listItemActionButton}
+                                    onPress={() => {
+                                        controller.silenceAlarms(this, dbTableName, item.value)
+                                    }}>
+                                    <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                </TouchableOpacity> */}
+
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>} />
+                </SafeAreaView>
+            </TouchableWithoutFeedback>
         );
     }
 }
