@@ -105,7 +105,6 @@ export class RoutinesScreen extends React.Component {
         if (item != null)
             var checked = false
         return checked = item.value.completed === "true"
-
     }
 
 

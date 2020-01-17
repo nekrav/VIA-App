@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Projects, Tasks } from '../../db'
-import { CreateProject, ViewTask } from '../../modals'
+import { CreateProject, ViewProject } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -62,6 +62,14 @@ export class ProjectsScreen extends React.Component {
                 importance={(text) => { newProject.importance = text }}
                 time_spent={(text) => { newProject.time_spent = text }}
                 notes={(text) => { newProject.notes = text }}
+                notification_time={(text) => {
+                    if (text) {
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        newProject.notification_time = times
+                    }
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newProject) }}
             ></CreateProject>
@@ -74,6 +82,7 @@ export class ProjectsScreen extends React.Component {
                 theProject = this.state.selectedItem
                 return <ViewProject
                     animationType="slide"
+                    visible={this.state.viewModalVisible}
                     transparent={false}
                     editName={(text) => {
                         theProject.name = text;
@@ -99,7 +108,10 @@ export class ProjectsScreen extends React.Component {
                         theProject.notes = text;
                         this.setState({ selectedProject: theProject })
                     }}
-
+                    editNotificationTime={(text) => {
+                        theTask.notification_time = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
                     save={() => { controller.saveExisting(this, dbTableName, theProject) }}
 
                     selectedItem={theProject}

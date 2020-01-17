@@ -10,6 +10,27 @@ export class ViewProject extends React.Component {
         };
     }
 
+    getTasksInProject() {
+		const itemsArr = []
+        Database.getAll(Tasks.TABLE_NAME)
+            .then((res) => {
+				const len = res.rows.length;
+				this.setState({numberOfTasks: len})
+                let item = {}
+                for (let i = 0; i < len; i++) {
+					item = res.rows.item(i)
+					if (item.project === 'true') {
+						itemsArr.push({ key: JSON.stringify(item.id), value: item })
+					}
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                object.setState({
+                    tasks: itemsArr,
+                    numberOfTasks: len,
+                })
+            })
+	}
+
     canEdit() {
         this.setState({ canEdit: true })
     }

@@ -10,6 +10,7 @@ export class Projects {
         this.percentage_done = props.percentage_done
         this.completed = props.completed
         this.time_spent = props.time_spent
+        this.notification_times = props.notification_times
         this.notes = notes
     }
 
@@ -24,6 +25,7 @@ export class Projects {
             'completed text, ' +
             'time_spent text, ' +
             'notes text' + 
+            'notification_time ' +
             ')'
     }
 

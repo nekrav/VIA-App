@@ -1,36 +1,28 @@
 import React from 'react';
-import {
-	Text,
-	View,
-	TouchableOpacity,
-	Modal,
-	TextInput,
-	SafeAreaView,
-	TouchableWithoutFeedback,
-	Keyboard,
-} from 'react-native'; // Version can be specified in package.json
-import { SelectionModal } from '../selectionModal/selectionModal';
-import { DateModal } from '../dateModal/dateModal';
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
+import { SelectionModal } from '../selectionModal/selectionModal'
+import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
-import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
-import { Projects } from '../../db';
-import { Controller } from '../controller';
+import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
+import { Projects, Tasks } from '../../db'
+import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
-const controller = new Controller();
-const dateFormat = 'ddd, MMM Do, YY';
+const controller = new Controller;
+const dateFormat = 'ddd, MMM Do, YY'
 const todayDate = new Date();
 const styles = require('./styles');
 import { getInset } from 'react-native-safe-area-view';
 import { ThemeProvider } from 'styled-components';
+
 
 export class CreateProject extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			newProject: this.props.newProject,
-			projectSelectionModalVisible: false,
+			tasksSelectionModalVisible: false,
 			items: [],
 			showDate: false,
 			itemDate: '',
@@ -39,15 +31,105 @@ export class CreateProject extends React.Component {
 			notificationTimesModal: false,
 			newProjectName: '',
 			itemNotes: '',
+			numberOfTasks: '',
+			tasks: []
 		};
+	}
+	componentDidMount() {
+		controller.loadAll(this, Tasks.TABLE_NAME);
+	}
+
+	showTasksSelectionModal() {
+		if (this.state.tasksSelectionModalVisible) {
+			return <SelectionModal
+				animationType="fade"
+				items={this.state.items}
+				itemName="Task"
+				transparent={true}
+				selectItem={(item) => {
+					this.props.tasks(item.key)
+					this.setState({ theSelectedProject: item.value.name }, () => {
+					})
+				}}
+				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
+			</SelectionModal>
+		}
 	}
 
 	setDateModalVisibility(visible) {
 		this.setState({ showDate: visible });
 	}
 
+	setTaskSelectionModalVisibility(visible) {
+		this.setState({ projectSelectionModalVisible: visible })
+	}
+
+	renderTaskSelection() {
+		if (this.state.tasks != []) {
+			return (
+				<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
+					this.setTaskSelectionModalVisibility(true);
+				}}>
+					<Text style={styles.hasProjectSelectionButtonText}>{this.state.numberOfTasks}</Text>
+					<Text style={styles.notificationTimeButtonText}>
+						<SIcon name="layers" size={20} color="#ffffff" />
+					</Text>
+				</TouchableOpacity>
+			);
+		} else {
+			return (
+				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
+					<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
+					<Text style={styles.notificationTimeButtonText}>
+						<SIcon name="layers" size={20} color="#ABABAB" />
+					</Text>
+				</TouchableOpacity>
+			);
+		}
+	}
+
+	renderShowDate() {
+		if (this.state.showDate) {
+			return <DateModal
+				pickerMode="date"
+				animationType="fade"
+				transparent={true}
+				setDate={(item) => {
+					this.props.due_date(item)
+					this.setState({ itemDate: item })
+				}}
+				onSubmit={(item) => {
+					this.props.due_date(item)
+					this.setState({ itemDate: item })
+					this.setDateModalVisibility(false)
+				}}
+				closeModal={() => { this.setDateModalVisibility(false) }}>
+			</DateModal>
+		}
+		return null;
+	}
+
+	setNotificationTimesVisibility(visible) {
+		this.setState({ notificationTimesModal: visible })
+	}
+
+	renderNotificationTimesModal() {
+		if (this.state.notificationTimesModal) {
+			return <NotificationTimesModal
+				animationType="fade"
+				transparent={true}
+				setDate={(item) => {
+					this.props.notification_time(item)
+					this.setState({ itemNotificationTimes: item })
+				}}
+				closeModal={() => { this.setNotificationTimesVisibility(false) }}>
+			</NotificationTimesModal>
+		}
+		return null;
+	}
+
 	renderDueDate() {
-		if (this.state.itemDate != '') {
+		if (this.state.itemDate != "") {
 			return (
 				<View style={styles.createDueDateContainer}>
 					<TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
@@ -56,18 +138,18 @@ export class CreateProject extends React.Component {
 						</Text>
 					</TouchableOpacity>
 					<Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') + ' days left'}
+						{Moment(new Date(this.state.itemDate)).diff({ todayDate }, "days") + " days left"}
 					</Text>
-				</View>
-			);
+				</View>)
 		}
 		return (
 			<View style={styles.createNameContainer}>
 				<TouchableOpacity onPress={() => this.setDateModalVisibility(true)}>
-					<Text style={styles.createDateText}>When do you want to finish this?</Text>
+					<Text style={styles.createDateText}>
+						When do you want to finish this?
+                        </Text>
 				</TouchableOpacity>
-			</View>
-		);
+			</View>)
 	}
 
 	setNotificationTimesVisibility(visible) {

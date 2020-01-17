@@ -11,8 +11,9 @@ export class Tasks {
         this.completed = props.completed
         this.project = props.project
         this.time_spent = props.time_spent
-        this.notes = props.notes
         this.notification_time = props.notification_time
+        this.notes = props.notes
+        
     }
 
     static get TABLE_CREATE() {
