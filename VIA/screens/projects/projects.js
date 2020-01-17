@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Projects, Tasks } from '../../db'
-import { CreateTask, ViewTask } from '../../modals'
+import { CreateProject, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -112,10 +112,20 @@ export class ProjectsScreen extends React.Component {
         }
     }
 
+    getChecked(item) {
+        if (item != null)
+        var checked = false
+        {
+            return checked = item.value.completed === "true"
+        }le.warn(item.value.completed)
+       
+    }
+
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
+                          {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewProject()}
 
@@ -131,35 +141,53 @@ export class ProjectsScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
 
+                    {/* List Region */}
 
-
-
-                    <View style={styles.topNav}>
-                        <Text style={styles.title}>Projects</Text>
-                        <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
-                        <Button style={styles.addButton}
-                            title="Add Project"
-                            onPress={() => {
-                                controller.setAddModalVisible(this, true);
-                            }} />
-                        <FlatList
-                            data={this.state.items}
-                            renderItem={({ item }) => <TouchableOpacity
-                                style={styles.itemButton}
-                                onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                <View style={styles.listItem}>
+                    <FlatList
+                        data={this.state.items}
+                        renderItem={({ item }) =>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished: styles.listItemContainer}>
+                                <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
-                                        style={styles.checkBox}
+                                        containerStyle={styles.checkBox}
                                         center
-                                        title='Click Here'
                                         checkedIcon='dot-circle-o'
                                         uncheckedIcon='circle-o'
-                                        checked={this.state.checked}
-                                    />
-                                    <Text style={styles.itemName}>{item.value.name}</Text>
+                                        size={35}
+                                        onPress={() => {
+                                            item.value.completed   = !this.getChecked(item)
+                                            controller.saveExisting(this, dbTableName, item.value)
+                                        }}
+                                        checked={this.getChecked(item)}
+                                        />
+                                    <View style={styles.listItemTextContainer}>
+                                    <Text
+                                    numberOfLines={1}
+                                    multiline={false}
+                                    style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
-                            </TouchableOpacity>} />
-                    </View>
+                                <View style={styles.listItemActionButtonsContainer}>
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                    onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                    </TouchableOpacity>
+
+                                    {/* <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => {
+                                            controller.silenceAlarms(this, dbTableName, item.value)
+                                        }}>
+                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                    </TouchableOpacity> */}
+
+                                    <TouchableOpacity
+                                        style={styles.listItemActionButton}
+                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>} />            
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

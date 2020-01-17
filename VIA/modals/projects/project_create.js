@@ -221,7 +221,7 @@ export class CreateProject extends React.Component {
 				visible={this.props.visible}
 				onRequestClose={this.props.onRequestClose}
 			>
-				{this.showProjectSelectionModal()}
+				{/* {this.showProjectSelectionModal()} */}
 				<View style={{ marginTop: 22, alignItems: 'center' }}>
 					<Text>Add Project</Text>
 				</View>

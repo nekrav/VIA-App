@@ -62,27 +62,26 @@ export class TasksScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 name={(text) => { newTask.name = text }}
-                due_date={(text) => { 
-                    newTask.due_date = text }}
+                due_date={(text) => {
+                    newTask.due_date = text
+                }}
                 importance={(text) => { newTask.importance = text }}
                 project={(text) => { newTask.project = text }}
                 time_spent={(text) => { newTask.time_spent = text }}
                 notes={(text) => { newTask.notes = text }}
-                notification_time={(text) => { 
-                    if (text)
-                    {
+                notification_time={(text) => {
+                    if (text) {
                         // console.warn("initial")
                         // console.warn(text)
                         // console.warn("after json")
-                        var times = text.map(function(time)
-                        {
+                        var times = text.map(function (time) {
                             // console.warn(time.)
                             return JSON.stringify(time)
                         })
                         newTask.notification_time = times
                     }
                     // newTask.notification_time = text
-                 }}
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
                     this.saveNew(newTask)
@@ -153,12 +152,9 @@ export class TasksScreen extends React.Component {
 
     getChecked(item) {
         if (item != null)
-        var checked = false
-        {
+            var checked = false
             return checked = item.value.completed === "true"
-        }
-        // console.warn(item.value.completed)
-       
+
     }
 
     render() {
@@ -167,8 +163,12 @@ export class TasksScreen extends React.Component {
 
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
+
+                    {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewTask()}
+
+                    {/* /* #region Top Navigation Section  */}
                     <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Tasks</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
@@ -176,13 +176,15 @@ export class TasksScreen extends React.Component {
                             onPress={() => {
                                 controller.setAddModalVisible(this, true);
                             }}>
-                            <FIcon style={styles.addItemButtonText} name="plus"/>
+                            <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
                     </View>
+
+                    {/* List Region */}
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished: styles.listItemContainer}>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         containerStyle={styles.checkBox}
@@ -191,24 +193,24 @@ export class TasksScreen extends React.Component {
                                         uncheckedIcon='circle-o'
                                         size={35}
                                         onPress={() => {
-                                            item.value.completed   = !this.getChecked(item)
+                                            item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}
-                                        />
+                                    />
                                     <View style={styles.listItemTextContainer}>
-                                    <Text
-                                    numberOfLines={1}
-                                    multiline={false}
-                                    style={styles.listItemText}>{item.value.name} </Text></View>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
 
 
-                                
+
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                    onPress={() => { controller.delete(this, dbTableName, item.value) }}
+                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}
                                     >
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
