@@ -315,11 +315,12 @@ export class CreateTask extends React.Component {
 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <SafeAreaView style={styles.outerView}>
+
+              {/* {TOP NAVIGATION REGION} */}
             <View style={styles.topNav}>
               <TouchableOpacity
                 style={styles.topNavBackButton}
-                onPress={this.props.closeModal}
-              >
+                onPress={this.props.closeModal}>
                 <SIcon
                   style={{
                     shadowColor: '#ABABAB',
@@ -336,7 +337,9 @@ export class CreateTask extends React.Component {
                 />
               </TouchableOpacity>
             </View>
+            
 
+            {/* {NAME CONTAINER} */}
             <TouchableOpacity
               onPress={() => {
                 this.nameTextInput.focus();
@@ -361,9 +364,12 @@ export class CreateTask extends React.Component {
                 }}
               ></TextInput>
             </TouchableOpacity>
+           
             {this.renderDueDate()}
             {this.renderNotificationTimesModal()}
             {this.renderNotesModal()}
+
+            {/* {SLIDER SECTION} */}
             <View style={styles.slidersSection}>
               <View style={styles.slidersTitlesContainer}>
                 <View style={styles.sliderTitleContainerCenter}>
@@ -400,13 +406,23 @@ export class CreateTask extends React.Component {
                 </View>
               </View>
             </View>
+           
+           
+            {/* {PROJECT SELECTION SECTION} */}
             <View style={styles.projectSectionContainer}>
               {this.renderProjectSelection()}
             </View>
+           
+           
+            {/* {NOTIFICATION TIMES SECTION} */}
             {this.renderNotificationTimes()}
 
+            
+             {/* {NOTES SECTION} */}
             {this.renderNotesSection()}
 
+
+            {/* {BOTTOM BUTTONS SECTION} */}
             <View style={styles.bottomButtonsContainer}>
               <TouchableOpacity
                 disabled={this.state.newTaskName != '' ? false : true}
