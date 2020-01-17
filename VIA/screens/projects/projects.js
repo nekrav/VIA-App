@@ -1,9 +1,12 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList } from 'react-native';
-import { Database, Projects } from '../../db'
-import { CreateProject, ViewProject } from '../../modals'
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
+import { Database, Projects, Tasks } from '../../db'
+import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
+
 
 const styles = require('./styles');
 
@@ -115,6 +118,22 @@ export class ProjectsScreen extends React.Component {
                 <SafeAreaView style={styles.outerView}>
                     {this.showAddModal()}
                     {this.showViewProject()}
+
+                    {/* /* #region Top Navigation Section  */}
+                    <View style={styles.topNav}>
+                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Projects</Text></View>
+                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
+                        <TouchableOpacity style={styles.addItemButtonContainer}
+                            onPress={() => {
+                                controller.setAddModalVisible(this, true);
+                            }}>
+                            <FIcon style={styles.addItemButtonText} name="plus" />
+                        </TouchableOpacity>
+                    </View>
+
+
+
+
                     <View style={styles.topNav}>
                         <Text style={styles.title}>Projects</Text>
                         <Text style={styles.numberOfItems}>{this.state.numberOfItems}</Text>
