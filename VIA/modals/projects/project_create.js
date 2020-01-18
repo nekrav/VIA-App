@@ -428,9 +428,9 @@ export class CreateProject extends React.Component {
 						{/* {BOTTOM BUTTONS SECTION} */}
 						<View style={styles.bottomButtonsContainer}>
 							<TouchableOpacity
-								disabled={this.state.newTaskName != '' ? false : true}
+								disabled={this.state.newProjectName != '' ? false : true}
 								style={
-									this.state.newTaskName != ''
+									this.state.newProjectName != ''
 										? styles.bottomButtonLeft
 										: styles.bottomButtonLeftDisabled
 								}
@@ -441,7 +441,7 @@ export class CreateProject extends React.Component {
 							>
 								<Text
 									style={
-										this.state.newTaskName != ''
+										this.state.newProjectName != ''
 											? styles.bottomButtonTextDisabled
 											: styles.bottomButtonText
 									}

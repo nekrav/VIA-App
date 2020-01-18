@@ -10,7 +10,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 const controller = new Controller;
-const dateFormat = 'ddd, MMM Do, YY'
+const dateFormat = 'hh:mm'
 const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
@@ -22,12 +22,14 @@ export class CreateRoutine extends React.Component {
             newRoutine: this.props.newRoutine,
             tasksSelectionModalVisible: false,
 			items: [],
-			showDate: false,
-			itemDate: '',
+            showStartDate: false,
+            showEndDate: false,
+            itemStartDate: '',
+            itemEndDate: '',
 			itemNotificationTimes: '',
 			newProjectImportance: 0,
 			notificationTimesModal: false,
-			newProjectName: '',
+			newRoutineName: '',
 			itemNotes: '',
 			numberOfTasks: '',
 			tasks: [],
@@ -39,7 +41,7 @@ export class CreateRoutine extends React.Component {
 		controller.loadAll(this, Habits.TABLE_NAME);
     }
     
-    	/* #region  Task Selection Region */
+    	/* #region  Habit Selection Region */
 
 	showTasksSelectionModal() {
 		if (this.state.tasksSelectionModalVisible) {
@@ -108,29 +110,29 @@ export class CreateRoutine extends React.Component {
 	}
 	/* #endregion */
 
-	/* #region  Due Date Region */
-	setDueDateModalVisibility(visible) {
-		this.setState({ showDate: visible });
+	/* #region  Start Date Region */
+	setStartDateModalVisibility(visible) {
+		this.setState({ showStartDate: visible });
 	}
 
-	renderDueDateModal() {
-		if (this.state.showDate) {
+	renderStartDateModal() {
+		if (this.state.showStartDate) {
 			return (
 				<DateModal
-					pickerMode="date"
+					pickerMode="time"
 					animationType="fade"
 					transparent={true}
 					setDate={item => {
-						this.props.due_date(item);
-						this.setState({ itemDate: item });
+						this.props.start_date(item);
+						this.setState({ itemStartDate: item });
 					}}
 					onSubmit={item => {
-						this.props.due_date(item);
-						this.setState({ itemDate: item });
-						this.setDueDateModalVisibility(false);
+						this.props.start_date(item);
+						this.setState({ itemStartate: item });
+						this.setStartDateModalVisibility(false);
 					}}
 					closeModal={() => {
-						this.setDueDateModalVisibility(false);
+						this.setStartDateModalVisibility(false);
 					}}
 				></DateModal>
 			);
@@ -138,29 +140,90 @@ export class CreateRoutine extends React.Component {
 		return null;
 	}
 
-	renderDueDate() {
-		if (this.state.itemDate != '') {
+	renderStartDate() {
+		if (this.state.itemStartDate != '') {
 			return (
 				<View style={styles.createDueDateContainer}>
 					<TouchableOpacity
-						onPress={() => this.setDueDateModalVisibility(true)}
+						onPress={() => this.setStartDateModalVisibility(true)}
 					>
 						<Text style={styles.createSelectedDateText}>
-							{Moment(new Date(this.state.itemDate)).format(dateFormat)}
+							{Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
 						</Text>
 					</TouchableOpacity>
-					<Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') +
+					{/* <Text style={styles.createSelectedDateText}>
+						{Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
 							' days left'}
-					</Text>
+					</Text> */}
 				</View>
 			);
 		}
 		return (
 			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setDueDateModalVisibility(true)}>
+				<TouchableOpacity onPress={() => this.setStartDateModalVisibility(true)}>
 					<Text style={styles.createDateText}>
-						When do you want to finish this?
+						When do you want this routine to start?
+          </Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
+
+    /* #endregion */
+    
+    /* #region  End Date Region */
+	setEndDateModalVisibility(visible) {
+		this.setState({ showEndDate: visible });
+	}
+
+	renderEndDateModal() {
+		if (this.state.showEndDate) {
+			return (
+				<DateModal
+					pickerMode="time"
+					animationType="fade"
+					transparent={true}
+					setDate={item => {
+						this.props.end_date(item);
+						this.setState({ itemEndDate: item });
+					}}
+					onSubmit={item => {
+						this.props.end_date(item);
+						this.setState({ itemEndDate: item });
+						this.setEndDateModalVisibility(false);
+					}}
+					closeModal={() => {
+						this.setEndDateModalVisibility(false);
+					}}
+				></DateModal>
+			);
+		}
+		return null;
+	}
+
+	renderEndDate() {
+		if (this.state.itemEndDate != '') {
+			return (
+				<View style={styles.createDueDateContainer}>
+					<TouchableOpacity
+						onPress={() => this.setEndDateModalVisibility(true)}
+					>
+						<Text style={styles.createSelectedDateText}>
+							{Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
+						</Text>
+					</TouchableOpacity>
+					{/* <Text style={styles.createSelectedDateText}>
+						{Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
+							' days left'}
+					</Text> */}
+				</View>
+			);
+		}
+		return (
+			<View style={styles.createNameContainer}>
+				<TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
+					<Text style={styles.createDateText}>
+                    When do you want this routine to end?
           </Text>
 				</TouchableOpacity>
 			</View>
@@ -316,6 +379,8 @@ export class CreateRoutine extends React.Component {
 				onRequestClose={this.props.onRequestClose}
 			>
 				{this.showTasksSelectionModal()}
+                {this.renderEndDateModal()}
+                {this.renderStartDateModal()}
 
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<SafeAreaView style={styles.outerView}>
@@ -349,7 +414,7 @@ export class CreateRoutine extends React.Component {
 								this.nameTextInput.focus();
 							}}
 							style={
-                                this.state.newProjectName != ''
+                                this.state.newRoutineName != ''
                                     ? styles.hasNameTextInputContainer
                                     : styles.createNameContainer
                             }
@@ -363,7 +428,7 @@ export class CreateRoutine extends React.Component {
 								multiline={true}
 								placeholder={'Name'}
 								onChangeText={value => {
-									this.setState({ newProjectName: value });
+									this.setState({ newRoutineName: value });
 									this.props.name(value);
 									this.props.id(this.state.projectId);
 								}}
@@ -371,6 +436,9 @@ export class CreateRoutine extends React.Component {
 						</TouchableOpacity>
 
 						{/* {this.renderDueDate()} */}
+
+                        {this.renderStartDate()}
+                        {this.renderEndDate()}
 						{this.renderNotificationTimesModal()}
 						{this.renderNotesModal()}
 
@@ -430,9 +498,9 @@ export class CreateRoutine extends React.Component {
 						{/* {BOTTOM BUTTONS SECTION} */}
 						<View style={styles.bottomButtonsContainer}>
 							<TouchableOpacity
-								disabled={this.state.newTaskName != '' ? false : true}
+								disabled={this.state.newRoutineName != '' ? false : true}
 								style={
-									this.state.newTaskName != ''
+									this.state.newRoutineName != ''
 										? styles.bottomButtonLeft
 										: styles.bottomButtonLeftDisabled
 								}
@@ -443,7 +511,7 @@ export class CreateRoutine extends React.Component {
 							>
 								<Text
 									style={
-										this.state.newTaskName != ''
+										this.state.newRoutineName != ''
 											? styles.bottomButtonTextDisabled
 											: styles.bottomButtonText
 									}
