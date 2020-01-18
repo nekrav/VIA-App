@@ -29,7 +29,8 @@ export class SelectionModal extends React.Component {
                         <View style={styles.projectContainerView}> 
                         <FlatList
                             data={this.props.items}
-                            renderItem={({ item }) => <TouchableOpacity
+                            renderItem={({ item }) => 
+                            <TouchableOpacity
                                 style={styles.projectContainer}
                                 onPress={() => {
                                     this.props.closeModal();
@@ -38,7 +39,8 @@ export class SelectionModal extends React.Component {
                                     <Text
                                         style={styles.projectText}
                                     >{item.value.name}</Text>
-                            </TouchableOpacity>} /></View>
+                            </TouchableOpacity>} />
+                            </View>
                         <View>
                             <TouchableOpacity style={styles.bottomButtonContainer} onPress={this.props.closeModal}>
                                 <Text style={styles.bottomButtonText}>Close</Text>

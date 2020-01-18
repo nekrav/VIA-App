@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Platform} from 'react-native';
+import { StyleSheet, PixelRatio, Platform } from 'react-native';
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
@@ -113,4 +113,46 @@ module.exports = StyleSheet.create({
         textAlign: 'center',
         fontFamily: fontFamily,
     },
+
+    /* #region  Selection Item container */
+    selectionItemContainer: {
+        backgroundColor: backgroundColor,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderRadius: 20,
+        flex: 1,
+        borderWidth: 1,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginRight: 5,
+        alignItems: 'center',
+        marginBottom: 10,
+        marginTop: 10,
+    },
+
+
+    selectionItemButtonsContainer: {
+        flexGrow: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+
+    },
+    /* #endregion */
+
+    /* #region  Item selection checkbox */
+
+    checkboxText: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+
+    },
+    /* #endregion */
 })

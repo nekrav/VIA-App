@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
+import {MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
@@ -42,8 +43,9 @@ export class CreateProject extends React.Component {
 	/* #region  Task Selection Region */
 
 	showTasksSelectionModal() {
+		console.warn(this.state.items)
 		if (this.state.tasksSelectionModalVisible) {
-			return <SelectionModal
+			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
 				itemName="Task"
@@ -54,7 +56,7 @@ export class CreateProject extends React.Component {
 					})
 				}}
 				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
-			</SelectionModal>
+			</MultipleSelectionModal>
 		}
 	}
 
