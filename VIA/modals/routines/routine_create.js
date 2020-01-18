@@ -435,51 +435,10 @@ export class CreateRoutine extends React.Component {
 							></TextInput>
 						</TouchableOpacity>
 
-						{/* {this.renderDueDate()} */}
-
                         {this.renderStartDate()}
                         {this.renderEndDate()}
 						{this.renderNotificationTimesModal()}
 						{this.renderNotesModal()}
-
-						{/* {SLIDER SECTION} */}
-						{/* <View style={styles.slidersSection}>
-							<View style={styles.slidersTitlesContainer}>
-								<View style={styles.sliderTitleContainerCenter}>
-									<Text
-										style={
-											this.state.newTaskImportance > 0
-												? styles.sliderTitleNull
-												: styles.sliderTitle
-										}
-									>
-										Importance
-					  </Text>
-								</View>
-							</View>
-
-							<View style={styles.slidersContainer}>
-								{this.renderDueDateModal()}
-								<View style={styles.sliderContainerCenter}>
-									<Slider
-										style={styles.sliderSlider}
-										minimumValue={0}
-										maximumValue={100}
-										minimumTrackTintColor={styles.blueColor}
-										maximumTrackTintColor={styles.placeholderColor}
-										onSlidingComplete={value => {
-											this.setState({ newTaskImportance: value });
-											this.props.importance(value);
-										}}
-										onValueChange={value => {
-											this.setState({ newTaskImportance: value });
-											this.props.importance(value);
-										}}
-									/>
-								</View>
-							</View>
-						</View> */}
-
 
 						{/* {PROJECT SELECTION SECTION} */}
 						<View style={styles.projectSectionContainer}>
@@ -529,47 +488,6 @@ export class CreateRoutine extends React.Component {
 					</SafeAreaView>
 				</TouchableWithoutFeedback>
 			</Modal>
-            // <Modal
-            //     animationType={this.props.animationType}
-            //     transparent={this.props.transparent}
-            //     visible={this.props.visible}
-            //     onRequestClose={this.props.onRequestClose}>
-            //     <View style={{ marginTop: 22, alignItems: "center" }}>
-            //         <Text>Add Routine</Text>
-            //     </View>
-            //     <View>
-            //         <Text>Name</Text>
-            //         <TextInput
-            //             onChangeText={this.props.name}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Start Time</Text>
-            //         <TextInput
-            //             onChangeText={this.props.start_time}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>End Time</Text>
-            //         <TextInput
-            //             onChangeText={this.props.end_time}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Notification Time</Text>
-            //         <TextInput
-            //             onChangeText={this.props.notification_time}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <TouchableOpacity onPress={this.props.closeModal}>
-            //             <Text>Close</Text>
-            //         </TouchableOpacity>
-            //         <TouchableOpacity onPress={this.props.save}>
-            //             <Text>Save</Text>
-            //         </TouchableOpacity>
-            //     </View>
-            // </Modal>
         );
     }
 }
