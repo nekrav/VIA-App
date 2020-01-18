@@ -35,7 +35,7 @@ export class ProjectsScreen extends React.Component {
 
     saveNew(project) {
         let newProject = {}
-        newProject.id = uuid.v4();
+        newProject.id = project.id;
         newProject.name = project.name;
         newProject.created_date = new Date().getDate();
         newProject.due_date = project.due_date ? project.due_date : "";
@@ -57,6 +57,7 @@ export class ProjectsScreen extends React.Component {
             return <CreateProject
                 animationType="slide"
                 transparent={false}
+                id={(text) => { newProject.id = text}}
                 name={(text) => { newProject.name = text }}
                 due_date={(text) => { newProject.due_date = text }}
                 importance={(text) => { newProject.importance = text }}

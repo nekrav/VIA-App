@@ -5,7 +5,7 @@ import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
-import { Projects, Tasks } from '../../db'
+import { Database, Projects, Tasks } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 // import SIcon from 'react-native-vector-icons/dist/F';
@@ -17,6 +17,10 @@ const todayDate = new Date();
 const styles = require('./styles');
 import { getInset } from 'react-native-safe-area-view';
 import { ThemeProvider } from 'styled-components';
+// import uuid from 'react-native-uuid';
+
+
+var uuid = require('react-native-uuid');
 
 
 export class CreateProject extends React.Component {
@@ -34,7 +38,8 @@ export class CreateProject extends React.Component {
 			newProjectName: '',
 			itemNotes: '',
 			numberOfTasks: '',
-			tasks: []
+			tasks: [],
+			projectId:  uuid.v4(),
 		};
 	}
 	componentDidMount() {
@@ -70,6 +75,24 @@ export class CreateProject extends React.Component {
 			}
 		}
 		return tasksString;
+	}
+
+	saveProjectInSelectedTask(projectID)
+	{
+		if (this.state.tasks.length > 0) {
+			for (var i = 0; i < this.state.tasks.length; i++) {
+				
+				this.state.tasks[i].item.value.project  = projectID
+
+				console.warn(this.state.tasks[i].item.value.project )
+
+				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
+					// this.setViewModalVisible(object, false)
+					controller.loadAll(this, Tasks.TABLE_NAME);
+					// this.loadAll(object, tableName);
+				})
+			}
+		}
 	}
 
 	renderTaskSelection() {
@@ -355,6 +378,7 @@ export class CreateProject extends React.Component {
 								onChangeText={value => {
 									this.setState({ newTaskName: value });
 									this.props.name(value);
+									this.props.id(this.state.projectId);
 								}}
 							></TextInput>
 						</TouchableOpacity>
@@ -425,7 +449,10 @@ export class CreateProject extends React.Component {
 										? styles.bottomButtonLeft
 										: styles.bottomButtonLeftDisabled
 								}
-								onPress={this.props.save}
+								onPress={() => {
+									this.saveProjectInSelectedTask(this.state.projectId)
+									this.props.save()
+								}}
 							>
 								<Text
 									style={
