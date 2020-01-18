@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { SelectionModal } from '../selectionModal/selectionModal'
-import {MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
+import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
@@ -50,8 +50,8 @@ export class CreateProject extends React.Component {
 				items={this.state.items}
 				itemName="Tasks"
 				transparent={true}
-				selectItems={ items => {
-					this.setState({tasks: items})
+				selectItems={items => {
+					this.setState({ tasks: items })
 				}}
 				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
 			</MultipleSelectionModal>
@@ -62,16 +62,14 @@ export class CreateProject extends React.Component {
 		this.setState({ tasksSelectionModalVisible: visible })
 	}
 
-	renderSelectedTasksString()
-	{
+	renderSelectedTasksString() {
 		var tasksString = "";
 		if (this.state.tasks.length > 0) {
-			for (var i = 0; i < this.state.tasks.length; i++)
-			{
+			for (var i = 0; i < this.state.tasks.length; i++) {
 				tasksString = tasksString.concat(this.state.tasks[i].item.value.name + ", ")
 			}
 		}
-	return tasksString;
+		return tasksString;
 	}
 
 	renderTaskSelection() {
@@ -82,7 +80,7 @@ export class CreateProject extends React.Component {
 				}}>
 					<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 					<Text style={styles.notificationTimeButtonText}>
-						
+
 						<SIcon name="list" size={20} color="#ffffff" />
 					</Text>
 				</TouchableOpacity>
@@ -449,44 +447,6 @@ export class CreateProject extends React.Component {
 					</SafeAreaView>
 				</TouchableWithoutFeedback>
 			</Modal>
-
-
-
-			// <Modal
-			// 	animationType={this.props.animationType}
-			// 	transparent={this.props.transparent}
-			// 	visible={this.props.visible}
-			// 	onRequestClose={this.props.onRequestClose}
-			// >
-			// 	{/* {this.showProjectSelectionModal()} */}
-			// 	<View style={{ marginTop: 22, alignItems: 'center' }}>
-			// 		<Text>Add Project</Text>
-			// 	</View>
-			// 	<View>
-			// 		<Text>Name</Text>
-			// 		<TextInput onChangeText={this.props.name}></TextInput>
-			// 	</View>
-			// 	<View>
-			// 		<Text>Due Date</Text>
-			// 		<TextInput onChangeText={this.props.due_date}></TextInput>
-			// 	</View>
-			// 	<View>
-			// 		<Text>Importance</Text>
-			// 		<TextInput onChangeText={this.props.importance}></TextInput>
-			// 	</View>
-			// 	<View>
-			// 		<Text>Notes</Text>
-			// 		<TextInput onChangeText={this.props.notes}></TextInput>
-			// 	</View>
-			// 	<View>
-			// 		<TouchableOpacity onPress={this.props.closeModal}>
-			// 			<Text>Close</Text>
-			// 		</TouchableOpacity>
-			// 		<TouchableOpacity onPress={this.props.save}>
-			// 			<Text>Save</Text>
-			// 		</TouchableOpacity>
-			// 	</View>
-			// </Modal>
 		);
 	}
 }
