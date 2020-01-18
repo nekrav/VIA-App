@@ -8,6 +8,7 @@ import { NotificationTimesModal } from '../notificationTimes/notificationTimesMo
 import { Projects, Tasks } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+// import SIcon from 'react-native-vector-icons/dist/F';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 const controller = new Controller;
@@ -47,7 +48,7 @@ export class CreateProject extends React.Component {
 			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
-				itemName="Task"
+				itemName="Tasks"
 				transparent={true}
 				selectItem={(item) => {
 					this.props.tasks(item.key)
@@ -71,7 +72,7 @@ export class CreateProject extends React.Component {
 				}}>
 					<Text style={styles.hasProjectSelectionButtonText}>{this.state.numberOfTasks}</Text>
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="layers" size={20} color="#ffffff" />
+						<SIcon name="list" size={20} color="#ffffff" />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -80,7 +81,7 @@ export class CreateProject extends React.Component {
 				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
 					<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="layers" size={20} color="#ABABAB" />
+						<SIcon name="list" size={20} color="#ABABAB" />
 					</Text>
 				</TouchableOpacity>
 			);

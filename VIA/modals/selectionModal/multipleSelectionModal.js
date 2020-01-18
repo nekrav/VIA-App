@@ -31,10 +31,7 @@ export class MultipleSelectionModal extends React.Component {
                         <View style={styles.projectContainerView}>
                             <FlatList
                                 data={this.props.items}
-                                renderItem={({ item }) => 
-                                // {
-
-                                    // console.warn(item.value.name);
+                                renderItem={({ item }) =>
                                     <View style={styles.selectionItemContainer}>
                                         <CheckBox
                                             center
@@ -47,26 +44,11 @@ export class MultipleSelectionModal extends React.Component {
                                             containerStyle={styles.itemSelectionContainer}
                                             onPress={() => {
                                                 // item.item.checked = !item.item.checked
-                                                this.setState({ times: arr })
+                                                // this.setState({ times: arr })
                                             }}
                                         />
                                     </View>
-
-
                                 }
-
-                                    // <TouchableOpacity
-                                    //     style={styles.projectContainer}
-                                    //     onPress={() => {
-                                    //         this.props.closeModal();
-                                    //         this.props.selectItem(item)
-                                    //     }}>
-                                    //     <Text
-                                    //         style={styles.projectText}
-                                    //     >{item.value.name}</Text>
-                                    // </TouchableOpacity>
-                                // }
-
                             />
                         </View>
                         <View>

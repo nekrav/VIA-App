@@ -150,6 +150,7 @@ module.exports = StyleSheet.create({
 
     itemSelectionContainer: {
         borderWidth: 0,
+        justifyContent: "flex-start",
         backgroundColor: backgroundColor,
     },
 
