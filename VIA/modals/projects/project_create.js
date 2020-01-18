@@ -81,15 +81,9 @@ export class CreateProject extends React.Component {
 	{
 		if (this.state.tasks.length > 0) {
 			for (var i = 0; i < this.state.tasks.length; i++) {
-				
 				this.state.tasks[i].item.value.project  = projectID
-
-				console.warn(this.state.tasks[i].item.value.project )
-
 				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
-					// this.setViewModalVisible(object, false)
 					controller.loadAll(this, Tasks.TABLE_NAME);
-					// this.loadAll(object, tableName);
 				})
 			}
 		}
@@ -120,8 +114,6 @@ export class CreateProject extends React.Component {
 		}
 	}
 	/* #endregion */
-
-
 
 	/* #region  Due Date Region */
 	setDueDateModalVisibility(visible) {
@@ -362,11 +354,11 @@ export class CreateProject extends React.Component {
 								this.nameTextInput.focus();
 							}}
 							style={
-								this.state.newTaskName != ''
-									? styles.hasNameTextInputContainer
-									: styles.createNameContainer
-							}
-						>
+                                this.state.newProjectName != ''
+                                    ? styles.hasNameTextInputContainer
+                                    : styles.createNameContainer
+                            }
+                        >
 							<TextInput
 								ref={input => {
 									this.nameTextInput = input;
@@ -376,7 +368,7 @@ export class CreateProject extends React.Component {
 								multiline={true}
 								placeholder={'Name'}
 								onChangeText={value => {
-									this.setState({ newTaskName: value });
+									this.setState({ newProjectName: value });
 									this.props.name(value);
 									this.props.id(this.state.projectId);
 								}}
