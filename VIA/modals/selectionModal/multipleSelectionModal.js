@@ -11,12 +11,40 @@ export class MultipleSelectionModal extends React.Component {
         super(props);
         this.state = {
             items: this.props.items,
+            itemsToSelect: [],
+            selectedItems: [],
         };
     }
 
-    render() {
+     componentDidMount() {
+        this.createItemArrayListForSelection();
+    }
+
+    createItemArrayListForSelection() {
+        var emptyArr = []
         if (this.state.items != null) {
-            // console.warn(this.state.items.length)
+            for (let i = 0; i < this.state.items.length; i++) {
+                emptyArr.push({checked: false, item: this.state.items[i]})
+            }
+
+            this.setState({itemsToSelect: emptyArr})
+        }
+
+    }
+
+
+
+    render() {
+        if (this.state.itemsToSelect != []) {
+            // console.warn(this.state.itemsToSelect.map())
+
+            var arr = this.state.itemsToSelect
+
+            this.state.itemsToSelect.map( value => {
+            //    console.warn(value.item.value.name)
+            })
+
+
             return (
                 <Modal
                     animationType={this.props.animationType}
@@ -30,21 +58,22 @@ export class MultipleSelectionModal extends React.Component {
                         </View>
                         <View style={styles.projectContainerView}>
                             <FlatList
-                                data={this.props.items}
+                                data={Object.values(arr)}
                                 renderItem={({ item }) =>
+                              
                                     <View style={styles.selectionItemContainer}>
                                         <CheckBox
                                             center
-                                            key={item.value.id}
-                                            title={item.value.name}
+                                            key={item.item.value.id}
+                                            title={item.item.value.name}
                                             checkedIcon='dot-circle-o'
                                             uncheckedIcon='circle-o'
-                                            // checked={item.checked}
+                                            checked={item.checked}
                                             textStyle={styles.checkboxText}
                                             containerStyle={styles.itemSelectionContainer}
                                             onPress={() => {
-                                                // item.item.checked = !item.item.checked
-                                                // this.setState({ times: arr })
+                                                item.checked = !item.checked
+                                                this.setState({ times: arr })
                                             }}
                                         />
                                     </View>
