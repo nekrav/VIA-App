@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
-import { SelectionModal } from '../selectionModal/selectionModal'
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
@@ -8,18 +7,12 @@ import { NotificationTimesModal } from '../notificationTimes/notificationTimesMo
 import { Database, Projects, Tasks } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-// import SIcon from 'react-native-vector-icons/dist/F';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 const controller = new Controller;
 const dateFormat = 'ddd, MMM Do, YY'
 const todayDate = new Date();
 const styles = require('./styles');
-import { getInset } from 'react-native-safe-area-view';
-import { ThemeProvider } from 'styled-components';
-// import uuid from 'react-native-uuid';
-
-
 var uuid = require('react-native-uuid');
 
 

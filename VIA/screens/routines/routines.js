@@ -35,7 +35,7 @@ export class RoutinesScreen extends React.Component {
 
     saveNew(routine) {
         let newRoutine = {}
-        newRoutine.id = uuid.v4();
+        newRoutine.id = routine.id;
         newRoutine.name = routine.name;
         newRoutine.created_date = new Date().getDate();
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
@@ -53,6 +53,7 @@ export class RoutinesScreen extends React.Component {
             return <CreateRoutine
                 animationType="slide"
                 transparent={false}
+                id={(text) => { newRoutine.id = text}}
                 name={(text) => { newRoutine.name = text }}
                 start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}

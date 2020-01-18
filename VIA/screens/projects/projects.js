@@ -130,7 +130,7 @@ export class ProjectsScreen extends React.Component {
         var checked = false
         {
             return checked = item.value.completed === "true"
-        }le.warn(item.value.completed)
+        }
        
     }
 
