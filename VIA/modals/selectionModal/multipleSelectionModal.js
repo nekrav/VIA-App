@@ -16,7 +16,7 @@ export class MultipleSelectionModal extends React.Component {
         };
     }
 
-     componentDidMount() {
+    componentDidMount() {
         this.createItemArrayListForSelection();
     }
 
@@ -24,10 +24,10 @@ export class MultipleSelectionModal extends React.Component {
         var emptyArr = []
         if (this.state.items != null) {
             for (let i = 0; i < this.state.items.length; i++) {
-                emptyArr.push({checked: false, item: this.state.items[i]})
+                emptyArr.push({ checked: false, item: this.state.items[i] })
             }
 
-            this.setState({itemsToSelect: emptyArr})
+            this.setState({ itemsToSelect: emptyArr })
         }
 
     }
@@ -35,15 +35,12 @@ export class MultipleSelectionModal extends React.Component {
 
 
     render() {
+
         if (this.state.itemsToSelect != []) {
-            // console.warn(this.state.itemsToSelect.map())
 
             var arr = this.state.itemsToSelect
 
-            this.state.itemsToSelect.map( value => {
-            //    console.warn(value.item.value.name)
-            })
-
+            var arrSelected = this.state.selectedItems
 
             return (
                 <Modal
@@ -60,7 +57,7 @@ export class MultipleSelectionModal extends React.Component {
                             <FlatList
                                 data={Object.values(arr)}
                                 renderItem={({ item }) =>
-                              
+
                                     <View style={styles.selectionItemContainer}>
                                         <CheckBox
                                             center
@@ -73,7 +70,16 @@ export class MultipleSelectionModal extends React.Component {
                                             containerStyle={styles.itemSelectionContainer}
                                             onPress={() => {
                                                 item.checked = !item.checked
-                                                this.setState({ times: arr })
+                                                if (item.checked == true) {
+                                                    arrSelected.push(item)
+                                                    this.setState({ selectedItems: arrSelected })
+                                                }
+                                                if (item.checked == false) {
+                                                    for (var i = 0; i < arrSelected.length; i++) {
+                                                        arrSelected.pop(item)
+                                                    }
+                                                    this.setState({ selectedItems: arrSelected })
+                                                }
                                             }}
                                         />
                                     </View>
@@ -81,7 +87,11 @@ export class MultipleSelectionModal extends React.Component {
                             />
                         </View>
                         <View>
-                            <TouchableOpacity style={styles.bottomButtonContainer} onPress={this.props.closeModal}>
+                            <TouchableOpacity style={styles.bottomButtonContainer} onPress={() => {
+                                this.setState({ selectedItems: arrSelected })
+                                this.props.selectItems(this.state.selectedItems)
+                                this.props.closeModal()
+                            }}>
                                 <Text style={styles.bottomButtonText}>Close</Text>
                             </TouchableOpacity>
                         </View>

@@ -50,10 +50,8 @@ export class CreateProject extends React.Component {
 				items={this.state.items}
 				itemName="Tasks"
 				transparent={true}
-				selectItem={(item) => {
-					this.props.tasks(item.key)
-					this.setState({ theSelectedProject: item.value.name }, () => {
-					})
+				selectItems={ items => {
+					this.setState({tasks: items})
 				}}
 				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
 			</MultipleSelectionModal>
@@ -64,21 +62,34 @@ export class CreateProject extends React.Component {
 		this.setState({ tasksSelectionModalVisible: visible })
 	}
 
+	renderSelectedTasksString()
+	{
+		var tasksString = "";
+		if (this.state.tasks.length > 0) {
+			for (var i = 0; i < this.state.tasks.length; i++)
+			{
+				tasksString = tasksString.concat(this.state.tasks[i].item.value.name + ", ")
+			}
+		}
+	return tasksString;
+	}
+
 	renderTaskSelection() {
-		if (this.state.tasks != []) {
+		if (this.state.tasks.length > 0) {
 			return (
 				<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
 					this.setTaskSelectionModalVisibility(true);
 				}}>
-					<Text style={styles.hasProjectSelectionButtonText}>{this.state.numberOfTasks}</Text>
+					<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 					<Text style={styles.notificationTimeButtonText}>
+						
 						<SIcon name="list" size={20} color="#ffffff" />
 					</Text>
 				</TouchableOpacity>
 			);
 		} else {
 			return (
-				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setProjectSelectionModalVisibility.bind(this)}>
+				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 					<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
 					<Text style={styles.notificationTimeButtonText}>
 						<SIcon name="list" size={20} color="#ABABAB" />
