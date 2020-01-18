@@ -43,7 +43,6 @@ export class CreateProject extends React.Component {
 	/* #region  Task Selection Region */
 
 	showTasksSelectionModal() {
-		console.warn(this.state.items)
 		if (this.state.tasksSelectionModalVisible) {
 			return <MultipleSelectionModal
 				animationType="fade"

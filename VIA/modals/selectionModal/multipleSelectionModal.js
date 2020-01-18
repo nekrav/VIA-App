@@ -44,7 +44,7 @@ export class MultipleSelectionModal extends React.Component {
                                             uncheckedIcon='circle-o'
                                             // checked={item.checked}
                                             textStyle={styles.checkboxText}
-                                            containerStyle={styles.weekSelectionContainer}
+                                            containerStyle={styles.itemSelectionContainer}
                                             onPress={() => {
                                                 // item.item.checked = !item.item.checked
                                                 this.setState({ times: arr })

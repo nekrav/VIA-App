@@ -148,6 +148,11 @@ module.exports = StyleSheet.create({
 
     /* #region  Item selection checkbox */
 
+    itemSelectionContainer: {
+        borderWidth: 0,
+        backgroundColor: backgroundColor,
+    },
+
     checkboxText: {
         fontSize: 18,
         textAlign: 'center',
