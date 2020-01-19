@@ -128,7 +128,7 @@ export class CreateRoutine extends React.Component {
 					}}
 					onSubmit={item => {
 						this.props.start_date(item);
-						this.setState({ itemStartate: item });
+						this.setState({ itemStartDate: item });
 						this.setStartDateModalVisibility(false);
 					}}
 					closeModal={() => {

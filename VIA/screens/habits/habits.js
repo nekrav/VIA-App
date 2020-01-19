@@ -36,7 +36,7 @@ export class HabitsScreen extends React.Component {
 
     saveNew(habit) {
         let newHabit = {}
-        newHabit.id = uuid.v4();
+        newHabit.id = habit.id;
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
         newHabit.due_time = habit.due_time ? habit.due_time : ""
@@ -60,6 +60,7 @@ export class HabitsScreen extends React.Component {
             return <CreateHabit
                 animationType="slide"
                 transparent={false}
+                id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
                 due_time={(text) => { newHabit.due_time = text }}
                 importance={(text) => { newHabit.importance = text }}
