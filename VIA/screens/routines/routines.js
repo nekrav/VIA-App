@@ -55,8 +55,8 @@ export class RoutinesScreen extends React.Component {
                 transparent={false}
                 id={(text) => { newRoutine.id = text}}
                 name={(text) => { newRoutine.name = text }}
-                start_date={(text) => { newRoutine.start_time = text }}
-                end_date={(text) => { newRoutine.end_time = text }}
+                start_time={(text) => { newRoutine.start_time = text }}
+                end_time={(text) => { newRoutine.end_time = text }}
                 notification_time={(text) => { newRoutine.notification_time = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newRoutine) }}

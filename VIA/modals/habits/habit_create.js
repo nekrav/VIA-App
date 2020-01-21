@@ -11,12 +11,10 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 const controller = new Controller;
-const dateFormat = 'ddd, MMM Do, YY'
+const dateFormat = 'hh:mm A'
 const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
-
-
 
 
 export class CreateHabit extends React.Component {
@@ -118,11 +116,11 @@ export class CreateHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     setDate={item => {
-                        this.props.start_date(item);
+                        this.props.start_time(item);
                         this.setState({ itemStartDate: item });
                     }}
                     onSubmit={item => {
-                        this.props.start_date(item);
+                        this.props.start_time(item);
                         this.setState({ itemStartDate: item });
                         this.setStartDateModalVisibility(false);
                     }}
@@ -179,11 +177,11 @@ export class CreateHabit extends React.Component {
 					animationType="fade"
 					transparent={true}
 					setDate={item => {
-						this.props.end_date(item);
+						this.props.end_time(item);
 						this.setState({ itemEndDate: item });
 					}}
 					onSubmit={item => {
-						this.props.end_date(item);
+						this.props.end_time(item);
 						this.setState({ itemEndDate: item });
 						this.setEndDateModalVisibility(false);
 					}}
@@ -355,6 +353,8 @@ export class CreateHabit extends React.Component {
                 onRequestClose={this.props.onRequestClose}
             >
                 {this.showRoutineSelectionModal()}
+                {this.renderEndDateModal()}
+                {this.renderStartDateModal()}
 
                  
 

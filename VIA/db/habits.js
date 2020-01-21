@@ -20,8 +20,8 @@ export class Habits {
             'id text not null primary key unique, ' +
             'name text NOT NULL, ' +
             'created_date text NOT NULL, ' +
-            'start_date text, ' +
-            'end_date text, ' +
+            'start_time text, ' +
+            'end_time text, ' +
             'importance text, ' +
             'percentage_done text, ' +
             'completed text, ' +

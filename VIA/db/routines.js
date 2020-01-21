@@ -17,6 +17,7 @@ export class Routines {
             'created_date text NOT NULL, ' +
             'start_time text, ' +
             'end_time text, ' +
+            'due_time text,' + 
             'notification_time text ' +
             ')'
     }

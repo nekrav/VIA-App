@@ -39,7 +39,8 @@ export class HabitsScreen extends React.Component {
         newHabit.id = habit.id;
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
-        newHabit.due_time = habit.due_time ? habit.due_time : ""
+        newHabit.start_time = habit.start_time ? habit.start_time : ""
+        newHabit.end_time = habit.end_time ? habit.end_time : ""
         newHabit.importance = habit.importance ? habit.importance : ""
         newHabit.percentage_done = 0
         newHabit.routine = habit.routine ? habit.routine : "";
@@ -62,9 +63,10 @@ export class HabitsScreen extends React.Component {
                 transparent={false}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
-                due_time={(text) => { newHabit.due_time = text }}
                 importance={(text) => { newHabit.importance = text }}
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
+                start_time={(text) => { newHabit.start_time = text }}
+                end_time={(text) => { newHabit.end_time = text }}
                 notification_time={(text) => { newHabit.notification_time = text }}
                 routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
@@ -85,8 +87,12 @@ export class HabitsScreen extends React.Component {
                         theHabit.name = text;
                         this.setState({ selectedItem: theHabit })
                     }}
-                    editDueTime={(text) => {
-                        theHabit.due_time = text;
+                    editStartTime={(text) => {
+                        theHabit.start_time = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editEndTime={(text) => {
+                        theHabit.end_time = text;
                         this.setState({ selectedItem: theHabit })
                     }}
                     editImportance={(text) => {
