@@ -32,7 +32,7 @@ export class NotificationTimesModal extends React.Component {
             mondayNotificationTimes: [],
             notificationTimeSelectionModalVisibility: false,
             selectedDayToAddTimeTo: '',
-            times: [
+            times: this.props.times ? this.props.times : [
                 {
                     key: "1",
                     name: "Monday",
