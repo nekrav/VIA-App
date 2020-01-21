@@ -317,12 +317,14 @@ export class ViewTask extends React.Component {
             onLongPress={() => {
                 this.setState({percentVal: 0})
                 this.props.editCompleted("false")
+                this.props.editPercentageDone(100)
             }
             }
             onPress={() => {
+                this.setState({ percentVal: 100})
                 this.props.editPercentageDone(100)
                 this.props.editCompleted("true")
-                this.setState({ percentVal: 100})
+               
             }
             }>
             {this.renderCompleteButtonText()}
