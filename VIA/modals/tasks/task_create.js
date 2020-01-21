@@ -376,8 +376,7 @@ export class CreateTask extends React.Component {
                                             this.state.newTaskImportance > 0
                                                 ? styles.sliderTitleNull
                                                 : styles.sliderTitle
-                                        }
-                                    >
+                                        }>
                                         Importance
                   </Text>
                                 </View>

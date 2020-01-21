@@ -24,7 +24,6 @@ export class ViewTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            canEdit: false,
             selectedItem: this.props.selectedItem,
             projectSelectionModalVisible: false,
             items: [],
@@ -35,7 +34,7 @@ export class ViewTask extends React.Component {
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
-            percentVal: this.props.selectedItem.percentage_done,
+            percentVal: this.props.selectedItem.percentage_done, 
             importanceVal: this.props.selectedItem.importance
         };
     }
@@ -49,13 +48,24 @@ export class ViewTask extends React.Component {
         }
     }
 
+    getStyleIfDone() {
+        if (this.props.selectedItem.completed == "true") {
+            return styles.outerViewDone
+        }
+        return styles.outerView;
+    }
+
+    finishTask() {
+        this.setState({ selectedItem })
+        this.props.editCompleted("true")
+    }
+
+
+    /* #region  Project Selection Region */
     setProjectSelectionModalVisibility(visible) {
         this.setState({ projectSelectionModalVisible: visible })
     }
 
-    setNotificationTimesVisibility(visible) {
-        this.setState({ notificationTimesModal: visible })
-    }
 
     showProjectSelectionModal() {
         if (this.state.projectSelectionModalVisible) {
@@ -75,129 +85,12 @@ export class ViewTask extends React.Component {
         return null;
     }
 
-    setDateModalVisibility(visible) {
-        this.setState({ showDate: visible })
-    }
-
-    renderShowDate() {
-        if (this.state.showDate) {
-            return <DateModal
-                animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
-                itemName="Project"
-                transparent={true}
-                setDate={(item) => {
-                    this.props.editDueDate(item)
-                    this.setState({ dueDate: item })
-                    this.props.save();
-                }}
-                closeModal={() => { this.setDateModalVisibility() }}>
-            </DateModal>
-        }
-        return null;
-    }
-
-    canEdit() {
-        this.setState({ canEdit: true })
-    }
 
     renderProjName() {
         if (this.state.selectProject != empty) {
             return this.state.selectProject
         }
         return this.state.proj.name
-    }
-
-    finishTask() {
-        this.setState({ selectedItem })
-        this.props.editCompleted("true")
-    }
-
-    renderSliderSection() {
-        return (
-            <View style={styles.slidersSection}>
-                <View style={styles.slidersTitlesContainer}>
-                    <View style={styles.sliderTitleContainerLeft}>
-                        <Text style={styles.sliderTitle}>
-                            % Done
-                        </Text>
-                    </View>
-                    <View style={styles.sliderTitleContainerRight}>
-                        <Text style={styles.sliderTitle}>
-                            Importance
-                        </Text>
-                    </View>
-                </View>
-                <View style={styles.slidersContainer}>
-                    <View style={styles.sliderContainerLeft}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
-                            value={parseInt(this.state.percentVal)}
-
-                            onSlidingComplete={(value) => {
-                                this.props.editPercentageDone(value)
-                                if (value == 100) {
-                                    this.finishTask();
-                                }
-                                this.props.save();
-                            }}
-                            onValueChange={(value) => {
-                                this.props.editPercentageDone(value);
-                            }}
-                        />
-                 
-                    </View>
-                    <View style={styles.sliderContainerRight}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
-                            value={parseInt(this.state.importanceVal)}
-                            onValueChange={(value) => {
-                                this.props.save;
-                                this.props.editImportance(value);
-                            }}
-                            onSlidingComplete={(value) => {
-                                this.props.editImportance(value)
-                            }}
-                        />
-                    </View>
-                </View>
-            </View>
-        )
-
-    }
-
-    renderDeleteSection() {
-        return (
-            <TouchableOpacity
-                style={styles.projectSelectionButton}
-                onPress={this.props.delete}>
-                <SIcon name="close" size={30} color="#000" />
-                <Text style={styles.projectSelectionButtonText} >Delete</Text>
-            </TouchableOpacity>);
-
-    }
-
-    renderNotificationTimesSection() {
-        return (
-            <TouchableOpacity
-                style={styles.notificationTimesButton}
-                onPress={() => {
-                    this.setNotificationTimesVisibility(true);
-                }}>
-
-                <Text style={styles.notificationTimesText} >Notification</Text>
-                <SIcon name="clock" size={30} color="#000" />
-                <Text style={styles.notificationTimesText} >Times</Text>
-            </TouchableOpacity>);
-
     }
 
     renderProjectSection() {
@@ -250,20 +143,32 @@ export class ViewTask extends React.Component {
         );
     }
 
-    renderCompleteButton() {
-        return (<TouchableOpacity
-            style={styles.completeButtonBody}
-            onLongPress={() => this.props.editCompleted("false")}
-            onPress={() => this.props.editCompleted("true")}>
-            {this.renderCompleteButtonText()}
-        </TouchableOpacity>)
+
+    /* #endregion */
+
+
+    /* #region  Due Date Region */
+    setDateModalVisibility(visible) {
+        this.setState({ showDate: visible })
     }
 
-    renderCompleteButtonText() {
-        if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done</Text>)
-        else
-            return (<Text style={styles.completeButtonText}>Complete</Text>)
+
+    renderShowDate() {
+        if (this.state.showDate) {
+            return <DateModal
+                animationType="fade"
+                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
+                itemName="Project"
+                transparent={true}
+                setDate={(item) => {
+                    this.props.editDueDate(item)
+                    this.setState({ dueDate: item })
+                    this.props.save();
+                }}
+                closeModal={() => { this.setDateModalVisibility() }}>
+            </DateModal>
+        }
+        return null;
     }
 
     renderDueDate() {
@@ -290,12 +195,126 @@ export class ViewTask extends React.Component {
             </View>)
     }
 
-    getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
-            return styles.outerViewDone
-        }
-        return styles.outerView;
+
+    /* #endregion */
+
+
+
+
+
+
+
+
+    /* #region  Notification Times Region */
+
+
+    setNotificationTimesVisibility(visible) {
+        this.setState({ notificationTimesModal: visible })
     }
+
+
+
+    renderNotificationTimesSection() {
+        return (
+            <TouchableOpacity
+                style={styles.notificationTimesButton}
+                onPress={() => {
+                    this.setNotificationTimesVisibility(true);
+                }}>
+
+                <Text style={styles.notificationTimesText} >Notification</Text>
+                <SIcon name="clock" size={30} color="#000" />
+                <Text style={styles.notificationTimesText} >Times</Text>
+            </TouchableOpacity>);
+
+    }
+
+    /* #endregion */
+
+    /* #region  Slider Region */
+    renderSliderSection() {
+        return (
+            <View style={styles.slidersSection}>
+                <View style={styles.slidersTitlesContainer}>
+                    <View style={styles.sliderTitleContainerLeft}>
+                        <Text style={styles.sliderTitle}>
+                            % Done
+                        </Text>
+                    </View>
+                    <View style={styles.sliderTitleContainerRight}>
+                        <Text style={styles.sliderTitle}>
+                            Importance
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.slidersContainer}>
+                    <View style={styles.sliderContainerLeft}>
+                        <Slider
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#2d3142"
+                            value={parseInt(this.state.percentVal)}
+
+                            onSlidingComplete={(value) => {
+                                this.props.editPercentageDone(value)
+                                if (value == 100) {
+                                    this.finishTask();
+                                }
+                                this.props.save();
+                            }}
+                            onValueChange={(value) => {
+                                this.props.editPercentageDone(value);
+                            }}
+                        />
+
+                    </View>
+                    <View style={styles.sliderContainerRight}>
+                        <Slider
+                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor="#068ae8"
+                            maximumTrackTintColor="#2d3142"
+                            value={parseInt(this.state.importanceVal)}
+                            onValueChange={(value) => {
+                                this.props.save;
+                                this.props.editImportance(value);
+                            }}
+                            onSlidingComplete={(value) => {
+                                this.props.editImportance(value)
+                            }}
+                        />
+                    </View>
+                </View>
+            </View>
+        )
+
+    }
+
+    /* #endregion */
+  
+    /* #region  Complete Button Section */
+
+    renderCompleteButton() {
+        return (<TouchableOpacity
+            style={styles.completeButtonBody}
+            onLongPress={() => this.props.editCompleted("false")}
+            onPress={() => this.props.editCompleted("true")}>
+            {this.renderCompleteButtonText()}
+        </TouchableOpacity>)
+    }
+
+    renderCompleteButtonText() {
+        if (this.state.selectedItem.completed == "true")
+            return (<Text style={styles.completeButtonText}>Done</Text>)
+        else
+            return (<Text style={styles.completeButtonText}>Complete</Text>)
+    }
+    /* #endregion */
+
+
 
     render() {
         return (
@@ -344,23 +363,23 @@ export class ViewTask extends React.Component {
 
 
 
-                         {/* Project Section*/}
+                        {/* Project Section*/}
 
                         <View style={styles.projectSectionContainer}>
                             {this.renderProjectSection()}
                         </View>
 
-                         {/* Due Date Section*/}
+                        {/* Due Date Section*/}
 
                         <View style={styles.dateContainer}>
                             {this.renderDueDate()}
                         </View>
 
-                         {/* Sliders Section*/}
+                        {/* Sliders Section*/}
 
                         {this.renderSliderSection()}
 
-                         {/* Complete Button and Notification Times Section*/}
+                        {/* Complete Button and Notification Times Section*/}
 
                         <View style={styles.completeAndNotifSection}>
                             {this.renderCompleteButton()}
@@ -369,7 +388,7 @@ export class ViewTask extends React.Component {
                             </View>
                         </View>
 
-                         {/* Notes Section*/}
+                        {/* Notes Section*/}
                         <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TextInput
