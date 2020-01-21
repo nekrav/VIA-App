@@ -211,85 +211,6 @@ export class ViewTask extends React.Component {
 
     /* #endregion */
 
-    /* #region  Notification Times Region */
-    setNotificationTimesVisibility(visible) {
-        this.setState({ notificationTimesModal: visible })
-    }
-
-    renderNotificationTimesModal() {
-        if (this.state.notificationTimesModal) {
-            return (
-                <NotificationTimesModal
-                    animationType="fade"
-                    transparent={true}
-                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time +']') : ''}
-                    setDate={item => {
-                        this.props.editNotificationTime(item);
-                        // this.setState({ itemNotificationTimes: item });
-                    }}
-                    closeModal={() => {
-                        this.setNotificationTimesVisibility(false);
-                    }}
-                ></NotificationTimesModal>
-            );
-        }
-        return null;
-    }
-
-
-    renderNotificationTimesSection() {
-        // console.warn(this.state.selectedItem.notification_time)
-        if (this.state.selectedItem.notification_time != '') {
-            var daysWithNotifications = '';
-
-            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
-
-            Object.keys(jsonArr).map(key => {
-                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-                    daysWithNotifications = daysWithNotifications.concat(
-                        jsonArr[key].name + ', '
-                    );
-                }
-            });
-            if (daysWithNotifications != ''){
-                return (
-                    <TouchableOpacity
-                        style={styles.hasNotificationTimesButtonContainer}
-                        onPress={() => {
-                            this.setNotificationTimesVisibility(true);
-                        }}
-                    >
-                        <Text style={styles.hasNotificationTimeButtonText}>
-                            {daysWithNotifications}
-                        </Text>
-    
-                        <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="clock" size={20} color="#ffffff" />
-                        </Text>
-                    </TouchableOpacity>
-                );
-            }
-        }
-        return (
-            <TouchableOpacity
-                style={styles.notificationTimesButtonContainer}
-                onPress={() => {
-                    this.setNotificationTimesVisibility(true);
-                }}
-            >
-                <Text style={styles.notificationTimeButtonText}>
-                    When would you like to be notified?
-        </Text>
-
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="clock" size={20} color="#ABABAB" />
-                </Text>
-            </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
-
     /* #region  Slider Region */
     renderSliderSection() {
         return (
@@ -303,7 +224,7 @@ export class ViewTask extends React.Component {
                                     : styles.sliderTitle
                             }>
                             % Done
-                        </Text>
+                    </Text>
                     </View>
                     <View style={styles.sliderTitleContainerRight}>
                         <Text
@@ -313,7 +234,7 @@ export class ViewTask extends React.Component {
                                     : styles.sliderTitle
                             }>
                             Importance
-                        </Text>
+                    </Text>
                     </View>
                 </View>
                 <View style={styles.slidersContainer}>
@@ -392,6 +313,85 @@ export class ViewTask extends React.Component {
         else
             return (<Text style={styles.completeButtonText}>Complete</Text>)
     }
+    /* #endregion */
+
+    /* #region  Notification Times Region */
+    setNotificationTimesVisibility(visible) {
+        this.setState({ notificationTimesModal: visible })
+    }
+
+    renderNotificationTimesModal() {
+        if (this.state.notificationTimesModal) {
+            return (
+                <NotificationTimesModal
+                    animationType="fade"
+                    transparent={true}
+                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
+                    setDate={item => {
+                        this.props.editNotificationTime(item);
+                        // this.setState({ itemNotificationTimes: item });
+                    }}
+                    closeModal={() => {
+                        this.setNotificationTimesVisibility(false);
+                    }}
+                ></NotificationTimesModal>
+            );
+        }
+        return null;
+    }
+
+
+    renderNotificationTimesSection() {
+        // console.warn(this.state.selectedItem.notification_time)
+        if (this.state.selectedItem.notification_time != '') {
+            var daysWithNotifications = '';
+
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
+
+            Object.keys(jsonArr).map(key => {
+                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                    daysWithNotifications = daysWithNotifications.concat(
+                        jsonArr[key].name + ', '
+                    );
+                }
+            });
+            if (daysWithNotifications != '') {
+                return (
+                    <TouchableOpacity
+                        style={styles.hasNotificationTimesButtonContainer}
+                        onPress={() => {
+                            this.setNotificationTimesVisibility(true);
+                        }}
+                    >
+                        <Text style={styles.hasNotificationTimeButtonText}>
+                            {daysWithNotifications}
+                        </Text>
+
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="clock" size={20} color="#ffffff" />
+                        </Text>
+                    </TouchableOpacity>
+                );
+            }
+        }
+        return (
+            <TouchableOpacity
+                style={styles.notificationTimesButtonContainer}
+                onPress={() => {
+                    this.setNotificationTimesVisibility(true);
+                }}
+            >
+                <Text style={styles.notificationTimeButtonText}>
+                    When would you like to be notified?
+        </Text>
+
+                <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="clock" size={20} color="#ABABAB" />
+                </Text>
+            </TouchableOpacity>
+        );
+    }
+
     /* #endregion */
 
     /* #region  Notes Region */
