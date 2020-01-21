@@ -57,7 +57,14 @@ export class RoutinesScreen extends React.Component {
                 name={(text) => { newRoutine.name = text }}
                 start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}
-                notification_time={(text) => { newRoutine.notification_time = text }}
+                notification_time={(text) => { 
+                    if (text) {
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        newRoutine.notification_time = times
+                    }
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newRoutine) }}
             ></CreateRoutine>

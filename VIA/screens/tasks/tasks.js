@@ -71,16 +71,11 @@ export class TasksScreen extends React.Component {
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => {
                     if (text) {
-                        // console.warn("initial")
-                        // console.warn(text)
-                        // console.warn("after json")
                         var times = text.map(function (time) {
-                            // console.warn(time.)
                             return JSON.stringify(time)
                         })
                         newTask.notification_time = times
                     }
-                    // newTask.notification_time = text
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {

@@ -67,7 +67,14 @@ export class HabitsScreen extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => { newHabit.notification_time = text }}
+                notification_time={(text) => { 
+                    if (text) {
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        newHabit.notification_time = times
+                    }
+                }}
                 routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}

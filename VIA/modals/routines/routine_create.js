@@ -151,10 +151,6 @@ export class CreateRoutine extends React.Component {
 							{Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
 						</Text>
 					</TouchableOpacity>
-					{/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
 				</View>
 			);
 		}
@@ -184,11 +180,11 @@ export class CreateRoutine extends React.Component {
 					animationType="fade"
 					transparent={true}
 					setDate={item => {
-						this.props.end_date(item);
+						this.props.end_time(item);
 						this.setState({ itemEndDate: item });
 					}}
 					onSubmit={item => {
-						this.props.end_date(item);
+						this.props.end_time(item);
 						this.setState({ itemEndDate: item });
 						this.setEndDateModalVisibility(false);
 					}}
@@ -212,10 +208,6 @@ export class CreateRoutine extends React.Component {
 							{Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
 						</Text>
 					</TouchableOpacity>
-					{/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
 				</View>
 			);
 		}

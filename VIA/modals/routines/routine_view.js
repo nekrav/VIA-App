@@ -16,6 +16,7 @@ export class ViewRoutine extends React.Component {
     }
 
     render() {
+        console.warn(this.props.selectedItem)
         if (this.props.selectedItem != {}) {
             return (
                 <Modal
