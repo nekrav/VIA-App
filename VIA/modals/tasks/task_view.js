@@ -269,7 +269,6 @@ export class ViewTask extends React.Component {
                     </TouchableOpacity>
                 );
             }
-            
         }
         return (
             <TouchableOpacity
@@ -373,7 +372,7 @@ export class ViewTask extends React.Component {
             onLongPress={() => {
                 this.setState({ percentVal: 0 })
                 this.props.editCompleted("false")
-                this.props.editPercentageDone(100)
+                this.props.editPercentageDone(0)
             }
             }
             onPress={() => {
