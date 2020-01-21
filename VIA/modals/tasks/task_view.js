@@ -3,10 +3,9 @@ import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithout
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
+import { NotesModal } from '../notesModal/notesModal';
 import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import FIcon from 'react-native-vector-icons/dist/Feather';
-import { VerticalSlider } from "../../components";
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
@@ -35,7 +34,8 @@ export class ViewTask extends React.Component {
             dueDate: '',
             notificationTimesModal: false,
             percentVal: this.props.selectedItem.percentage_done,
-            importanceVal: this.props.selectedItem.importance
+            importanceVal: this.props.selectedItem.importance,
+            notesModalVisible: false,
         };
     }
 
@@ -209,22 +209,22 @@ export class ViewTask extends React.Component {
             <View style={styles.slidersSection}>
                 <View style={styles.slidersTitlesContainer}>
                     <View style={styles.sliderTitleContainerLeft}>
-                        <Text 
-                        style={
-                            this.state.selectedItem.percentage_done > 0
-                                ? styles.sliderTitleNull
-                                : styles.sliderTitle
-                        }>
+                        <Text
+                            style={
+                                this.state.selectedItem.percentage_done > 0
+                                    ? styles.sliderTitleNull
+                                    : styles.sliderTitle
+                            }>
                             % Done
                         </Text>
                     </View>
                     <View style={styles.sliderTitleContainerRight}>
-                        <Text 
-                        style={
-                            this.state.selectedItem.importance > 0
-                                ? styles.sliderTitleNull
-                                : styles.sliderTitle
-                        }>
+                        <Text
+                            style={
+                                this.state.selectedItem.importance > 0
+                                    ? styles.sliderTitleNull
+                                    : styles.sliderTitle
+                            }>
                             Importance
                         </Text>
                     </View>
@@ -236,7 +236,7 @@ export class ViewTask extends React.Component {
                             minimumValue={0}
                             maximumValue={100}
                             minimumTrackTintColor={styles.blueColor}
-                                        maximumTrackTintColor={styles.placeholderColor}
+                            maximumTrackTintColor={styles.placeholderColor}
                             value={parseInt(this.state.percentVal)}
 
                             onSlidingComplete={(value) => {
@@ -297,7 +297,68 @@ export class ViewTask extends React.Component {
     /* #endregion */
 
 
+    /* #region  Notes Region */
+    setNotesModalVisibility(visible) {
+        this.setState({ notesModalVisible: visible });
+    }
 
+    renderNotesModal() {
+        if (this.state.notesModalVisible) {
+            return (
+                <NotesModal
+                    animationType="slide"
+                    transparent={true}
+                    existingNotes={this.state.selectedItem.notes}
+                    placeholder={'Notes...'}
+                    setNotes={item => {
+                        this.props.editNotes(item)
+                    }}
+                    closeModal={() => {
+                        this.setNotesModalVisibility(false);
+                    }}
+                ></NotesModal>
+            );
+        }
+        return null;
+    }
+
+    renderNotesSection() {
+        if (this.state.selectedItem.notes != '') {
+            return (
+                <TouchableOpacity
+                    style={styles.hasNotesContainer}
+                    onPress={() => {
+                        this.setNotesModalVisibility(true);
+                    }}
+                >
+                    <Text
+                        style={styles.hasNotesText}
+                        multiline={true}
+                        onChangeText={this.props.notes}
+                    >
+                        {this.state.selectedItem.notes}
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
+        return (
+            <TouchableOpacity
+                style={styles.createNotesContainer}
+                onPress={() => {
+                    this.setNotesModalVisibility(true);
+                }}
+            >
+                <Text
+                    style={styles.createNotesText}
+                    multiline={true}
+                    onChangeText={this.props.notes}
+                >
+                    Notes ...
+    </Text>
+            </TouchableOpacity>
+        );
+    }
+    /* #endregion */
     render() {
         return (
             <Modal
@@ -312,6 +373,7 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
+                {this.renderNotesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
@@ -367,8 +429,12 @@ export class ViewTask extends React.Component {
                             </View>
                         </View>
 
+                        {/* {NOTES SECTION} */}
+                        {this.renderNotesSection()}
+
+
                         {/* Notes Section*/}
-                        <View style={styles.notesContainer}>
+                        {/* <View style={styles.notesContainer}>
                             <Text style={styles.notesTitle}>Notes</Text>
                             <TextInput
                                 style={styles.notesTextInput}
@@ -377,7 +443,10 @@ export class ViewTask extends React.Component {
                                 value={this.props.selectedItem.notes ? this.props.selectedItem.notes : ""}
                                 onChangeText={this.props.editNotes}>
                             </TextInput>
-                        </View>
+                        </View> */}
+
+
+
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
