@@ -138,29 +138,26 @@ export class CreateTask extends React.Component {
     renderDueDate() {
         if (this.state.itemDate != '') {
             return (
-                <View style={styles.createDueDateContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.setDueDateModalVisibility(true)}
-                    >
-                        <Text style={styles.createSelectedDateText}>
-                            {Moment(new Date(this.state.itemDate)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.createDueDateContainer}
+                    onPress={() => this.setDueDateModalVisibility(true)}>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.state.itemDate)).format(dateFormat)}
+                    </Text>
+
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') +
                             ' days left'}
                     </Text>
-                </View>
+                </TouchableOpacity>
             );
         }
         return (
-            <View style={styles.createNameContainer}>
-                <TouchableOpacity onPress={() => this.setDueDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want to finish this?
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDueDateModalVisibility(true)}>
+                <Text style={styles.createDateText}>
+                    When do you want to finish this?
           </Text>
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
         );
     }
     /* #endregion */
