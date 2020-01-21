@@ -184,11 +184,11 @@ export class CreateRoutine extends React.Component {
 					animationType="fade"
 					transparent={true}
 					setDate={item => {
-						this.props.end_time(item);
+						this.props.end_date(item);
 						this.setState({ itemEndDate: item });
 					}}
 					onSubmit={item => {
-						this.props.end_time(item);
+						this.props.end_date(item);
 						this.setState({ itemEndDate: item });
 						this.setEndDateModalVisibility(false);
 					}}
