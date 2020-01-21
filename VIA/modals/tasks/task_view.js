@@ -212,13 +212,6 @@ export class ViewTask extends React.Component {
     /* #endregion */
 
     /* #region  Notification Times Region */
-
-
-
-
-
-
-
     setNotificationTimesVisibility(visible) {
         this.setState({ notificationTimesModal: visible })
     }
@@ -229,9 +222,10 @@ export class ViewTask extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    // times={this.state.selectedItem.notification_time ? this.state.selectedItem.notification_time : ''}
                     setDate={item => {
-                        this.props.editNotificationTime(item);
-                        this.setState({ itemNotificationTimes: item });
+                        // this.props.editNotificationTime(item);
+                        // this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
                         this.setNotificationTimesVisibility(false);
@@ -245,24 +239,17 @@ export class ViewTask extends React.Component {
 
     renderNotificationTimesSection() {
         // console.warn(this.state.selectedItem.notification_time)
-
-
-        if (this.state.selectedItem.notification_time != '')
-        {
+        if (this.state.selectedItem.notification_time != '') {
             var daysWithNotifications = '';
 
-            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time+"]");
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
 
-            // console.warn(jsonArr[1])
-        
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
                     daysWithNotifications = daysWithNotifications.concat(
                         jsonArr[key].name + ', '
                     );
                 }
-            }, () => {
-                
             });
 
             return (
