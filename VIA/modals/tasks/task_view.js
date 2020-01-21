@@ -253,32 +253,34 @@ export class ViewTask extends React.Component {
 
             var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time+"]");
 
-
-
-            console.warn(jsonArr[1])
+            // console.warn(jsonArr[1])
         
-            // Object.keys(arr).map(key => {
-            //     if (arr[key].times.length > 0 && arr[key].checked == true) {
-            //         daysWithNotifications = daysWithNotifications.concat(
-            //             arr[key].name + ', '
-            //         );
-            //     }
-            // }, () => {
+            Object.keys(jsonArr).map(key => {
+                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                    daysWithNotifications = daysWithNotifications.concat(
+                        jsonArr[key].name + ', '
+                    );
+                }
+            }, () => {
                 
-            // });
+            });
 
-          
-            // return (
-            //     <TouchableOpacity
-            //         style={styles.notificationTimesButton}
-            //         onPress={() => {
-            //             this.setNotificationTimesVisibility(true);
-            //         }}>
+            return (
+                <TouchableOpacity
+                    style={styles.hasNotificationTimesButtonContainer}
+                    onPress={() => {
+                        this.setNotificationTimesVisibility(true);
+                    }}
+                >
+                    <Text style={styles.hasNotificationTimeButtonText}>
+                        {daysWithNotifications}
+                    </Text>
 
-            //         <Text style={styles.notificationTimesText} >Notification</Text>
-            //         <SIcon name="clock" size={30} color="#000" />
-            //         <Text style={styles.notificationTimesText} >Times</Text>
-            //     </TouchableOpacity>);
+                    <Text style={styles.notificationTimeButtonText}>
+                        <SIcon name="clock" size={20} color="#ffffff" />
+                    </Text>
+                </TouchableOpacity>
+            );
         }
         return (
             <TouchableOpacity
