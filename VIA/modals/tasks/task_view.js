@@ -495,33 +495,12 @@ export class ViewTask extends React.Component {
 
                         {/* Complete Button Section */}
                         {this.renderCompleteButton()}
+
                         {/* Notification Times Section */}
                         {this.renderNotificationTimesSection()}
-                        {/* Complete Button and Notification Times Section
-                        <View style={styles.completeAndNotifSection}>
-                            
-                            <View style={styles.projectsNotificationsSection}>
-                               
-                            </View>
-                        </View> */}
 
                         {/* {NOTES SECTION} */}
                         {this.renderNotesSection()}
-
-
-                        {/* Notes Section*/}
-                        {/* <View style={styles.notesContainer}>
-                            <Text style={styles.notesTitle}>Notes</Text>
-                            <TextInput
-                                style={styles.notesTextInput}
-                                multiline={true}
-                                placeholder={"..."}
-                                value={this.props.selectedItem.notes ? this.props.selectedItem.notes : ""}
-                                onChangeText={this.props.editNotes}>
-                            </TextInput>
-                        </View> */}
-
-
 
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
