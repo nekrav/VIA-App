@@ -35,6 +35,8 @@ export class CreateHabit extends React.Component {
             itemDate: '',
             itemNotificationTimes: '',
             notificationTimesModal: false,
+            itemStartDate: '',
+            itemEndDate: '',
         };
     }
 
@@ -155,7 +157,7 @@ export class CreateHabit extends React.Component {
             <View style={styles.createNameContainer}>
                 <TouchableOpacity onPress={() => this.setStartDateModalVisibility(true)}>
                     <Text style={styles.createDateText}>
-                        When do you want this routine to start?
+                        When do you want this habit to start?
           </Text>
                 </TouchableOpacity>
             </View>
@@ -353,8 +355,8 @@ export class CreateHabit extends React.Component {
                 onRequestClose={this.props.onRequestClose}
             >
                 {this.showRoutineSelectionModal()}
-                {this.renderEndDateModal()}
-                {this.renderStartDateModal()}
+
+                 
 
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -411,6 +413,9 @@ export class CreateHabit extends React.Component {
                         </TouchableOpacity>
 
                         {this.renderNotificationTimesModal()}
+
+                        {this.renderStartDate()}
+                        {this.renderEndDate()}
 
                         {/* {PROJECT SELECTION SECTION} */}
                         <View style={styles.routineSectionContainer}>

@@ -435,10 +435,12 @@ export class CreateRoutine extends React.Component {
 							></TextInput>
 						</TouchableOpacity>
 
-                        {this.renderStartDate()}
-                        {this.renderEndDate()}
+                     
 						{this.renderNotificationTimesModal()}
 						{this.renderNotesModal()}
+
+                        {this.renderStartDate()}
+                        {this.renderEndDate()}
 
 						{/* {PROJECT SELECTION SECTION} */}
 						<View style={styles.projectSectionContainer}>
