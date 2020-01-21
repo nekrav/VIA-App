@@ -48,7 +48,7 @@ export class TasksScreen extends React.Component {
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : "";
-
+        console.warn(newTask)
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)

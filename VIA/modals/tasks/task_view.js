@@ -246,30 +246,40 @@ export class ViewTask extends React.Component {
     renderNotificationTimesSection() {
         // console.warn(this.state.selectedItem.notification_time)
 
-        // if (this.state.selectedItem.notification_time != '')
-        // {
-        //     var daysWithNotifications = '';
-        //     var arr = this.state.selectedItem.notification_time;
 
-        //     Object.keys(arr).map(key => {
-        //         if (arr[key].times.length > 0 && arr[key].checked == true) {
-        //             daysWithNotifications = daysWithNotifications.concat(
-        //                 arr[key].name + ', '
-        //             );
-        //         }
-        //     });
-        //     return (
-        //         <TouchableOpacity
-        //             style={styles.notificationTimesButton}
-        //             onPress={() => {
-        //                 this.setNotificationTimesVisibility(true);
-        //             }}>
+        if (this.state.selectedItem.notification_time != '')
+        {
+            var daysWithNotifications = '';
 
-        //             <Text style={styles.notificationTimesText} >Notification</Text>
-        //             <SIcon name="clock" size={30} color="#000" />
-        //             <Text style={styles.notificationTimesText} >Times</Text>
-        //         </TouchableOpacity>);
-        // }
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time+"]");
+
+
+
+            console.warn(jsonArr[1])
+        
+            // Object.keys(arr).map(key => {
+            //     if (arr[key].times.length > 0 && arr[key].checked == true) {
+            //         daysWithNotifications = daysWithNotifications.concat(
+            //             arr[key].name + ', '
+            //         );
+            //     }
+            // }, () => {
+                
+            // });
+
+          
+            // return (
+            //     <TouchableOpacity
+            //         style={styles.notificationTimesButton}
+            //         onPress={() => {
+            //             this.setNotificationTimesVisibility(true);
+            //         }}>
+
+            //         <Text style={styles.notificationTimesText} >Notification</Text>
+            //         <SIcon name="clock" size={30} color="#000" />
+            //         <Text style={styles.notificationTimesText} >Times</Text>
+            //     </TouchableOpacity>);
+        }
         return (
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
