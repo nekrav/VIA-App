@@ -166,7 +166,7 @@ export class ViewTask extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createDueDateContainer} onPress={() => this.setDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
           </Text>
@@ -209,12 +209,22 @@ export class ViewTask extends React.Component {
             <View style={styles.slidersSection}>
                 <View style={styles.slidersTitlesContainer}>
                     <View style={styles.sliderTitleContainerLeft}>
-                        <Text style={styles.sliderTitle}>
+                        <Text 
+                        style={
+                            this.state.selectedItem.percentage_done > 0
+                                ? styles.sliderTitleNull
+                                : styles.sliderTitle
+                        }>
                             % Done
                         </Text>
                     </View>
                     <View style={styles.sliderTitleContainerRight}>
-                        <Text style={styles.sliderTitle}>
+                        <Text 
+                        style={
+                            this.state.selectedItem.importance > 0
+                                ? styles.sliderTitleNull
+                                : styles.sliderTitle
+                        }>
                             Importance
                         </Text>
                     </View>
@@ -225,8 +235,8 @@ export class ViewTask extends React.Component {
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
+                            minimumTrackTintColor={styles.blueColor}
+                                        maximumTrackTintColor={styles.placeholderColor}
                             value={parseInt(this.state.percentVal)}
 
                             onSlidingComplete={(value) => {
@@ -247,8 +257,8 @@ export class ViewTask extends React.Component {
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor="#068ae8"
-                            maximumTrackTintColor="#2d3142"
+                            minimumTrackTintColor={styles.blueColor}
+                            maximumTrackTintColor={styles.placeholderColor}
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
                                 this.props.save;
