@@ -18,7 +18,7 @@ var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
 
-const timeFormat = "hh:mm"
+const timeFormat = "hh:mm A"
 
 const currentTime = hours + ":" + min
 
