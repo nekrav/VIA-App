@@ -4,6 +4,7 @@ import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
+import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
 import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
@@ -36,6 +37,7 @@ export class ViewTask extends React.Component {
             percentVal: this.props.selectedItem.percentage_done,
             importanceVal: this.props.selectedItem.importance,
             notesModalVisible: false,
+            itemNotificationTimes: this.props.selectedItem.notification_time
         };
     }
 
@@ -212,10 +214,33 @@ export class ViewTask extends React.Component {
     /* #region  Notification Times Region */
 
 
+
+
+
+
+
     setNotificationTimesVisibility(visible) {
         this.setState({ notificationTimesModal: visible })
     }
 
+    renderNotificationTimesModal() {
+        if (this.state.notificationTimesModal) {
+            return (
+                <NotificationTimesModal
+                    animationType="fade"
+                    transparent={true}
+                    setDate={item => {
+                        this.props.editNotificationTime(item);
+                        this.setState({ itemNotificationTimes: item });
+                    }}
+                    closeModal={() => {
+                        this.setNotificationTimesVisibility(false);
+                    }}
+                ></NotificationTimesModal>
+            );
+        }
+        return null;
+    }
 
 
     renderNotificationTimesSection() {
@@ -315,16 +340,16 @@ export class ViewTask extends React.Component {
         return (<TouchableOpacity
             style={styles.completeButtonBody}
             onLongPress={() => {
-                this.setState({percentVal: 0})
+                this.setState({ percentVal: 0 })
                 this.props.editCompleted("false")
                 this.props.editPercentageDone(100)
             }
             }
             onPress={() => {
-                this.setState({ percentVal: 100})
+                this.setState({ percentVal: 100 })
                 this.props.editPercentageDone(100)
                 this.props.editCompleted("true")
-               
+
             }
             }>
             {this.renderCompleteButtonText()}
@@ -418,6 +443,7 @@ export class ViewTask extends React.Component {
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
                 {this.renderNotesModal()}
+                {this.renderNotificationTimesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
@@ -427,8 +453,6 @@ export class ViewTask extends React.Component {
 
                         {/* Name Section */}
                         {this.renderNameSection()}
-
-
 
                         {/* Project Section*/}
                         {this.renderProjectSection()}
