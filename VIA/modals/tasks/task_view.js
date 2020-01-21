@@ -60,6 +60,39 @@ export class ViewTask extends React.Component {
         this.props.editCompleted("true")
     }
 
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return (<View style={styles.topNav}>
+            <TouchableOpacity style={styles.topNavBackButton}
+                onPress={this.props.closeModal}>
+                <SIcon name="arrow-left" size={30} color="#000" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.trashButton}
+                onPress={this.props.delete}>
+                <SIcon name="trash" size={30} color="#f00" />
+            </TouchableOpacity>
+        </View>)
+    }
+    /* #endregion */
+
+    /* #region  Name Region */
+    renderNameSection() {
+        return (<TouchableOpacity
+            onPress={() => { this.nameTextInput.focus(); }}
+            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
+            <TextInput
+                ref={(input) => { this.nameTextInput = input; }}
+                maxLength={40}
+                onEndEditing={this.props.save()}
+                style={styles.createNameText}
+                multiline={true}
+                value={this.props.selectedItem.name}
+                onChangeText={this.props.editName}>
+            </TextInput>
+        </TouchableOpacity>)
+    }
+
+    /* #endregion */
 
     /* #region  Project Selection Region */
     setProjectSelectionModalVisibility(visible) {
@@ -122,7 +155,6 @@ export class ViewTask extends React.Component {
 
 
     /* #endregion */
-
 
     /* #region  Due Date Region */
     setDateModalVisibility(visible) {
@@ -282,8 +314,17 @@ export class ViewTask extends React.Component {
     renderCompleteButton() {
         return (<TouchableOpacity
             style={styles.completeButtonBody}
-            onLongPress={() => this.props.editCompleted("false")}
-            onPress={() => this.props.editCompleted("true")}>
+            onLongPress={() => {
+                this.setState({percentVal: 0})
+                this.props.editCompleted("false")
+            }
+            }
+            onPress={() => {
+                this.props.editPercentageDone(100)
+                this.props.editCompleted("true")
+                this.setState({ percentVal: 100})
+            }
+            }>
             {this.renderCompleteButtonText()}
         </TouchableOpacity>)
     }
@@ -295,7 +336,6 @@ export class ViewTask extends React.Component {
             return (<Text style={styles.completeButtonText}>Complete</Text>)
     }
     /* #endregion */
-
 
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
@@ -359,6 +399,8 @@ export class ViewTask extends React.Component {
         );
     }
     /* #endregion */
+
+
     render() {
         return (
             <Modal
@@ -379,39 +421,15 @@ export class ViewTask extends React.Component {
                     <SafeAreaView style={this.getStyleIfDone()}>
 
                         {/* Top Bar Section */}
-                        <View style={styles.topNav}>
-                            <TouchableOpacity style={styles.topNavBackButton}
-                                onPress={this.props.closeModal}>
-                                <SIcon name="arrow-left" size={30} color="#000" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.trashButton}
-                                onPress={this.props.delete}>
-                                <SIcon name="trash" size={30} color="#f00" />
-                            </TouchableOpacity>
-                        </View>
+                        {this.renderTopBar()}
 
                         {/* Name Section */}
-                        <TouchableOpacity
-                            onPress={() => { this.nameTextInput.focus(); }}
-                            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
-                            <TextInput
-                                ref={(input) => { this.nameTextInput = input; }}
-                                maxLength={40}
-                                onEndEditing={this.props.save()}
-                                style={styles.createNameText}
-                                multiline={true}
-                                value={this.props.selectedItem.name}
-                                onChangeText={this.props.editName}>
-                            </TextInput>
-                        </TouchableOpacity>
+                        {this.renderNameSection()}
 
 
 
                         {/* Project Section*/}
-
-                        <View style={styles.projectSectionContainer}>
-                            {this.renderProjectSection()}
-                        </View>
+                        {this.renderProjectSection()}
 
                         {/* Due Date Section*/}
                         {this.renderDueDate()}
@@ -421,7 +439,6 @@ export class ViewTask extends React.Component {
                         {this.renderSliderSection()}
 
                         {/* Complete Button and Notification Times Section*/}
-
                         <View style={styles.completeAndNotifSection}>
                             {this.renderCompleteButton()}
                             <View style={styles.projectsNotificationsSection}>
