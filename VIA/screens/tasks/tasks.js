@@ -47,8 +47,7 @@ export class TasksScreen extends React.Component {
         newTask.project = task.project ? task.project : "";
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
-        newTask.notification_time = task.notification_time ? task.notification_time : "";
-        console.warn(newTask)
+        newTask.notification_time = task.notification_time ? task.notification_time : ''
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -74,7 +73,7 @@ export class TasksScreen extends React.Component {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
                         })
-                        newTask.notification_time = times
+                        newTask.notification_time = times 
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -156,7 +155,7 @@ export class TasksScreen extends React.Component {
     getChecked(item) {
         if (item != null)
             var checked = false
-            return checked = item.value.completed === "true"
+        return checked = item.value.completed === "true"
 
     }
 
