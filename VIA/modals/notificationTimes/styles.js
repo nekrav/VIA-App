@@ -108,6 +108,7 @@ module.exports = StyleSheet.create({
     weekdayNotificationButtonsContainer: {
         flexGrow: 1,
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
 
     },
@@ -148,19 +149,19 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #region  Weekday notification checkbox */
-
+    weekSelectionTextContainer: {width: 100,  
+        justifyContent:'space-between', 
+        marginRight: '20%'
+    },
     weekSelectionContainer: {
         borderWidth: 0,
-        width: '40%',
         backgroundColor: backgroundColor,
-        marginRight: 70,
     },
 
     checkboxText: {
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-
     },
     /* #endregion */
 

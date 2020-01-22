@@ -106,7 +106,7 @@ export class NotificationTimesModal extends React.Component {
                             <CheckBox
                                 center
                                 key={day.item.key.toString()}
-                                title={day.item.name}
+                                // title={day.item.name}
                                 checkedIcon='dot-circle-o'
                                 uncheckedIcon='circle-o'
                                 checked={day.item.checked}
@@ -117,6 +117,7 @@ export class NotificationTimesModal extends React.Component {
                                     this.setState({ times: arr })
                                 }}
                             />
+                            <View style={styles.weekSelectionTextContainer}><Text style={styles.checkboxText}> {day.item.name}</Text></View>
                             <TouchableOpacity style={styles.addTimeButtonContainer}
                                 onPress={() => {
                                     this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
