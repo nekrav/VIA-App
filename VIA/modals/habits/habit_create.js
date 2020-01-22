@@ -165,65 +165,65 @@ export class CreateHabit extends React.Component {
     /* #endregion */
 
     /* #region  End Date Region */
-	setEndDateModalVisibility(visible) {
-		this.setState({ showEndDate: visible });
-	}
+    setEndDateModalVisibility(visible) {
+        this.setState({ showEndDate: visible });
+    }
 
-	renderEndDateModal() {
-		if (this.state.showEndDate) {
-			return (
-				<DateModal
-					pickerMode="time"
-					animationType="fade"
-					transparent={true}
-					setDate={item => {
-						this.props.end_time(item);
-						this.setState({ itemEndDate: item });
-					}}
-					onSubmit={item => {
-						this.props.end_time(item);
-						this.setState({ itemEndDate: item });
-						this.setEndDateModalVisibility(false);
-					}}
-					closeModal={() => {
-						this.setEndDateModalVisibility(false);
-					}}
-				></DateModal>
-			);
-		}
-		return null;
-	}
+    renderEndDateModal() {
+        if (this.state.showEndDate) {
+            return (
+                <DateModal
+                    pickerMode="time"
+                    animationType="fade"
+                    transparent={true}
+                    setDate={item => {
+                        this.props.end_time(item);
+                        this.setState({ itemEndDate: item });
+                    }}
+                    onSubmit={item => {
+                        this.props.end_time(item);
+                        this.setState({ itemEndDate: item });
+                        this.setEndDateModalVisibility(false);
+                    }}
+                    closeModal={() => {
+                        this.setEndDateModalVisibility(false);
+                    }}
+                ></DateModal>
+            );
+        }
+        return null;
+    }
 
-	renderEndDate() {
-		if (this.state.itemEndDate != '') {
-			return (
-				<View style={styles.createDueDateContainer}>
-					<TouchableOpacity
-						onPress={() => this.setEndDateModalVisibility(true)}
-					>
-						<Text style={styles.createSelectedDateText}>
-							{Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
-						</Text>
-					</TouchableOpacity>
-					{/* <Text style={styles.createSelectedDateText}>
+    renderEndDate() {
+        if (this.state.itemEndDate != '') {
+            return (
+                <View style={styles.createDueDateContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.setEndDateModalVisibility(true)}
+                    >
+                        <Text style={styles.createSelectedDateText}>
+                            {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
+                        </Text>
+                    </TouchableOpacity>
+                    {/* <Text style={styles.createSelectedDateText}>
 						{Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
 							' days left'}
 					</Text> */}
-				</View>
-			);
-		}
-		return (
-			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
-					<Text style={styles.createDateText}>
-                    When do you want this routine to end?
+                </View>
+            );
+        }
+        return (
+            <View style={styles.createNameContainer}>
+                <TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
+                    <Text style={styles.createDateText}>
+                        When do you want this routine to end?
           </Text>
-				</TouchableOpacity>
-			</View>
-		);
-	}
+                </TouchableOpacity>
+            </View>
+        );
+    }
 
-	/* #endregion */
+    /* #endregion */
 
 
     /* #region  Notification Times Region */
@@ -298,51 +298,6 @@ export class CreateHabit extends React.Component {
     }
     /* #endregion */
 
-
-    // showRoutineSelectionModal() {
-    //     if (this.state.routineSelectionModalVisible) {
-    //         return <SelectionModal
-    //             animationType="fade"
-    //             items={this.state.items}
-    //             itemName="Routines"
-    //             transparent={true}
-    //             selectItem={(item) => {
-    //                 this.props.routine(item.key)
-    //                 this.setState({ theSelectedRoutine: item.value.name }, () => {
-    //                 })
-    //             }}
-    //             closeModal={() => { this.setRoutineSelectionModalNotVisible() }}>
-    //         </SelectionModal>
-    //     }
-    // }
-
-    // setRoutineSelectionModalVisible() {
-    //     this.setState({ routineSelectionModalVisible: true })
-    // }
-
-    // setRoutineSelectionModalNotVisible() {
-    //     this.setState({ routineSelectionModalVisible: false })
-    // }
-
-    // renderRoutineSelection() {
-    //     if (this.state.theSelectedRoutine != "") {
-    //         this.props.routine = this.state.theSelectedRoutine;
-    //         return (
-    //             <TouchableOpacity onPress={() => {
-    //                 this.setRoutineSelectionModalVisible();
-    //             }}>
-    //                 <Text>{this.state.theSelectedRoutine}</Text>
-    //             </TouchableOpacity>
-    //         );
-    //     } else {
-    //         return (
-    //             <TouchableOpacity onPress={this.setRoutineSelectionModalVisible.bind(this)}>
-    //                 <Text>Select Routine</Text>
-    //             </TouchableOpacity>
-    //         );
-    //     }
-    // }
-
     render() {
         return (
 
@@ -355,9 +310,6 @@ export class CreateHabit extends React.Component {
                 {this.showRoutineSelectionModal()}
                 {this.renderEndDateModal()}
                 {this.renderStartDateModal()}
-
-                 
-
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
@@ -462,72 +414,6 @@ export class CreateHabit extends React.Component {
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
-
-
-
-
-
-
-
-
-            // <Modal
-            //     animationType={this.props.animationType}
-            //     transparent={this.props.transparent}
-            //     visible={this.props.visible}
-            //     onRequestClose={this.props.onRequestClose}>
-            //         {this.showRoutineSelectionModal()}
-            //     <View style={{ marginTop: 22, alignItems: "center" }}>
-            //         <Text>Add Habit</Text>
-            //     </View>
-            //     <View>
-            //         <Text>Name</Text>
-            //         <TextInput
-            //             onChangeText={this.props.name}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Due Time</Text>
-            //         <TextInput
-            //             onChangeText={this.props.due_time}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Importance</Text>
-            //         <TextInput
-            //             onChangeText={this.props.importance}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Time to Spend</Text>
-            //         <TextInput
-            //             onChangeText={this.props.time_to_spend}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Notification Time</Text>
-            //         <TextInput
-            //             onChangeText={this.props.notification_time}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <Text>Routine</Text>
-            //         {this.renderRoutineSelection()}
-            //     </View>
-            //     <View>
-            //         <Text>Days to do</Text>
-            //         <TextInput
-            //             onChangeText={this.props.days_to_do}>
-            //         </TextInput>
-            //     </View>
-            //     <View>
-            //         <TouchableOpacity onPress={this.props.closeModal}>
-            //             <Text>Close</Text>
-            //         </TouchableOpacity>
-            //         <TouchableOpacity onPress={this.props.save}>
-            //             <Text>Save</Text>
-            //         </TouchableOpacity>
-            //     </View>
-            // </Modal>
         );
     }
 }

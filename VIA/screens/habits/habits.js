@@ -46,7 +46,7 @@ export class HabitsScreen extends React.Component {
         newHabit.routine = habit.routine ? habit.routine : "";
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ""
-        newHabit.notification_time = habit.notification_time ? habit.notification_time : ""
+        newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ""
 
         Database.save(dbTableName, newHabit).then(() => {
