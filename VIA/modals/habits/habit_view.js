@@ -93,6 +93,8 @@ export class ViewHabit extends React.Component {
     }
 
     /* #endregion */
+
+    /* #region  Routine Selection Section */
     showRoutineSelectionModal() {
         if (this.state.routineSelectionModalVisible) {
             return <SelectionModal
@@ -107,7 +109,6 @@ export class ViewHabit extends React.Component {
                 closeModal={() => { this.setRoutineSelectionModalVisibility(false) }}>
             </SelectionModal>
         }
-        // return null;
     }
 
     setRoutineSelectionModalVisibility(visible) {
@@ -124,7 +125,7 @@ export class ViewHabit extends React.Component {
                     }}
                 >
                     <Text style={styles.hasProjectSelectionButtonText}>
-                    {this.state.routineName}
+                        {this.state.routineName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
                         <SIcon name="layers" size={20} color="#ffffff" />
@@ -147,6 +148,7 @@ export class ViewHabit extends React.Component {
             );
         }
     }
+    /* #endregion */
     /* #region  Start Date Region */
     setStartDateModalVisibility(visible) {
         this.setState({ showStartDate: visible });
