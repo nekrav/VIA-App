@@ -544,13 +544,13 @@ module.exports = StyleSheet.create({
     },
     completeButtonBody: {
         margin: 10,
-        flex: 1,
         borderColor: blueColor,
         backgroundColor: blueColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        height: '12%'
     },
     completeAndNotifSection: {
         flexDirection: "row",
