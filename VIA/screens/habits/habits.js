@@ -106,6 +106,14 @@ export class HabitsScreen extends React.Component {
                         theHabit.importance = text;
                         this.setState({ selectedItem: theHabit })
                     }}
+                    editPercentageDone={(text) => {
+                        theHabit.percentage_done = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editCompleted={(text) => {
+                        theHabit.completed = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
                     editTimeToSpend={(text) => {
                         theHabit.time_to_spend = text;
                         this.setState({ selectedItem: theHabit })
