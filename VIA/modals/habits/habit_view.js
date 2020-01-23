@@ -314,7 +314,7 @@ export class ViewHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     setDate={item => {
-                        this.props.notification_time(item);
+                        this.props.editNotificationTime(item);
                         this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
@@ -327,106 +327,57 @@ export class ViewHabit extends React.Component {
     }
 
     renderNotificationTimesSection() {
-        // console.warn(this.state.selectedItem.notification_time)
-        // if (this.state.selectedItem.notification_time != '') {
-        //     var daysWithNotifications = '';
+        if (this.state.selectedItem.notification_time != '') {
+           
 
-        //     var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
+            var daysWithNotifications = '';
 
-        //     Object.keys(jsonArr).map(key => {
-        //         if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-        //             daysWithNotifications = daysWithNotifications.concat(
-        //                 jsonArr[key].name + ', '
-        //             );
-        //         }
-        //     });
-        //     if (daysWithNotifications != '') {
-        //         return (
-        //             <TouchableOpacity
-        //                 style={styles.hasNotificationTimesButtonContainer}
-        //                 onPress={() => {
-        //                     this.setNotificationTimesVisibility(true);
-        //                 }}
-        //             >
-        //                 <Text style={styles.hasNotificationTimeButtonText}>
-        //                     {daysWithNotifications}
-        //                 </Text>
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
 
-        //                 <Text style={styles.notificationTimeButtonText}>
-        //                     <SIcon name="clock" size={20} color="#ffffff" />
-        //                 </Text>
-        //             </TouchableOpacity>
-        //         );
-        //     }
-        // }
-        // return (
-        //     <TouchableOpacity
-        //         style={styles.notificationTimesButtonContainer}
-        //         onPress={() => {
-        //             this.setNotificationTimesVisibility(true);
-        //         }}>
-        //         <Text style={styles.notificationTimeButtonText}>
-        //             When would you like to be notified?
-        // </Text>
+            Object.keys(jsonArr).map(key => {
+                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                    daysWithNotifications = daysWithNotifications.concat(
+                        jsonArr[key].name + ', '
+                    );
+                }
+            });
+            if (daysWithNotifications != '') {
+                return (
+                    <TouchableOpacity
+                        style={styles.hasNotificationTimesButtonContainer}
+                        onPress={() => {
+                            this.setNotificationTimesVisibility(true);
+                        }}
+                    >
+                        <Text style={styles.hasNotificationTimeButtonText}>
+                            {daysWithNotifications}
+                        </Text>
 
-        //         <Text style={styles.notificationTimeButtonText}>
-        //             <SIcon name="clock" size={20} color="#ABABAB" />
-        //         </Text>
-        //     </TouchableOpacity>
-        // );
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="clock" size={20} color="#ffffff" />
+                        </Text>
+                    </TouchableOpacity>
+                );
+            }
+        }
+        return (
+            <TouchableOpacity
+                style={styles.notificationTimesButtonContainer}
+                onPress={() => {
+                    this.setNotificationTimesVisibility(true);
+                }}>
+                <Text style={styles.notificationTimeButtonText}>
+                    When would you like to be notified?
+        </Text>
+
+                <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="clock" size={20} color="#ABABAB" />
+                </Text>
+            </TouchableOpacity>
+        );
     }
 
-    // renderNotificationTimesSection() {
-    //     var daysWithNotifications = '';
-    //     var arr = this.state.itemNotificationTimes;
-
-    //     Object.keys(arr).map(key => {
-    //         if (arr[key].times.length > 0 && arr[key].checked == true) {
-    //             daysWithNotifications = daysWithNotifications.concat(
-    //                 arr[key].name + ', '
-    //             );
-    //         }
-    //     });
-    //     if (daysWithNotifications != '') {
-    //         return (
-    //             <TouchableOpacity
-    //                 style={styles.hasNotificationTimesButtonContainer}
-    //                 onPress={() => {
-    //                     this.setNotificationTimesVisibility(true);
-    //                 }}
-    //             >
-    //                 <Text style={styles.hasNotificationTimeButtonText}>
-    //                     {daysWithNotifications}
-    //                 </Text>
-
-    //                 <Text style={styles.notificationTimeButtonText}>
-    //                     <SIcon name="clock" size={20} color="#ffffff" />
-    //                 </Text>
-    //             </TouchableOpacity>
-    //         );
-    //     }
-    //     return (
-    //         <TouchableOpacity
-    //             style={styles.notificationTimesButtonContainer}
-    //             onPress={() => {
-    //                 this.setNotificationTimesVisibility(true);
-    //             }}
-    //         >
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 When would you like to be notified?
-    // </Text>
-
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 <SIcon name="clock" size={20} color="#ABABAB" />
-    //             </Text>
-    //         </TouchableOpacity>
-    //     );
-    // }
-    /* #endregion */
-
-
-
-
+        /* #endregion */
 
     render() {
         return (
