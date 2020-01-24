@@ -312,7 +312,8 @@ export class ViewRoutine extends React.Component {
 			return (
 				<NotificationTimesModal
 					animationType="fade"
-					transparent={true}
+                    transparent={true}
+                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
 					setDate={item => {
 						this.props.editNotificationTime(item);
 						this.setState({ itemNotificationTimes: item });

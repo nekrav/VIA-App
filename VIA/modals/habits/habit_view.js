@@ -309,6 +309,7 @@ export class ViewHabit extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
                         this.setState({ itemNotificationTimes: item });
