@@ -571,4 +571,42 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 2,
     },
+
+    childrenItemsTitleContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    /* #region  Add Habit Button */
+    addTimeButtonContainer: {
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonContainerView: {
+        borderRadius: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderWidth: 1,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    /* #endregion */
 })

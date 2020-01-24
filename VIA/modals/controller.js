@@ -26,6 +26,31 @@ export class Controller extends React.Component {
             })
     }
 
+    loadAllChildrenAndGetRelatedChildren(object, tableName, parentId, parent) {
+        const itemsArr = []
+        const relatedChildren = []
+        Database.getAll(tableName)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                    console.warn(res.rows.item(i)[parent] + "bobob");
+                    console.warn(res.rows.item(i)[parent] == JSON.stringify(parentId))
+                    if (res.rows.item(i)[parent] == JSON.stringify(parentId)) {
+                        relatedChildren.push({ key: JSON.stringify(item.id), value: item })
+                    }
+                    // console.warn(relatedChildren)
+
+                }
+                object.setState({
+                    relatedChildren: relatedChildren,
+                    items: itemsArr
+                })
+            })
+    }
+
     goToItem(object, tableName, item) {
         Database.getOne(tableName, item).then((res) => {
             selectedItem = res.rows.item(0)
