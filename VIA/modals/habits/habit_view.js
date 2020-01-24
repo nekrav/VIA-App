@@ -162,11 +162,11 @@ export class ViewHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     setDate={item => {
-                        this.props.start_time(item);
+                        this.props.editStartTime(item);
                         this.setState({ itemStartDate: item });
                     }}
                     onSubmit={item => {
-                        this.props.start_time(item);
+                        this.props.editStartTime(item);
                         this.setState({ itemStartDate: item });
                         this.setStartDateModalVisibility(false);
                     }}
@@ -180,31 +180,24 @@ export class ViewHabit extends React.Component {
     }
 
     renderStartDate() {
-        if (this.state.itemStartDate != '') {
+        console.warn(this.state.selectedItem.start_time )
+        if (this.state.selectedItem.start_time != '') {
             return (
-                <View style={styles.createDueDateContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.setStartDateModalVisibility(true)}
-                    >
-                        <Text style={styles.createSelectedDateText}>
-                            {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
-                    {/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
-                </View>
+                <TouchableOpacity
+                    style={styles.createDueDateContainer}
+                    onPress={() => this.setStartDateModalVisibility(true)}>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.state.selectedItem.start_time)).format(dateFormat)}
+                    </Text>
+                </TouchableOpacity>
             );
         }
         return (
-            <View style={styles.createNameContainer}>
-                <TouchableOpacity onPress={() => this.setStartDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want this habit to start?
-          </Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setStartDateModalVisibility(true)}>
+                <Text style={styles.createDateText}>
+                    When do you want this habit to start?
+                </Text>
+            </TouchableOpacity>
         );
     }
 
@@ -328,7 +321,7 @@ export class ViewHabit extends React.Component {
 
     renderNotificationTimesSection() {
         if (this.state.selectedItem.notification_time != '') {
-           
+
 
             var daysWithNotifications = '';
 
@@ -377,7 +370,7 @@ export class ViewHabit extends React.Component {
         );
     }
 
-        /* #endregion */
+    /* #endregion */
 
     render() {
         return (
@@ -409,7 +402,7 @@ export class ViewHabit extends React.Component {
                         {this.renderRoutineSection()}
 
                         {/* Start Date Section*/}
-                        {/* {this.renderStartDate()} */}
+                        {this.renderStartDate()}
 
                         {/* End Date Section*/}
                         {/* {this.renderEndDate()}Î */}

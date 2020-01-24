@@ -39,15 +39,15 @@ export class HabitsScreen extends React.Component {
         newHabit.id = habit.id;
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
-        newHabit.start_time = habit.start_time ? habit.start_time : ""
-        newHabit.end_time = habit.end_time ? habit.end_time : ""
-        newHabit.importance = habit.importance ? habit.importance : ""
+        newHabit.start_time = habit.start_time ? habit.start_time : ''
+        newHabit.end_time = habit.end_time ? habit.end_time : ''
+        newHabit.importance = habit.importance ? habit.importance : ''
         newHabit.percentage_done = 0
-        newHabit.routine = habit.routine ? habit.routine : "";
+        newHabit.routine = habit.routine ? habit.routine : '';
         newHabit.completed = "false"
-        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ""
+        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
-        newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ""
+        newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
@@ -119,7 +119,6 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedItem: theHabit })
                     }}
                     editNotificationTime={(text) => {
-
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
                         })
