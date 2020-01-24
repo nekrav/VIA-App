@@ -42,6 +42,14 @@ export class ViewRoutine extends React.Component {
 	componentDidMount() {
 		controller.loadAll(this, Habits.TABLE_NAME);
     }
+
+    getHabitsInRoutine() {
+        if (this.state.items != []) {
+            console.warn("nbob")
+        }
+    }
+
+
     
 
     getStyleIfDone() {
@@ -132,7 +140,7 @@ export class ViewRoutine extends React.Component {
 		}
 	}
 
-	renderTaskSelection() {
+	renderAllChildrenSection() {
 		if (this.state.tasks.length > 0) {
 			return (
 				<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
@@ -147,12 +155,14 @@ export class ViewRoutine extends React.Component {
 			);
 		} else {
 			return (
+                <View>
+                    <View><Text>Habits</Text></View>
 				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 					<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
 					<Text style={styles.notificationTimeButtonText}>
 						<SIcon name="reload" size={20} color="#ABABAB" />
 					</Text>
-				</TouchableOpacity>
+				</TouchableOpacity></View>
 			);
 		}
 	}
@@ -521,6 +531,7 @@ export class ViewRoutine extends React.Component {
 
                         {/* Sliders Section*/}
                         {/* {this.renderSliderSection()} */}
+                        {this.renderAllChildrenSection()}
 
                         {/* Complete Button Section */}
                         {this.renderCompleteButton()}
