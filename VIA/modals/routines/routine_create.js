@@ -102,7 +102,7 @@ export class CreateRoutine extends React.Component {
 				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 					<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="list" size={20} color="#ABABAB" />
+						<SIcon name="reload" size={20} color="#ABABAB" />
 					</Text>
 				</TouchableOpacity>
 			);
