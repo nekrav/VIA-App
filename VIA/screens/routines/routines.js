@@ -91,8 +91,18 @@ export class RoutinesScreen extends React.Component {
                         this.setState({ selectedRoutine: theRoutine })
                     }}
                     editNotificationTime={(text) => {
-                        theRoutine.notification_time = text;
+                        // theRoutine.notification_time = text;
+                        // this.setState({ selectedRoutine: theRoutine })
+
+
+
+
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        theRoutine.notification_time = times
                         this.setState({ selectedRoutine: theRoutine })
+
                     }}
 
 
@@ -167,14 +177,6 @@ export class RoutinesScreen extends React.Component {
                                         onPress={() => { controller.delete(this, dbTableName, item.value) }}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
-
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => {
-                                            controller.silenceAlarms(this, dbTableName, item.value)
-                                        }}>
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}

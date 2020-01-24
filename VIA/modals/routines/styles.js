@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     },
     completeButtonText: {
         fontFamily: fontFamily,
-        color: textColor,
+        color: backgroundColor,
         fontSize: 30,
     },
     projectSectionView: {
@@ -544,13 +544,13 @@ module.exports = StyleSheet.create({
     },
     completeButtonBody: {
         margin: 10,
-        flex: 1,
         borderColor: blueColor,
         backgroundColor: blueColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        height: '12%',
     },
     completeAndNotifSection: {
         flexDirection: "row",

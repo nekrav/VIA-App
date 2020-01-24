@@ -10,22 +10,22 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 const controller = new Controller;
-const dateFormat = 'hh:mm'
+const dateFormat = 'hh:mm A'
 const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 export class CreateRoutine extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            newRoutine: this.props.newRoutine,
-            tasksSelectionModalVisible: false,
+	constructor(props) {
+		super(props);
+		this.state = {
+			newRoutine: this.props.newRoutine,
+			tasksSelectionModalVisible: false,
 			items: [],
-            showStartDate: false,
-            showEndDate: false,
-            itemStartDate: '',
-            itemEndDate: '',
+			showStartDate: false,
+			showEndDate: false,
+			itemStartDate: '',
+			itemEndDate: '',
 			itemNotificationTimes: '',
 			newProjectImportance: 0,
 			notificationTimesModal: false,
@@ -33,15 +33,15 @@ export class CreateRoutine extends React.Component {
 			itemNotes: '',
 			numberOfTasks: '',
 			tasks: [],
-			projectId:  uuid.v4(),
-        };
-    }
+			projectId: uuid.v4(),
+		};
+	}
 
-    componentDidMount() {
+	componentDidMount() {
 		controller.loadAll(this, Habits.TABLE_NAME);
-    }
-    
-    	/* #region  Habit Selection Region */
+	}
+
+	/* #region  Habit Selection Region */
 
 	showTasksSelectionModal() {
 		if (this.state.tasksSelectionModalVisible) {
@@ -72,11 +72,10 @@ export class CreateRoutine extends React.Component {
 		return tasksString;
 	}
 
-	saveProjectInSelectedTask(projectID)
-	{
+	saveProjectInSelectedTask(projectID) {
 		if (this.state.tasks.length > 0) {
 			for (var i = 0; i < this.state.tasks.length; i++) {
-				this.state.tasks[i].item.value.routine  = projectID
+				this.state.tasks[i].item.value.routine = projectID
 				Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Habits.TABLE_NAME);
 				})
@@ -165,9 +164,9 @@ export class CreateRoutine extends React.Component {
 		);
 	}
 
-    /* #endregion */
-    
-    /* #region  End Date Region */
+	/* #endregion */
+
+	/* #region  End Date Region */
 	setEndDateModalVisibility(visible) {
 		this.setState({ showEndDate: visible });
 	}
@@ -215,7 +214,7 @@ export class CreateRoutine extends React.Component {
 			<View style={styles.createNameContainer}>
 				<TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
 					<Text style={styles.createDateText}>
-                    When do you want this routine to end?
+						When do you want this routine to end?
           </Text>
 				</TouchableOpacity>
 			</View>
@@ -359,20 +358,50 @@ export class CreateRoutine extends React.Component {
 		);
 	}
 	/* #endregion */
+	/* #region  Bottom Buttons Region */
+	renderBottomButtons() {
+		return (<View style={styles.bottomButtonsContainer}>
+			<TouchableOpacity
+				disabled={this.state.newRoutineName != '' ? false : true}
+				style={
+					this.state.newRoutineName != ''
+						? styles.bottomButtonLeft
+						: styles.bottomButtonLeftDisabled
+				}
+				onPress={() => {
+					this.saveProjectInSelectedTask(this.state.projectId)
+					this.props.save()
+				}}
+			>
+				<Text
+					style={
+						this.state.newRoutineName != ''
+							? styles.bottomButtonTextDisabled
+							: styles.bottomButtonText
+					}>
+					Save
+		</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={styles.bottomButtonRight}
+				onPress={this.props.closeModal}>
+				<Text style={styles.bottomButtonText}>Close</Text>
+			</TouchableOpacity>
+		</View>)
+	}
+	/* #endregion */
 
-
-
-    render() {
-        return (
-            <Modal
+	render() {
+		return (
+			<Modal
 				animationType={this.props.animationType}
 				transparent={this.props.transparent}
 				visible={this.props.visible}
 				onRequestClose={this.props.onRequestClose}
 			>
 				{this.showTasksSelectionModal()}
-                {this.renderEndDateModal()}
-                {this.renderStartDateModal()}
+				{this.renderEndDateModal()}
+				{this.renderStartDateModal()}
 
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<SafeAreaView style={styles.outerView}>
@@ -406,11 +435,11 @@ export class CreateRoutine extends React.Component {
 								this.nameTextInput.focus();
 							}}
 							style={
-                                this.state.newRoutineName != ''
-                                    ? styles.hasNameTextInputContainer
-                                    : styles.createNameContainer
-                            }
-                        >
+								this.state.newRoutineName != ''
+									? styles.hasNameTextInputContainer
+									: styles.createNameContainer
+							}
+						>
 							<TextInput
 								ref={input => {
 									this.nameTextInput = input;
@@ -427,12 +456,12 @@ export class CreateRoutine extends React.Component {
 							></TextInput>
 						</TouchableOpacity>
 
-                     
+
 						{this.renderNotificationTimesModal()}
 						{this.renderNotesModal()}
 
-                        {this.renderStartDate()}
-                        {this.renderEndDate()}
+						{this.renderStartDate()}
+						{this.renderEndDate()}
 
 						{/* {PROJECT SELECTION SECTION} */}
 						<View style={styles.projectSectionContainer}>
@@ -449,39 +478,11 @@ export class CreateRoutine extends React.Component {
 
 
 						{/* {BOTTOM BUTTONS SECTION} */}
-						<View style={styles.bottomButtonsContainer}>
-							<TouchableOpacity
-								disabled={this.state.newRoutineName != '' ? false : true}
-								style={
-									this.state.newRoutineName != ''
-										? styles.bottomButtonLeft
-										: styles.bottomButtonLeftDisabled
-								}
-								onPress={() => {
-									this.saveProjectInSelectedTask(this.state.projectId)
-									this.props.save()
-								}}
-							>
-								<Text
-									style={
-										this.state.newRoutineName != ''
-											? styles.bottomButtonTextDisabled
-											: styles.bottomButtonText
-									}
-								>
-									Save
-					</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.bottomButtonRight}
-								onPress={this.props.closeModal}
-							>
-								<Text style={styles.bottomButtonText}>Close</Text>
-							</TouchableOpacity>
-						</View>
+						{this.renderBottomButtons()}
+
 					</SafeAreaView>
 				</TouchableWithoutFeedback>
 			</Modal>
-        );
-    }
+		);
+	}
 }
