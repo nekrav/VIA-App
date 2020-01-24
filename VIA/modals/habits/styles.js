@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     },
     completeButtonText: {
         fontFamily: fontFamily,
-        color: textColor,
+        color: backgroundColor,
         fontSize: 30,
     },
     projectSectionView: {
@@ -111,11 +111,13 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
+        // justifyContent: 'space-around',
         backgroundColor: backgroundColor,
     },
     outerViewDone: {
         flex: 1,
         flexDirection: 'column',
+        justifyContent: 'space-between',
         backgroundColor: finishedBackgroundColor,
     },
     /* #endregion */

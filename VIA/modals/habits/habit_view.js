@@ -286,7 +286,6 @@ export class ViewHabit extends React.Component {
     }
     /* #endregion */
 
-
     /* #region  Notification Times Region */
     setNotificationTimesVisibility(visible) {
         this.setState({ notificationTimesModal: visible });
@@ -339,7 +338,7 @@ export class ViewHabit extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="clock" size={20} color="#ffffff" />
+                            <SIcon name="bell" size={20} color="#ffffff" />
                         </Text>
                     </TouchableOpacity>
                 );
@@ -356,7 +355,7 @@ export class ViewHabit extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="clock" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color="#ABABAB" />
                 </Text>
             </TouchableOpacity>
         );

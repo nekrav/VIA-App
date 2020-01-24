@@ -210,7 +210,7 @@ export class CreateTask extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="clock" size={20} color="#ffffff" />
+                        <SIcon name="bell" size={20} color="#ffffff" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -227,7 +227,7 @@ export class CreateTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="clock" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color="#ABABAB" />
                 </Text>
             </TouchableOpacity>
         );
