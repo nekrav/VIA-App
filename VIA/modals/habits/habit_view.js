@@ -180,7 +180,6 @@ export class ViewHabit extends React.Component {
     }
 
     renderStartDate() {
-        console.warn(this.state.selectedItem.start_time )
         if (this.state.selectedItem.start_time != '') {
             return (
                 <TouchableOpacity
@@ -216,11 +215,11 @@ export class ViewHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     setDate={item => {
-                        this.props.end_time(item);
+                        this.props.editEndTime(item);
                         this.setState({ itemEndDate: item });
                     }}
                     onSubmit={item => {
-                        this.props.end_time(item);
+                        this.props.editEndTime(item);
                         this.setState({ itemEndDate: item });
                         this.setEndDateModalVisibility(false);
                     }}
@@ -234,31 +233,24 @@ export class ViewHabit extends React.Component {
     }
 
     renderEndDate() {
-        if (this.state.itemEndDate != '') {
+        if (this.state.selectedItem.end_time != '') {
             return (
-                <View style={styles.createDueDateContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.setEndDateModalVisibility(true)}
-                    >
-                        <Text style={styles.createSelectedDateText}>
-                            {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
-                    {/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
-                </View>
+                <TouchableOpacity
+                    style={styles.createDueDateContainer}
+                    onPress={() => this.setEndDateModalVisibility(true)}>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
+                    </Text>
+                </TouchableOpacity>
             );
         }
         return (
-            <View style={styles.createNameContainer}>
-                <TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want this routine to end?
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setEndDateModalVisibility(true)}>
+                <Text style={styles.createDateText}>
+                    When do you want this routine to end?
           </Text>
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
+
         );
     }
 
@@ -405,7 +397,7 @@ export class ViewHabit extends React.Component {
                         {this.renderStartDate()}
 
                         {/* End Date Section*/}
-                        {/* {this.renderEndDate()}Î */}
+                        {this.renderEndDate()}
 
                         {/* Sliders Section*/}
                         {/* {this.renderSliderSection()} */}
