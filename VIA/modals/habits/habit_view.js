@@ -128,7 +128,7 @@ export class ViewHabit extends React.Component {
                         {this.state.routineName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ffffff" />
+                        <SIcon name="refresh" size={20} color="#ffffff" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -142,7 +142,7 @@ export class ViewHabit extends React.Component {
                         Is this part of a bigger routine?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ABABAB" />
+                        <SIcon name="refresh" size={20} color="#ABABAB" />
                     </Text>
                 </TouchableOpacity>
             );
