@@ -157,7 +157,9 @@ export class ViewRoutine extends React.Component {
 
                     selectedItem={theHabit}
 
-                    delete={() => { controller.delete(this, childTableName, theHabit) }}
+                    delete={() => { controller.delete(this, childTableName, theHabit) 
+                        this.setChildItemModalVisibility(false)
+                    }}
 
                     closeModal={() => { this.setChildItemModalVisibility(false) }}>
                 </ViewHabit>
@@ -246,14 +248,14 @@ export class ViewRoutine extends React.Component {
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
                                 <View style={styles.childActionButtonsContainer}>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => { 
                                             controller.delete(this, childTableName, item.value) 
                                             // controller.loadAllChildrenAndGetRelatedChildren()
                                             }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.childActionButton}
@@ -270,25 +272,6 @@ export class ViewRoutine extends React.Component {
                             </View>
                         } />
                 </View>
-
-
-
-
-
-
-
-
-
-
-                // <TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
-                //     this.setTaskSelectionModalVisibility(true);
-                // }}>
-                //     <Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
-                //     <Text style={styles.notificationTimeButtonText}>
-
-                //         <SIcon name="list" size={20} color="#ffffff" />
-                //     </Text>
-                // </TouchableOpacity>
             );
         } else {
             return (
@@ -315,17 +298,6 @@ export class ViewRoutine extends React.Component {
                             renderItem={({ item }) =>
                                 <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                     <View style={styles.checkboxAndNameContainer}>
-                                        {/* <CheckBox
-                                        containerStyle={styles.checkBox}
-                                        center
-                                        checkedIcon='dot-circle-o'
-                                        uncheckedIcon='circle-o'
-                                        size={35}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            controller.saveExisting(this, dbTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)}/> */}
                                         <View style={styles.listItemTextContainer}>
                                             <Text
                                                 numberOfLines={1}
@@ -622,8 +594,7 @@ export class ViewRoutine extends React.Component {
                 style={styles.createNotesContainer}
                 onPress={() => {
                     this.setNotesModalVisibility(true);
-                }}
-            >
+                }}>
                 <Text
                     style={styles.createNotesText}
                     multiline={true}
@@ -668,17 +639,6 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-
-
-
-
-
-
-
-    canEdit() {
-        this.setState({ canEdit: true })
-    }
-
     render() {
         if (this.props.selectedItem != {}) {
             return (
@@ -708,9 +668,6 @@ export class ViewRoutine extends React.Component {
                             {/* Name Section */}
                             {this.renderNameSection()}
 
-                            {/* Routine Section*/}
-                            {/* {this.renderRoutineSection()} */}
-
                             {/* Start Date Section*/}
                             {this.renderStartDate()}
 
@@ -727,78 +684,9 @@ export class ViewRoutine extends React.Component {
                             {/* Notification Times Section */}
                             {this.renderNotificationTimes()}
 
-                            {/* {NOTES SECTION} */}
-                            {/* {this.renderNotesSection()} */}
-
                         </SafeAreaView>
                     </TouchableWithoutFeedback>
                 </Modal>
-
-
-
-
-                // <Modal
-                //     animationType={this.props.animationType}
-                //     transparent={this.props.transparent}
-                //     visible={this.props.visible}
-                //     onRequestClose={this.props.onRequestClose}>
-                //     <View style={{ marginTop: 22, alignItems: "center" }}>
-                //         <Text>View Routine</Text>
-                //     </View>
-                //     <View>
-                //         <Text>Name</Text>
-                //         <TextInput
-                //             editable={this.state.canEdit}
-                //             value={this.props.selectedItem.name}
-                //             onChangeText={this.props.editName}>
-                //         </TextInput>
-                //     </View>
-                //     <View>
-                //         <Text>Created Date</Text>
-                //         <TextInput
-                //             editable={false}
-                //             value={this.props.selectedItem.created_date}>
-                //         </TextInput>
-                //     </View>
-                //     <View>
-                //         <Text>Start Time</Text>
-                //         <TextInput
-                //             editable={this.state.canEdit}
-                //             value={this.props.selectedItem.start_time}
-                //             onChangeText={this.props.editStartTime}>
-                //         </TextInput>
-                //     </View>
-                //     <View>
-                //         <Text>End Time</Text>
-                //         <TextInput
-                //             editable={this.state.canEdit}
-                //             value={this.props.selectedItem.end_time}
-                //             onChangeText={this.props.editEndTime}>
-                //         </TextInput>
-                //     </View>
-                //     <View>
-                //         <Text>Notification Time</Text>
-                //         <TextInput
-                //             editable={this.state.canEdit}
-                //             value={this.props.selectedItem.notification_time}
-                //             onChangeText={this.props.editNotificationTime}>
-                //         </TextInput>
-                //     </View>
-                //     <View>
-                //         <TouchableOpacity onPress={this.props.closeModal}>
-                //             <Text>Close</Text>
-                //         </TouchableOpacity>
-                //         <TouchableOpacity onPress={this.props.save}>
-                //             <Text>Save</Text>
-                //         </TouchableOpacity>
-                //         <TouchableOpacity onPress={this.props.delete}>
-                //             <Text>Delete</Text>
-                //         </TouchableOpacity>
-                //         <TouchableOpacity onPress={() => this.canEdit()}>
-                //             <Text>Edit</Text>
-                //         </TouchableOpacity>
-                //     </View>
-                // </Modal>
             );
         }
     }

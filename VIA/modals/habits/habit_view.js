@@ -189,7 +189,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.start_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-play" size={20} color="#fff" />
+                        <SIcon name="control-play" size={20} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -200,7 +200,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to start?
                 </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-play" size={20} color="#fff" />
+                        <SIcon name="control-play" size={20} />
                     </Text>
             </TouchableOpacity>
         );
@@ -248,7 +248,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} color="#fff" />
+                        <SIcon name="control-end" size={20} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -259,7 +259,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to end?
           </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-end" size={20} color="#fff" />
+                    <SIcon name="control-end" size={20} />
                 </Text>
             </TouchableOpacity>
 
