@@ -235,6 +235,7 @@ export class ViewRoutine extends React.Component {
                     </View>
                     <FlatList
                         data={this.state.relatedChildren}
+                        extraData={this.state}
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
@@ -247,7 +248,10 @@ export class ViewRoutine extends React.Component {
                                 <View style={styles.childActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.childActionButton}
-                                        onPress={() => { controller.delete(this, childTableName, item.value) }}>
+                                        onPress={() => { 
+                                            controller.delete(this, childTableName, item.value) 
+                                            // controller.loadAllChildrenAndGetRelatedChildren()
+                                            }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
 
