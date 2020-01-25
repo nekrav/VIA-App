@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, Touchable
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
+import { ViewHabit } from '../'
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Habits, Routines } from '../../db'
 import { CheckBox } from 'react-native-elements'
@@ -15,6 +16,7 @@ const dateFormat = 'hh:mm A'
 const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
+const childTableName = Habits.TABLE_NAME
 
 export class ViewRoutine extends React.Component {
 
@@ -24,6 +26,7 @@ export class ViewRoutine extends React.Component {
             canEdit: false,
             selectedItem: this.props.selectedItem,
             tasksSelectionModalVisible: false,
+            childModalVisibility: false,
             items: [],
             relatedChildren: [],
             children: [],
@@ -39,6 +42,7 @@ export class ViewRoutine extends React.Component {
             numberOfTasks: '',
             tasks: [],
             projectId: uuid.v4(),
+            selectedChildItem: '',
         };
     }
 
@@ -93,6 +97,79 @@ export class ViewRoutine extends React.Component {
     /* #endregion */
 
     /* #region  Habit Selection Region */
+
+    setChildItemModalVisibility(visible) {
+        this.setState({ childModalVisibility: visible})
+        
+    }
+    renderChildItemModal() {
+        if (this.state.viewModalVisible) {
+            if (this.state.selectedItem != {}) {
+                theHabit = this.state.selectedItem
+                return <ViewHabit
+                    animationType="slide"
+                    transparent={false}
+                    editName={(text) => {
+                        theHabit.name = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editStartTime={(text) => {
+                        theHabit.start_time = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editEndTime={(text) => {
+                        theHabit.end_time = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editImportance={(text) => {
+                        theHabit.importance = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editPercentageDone={(text) => {
+                        theHabit.percentage_done = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editCompleted={(text) => {
+                        theHabit.completed = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editTimeToSpend={(text) => {
+                        theHabit.time_to_spend = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editNotificationTime={(text) => {
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        theHabit.notification_time = times
+                        this.setState({ selectedTask: theHabit })
+                    }}
+                    editRoutine={(text) => {
+                        theHabit.routine = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editDaysToDo={(text) => {
+                        theHabit.days_to_do = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+
+                    save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
+
+                    selectedItem={theHabit}
+
+                    delete={() => { controller.delete(this, dbTableName, theHabit) }}
+
+                    closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                </ViewHabit>
+            }
+        }
+    }
+
+
+    goToChild(parent, childTableName, id) {
+        this.setChildItemModalVisibility(true);
+        controller.goToChild(parent, childTableName, id)
+    }
 
     showTasksSelectionModal() {
         if (this.state.tasksSelectionModalVisible) {
@@ -156,7 +233,6 @@ export class ViewRoutine extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    {/* <View style={styles.childrenContainer}> */}
                         <FlatList
                             data={this.state.relatedChildren}
                             contentContainerStyle={styles.childrenContainer}
@@ -171,20 +247,19 @@ export class ViewRoutine extends React.Component {
                                     <View style={styles.childActionButtonsContainer}>
                                         <TouchableOpacity
                                             style={styles.childActionButton}
-                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                            onPress={() => { controller.delete(this, childTableName, item.value) }}>
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                         </TouchableOpacity>
 
                                         <TouchableOpacity
                                             style={styles.childActionButton}
-                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#000" />
+                                            onPress={() => { this.setChildItemModalVisibility(true) }}>
+                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                             } />
                     </View>
-                // </View>
 
 
 
@@ -250,13 +325,13 @@ export class ViewRoutine extends React.Component {
                                     <View style={styles.listItemActionButtonsContainer}>
                                         <TouchableOpacity
                                             style={styles.listItemActionButton}
-                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                            onPress={() => { controller.delete(this, childTableName, item.value) }}>
                                             <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                         </TouchableOpacity>
 
                                         <TouchableOpacity
                                             style={styles.listItemActionButton}
-                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            onPress={() => { controller.goToItem(this, childTableName, item.value.id) }}>
                                             <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
                                         </TouchableOpacity>
                                     </View>

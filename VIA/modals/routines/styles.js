@@ -652,6 +652,8 @@ module.exports = StyleSheet.create({
 
     /* #endregion */
     childrenContainer: {
+        // flex: 1,
+        flexGrow: 1,
         marginRight: 10,
         marginLeft: 10,
         alignContent: "center",
@@ -693,15 +695,15 @@ module.exports = StyleSheet.create({
     childTitleText: {
         color: backgroundColor,
         fontSize: 30,
+        marginLeft: 10,
     },
     childActionButtonsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     childActionButtonText: {
-        color: backgroundColor,
         fontSize: 24,
+        marginLeft: 10,
+        marginRight: 10,
     },
-
-
 })
