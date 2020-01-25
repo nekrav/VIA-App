@@ -698,15 +698,17 @@ module.exports = StyleSheet.create({
     childContainerTitleContainer: {
 
     },
-    childContainerTitleText: {
-
+    childTitleText: {
+        color: backgroundColor,
+        fontSize: 30,
     },
     childActionButtonsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     childActionButtonText: {
-
+        color: backgroundColor,
+        fontSize: 24,
     },
 
 
