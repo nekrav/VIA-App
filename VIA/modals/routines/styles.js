@@ -603,6 +603,11 @@ module.exports = StyleSheet.create({
         marginLeft:10,
 
     },
+    childrenItemsTitleTextContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     childrenItemsTitleText: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -647,25 +652,13 @@ module.exports = StyleSheet.create({
 
     /* #endregion */
     childrenContainer: {
-        flex: 1,
         marginRight: 10,
         marginLeft: 10,
         alignContent: "center",
-        // borderRadius: 10,
-        // backgroundColor: grayColor,
-        // borderTopWidth: 2,
-        // borderTopColor: grayColor,
-        flexDirection: "row",
+        flexDirection: "column",
         marginBottom: 5,
         marginTop: 2,
         justifyContent: 'space-between',
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // },
     },
 
     childContainer: {
@@ -673,7 +666,6 @@ module.exports = StyleSheet.create({
         backgroundColor: blueColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,

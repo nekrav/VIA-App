@@ -142,9 +142,10 @@ export class ViewRoutine extends React.Component {
             return (
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
-                        <Text style={styles.childrenItemsTitleText}>
+                        <View style={styles.childrenItemsTitleTextContainer}>
+                        <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
                             Habits in {this.state.selectedItem.name}
-                        </Text>
+                        </Text></View>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setTaskSelectionModalVisibility(true)
@@ -155,9 +156,10 @@ export class ViewRoutine extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.childrenContainer}>
+                    {/* <View style={styles.childrenContainer}> */}
                         <FlatList
                             data={this.state.relatedChildren}
+                            contentContainerStyle={styles.childrenContainer}
                             renderItem={({ item }) =>
                                 <View style={styles.childContainer}>
                                     <View style={styles.childTitleContainer}>
@@ -181,15 +183,8 @@ export class ViewRoutine extends React.Component {
                                     </View>
                                 </View>
                             } />
-
-
-
-
-
-
-
                     </View>
-                </View>
+                // </View>
 
 
 
