@@ -156,7 +156,40 @@ export class ViewRoutine extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.childrenContainer}></View>
+                    <View style={styles.childrenContainer}>
+                        <FlatList
+                            data={this.state.relatedChildren}
+                            renderItem={({ item }) =>
+                                <View style={styles.childContainer}>
+                                    <View style={styles.childTitleContainer}>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.childTitleText}>{item.value.name} </Text>
+                                    </View>
+                                    <View style={styles.childActionButtonsContainer}>
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                            <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            } />
+
+
+
+
+
+
+
+                    </View>
                 </View>
 
 
