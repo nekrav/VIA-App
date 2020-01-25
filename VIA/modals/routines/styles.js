@@ -660,7 +660,6 @@ module.exports = StyleSheet.create({
         flexDirection: "column",
         marginBottom: 5,
         marginTop: 2,
-        justifyContent: 'space-between',
     },
 
     childContainer: {
