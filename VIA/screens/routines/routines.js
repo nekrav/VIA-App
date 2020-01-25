@@ -90,13 +90,11 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.end_time = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
+                    editCompleted={(text) => {
+                        theRoutine.completed = text;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
                     editNotificationTime={(text) => {
-                        // theRoutine.notification_time = text;
-                        // this.setState({ selectedRoutine: theRoutine })
-
-
-
-
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
                         })

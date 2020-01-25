@@ -18,6 +18,7 @@ export class Routines {
             'start_time text, ' +
             'end_time text, ' +
             'due_time text,' + 
+            'completed text,' + 
             'notification_time text ' +
             ')'
     }

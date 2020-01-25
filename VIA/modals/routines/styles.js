@@ -650,26 +650,26 @@ module.exports = StyleSheet.create({
         flex: 1,
         marginRight: 10,
         marginLeft: 10,
-        flexDirection: "row",
         alignContent: "center",
-        borderRadius: 10,
-        backgroundColor: grayColor,
-        borderTopWidth: 2,
-        borderTopColor: grayColor,
+        // borderRadius: 10,
+        // backgroundColor: grayColor,
+        // borderTopWidth: 2,
+        // borderTopColor: grayColor,
         flexDirection: "row",
         marginBottom: 5,
         marginTop: 2,
         justifyContent: 'space-between',
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // },
     },
 
     childContainer: {
+        flex: 1,
         backgroundColor: blueColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -695,8 +695,8 @@ module.exports = StyleSheet.create({
         }
     },
 
-    childContainerTitleContainer: {
-
+    childTitleContainer: {
+        flex: 1,
     },
     childTitleText: {
         color: backgroundColor,
