@@ -572,10 +572,45 @@ module.exports = StyleSheet.create({
         margin: 2,
     },
 
-    childrenItemsTitleContainer:{
+    childrenItemsContainer: {
+        flexDirection: 'column',
+        marginLeft: 10,
+        marginTop: 10,
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: grayColor,
+        borderTopWidth: 2,
+        borderTopColor: grayColor,
+        marginRight: 10,
+        marginLeft: 10,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+    },
+
+    /* #region  Children Items Header */
+    /* #region  Children Items Title */
+    childrenItemsTitleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 10,
+        marginLeft:10,
+
     },
+    childrenItemsTitleText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        fontFamily: fontFamily,
+        color: blueColor,
+        fontSize: 25,
+    },
+    /* #endregion */
 
     /* #region  Add Habit Button */
     addTimeButtonContainer: {
@@ -609,4 +644,28 @@ module.exports = StyleSheet.create({
         marginRight: 10,
     },
     /* #endregion */
+
+    /* #endregion */
+    childrenContainer: {
+        flex: 1,
+        marginRight: 10,
+        marginLeft: 10,
+        flexDirection: "row",
+        alignContent: "center",
+        borderRadius: 10,
+        backgroundColor: grayColor,
+        borderTopWidth: 2,
+        borderTopColor: grayColor,
+        flexDirection: "row",
+        marginBottom: 5,
+        marginTop: 2,
+        justifyContent: 'space-between',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+    },
 })

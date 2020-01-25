@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard,FlatList } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList } from 'react-native'; // Version can be specified in package.json
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
@@ -45,15 +45,6 @@ export class ViewRoutine extends React.Component {
     componentDidMount() {
         controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
     }
-
-    getHabitsInRoutine() {
-        if (this.state.items != []) {
-            console.warn("nbob")
-        }
-    }
-
-
-
 
     getStyleIfDone() {
         if (this.props.selectedItem.completed == "true") {
@@ -124,11 +115,13 @@ export class ViewRoutine extends React.Component {
 
     renderSelectedTasksString() {
         var tasksString = "";
-        if (this.state.tasks.length > 0) {
+        if (this.state.items.length > 0) {
+            console.warn(this.state.items[0].value.name)
             for (var i = 0; i < this.state.tasks.length; i++) {
-                tasksString = tasksString.concat(this.state.tasks[i].item.value.name + ", ")
+                tasksString = tasksString.concat(this.state.items[i].value.name + ", ")
             }
         }
+        console.warn(tasksString)
         return tasksString;
     }
 
@@ -144,24 +137,52 @@ export class ViewRoutine extends React.Component {
     }
 
     renderAllChildrenSection() {
-        // console.warn(this.state.relatedChildren);
-        if (this.state.tasks.length > 0) {
+        if (this.state.relatedChildren.length > 0) {
             return (
-                <TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
-                    this.setTaskSelectionModalVisibility(true);
-                }}>
-                    <Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
-                    <Text style={styles.notificationTimeButtonText}>
+                <View style={styles.childrenItemsContainer}>
+                    <View style={styles.childrenItemsTitleContainer}>
+                        <Text style={styles.childrenItemsTitleText}>
+                            Habits in {this.state.selectedItem.name}
+                        </Text>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => {
+                                this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
+                                    this.toggleNotificationTimeSelectionModal(true)
+                                })
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.childrenContainer}></View>
+                </View>
 
-                        <SIcon name="list" size={20} color="#ffffff" />
-                    </Text>
-                </TouchableOpacity>
+
+
+
+
+
+
+
+
+
+                // <TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
+                //     this.setTaskSelectionModalVisibility(true);
+                // }}>
+                //     <Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
+                //     <Text style={styles.notificationTimeButtonText}>
+
+                //         <SIcon name="list" size={20} color="#ffffff" />
+                //     </Text>
+                // </TouchableOpacity>
             );
         } else {
             return (
-                <View>
+                <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
-                        <Text>
+                        <Text style={styles.childrenItemsTitleText}>
                             Habits in {this.state.selectedItem.name}
                         </Text>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
@@ -176,13 +197,13 @@ export class ViewRoutine extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-
-                    <FlatList
-                        data={this.state.relatedChildren}
-                        renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
-                                <View style={styles.checkboxAndNameContainer}>
-                                    {/* <CheckBox
+                    <View style={styles.childrenContainer}>
+                        <FlatList
+                            data={this.state.relatedChildren}
+                            renderItem={({ item }) =>
+                                <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                                    <View style={styles.checkboxAndNameContainer}>
+                                        {/* <CheckBox
                                         containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='dot-circle-o'
@@ -193,35 +214,26 @@ export class ViewRoutine extends React.Component {
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}/> */}
-                                    <View style={styles.listItemTextContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
-                                </View>
-                                <View style={styles.listItemActionButtonsContainer}>
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity>
+                                        <View style={styles.listItemTextContainer}>
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                    </View>
+                                    <View style={styles.listItemActionButtonsContainer}>
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                            <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                        </TouchableOpacity>
 
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>} />
-
-
-
-
-
-
-
-
-
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>} /></View>
                     <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
                         <Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
                         <Text style={styles.notificationTimeButtonText}>
