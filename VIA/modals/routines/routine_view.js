@@ -158,6 +158,7 @@ export class ViewRoutine extends React.Component {
                     selectedItem={theHabit}
 
                     delete={() => { controller.delete(this, childTableName, theHabit) 
+                        controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
                         this.setChildItemModalVisibility(false)
                     }}
 
@@ -248,21 +249,20 @@ export class ViewRoutine extends React.Component {
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
                                 <View style={styles.childActionButtonsContainer}>
-                                    {/* <TouchableOpacity
+                                    <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => { 
                                             controller.delete(this, childTableName, item.value) 
-                                            // controller.loadAllChildrenAndGetRelatedChildren()
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+
                                             }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity> */}
+                                    </TouchableOpacity>
 
                                     <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
-                                            // console.warn(item.value.id)
                                             this.setState({ selectedChildItem: item.value}, () => {
-                                                // console.warn(this.state.selectedChildItem)
                                                 this.setChildItemModalVisibility(true)
                                             })
                                         }}>
