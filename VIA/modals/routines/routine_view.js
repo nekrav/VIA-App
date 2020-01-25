@@ -147,9 +147,7 @@ export class ViewRoutine extends React.Component {
                         </Text>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
-                                this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
-                                    this.toggleNotificationTimeSelectionModal(true)
-                                })
+                                this.setTaskSelectionModalVisibility(true)
                             }}>
                             <View style={styles.addTimeButtonContainerView}>
                                 <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
@@ -406,7 +404,6 @@ export class ViewRoutine extends React.Component {
             onPress={() => {
                 this.setState({ percentVal: 100 })
                 this.props.editCompleted("true")
-
             }
             }>
             {this.renderCompleteButtonText()}
@@ -618,6 +615,7 @@ export class ViewRoutine extends React.Component {
                     {this.renderStartDateModal()}
                     {this.renderEndDateModal()}
                     {/* {this.showRoutineSelectionModal()} */}
+                    {this.showTasksSelectionModal()}
                     {this.renderNotificationTimesModal()}
 
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
