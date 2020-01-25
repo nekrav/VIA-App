@@ -35,8 +35,12 @@ export class Controller extends React.Component {
                 let item = {}
                 for (let i = 0; i < len; i++) {
                     item = res.rows.item(i)
+                    itemParentId = res.rows.item(i)[parent].replace(/\\/g, '')
+                    itemParentId = itemParentId.replace(/['"]+/g, "")
+                    console.warn(itemParentId)
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
-                    if (res.rows.item(i)[parent] == JSON.stringify(parentId)) {
+                    if (itemParentId ==parentId) {
+
                         relatedChildren.push({ key: JSON.stringify(item.id), value: item })
                     }
                 }

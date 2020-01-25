@@ -677,7 +677,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
+        alignItems: 'center',
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
@@ -702,7 +702,8 @@ module.exports = StyleSheet.create({
 
     },
     childActionButtonsContainer: {
-
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     childActionButtonText: {
 

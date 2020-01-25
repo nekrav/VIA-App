@@ -137,6 +137,7 @@ export class ViewRoutine extends React.Component {
     }
 
     renderAllChildrenSection() {
+        // console.warn()
         if (this.state.relatedChildren.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
@@ -169,15 +170,15 @@ export class ViewRoutine extends React.Component {
                                     </View>
                                     <View style={styles.childActionButtonsContainer}>
                                         <TouchableOpacity
-                                            style={styles.listItemActionButton}
+                                            style={styles.childActionButton}
                                             onPress={() => { controller.delete(this, dbTableName, item.value) }}>
-                                            <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                            <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                         </TouchableOpacity>
 
                                         <TouchableOpacity
-                                            style={styles.listItemActionButton}
+                                            style={styles.childActionButton}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#000" />
                                         </TouchableOpacity>
                                     </View>
                                 </View>
