@@ -226,7 +226,7 @@ export class ViewRoutine extends React.Component {
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
                                 Habits in {this.state.selectedItem.name}
                             </Text></View>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setTaskSelectionModalVisibility(true)
                             }}>
@@ -234,7 +234,7 @@ export class ViewRoutine extends React.Component {
                                 <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
                                 <Text style={styles.addTimeButtonText}> Add Habit</Text>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                     <FlatList
                         data={this.state.relatedChildren}
