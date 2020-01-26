@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     },
     completeButtonText: {
         fontFamily: fontFamily,
-        color: textColor,
+        color: backgroundColor,
         fontSize: 30,
     },
     projectSectionView: {
@@ -111,11 +111,13 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
+        // justifyContent: 'space-around',
         backgroundColor: backgroundColor,
     },
     outerViewDone: {
         flex: 1,
         flexDirection: 'column',
+        justifyContent: 'space-between',
         backgroundColor: finishedBackgroundColor,
     },
     /* #endregion */
@@ -544,13 +546,13 @@ module.exports = StyleSheet.create({
     },
     completeButtonBody: {
         margin: 10,
-        flex: 1,
         borderColor: blueColor,
         backgroundColor: blueColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        height: '12%'
     },
     completeAndNotifSection: {
         flexDirection: "row",
@@ -571,4 +573,103 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 2,
     },
+
+
+    /* #region  Children Items Header */
+    /* #region  Children Items Title */
+    childrenItemsTitleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 10,
+        marginLeft: 10,
+
+    },
+    childrenItemsTitleTextContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    childrenItemsTitleText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        fontFamily: fontFamily,
+        color: blueColor,
+        fontSize: 25,
+    },
+    /* #endregion */
+
+    /* #region  Add Child Button */
+    addTimeButtonContainer: {
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonContainerView: {
+        borderRadius: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderWidth: 1,
+        borderColor: placeholderColor,
+        backgroundColor: backgroundColor,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    addTimeButtonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    /* #endregion */
+
+    /* #endregion */
+    /* #region  Children Container */
+    childrenContainer: {
+        flexGrow: 1,
+        marginRight: 10,
+        marginLeft: 10,
+        alignContent: "center",
+        flexDirection: "column",
+        marginBottom: 5,
+        marginTop: 2,
+    },
+
+    childContainer: {
+        flex: 1,
+        backgroundColor: blueColor,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        alignItems: 'center',
+        borderRadius: 10,
+        borderTopWidth: 2,
+        borderTopColor: placeholderColor,
+        flexDirection: "row",
+
+        marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
+
+    /* #endregion */
+    /* #region  Child Item Section */
 })

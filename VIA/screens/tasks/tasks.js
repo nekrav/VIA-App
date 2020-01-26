@@ -125,9 +125,6 @@ export class TasksScreen extends React.Component {
                         this.setState({ selectedTask: theTask })
                     }}
                     editNotificationTime={(text) => {
-                        // theTask.notification_time = text;
-                        // this.setState({ selectedTask: theTask })
-
                         if (text) {
                             var times = text.map(function (time) {
                                 return JSON.stringify(time)

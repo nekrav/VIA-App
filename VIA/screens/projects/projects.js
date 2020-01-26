@@ -42,8 +42,9 @@ export class ProjectsScreen extends React.Component {
         newProject.importance = project.importance ? project.importance : "";
         newProject.percentage_done = 0;
         newProject.completed = "false";
+        // newProject.notification_time = project.notification_time ? project.notification_time : ''
         newProject.time_spent = 0;
-        newProject.notes = 0;
+        newProject.notes = project.notes ? project.notes : "";
 
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
@@ -110,8 +111,13 @@ export class ProjectsScreen extends React.Component {
                         this.setState({ selectedProject: theProject })
                     }}
                     editNotificationTime={(text) => {
-                        theTask.notification_time = text;
-                        this.setState({ selectedTask: theTask })
+                        if (text) {
+                            var times = text.map(function (time) {
+                                return JSON.stringify(time)
+                            })
+                            theProject.notification_time = times
+                            this.setState({ selectedProject: theTask })
+                        }
                     }}
                     save={() => { controller.saveExisting(this, dbTableName, theProject) }}
 

@@ -600,7 +600,7 @@ module.exports = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         marginRight: 10,
-        marginLeft:10,
+        marginLeft: 10,
 
     },
     childrenItemsTitleTextContainer: {
@@ -617,7 +617,7 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    /* #region  Add Habit Button */
+    /* #region  Add Child Button */
     addTimeButtonContainer: {
         marginRight: 5,
         flexDirection: 'row',
@@ -651,8 +651,8 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #endregion */
+    /* #region  Children Container */
     childrenContainer: {
-        // flex: 1,
         flexGrow: 1,
         marginRight: 10,
         marginLeft: 10,
@@ -675,10 +675,8 @@ module.exports = StyleSheet.create({
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
+
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -688,6 +686,8 @@ module.exports = StyleSheet.create({
         }
     },
 
+    /* #endregion */
+    /* #region  Child Item Section */
     childTitleContainer: {
         flex: 1,
     },
@@ -705,4 +705,5 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
+    /* #endregion */
 })
