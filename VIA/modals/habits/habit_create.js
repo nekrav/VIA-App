@@ -216,7 +216,7 @@ export class CreateHabit extends React.Component {
             <View style={styles.createNameContainer}>
                 <TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
                     <Text style={styles.createDateText}>
-                        When do you want this routine to end?
+                        When do you want this habit to end?
           </Text>
                 </TouchableOpacity>
             </View>
