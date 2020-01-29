@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Button, TouchableOpacity, FlatList, CheckBox } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Habits } from './db'
-import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen } from './screens'
+import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen, HomeScreen } from './screens'
 import { CreateHabit } from './modals'
 import { HomeButton} from '../VIA/components/homeButton'
 var uuid = require('react-native-uuid');
@@ -11,7 +11,7 @@ const TabNavigator = createBottomTabNavigator({
   Habits: HabitsScreen,
   Routines: RoutinesScreen,
   Home: {
-    screen: HabitsScreen,
+    screen: HomeScreen,
     navigationOptions: ({ navigation }) => ({
       title: "",
       tabBarIcon: 
@@ -21,6 +21,9 @@ const TabNavigator = createBottomTabNavigator({
   },
   Projects: ProjectsScreen,
   Tasks: TasksScreen,
+},
+{
+  initialRouteName: 'Home'
 });
 
 Database.init();
