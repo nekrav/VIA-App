@@ -49,6 +49,7 @@ const TabNavigator = createBottomTabNavigator({
       title: "",
       tabBarIcon:
         <TabButton
+        currentRoute={navigation.state.routeName}
         iconName={'reload'}
         elementName={'Habits'}
           nav={navigation} ></TabButton> // Plus button component

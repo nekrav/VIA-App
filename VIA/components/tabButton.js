@@ -31,7 +31,7 @@ class TabButton extends React.Component {
                 <TouchableOpacity 
                  onPress={() => 
                     {
-                        console.warn(this.props.nav.state.routeName == this.props.elementName)
+                        // console.warn(this.props.nav.state.routeName)
                     this.props.nav.navigate(this.props.elementName)
                 }
                 }
