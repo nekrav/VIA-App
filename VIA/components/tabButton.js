@@ -13,7 +13,6 @@ const placeholderColor = "#ABABAB"
 const homeColorButton = "#48A2F8"
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-// const navigate = this.props.navigation;
 class TabButton extends React.Component {
     mode = new Animated.Value(0);
     toggleView = () => {
@@ -25,7 +24,6 @@ class TabButton extends React.Component {
 
     isCurrentRoute(routeName) {
         if (routeName != '') {
-            // console.warn(routeName == this.props.nav.state.routeName)
             return routeName == this.props.nav.state.routeName
         }
            
@@ -41,7 +39,6 @@ class TabButton extends React.Component {
                     <TouchableOpacity
                         onPress={() => {
                             this.isCurrentRoute(this.props.routeName)
-                            // console.warn(this.props.routeName == this.props.nav.state.routeName)
                             this.props.nav.navigate(this.props.elementName)
                         }
                         }
@@ -61,19 +58,7 @@ class TabButton extends React.Component {
                             justifyContent: 'center',
 
                         }]}>{this.props.elementName}</Text>
-                    {/* <TouchableHighlight
-                    onPress={() => this.props.nav.navigate('Home')}
-                    underlayColor="#2882D8"
-                    style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        // width: SIZE,
-                        // height: SIZE,
-                        // borderRadius: SIZE / 2,
-                        // backgroundColor: '#48A2F8'
-                    }}
-                > */}
-                    {/* </TouchableHighlight> */}
+                
                 </View>
             );
         }

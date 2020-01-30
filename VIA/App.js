@@ -15,13 +15,11 @@ const TabNavigator = createBottomTabNavigator({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
-          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
           focused={focused}
           tintColor={{ tintColor }}
           routeName={'Habits'}
           iconName={'reload'}
           elementName={'Habits'}
-          icon={'layers'}
           nav={navigation} ></TabButton>
       ),})
   },
@@ -31,13 +29,11 @@ const TabNavigator = createBottomTabNavigator({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
-          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
           focused={focused}
           tintColor={{ tintColor }}
           routeName={'Routines'}
           iconName={'refresh'}
           elementName={'Routines'}
-          icon={'layers'}
           nav={navigation} ></TabButton>
       ),})
   },
@@ -57,13 +53,11 @@ const TabNavigator = createBottomTabNavigator({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
-          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
           focused={focused}
           tintColor={{ tintColor }}
           routeName={'Projects'}
           iconName={'layers'}
           elementName={'Projects'}
-          icon={'layers'}
           nav={navigation} ></TabButton>
       ),})
   },
@@ -73,13 +67,11 @@ const TabNavigator = createBottomTabNavigator({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
-          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
           focused={focused}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
           iconName={'refresh'}
           elementName={'Tasks'}
-          icon={'list'}
           nav={navigation} ></TabButton>
       ),})
   },
