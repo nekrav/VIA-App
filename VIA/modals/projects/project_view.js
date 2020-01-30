@@ -48,27 +48,6 @@ export class ViewProject extends React.Component {
         };
     }
 
-    // getTasksInProject() {
-	// 	const itemsArr = []
-    //     Database.getAll(Tasks.TABLE_NAME)
-    //         .then((res) => {
-	// 			const len = res.rows.length;
-	// 			this.setState({numberOfTasks: len})
-    //             let item = {}
-    //             for (let i = 0; i < len; i++) {
-	// 				item = res.rows.item(i)
-	// 				if (item.project === 'true') {
-	// 					itemsArr.push({ key: JSON.stringify(item.id), value: item })
-	// 				}
-    //                 itemsArr.push({ key: JSON.stringify(item.id), value: item })
-    //             }
-    //             object.setState({
-    //                 tasks: itemsArr,
-    //                 numberOfTasks: len,
-    //             })
-    //         })
-    // }
-
     componentDidMount() {
         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
@@ -125,12 +104,13 @@ export class ViewProject extends React.Component {
         /* #region  Task Selection Region */
 
     setChildItemModalVisibility(visible) {
+  
         this.setState({ childModalVisibility: visible })
 
     }
     renderChildItemModal() {
         if (this.state.childModalVisibility) {
-            if (this.state.selectedChildItem != {}) {
+            if (this.state.selectedChildItem != '') {
                 theTask = this.state.selectedChildItem
                 return <ViewTask
                     animationType="slide"
@@ -170,7 +150,7 @@ export class ViewProject extends React.Component {
                         theTask.notification_time = times
                         this.setState({ selectedChildItem: theTask })
                     }}
-                    editRoutine={(text) => {
+                    editProject={(text) => {
                         theTask.project = text;
                         this.setState({ selectedChildItem: theTask })
                     }}
@@ -219,32 +199,28 @@ export class ViewProject extends React.Component {
         return tasksString;
     }
 
-    goToChild(parent, childTableName, id) {
-        this.setChildItemModalVisibility(true);
-        controller.goToChild(parent, childTableName, id)
-    }
-
     saveProjectInSelectedTask(projectID) {
         if (this.state.tasks.length > 0) {
             for (var i = 0; i < this.state.tasks.length; i++) {
-                this.state.tasks[i].item.value.routine = projectID
+                this.state.tasks[i].item.value.project = projectID
                 Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Tasks.TABLE_NAME);
                 })
             }
         }
     }
-
     renderAllChildrenSection() {
+        // console.warn()
         if (this.state.relatedChildren.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
                         <View style={styles.childrenItemsTitleTextContainer}>
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Tasks in {this.state.selectedItem.name}
-                            </Text></View>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                                Habits in {this.state.selectedItem.name}
+                            </Text>
+                        </View>
+                          {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setTaskSelectionModalVisibility(true)
                             }}>
@@ -269,18 +245,18 @@ export class ViewProject extends React.Component {
                                 <View style={styles.childActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.childActionButton}
-                                        onPress={() => { 
-                                            controller.delete(this, childTableName, item.value) 
-                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                        onPress={() => {
+                                            controller.delete(this, childTableName, item.value)
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
 
-                                            }}>
+                                        }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
-                                            this.setState({ selectedChildItem: item.value}, () => {
+                                            this.setState({ selectedChildItem: item.value }, () => {
                                                 this.setChildItemModalVisibility(true)
                                             })
                                         }}>
@@ -291,12 +267,12 @@ export class ViewProject extends React.Component {
                         } />
                 </View>
             );
-        } else{
+        } else {
             return (
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
                         <Text style={styles.childrenItemsTitleText}>
-                            Tasks in {this.state.selectedItem.name}
+                            Habits in {this.state.selectedItem.name}
                         </Text>
                         {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
@@ -311,7 +287,7 @@ export class ViewProject extends React.Component {
                         </TouchableOpacity> */}
                     </View>
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-                        <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
+                        <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
                         {/* <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="reload" size={20} color="#ABABAB" />
                         </Text> */}
@@ -320,6 +296,92 @@ export class ViewProject extends React.Component {
             );
         }
     }
+    // renderAllChildrenSection() {
+    //     if (this.state.relatedChildren.length > 0) {
+    //         return (
+    //             <View style={styles.childrenItemsContainer}>
+    //                 <View style={styles.childrenItemsTitleContainer}>
+    //                     <View style={styles.childrenItemsTitleTextContainer}>
+    //                         <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
+    //                             Tasks in {this.state.selectedItem.name}
+    //                         </Text></View>
+    //                     {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+    //                         onPress={() => {
+    //                             this.setTaskSelectionModalVisibility(true)
+    //                         }}>
+    //                         <View style={styles.addTimeButtonContainerView}>
+    //                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+    //                             <Text style={styles.addTimeButtonText}> Add Habit</Text>
+    //                         </View>
+    //                     </TouchableOpacity> */}
+    //                 </View>
+    //                 <FlatList
+    //                     data={this.state.relatedChildren}
+    //                     extraData={this.state}
+    //                     contentContainerStyle={styles.childrenContainer}
+    //                     renderItem={({ item }) =>
+    //                         <View style={styles.childContainer}>
+    //                             <View style={styles.childTitleContainer}>
+    //                                 <Text
+    //                                     numberOfLines={1}
+    //                                     multiline={false}
+    //                                     style={styles.childTitleText}>{item.value.name} </Text>
+    //                             </View>
+    //                             <View style={styles.childActionButtonsContainer}>
+    //                                 <TouchableOpacity
+    //                                     style={styles.childActionButton}
+    //                                     onPress={() => { 
+    //                                         controller.delete(this, childTableName, item.value) 
+    //                                         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+
+    //                                         }}>
+    //                                     <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+    //                                 </TouchableOpacity>
+
+    //                                 <TouchableOpacity
+    //                                     style={styles.childActionButton}
+    //                                     onPress={() => {
+    //                                         // console.warn(item.value)
+    //                                         this.setState({ selectedChildItem: item.value}, () => {
+    //                                             this.setChildItemModalVisibility(true)
+    //                                         })
+    //                                     }}>
+    //                                     <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+    //                                 </TouchableOpacity>
+    //                             </View>
+    //                         </View>
+    //                     } />
+    //             </View>
+    //         );
+    //     } else{
+    //         return (
+    //             <View style={styles.childrenItemsContainer}>
+    //                 <View style={styles.childrenItemsTitleContainer}>
+    //                     <Text style={styles.childrenItemsTitleText}>
+    //                         Tasks in {this.state.selectedItem.name}
+    //                     </Text>
+    //                     {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+    //                         onPress={() => {
+    //                             this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
+    //                                 this.toggleNotificationTimeSelectionModal(true)
+    //                             })
+    //                         }}>
+    //                         <View style={styles.addTimeButtonContainerView}>
+    //                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+    //                             <Text style={styles.addTimeButtonText}> Add Habit</Text>
+    //                         </View>
+    //                     </TouchableOpacity> */}
+    //                 </View>
+    //                 {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
+    //                     <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
+    //                     {/* <Text style={styles.notificationTimeButtonText}>
+    //                         <SIcon name="reload" size={20} color="#ABABAB" />
+    //                     </Text> */}
+    //                 {/* </TouchableOpacity> */}
+    //                 </View>
+    //         );
+    //     }
+    // }
    
    
    
@@ -653,6 +715,7 @@ export class ViewProject extends React.Component {
                 {this.renderChildItemModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    
                     <SafeAreaView style={this.getStyleIfDone()}>
 
                         {/* Top Bar Section */}

@@ -62,11 +62,7 @@ module.exports = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
     },
-    completeButtonText: {
-        fontFamily: fontFamily,
-        color: backgroundColor,
-        fontSize: 30,
-    },
+
     projectSectionView: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -111,7 +107,6 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        // justifyContent: 'space-around',
         backgroundColor: backgroundColor,
     },
     outerViewDone: {
@@ -538,12 +533,8 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    notesTitle: {
-        fontSize: 18,
-    },
-    notesTextInput: {
-        fontSize: 18,
-    },
+    /* #region  Complete Button Section */
+
     completeButtonBody: {
         margin: 10,
         borderColor: blueColor,
@@ -554,126 +545,33 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         height: '12%'
     },
-    completeAndNotifSection: {
-        flexDirection: "row",
-        justifyContent: 'center',
-    },
-    projectsNotificationsSection: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 15,
-        marginBottom: 15,
-        flexDirection: "row",
-        justifyContent: "center",
-    },
-    notificationTimesText: {
+    completeButtonText: {
         fontFamily: fontFamily,
-        fontSize: 14,
-        alignItems: 'center',
-        justifyContent: "center",
-        margin: 2,
+        color: backgroundColor,
+        fontSize: 30,
     },
 
+    /* #endregion */
 
-//     /* #region  Children Items Header */
-//     /* #region  Children Items Title */
-//     childrenItemsTitleContainer: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         justifyContent: 'space-between',
-//         marginTop: 10,
-//         marginBottom: 10,
-//         marginRight: 10,
-//         marginLeft: 10,
-
-//     },
-//     childrenItemsTitleTextContainer: {
-//         flex: 1,
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//     },
-//     childrenItemsTitleText: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         fontFamily: fontFamily,
-//         color: blueColor,
-//         fontSize: 25,
-//     },
-//     /* #endregion */
-
-//     /* #region  Add Child Button */
-//     addTimeButtonContainer: {
-//         marginRight: 5,
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//     },
-//     addTimeButtonContainerView: {
-//         borderRadius: 20,
-//         paddingTop: 5,
-//         paddingBottom: 5,
-//         borderWidth: 1,
-//         borderColor: placeholderColor,
-//         backgroundColor: backgroundColor,
-//         shadowColor: "#000000",
-//         shadowOpacity: 0.8,
-//         shadowRadius: 2,
-//         shadowOffset: {
-//             height: 1,
-//             width: 0
-//         },
-//         marginRight: 5,
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//     },
-//     addTimeButtonText: {
-//         fontSize: 14,
-//         textAlign: 'center',
-//         fontFamily: fontFamily,
-//         marginLeft: 10,
-//         marginRight: 10,
-//     },
-//     /* #endregion */
-
-//     /* #endregion */
-//     /* #region  Children Container */
-//     childrenContainer: {
-//         flexGrow: 1,
-//         marginRight: 10,
-//         marginLeft: 10,
-//         alignContent: "center",
-//         flexDirection: "column",
-//         marginBottom: 5,
-//         marginTop: 2,
-//     },
-
-//     childContainer: {
-//         flex: 1,
-//         backgroundColor: blueColor,
-//         justifyContent: 'space-between',
-//         flexDirection: 'row',
-//         marginRight: 10,
-//         marginLeft: 10,
-//         marginBottom: 5,
-//         alignItems: 'center',
-//         borderRadius: 10,
-//         borderTopWidth: 2,
-//         borderTopColor: placeholderColor,
-//         flexDirection: "row",
-
-//         marginTop: 2,
-//         shadowColor: "#000000",
-//         shadowOpacity: 0.8,
-//         shadowRadius: 2,
-//         shadowOffset: {
-//             height: 1,
-//             width: 0
-//         }
-//     },
-
-//     /* #endregion */
-//     /* #region  Child Item Section */
-// })
-
+    childrenItemsContainer: {
+        flexDirection: 'column',
+        marginLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: grayColor,
+        borderTopWidth: 2,
+        borderTopColor: grayColor,
+        marginRight: 10,
+        marginLeft: 10,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        },
+    },
     /* #region  Children Items Header */
     /* #region  Children Items Title */
     childrenItemsTitleContainer: {
