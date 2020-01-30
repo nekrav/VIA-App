@@ -10,7 +10,7 @@ const leftMargin = 5
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#ffffff"
-const blueColor = "#068ae8"
+const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#a8ffe0"
 const grayColor = "#ededed"

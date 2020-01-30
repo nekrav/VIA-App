@@ -5,7 +5,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 const SIZE = 80;
 
 const backgroundColor = "#ffffff"
-const blueColor = "#068ae8"
+const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"

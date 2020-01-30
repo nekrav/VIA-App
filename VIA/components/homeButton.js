@@ -28,7 +28,7 @@ class HomeButton extends React.Component {
                         width: SIZE,
                         height: SIZE,
                         borderRadius: SIZE / 2,
-                        backgroundColor: '#48A2F8'
+                        backgroundColor: '#00bbb1'
                     }}
                 >
                     <Animated.View style={{
