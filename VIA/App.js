@@ -45,23 +45,23 @@ var uuid = require('react-native-uuid');
 
 
 const TabNavigator = createBottomTabNavigator({
-  Habits: HabitsScreen,
-  // {
-  // screen: HabitsScreen,
-  // navigationOptions: ({ navigation }) => ({
-  //   title: "",
-  //   tabBarIcon:
-  //     <TabButton
-  //     routeName = {'Habits'}
-  //       currentRoute={navigation.state.routeName}
-  //       iconName={'reload'}
-  //       elementName={'Habits'}
-  //       nav={navigation} ></TabButton> // Plus button component
-  // })
-  // },
-  Routines:
-  // RoutinesScreen,
-  {
+  Habits: {
+    screen: RoutinesScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: '',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabButton
+          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
+          focused={focused}
+          tintColor={{ tintColor }}
+          routeName={'Habits'}
+          iconName={'reload'}
+          elementName={'Habits'}
+          icon={'layers'}
+          nav={navigation} ></TabButton>
+      ),})
+  },
+  Routines: {
     screen: RoutinesScreen,
     navigationOptions: ({ navigation }) => ({
       title: '',
@@ -75,20 +75,9 @@ const TabNavigator = createBottomTabNavigator({
           elementName={'Routines'}
           icon={'layers'}
           nav={navigation} ></TabButton>
-      ),
-      // activeTintColor: "#ABABAB",
-      // tabBarIcon:
-      // <TabButton
-      //   routeName = {'Routines'}
-      //   iconName={'refresh'}
-      //   elementName={'Routines'}
-      //   icon={'layers'}
-      //   nav={navigation} ></TabButton> // Plus button component
-    })
+      ),})
   },
-  // Home: HomeScreen,
   Home:
-  //  HomeScreen,
   {
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => ({
@@ -98,9 +87,38 @@ const TabNavigator = createBottomTabNavigator({
           nav={navigation} ></HomeButton> // Plus button component
     })
   },
-  Projects: ProjectsScreen,
-  Tasks: TasksScreen,
-
+  Projects: {
+    screen: RoutinesScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: '',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabButton
+          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
+          focused={focused}
+          tintColor={{ tintColor }}
+          routeName={'Projects'}
+          iconName={'layers'}
+          elementName={'Projects'}
+          icon={'layers'}
+          nav={navigation} ></TabButton>
+      ),})
+  },
+  Tasks: {
+    screen: TasksScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: '',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabButton
+          name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
+          focused={focused}
+          tintColor={{ tintColor }}
+          routeName={'Tasks'}
+          iconName={'refresh'}
+          elementName={'Tasks'}
+          icon={'list'}
+          nav={navigation} ></TabButton>
+      ),})
+  },
 },
   // {defaultNavigationOptions},
   {
