@@ -231,7 +231,7 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
     },
     slidersTitlesContainer: {
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: 'center',
     },
     sliderTitleContainerLeft: {
@@ -256,7 +256,7 @@ module.exports = StyleSheet.create({
         fontSize: 24,
     },
     slidersContainer: {
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: 'center',
         marginTop: "35%",
         marginBottom: "35%",

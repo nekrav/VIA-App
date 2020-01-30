@@ -220,7 +220,7 @@ export class ViewProject extends React.Component {
                     <View style={styles.childrenItemsTitleContainer}>
                         <View style={styles.childrenItemsTitleTextContainer}>
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Habits in {this.state.selectedItem.name}
+                                Tasks in {this.state.selectedItem.name}
                             </Text>
                         </View>
                         {/* <TouchableOpacity style={styles.addTimeButtonContainer}
@@ -366,6 +366,28 @@ export class ViewProject extends React.Component {
                             }>
                             % Done
                         </Text>
+                        <View style={styles.sliderContainerLeft}>
+                        <Slider
+                            style={{ width: 250, height: 1}}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor={styles.blueColor}
+                            maximumTrackTintColor={styles.placeholderColor}
+                            value={parseInt(this.state.percentVal)}
+
+                            onSlidingComplete={(value) => {
+                                this.props.editPercentageDone(value)
+                                if (value == 100) {
+                                    this.finishTask();
+                                }
+                                this.props.save();
+                            }}
+                            onValueChange={(value) => {
+                                this.props.editPercentageDone(value);
+                            }}
+                        />
+
+                    </View>
                     </View>
                     <View style={styles.sliderTitleContainerRight}>
                         <Text
