@@ -43,6 +43,7 @@ export class ViewProject extends React.Component {
             notesModalVisible: false,
             itemNotificationTimes: this.props.selectedItem.notification_time,
             childModalVisibility: false,
+            selectedChildItem: '',
             relatedChildren: []
         };
     }
@@ -270,7 +271,7 @@ export class ViewProject extends React.Component {
                                         style={styles.childActionButton}
                                         onPress={() => { 
                                             controller.delete(this, childTableName, item.value) 
-                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "routine")
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
 
                                             }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />

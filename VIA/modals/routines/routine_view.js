@@ -102,7 +102,7 @@ export class ViewRoutine extends React.Component {
         this.setState({ childModalVisibility: visible })
 
     }
-    
+
     renderChildItemModal() {
         if (this.state.childModalVisibility) {
             if (this.state.selectedChildItem != {}) {
@@ -168,12 +168,6 @@ export class ViewRoutine extends React.Component {
                 </ViewHabit>
             }
         }
-    }
-
-
-    goToChild(parent, childTableName, id) {
-        this.setChildItemModalVisibility(true);
-        controller.goToChild(parent, childTableName, id)
     }
 
     showTasksSelectionModal() {
@@ -582,38 +576,7 @@ export class ViewRoutine extends React.Component {
         );
     }
     /* #endregion */
-    /* #region  Bottom Buttons Region */
-    renderBottomButtons() {
-        return (<View style={styles.bottomButtonsContainer}>
-            <TouchableOpacity
-                disabled={this.state.newRoutineName != '' ? false : true}
-                style={
-                    this.state.newRoutineName != ''
-                        ? styles.bottomButtonLeft
-                        : styles.bottomButtonLeftDisabled
-                }
-                onPress={() => {
-                    this.saveProjectInSelectedTask(this.state.projectId)
-                    this.props.save()
-                }}
-            >
-                <Text
-                    style={
-                        this.state.newRoutineName != ''
-                            ? styles.bottomButtonTextDisabled
-                            : styles.bottomButtonText
-                    }>
-                    Save
-		</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.bottomButtonRight}
-                onPress={this.props.closeModal}>
-                <Text style={styles.bottomButtonText}>Close</Text>
-            </TouchableOpacity>
-        </View>)
-    }
-    /* #endregion */
+    
 
     render() {
         if (this.props.selectedItem != {}) {
