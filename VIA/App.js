@@ -10,7 +10,7 @@ import { HomeButton } from '../VIA/components/homeButton'
 
 const TabNavigator = createBottomTabNavigator({
   Habits: {
-    screen: RoutinesScreen,
+    screen: HabitsScreen,
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (
@@ -48,7 +48,7 @@ const TabNavigator = createBottomTabNavigator({
     })
   },
   Projects: {
-    screen: RoutinesScreen,
+    screen: ProjectsScreen,
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarIcon: ({ focused, tintColor }) => (

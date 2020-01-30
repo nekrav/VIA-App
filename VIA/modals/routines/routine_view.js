@@ -102,6 +102,7 @@ export class ViewRoutine extends React.Component {
         this.setState({ childModalVisibility: visible })
 
     }
+    
     renderChildItemModal() {
         if (this.state.childModalVisibility) {
             if (this.state.selectedChildItem != {}) {
@@ -197,12 +198,10 @@ export class ViewRoutine extends React.Component {
     renderSelectedTasksString() {
         var tasksString = "";
         if (this.state.items.length > 0) {
-            console.warn(this.state.items[0].value.name)
             for (var i = 0; i < this.state.tasks.length; i++) {
                 tasksString = tasksString.concat(this.state.items[i].value.name + ", ")
             }
         }
-        console.warn(tasksString)
         return tasksString;
     }
 
