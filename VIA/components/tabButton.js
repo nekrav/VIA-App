@@ -22,31 +22,46 @@ class TabButton extends React.Component {
             duration: 300
         }).start();
     };
+
+    isCurrentRoute(routeName) {
+        if (routeName != '') {
+            // console.warn(routeName == this.props.nav.state.routeName)
+            return routeName == this.props.nav.state.routeName
+        }
+           
+    }
+
     render() {
-        return (
-            <View style={{
-                marginTop: "25%", alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-                <TouchableOpacity 
-                 onPress={() => 
-                    {
-                        // console.warn(this.props.nav.state.routeName)
-                    this.props.nav.navigate(this.props.elementName)
-                }
-                }
-                style={{
-                    alignItems: 'center',
+        if (this.props.routeName && this.props.nav.state.routeName) {
+            return (
+                <View style={{
+                    marginTop: "25%", alignItems: 'center',
                     justifyContent: 'center',
                 }}>
-                    <SIcon name={this.props.iconName} size={30} color={this.props.nav.state.routeName == this.props.elementName ? blueColor : placeholderColor} />
-                </TouchableOpacity>
-                <Text style={{
-                    color: this.props.nav.state.routeName == this.props.elementName ? blueColor : placeholderColor,
-                    fontFamily: fontFamily, alignItems: 'center',
-                    justifyContent: 'center',
-                }}>{this.props.elementName}</Text>
-                {/* <TouchableHighlight
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.isCurrentRoute(this.props.routeName)
+                            // console.warn(this.props.routeName == this.props.nav.state.routeName)
+                            this.props.nav.navigate(this.props.elementName)
+                        }
+                        }
+                        style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                        <SIcon name={this.props.iconName} size={30} color={this.props.focused ? blueColor : placeholderColor} />
+                    </TouchableOpacity>
+                    <Text style={[this.isCurrentRoute(this.props.routeName) ? {
+                        color: blueColor,
+                        fontFamily: fontFamily, alignItems: 'center',
+                        justifyContent: 'center',
+                    } : {
+                            color: blueColor,
+                            fontFamily: fontFamily, alignItems: 'center',
+                            justifyContent: 'center',
+
+                        }]}>{this.props.elementName}</Text>
+                    {/* <TouchableHighlight
                     onPress={() => this.props.nav.navigate('Home')}
                     underlayColor="#2882D8"
                     style={{
@@ -58,9 +73,10 @@ class TabButton extends React.Component {
                         // backgroundColor: '#48A2F8'
                     }}
                 > */}
-                {/* </TouchableHighlight> */}
-            </View>
-        );
+                    {/* </TouchableHighlight> */}
+                </View>
+            );
+        }
     }
 }
 export { TabButton };
