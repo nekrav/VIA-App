@@ -52,7 +52,7 @@ class TabButton extends React.Component {
                         <SIcon name={this.props.iconName} size={30} color={this.props.focused ? blueColor : placeholderColor} />
                     </TouchableOpacity>
                     <Text style={[this.isCurrentRoute(this.props.routeName) ? {
-                        color: blueColor,
+                        color: this.props.focused ? blueColor : placeholderColor,
                         fontFamily: fontFamily, alignItems: 'center',
                         justifyContent: 'center',
                     } : {

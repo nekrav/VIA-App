@@ -64,7 +64,7 @@ const TabNavigator = createBottomTabNavigator({
   {
     screen: RoutinesScreen,
     navigationOptions: ({ navigation }) => ({
-      title: "Routines",
+      title: '',
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'}
