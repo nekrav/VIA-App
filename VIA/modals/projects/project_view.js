@@ -177,7 +177,7 @@ export class ViewProject extends React.Component {
             return <MultipleSelectionModal
                 animationType="fade"
                 items={this.state.items}
-                itemName="Habits"
+                itemName="Tasks"
                 transparent={true}
                 selectItems={items => {
                     this.setState({ tasks: items })
@@ -400,7 +400,7 @@ export class ViewProject extends React.Component {
                         </Text>
                     </View>
                 </View>
-                <View style={styles.slidersContainer}>
+                {/* <View style={styles.slidersContainer}>
                     <View style={styles.sliderContainerLeft}>
                         <Slider
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
@@ -439,8 +439,8 @@ export class ViewProject extends React.Component {
                                 this.props.editImportance(value)
                             }}
                         />
-                    </View>
-                </View>
+                    </View> */}
+                {/* </View> */}
             </View>
         )
 
@@ -505,11 +505,11 @@ export class ViewProject extends React.Component {
 
 
     renderNotificationTimesSection() {
-        // console.warn(this.state.selectedItem.notification_time)
+        // console.warn(this.state.selectedItem)
         if (this.state.selectedItem.notification_time != '') {
             var daysWithNotifications = '';
 
-            var jsonArr = JSON.parse("[" + this.state.selectedItem.notifsication_time + "]");
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
 
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
@@ -672,7 +672,7 @@ export class ViewProject extends React.Component {
                             {this.renderCompleteButton()}
 
                             {/* Notification Times Section */}
-                            {/* {this.renderNotificationTimesSection()} */}
+                            {this.renderNotificationTimesSection()}
 
                             {/* {NOTES SECTION} */}
                             {this.renderNotesSection()}

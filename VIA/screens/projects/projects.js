@@ -42,7 +42,7 @@ export class ProjectsScreen extends React.Component {
         newProject.importance = project.importance ? project.importance : "";
         newProject.percentage_done = 0;
         newProject.completed = "false";
-        // newProject.notification_time = project.notification_time ? project.notification_time : ''
+        newProject.notification_time = project.notification_time ? project.notification_time : ''
         newProject.time_spent = 0;
         newProject.notes = project.notes ? project.notes : "";
 
