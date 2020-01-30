@@ -553,7 +553,7 @@ module.exports = StyleSheet.create({
 
     /* #endregion */
 
-    /* #region  Children Container */
+    /* #region  Children Section */
     childrenItemsContainer: {
         flexDirection: 'column',
         marginLeft: 10,

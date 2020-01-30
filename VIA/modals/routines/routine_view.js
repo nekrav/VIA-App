@@ -587,7 +587,7 @@ export class ViewRoutine extends React.Component {
                     animationInTiming={400}
                     animationOut='slideOutRight'
                     animationOutTiming={400}
-                    isVisible={this.props.visible}
+                    // isVisible={this.props.visible}
                     style={{ margin: 0 }}
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
