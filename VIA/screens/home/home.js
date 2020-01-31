@@ -1,8 +1,8 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
-import { Database, Routines, Habits, Projects, Tasks , Home, Random} from '../../db'
-import { CreateProject, ViewProject } from '../../modals'
+import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
+import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -25,13 +25,16 @@ export class HomeScreen extends React.Component {
             items: [],
             numberOfItems: 0,
             numberOfFinishedItems: 0,
-            selectedItem: {}
+            selectedItem: {},
+            createRandomModalVisibility: false,
+            viewRandomModalVisibility: false,
+            homeNotesModalVisibility: false,
         };
     }
 
     componentDidMount() {
-        
-    
+
+
     }
 
     getHomeData() {
@@ -63,34 +66,50 @@ export class HomeScreen extends React.Component {
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : ''
         Database.save(childDBTableName, newRandom).then(() => {
-            controller.setAddModalVisible(this, false)
+            this.setCreateRandomModalVisibility(false)
             controller.loadAll(this, childDBTableName)
         })
     }
 
-    showAddModal() {
-        let newProject = {};
-        if (this.state.addModalVisible) {
-            return <CreateProject
+
+    setCreateRandomModalVisibility(visible) {
+        this.setState({ createRandomModalVisibility: visible })
+    }
+
+
+    setViewRandomModalVisibility(visible) {
+        this.setState({ viewRandomModalVisibility: visible })
+    }
+
+
+    setNotesModalVisibility(visible) {
+        this.setState({ homeNotesModalVisibility: visible })
+    }
+
+    renderCreateNewRandom() {
+        let newRandom = {};
+        if (this.state.createRandomModalVisibility) {
+            return <CreateRandom
                 animationType="slide"
                 transparent={false}
-                id={(text) => { newProject.id = text}}
-                name={(text) => { newProject.name = text }}
-                due_date={(text) => { newProject.due_date = text }}
-                importance={(text) => { newProject.importance = text }}
-                time_spent={(text) => { newProject.time_spent = text }}
-                notes={(text) => { newProject.notes = text }}
+                id={(text) => { newRandom.id = text }}
+                name={(text) => { newRandom.name = text }}
+                due_date={(text) => { newRandom.due_date = text }}
+                importance={(text) => { newRandom.importance = text }}
+                time_spent={(text) => { newRandom.time_spent = text }}
+                notes={(text) => { newRandom.notes = text }}
                 notification_time={(text) => {
                     if (text) {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
                         })
-                        newProject.notification_time = times
+                        newRandom.notification_time = times
                     }
                 }}
-                closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newProject) }}
-            ></CreateProject>
+                only_today={(text) => { newRandom.only_today = text }}
+                closeModal={() => { this.setCreateRandomModalVisibility(false)}}
+                save={() => { this.saveNew(newRandom) }}
+            ></CreateRandom>
         }
     }
 
@@ -149,20 +168,18 @@ export class HomeScreen extends React.Component {
 
     getChecked(item) {
         if (item != null)
-        var checked = false
+            var checked = false
         {
             return checked = item.value.completed === "true"
         }
-       
+
     }
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
-                          {/* Modals Region */}
-                    {this.showAddModal()}
-                    {this.showViewProject()}
+                    {/* Modals Region */}
 
                     {/* /* #region Top Navigation Section  */}
                     <View style={styles.topNav}>
@@ -181,7 +198,7 @@ export class HomeScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished: styles.listItemContainer}>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         containerStyle={styles.checkBox}
@@ -190,21 +207,21 @@ export class HomeScreen extends React.Component {
                                         uncheckedIcon='circle-o'
                                         size={35}
                                         onPress={() => {
-                                            item.value.completed   = !this.getChecked(item)
+                                            item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}
-                                        />
+                                    />
                                     <View style={styles.listItemTextContainer}>
-                                    <Text
-                                    numberOfLines={1}
-                                    multiline={false}
-                                    style={styles.listItemText}>{item.value.name} </Text></View>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                    onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
 
@@ -222,7 +239,7 @@ export class HomeScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
                                     </TouchableOpacity>
                                 </View>
-                            </View>} />            
+                            </View>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
