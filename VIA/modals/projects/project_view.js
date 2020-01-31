@@ -367,27 +367,57 @@ export class ViewProject extends React.Component {
                         </Text>
                     </View>
                     <View style={styles.sliderContainerLeft}>
-                            <Slider
-                                style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
-                                minimumValue={0}
-                                maximumValue={100}
-                                minimumTrackTintColor={"#00bbb1"}
-                                maximumTrackTintColor={styles.placeholderColor}
-                                value={parseInt(this.state.percentVal)}
+                        <Slider
+                            style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor={"#00bbb1"}
+                            maximumTrackTintColor={styles.placeholderColor}
+                            value={parseInt(this.state.percentVal)}
 
-                                onSlidingComplete={(value) => {
-                                    this.props.editPercentageDone(value)
-                                    if (value == 100) {
-                                        this.finishTask();
-                                    }
-                                    this.props.save();
-                                }}
-                                onValueChange={(value) => {
-                                    this.props.editPercentageDone(value);
-                                }}
-                            />
+                            onSlidingComplete={(value) => {
+                                this.props.editPercentageDone(value)
+                                if (value == 100) {
+                                    this.finishTask();
+                                }
+                                this.props.save();
+                            }}
+                            onValueChange={(value) => {
+                                this.props.editPercentageDone(value);
+                            }}
+                        />
 
-                        </View>
+                    </View>
+                </View>
+                <View style={styles.slidersTitlesContainer}>
+                    <View style={styles.sliderTitleContainer}>
+                        <Text
+                            style={
+                                this.state.selectedItem.percentage_done > 0
+                                    ? styles.sliderTitleNull
+                                    : styles.sliderTitle}>
+                            Importance
+                        </Text>
+                    </View>
+                    <View style={styles.sliderContainerLeft}>
+                        <Slider
+                            style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
+                            minimumValue={0}
+                            maximumValue={100}
+                            minimumTrackTintColor={"#00bbb1"}
+                            maximumTrackTintColor={styles.placeholderColor}
+                            value={parseInt(this.state.importanceVal)}
+
+                            onValueChange={(value) => {
+                                this.props.save;
+                                this.props.editImportance(value);
+                            }}
+                            onSlidingComplete={(value) => {
+                                this.props.editImportance(value)
+                            }}
+                        />
+
+                    </View>
                 </View>
                 {/* <View style={styles.sliderTitleContainerRight}>
                         <Text
