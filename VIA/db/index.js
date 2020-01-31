@@ -4,13 +4,14 @@ var uuid = require('react-native-uuid');
 let SQLite = require('react-native-sqlite-storage')
 //SQLite.DEBUG(true)
 SQLite.enablePromise(true);
-
+import { Home } from './home'
 import { Projects } from './projects'
 import { Habits } from './habits'
 import { Tasks } from './tasks'
 import { Random } from './random'
 import { Routines } from './routines'
 import { restElement } from '@babel/types';
+
 
 
 export class Database {
@@ -217,6 +218,7 @@ export class Database {
         tx.executeSql(`CREATE TABLE if NOT EXISTS ${Projects.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Routines.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Home.TABLE_CREATE}`);
 
     }
 
@@ -254,6 +256,7 @@ export class Database {
         tx.executeSql(`DROP TABLE IF EXISTS ${Routines.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Tasks.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Random.TABLE_NAME}`)
+        tx.executeSql(`DROP TABLE IF EXISTS ${Home.TABLE_NAME}`)
     }
 
     static mockaw() {
@@ -276,6 +279,7 @@ export class Database {
     }
 }
 
+export { Home } from './home'
 export { Projects } from './projects'
 export { Habits } from './habits'
 export { Routines } from './routines'

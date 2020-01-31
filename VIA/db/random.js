@@ -12,6 +12,7 @@ export class Random {
         this.time_spent = props.time_spent
         this.notes = props.notes
         this.only_today = props.only_today
+        this.notification_time = props.notification_time
     }
 
     static get TABLE_CREATE() {
@@ -24,7 +25,8 @@ export class Random {
         'percentage_done text, ' +
         'completed text, ' +
         'time_spent text, ' +
-        'notes, text' +
+        'notes text,' +
+        'notification_time text,' +
         'only_today text' +
         ')'
     }

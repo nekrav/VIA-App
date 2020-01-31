@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
-import { Database, Projects, Tasks } from '../../db'
+import { Database, Routines, Habits, Projects, Tasks , Home, Random} from '../../db'
 import { CreateProject, ViewProject } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -14,7 +14,7 @@ var uuid = require('react-native-uuid');
 
 const controller = new Controller;
 
-const dbTableName = Projects.TABLE_NAME
+const childDBTableName = Random.TABLE_NAME
 
 export class HomeScreen extends React.Component {
     constructor(props) {
@@ -30,25 +30,41 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        controller.loadAll(this, dbTableName)
+        
+    
     }
 
-    saveNew(project) {
-        let newProject = {}
-        newProject.id = project.id;
-        newProject.name = project.name;
-        newProject.created_date = new Date().getDate();
-        newProject.due_date = project.due_date ? project.due_date : "";
-        newProject.importance = project.importance ? project.importance : "";
-        newProject.percentage_done = 0;
-        newProject.completed = "false";
-        // newProject.notification_time = project.notification_time ? project.notification_time : ''
-        newProject.time_spent = 0;
-        newProject.notes = project.notes ? project.notes : "";
+    getHomeData() {
+        Database.getAll(Home.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                object.setState({
+                    items: itemsArr
+                })
+            })
+    }
 
-        Database.save(dbTableName, newProject).then(() => {
+    saveNewRandom(random) {
+        let newRandom = {}
+        newRandom.id = random.id;
+        newRandom.name = random.name;
+        newRandom.created_date = new Date().getDate();
+        newRandom.due_date = random.due_date ? random.due_date : '';
+        newRandom.importance = random.importance ? random.importance : '';
+        newRandom.percentage_done = 0;
+        newRandom.completed = "false";
+        newRandom.time_spent = 0;
+        newRandom.notes = random.notes ? random.notes : '';
+        newRandom.notification_time = random.notification_time ? random.notification_time : ''
+        newRandom.only_today = random.only_today ? random.only_today : ''
+        Database.save(childDBTableName, newRandom).then(() => {
             controller.setAddModalVisible(this, false)
-            controller.loadAll(this, dbTableName)
+            controller.loadAll(this, childDBTableName)
         })
     }
 
