@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
-import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
+import { CreateProject, ViewProject, CreateRandom, ViewRandom, NotesModal } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -29,6 +29,7 @@ export class HomeScreen extends React.Component {
             createRandomModalVisibility: false,
             viewRandomModalVisibility: false,
             homeNotesModalVisibility: false,
+            homeNotes: '',
         };
     }
 
@@ -86,7 +87,7 @@ export class HomeScreen extends React.Component {
         this.setState({ homeNotesModalVisibility: visible })
     }
 
-    renderCreateNewRandom() {
+    renderCreateNewRandomModal() {
         let newRandom = {};
         if (this.state.createRandomModalVisibility) {
             return <CreateRandom
@@ -113,58 +114,125 @@ export class HomeScreen extends React.Component {
         }
     }
 
-    showViewProject() {
-        if (this.state.viewModalVisible) {
+    renderViewRandomModal() {
+        if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedItem != {}) {
-                theProject = this.state.selectedItem
-                return <ViewProject
+                theRandom = this.state.selectedItem
+                return <ViewRandom
                     animationType="slide"
-                    visible={this.state.viewModalVisible}
+                    visible={this.state.viewRandomModalVisibility}
                     transparent={false}
                     editName={(text) => {
-                        theProject.name = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.name = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editDueDate={(text) => {
-                        theProject.due_date = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.due_date = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editImportance={(text) => {
-                        theProject.importance = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.importance = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editTimeSpent={(text) => {
-                        theProject.time_spent = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.time_spent = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editPercentageDone={(text) => {
-                        theProject.percentage_done = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.percentage_done = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editNotes={(text) => {
-                        theProject.notes = text;
-                        this.setState({ selectedProject: theProject })
+                        theRandom.notes = text;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    editOnlyToday={(text) => {
+                        theRandom.only_today = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editNotificationTime={(text) => {
                         if (text) {
                             var times = text.map(function (time) {
                                 return JSON.stringify(time)
                             })
-                            theProject.notification_time = times
-                            this.setState({ selectedProject: theTask })
+                            theRandom.notification_time = times
+                            this.setState({ selectedRandom: theTask })
                         }
                     }}
-                    save={() => { controller.saveExisting(this, dbTableName, theProject) }}
+                    save={() => { controller.saveExisting(this, childDBTableName, theRandom) }}
 
-                    selectedItem={theProject}
+                    selectedItem={theRandom}
 
-                    delete={() => { controller.delete(this, dbTableName, theProject) }}
+                    delete={() => { controller.delete(this, childDBTableName, theRandom) }}
 
-                    closeModal={() => { controller.setViewModalVisible(this, false) }}>
-                </ViewProject>
+                    closeModal={() => { this.setViewRandomModalVisibility(false) }}>
+                </ViewRandom>
             }
         }
     }
+
+     /* #region  Notes Region */
+     setHomeNotesModalVisibility(visible) {
+        this.setState({ homeNotesModalVisibility: visible });
+    }
+
+    renderNotesModal() {
+        if (this.state.homeNotesModalVisibility) {
+            return (
+                <NotesModal
+                    animationType="slide"
+                    transparent={true}
+                    existingNotes={this.state.homeNotes}
+                    placeholder={'Notes...'}
+                    setNotes={item => {
+                        this.setState({ homeNotes: item });
+                    }}
+                    closeModal={() => {
+                        this.setHomeNotesModalVisibility(false);
+                    }}
+                ></NotesModal>
+            );
+        }
+        return null;
+    }
+
+    renderNotesSection() {
+        if (this.state.homeNotes != '') {
+            return (
+                <TouchableOpacity
+                    style={styles.hasNotesContainer}
+                    onPress={() => {
+                        this.setHomeNotesModalVisibility(true);
+                    }}
+                >
+                    <Text
+                        style={styles.hasNotesText}
+                        multiline={true}
+                        onChangeText={this.props.notes}
+                    >
+                        {this.state.itemNotes}
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
+        return (
+            <TouchableOpacity
+                style={styles.createNotesContainer}
+                onPress={() => {
+                    this.setHomeNotesModalVisibility(true);
+                }}
+            >
+                <Text
+                    style={styles.createNotesText}
+                    multiline={true}
+                    onChangeText={this.props.notes}
+                >
+                    Notes ...
+        </Text>
+            </TouchableOpacity>
+        );
+    }
+    /* #endregion */
 
     getChecked(item) {
         if (item != null)
@@ -180,6 +248,9 @@ export class HomeScreen extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
                     {/* Modals Region */}
+                    {this.renderCreateNewRandomModal()}
+                    {this.renderViewRandomModal()}
+                    {this.renderNotesModal()}
 
                     {/* /* #region Top Navigation Section  */}
                     <View style={styles.topNav}>
@@ -195,51 +266,7 @@ export class HomeScreen extends React.Component {
 
                     {/* List Region */}
 
-                    <FlatList
-                        data={this.state.items}
-                        renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
-                                <View style={styles.checkboxAndNameContainer}>
-                                    <CheckBox
-                                        containerStyle={styles.checkBox}
-                                        center
-                                        checkedIcon='dot-circle-o'
-                                        uncheckedIcon='circle-o'
-                                        size={35}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            controller.saveExisting(this, dbTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)}
-                                    />
-                                    <View style={styles.listItemTextContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
-                                </View>
-                                <View style={styles.listItemActionButtonsContainer}>
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity>
-
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => {
-                                            controller.silenceAlarms(this, dbTableName, item.value)
-                                        }}>
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                    </TouchableOpacity> */}
-
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>} />
+                    {this.renderNotesSection()}
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
