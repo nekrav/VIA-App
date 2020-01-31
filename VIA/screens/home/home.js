@@ -186,6 +186,7 @@ export class HomeScreen extends React.Component {
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.setState({ homeNotes: item });
+
                     }}
                     closeModal={() => {
                         this.setHomeNotesModalVisibility(false);
@@ -203,14 +204,12 @@ export class HomeScreen extends React.Component {
                     style={styles.hasNotesContainer}
                     onPress={() => {
                         this.setHomeNotesModalVisibility(true);
-                    }}
-                >
+                    }}>
                     <Text
                         style={styles.hasNotesText}
                         multiline={true}
-                        onChangeText={this.props.notes}
-                    >
-                        {this.state.itemNotes}
+                        onChangeText={this.props.notes}>
+                        {this.state.homeNotes}
                     </Text>
                 </TouchableOpacity>
             );
