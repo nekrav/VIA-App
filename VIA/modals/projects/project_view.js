@@ -365,14 +365,13 @@ export class ViewProject extends React.Component {
                                     : styles.sliderTitle}>
                             % Done
                         </Text>
-                        
                     </View>
                     <View style={styles.sliderContainerLeft}>
                             <Slider
-                                style={{ width: 250, height: 1 }}
+                                style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
                                 minimumValue={0}
                                 maximumValue={100}
-                                minimumTrackTintColor={styles.blueColor}
+                                minimumTrackTintColor={"#00bbb1"}
                                 maximumTrackTintColor={styles.placeholderColor}
                                 value={parseInt(this.state.percentVal)}
 
