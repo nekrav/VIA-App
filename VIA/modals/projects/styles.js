@@ -229,14 +229,20 @@ module.exports = StyleSheet.create({
     slidersSection: {
         flexDirection: "column",
         justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
     },
     slidersTitlesContainer: {
         flexDirection: "column",
         justifyContent: 'center',
+        margin: 10,
     },
-    sliderTitleContainerLeft: {
-        marginRight: "8%",
+    sliderTitleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        // marginRight: "8%",
         marginTop: "2%",
+        marginBottom: 20,
     },
     sliderTitleContainerRight: {
         marginLeft: "10%",
@@ -262,7 +268,7 @@ module.exports = StyleSheet.create({
         marginBottom: "35%",
     },
     sliderContainerLeft: {
-        marginRight: -40,
+        // marginRight: -40,
     },
     sliderContainerRight: {
         marginLeft: -40,
