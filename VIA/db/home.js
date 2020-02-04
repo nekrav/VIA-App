@@ -16,12 +16,6 @@ export class Home {
             'main_goal text, ' +
             'quote text, ' +
             'notes text ' +
-            // ' text, ' +
-            // 'percentage_done text, ' +
-            // 'completed text, ' +
-            // 'time_spent text, ' +
-            // 'notes text,' + 
-            // 'notification_time ' +
             ')'
     }
 

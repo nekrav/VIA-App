@@ -37,6 +37,25 @@ export class Database {
                 .catch(reject)
         })
     }
+
+    static getFromHome() {
+        let query = `SELECT * FROM home`
+        return new Promise((resolve, reject) => {
+            this.database.transaction(tx => {
+                tx.executeSql(query)
+                    .then(([tex, res]) => {
+                        if (res.rows.length === 0)
+                        {
+                       
+                            // console.warn(res.rows.length === 0)
+                        }
+                        // console.warn(res)
+                        resolve(res)
+                    })
+            })
+                .catch(reject)
+        })
+    }
     
     static clear(tableName) {
         return new Promise((resolve, reject) => {
@@ -111,6 +130,10 @@ export class Database {
         })
     }
 
+    static saveHomeNotes(tableName) {
+        
+    }
+
     static deleteOneProject(tableName, id) {
         const deleteQuery = `DELETE FROM ${tableName} WHERE project_id = '${id}'`
         return new Promise((resolve, reject) => {
@@ -160,6 +183,32 @@ export class Database {
     }
 
     static saveProject(tableName, object) {
+        let cols = ''
+        let valuesString = ''
+        const valuesArray = []
+
+        Object.keys(object).forEach(key => {
+            cols += `${key}, `
+            valuesString += '?,'
+            valuesArray.push(object[key])
+        })
+        const saveObject = {
+            query: `INSERT OR REPLACE INTO ${tableName}  (${cols.slice(0, -2)}) VALUES (${valuesString.slice(0, -1)})`,
+            values: valuesArray
+        }
+
+        return new Promise((resolve, reject) => {
+            this.database.transaction(tx => {
+                tx.executeSql(saveObject.query, saveObject.values)
+            })
+                .then(res => {
+                    resolve(res)
+                })
+                .catch(reject)
+        })
+    }
+
+    static saveHome(tableName, object) {
         let cols = ''
         let valuesString = ''
         const valuesArray = []
@@ -251,11 +300,11 @@ export class Database {
     }
 
     static restart(tx) {
-        tx.executeSql(`DROP TABLE IF EXISTS ${Projects.TABLE_NAME}`)
-        tx.executeSql(`DROP TABLE IF EXISTS ${Habits.TABLE_NAME}`)
-        tx.executeSql(`DROP TABLE IF EXISTS ${Routines.TABLE_NAME}`)
-        tx.executeSql(`DROP TABLE IF EXISTS ${Tasks.TABLE_NAME}`)
-        tx.executeSql(`DROP TABLE IF EXISTS ${Random.TABLE_NAME}`)
+        // tx.executeSql(`DROP TABLE IF EXISTS ${Projects.TABLE_NAME}`)
+        // tx.executeSql(`DROP TABLE IF EXISTS ${Habits.TABLE_NAME}`)
+        // tx.executeSql(`DROP TABLE IF EXISTS ${Routines.TABLE_NAME}`)
+        // tx.executeSql(`DROP TABLE IF EXISTS ${Tasks.TABLE_NAME}`)
+        // tx.executeSql(`DROP TABLE IF EXISTS ${Random.TABLE_NAME}`)
         tx.executeSql(`DROP TABLE IF EXISTS ${Home.TABLE_NAME}`)
     }
 
@@ -276,6 +325,10 @@ export class Database {
         // tx.executeSql('INSERT INTO projects (id, name, created_date) VALUES ("faefewfaewf", "aweff", "awefwef");');
         // tx.executeSql('INSERT INTO projects (id) VALUES (?)', [id.toString()])
         // tx.executeSql('INSERT INTO Exercise (id, name, description, duration) VALUES (?,?,?,?)', ['1', 'First One', 'desck awef awef ', 3])
+    }
+
+    static mockHome(tx) {
+        tx.executeSql('INSERT INTO home (id, three_main_goals, main_goal, quote, notes) VALUES (?,?,?,?,?)', ['homeID1', '', '', '', ''])
     }
 }
 

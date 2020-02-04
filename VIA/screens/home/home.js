@@ -7,8 +7,16 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
-
+var uuid = require('react-native-uuid');
 const styles = require('./styles');
+
+const newHomeObject={
+    id: 'homeID1',
+    three_main_goals: '',
+    main_goal: '',
+    quote: '',
+    notes: ''
+}
 
 var uuid = require('react-native-uuid');
 
@@ -23,6 +31,7 @@ export class HomeScreen extends React.Component {
             addModalVisible: false,
             viewModalVisible: false,
             items: [],
+            homeObject: {},
             numberOfItems: 0,
             numberOfFinishedItems: 0,
             selectedItem: {},
@@ -34,23 +43,32 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-
+        this.getHomeData();
 
     }
 
     getHomeData() {
-        Database.getAll(Home.TABLE_NAME)
+        if (Object.keys(this.state.homeObject).length == 0) {
+            this.setState({homeObject: newHomeObject})
+
+        } else {
+            console.warn("bobo")
+            Database.getFromHome(Home.TABLE_NAME)
             .then((res) => {
                 const len = res.rows.length;
                 let item = {}
                 for (let i = 0; i < len; i++) {
+                 
                     item = res.rows.item(i)
+                    console.warn(item)
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
                 }
                 object.setState({
-                    items: itemsArr
+                    homeObject: item
                 })
             })
+        }
+       
     }
 
     saveNewRandom(random) {
@@ -176,16 +194,30 @@ export class HomeScreen extends React.Component {
         this.setState({ homeNotesModalVisibility: visible });
     }
 
+    saveHomeObject(homeObject) {
+        Database.update(Home.TABLE_NAME, homeObject).then(() => {
+            Database.getFromHome();
+        })
+
+        // controller.saveExisting(this, Home.TABLE_NAME, theTask)
+        // Database.save(Home.TABLE_NAME, this.state.homeObject)
+    }
+
     renderNotesModal() {
         if (this.state.homeNotesModalVisibility) {
+            console.warn(this.state.homeObject)
+            let homeObject = this.state.homeObject
             return (
                 <NotesModal
                     animationType="slide"
                     transparent={true}
-                    existingNotes={this.state.homeNotes}
+                    existingNotes={this.state.homeObject.notes}
                     placeholder={'Notes...'}
                     setNotes={item => {
-                        this.setState({ homeNotes: item });
+                        homeNotes = item
+                        homeObject.notes = item
+                        this.saveHomeObject(homeObject)
+                        // this.setState({ homeNotes: item });
 
                     }}
                     closeModal={() => {
@@ -198,7 +230,7 @@ export class HomeScreen extends React.Component {
     }
 
     renderNotesSection() {
-        if (this.state.homeNotes != '') {
+        if (this.state.homeObject.notes != '') {
             return (
                 <TouchableOpacity
                     style={styles.hasNotesContainer}
@@ -207,9 +239,8 @@ export class HomeScreen extends React.Component {
                     }}>
                     <Text
                         style={styles.hasNotesText}
-                        multiline={true}
-                        onChangeText={this.props.notes}>
-                        {this.state.homeNotes}
+                        multiline={true}>
+                        {this.state.homeObject.notes}
                     </Text>
                 </TouchableOpacity>
             );
