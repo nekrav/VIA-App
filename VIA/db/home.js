@@ -2,7 +2,7 @@ var uuid = require('react-native-uuid');
 
 export class Home {
     constructor(props) {
-        this.id = uuid.v4
+        this.id =  'homeID1'
         this.three_main_goals = props.three_main_goals
         this.main_goal = props.main_goal
         this.quote = props.quote

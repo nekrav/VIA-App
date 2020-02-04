@@ -49,7 +49,6 @@ export class Database {
                        
                             // console.warn(res.rows.length === 0)
                         }
-                        // console.warn(res)
                         resolve(res)
                     })
             })

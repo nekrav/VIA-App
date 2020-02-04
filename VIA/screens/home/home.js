@@ -10,7 +10,7 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
 
-const newHomeObject={
+const newHomeObject = {
     id: 'homeID1',
     three_main_goals: '',
     main_goal: '',
@@ -48,27 +48,23 @@ export class HomeScreen extends React.Component {
     }
 
     getHomeData() {
-        if (Object.keys(this.state.homeObject).length == 0) {
-            this.setState({homeObject: newHomeObject})
-
-        } else {
-            console.warn("bobo")
-            Database.getFromHome(Home.TABLE_NAME)
+        Database.getFromHome(Home.TABLE_NAME)
             .then((res) => {
                 const len = res.rows.length;
-                let item = {}
-                for (let i = 0; i < len; i++) {
-                 
-                    item = res.rows.item(i)
-                    console.warn(item)
-                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                if (len == 0) {
+                    Database.clear(Home.TABLE_NAME).then(() => {
+                        this.setState({ homeObject: newHomeObject })
+                        Database.save(Home.TABLE_NAME, newHomeObject)
+                    });
                 }
-                object.setState({
-                    homeObject: item
-                })
+                else {
+                    let item = {}
+                    for (let i = 0; i < len; i++) {
+                        item = res.rows.item(i)
+                        this.setState({ homeObject: item })
+                    }
+                }
             })
-        }
-       
     }
 
     saveNewRandom(random) {
@@ -126,7 +122,7 @@ export class HomeScreen extends React.Component {
                     }
                 }}
                 only_today={(text) => { newRandom.only_today = text }}
-                closeModal={() => { this.setCreateRandomModalVisibility(false)}}
+                closeModal={() => { this.setCreateRandomModalVisibility(false) }}
                 save={() => { this.saveNew(newRandom) }}
             ></CreateRandom>
         }
@@ -189,8 +185,8 @@ export class HomeScreen extends React.Component {
         }
     }
 
-     /* #region  Notes Region */
-     setHomeNotesModalVisibility(visible) {
+    /* #region  Notes Region */
+    setHomeNotesModalVisibility(visible) {
         this.setState({ homeNotesModalVisibility: visible });
     }
 
@@ -198,9 +194,6 @@ export class HomeScreen extends React.Component {
         Database.update(Home.TABLE_NAME, homeObject).then(() => {
             Database.getFromHome();
         })
-
-        // controller.saveExisting(this, Home.TABLE_NAME, theTask)
-        // Database.save(Home.TABLE_NAME, this.state.homeObject)
     }
 
     renderNotesModal() {
