@@ -43,6 +43,7 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
+        this.getRandomTasks();
         this.getHomeData();
 
     }
@@ -86,7 +87,7 @@ export class HomeScreen extends React.Component {
 
     saveNewRandom(random) {
         let newRandom = {}
-        newRandom.id = random.id;
+        newRandom.id = uuid.v4();
         newRandom.name = random.name;
         newRandom.created_date = new Date().getDate();
         newRandom.due_date = random.due_date ? random.due_date : '';
@@ -99,7 +100,7 @@ export class HomeScreen extends React.Component {
         newRandom.only_today = random.only_today ? random.only_today : ''
         Database.save(childDBTableName, newRandom).then(() => {
             this.setCreateRandomModalVisibility(false)
-            controller.loadAll(this, childDBTableName)
+            this.getRandomTasks()
         })
     }
 
@@ -110,11 +111,6 @@ export class HomeScreen extends React.Component {
 
     setViewRandomModalVisibility(visible) {
         this.setState({ viewRandomModalVisibility: visible })
-    }
-
-
-    setNotesModalVisibility(visible) {
-        this.setState({ homeNotesModalVisibility: visible })
     }
 
     renderCreateNewRandomModal() {
@@ -249,9 +245,9 @@ export class HomeScreen extends React.Component {
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             // this.setDateModalVisibility(true)
-                                            this.setChildItemModalVisibility(true)
+                                            this.setViewRandomModalVisibility(true)
                                             this.setState({ selectedChildItem: item.value }, () => {
-                                                this.setChildItemModalVisibility(true)
+                                                this.setViewRandomModalVisibility(true)
                                             })
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
