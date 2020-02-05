@@ -86,6 +86,21 @@ export class HomeScreen extends React.Component {
             })
     }
 
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return (<View style={styles.topNav}>
+            <TouchableOpacity style={styles.topNavBackButton}
+                onPress={this.props.closeModal}>
+                <SIcon name="arrow-left" size={30} color="#000" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.trashButton}
+                onPress={this.props.delete}>
+                <SIcon name="options" size={30} color="#2d3142"/>
+            </TouchableOpacity>
+        </View>)
+    }
+    /* #endregion */
+
     saveNewRandom(random) {
         let newRandom = {}
         newRandom.id = uuid.v4();
@@ -210,14 +225,14 @@ export class HomeScreen extends React.Component {
                             </Text>
                         </View>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
-                        onPress={() => {
-                            this.setCreateRandomModalVisibility(true)
-                        }}>
-                        <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
-                            <Text style={styles.addTimeButtonText}> Add Random</Text>
-                        </View>
-                    </TouchableOpacity>
+                            onPress={() => {
+                                this.setCreateRandomModalVisibility(true)
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                <Text style={styles.addTimeButtonText}> Add Random</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <FlatList
                         data={this.state.randomTasks}
@@ -363,11 +378,14 @@ export class HomeScreen extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
+
                     {/* Modals Region */}
                     {this.renderCreateNewRandomModal()}
                     {this.renderViewRandomModal()}
                     {this.renderNotesModal()}
 
+                    {/* Tab Bar Region */}
+                    {this.renderTopBar()}
                     {/* /* #region Top Navigation Section  */}
                     <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Home</Text></View>
