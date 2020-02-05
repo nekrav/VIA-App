@@ -214,7 +214,7 @@ export class HomeScreen extends React.Component {
                         }}>
                         <View style={styles.addTimeButtonContainerView}>
                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
-                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                            <Text style={styles.addTimeButtonText}> Add Random</Text>
                         </View>
                     </TouchableOpacity>
                     </View>
@@ -234,8 +234,8 @@ export class HomeScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
-                                            controller.delete(this, childTableName, item.value)
-                                            controller.loadAllChildrenAndGetrandomTasks(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                                            controller.delete(this, childDBTableName, item.value)
+                                            this.getRandomTasks()
 
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
