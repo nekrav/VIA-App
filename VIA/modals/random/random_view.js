@@ -5,7 +5,7 @@ import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
-import { Database, Projects } from '../../db'
+import { Database, Random } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
@@ -42,12 +42,12 @@ export class ViewRandom extends React.Component {
     }
 
     componentDidMount() {
-        controller.loadAll(this, Projects.TABLE_NAME);
-        if (this.state.selectedItem.project != empty) {
-            Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-                this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
-            })
-        }
+        // controller.loadAll(this, Projects.TABLE_NAME);
+        // if (this.state.selectedItem.project != empty) {
+        //     Database.getOne(Random.TABLE_NAME, this.state.selectedItem.project).then((res) => {
+        //         this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
+        //     })
+        // }
     }
 
     getStyleIfDone() {
@@ -93,68 +93,6 @@ export class ViewRandom extends React.Component {
             </TextInput>
         </TouchableOpacity>)
     }
-
-    /* #endregion */
-
-    /* #region  Project Selection Region */
-    setProjectSelectionModalVisibility(visible) {
-        this.setState({ projectSelectionModalVisible: visible })
-    }
-
-
-    showProjectSelectionModal() {
-        if (this.state.projectSelectionModalVisible) {
-            return <SelectionModal
-                animationType="fade"
-                items={this.state.items}
-                itemName="Project"
-                transparent={true}
-                selectItem={(item) => {
-                    this.props.editProject(item.value.id)
-                    this.setState({ projName: item.value.name })
-                    this.props.save();
-                }}
-                closeModal={() => { this.setProjectSelectionModalVisibility(false) }}>
-            </SelectionModal>
-        }
-        return null;
-    }
-
-    renderProjectSection() {
-        if (this.state.projName != empty) {
-            this.props.project = this.state.theSelectedProject;
-            return (
-                <TouchableOpacity
-                    style={styles.hasProjectSelectionContainer}
-                    onPress={() => {
-                        this.setProjectSelectionModalVisibility(true);
-                    }}
-                >
-                    <Text style={styles.hasProjectSelectionButtonText}>
-                        {this.state.projName}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ffffff" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity
-                    style={styles.createProjectSelectionContainer}
-                    onPress={this.setProjectSelectionModalVisibility.bind(this)}
-                >
-                    <Text style={styles.createProjectSelectionButtonText}>
-                        Is this part of a bigger project?
-          </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ABABAB" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-    }
-
 
     /* #endregion */
 
@@ -471,7 +409,6 @@ export class ViewRandom extends React.Component {
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
-                {this.showProjectSelectionModal()}
                 {this.renderNotesModal()}
                 {this.renderNotificationTimesModal()}
 
@@ -483,9 +420,6 @@ export class ViewRandom extends React.Component {
 
                         {/* Name Section */}
                         {this.renderNameSection()}
-
-                        {/* Project Section*/}
-                        {this.renderProjectSection()}
 
                         {/* Due Date Section*/}
                         {this.renderDueDate()}

@@ -39,6 +39,7 @@ export class HomeScreen extends React.Component {
             viewRandomModalVisibility: false,
             homeNotesModalVisibility: false,
             homeNotes: '',
+            selectedRandom: {}
         };
     }
 
@@ -91,7 +92,7 @@ export class HomeScreen extends React.Component {
         newRandom.name = random.name;
         newRandom.created_date = new Date().getDate();
         newRandom.due_date = random.due_date ? random.due_date : '';
-        newRandom.importance = random.importance ? random.importance : '';
+        newRandom.importance = random.importance ? random.importance : 0;
         newRandom.percentage_done = 0;
         newRandom.completed = "false";
         newRandom.time_spent = 0;
@@ -142,8 +143,8 @@ export class HomeScreen extends React.Component {
 
     renderViewRandomModal() {
         if (this.state.viewRandomModalVisibility) {
-            if (this.state.selectedItem != {}) {
-                theRandom = this.state.selectedItem
+            if (this.state.selectedRandom != {}) {
+                theRandom = this.state.selectedRandom
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
@@ -246,7 +247,7 @@ export class HomeScreen extends React.Component {
                                         onPress={() => {
                                             // this.setDateModalVisibility(true)
                                             this.setViewRandomModalVisibility(true)
-                                            this.setState({ selectedChildItem: item.value }, () => {
+                                            this.setState({ selectedRandom: item.value }, () => {
                                                 this.setViewRandomModalVisibility(true)
                                             })
                                         }}>
