@@ -27,6 +27,8 @@ class HomeButton extends React.Component {
                         justifyContent: 'center',
                         width: SIZE,
                         height: SIZE,
+                        borderWidth: 2,
+                        borderColor: "#00bbb1",
                         borderRadius: SIZE / 2,
                         backgroundColor: '#00bbb1'
                     }}

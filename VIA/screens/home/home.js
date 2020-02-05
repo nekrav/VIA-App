@@ -198,7 +198,6 @@ export class HomeScreen extends React.Component {
 
     renderNotesModal() {
         if (this.state.homeNotesModalVisibility) {
-            console.warn(this.state.homeObject)
             let homeObject = this.state.homeObject
             return (
                 <NotesModal
@@ -210,8 +209,6 @@ export class HomeScreen extends React.Component {
                         homeNotes = item
                         homeObject.notes = item
                         this.saveHomeObject(homeObject)
-                        // this.setState({ homeNotes: item });
-
                     }}
                     closeModal={() => {
                         this.setHomeNotesModalVisibility(false);
