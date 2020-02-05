@@ -100,7 +100,7 @@ export class HomeScreen extends React.Component {
         newRandom.only_today = random.only_today ? random.only_today : ''
         Database.save(childDBTableName, newRandom).then(() => {
             this.setCreateRandomModalVisibility(false)
-            this.getRandomTasks()
+            this.getRandomTasks();
         })
     }
 
@@ -208,15 +208,15 @@ export class HomeScreen extends React.Component {
                                 Random tasks
                             </Text>
                         </View>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
                         onPress={() => {
-                            this.setTaskSelectionModalVisibility(true)
+                            this.setCreateRandomModalVisibility(true)
                         }}>
                         <View style={styles.addTimeButtonContainerView}>
                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
                             <Text style={styles.addTimeButtonText}> Add Habit</Text>
                         </View>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                     </View>
                     <FlatList
                         data={this.state.randomTasks}
