@@ -30,7 +30,7 @@ export class HomeScreen extends React.Component {
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
-            items: [],
+            randomTasks: [],
             homeObject: {},
             numberOfItems: 0,
             numberOfFinishedItems: 0,
@@ -44,6 +44,23 @@ export class HomeScreen extends React.Component {
 
     componentDidMount() {
         this.getHomeData();
+
+    }
+
+    getRandomTasks() {
+        const itemsArr = []
+        Database.getAll(Random.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    randomTasks: itemsArr
+                })
+            })
 
     }
 
@@ -86,7 +103,6 @@ export class HomeScreen extends React.Component {
         })
     }
 
-
     setCreateRandomModalVisibility(visible) {
         this.setState({ createRandomModalVisibility: visible })
     }
@@ -123,7 +139,7 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = text }}
                 closeModal={() => { this.setCreateRandomModalVisibility(false) }}
-                save={() => { this.saveNew(newRandom) }}
+                save={() => { this.saveNewRandom(newRandom) }}
             ></CreateRandom>
         }
     }
@@ -185,6 +201,89 @@ export class HomeScreen extends React.Component {
         }
     }
 
+    renderRandomTasksSection() {
+        // console.warn()
+        if (this.state.randomTasks.length > 0) {
+            return (
+                <View style={styles.childrenItemsContainer}>
+                    <View style={styles.childrenItemsTitleContainer}>
+                        <View style={styles.childrenItemsTitleTextContainer}>
+                            <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
+                                Random tasks
+                            </Text>
+                        </View>
+                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                        onPress={() => {
+                            this.setTaskSelectionModalVisibility(true)
+                        }}>
+                        <View style={styles.addTimeButtonContainerView}>
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                        </View>
+                    </TouchableOpacity> */}
+                    </View>
+                    <FlatList
+                        data={this.state.randomTasks}
+                        extraData={this.state}
+                        contentContainerStyle={styles.childrenContainer}
+                        renderItem={({ item }) =>
+                            <View style={styles.childContainer}>
+                                <View style={styles.childTitleContainer}>
+                                    <Text
+                                        numberOfLines={1}
+                                        multiline={false}
+                                        style={styles.childTitleText}>{item.value.name} </Text>
+                                </View>
+                                <View style={styles.childActionButtonsContainer}>
+                                    <TouchableOpacity
+                                        style={styles.childActionButton}
+                                        onPress={() => {
+                                            controller.delete(this, childTableName, item.value)
+                                            controller.loadAllChildrenAndGetrandomTasks(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+
+                                        }}>
+                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        style={styles.childActionButton}
+                                        onPress={() => {
+                                            // this.setDateModalVisibility(true)
+                                            this.setChildItemModalVisibility(true)
+                                            this.setState({ selectedChildItem: item.value }, () => {
+                                                this.setChildItemModalVisibility(true)
+                                            })
+                                        }}>
+                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        } />
+                </View>
+            );
+        } else {
+            return (
+                <View style={styles.childrenItemsContainer}>
+                    <View style={styles.childrenItemsTitleContainer}>
+                        <Text style={styles.childrenItemsTitleText}>
+                            No tasks
+                        </Text>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => {
+                                this.setCreateRandomModalVisibility(true)
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                <Text style={styles.addTimeButtonText}> Add Task</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.createProjectSelectionButtonText}>Done all your popup tasks for the day!</Text>
+                </View>
+            );
+        }
+    }
+    /* #endregion */
     /* #region  Notes Region */
     setHomeNotesModalVisibility(visible) {
         this.setState({ homeNotesModalVisibility: visible });
@@ -285,6 +384,8 @@ export class HomeScreen extends React.Component {
                     </View>
 
                     {/* List Region */}
+
+                    {this.renderRandomTasksSection()}
 
                     {this.renderNotesSection()}
                 </SafeAreaView>

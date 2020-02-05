@@ -636,9 +636,6 @@ export class ViewProject extends React.Component {
                             {/* Project Section*/}
                             {this.renderAllChildrenSection()}
 
-                            <Modal transparent={false}><View><Text>awelifnaweilfse</Text></View></Modal>
-
-
                             {/* Due Date Section*/}
                             {this.renderDueDate()}
 

@@ -27,83 +27,21 @@ export class CreateRandom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newTask: this.props.newTask,
-            projectSelectionModalVisible: false,
+            newRandom: this.props.newRandom,
             items: [],
             theSelectedProject: '',
             showDate: false,
             itemDate: '',
             itemNotificationTimes: '',
-            newTaskImportance: 0,
+            newRandomImportance: 0,
             notificationTimesModal: false,
-            newTaskName: '',
+            newRandomName: '',
             itemNotes: '',
         };
     }
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
     }
-
-    /* #region  Project Selection Region */
-    showProjectSelectionModal() {
-        if (this.state.projectSelectionModalVisible) {
-            return (
-                <SelectionModal
-                    animationType="fade"
-                    items={this.state.items}
-                    itemName="Project"
-                    transparent={true}
-                    selectItem={item => {
-                        this.props.project(item.key);
-                        this.setState({ theSelectedProject: item.value.name }, () => { });
-                    }}
-                    closeModal={() => {
-                        this.setProjectSelectionModalVisibility(false);
-                    }}
-                ></SelectionModal>
-            );
-        }
-    }
-
-    setProjectSelectionModalVisibility(visible) {
-        this.setState({ projectSelectionModalVisible: visible });
-    }
-
-    renderProjectSelection() {
-        if (this.state.theSelectedProject != '') {
-            this.props.project = this.state.theSelectedProject;
-            return (
-                <TouchableOpacity
-                    style={styles.hasProjectSelectionContainer}
-                    onPress={() => {
-                        this.setProjectSelectionModalVisibility(true);
-                    }}
-                >
-                    <Text style={styles.hasProjectSelectionButtonText}>
-                        {this.state.theSelectedProject}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ffffff" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity
-                    style={styles.createProjectSelectionContainer}
-                    onPress={this.setProjectSelectionModalVisibility.bind(this)}
-                >
-                    <Text style={styles.createProjectSelectionButtonText}>
-                        Is this part of a bigger project?
-          </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ABABAB" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-    }
-    /* #endregion */
 
     /* #region  Due Date Region */
     setDueDateModalVisibility(visible) {
@@ -304,9 +242,7 @@ export class CreateRandom extends React.Component {
                 animationType={this.props.animationType}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
-                onRequestClose={this.props.onRequestClose}
-            >
-                {this.showProjectSelectionModal()}
+                onRequestClose={this.props.onRequestClose}>
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
@@ -340,7 +276,7 @@ export class CreateRandom extends React.Component {
                                 this.nameTextInput.focus();
                             }}
                             style={
-                                this.state.newTaskName != ''
+                                this.state.newRandomName != ''
                                     ? styles.hasNameTextInputContainer
                                     : styles.createNameContainer
                             }
@@ -354,7 +290,7 @@ export class CreateRandom extends React.Component {
                                 multiline={true}
                                 placeholder={'Name'}
                                 onChangeText={value => {
-                                    this.setState({ newTaskName: value });
+                                    this.setState({ newRandomName: value });
                                     this.props.name(value);
                                 }}
                             ></TextInput>
@@ -370,7 +306,7 @@ export class CreateRandom extends React.Component {
                                 <View style={styles.sliderTitleContainerCenter}>
                                     <Text
                                         style={
-                                            this.state.newTaskImportance > 0
+                                            this.state.newRandomImportance > 0
                                                 ? styles.sliderTitleNull
                                                 : styles.sliderTitle
                                         }>
@@ -389,24 +325,17 @@ export class CreateRandom extends React.Component {
                                         minimumTrackTintColor={styles.blueColor}
                                         maximumTrackTintColor={styles.placeholderColor}
                                         onSlidingComplete={value => {
-                                            this.setState({ newTaskImportance: value });
+                                            this.setState({ newRandomImportance: value });
                                             this.props.importance(value);
                                         }}
                                         onValueChange={value => {
-                                            this.setState({ newTaskImportance: value });
+                                            this.setState({ newRandomImportance: value });
                                             this.props.importance(value);
                                         }}
                                     />
                                 </View>
                             </View>
                         </View>
-
-
-                        {/* {PROJECT SELECTION SECTION} */}
-                        <View style={styles.projectSectionContainer}>
-                            {this.renderProjectSelection()}
-                        </View>
-
 
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}
@@ -419,9 +348,9 @@ export class CreateRandom extends React.Component {
                         {/* {BOTTOM BUTTONS SECTION} */}
                         <View style={styles.bottomButtonsContainer}>
                             <TouchableOpacity
-                                disabled={this.state.newTaskName != '' ? false : true}
+                                disabled={this.state.newRandomName != '' ? false : true}
                                 style={
-                                    this.state.newTaskName != ''
+                                    this.state.newRandomName != ''
                                         ? styles.bottomButtonLeft
                                         : styles.bottomButtonLeftDisabled
                                 }
@@ -429,7 +358,7 @@ export class CreateRandom extends React.Component {
                             >
                                 <Text
                                     style={
-                                        this.state.newTaskName != ''
+                                        this.state.newRandomName != ''
                                             ? styles.bottomButtonTextDisabled
                                             : styles.bottomButtonText
                                     }
