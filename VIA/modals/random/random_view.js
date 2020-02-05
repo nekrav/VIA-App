@@ -42,12 +42,6 @@ export class ViewRandom extends React.Component {
     }
 
     componentDidMount() {
-        // controller.loadAll(this, Projects.TABLE_NAME);
-        // if (this.state.selectedItem.project != empty) {
-        //     Database.getOne(Random.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-        //         this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
-        //     })
-        // }
     }
 
     getStyleIfDone() {
