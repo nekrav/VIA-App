@@ -124,7 +124,7 @@ module.exports = StyleSheet.create({
     topNav: {
         marginBottom: 5,
         flexDirection: "row",
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
     },
     trashButton: {
         marginRight: "8%",

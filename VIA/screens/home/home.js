@@ -89,10 +89,10 @@ export class HomeScreen extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton}
+            {/* <TouchableOpacity style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
                 <SIcon name="arrow-left" size={30} color="#000" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
                 <SIcon name="options" size={30} color="#2d3142"/>
@@ -386,17 +386,6 @@ export class HomeScreen extends React.Component {
 
                     {/* Tab Bar Region */}
                     {this.renderTopBar()}
-                    {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
-                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Home</Text></View>
-                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
-                        <TouchableOpacity style={styles.addItemButtonContainer}
-                            onPress={() => {
-                                controller.setAddModalVisible(this, true);
-                            }}>
-                            <FIcon style={styles.addItemButtonText} name="plus" />
-                        </TouchableOpacity>
-                    </View>
 
                     {/* List Region */}
 
