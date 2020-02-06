@@ -182,6 +182,42 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  3 Main Goals Section */
+    mainGoalsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+    },
+
+    mainGoalContainer: {
+        margin: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 110,
+        height: 110,
+        borderWidth: 2,
+        borderColor: "#00bbb1",
+        borderRadius: 55,
+        backgroundColor: '#00bbb1',
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+    },
+
+    mainGoalText: {
+        textAlign: 'center',
+        fontSize: 14,
+        margin: 3,
+        color: '#fff'
+    },
+    /* #endregion */
+
     /* #region Create Due Date Section */
     createDueDateContainer: {
         justifyContent: 'space-between',
@@ -578,8 +614,8 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         margin: 2,
     },
-     /* #region  Children Section */
-     childrenItemsContainer: {
+    /* #region  Children Section */
+    childrenItemsContainer: {
         flexDirection: 'column',
         marginLeft: 10,
         marginTop: 10,

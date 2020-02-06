@@ -103,72 +103,21 @@ export class HomeScreen extends React.Component {
 
     /* #region  3 Main Goals Section */
 
-    
+
 
 
 
     render3MainGoalSection() {
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'space-between', marginLeft: 10, marginRight: 10, }}>
-                <TouchableOpacity style={{
-                    margin: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 110,
-                    height: 110,
-                    borderWidth: 2,
-                    borderColor: "#00bbb1",
-                    borderRadius: 55,
-                    backgroundColor: '#00bbb1',
-                    shadowColor: "#000000",
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    shadowOffset: {
-                        height: 1,
-                        width: 0
-                    }
-                }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, margin: 3, color: '#fff' }}>Select a main task for today</Text>
+            <View style={styles.mainGoalsContainer}>
+                <TouchableOpacity style={styles.mainGoalContainer}>
+                    <Text style={styles.mainGoalText}>Select a main task for today</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{
-                    margin: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 110,
-                    height: 110,
-                    borderWidth: 2,
-                    borderColor: "#00bbb1",
-                    borderRadius: 55,
-                    backgroundColor: '#00bbb1',
-                    shadowColor: "#000000",
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    shadowOffset: {
-                        height: 1,
-                        width: 0
-                    }
-                }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, margin: 3, color: '#fff' }}>Finish styling of app</Text>
+                <TouchableOpacity style={styles.mainGoalContainer}>
+                    <Text style={styles.mainGoalText}>Finish styling of app</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{
-                    margin: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 110,
-                    height: 110,
-                    borderWidth: 2,
-                    borderColor: "#00bbb1",
-                    borderRadius: 55,
-                    backgroundColor: '#00bbb1',
-                    shadowColor: "#000000",
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    shadowOffset: {
-                        height: 1,
-                        width: 0
-                    }
-                }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, margin: 3, color: '#fff' }}>Workout</Text>
+                <TouchableOpacity style={styles.mainGoalContainer}>
+                    <Text style={styles.mainGoalText}>Workout</Text>
                 </TouchableOpacity>
             </View>
         )
