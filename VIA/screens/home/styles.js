@@ -778,6 +778,7 @@ module.exports = StyleSheet.create({
     /* #region  Child Item Section */
     childTitleContainer: {
         flex: 1,
+        flexDirection: 'row',
     },
     childTitleText: {
         color: backgroundColor,
