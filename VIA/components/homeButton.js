@@ -30,7 +30,15 @@ class HomeButton extends React.Component {
                         borderWidth: 2,
                         borderColor: "#00bbb1",
                         borderRadius: SIZE / 2,
-                        backgroundColor: '#00bbb1'
+                        backgroundColor: '#00bbb1',
+                        shadowColor: "#000000",
+                        shadowOpacity: 0.8,
+                        shadowRadius: 2,
+                        shadowOffset: {
+                            height: 1,
+                            width: 0
+                        }
+
                     }}
                 >
                     <Animated.View style={{

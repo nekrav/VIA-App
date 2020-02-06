@@ -12,7 +12,9 @@ export class Home {
     static get TABLE_CREATE() {
         return `${Home.TABLE_NAME} (` +
             'id text not null primary key unique, ' +
-            'three_main_goals text, ' +
+            'main_goal_1 text, ' +
+            'main_goal_2 text, ' +
+            'main_goal_3 text, ' +
             'main_goal text, ' +
             'quote text, ' +
             'notes text ' +
@@ -22,4 +24,4 @@ export class Home {
     static get TABLE_NAME() {
         return 'home'
     }
-}
+} //Main goal 1//0101010.23r::Main goal 2//91939429::
