@@ -39,7 +39,7 @@ export class ProjectsScreen extends React.Component {
         newProject.name = project.name;
         newProject.created_date = new Date().getDate();
         newProject.due_date = project.due_date ? project.due_date : "";
-        newProject.importance = project.importance ? project.importance : "";
+        newProject.importance = project.importance ? project.importance : 0;
         newProject.percentage_done = 0;
         newProject.completed = "false";
         newProject.notification_time = project.notification_time ? project.notification_time : ''
