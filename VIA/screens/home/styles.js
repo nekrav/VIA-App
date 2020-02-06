@@ -184,23 +184,29 @@ module.exports = StyleSheet.create({
 
     /* #region  3 Main Goals Section */
     mainGoalsContainer: {
-        flexDirection: 'row',
+        flex: 1,
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 10,
         marginRight: 10,
     },
 
-    mainGoalContainer: {
-        margin: 5,
+    mainGoalNotSelected: {
+        flex: 1,
+        backgroundColor: placeholderColor,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
         alignItems: 'center',
-        justifyContent: 'center',
-        width: 110,
-        height: 110,
-        borderWidth: 2,
-        borderColor: "#00bbb1",
-        borderRadius: 55,
-        backgroundColor: '#00bbb1',
+        borderRadius: 20,
+        borderTopWidth: 2,
+        borderTopColor: placeholderColor,
+        flexDirection: "row",
+        width: '100%',
+        marginTop: 2,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -210,11 +216,50 @@ module.exports = StyleSheet.create({
         }
     },
 
+    mainGoalContainer: {
+        flex: 1,
+        backgroundColor: blueColor,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        alignItems: 'center',
+        borderRadius: 20,
+        borderTopWidth: 2,
+        borderTopColor: placeholderColor,
+        flexDirection: "row",
+        width: '100%',
+        marginTop: 2,
+        shadowColor: "#000000",
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+            height: 1,
+            width: 0
+        }
+        // margin: 5,
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // width: 110,
+        // height: 110,
+        // borderWidth: 2,
+        // borderColor: "#00bbb1",
+        // // borderRadius: 55,
+        // backgroundColor: '#00bbb1',
+        // shadowColor: "#000000",
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // }
+    },
+
     mainGoalText: {
-        textAlign: 'center',
-        fontSize: 14,
-        margin: 3,
-        color: '#fff'
+        color: backgroundColor,
+        fontSize: 30,
+        marginLeft: 10,
     },
     /* #endregion */
 

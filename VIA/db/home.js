@@ -13,9 +13,13 @@ export class Home {
         return `${Home.TABLE_NAME} (` +
             'id text not null primary key unique, ' +
             'main_goal_1 text, ' +
+            'main_goal_1_date text, ' +
             'main_goal_2 text, ' +
+            'main_goal_2_date text, ' +
             'main_goal_3 text, ' +
+            'main_goal_3_date text, ' +
             'main_goal text, ' +
+            'main_goal_date text, ' +
             'quote text, ' +
             'notes text ' +
             ')'

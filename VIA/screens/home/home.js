@@ -101,12 +101,55 @@ export class HomeScreen extends React.Component {
     }
     /* #endregion */
 
+
     /* #region  3 Main Goals Section */
 
+    render1MainGoal(task) {
+        if (task) {
+            return (<View style={styles.mainGoalContainer}>
+                <View style={styles.childTitleContainer}>
+                    <Text
+                        numberOfLines={1}
+                        multiline={false}
+                        style={styles.childTitleText}>Finish styling of app</Text>
+                </View>
+                <View style={styles.childActionButtonsContainer}>
+                    <TouchableOpacity
+                        style={styles.childActionButton}
+                        onPress={() => {
+                            // controller.delete(this, childDBTableName, item.value)
+                            // this.getRandomTasks()
 
+                        }}>
+                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+                    </TouchableOpacity>
 
-
-
+                    <TouchableOpacity
+                        style={styles.childActionButton}
+                        onPress={() => {
+                            // this.setDateModalVisibility(true)
+                            // this.setViewRandomModalVisibility(true)
+                            // this.setState({ selectedRandom: item.value }, () => {
+                            //     this.setViewRandomModalVisibility(true)
+                            // })
+                        }}>
+                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+                    </TouchableOpacity>
+                </View>
+            </View>)
+        } else {
+            return (
+                <TouchableOpacity style={styles.mainGoalNotSelected}>
+                    <View style={styles.childTitleContainer}>
+                        <Text
+                            numberOfLines={1}
+                            multiline={false}
+                            style={styles.childTitleText}>Main Goal for today</Text>
+                    </View>
+                </TouchableOpacity>
+                )
+        }
+    }
     render3MainGoalSection() {
         return (
             <View style={styles.mainGoalsContainer}>
@@ -116,9 +159,7 @@ export class HomeScreen extends React.Component {
                 <TouchableOpacity style={styles.mainGoalContainer}>
                     <Text style={styles.mainGoalText}>Finish styling of app</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.mainGoalContainer}>
-                    <Text style={styles.mainGoalText}>Workout</Text>
-                </TouchableOpacity>
+                {this.render1MainGoal()}
             </View>
         )
     }
@@ -131,7 +172,7 @@ export class HomeScreen extends React.Component {
 
     }
     /* #endregion */
-
+    /* #region  Random Tasks Region */
     saveNewRandom(random) {
         let newRandom = {}
         newRandom.id = uuid.v4();
@@ -245,7 +286,6 @@ export class HomeScreen extends React.Component {
     }
 
     renderRandomTasksSection() {
-        // console.warn()
         if (this.state.randomTasks.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
@@ -327,6 +367,8 @@ export class HomeScreen extends React.Component {
         }
     }
     /* #endregion */
+
+
     /* #region  Notes Region */
     setHomeNotesModalVisibility(visible) {
         this.setState({ homeNotesModalVisibility: visible });
@@ -422,9 +464,10 @@ export class HomeScreen extends React.Component {
 
                     {/* 3 Main Goals Region */}
                     {this.render3MainGoalSection()}
-                    {this.renderRandomTasksSection()}
+
 
                     {this.renderNotesSection()}
+                    {this.renderRandomTasksSection()}
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
