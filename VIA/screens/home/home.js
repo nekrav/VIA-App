@@ -113,7 +113,7 @@ export class HomeScreen extends React.Component {
     /* #region  3 Main Goals Section */
 
     render1MainGoal(task) {
-        if (task) {
+        if (this.state.homeObject.main_goal_3) {
             return (<View style={styles.mainGoalContainer}>
                 <View style={styles.childTitleContainer}>
                     <CheckBox
@@ -131,7 +131,7 @@ export class HomeScreen extends React.Component {
                     <Text
                         numberOfLines={1}
                         multiline={false}
-                        style={styles.childTitleText}>Finish styling of app</Text>
+                        style={styles.childTitleText}>{this.state.homeObject.main_goal_3}</Text>
                 </View>
                 <View style={styles.childActionButtonsContainer}>
                     <TouchableOpacity
@@ -161,7 +161,7 @@ export class HomeScreen extends React.Component {
             return (
                 <TouchableOpacity style={styles.mainGoalNotSelected}
                 onPress={() => {
-                    this.selectTaskVisibility(true, 'main_goal_3', 'main_goal_3_action')
+                    this.selectTaskVisibility(true, 'main_goal_3', 'selectMainGoal3')
                 }}>
                     <View style={styles.childTitleContainer}>
                         <Text
@@ -190,6 +190,13 @@ export class HomeScreen extends React.Component {
     selectTaskVisibility(visibility, mainGoalPicked, saveAction) {
         this.setState({viewTaskSelectionVisible: visibility, mainGoalSelected: mainGoalPicked, mainGoalSaveAction: saveAction})
     }
+    
+
+    selectMainGoal3(homeObject) {
+        Database.update(Home.TABLE_NAME, homeObject).then(() => {
+            Database.getFromHome();
+        })
+    }
 
     renderSelectTaskModal() {
         if (this.state.viewTaskSelectionVisible) {
@@ -200,7 +207,9 @@ export class HomeScreen extends React.Component {
                     itemName="Tasks"
                     transparent={true}
                     selectItem={item => {
-                        // this.props.routine(item.key);
+                        let homeObject = this.state.homeObject
+                        homeObject.main_goal_3 = item.name
+                        this[this.state.mainGoalSaveAction](homeObject);
                         this.setState({ [this.state.mainGoalSelected]: item.name }, () => { });
                     }}
                     closeModal={() => {
