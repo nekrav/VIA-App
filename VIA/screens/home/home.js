@@ -4,6 +4,7 @@ import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWit
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
 import { CreateProject, ViewProject, CreateRandom, ViewRandom, NotesModal } from '../../modals'
 import { Controller } from '../controller'
+import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
@@ -37,15 +38,22 @@ export class HomeScreen extends React.Component {
             selectedItem: {},
             createRandomModalVisibility: false,
             viewRandomModalVisibility: false,
+            viewTaskSelectionVisible: false,
             homeNotesModalVisibility: false,
             homeNotes: '',
-            selectedRandom: {}
+            items: [],
+            selectedRandom: {},
+
+            mainGoalSelected: '',
+            mainGoalSaveAction: '',
+
         };
     }
 
     componentDidMount() {
         this.getRandomTasks();
         this.getHomeData();
+        controller.loadAll(this, Tasks.TABLE_NAME)
 
     }
 
@@ -108,6 +116,18 @@ export class HomeScreen extends React.Component {
         if (task) {
             return (<View style={styles.mainGoalContainer}>
                 <View style={styles.childTitleContainer}>
+                    <CheckBox
+                        containerStyle={styles.checkBox}
+                        center
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        size={35}
+                        onPress={() => {
+                            task.completed = !this.getChecked(item)
+                            controller.saveExisting(this, dbTableName, item.value)
+                        }}
+                        checked={this.getChecked(item)}
+                    />
                     <Text
                         numberOfLines={1}
                         multiline={false}
@@ -139,7 +159,10 @@ export class HomeScreen extends React.Component {
             </View>)
         } else {
             return (
-                <TouchableOpacity style={styles.mainGoalNotSelected}>
+                <TouchableOpacity style={styles.mainGoalNotSelected}
+                onPress={() => {
+                    this.selectTaskVisibility(true, 'main_goal_3', 'main_goal_3_action')
+                }}>
                     <View style={styles.childTitleContainer}>
                         <Text
                             numberOfLines={1}
@@ -147,7 +170,7 @@ export class HomeScreen extends React.Component {
                             style={styles.childTitleText}>Main Goal for today</Text>
                     </View>
                 </TouchableOpacity>
-                )
+            )
         }
     }
     render3MainGoalSection() {
@@ -164,12 +187,28 @@ export class HomeScreen extends React.Component {
         )
     }
 
-    selectTaskVisibility() {
-
+    selectTaskVisibility(visibility, mainGoalPicked, saveAction) {
+        this.setState({viewTaskSelectionVisible: visibility, mainGoalSelected: mainGoalPicked, mainGoalSaveAction: saveAction})
     }
 
     renderSelectTaskModal() {
-
+        if (this.state.viewTaskSelectionVisible) {
+            return (
+                <SelectionModal
+                    animationType="fade"
+                    items={this.state.items}
+                    itemName="Tasks"
+                    transparent={true}
+                    selectItem={item => {
+                        // this.props.routine(item.key);
+                        this.setState({ [this.state.mainGoalSelected]: item.name }, () => { });
+                    }}
+                    closeModal={() => {
+                        this.selectTaskVisibility(false, '', '');
+                    }}
+                ></SelectionModal>
+            );
+        }
     }
     /* #endregion */
     /* #region  Random Tasks Region */
@@ -456,6 +495,7 @@ export class HomeScreen extends React.Component {
                     {this.renderCreateNewRandomModal()}
                     {this.renderViewRandomModal()}
                     {this.renderNotesModal()}
+                    {this.renderSelectTaskModal()}
 
                     {/* Tab Bar Region */}
                     {this.renderTopBar()}
