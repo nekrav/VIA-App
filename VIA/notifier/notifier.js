@@ -54,56 +54,58 @@ export class Notifier extends React.Component {
     }
 
     getAllProjectTimes() {
-        Database.getAll(Projects.TABLE_NAME)
-            .then((res) => {
-                const len = res.rows.length;
-                let item = {}
-                let itemsWithNotifications = []
-                for (let i = 0; i < len; i++) {
-                    let notificationTimes = [];
-                    item = res.rows.item(i)
-                    if (item.notification_time != '') {
-                        nt = JSON.parse('[' + item.notification_time + ']')
-                        for (let j = 0; j < nt.length; j++) {
-                            if (nt[j].checked == true) {
-                                dayWithTimes = nt[j]
-                                ntTimes = nt[j].times
-                                for (let k = 0; k < ntTimes.length; k++) {
-                                    let day = dayWithTimes.key
-                                    let hour = ntTimes[k].split(':')[0]
-                                    let minute = ntTimes[k].split(':')[1]
-                
-                                    var date= new Date();
-                                   
-                                    var currentDay = date.getDay();
+        return new Promise((resolve, reject) => {
+            Database.getAll(Projects.TABLE_NAME)
+                .then((res) => {
+                    const len = res.rows.length;
+                    let item = {}
+                    let itemsWithNotifications = []
+                    for (let i = 0; i < len; i++) {
+                        let notificationTimes = [];
+                        item = res.rows.item(i)
+                        if (item.notification_time != '') {
+                            nt = JSON.parse('[' + item.notification_time + ']')
+                            for (let j = 0; j < nt.length; j++) {
+                                if (nt[j].checked == true) {
+                                    dayWithTimes = nt[j]
+                                    ntTimes = nt[j].times
+                                    for (let k = 0; k < ntTimes.length; k++) {
+                                        let day = dayWithTimes.key
+                                        let hour = ntTimes[k].split(':')[0]
+                                        let minute = ntTimes[k].split(':')[1]
 
-                                    var distance = parseInt(day) - currentDay;
-                                   
-                                    date.setDate(date.getDate() + distance);
-                                    date.setHours(parseInt(hour))
-                                    date.setMinutes(parseInt(minute))
-                                    // console.warn(date.toString())
-                                    if ( date < new Date()) { 
-                                        // nextWeek = date.getDate() + 7
-                                        date.setDate(date.getDate() + 7)
+                                        var date = new Date();
+
+                                        var currentDay = date.getDay();
+
+                                        var distance = parseInt(day) - currentDay;
+
+                                        date.setDate(date.getDate() + distance);
+                                        date.setHours(parseInt(hour))
+                                        date.setMinutes(parseInt(minute))
+
+                                        if (date < new Date()) {
+                                            date.setDate(date.getDate() + 7)
+                                        }
+                                        notificationTimes.push(date.toString())
+
                                     }
-                                    notificationTimes.push(date.toString())
-                                    
+                                    let it = { name: item.name, notificationTimes: notificationTimes }
                                 }
-                                let it = { name: item.name, notificationTimes: notificationTimes }
                             }
+                            if (notificationTimes.length > 0) {
+                                itemsWithNotifications.push({ name: item, notificationTimes: notificationTimes })
+                            }
+
                         }
-                        if (notificationTimes.length > 0) {
-                            itemsWithNotifications.push({ name: item.name, notificationTimes: notificationTimes })
-                        }
-                           
                     }
-                }
-
-                console.warn(itemsWithNotifications)
-
-            })
+                    // console.warn(itemsWithNotifications)
+                    resolve(itemsWithNotifications)
+                })
+        })
     }
+
+
 
 
 
@@ -114,6 +116,25 @@ export class Notifier extends React.Component {
 
     }
     getAllHabitTimes() {
+
+    }
+
+    scheduleNotifications() {
+        this.getAllProjectTimes().then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = "Time to start your project: " + res[i].name.name 
+                let message = "This project is %" + res[i].name.percentage_done + " done"
+
+                console.warn(title)
+                console.warn(message)
+
+            }
+        })
+        // for (let i = 0; i < objectNotifications.length; i++) {
+        //     console.warn(objectNotifications.name)
+
+        // }
 
     }
 

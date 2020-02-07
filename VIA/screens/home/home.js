@@ -109,7 +109,7 @@ export class HomeScreen extends React.Component {
         return (<View style={styles.topNav}>
             <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
                 onPress={() => {
-                    notifier.launchNotification()
+                    notifier.scheduleNotifications()
                 }}>
                 <SIcon name="bell" size={30} color="#000" />
             </TouchableOpacity>
