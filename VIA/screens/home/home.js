@@ -4,6 +4,7 @@ import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWit
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
 import { CreateProject, ViewProject, CreateRandom, ViewRandom, NotesModal } from '../../modals'
 import { Controller } from '../controller'
+import { Notifier } from '../../notifier/notifier'
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -28,6 +29,8 @@ const newHomeObject = {
 var uuid = require('react-native-uuid');
 
 const controller = new Controller;
+
+const notifier = new Notifier;
 
 const childDBTableName = Random.TABLE_NAME
 
@@ -100,16 +103,17 @@ export class HomeScreen extends React.Component {
                 }
             })
         // });
-
     }
 
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-            {/* <TouchableOpacity style={styles.topNavBackButton}
-                onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color="#000" />
-            </TouchableOpacity> */}
+            <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
+                onPress={() => {
+                    notifier.launchNotification()
+                }}>
+                <SIcon name="bell" size={30} color="#000" />
+            </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
                 <SIcon name="options" size={30} color="#2d3142" />
@@ -245,12 +249,7 @@ export class HomeScreen extends React.Component {
     //     }
     // }
     /* #endregion */
-  
-  
-  
-  
-  
-  
+
     /* #region  Random Tasks Region */
     saveNewRandom(random) {
         let newRandom = {}
@@ -447,7 +446,6 @@ export class HomeScreen extends React.Component {
     }
     /* #endregion */
 
-
     /* #region  Notes Region */
     setHomeNotesModalVisibility(visible) {
         this.setState({ homeNotesModalVisibility: visible });
@@ -503,21 +501,17 @@ export class HomeScreen extends React.Component {
                 style={styles.createNotesContainer}
                 onPress={() => {
                     this.setHomeNotesModalVisibility(true);
-                }}
-            >
+                }}>
                 <Text
                     style={styles.createNotesText}
                     multiline={true}
-                    onChangeText={this.props.notes}
-                >
+                    onChangeText={this.props.notes}>
                     Notes ...
-        </Text>
+                </Text>
             </TouchableOpacity>
         );
     }
     /* #endregion */
-
-
 
     render() {
         return (
