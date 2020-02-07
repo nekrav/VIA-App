@@ -101,21 +101,163 @@ export class Notifier extends React.Component {
         })
     }
 
-
-
-
-
     getAllTaskTimes() {
+        return new Promise((resolve, reject) => {
+            Database.getAll(Tasks.TABLE_NAME)
+                .then((res) => {
+                    const len = res.rows.length;
+                    let item = {}
+                    let itemsWithNotifications = []
+                    for (let i = 0; i < len; i++) {
+                        let notificationTimes = [];
+                        item = res.rows.item(i)
+                        if (item.notification_time != '') {
+                            nt = JSON.parse('[' + item.notification_time + ']')
+                            for (let j = 0; j < nt.length; j++) {
+                                if (nt[j].checked == true) {
+                                    dayWithTimes = nt[j]
+                                    ntTimes = nt[j].times
+                                    for (let k = 0; k < ntTimes.length; k++) {
+                                        let day = dayWithTimes.key
+                                        let hour = ntTimes[k].split(':')[0]
+                                        let minute = ntTimes[k].split(':')[1]
+
+                                        var date = new Date();
+
+                                        var currentDay = date.getDay();
+
+                                        var distance = parseInt(day) - currentDay;
+
+                                        date.setDate(date.getDate() + distance);
+                                        date.setHours(parseInt(hour))
+                                        date.setMinutes(parseInt(minute))
+
+                                        if (date < new Date()) {
+                                            date.setDate(date.getDate() + 7)
+                                        }
+                                        notificationTimes.push(date.toString())
+
+                                    }
+                                    let it = { name: item.name, notificationTimes: notificationTimes }
+                                }
+                            }
+                            if (notificationTimes.length > 0) {
+                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+                            }
+
+                        }
+                    }
+                    resolve(itemsWithNotifications)
+                })
+        })
 
     }
+    
     getAllRoutineTimes() {
+        return new Promise((resolve, reject) => {
+            Database.getAll(Routines.TABLE_NAME)
+                .then((res) => {
+                    const len = res.rows.length;
+                    let item = {}
+                    let itemsWithNotifications = []
+                    for (let i = 0; i < len; i++) {
+                        let notificationTimes = [];
+                        item = res.rows.item(i)
+                        if (item.notification_time != '') {
+                            nt = JSON.parse('[' + item.notification_time + ']')
+                            for (let j = 0; j < nt.length; j++) {
+                                if (nt[j].checked == true) {
+                                    dayWithTimes = nt[j]
+                                    ntTimes = nt[j].times
+                                    for (let k = 0; k < ntTimes.length; k++) {
+                                        let day = dayWithTimes.key
+                                        let hour = ntTimes[k].split(':')[0]
+                                        let minute = ntTimes[k].split(':')[1]
+
+                                        var date = new Date();
+
+                                        var currentDay = date.getDay();
+
+                                        var distance = parseInt(day) - currentDay;
+
+                                        date.setDate(date.getDate() + distance);
+                                        date.setHours(parseInt(hour))
+                                        date.setMinutes(parseInt(minute))
+
+                                        if (date < new Date()) {
+                                            date.setDate(date.getDate() + 7)
+                                        }
+                                        notificationTimes.push(date.toString())
+
+                                    }
+                                    let it = { name: item.name, notificationTimes: notificationTimes }
+                                }
+                            }
+                            if (notificationTimes.length > 0) {
+                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+                            }
+
+                        }
+                    }
+                    resolve(itemsWithNotifications)
+                })
+        })
 
     }
+
     getAllHabitTimes() {
+        return new Promise((resolve, reject) => {
+            Database.getAll(Habits.TABLE_NAME)
+                .then((res) => {
+                    const len = res.rows.length;
+                    let item = {}
+                    let itemsWithNotifications = []
+                    for (let i = 0; i < len; i++) {
+                        let notificationTimes = [];
+                        item = res.rows.item(i)
+                        if (item.notification_time != '') {
+                            nt = JSON.parse('[' + item.notification_time + ']')
+                            for (let j = 0; j < nt.length; j++) {
+                                if (nt[j].checked == true) {
+                                    dayWithTimes = nt[j]
+                                    ntTimes = nt[j].times
+                                    for (let k = 0; k < ntTimes.length; k++) {
+                                        let day = dayWithTimes.key
+                                        let hour = ntTimes[k].split(':')[0]
+                                        let minute = ntTimes[k].split(':')[1]
+
+                                        var date = new Date();
+
+                                        var currentDay = date.getDay();
+
+                                        var distance = parseInt(day) - currentDay;
+
+                                        date.setDate(date.getDate() + distance);
+                                        date.setHours(parseInt(hour))
+                                        date.setMinutes(parseInt(minute))
+
+                                        if (date < new Date()) {
+                                            date.setDate(date.getDate() + 7)
+                                        }
+                                        notificationTimes.push(date.toString())
+
+                                    }
+                                    let it = { name: item.name, notificationTimes: notificationTimes }
+                                }
+                            }
+                            if (notificationTimes.length > 0) {
+                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+                            }
+
+                        }
+                    }
+                    resolve(itemsWithNotifications)
+                })
+        })
 
     }
 
-    scheduleNotifications() {
+    scheduleProjectNotifications() {
         this.getAllProjectTimes().then((res) => {
             for (let i = 0; i < res.length; i++) {
 
@@ -126,14 +268,84 @@ export class Notifier extends React.Component {
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
-                        message: message, // (required)
-                        playSound: true, // (optional) default: true
-                        soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
-                        repeatType: 'week', // (optional) Repeating interval. Check 'Repeating Notifications' section for more info.
+                        message: message, 
+                        playSound: true, 
+                        soundName: 'default', 
+                        repeatType: 'week',
                     });
                 }
             }
         })
+    }
+
+    scheduleTaskNotifications() {
+        this.getAllTaskTimes().then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = "Time to start your task: " + res[i].item.name
+                let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
+
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message, 
+                        playSound: true, 
+                        soundName: 'default', 
+                        repeatType: 'week',
+                    });
+                }
+            }
+        })
+    }
+
+    scheduleRoutineNotifications() {
+        this.getAllRoutineTimes().then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = "Time to start your routine: " + res[i].item.name
+                let message = "You can do it!"
+
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message, 
+                        playSound: true, 
+                        soundName: 'default', 
+                        repeatType: 'week',
+                    });
+                }
+            }
+        })
+    }
+
+    scheduleHabitsNotifications() {
+        this.getAllHabitTimes().then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = "Time to start your habit: " + res[i].item.name
+                let message = "Good habits are the foundation to success!"
+
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message, 
+                        playSound: true, 
+                        soundName: 'default', 
+                        repeatType: 'week',
+                    });
+                }
+            }
+        })
+    }
+
+    scheduleAllNotifications() {
+        this.scheduleHabitsNotifications();
+        this.scheduleTaskNotifications();
+        this.scheduleRoutineNotifications();
+        this.scheduleHabitsNotifications();
     }
 
 
