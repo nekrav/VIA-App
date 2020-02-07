@@ -133,7 +133,7 @@ export class ProjectsScreen extends React.Component {
 
     getChecked(item) {
         if (item != null)
-        var checked = false
+        // var checked = false
         {
             return checked = item.value.completed === "true"
         }

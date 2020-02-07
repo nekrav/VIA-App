@@ -44,18 +44,13 @@ export class Database {
             this.database.transaction(tx => {
                 tx.executeSql(query)
                     .then(([tex, res]) => {
-                        if (res.rows.length === 0)
-                        {
-                       
-                            // console.warn(res.rows.length === 0)
-                        }
                         resolve(res)
                     })
             })
                 .catch(reject)
         })
     }
-    
+
     static clear(tableName) {
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
@@ -77,20 +72,19 @@ export class Database {
     }
 
     static getTasksByProjId(id) {
-        if (id != {})
-        {
+        if (id != {}) {
             noQuotes = id.replace(/["']/g, "")
             query = `SELECT * FROM tasks WHERE project = '${noQuotes}'`
             return new Promise((resolve, reject) => {
                 this.database.transaction(tx => {
                     tx.executeSql(query)
-                        .then(([tex, res]) =>  resolve(res)
+                        .then(([tex, res]) => resolve(res)
                         )
                 })
                     .catch(reject)
             })
         }
-        
+
     }
 
     static getOne(tableName, id) {
@@ -99,7 +93,7 @@ export class Database {
         return new Promise((resolve, reject) => {
             this.database.transaction(tx => {
                 tx.executeSql(query)
-                    .then(([tex, res]) =>  resolve(res)
+                    .then(([tex, res]) => resolve(res)
                     )
             })
                 .catch(reject)
@@ -130,7 +124,7 @@ export class Database {
     }
 
     static saveHomeNotes(tableName) {
-        
+
     }
 
     static deleteOneProject(tableName, id) {

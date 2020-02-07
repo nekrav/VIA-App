@@ -238,22 +238,6 @@ module.exports = StyleSheet.create({
             height: 1,
             width: 0
         }
-        // margin: 5,
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // width: 110,
-        // height: 110,
-        // borderWidth: 2,
-        // borderColor: "#00bbb1",
-        // // borderRadius: 55,
-        // backgroundColor: '#00bbb1',
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
     },
 
     mainGoalText: {
@@ -779,6 +763,7 @@ module.exports = StyleSheet.create({
     childTitleContainer: {
         flex: 1,
         flexDirection: 'row',
+        alignItems: 'center',
     },
     childTitleText: {
         color: backgroundColor,
@@ -794,6 +779,11 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
+
     /* #endregion */
     /* #endregion */
+
+    checkbox: {
+        backgroundColor: blueColor,
+    },
 })

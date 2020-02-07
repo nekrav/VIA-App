@@ -121,118 +121,136 @@ export class HomeScreen extends React.Component {
 
     /* #region  3 Main Goals Section */
 
-    render1MainGoal(task) {
-        if (this.state.homeObject.main_goal_3) {
-            var mainG3 = JSON.parse(this.state.homeObject.main_goal_3)
-            console.warn(mainG3.name)
-            return (
-                <View style={styles.mainGoalContainer}>
-                    <View style={styles.childTitleContainer}>
-                        <CheckBox
-                            containerStyle={styles.checkBox}
-                            center
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            size={35}
-                            onPress={() => {
-                                // task.completed = !this.getChecked(item)
-                                // controller.saveExisting(this, dbTableName, item.value)
-                            }}
-                        // checked={this.getChecked(item)}
-                        />
-                        <Text
-                            numberOfLines={1}
-                            multiline={false}
-                            style={styles.childTitleText}>{mainG3.name}</Text>
-                    </View>
-                    <View style={styles.childActionButtonsContainer}>
-                        <TouchableOpacity
-                            style={styles.childActionButton}
-                            onPress={() => {
-                                // controller.delete(this, childDBTableName, item.value)
-                                // this.getRandomTasks()
+    // getChecked(item) {
+    //     if (item != null)
+    //     // var checked = false
+    //     console.warn(item.completed)
+    //     {
+    //         return checked = item.completed === "true"
+    //     }
+    // }
 
-                            }}>
-                            <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
-                        </TouchableOpacity>
+    // render1MainGoal(task) {
+    //     if (this.state.homeObject.main_goal_3) {
+    //         var mainG3 = JSON.parse(this.state.homeObject.main_goal_3)
+    //         // console.warn(mainG3.completed)
+    //         return (
+    //             <View style={styles.mainGoalContainer}>
+    //                 <View style={styles.childTitleContainer}>
+    //                     <CheckBox
+    //                         containerStyle={styles.checkBox}
+    //                         center
+    //                         checkedIcon='dot-circle-o'
+    //                         uncheckedIcon='circle-o'
+    //                         size={32}
+    //                         checked={this.getChecked(mainG3)}
+    //                         onPress={() => {
+    //                             console.warn(mainG3.completed)
+    //                             mainG3.completed = !this.getChecked(mainG3)
+    //                             // console.warn(this.getChecked(mainG3))
+    //                             controller.saveExisting(this, Tasks.TABLE_NAME, mainG3)
+    //                         }}
 
-                        <TouchableOpacity
-                            style={styles.childActionButton}
-                            onPress={() => {
-                                // this.setDateModalVisibility(true)
-                                // this.setViewRandomModalVisibility(true)
-                                // this.setState({ selectedRandom: item.value }, () => {
-                                //     this.setViewRandomModalVisibility(true)
-                                // })
-                            }}>
-                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            )
-        } else {
-            return (
-                <TouchableOpacity style={styles.mainGoalNotSelected}
-                    onPress={() => {
-                        this.selectTaskVisibility(true, 'main_goal_3', 'selectMainGoal3')
-                    }}>
-                    <View style={styles.childTitleContainer}>
-                        <Text
-                            numberOfLines={1}
-                            multiline={false}
-                            style={styles.childTitleText}>Main Goal for today</Text>
-                    </View>
-                </TouchableOpacity>
-            )
-        }
-    }
-    render3MainGoalSection() {
-        return (
-            <View style={styles.mainGoalsContainer}>
-                <TouchableOpacity style={styles.mainGoalContainer}>
-                    <Text style={styles.mainGoalText}>Select a main task for today</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.mainGoalContainer}>
-                    <Text style={styles.mainGoalText}>Finish styling of app</Text>
-                </TouchableOpacity>
-                {this.render1MainGoal()}
-            </View>
-        )
-    }
+    //                     />
+    //                     <Text
+    //                         numberOfLines={1}
+    //                         multiline={false}
+    //                         style={styles.childTitleText}>{mainG3.name}</Text>
+    //                 </View>
+    //                 <View style={styles.childActionButtonsContainer}>
+    //                     <TouchableOpacity
+    //                         style={styles.childActionButton}
+    //                         onPress={() => {
+    //                             // controller.delete(this, childDBTableName, item.value)
+    //                             // this.getRandomTasks()
 
-    selectTaskVisibility(visibility, mainGoalPicked, saveAction) {
-        this.setState({ viewTaskSelectionVisible: visibility, mainGoalSelected: mainGoalPicked, mainGoalSaveAction: saveAction })
-    }
+    //                         }}>
+    //                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+    //                     </TouchableOpacity>
+
+    //                     <TouchableOpacity
+    //                         style={styles.childActionButton}
+    //                         onPress={() => {
+    //                             // this.setDateModalVisibility(true)
+    //                             // this.setViewRandomModalVisibility(true)
+    //                             // this.setState({ selectedRandom: item.value }, () => {
+    //                             //     this.setViewRandomModalVisibility(true)
+    //                             // })
+    //                         }}>
+    //                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+    //                     </TouchableOpacity>
+    //                 </View>
+    //             </View>
+    //         )
+    //     } else {
+    //         return (
+    //             <TouchableOpacity style={styles.mainGoalNotSelected}
+    //                 onPress={() => {
+    //                     this.selectTaskVisibility(true, 'main_goal_3', 'selectMainGoal3')
+    //                 }}>
+    //                 <View style={styles.childTitleContainer}>
+    //                     <Text
+    //                         numberOfLines={1}
+    //                         multiline={false}
+    //                         style={styles.childTitleText}>Main Goal for today</Text>
+    //                 </View>
+    //             </TouchableOpacity>
+    //         )
+    //     }
+    // }
+    // render3MainGoalSection() {
+    //     return (
+    //         <View style={styles.mainGoalsContainer}>
+    //             <TouchableOpacity style={styles.mainGoalContainer}>
+    //                 <Text style={styles.mainGoalText}>Select a main task for today</Text>
+    //             </TouchableOpacity>
+    //             <TouchableOpacity style={styles.mainGoalContainer}>
+    //                 <Text style={styles.mainGoalText}>Finish styling of app</Text>
+    //             </TouchableOpacity>
+    //             {this.render1MainGoal()}
+    //         </View>
+    //     )
+    // }
+
+    // selectTaskVisibility(visibility, mainGoalPicked, saveAction) {
+    //     this.setState({ viewTaskSelectionVisible: visibility, mainGoalSelected: mainGoalPicked, mainGoalSaveAction: saveAction })
+    // }
 
 
-    selectMainGoal3(homeObject) {
-        Database.update(Home.TABLE_NAME, homeObject).then(() => {
-            Database.getFromHome();
-        })
-    }
+    // selectMainGoal3(homeObject) {
+    //     Database.update(Home.TABLE_NAME, homeObject).then(() => {
+    //         Database.getFromHome();
+    //     })
+    // }
 
-    renderSelectTaskModal() {
-        if (this.state.viewTaskSelectionVisible) {
-            return (
-                <SelectionModal
-                    animationType="fade"
-                    items={this.state.items}
-                    itemName="Tasks"
-                    transparent={true}
-                    selectItem={item => {
-                        let homeObject = this.state.homeObject
-                        homeObject.main_goal_3 = JSON.stringify(item.value)
-                        this[this.state.mainGoalSaveAction](homeObject);
-                        this.setState({ [this.state.mainGoalSelected]: item.name }, () => { });
-                    }}
-                    closeModal={() => {
-                        this.selectTaskVisibility(false, '', '');
-                    }}
-                ></SelectionModal>
-            );
-        }
-    }
+    // renderSelectTaskModal() {
+    //     if (this.state.viewTaskSelectionVisible) {
+    //         return (
+    //             <SelectionModal
+    //                 animationType="fade"
+    //                 items={this.state.items}
+    //                 itemName="Tasks"
+    //                 transparent={true}
+    //                 selectItem={item => {
+    //                     let homeObject = this.state.homeObject
+    //                     homeObject.main_goal_3 = JSON.stringify(item.value)
+    //                     this[this.state.mainGoalSaveAction](homeObject);
+    //                     this.setState({ [this.state.mainGoalSelected]: item.name }, () => { });
+    //                 }}
+    //                 closeModal={() => {
+    //                     this.selectTaskVisibility(false, '', '');
+    //                 }}
+    //             ></SelectionModal>
+    //         );
+    //     }
+    // }
     /* #endregion */
+  
+  
+  
+  
+  
+  
     /* #region  Random Tasks Region */
     saveNewRandom(random) {
         let newRandom = {}
@@ -499,14 +517,7 @@ export class HomeScreen extends React.Component {
     }
     /* #endregion */
 
-    getChecked(item) {
-        if (item != null)
-            var checked = false
-        {
-            return checked = item.value.completed === "true"
-        }
 
-    }
 
     render() {
         return (
@@ -517,7 +528,7 @@ export class HomeScreen extends React.Component {
                     {this.renderCreateNewRandomModal()}
                     {this.renderViewRandomModal()}
                     {this.renderNotesModal()}
-                    {this.renderSelectTaskModal()}
+                    {/* {this.renderSelectTaskModal()} */}
 
                     {/* Tab Bar Region */}
                     {this.renderTopBar()}
@@ -525,7 +536,7 @@ export class HomeScreen extends React.Component {
                     {/* List Region */}
 
                     {/* 3 Main Goals Region */}
-                    {this.render3MainGoalSection()}
+                    {/* {this.render3MainGoalSection()} */}
 
 
                     {this.renderNotesSection()}
