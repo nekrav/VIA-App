@@ -2,7 +2,7 @@ import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
-import Moment from 'moment'
+import Moment, { min } from 'moment'
 
 const moment = Moment();
 var PushNotification = require("react-native-push-notification");
@@ -65,25 +65,40 @@ export class Notifier extends React.Component {
                     if (item.notification_time != '') {
                         nt = JSON.parse('[' + item.notification_time + ']')
                         for (let j = 0; j < nt.length; j++) {
+                            let it = {}
                             if (nt[j].checked == true) {
                                 dayWithTimes = nt[j]
                                 ntTimes = nt[j].times
-                               for (let k = 0; k < ntTimes.length; k++) {
+                                for (let k = 0; k < ntTimes.length; k++) {
                                     let day = dayWithTimes.key
-                                    let hour =  ntTimes[k].split(':')[0]
-                                    let minute =  ntTimes[k].split(':')[1]
-                                    console.warn("Day " + day + " Hour: " + hour + " Minute: " + minute)
-                               }
+                                    let hour = ntTimes[k].split(':')[0]
+                                    let minute = ntTimes[k].split(':')[1]
+                
+                                    var date= new Date();
+                                   
+                                    var currentDay = date.getDay();
+
+                                    var distance = parseInt(day) - currentDay;
+                                   
+                                    date.setDate(date.getDate() + distance);
+                                    date.setHours(parseInt(hour))
+                                    date.setMinutes(parseInt(minute))
+                                    // console.warn(date.toString())
+
+                                    notificationTimes.push(date.toString())
+                                    
+                                }
+                                it = { name: item.name, notificationTimes: notificationTimes }
+                               
                             }
-                                
+                            itemsWithNotifications.push(it)
                         }
-                        let it = { name: item.name, notificationTimes: notificationTimes }
-                        itemsWithNotifications.push(it)
+                       
                     }
                 }
 
-                var b = Moment({day: 1, hour: 2})
-                
+                console.warn(itemsWithNotifications)
+
             })
     }
 
