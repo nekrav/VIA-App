@@ -76,7 +76,7 @@ export class ViewTask extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete
-                    }}>>
+                    }}>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)

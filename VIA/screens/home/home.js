@@ -61,6 +61,7 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
+        notifier.scheduleAllNotifications();
         this.getRandomTasks();
         this.getHomeData();
         controller.loadAll(this, Tasks.TABLE_NAME);

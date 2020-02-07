@@ -10,6 +10,9 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 
 const controller = new Controller;
 
@@ -67,7 +70,7 @@ export class ViewRandom extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete
-                }}>>
+                }}>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)
