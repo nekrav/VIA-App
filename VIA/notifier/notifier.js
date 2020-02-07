@@ -83,12 +83,14 @@ export class Notifier extends React.Component {
                                     date.setHours(parseInt(hour))
                                     date.setMinutes(parseInt(minute))
                                     // console.warn(date.toString())
-
+                                    if ( date < new Date()) { 
+                                        // nextWeek = date.getDate() + 7
+                                        date.setDate(date.getDate() + 7)
+                                    }
                                     notificationTimes.push(date.toString())
                                     
                                 }
                                 let it = { name: item.name, notificationTimes: notificationTimes }
-                               
                             }
                         }
                         if (notificationTimes.length > 0) {
