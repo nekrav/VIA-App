@@ -94,7 +94,7 @@ export class Notifier extends React.Component {
                                 }
                             }
                             if (notificationTimes.length > 0) {
-                                itemsWithNotifications.push({ name: item, notificationTimes: notificationTimes })
+                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
                             }
 
                         }
@@ -123,8 +123,8 @@ export class Notifier extends React.Component {
         this.getAllProjectTimes().then((res) => {
             for (let i = 0; i < res.length; i++) {
 
-                let title = "Time to start your project: " + res[i].name.name 
-                let message = "This project is %" + res[i].name.percentage_done + " done"
+                let title = "Time to start your project: " + res[i].item.name 
+                let message = "This project is " +  Math.trunc(res[i].item.percentage_done) + "% done"
 
                 console.warn(title)
                 console.warn(message)
