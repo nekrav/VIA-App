@@ -19,6 +19,9 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
 const todayDate = new Date();
@@ -68,7 +71,10 @@ export class ViewHabit extends React.Component {
                 <SIcon name="arrow-left" size={30} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
-                onPress={this.props.delete}>
+                onPress={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete
+                    }}>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)

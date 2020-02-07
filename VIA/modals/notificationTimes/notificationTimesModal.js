@@ -8,6 +8,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { DateModal } from '../dateModal/dateModal'
 
+import { Notifier } from '../../notifier/notifier'
 
 const styles = require('./styles');
 
@@ -21,6 +22,8 @@ var sec = new Date().getSeconds(); //Current Seconds
 const timeFormat = "hh:mm A"
 
 const currentTime = hours + ":" + min
+
+const notifier = new Notifier;
 
 
 export class NotificationTimesModal extends React.Component {
@@ -188,6 +191,7 @@ export class NotificationTimesModal extends React.Component {
                     <TouchableOpacity style={styles.bottomButtonContainer}
                         onPress={() => {
                             this.setDate(null, this.state.times)
+                            notifier.scheduleAllNotifications();
                             this.props.closeModal()
                         }}>
                         <Text style={styles.bottomButtonText}>Close</Text>

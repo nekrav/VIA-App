@@ -152,7 +152,7 @@ export class Notifier extends React.Component {
         })
 
     }
-    
+
     getAllRoutineTimes() {
         return new Promise((resolve, reject) => {
             Database.getAll(Routines.TABLE_NAME)
@@ -342,6 +342,7 @@ export class Notifier extends React.Component {
     }
 
     scheduleAllNotifications() {
+        this.cancelAllNotifications();
         this.scheduleHabitsNotifications();
         this.scheduleTaskNotifications();
         this.scheduleRoutineNotifications();

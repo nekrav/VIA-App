@@ -84,7 +84,6 @@ export class Database {
                     .catch(reject)
             })
         }
-
     }
 
     static getOne(tableName, id) {

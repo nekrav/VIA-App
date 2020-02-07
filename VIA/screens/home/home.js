@@ -9,6 +9,7 @@ import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
+const notifier = new Notifier;
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
 
@@ -30,7 +31,7 @@ var uuid = require('react-native-uuid');
 
 const controller = new Controller;
 
-const notifier = new Notifier;
+
 
 const childDBTableName = Random.TABLE_NAME
 
@@ -107,12 +108,12 @@ export class HomeScreen extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
+            {/* <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
                 onPress={() => {
                     notifier.scheduleProjectNotifications()
                 }}>
                 <SIcon name="bell" size={30} color="#000" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
                 <SIcon name="options" size={30} color="#2d3142" />

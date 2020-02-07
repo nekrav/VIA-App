@@ -64,7 +64,10 @@ export class ViewRandom extends React.Component {
                 <SIcon name="arrow-left" size={30} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
-                onPress={this.props.delete}>
+                onPress={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete
+                }}>>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)

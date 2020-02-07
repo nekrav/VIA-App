@@ -7,7 +7,9 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
+import { Notifier } from '../../notifier/notifier'
 
+const notifier = new Notifier;
 const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
@@ -209,7 +211,7 @@ export class TasksScreen extends React.Component {
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}
+                                        onPress={() => { controller.delete(this, dbTableName, item.value);  notifier.scheduleAllNotifications() }}
                                     >
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>

@@ -6,6 +6,9 @@ import { CreateRoutine, ViewRoutine } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 
 
 const styles = require('./styles');
@@ -172,7 +175,7 @@ export class RoutinesScreen extends React.Component {
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value) }}>
+                                        onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications() }}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
 

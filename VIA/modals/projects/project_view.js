@@ -11,6 +11,9 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 
 const controller = new Controller;
 
@@ -71,7 +74,10 @@ export class ViewProject extends React.Component {
                 <SIcon name="arrow-left" size={30} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
-                onPress={this.props.delete}>
+                onPress={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete
+                    }}>>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)
@@ -251,7 +257,7 @@ export class ViewProject extends React.Component {
                                         onPress={() => {
                                             controller.delete(this, childTableName, item.value)
                                             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-
+                                            notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>

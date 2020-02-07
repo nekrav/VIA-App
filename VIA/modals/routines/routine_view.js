@@ -11,6 +11,9 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
 const todayDate = new Date();
@@ -70,7 +73,10 @@ export class ViewRoutine extends React.Component {
                 <SIcon name="arrow-left" size={30} color="#000" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
-                onPress={this.props.delete}>
+                onPress={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete
+                }}>>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)
@@ -221,7 +227,7 @@ export class ViewRoutine extends React.Component {
                                 Habits in {this.state.selectedItem.name}
                             </Text>
                         </View>
-                          {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setTaskSelectionModalVisibility(true)
                             }}>
@@ -249,7 +255,7 @@ export class ViewRoutine extends React.Component {
                                         onPress={() => {
                                             controller.delete(this, childTableName, item.value)
                                             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-
+                                            notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>
@@ -288,12 +294,12 @@ export class ViewRoutine extends React.Component {
                         </TouchableOpacity> */}
                     </View>
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-                        <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
-                        {/* <Text style={styles.notificationTimeButtonText}>
+                    <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
+                    {/* <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="reload" size={20} color="#ABABAB" />
                         </Text> */}
                     {/* </TouchableOpacity> */}
-                    </View>
+                </View>
             );
         }
     }
@@ -576,7 +582,7 @@ export class ViewRoutine extends React.Component {
         );
     }
     /* #endregion */
-    
+
 
     render() {
         if (this.props.selectedItem != {}) {
