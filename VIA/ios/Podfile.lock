@@ -221,7 +221,7 @@ PODS:
     - React-cxxreact (= 0.61.1)
     - React-jsi (= 0.61.1)
     - ReactCommon/jscallinvoker (= 0.61.1)
-  - RNCPushNotificationIOS (1.0.3):
+  - RNCPushNotificationIOS (1.0.5):
     - React
   - RNDateTimePicker (2.1.0):
     - React
@@ -373,7 +373,7 @@ SPEC CHECKSUMS:
   React-RCTText: 81b62b4e7f11531a5154e4daa5617670d5a2d5de
   React-RCTVibration: 8be61459e3749d1fb02cf414edd05b3007622882
   ReactCommon: 4fba5be89efdf0b5720e0adb3d8d7edf6e532db0
-  RNCPushNotificationIOS: 5403d137a49c55f0dc2273be8473873e934359cd
+  RNCPushNotificationIOS: 30ed75aa2981a4ee00b8a2c46599ff18a9c7fcf6
   RNDateTimePicker: 68e542a59ff1b73563744145bfc45c2b88a3deea
   RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
