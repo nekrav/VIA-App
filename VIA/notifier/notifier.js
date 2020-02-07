@@ -65,7 +65,6 @@ export class Notifier extends React.Component {
                     if (item.notification_time != '') {
                         nt = JSON.parse('[' + item.notification_time + ']')
                         for (let j = 0; j < nt.length; j++) {
-                            let it = {}
                             if (nt[j].checked == true) {
                                 dayWithTimes = nt[j]
                                 ntTimes = nt[j].times
@@ -88,12 +87,14 @@ export class Notifier extends React.Component {
                                     notificationTimes.push(date.toString())
                                     
                                 }
-                                it = { name: item.name, notificationTimes: notificationTimes }
+                                let it = { name: item.name, notificationTimes: notificationTimes }
                                
                             }
-                            itemsWithNotifications.push(it)
                         }
-                       
+                        if (notificationTimes.length > 0) {
+                            itemsWithNotifications.push({ name: item.name, notificationTimes: notificationTimes })
+                        }
+                           
                     }
                 }
 
