@@ -4,9 +4,14 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Habits } from './db'
 import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen, HomeScreen } from './screens'
 import { CreateHabit } from './modals'
+import { Notifier } from './notifier/notifier'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { TabButton } from '../VIA/components/tabButton'
 import { HomeButton } from '../VIA/components/homeButton'
+
+const notifier = new Notifier;
+
+notifier.registerNotificationService();
 
 const TabNavigator = createBottomTabNavigator({
   Habits: {

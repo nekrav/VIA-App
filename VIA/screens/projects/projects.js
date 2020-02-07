@@ -116,7 +116,7 @@ export class ProjectsScreen extends React.Component {
                                 return JSON.stringify(time)
                             })
                             theProject.notification_time = times
-                            this.setState({ selectedProject: theTask })
+                            this.setState({ selectedProject: theProject })
                         }
                     }}
                     save={() => { controller.saveExisting(this, dbTableName, theProject) }}

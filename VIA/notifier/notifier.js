@@ -1,12 +1,15 @@
 import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
+import { Controller } from '../screens/controller'
+
 var PushNotification = require("react-native-push-notification");
+const controller = new Controller;
 
 export class Notifier extends React.Component {
 
 
-    registerNotifs() {
+    registerNotificationService() {
         var PushNotification = require("react-native-push-notification");
 
         PushNotification.configure({
@@ -48,18 +51,56 @@ export class Notifier extends React.Component {
         });
     }
 
+    getAllProjectTimes() {
+        Database.getAll(Projects.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+
+                let projectsWithNotifications = []
+                for (let i = 0; i < len; i++) {
+                    let notificationTimes = [];
+                    item = res.rows.item(i)
+                    if (item.notification_time != '') {
+                        nt = JSON.parse('[' + item.notification_time + ']')
+                        for (let i = 0; i < nt.length; i++) {
+                            if (nt[i].checked == true) {
+                                notificationTimes.push(nt[i])
+                            }
+                            
+                        }
+                        let proj = { name: item.name, notificationTimes: notificationTimes }
+                        projectsWithNotifications.push(proj)
+                    }
+                }
+                console.warn(projectsWithNotifications)
+            })
+    }
+    getAllTaskTimes() {
+
+    }
+    getAllRoutineTimes() {
+
+    }
+    getAllHabitTimes() {
+
+    }
+
 
     launchNotification() {
-        console.warn("launch")
+        this.getAllProjectTimes()
         PushNotification.localNotificationSchedule({
             title: "My Notification Title", // (optional)
             date: new Date(Date.now() + 5 * 1000),
             message: "My Notification Message", // (required)
-            playSound: false, // (optional) default: true
+            playSound: true, // (optional) default: true
             soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
             repeatType: 'day', // (optional) Repeating interval. Check 'Repeating Notifications' section for more info.
         });
     }
 
+    cancelAllNotifications() {
+        PushNotification.cancelAllLocalNotifications()
+    }
 
 }
