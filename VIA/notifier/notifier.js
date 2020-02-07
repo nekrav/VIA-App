@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Habits, Routines, Projects, Tasks } from '../db'
+import { Database, Habits, Routines, Projects, Tasks, Random } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
 
@@ -170,6 +170,27 @@ export class Notifier extends React.Component {
 
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
+
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
+                        repeatType: 'week',
+                    });
+                }
+            }
+        })
+    }
+
+    scheduleHabitsNotifications() {
+        this.getAllObjectNotificationTimes(Random.TABLE_NAME).then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = "Time to start your popup task: " + res[i].item.name
+                let message = "Things pop up!"
 
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
