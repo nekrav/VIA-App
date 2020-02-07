@@ -35,6 +35,7 @@ export class TasksScreen extends React.Component {
         StatusBar.setBackgroundColor = "#000"
 
         controller.loadAll(this, dbTableName)
+        notifier.scheduleAllNotifications() 
     }
 
     saveNew(task) {
@@ -53,6 +54,7 @@ export class TasksScreen extends React.Component {
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
+            notifier.scheduleAllNotifications() 
         })
     }
 

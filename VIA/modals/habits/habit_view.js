@@ -49,6 +49,7 @@ export class ViewHabit extends React.Component {
                 this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
             })
         }
+        notifier.scheduleAllNotifications() 
     }
 
     getStyleIfDone() {
@@ -321,6 +322,7 @@ export class ViewHabit extends React.Component {
                         this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
+                        notifier.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>

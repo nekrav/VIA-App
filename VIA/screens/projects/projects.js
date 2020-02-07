@@ -33,6 +33,7 @@ export class ProjectsScreen extends React.Component {
     }
 
     componentDidMount() {
+        notifier.scheduleAllNotifications() 
         controller.loadAll(this, dbTableName)
     }
 
@@ -52,6 +53,7 @@ export class ProjectsScreen extends React.Component {
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
+            notifier.scheduleAllNotifications() 
         })
     }
 

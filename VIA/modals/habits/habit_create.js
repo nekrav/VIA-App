@@ -16,6 +16,10 @@ const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
+
 
 export class CreateHabit extends React.Component {
 

@@ -49,10 +49,9 @@ export class Notifier extends React.Component {
             requestPermissions: true
         });
     }
-
-    getAllProjectTimes() {
+    getAllObjectNotificationTimes(tableName) {
         return new Promise((resolve, reject) => {
-            Database.getAll(Projects.TABLE_NAME)
+            Database.getAll(tableName)
                 .then((res) => {
                     const len = res.rows.length;
                     let item = {}
@@ -70,58 +69,10 @@ export class Notifier extends React.Component {
                                         let day = dayWithTimes.key
                                         let hour = ntTimes[k].split(':')[0]
                                         let minute = ntTimes[k].split(':')[1]
-
-                                        var date = new Date();
-
-                                        var currentDay = date.getDay();
-
-                                        var distance = parseInt(day) - currentDay;
-
-                                        date.setDate(date.getDate() + distance);
-                                        date.setHours(parseInt(hour))
-                                        date.setMinutes(parseInt(minute))
-
-                                        // if (date < new Date()) {
-                                        //     date.setDate(date.getDate() + 7)
-                                        // }
-                                        notificationTimes.push(date.toString())
-
-                                    }
-                                    let it = { name: item.name, notificationTimes: notificationTimes }
-                                }
-                            }
-                            if (notificationTimes.length > 0) {
-                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
-                            }
-
-                        }
-                    }
-                    resolve(itemsWithNotifications)
-                })
-        })
-    }
-
-    getAllTaskTimes() {
-        return new Promise((resolve, reject) => {
-            Database.getAll(Tasks.TABLE_NAME)
-                .then((res) => {
-                    const len = res.rows.length;
-                    let item = {}
-                    let itemsWithNotifications = []
-                    for (let i = 0; i < len; i++) {
-                        let notificationTimes = [];
-                        item = res.rows.item(i)
-                        if (item.notification_time != '') {
-                            nt = JSON.parse('[' + item.notification_time + ']')
-                            for (let j = 0; j < nt.length; j++) {
-                                if (nt[j].checked == true) {
-                                    dayWithTimes = nt[j]
-                                    ntTimes = nt[j].times
-                                    for (let k = 0; k < ntTimes.length; k++) {
-                                        let day = dayWithTimes.key
-                                        let hour = ntTimes[k].split(':')[0]
-                                        let minute = ntTimes[k].split(':')[1]
-
+                                        let ampm = minute.slice(-2);
+                                        if (ampm == 'PM') {
+                                            hour = parseInt(hour) + 12;
+                                        }
                                         var date = new Date();
 
                                         var currentDay = date.getDay();
@@ -151,114 +102,222 @@ export class Notifier extends React.Component {
                 })
         })
 
-    }
-
-    getAllRoutineTimes() {
-        return new Promise((resolve, reject) => {
-            Database.getAll(Routines.TABLE_NAME)
-                .then((res) => {
-                    const len = res.rows.length;
-                    let item = {}
-                    let itemsWithNotifications = []
-                    for (let i = 0; i < len; i++) {
-                        let notificationTimes = [];
-                        item = res.rows.item(i)
-                        if (item.notification_time != '') {
-                            nt = JSON.parse('[' + item.notification_time + ']')
-                            for (let j = 0; j < nt.length; j++) {
-                                if (nt[j].checked == true) {
-                                    dayWithTimes = nt[j]
-                                    ntTimes = nt[j].times
-                                    for (let k = 0; k < ntTimes.length; k++) {
-                                        let day = dayWithTimes.key
-                                        let hour = ntTimes[k].split(':')[0]
-                                        let minute = ntTimes[k].split(':')[1]
-
-                                        var date = new Date();
-
-                                        var currentDay = date.getDay();
-
-                                        var distance = parseInt(day) - currentDay;
-
-                                        date.setDate(date.getDate() + distance);
-                                        date.setHours(parseInt(hour))
-                                        date.setMinutes(parseInt(minute))
-
-                                        // if (date < new Date()) {
-                                        //     date.setDate(date.getDate() + 7)
-                                        // }
-                                        notificationTimes.push(date.toString())
-
-                                    }
-                                    let it = { name: item.name, notificationTimes: notificationTimes }
-                                }
-                            }
-                            if (notificationTimes.length > 0) {
-                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
-                            }
-
-                        }
-                    }
-                    resolve(itemsWithNotifications)
-                })
-        })
 
     }
 
-    getAllHabitTimes() {
-        return new Promise((resolve, reject) => {
-            Database.getAll(Habits.TABLE_NAME)
-                .then((res) => {
-                    const len = res.rows.length;
-                    let item = {}
-                    let itemsWithNotifications = []
-                    for (let i = 0; i < len; i++) {
-                        let notificationTimes = [];
-                        item = res.rows.item(i)
-                        if (item.notification_time != '') {
-                            nt = JSON.parse('[' + item.notification_time + ']')
-                            for (let j = 0; j < nt.length; j++) {
-                                if (nt[j].checked == true) {
-                                    dayWithTimes = nt[j]
-                                    ntTimes = nt[j].times
-                                    for (let k = 0; k < ntTimes.length; k++) {
-                                        let day = dayWithTimes.key
-                                        let hour = ntTimes[k].split(':')[0]
-                                        let minute = ntTimes[k].split(':')[1]
+    // getAllProjectTimes() {
+    //     return new Promise((resolve, reject) => {
+    //         Database.getAll(Projects.TABLE_NAME)
+    //             .then((res) => {
+    //                 const len = res.rows.length;
+    //                 let item = {}
+    //                 let itemsWithNotifications = []
+    //                 for (let i = 0; i < len; i++) {
+    //                     let notificationTimes = [];
+    //                     item = res.rows.item(i)
+    //                     if (item.notification_time != '') {
+    //                         nt = JSON.parse('[' + item.notification_time + ']')
+    //                         for (let j = 0; j < nt.length; j++) {
+    //                             if (nt[j].checked == true) {
+    //                                 dayWithTimes = nt[j]
+    //                                 ntTimes = nt[j].times
+    //                                 for (let k = 0; k < ntTimes.length; k++) {
+    //                                     let day = dayWithTimes.key
+    //                                     let hour = ntTimes[k].split(':')[0]
+    //                                     let minute = ntTimes[k].split(':')[1]
 
-                                        var date = new Date();
+    //                                     var date = new Date();
 
-                                        var currentDay = date.getDay();
+    //                                     var currentDay = date.getDay();
 
-                                        var distance = parseInt(day) - currentDay;
+    //                                     var distance = parseInt(day) - currentDay;
 
-                                        date.setDate(date.getDate() + distance);
-                                        date.setHours(parseInt(hour))
-                                        date.setMinutes(parseInt(minute))
+    //                                     date.setDate(date.getDate() + distance);
+    //                                     date.setHours(parseInt(hour))
+    //                                     date.setMinutes(parseInt(minute))
 
-                                        // if (date < new Date()) {
-                                        //     date.setDate(date.getDate() + 7)
-                                        // }
-                                        notificationTimes.push(date.toString())
+    //                                     // if (date < new Date()) {
+    //                                     //     date.setDate(date.getDate() + 7)
+    //                                     // }
+    //                                     notificationTimes.push(date.toString())
 
-                                    }
-                                    let it = { name: item.name, notificationTimes: notificationTimes }
-                                }
-                            }
-                            if (notificationTimes.length > 0) {
-                                itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
-                            }
+    //                                 }
+    //                                 let it = { name: item.name, notificationTimes: notificationTimes }
+    //                             }
+    //                         }
+    //                         if (notificationTimes.length > 0) {
+    //                             itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+    //                         }
 
-                        }
-                    }
-                    resolve(itemsWithNotifications)
-                })
-        })
+    //                     }
+    //                 }
+    //                 resolve(itemsWithNotifications)
+    //             })
+    //     })
+    // }
 
-    }
+    // getAllTaskTimes() {
+    //     return new Promise((resolve, reject) => {
+    //         Database.getAll(Tasks.TABLE_NAME)
+    //             .then((res) => {
+    //                 const len = res.rows.length;
+    //                 let item = {}
+    //                 let itemsWithNotifications = []
+    //                 for (let i = 0; i < len; i++) {
+    //                     let notificationTimes = [];
+    //                     item = res.rows.item(i)
+    //                     if (item.notification_time != '') {
+    //                         nt = JSON.parse('[' + item.notification_time + ']')
+    //                         for (let j = 0; j < nt.length; j++) {
+    //                             if (nt[j].checked == true) {
+    //                                 dayWithTimes = nt[j]
+    //                                 ntTimes = nt[j].times
+    //                                 for (let k = 0; k < ntTimes.length; k++) {
+    //                                     let day = dayWithTimes.key
+    //                                     let hour = ntTimes[k].split(':')[0]
+    //                                     let minute = ntTimes[k].split(':')[1]
+
+    //                                     var date = new Date();
+
+    //                                     var currentDay = date.getDay();
+
+    //                                     var distance = parseInt(day) - currentDay;
+
+    //                                     date.setDate(date.getDate() + distance);
+    //                                     date.setHours(parseInt(hour))
+    //                                     date.setMinutes(parseInt(minute))
+
+    //                                     // if (date < new Date()) {
+    //                                     //     date.setDate(date.getDate() + 7)
+    //                                     // }
+    //                                     notificationTimes.push(date.toString())
+
+    //                                 }
+    //                                 let it = { name: item.name, notificationTimes: notificationTimes }
+    //                             }
+    //                         }
+    //                         if (notificationTimes.length > 0) {
+    //                             itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+    //                         }
+
+    //                     }
+    //                 }
+    //                 resolve(itemsWithNotifications)
+    //             })
+    //     })
+
+    // }
+   
+
+    // getAllRoutineTimes() {
+    //     return new Promise((resolve, reject) => {
+    //         Database.getAll(Routines.TABLE_NAME)
+    //             .then((res) => {
+    //                 const len = res.rows.length;
+    //                 let item = {}
+    //                 let itemsWithNotifications = []
+    //                 for (let i = 0; i < len; i++) {
+    //                     let notificationTimes = [];
+    //                     item = res.rows.item(i)
+    //                     if (item.notification_time != '') {
+    //                         nt = JSON.parse('[' + item.notification_time + ']')
+    //                         for (let j = 0; j < nt.length; j++) {
+    //                             if (nt[j].checked == true) {
+    //                                 dayWithTimes = nt[j]
+    //                                 ntTimes = nt[j].times
+    //                                 for (let k = 0; k < ntTimes.length; k++) {
+    //                                     let day = dayWithTimes.key
+    //                                     let hour = ntTimes[k].split(':')[0]
+    //                                     let minute = ntTimes[k].split(':')[1]
+    //                                     let ampm = minute.slice(-2);
+    //                                     if (ampm == 'PM') {
+    //                                         hour = parseInt(hour) + 12;
+    //                                     }
+    //                                     var date = new Date();
+
+    //                                     var currentDay = date.getDay();
+
+    //                                     var distance = parseInt(day) - currentDay;
+
+    //                                     date.setDate(date.getDate() + distance);
+    //                                     date.setHours(parseInt(hour))
+    //                                     date.setMinutes(parseInt(minute))
+
+    //                                     // if (date < new Date()) {
+    //                                     //     date.setDate(date.getDate() + 7)
+    //                                     // }
+    //                                     notificationTimes.push(date.toString())
+
+    //                                 }
+    //                                 let it = { name: item.name, notificationTimes: notificationTimes }
+    //                             }
+    //                         }
+    //                         if (notificationTimes.length > 0) {
+    //                             itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+    //                         }
+
+    //                     }
+    //                 }
+    //                 resolve(itemsWithNotifications)
+    //             })
+    //     })
+
+    // }
+
+    // getAllHabitTimes() {
+    //     return new Promise((resolve, reject) => {
+    //         Database.getAll(Habits.TABLE_NAME)
+    //             .then((res) => {
+    //                 const len = res.rows.length;
+    //                 let item = {}
+    //                 let itemsWithNotifications = []
+    //                 for (let i = 0; i < len; i++) {
+    //                     let notificationTimes = [];
+    //                     item = res.rows.item(i)
+    //                     if (item.notification_time != '') {
+    //                         nt = JSON.parse('[' + item.notification_time + ']')
+    //                         for (let j = 0; j < nt.length; j++) {
+    //                             if (nt[j].checked == true) {
+    //                                 dayWithTimes = nt[j]
+    //                                 ntTimes = nt[j].times
+    //                                 for (let k = 0; k < ntTimes.length; k++) {
+    //                                     let day = dayWithTimes.key
+    //                                     let hour = ntTimes[k].split(':')[0]
+    //                                     let minute = ntTimes[k].split(':')[1]
+
+    //                                     var date = new Date();
+
+    //                                     var currentDay = date.getDay();
+
+    //                                     var distance = parseInt(day) - currentDay;
+
+    //                                     date.setDate(date.getDate() + distance);
+    //                                     date.setHours(parseInt(hour))
+    //                                     date.setMinutes(parseInt(minute))
+
+    //                                     // if (date < new Date()) {
+    //                                     //     date.setDate(date.getDate() + 7)
+    //                                     // }
+    //                                     notificationTimes.push(date.toString())
+
+    //                                 }
+    //                                 let it = { name: item.name, notificationTimes: notificationTimes }
+    //                             }
+    //                         }
+    //                         if (notificationTimes.length > 0) {
+    //                             itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+    //                         }
+
+    //                     }
+    //                 }
+    //                 resolve(itemsWithNotifications)
+    //             })
+    //     })
+
+    // }
 
     scheduleProjectNotifications() {
-        this.getAllProjectTimes().then((res) => {
+        this.getAllObjectNotificationTimes(Projects.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
 
                 let title = "Time to start your project: " + res[i].item.name
@@ -279,12 +338,11 @@ export class Notifier extends React.Component {
     }
 
     scheduleTaskNotifications() {
-        this.getAllTaskTimes().then((res) => {
+        this.getAllObjectNotificationTimes(Tasks.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
 
                 let title = "Time to start your task: " + res[i].item.name
                 let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
-                console.warn(res[i].notificationTimes)
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
                         title: title,
@@ -300,12 +358,11 @@ export class Notifier extends React.Component {
     }
 
     scheduleRoutineNotifications() {
-        this.getAllRoutineTimes().then((res) => {
+        this.getAllObjectNotificationTimes(Routines.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
 
                 let title = "Time to start your routine: " + res[i].item.name
                 let message = "You can do it!"
-
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
                         title: title,
@@ -321,7 +378,7 @@ export class Notifier extends React.Component {
     }
 
     scheduleHabitsNotifications() {
-        this.getAllHabitTimes().then((res) => {
+        this.getAllObjectNotificationTimes(Habits.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
 
                 let title = "Time to start your habit: " + res[i].item.name
@@ -340,7 +397,7 @@ export class Notifier extends React.Component {
             }
         })
     }
-
+    
     scheduleAllNotifications() {
         this.cancelAllNotifications();
         this.scheduleHabitsNotifications();

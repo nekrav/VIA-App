@@ -15,6 +15,10 @@ const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
+
 
 export class CreateProject extends React.Component {
 	constructor(props) {
@@ -77,6 +81,7 @@ export class CreateProject extends React.Component {
 				this.state.tasks[i].item.value.project  = projectID
 				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Tasks.TABLE_NAME);
+					notifier.scheduleAllNotifications() 
 				})
 			}
 		}

@@ -213,6 +213,7 @@ export class ViewProject extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Habits.TABLE_NAME);
+                    notifier.scheduleAllNotifications() 
                 })
             }
         }
@@ -479,6 +480,7 @@ export class ViewProject extends React.Component {
                         // this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
+                        notifier.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>

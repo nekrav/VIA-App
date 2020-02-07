@@ -280,7 +280,6 @@ export class ViewRandom extends React.Component {
 
 
     renderNotificationTimesSection() {
-        // console.warn(this.state.selectedItem.notification_time)
         if (this.state.selectedItem.notification_time != '') {
             var daysWithNotifications = '';
 

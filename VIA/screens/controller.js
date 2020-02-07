@@ -1,5 +1,7 @@
 import React from 'react';
 import { Database, Habits } from '../db'
+import { Notifier } from '../notifier/notifier'
+
 export class Controller extends React.Component {
 
     setAddModalVisible(object, visible) {
@@ -29,6 +31,8 @@ export class Controller extends React.Component {
                     numberOfItems: len,
                     numberOfFinishedItems: finishedArr.length
                 })
+            }).then(() => {
+                // Notifier.scheduleAllNotifications();
             })
     }
 
@@ -42,7 +46,6 @@ export class Controller extends React.Component {
     }
 
     saveExisting(object, tableName, item) {
-        // console.warn(item)
         Database.update(tableName, item).then(() => {
             this.loadAll(object, tableName);
         })
@@ -61,10 +64,8 @@ export class Controller extends React.Component {
             Object.keys(timesObj).map(key => {
                 timesObj[key].checked = "false"
                 item.notification_time = timesObj
-                console.warn(item)
             }, () => {
                 this.saveExisting(object, tableName, item)
-                // console.warn(item)
             })
         }
     }

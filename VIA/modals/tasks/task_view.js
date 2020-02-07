@@ -46,6 +46,7 @@ export class ViewTask extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
+        notifier.scheduleAllNotifications() 
         if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
@@ -338,6 +339,7 @@ export class ViewTask extends React.Component {
                         // this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
+                        notifier.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>
@@ -348,7 +350,6 @@ export class ViewTask extends React.Component {
 
 
     renderNotificationTimesSection() {
-        // console.warn(this.state.selectedItem.notification_time)
         if (this.state.selectedItem.notification_time != '') {
             var daysWithNotifications = '';
 

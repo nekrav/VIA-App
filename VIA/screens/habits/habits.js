@@ -35,6 +35,7 @@ export class HabitsScreen extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, dbTableName)
+        notifier.scheduleAllNotifications() 
     }
 
     saveNew(habit) {
@@ -55,6 +56,7 @@ export class HabitsScreen extends React.Component {
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
+            notifier.scheduleAllNotifications() 
         })
     }
 

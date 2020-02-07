@@ -211,13 +211,13 @@ export class ViewRoutine extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Habits.TABLE_NAME);
+                    notifier.scheduleAllNotifications() 
                 })
             }
         }
     }
 
     renderAllChildrenSection() {
-        // console.warn()
         if (this.state.relatedChildren.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
@@ -463,6 +463,7 @@ export class ViewRoutine extends React.Component {
                         this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
+                        notifier.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>

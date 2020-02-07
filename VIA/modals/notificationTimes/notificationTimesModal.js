@@ -191,7 +191,6 @@ export class NotificationTimesModal extends React.Component {
                     <TouchableOpacity style={styles.bottomButtonContainer}
                         onPress={() => {
                             this.setDate(null, this.state.times)
-                            notifier.scheduleAllNotifications();
                             this.props.closeModal()
                         }}>
                         <Text style={styles.bottomButtonText}>Close</Text>

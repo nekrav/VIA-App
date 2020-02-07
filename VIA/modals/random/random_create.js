@@ -18,10 +18,15 @@ import { Controller } from '../controller';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 const controller = new Controller();
 const dateFormat = 'ddd, MMM Do, YY';
 const todayDate = new Date();
 const styles = require('./styles');
+
 
 export class CreateRandom extends React.Component {
     constructor(props) {

@@ -9,11 +9,16 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+
+import { Notifier } from '../../notifier/notifier'
+
+const notifier = new Notifier;
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
 const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
+
 export class CreateRoutine extends React.Component {
 
 	constructor(props) {
@@ -78,6 +83,7 @@ export class CreateRoutine extends React.Component {
 				this.state.tasks[i].item.value.routine = projectID
 				Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Habits.TABLE_NAME);
+					notifier.scheduleAllNotifications() 
 				})
 			}
 		}

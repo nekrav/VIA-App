@@ -34,6 +34,7 @@ export class RoutinesScreen extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, dbTableName)
+        notifier.scheduleAllNotifications() 
     }
 
     saveNew(routine) {
@@ -47,6 +48,7 @@ export class RoutinesScreen extends React.Component {
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
+            notifier.scheduleAllNotifications() 
         })
     }
 
