@@ -2,7 +2,9 @@ import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
+import Moment from 'moment'
 
+const moment = Moment();
 var PushNotification = require("react-native-push-notification");
 const controller = new Controller;
 
@@ -56,26 +58,37 @@ export class Notifier extends React.Component {
             .then((res) => {
                 const len = res.rows.length;
                 let item = {}
-
-                let projectsWithNotifications = []
+                let itemsWithNotifications = []
                 for (let i = 0; i < len; i++) {
                     let notificationTimes = [];
                     item = res.rows.item(i)
                     if (item.notification_time != '') {
                         nt = JSON.parse('[' + item.notification_time + ']')
-                        for (let i = 0; i < nt.length; i++) {
-                            if (nt[i].checked == true) {
-                                notificationTimes.push(nt[i])
+                        for (let j = 0; j < nt.length; j++) {
+                            if (nt[j].checked == true) {
+                                dayWithTimes = nt[j]
+                                ntTimes = nt[j].times
+                               for (let k = 0; k < ntTimes.length; k++) {
+                                    let day = dayWithTimes.key
+                                    let hour =  ntTimes[k].split(':')[0]
+                                    let minute =  ntTimes[k].split(':')[1]
+                                    console.warn("Day " + day + " Hour: " + hour + " Minute: " + minute)
+                               }
                             }
-                            
+                                
                         }
-                        let proj = { name: item.name, notificationTimes: notificationTimes }
-                        projectsWithNotifications.push(proj)
+                        let it = { name: item.name, notificationTimes: notificationTimes }
+                        itemsWithNotifications.push(it)
                     }
                 }
-                console.warn(projectsWithNotifications)
+
+                var b = Moment({day: 1, hour: 2})
+                
             })
     }
+
+
+
     getAllTaskTimes() {
 
     }
