@@ -110,7 +110,6 @@ export class Notifier extends React.Component {
 
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
-                console.warn(res[i].notificationTimes)
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
                         title: title,
