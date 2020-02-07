@@ -2,11 +2,8 @@ import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
-import Moment, { min } from 'moment'
 
-const moment = Moment();
 var PushNotification = require("react-native-push-notification");
-const controller = new Controller;
 
 export class Notifier extends React.Component {
 
@@ -99,7 +96,6 @@ export class Notifier extends React.Component {
 
                         }
                     }
-                    // console.warn(itemsWithNotifications)
                     resolve(itemsWithNotifications)
                 })
         })
@@ -123,19 +119,21 @@ export class Notifier extends React.Component {
         this.getAllProjectTimes().then((res) => {
             for (let i = 0; i < res.length; i++) {
 
-                let title = "Time to start your project: " + res[i].item.name 
-                let message = "This project is " +  Math.trunc(res[i].item.percentage_done) + "% done"
+                let title = "Time to start your project: " + res[i].item.name
+                let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
 
-                console.warn(title)
-                console.warn(message)
-
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message, // (required)
+                        playSound: true, // (optional) default: true
+                        soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+                        repeatType: 'week', // (optional) Repeating interval. Check 'Repeating Notifications' section for more info.
+                    });
+                }
             }
         })
-        // for (let i = 0; i < objectNotifications.length; i++) {
-        //     console.warn(objectNotifications.name)
-
-        // }
-
     }
 
 
@@ -143,7 +141,7 @@ export class Notifier extends React.Component {
         this.getAllProjectTimes()
         PushNotification.localNotificationSchedule({
             title: "My Notification Title", // (optional)
-            date: new Date(Date.now() + 5 * 1000),
+            date: new Date(Date.now() + 5 * 1000), //in 5 seconds
             message: "My Notification Message", // (required)
             playSound: true, // (optional) default: true
             soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
