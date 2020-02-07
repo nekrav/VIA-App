@@ -115,9 +115,9 @@ export class Notifier extends React.Component {
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
-                        message: message, 
-                        playSound: true, 
-                        soundName: 'default', 
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
                         repeatType: 'week',
                     });
                 }
@@ -135,9 +135,9 @@ export class Notifier extends React.Component {
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
-                        message: message, 
-                        playSound: true, 
-                        soundName: 'default', 
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
                         repeatType: 'week',
                     });
                 }
@@ -155,9 +155,9 @@ export class Notifier extends React.Component {
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
-                        message: message, 
-                        playSound: true, 
-                        soundName: 'default', 
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
                         repeatType: 'week',
                     });
                 }
@@ -176,16 +176,16 @@ export class Notifier extends React.Component {
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
-                        message: message, 
-                        playSound: true, 
-                        soundName: 'default', 
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
                         repeatType: 'week',
                     });
                 }
             }
         })
     }
-    
+
     scheduleAllNotifications() {
         this.cancelAllNotifications();
         this.scheduleHabitsNotifications();
