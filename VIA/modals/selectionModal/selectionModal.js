@@ -26,18 +26,18 @@ export class SelectionModal extends React.Component {
                         <View style={styles.titleView}>
                             <Text style={styles.titleText}>Select {this.props.itemName} </Text>
                         </View>
-                        <View style={styles.projectContainerView}> 
+                        <View style={styles.itemsContainerView}> 
                         <FlatList
                             data={this.props.items}
                             renderItem={({ item }) => 
                             <TouchableOpacity
-                                style={styles.projectContainer}
+                                style={styles.itemsContainer}
                                 onPress={() => {
                                     this.props.closeModal();
                                     this.props.selectItem(item)
                                 }}>
                                     <Text
-                                        style={styles.projectText}
+                                        style={styles.itemText}
                                     >{item.value.name}</Text>
                             </TouchableOpacity>} />
                             </View>

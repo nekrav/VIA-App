@@ -53,7 +53,7 @@ export class MultipleSelectionModal extends React.Component {
                         <View style={styles.titleView}>
                             <Text style={styles.titleText}>Select {this.props.itemName} </Text>
                         </View>
-                        <View style={styles.projectContainerView}>
+                        <View style={styles.itemsContainerView}>
                             <FlatList
                                 data={Object.values(arr)}
                                 renderItem={({ item }) =>
