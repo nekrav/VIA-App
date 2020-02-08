@@ -302,7 +302,7 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = text }}
                 closeModal={() => { this.setCreateRandomModalVisibility(false) }}
-                save={() => { this.saveNewRandom(newRandom) }}
+                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}
             ></CreateRandom>
         }
     }
@@ -402,7 +402,7 @@ export class HomeScreen extends React.Component {
                                         onPress={() => {
                                             controller.delete(this, childDBTableName, item.value)
                                             this.getRandomTasks()
-
+                                            notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
                                     </TouchableOpacity>

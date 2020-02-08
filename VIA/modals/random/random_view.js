@@ -45,6 +45,7 @@ export class ViewRandom extends React.Component {
     }
 
     componentDidMount() {
+        notifier.scheduleAllNotifications()
     }
 
     getStyleIfDone() {
@@ -70,6 +71,7 @@ export class ViewRandom extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
+                    notifier.scheduleAllNotifications();
                 }}>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
