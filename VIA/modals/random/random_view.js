@@ -11,6 +11,8 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
+import { CheckBox } from 'react-native-elements'
+
 
 const notifier = new Notifier;
 
@@ -220,13 +222,10 @@ export class ViewRandom extends React.Component {
                 </View>
             </View>
         )
-
     }
-
     /* #endregion */
 
     /* #region  Complete Button Section */
-
     renderCompleteButton() {
         return (<TouchableOpacity
             style={styles.completeButtonBody}

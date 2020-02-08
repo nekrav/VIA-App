@@ -18,6 +18,7 @@ import { Controller } from '../controller';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+import { CheckBox } from 'react-native-elements'
 
 import { Notifier } from '../../notifier/notifier'
 
@@ -176,6 +177,32 @@ export class CreateRandom extends React.Component {
         );
     }
     /* #endregion */
+
+    renderOnlyForToday() {
+        return ( <CheckBox
+            center
+            key={item.item.value.id}
+            title={item.item.value.name}
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={item.checked}
+            textStyle={styles.checkboxText}
+            containerStyle={styles.itemSelectionContainer}
+            onPress={() => {
+                item.checked = !item.checked
+                if (item.checked == true) {
+                    arrSelected.push(item)
+                    this.setState({ selectedItems: arrSelected })
+                }
+                if (item.checked == false) {
+                    for (var i = 0; i < arrSelected.length; i++) {
+                        arrSelected.pop(item)
+                    }
+                    this.setState({ selectedItems: arrSelected })
+                }
+            }}
+        />)
+    }
 
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
@@ -341,7 +368,7 @@ export class CreateRandom extends React.Component {
                                 </View>
                             </View>
                         </View>
-
+                         {this.renderOnlyForToday()}               
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}
 
