@@ -104,23 +104,17 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     listItemContainer: {
-        // flex: 1,
         backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -128,26 +122,20 @@ module.exports = StyleSheet.create({
             height: 1,
             width: 0
         }
-
     },
 
     listItemContainerFinished:{
         backgroundColor: finishedBackgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -156,17 +144,12 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
-    listItemTextContainer: {
-        // flex: 1,
-        // flexGrow: 1,
-        // flexWrap: 'nowrap',
+    listItemTextContainer: { 
         width: 130,
         maxWidth: 130,
         marginRight: 10,
-        // backgroundColor: blueColor
     },
     listItemText: {
-        // height: '100%',
         color: textColor,
         fontFamily: fontFamily,
         fontSize: 18,
@@ -186,15 +169,11 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: 'space-evenly',
-        // marginLeft: 100,
-
     },
     listItemActionButton: {
         marginLeft: "3%",
         marginLeft: "3%",
         flexDirection: 'row',
         alignItems: "center",
-        // marginLeft: 10,
-
     }
 })
