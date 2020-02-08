@@ -22,91 +22,6 @@ const { width, height } = Dimensions.get('window');
 
 
 module.exports = StyleSheet.create({
-
-    titleContainer: {
-        flexDirection: "row"
-    },
-    projectSectionContainer: {
-    },
-    dateContainer: {
-        backgroundColor: blueColor,
-    },
-    completeButtonContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 10,
-    },
-
-    dueDateView: {
-        marginLeft: 5,
-        marginRight: 5,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-    },
-
-
-    dateText: {
-        fontSize: 18,
-        fontFamily: fontFamily,
-        color: placeholderColor,
-        marginLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-    },
-
-    selectedDateText: {
-        fontSize: 18,
-        fontFamily: fontFamily,
-        color: textColor,
-        marginLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    completeButtonText: {
-        fontFamily: fontFamily,
-        color: backgroundColor,
-        fontSize: 30,
-    },
-    projectSectionView: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: textColor,
-        borderTopWidth: 2,
-        borderBottomWidth: 2,
-    },
-    projectSelectionButton: {
-        marginLeft: 5,
-        marginRight: 5,
-        alignItems: 'center',
-    },
-    notificationTimesButton: {
-        width: 120,
-        height: 120,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 60,
-        borderWidth: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-
-
-    selectedProjectSelectionButtonText: {
-        fontSize: 18,
-        fontFamily: fontFamily,
-        color: textColor,
-        marginLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    notesContainer: {
-        borderTopColor: textColor,
-        borderTopWidth: 2,
-        height: "100%",
-        flex: 1,
-    },
-
     /* #region Outer Structure */
     outerView: {
         flex: 1,
@@ -536,12 +451,7 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    notesTitle: {
-        fontSize: 18,
-    },
-    notesTextInput: {
-        fontSize: 18,
-    },
+ /* #region  Complete Button Section */
     completeButtonBody: {
         margin: 10,
         flex: 1,
@@ -559,23 +469,5 @@ module.exports = StyleSheet.create({
             width: 0
         },
     },
-    completeAndNotifSection: {
-        flexDirection: "row",
-        justifyContent: 'center',
-    },
-    projectsNotificationsSection: {
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 15,
-        marginBottom: 15,
-        flexDirection: "row",
-        justifyContent: "center",
-    },
-    notificationTimesText: {
-        fontFamily: fontFamily,
-        fontSize: 14,
-        alignItems: 'center',
-        justifyContent: "center",
-        margin: 2,
-    },
+ /* #endregion */
 })
