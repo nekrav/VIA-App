@@ -43,6 +43,7 @@ export class CreateRandom extends React.Component {
             notificationTimesModal: false,
             newRandomName: '',
             itemNotes: '',
+            onlyTodayChecked: false,
         };
     }
     componentDidMount() {
@@ -181,25 +182,26 @@ export class CreateRandom extends React.Component {
     renderOnlyForToday() {
         return ( <CheckBox
             center
-            key={item.item.value.id}
-            title={item.item.value.name}
+            title={"Do you want this task to be removed after today?"}
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checked={item.checked}
+            checked={this.state.onlyTodayChecked}
             textStyle={styles.checkboxText}
             containerStyle={styles.itemSelectionContainer}
             onPress={() => {
-                item.checked = !item.checked
-                if (item.checked == true) {
-                    arrSelected.push(item)
-                    this.setState({ selectedItems: arrSelected })
-                }
-                if (item.checked == false) {
-                    for (var i = 0; i < arrSelected.length; i++) {
-                        arrSelected.pop(item)
-                    }
-                    this.setState({ selectedItems: arrSelected })
-                }
+                var checked = this.state.onlyTodayChecked;
+                this.setState({onlyTodayChecked : !checked})
+                // item.checked = !item.checked
+                // if (item.checked == true) {
+                //     arrSelected.push(item)
+                //     this.setState({ selectedItems: arrSelected })
+                // }
+                // if (item.checked == false) {
+                //     for (var i = 0; i < arrSelected.length; i++) {
+                //         arrSelected.pop(item)
+                //     }
+                //     this.setState({ selectedItems: arrSelected })
+                // }
             }}
         />)
     }
@@ -387,7 +389,7 @@ export class CreateRandom extends React.Component {
                                         : styles.bottomButtonLeftDisabled
                                 }
                                 onPress={() => {
-                                    notifier.scheduleAllNotifications() 
+                                    // notifier.scheduleAllNotifications() 
                                     this.props.save()}
                                 }
                             >
