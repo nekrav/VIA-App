@@ -109,12 +109,12 @@ export class HomeScreen extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
+            {/* <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
                 onPress={() => {
                     notifier.scheduleAllNotifications()
                 }}>
                 <SIcon name="bell" size={30} color="#000" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
                 <SIcon name="options" size={30} color="#2d3142" />

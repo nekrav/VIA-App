@@ -33,6 +33,8 @@ class TabButton extends React.Component {
         if (this.props.routeName && this.props.nav.state.routeName) {
             return (
                 <View style={{
+                    width: '100%', height: '300%',
+                    // backgroundColor: blueColor,
                     marginTop: "25%", alignItems: 'center',
                     justifyContent: 'center',
                 }}>
@@ -46,10 +48,10 @@ class TabButton extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}>
-                        <SIcon name={this.props.iconName} size={30} color={this.props.focused ? blueColor : placeholderColor} />
+                        <SIcon name={this.props.iconName} size={30} color={this.props.focused ? this.props.activeColor : placeholderColor} />
                     </TouchableOpacity>
                     <Text style={[this.isCurrentRoute(this.props.routeName) ? {
-                        color: this.props.focused ? blueColor : placeholderColor,
+                        color: this.props.focused ? this.props.activeColor : placeholderColor,
                         fontFamily: fontFamily, alignItems: 'center',
                         justifyContent: 'center',
                     } : {

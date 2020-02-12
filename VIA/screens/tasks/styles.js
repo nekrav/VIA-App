@@ -27,7 +27,7 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: "#319BF7",
     },
     /* #endregion */
 
