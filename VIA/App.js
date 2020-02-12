@@ -105,13 +105,13 @@ const TabNavigator = createBottomTabNavigator({
       tabBarOptions: {
         style: {
          height: 55,
-         backgroundColor: "#319BF7"
+         backgroundColor: "#6EB5F6"
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#2368A5"}
+          activeColor={"#86C2F9"}
           inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
