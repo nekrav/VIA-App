@@ -48,10 +48,10 @@ class TabButton extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}>
-                        <SIcon name={this.props.iconName} size={30} color={this.props.focused ? this.props.activeColor : placeholderColor} />
+                        <SIcon name={this.props.iconName} size={30} color={this.props.focused ? this.props.activeColor : this.props.inactiveColor} />
                     </TouchableOpacity>
                     <Text style={[this.isCurrentRoute(this.props.routeName) ? {
-                        color: this.props.focused ? this.props.activeColor : placeholderColor,
+                        color: this.props.focused ? this.props.activeColor : this.props.inactiveColor,
                         fontFamily: fontFamily, alignItems: 'center',
                         justifyContent: 'center',
                     } : {

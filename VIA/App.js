@@ -20,10 +20,17 @@ const TabNavigator = createBottomTabNavigator({
     
     navigationOptions: ({ navigation }) => ({
       title: '',
+      tabBarOptions: {
+        style: {
+         height: 55,
+         backgroundColor: "#D6A2AD"
+        }
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
           activeColor={"#D6A2AD"}
+          inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Habits'}
           iconName={'reload'}
@@ -35,10 +42,17 @@ const TabNavigator = createBottomTabNavigator({
     screen: RoutinesScreen,
     navigationOptions: ({ navigation }) => ({
       title: '',
+      tabBarOptions: {
+        style: {
+         height: 55,
+         backgroundColor: "#E5C797"
+        }
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
           activeColor={"#E5C797"}
+          inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Routines'}
           iconName={'refresh'}
@@ -51,6 +65,12 @@ const TabNavigator = createBottomTabNavigator({
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => ({
       title: "",
+      tabBarOptions: {
+        style: {
+         height: 55,
+         backgroundColor: "#00bbb1"
+        }
+      },
       tabBarIcon:
         <HomeButton
           nav={navigation} ></HomeButton>
@@ -60,10 +80,17 @@ const TabNavigator = createBottomTabNavigator({
     screen: ProjectsScreen,
     navigationOptions: ({ navigation }) => ({
       title: '',
+      tabBarOptions: {
+        style: {
+         height: 55,
+         backgroundColor: "#4585C1"
+        }
+      },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
           activeColor={"#4585C1"}
+          inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Projects'}
           iconName={'layers'}
@@ -76,51 +103,30 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
-        activeTintColor: "#00bbb1",
-        inactiveTintColor: "#00bbb1",   
         style: {
          height: 55,
-         backgroundColor: '#8e7e7e'
+         backgroundColor: "#319BF7"
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#319BF7"}
+          activeColor={"#2368A5"}
+          inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
           iconName={'refresh'}
           elementName={'Tasks'}
           nav={navigation} ></TabButton>
-      ),})
+      ),
+    })
   },
 },
   {
     initialRouteName: 'Home',
-    // tabBarOptions: {
-    //   activeTintColor: "#00bbb1",
-    //   inactiveTintColor: "#00bbb1",   
-    //   style: {
-    //    height: 55,
-    //    backgroundColor: '#8e7e7e'
-    //   }
-    // }
   },
   
 );
-
-const tabBarConfiguration = {
-	tabBarOptions: {
-		activeTintColor: "#00bbb1",
-		inactiveTintColor: "#00bbb1",
-	
-		style: {
-			backgroundColor: "#00bbb1",
-			borderTopWidth: 1,
-			borderTopColor: "#00bbb1"
-		},
-	}
-};
 
 Database.init();
 
