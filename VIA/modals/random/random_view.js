@@ -354,7 +354,6 @@ export class ViewRandom extends React.Component {
             textStyle={styles.checkboxText}
             containerStyle={styles.itemSelectionContainer}
             onPress={() => {
-                console.warn(JSON.stringify(this.state.selectedItem.only_today))
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
                     // this.props.only_today(this.state.onlyTodayChecked)

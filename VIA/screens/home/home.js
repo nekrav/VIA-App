@@ -336,6 +336,10 @@ export class HomeScreen extends React.Component {
                         theRandom.percentage_done = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
+                    editCompleted={(text) => {
+                        theRandom.completed = text;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
                     editNotes={(text) => {
                         theRandom.notes = text;
                         this.setState({ selectedRandom: theRandom })
