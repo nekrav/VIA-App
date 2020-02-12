@@ -11,7 +11,7 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#BCDFFF"
+const backgroundColor = "#58AAF9"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
