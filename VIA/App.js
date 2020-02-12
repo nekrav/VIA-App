@@ -29,7 +29,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#D6A2AD"}
+          activeColor={"#984A5A"}
           inactiveColor={"#ffffff"}
           tintColor={{ tintColor }}
           routeName={'Habits'}
@@ -71,10 +71,12 @@ const TabNavigator = createBottomTabNavigator({
          backgroundColor: "#00bbb1"
         }
       },
-      tabBarIcon:
+      tabBarIcon:({ focused, tintColor }) => (
         <HomeButton
-          nav={navigation} ></HomeButton>
-    })
+        focused={focused}
+        activeColor={"006F6B"}
+          nav={navigation} ></HomeButton>  ),})
+    
   },
   Projects: {
     screen: ProjectsScreen,

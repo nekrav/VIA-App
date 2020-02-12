@@ -22,7 +22,7 @@ class HomeButton extends React.Component {
                 <TouchableHighlight
                     onPress={() => this.props.nav.navigate('Home')}
                     underlayColor="#2882D8"
-                    style={{
+                    style={this.props.focused ? {
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: SIZE,
@@ -39,11 +39,28 @@ class HomeButton extends React.Component {
                             width: 0
                         }
 
-                    }}
+                    } : {
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: SIZE,
+                        height: SIZE,
+                        borderWidth: 2,
+                        borderColor: "#00bbb1",
+                        borderRadius: SIZE / 2,
+                        backgroundColor: '#00bbb1',
+                        shadowColor: "#000000",
+                        shadowOpacity: 0.8,
+                        shadowRadius: 2,
+                        shadowOffset: {
+                            height: 1,
+                            width: 0
+                        }
+
+                    } }
                 >
                     <Animated.View style={{
                     }}>
-                        <Image style={{ width: 50, height: 50, tintColor: "#fff" }} source={require('../components/via_logo.png')} />
+                        <Image style={{ width: 50, height: 50, tintColor: this.props.focused ? "#006F6B" : "#fff" }} source={require('../components/via_logo.png')} />
                     </Animated.View>
                 </TouchableHighlight>
             </View>
