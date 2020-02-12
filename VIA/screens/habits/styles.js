@@ -11,7 +11,8 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#ffffff"
+const backgroundColor = "#D6A2AD"
+const complimentaryColor = "#984A5A";
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
@@ -27,14 +28,14 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: "#D6A2AD",
+        backgroundColor: backgroundColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: blueColor,
+        backgroundColor: complimentaryColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -43,7 +44,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: complimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -51,7 +52,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: complimentaryColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
