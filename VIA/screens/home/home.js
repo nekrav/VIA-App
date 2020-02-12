@@ -267,7 +267,6 @@ export class HomeScreen extends React.Component {
         newRandom.only_today = random.only_today ? random.only_today : "false"
         Database.save(childDBTableName, newRandom).then(() => {
             this.setCreateRandomModalVisibility(false)
-            console.warn(newRandom)
             this.getRandomTasks();
         })
     }
