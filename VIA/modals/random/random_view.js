@@ -42,7 +42,8 @@ export class ViewRandom extends React.Component {
             percentVal: this.props.selectedItem.percentage_done,
             importanceVal: this.props.selectedItem.importance,
             notesModalVisible: false,
-            itemNotificationTimes: this.props.selectedItem.notification_time
+            itemNotificationTimes: this.props.selectedItem.notification_time,
+            onlyTodayChecked: this.props.selectedItem.only_today
         };
     }
 
@@ -333,15 +334,13 @@ export class ViewRandom extends React.Component {
     /* #endregion */
 
     /* #region  Only for Today Section */
-
-
     getChecked(item) {
         if (item != null)
         // var checked = false
         {
             return checked = this.state.selectedItem.only_today === "true"
         }
-       
+
     }
 
     renderOnlyForToday() {
@@ -356,7 +355,7 @@ export class ViewRandom extends React.Component {
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
-                    // this.props.only_today(this.state.onlyTodayChecked)
+                    this.props.editOnlyToday(JSON.stringify(this.state.onlyTodayChecked))
                 })
             }}
         />)
