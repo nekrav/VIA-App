@@ -185,7 +185,7 @@ export class Notifier extends React.Component {
         })
     }
 
-    scheduleHabitsNotifications() {
+    scheduleRandomNotifications() {
         this.getAllObjectNotificationTimes(Random.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
 
@@ -212,6 +212,7 @@ export class Notifier extends React.Component {
         this.scheduleTaskNotifications();
         this.scheduleRoutineNotifications();
         this.scheduleProjectNotifications();
+        this.scheduleRandomNotifications();
     }
 
 

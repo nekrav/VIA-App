@@ -396,8 +396,10 @@ export class CreateHabit extends React.Component {
                                         ? styles.bottomButtonLeft
                                         : styles.bottomButtonLeftDisabled
                                 }
-                                onPress={this.props.save}
-                            >
+                                onPress={() => {
+                                    notifier.scheduleAllNotifications()
+                                    this.props.save()
+                                }}>
                                 <Text
                                     style={
                                         this.state.newHabitName != ''

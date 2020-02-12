@@ -440,6 +440,7 @@ export class CreateProject extends React.Component {
 										: styles.bottomButtonLeftDisabled
 								}
 								onPress={() => {
+									notifier.scheduleAllNotifications() 
 									this.saveProjectInSelectedTask(this.state.projectId)
 									this.props.save()
 								}}
