@@ -190,18 +190,9 @@ export class CreateRandom extends React.Component {
             containerStyle={styles.itemSelectionContainer}
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
-                this.setState({onlyTodayChecked : !checked})
-                // item.checked = !item.checked
-                // if (item.checked == true) {
-                //     arrSelected.push(item)
-                //     this.setState({ selectedItems: arrSelected })
-                // }
-                // if (item.checked == false) {
-                //     for (var i = 0; i < arrSelected.length; i++) {
-                //         arrSelected.pop(item)
-                //     }
-                //     this.setState({ selectedItems: arrSelected })
-                // }
+                this.setState({onlyTodayChecked : !checked}, () => {
+                    this.props.only_today(this.state.onlyTodayChecked)
+                })
             }}
         />)
     }

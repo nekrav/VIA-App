@@ -332,6 +332,38 @@ export class ViewRandom extends React.Component {
 
     /* #endregion */
 
+    /* #region  Only for Today Section */
+
+
+    getChecked(item) {
+        if (item != null)
+        // var checked = false
+        {
+            return checked = this.state.selectedItem.only_today === "true"
+        }
+       
+    }
+
+    renderOnlyForToday() {
+        return (<CheckBox
+            center
+            title={"Do you want this task to be removed after today?"}
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={this.getChecked(this.state.selectedItem.only_today)}
+            textStyle={styles.checkboxText}
+            containerStyle={styles.itemSelectionContainer}
+            onPress={() => {
+                console.warn(JSON.stringify(this.state.selectedItem.only_today))
+                var checked = this.state.onlyTodayChecked;
+                this.setState({ onlyTodayChecked: !checked }, () => {
+                    // this.props.only_today(this.state.onlyTodayChecked)
+                })
+            }}
+        />)
+    }
+    /* #endregion */
+
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
         this.setState({ notesModalVisible: visible });
@@ -426,6 +458,9 @@ export class ViewRandom extends React.Component {
 
                         {/* Sliders Section*/}
                         {this.renderSliderSection()}
+
+                        {/* Only For Today Section */}
+                        {this.renderOnlyForToday()}
 
                         {/* Complete Button Section */}
                         {this.renderCompleteButton()}

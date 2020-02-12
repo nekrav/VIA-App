@@ -264,9 +264,10 @@ export class HomeScreen extends React.Component {
         newRandom.time_spent = 0;
         newRandom.notes = random.notes ? random.notes : '';
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
-        newRandom.only_today = random.only_today ? random.only_today : ''
+        newRandom.only_today = random.only_today ? random.only_today : "false"
         Database.save(childDBTableName, newRandom).then(() => {
             this.setCreateRandomModalVisibility(false)
+            console.warn(newRandom)
             this.getRandomTasks();
         })
     }
@@ -300,7 +301,7 @@ export class HomeScreen extends React.Component {
                         newRandom.notification_time = times
                     }
                 }}
-                only_today={(text) => { newRandom.only_today = text }}
+                only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setCreateRandomModalVisibility(false) }}
                 save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}
             ></CreateRandom>
