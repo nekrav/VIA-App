@@ -126,7 +126,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
     },
     listItemText: {
-        color: textColor,
+        color: complimentaryColor,
         fontFamily: fontFamily,
         fontSize: fontSize,
     },
