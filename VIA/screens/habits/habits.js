@@ -189,6 +189,8 @@ export class HabitsScreen extends React.Component {
                                         center
                                         checkedIcon='dot-circle-o'
                                         uncheckedIcon='circle-o'
+                                        checkedColor='#D6A2AD'
+                                        uncheckedColor='#711E30'
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
