@@ -3,16 +3,10 @@ import React from 'react';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
-
-const buttonBackgroundColor = '#3a506b'
-const titleFontSize = 24
-const bodyFontSize = 20
-const leftMargin = 5
-const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#D6A2AD"
-const complimentaryColor = "#984A5A";
+const complimentaryColor = "#711E30";
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
@@ -20,12 +14,14 @@ const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
 const homeColorButton = "#48A2F8"
 
+const fontSize = 16;
+
 const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
-     /* #region Outer Structure */
-     outerView: {
+    /* #region Outer Structure */
+    outerView: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: backgroundColor,
@@ -35,7 +31,7 @@ module.exports = StyleSheet.create({
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: complimentaryColor,
+        backgroundColor: backgroundColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -44,7 +40,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: complimentaryColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -52,7 +48,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: complimentaryColor,
+        shadowColor: backgroundColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -66,9 +62,9 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: backgroundColor,
+        color: complimentaryColor,
         fontSize: 50,
-        color: backgroundColor
+        color: complimentaryColor
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -80,7 +76,7 @@ module.exports = StyleSheet.create({
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -93,7 +89,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: backgroundColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -104,6 +100,7 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  List Item Section */
     listItemContainer: {
         backgroundColor: backgroundColor,
         justifyContent: 'space-between',
@@ -113,7 +110,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
@@ -125,7 +122,7 @@ module.exports = StyleSheet.create({
         }
     },
 
-    listItemContainerFinished:{
+    listItemContainerFinished: {
         backgroundColor: finishedBackgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -134,7 +131,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: complimentaryColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
@@ -145,7 +142,7 @@ module.exports = StyleSheet.create({
             width: 0
         }
     },
-    listItemTextContainer: { 
+    listItemTextContainer: {
         width: 130,
         maxWidth: 130,
         marginRight: 10,
@@ -153,11 +150,12 @@ module.exports = StyleSheet.create({
     listItemText: {
         color: textColor,
         fontFamily: fontFamily,
-        fontSize: 18,
+        fontSize: fontSize,
     },
     listItemIcon: {
 
     },
+    /* #endregion */
     checkboxAndNameContainer: {
         flexDirection: 'row',
         alignItems: "center",
