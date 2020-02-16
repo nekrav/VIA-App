@@ -91,7 +91,7 @@ module.exports = StyleSheet.create({
   createNameText: {
     fontSize: 30,
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: complimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },
