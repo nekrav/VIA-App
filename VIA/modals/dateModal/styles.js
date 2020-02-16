@@ -81,7 +81,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: placeholderColor,
-    backgroundColor: placeholderColor,
+    // backgroundColor: placeholderColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
