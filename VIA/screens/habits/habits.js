@@ -182,14 +182,14 @@ export class HabitsScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         containerStyle={styles.checkBox}
                                         center
-                                        checkedIcon='dot-circle-o'
-                                        uncheckedIcon='circle-o'
-                                        checkedColor='#D6A2AD'
+                                        checkedIcon='check-square'
+                                        uncheckedIcon='check-square'
+                                        checkedColor='#4DFF87'
                                         uncheckedColor='#711E30'
                                         size={35}
                                         onPress={() => {
