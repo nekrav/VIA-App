@@ -241,6 +241,10 @@ export class CreateHabit extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={"D6A2AD"}
+                    disabledSaveButtonBackgroundColor={"#A77E8C"}
+                    saveButtonTextColor={"711E30"}
+                    disabledSaveButtonTextColor={"#711E30"}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -278,7 +282,7 @@ export class CreateHabit extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color="#ffffff" />
+                        <SIcon name="bell" size={20} color="#711E30" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -295,7 +299,7 @@ export class CreateHabit extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color="#A77E8C" />
                 </Text>
             </TouchableOpacity>
         );

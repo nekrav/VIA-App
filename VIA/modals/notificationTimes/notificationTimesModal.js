@@ -163,6 +163,10 @@ export class NotificationTimesModal extends React.Component {
             return <DateModal
                 pickerMode="time"
                 animationType="fade"
+                saveButtonBackgroundColor={"D6A2AD"}
+                disabledSaveButtonBackgroundColor={"#A77E8C"}
+                saveButtonTextColor={"711E30"}
+                disabledSaveButtonTextColor={"#711E30"}
                 transparent={true}
                 onSubmit={(item) => {
                     selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
