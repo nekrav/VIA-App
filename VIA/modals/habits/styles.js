@@ -10,9 +10,10 @@ const leftMargin = 5;
 const buttonFontSize = 20;
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
 
-const backgroundColor = '#ffffff';
+const backgroundColor = '#D6A2AD';
+const complimentaryColor = "#711E30";
 const blueColor = '#00bbb1';
-const textColor = '#2d3142';
+const textColor = '#711E30';
 const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
 const placeholderColor = '#ABABAB';
@@ -53,9 +54,9 @@ module.exports = StyleSheet.create({
   /* #region  Create Name Section */
   createNameContainer: {
     borderRadius: 10,
-    backgroundColor: grayColor,
+    backgroundColor: backgroundColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
+    borderTopColor: backgroundColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -71,9 +72,9 @@ module.exports = StyleSheet.create({
   },
   hasNameTextInputContainer: {
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: backgroundColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: backgroundColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -91,6 +92,13 @@ module.exports = StyleSheet.create({
     fontSize: 30,
     fontFamily: fontFamily,
     color: backgroundColor,
+    marginLeft: 10,
+    marginBottom: 5,
+  },
+  hasNameText: {
+    fontSize: 30,
+    fontFamily: fontFamily,
+    color: complimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },

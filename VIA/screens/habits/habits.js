@@ -156,6 +156,7 @@ export class HabitsScreen extends React.Component {
             var checked = false
         return checked = item.value.completed === "true"
     }
+    
 
     render() {
         return (
@@ -183,6 +184,7 @@ export class HabitsScreen extends React.Component {
                         data={this.state.items}
                         renderItem={({ item }) =>
                             <View style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
+
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         containerStyle={styles.checkBox}

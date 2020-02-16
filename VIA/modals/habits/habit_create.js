@@ -357,7 +357,9 @@ export class CreateHabit extends React.Component {
                                     this.nameTextInput = input;
                                 }}
                                 maxLength={40}
-                                style={styles.createNameText}
+                                style={this.state.newHabitName != ''
+                                ? styles.hasNameText
+                                : styles.createNameText}
                                 multiline={true}
                                 placeholder={'Name'}
                                 onChangeText={value => {
