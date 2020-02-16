@@ -140,11 +140,11 @@ export class CreateHabit extends React.Component {
     renderStartDate() {
         if (this.state.itemStartDate != '') {
             return (
-                <View style={styles.createDueDateContainer}>
+                <View style={styles.createNameContainer}>
                     <TouchableOpacity
                         onPress={() => this.setStartDateModalVisibility(true)}
                     >
-                        <Text style={styles.createSelectedDateText}>
+                        <Text style={styles.hasDateText}>
                             {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
                         </Text>
                     </TouchableOpacity>
@@ -201,11 +201,11 @@ export class CreateHabit extends React.Component {
     renderEndDate() {
         if (this.state.itemEndDate != '') {
             return (
-                <View style={styles.createDueDateContainer}>
+                <View style={styles.createNameContainer}>
                     <TouchableOpacity
                         onPress={() => this.setEndDateModalVisibility(true)}
                     >
-                        <Text style={styles.createSelectedDateText}>
+                        <Text style={styles.hasDateText}>
                             {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
                         </Text>
                     </TouchableOpacity>

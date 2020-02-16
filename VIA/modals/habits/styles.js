@@ -16,7 +16,7 @@ const blueColor = '#00bbb1';
 const textColor = '#711E30';
 const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
-const placeholderColor = '#ABABAB';
+const placeholderColor = "#A77E8C";
 const homeColorButton = '#48A2F8';
 
 const {width, height} = Dimensions.get('window');
@@ -132,10 +132,27 @@ module.exports = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
+  hasDateText: {
+    fontSize: 18,
+    fontFamily: fontFamily,
+    color: complimentaryColor,
+    marginLeft: 10,
+    marginTop: 5,
+    marginBottom: 5,
+  },
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: placeholderColor,
+    marginLeft: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 5,
+  },
+  hasSelectedDateText: {
+    fontSize: 18,
+    fontFamily: fontFamily,
+    color: complimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
