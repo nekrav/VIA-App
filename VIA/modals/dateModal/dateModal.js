@@ -55,7 +55,7 @@ export class DateModal extends React.Component {
                     <View style={styles.bottomButtonsContainer}>
                     <TouchableOpacity style={[styles.bottomButtonLeft, {backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor}]} 
                     onPress={() => this.props.onSubmit(this.state.itemDate)}>
-                        <Text style={styles.bottomButtonText,{color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor}}>Select</Text>
+                        <Text style={[styles.bottomButtonText,{color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor}]}>Select</Text>
                     </TouchableOpacity>
                      <TouchableOpacity style={styles.bottomButtonRight} 
                     onPress={
