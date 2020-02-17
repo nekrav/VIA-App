@@ -34,8 +34,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
+    // borderColor: blueColor,
+    // backgroundColor: blueColor,
     marginRight: 50,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
@@ -50,7 +50,7 @@ module.exports = StyleSheet.create({
     fontSize: 28,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: backgroundColor,
+    // color: backgroundColor,
   },
   /* #endregion */
 

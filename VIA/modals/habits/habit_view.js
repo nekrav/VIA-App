@@ -108,6 +108,9 @@ export class ViewHabit extends React.Component {
                 animationType="fade"
                 items={this.state.items}
                 itemName="Routine"
+                itemName1="Routine"
+                titleTextColor="#9C7639"
+                titleContainerColor="#E5C797"
                 transparent={true}
                 selectItem={(item) => {
                     this.props.editRoutine(item.value.id)
