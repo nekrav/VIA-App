@@ -87,7 +87,7 @@ export class CreateHabit extends React.Component {
                         {this.state.theSelectedRoutine}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#ffffff" />
+                        <SIcon name="refresh" size={20} color="#711E30" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -101,7 +101,7 @@ export class CreateHabit extends React.Component {
                         Is this part of a bigger routine?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#ABABAB" />
+                        <SIcon name="refresh" size={20} color="#A77E8C" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -120,6 +120,8 @@ export class CreateHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#D6A2AD"
+                    saveButtonBackgroundColor="#D6A2AD"
                     transparent={true}
                     setDate={item => {
                         this.props.start_time(item);
@@ -181,6 +183,8 @@ export class CreateHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#D6A2AD"
+                    saveButtonBackgroundColor="#D6A2AD"
                     transparent={true}
                     setDate={item => {
                         this.props.end_time(item);

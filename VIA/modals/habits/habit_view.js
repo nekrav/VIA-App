@@ -170,6 +170,8 @@ export class ViewHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    titleTextColor="#9C7639"
+                    saveButtonBackgroundColor="#E5C797"
                     transparent={true}
                     setDate={item => {
                         this.props.editStartTime(item);
