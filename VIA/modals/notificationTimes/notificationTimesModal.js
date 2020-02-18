@@ -148,7 +148,7 @@ export class NotificationTimesModal extends React.Component {
                                             this.setState({ times: newMain })
                                         }
                                     }}>
-                                    <View style={styles.weekdayNotificationTimeContainerView}>
+                                    <View style={[styles.weekdayNotificationTimeContainerView, {backgroundColor: this.props.saveButtonBackgroundColor}]}>
                                         <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
                                         <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color="#ffffff" />
                                     </View>

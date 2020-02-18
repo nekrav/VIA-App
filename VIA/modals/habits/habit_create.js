@@ -243,7 +243,7 @@ export class CreateHabit extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
-                    saveButtonBackgroundColor={"D6A2AD"}
+                    saveButtonBackgroundColor={"#D6A2AD"}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
                     saveButtonTextColor={"711E30"}
                     disabledSaveButtonTextColor={"#711E30"}
