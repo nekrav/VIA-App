@@ -49,7 +49,7 @@ export class ViewHabit extends React.Component {
                 this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
             })
         }
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
     }
 
     getStyleIfDone() {
@@ -75,7 +75,7 @@ export class ViewHabit extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
-                    }}>
+                }}>
                 <SIcon name="trash" size={30} color="#f00" />
             </TouchableOpacity>
         </View>)
@@ -170,8 +170,8 @@ export class ViewHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
-                    titleTextColor="#9C7639"
-                    saveButtonBackgroundColor="#E5C797"
+                    disabledSaveButtonBackgroundColor="#D6A2AD"
+                    saveButtonBackgroundColor="#D6A2AD"
                     transparent={true}
                     setDate={item => {
                         this.props.editStartTime(item);
@@ -201,7 +201,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.start_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-play" size={20} />
+                        <SIcon name="control-play" size={20} color={"#711E30"} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -212,7 +212,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to start?
                 </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-play" size={20} />
+                    <SIcon name="control-play" size={20} color={"#A77E8C"}/>
                 </Text>
             </TouchableOpacity>
         );
@@ -231,6 +231,8 @@ export class ViewHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#D6A2AD"
+                    saveButtonBackgroundColor="#D6A2AD"
                     transparent={true}
                     setDate={item => {
                         this.props.editEndTime(item);
@@ -408,34 +410,34 @@ export class ViewHabit extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
+                        <View>
+                            {/* Top Bar Section */}
+                            {this.renderTopBar()}
 
-                        {/* Top Bar Section */}
-                        {this.renderTopBar()}
+                            {/* Name Section */}
+                            {this.renderNameSection()}
 
-                        {/* Name Section */}
-                        {this.renderNameSection()}
+                            {/* Routine Section*/}
+                            {this.renderRoutineSection()}
 
-                        {/* Routine Section*/}
-                        {this.renderRoutineSection()}
+                            {/* Start Date Section*/}
+                            {this.renderStartDate()}
 
-                        {/* Start Date Section*/}
-                        {this.renderStartDate()}
+                            {/* End Date Section*/}
+                            {this.renderEndDate()}
 
-                        {/* End Date Section*/}
-                        {this.renderEndDate()}
+                            {/* Sliders Section*/}
+                            {/* {this.renderSliderSection()} */}
 
-                        {/* Sliders Section*/}
-                        {/* {this.renderSliderSection()} */}
+                            {/* Complete Button Section */}
+                            {this.renderCompleteButton()}
 
-                        {/* Complete Button Section */}
-                        {this.renderCompleteButton()}
+                            {/* Notification Times Section */}
+                            {this.renderNotificationTimesSection()}
 
-                        {/* Notification Times Section */}
-                        {this.renderNotificationTimesSection()}
-
-                        {/* {NOTES SECTION} */}
-                        {/* {this.renderNotesSection()} */}
-
+                            {/* {NOTES SECTION} */}
+                            {/* {this.renderNotesSection()} */}
+                        </View>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>

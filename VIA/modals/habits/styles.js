@@ -27,6 +27,7 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: backgroundColor,
+    justifyContent: 'space-between'
   },
   outerViewDone: {
     flex: 1,
@@ -108,9 +109,9 @@ module.exports = StyleSheet.create({
   createDueDateContainer: {
     justifyContent: 'space-between',
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: backgroundColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: backgroundColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -143,7 +144,7 @@ module.exports = StyleSheet.create({
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: placeholderColor,
+    color: complimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,

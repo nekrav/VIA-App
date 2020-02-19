@@ -328,6 +328,7 @@ export class CreateHabit extends React.Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
 
+<View>
                         {/* {TOP NAVIGATION REGION} */}
                         <View style={styles.topNav}>
                             <TouchableOpacity
@@ -396,7 +397,7 @@ export class CreateHabit extends React.Component {
                         {/* {NOTES SECTION} */}
                         {/* {this.renderNotesSection()} */}
 
-
+                        </View>
                         {/* {BOTTOM BUTTONS SECTION} */}
                         <View style={styles.bottomButtonsContainer}>
                             <TouchableOpacity
@@ -415,10 +416,9 @@ export class CreateHabit extends React.Component {
                                         this.state.newHabitName != ''
                                             ? styles.bottomButtonTextDisabled
                                             : styles.bottomButtonText
-                                    }
-                                >
+                                    }>
                                     Save
-            </Text>
+                                    </Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.bottomButtonRight}
