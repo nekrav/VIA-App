@@ -8,12 +8,15 @@ const titleFontSize = 24;
 const bodyFontSize = 20;
 const leftMargin = 5;
 const buttonFontSize = 20;
+const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
 
 const backgroundColor = '#D6A2AD';
 const complimentaryColor = "#711E30";
 const blueColor = '#00bbb1';
 const textColor = '#711E30';
+const finishColor = '#16E500'
+const finishColorBorderColor = '#10AE00'
 const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
 const placeholderColor = "#A77E8C";
@@ -476,13 +479,18 @@ module.exports = StyleSheet.create({
   /* #region  Complete Button Section */
   completeButtonBody: {
     margin: 10,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
-    borderWidth: 5,
+    borderColor: finishColor,
+    backgroundColor: finishColor,
+    borderWidth: 2,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     height: '12%',
+    borderColor: finishColorBorderColor,
+  },
+  completeButtonText: {
+    fontFamily: fontFamily,
+    fontSize: fontSize
   },
   /* #endregion */
 

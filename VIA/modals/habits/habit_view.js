@@ -138,7 +138,7 @@ export class ViewHabit extends React.Component {
                         {this.state.routineName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#ffffff" />
+                        <SIcon name="refresh" size={20} color="#711E30" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -152,7 +152,7 @@ export class ViewHabit extends React.Component {
                         Is this part of a bigger routine?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#ABABAB" />
+                        <SIcon name="refresh" size={20} color="#A77E8C" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -262,7 +262,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} />
+                        <SIcon name="control-end" size={20} color={"#711E30"}/>
                     </Text>
                 </TouchableOpacity>
             );
@@ -273,7 +273,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to end?
           </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-end" size={20} />
+                    <SIcon name="control-end" size={20} color={"#A77E8C"}/>
                 </Text>
             </TouchableOpacity>
 
@@ -366,7 +366,7 @@ export class ViewHabit extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color="#ffffff" />
+                            <SIcon name="bell" size={20} color="#711E30" />
                         </Text>
                     </TouchableOpacity>
                 );
@@ -383,7 +383,7 @@ export class ViewHabit extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color="#A77E8C" />
                 </Text>
             </TouchableOpacity>
         );
