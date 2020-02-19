@@ -212,7 +212,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to start?
                 </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-play" size={20} color={"#A77E8C"}/>
+                    <SIcon name="control-play" size={20} color={"#A77E8C"} />
                 </Text>
             </TouchableOpacity>
         );
@@ -262,7 +262,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} color={"#711E30"}/>
+                        <SIcon name="control-end" size={20} color={"#711E30"} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -273,7 +273,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to end?
           </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-end" size={20} color={"#A77E8C"}/>
+                    <SIcon name="control-end" size={20} color={"#A77E8C"} />
                 </Text>
             </TouchableOpacity>
 
@@ -284,31 +284,68 @@ export class ViewHabit extends React.Component {
 
     /* #region  Complete Button Section */
 
+    // renderCompleteButton() {
+    //     return (<TouchableOpacity
+    //         style={styles.completeButtonBody}
+    //         onLongPress={() => {
+    //             this.setState({ percentVal: 0 })
+    //             this.props.editCompleted("false")
+    //             this.props.editPercentageDone(0)
+    //         }
+    //         }
+    //         onPress={() => {
+    //             this.setState({ percentVal: 100 })
+    //             this.props.editPercentageDone(100)
+    //             this.props.editCompleted("true")
+
+    //         }
+    //         }>
+    //         {this.renderCompleteButtonText()}
+    //     </TouchableOpacity>)
+    // }
+
     renderCompleteButton() {
-        return (<TouchableOpacity
-            style={styles.completeButtonBody}
-            onLongPress={() => {
-                this.setState({ percentVal: 0 })
-                this.props.editCompleted("false")
-                this.props.editPercentageDone(0)
-            }
-            }
-            onPress={() => {
-                this.setState({ percentVal: 100 })
-                this.props.editPercentageDone(100)
-                this.props.editCompleted("true")
-
-            }
-            }>
-            {this.renderCompleteButtonText()}
-        </TouchableOpacity>)
-    }
-
-    renderCompleteButtonText() {
         if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done</Text>)
+            return (
+                <TouchableOpacity
+                    style={styles.completeButtonBodyDone}
+                    onLongPress={() => {
+                        this.setState({ percentVal: 0 })
+                        this.props.editCompleted("false")
+                        this.props.editPercentageDone(0)
+                    }
+                    }
+                    onPress={() => {
+                        this.setState({ percentVal: 100 })
+                        this.props.editPercentageDone(100)
+                        this.props.editCompleted("true")
+
+                    }
+                    }>
+                    <Text style={styles.completeButtonText}>Done</Text>
+                </TouchableOpacity>
+
+            )
         else
-            return (<Text style={styles.completeButtonText}>Complete</Text>)
+            return (
+                <TouchableOpacity
+                    style={styles.completeButtonBody}
+                    onLongPress={() => {
+                        this.setState({ percentVal: 0 })
+                        this.props.editCompleted("false")
+                        this.props.editPercentageDone(0)
+                    }
+                    }
+                    onPress={() => {
+                        this.setState({ percentVal: 100 })
+                        this.props.editPercentageDone(100)
+                        this.props.editCompleted("true")
+
+                    }
+                    }>
+                    <Text style={styles.completeButtonText}>Complete</Text>
+                </TouchableOpacity>
+            )
     }
     /* #endregion */
 
@@ -323,6 +360,10 @@ export class ViewHabit extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={"#D6A2AD"}
+                    disabledSaveButtonBackgroundColor={"#A77E8C"}
+                    saveButtonTextColor={"711E30"}
+                    disabledSaveButtonTextColor={"#711E30"}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);

@@ -36,7 +36,7 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: finishedBackgroundColor,
+    backgroundColor: finishColor,
   },
   /* #endregion */
 
@@ -481,6 +481,17 @@ module.exports = StyleSheet.create({
     margin: 10,
     borderColor: finishColor,
     backgroundColor: finishColor,
+    borderWidth: 2,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '12%',
+    borderColor: finishColorBorderColor,
+  },
+  completeButtonBodyDone: {
+    margin: 10,
+    borderColor: complimentaryColor,
+    backgroundColor: backgroundColor,
     borderWidth: 2,
     borderRadius: 10,
     alignItems: 'center',
