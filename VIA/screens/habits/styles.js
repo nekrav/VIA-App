@@ -5,7 +5,7 @@ import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#D6A2AD"
+const mainColor = "#D6A2AD"
 const complimentaryColor = "#711E30";
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
@@ -24,14 +24,14 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: mainColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: backgroundColor,
+        backgroundColor: mainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -40,7 +40,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: mainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -48,7 +48,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: backgroundColor,
+        shadowColor: mainColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -81,7 +81,7 @@ module.exports = StyleSheet.create({
 
     /* #region  List Item Section */
     listItemContainer: {
-        backgroundColor: backgroundColor,
+        backgroundColor: mainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -89,7 +89,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: mainColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",

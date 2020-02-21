@@ -11,7 +11,7 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#ffffff"
+const backgroundColor = "#E5C797"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
@@ -27,14 +27,14 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: "#E5C797",
+        backgroundColor: backgroundColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -43,7 +43,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -65,9 +65,9 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: backgroundColor,
+        color: textColor,
         fontSize: 50,
-        color: backgroundColor
+        color: textColor
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -79,7 +79,7 @@ module.exports = StyleSheet.create({
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: textColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
