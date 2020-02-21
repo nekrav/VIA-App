@@ -277,7 +277,7 @@ export class CreateRoutine extends React.Component {
 					</Text>
 
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="bell" size={20} color="#ffffff" />
+						<SIcon name="bell" size={20} color="#73521C" />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -294,7 +294,7 @@ export class CreateRoutine extends React.Component {
         </Text>
 
 				<Text style={styles.notificationTimeButtonText}>
-					<SIcon name="bell" size={20} color="#ABABAB" />
+					<SIcon name="bell" size={20} color="#B09B7A" />
 				</Text>
 			</TouchableOpacity>
 		);
