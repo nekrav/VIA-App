@@ -12,6 +12,7 @@ const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#E5C797"
+const complimentaryColor = "#73521C";
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
@@ -65,9 +66,8 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: textColor,
         fontSize: 50,
-        color: textColor
+        color: complimentaryColor
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -79,7 +79,7 @@ module.exports = StyleSheet.create({
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: textColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -92,7 +92,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: backgroundColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
