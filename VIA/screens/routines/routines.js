@@ -160,8 +160,10 @@ export class RoutinesScreen extends React.Component {
                                     <CheckBox
                                         containerStyle={styles.checkBox}
                                         center
-                                        checkedIcon='dot-circle-o'
-                                        uncheckedIcon='circle-o'
+                                        checkedIcon='check-square'
+                                        uncheckedIcon='check-square'
+                                        checkedColor='#4DFF87'
+                                        uncheckedColor='#73521C'
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
@@ -175,11 +177,11 @@ export class RoutinesScreen extends React.Component {
                                             style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications() }}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}

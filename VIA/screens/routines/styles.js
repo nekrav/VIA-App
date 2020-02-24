@@ -16,9 +16,8 @@ const complimentaryColor = "#73521C";
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
-const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
+const shadowColor = "#000000"
 
 const { width, height } = Dimensions.get('window');
 
@@ -52,7 +51,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -68,60 +67,33 @@ module.exports = StyleSheet.create({
         justifyContent: "center",
         fontSize: 50,
         color: complimentaryColor
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         color: complimentaryColor,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
         color: complimentaryColor,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
     },
     /* #endregion */
 
     listItemContainer: {
-        // flex: 1,
         backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -135,20 +107,15 @@ module.exports = StyleSheet.create({
         backgroundColor: finishedBackgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -157,17 +124,12 @@ module.exports = StyleSheet.create({
         }
     },
     listItemTextContainer: {
-        // flex: 1,
-        // flexGrow: 1,
-        // flexWrap: 'nowrap',
         width: 130,
         maxWidth: 130,
         marginRight: 10,
-        // backgroundColor: blueColor
     },
     listItemText: {
-        // height: '100%',
-        color: textColor,
+        color: complimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },
