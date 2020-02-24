@@ -240,6 +240,8 @@ export class CreateRoutine extends React.Component {
 				<NotificationTimesModal
 					animationType="fade"
 					transparent={true}
+					saveButtonBackgroundColor={"#E5C797"}
+                    disabledSaveButtonBackgroundColor={"#E5C797"}
 					setDate={item => {
 						this.props.notification_time(item);
 						this.setState({ itemNotificationTimes: item });
