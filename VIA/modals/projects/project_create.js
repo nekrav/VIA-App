@@ -124,6 +124,8 @@ export class CreateProject extends React.Component {
 				<DateModal
 					pickerMode="date"
 					animationType="fade"
+					disabledSaveButtonBackgroundColor="#4585C1"
+                    saveButtonBackgroundColor="#4585C1"
 					transparent={true}
 					setDate={item => {
 						this.props.due_date(item);
