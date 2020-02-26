@@ -104,7 +104,7 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished:{
-        backgroundColor: finishedBackgroundColor,
+        backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,

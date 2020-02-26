@@ -116,7 +116,7 @@ module.exports = StyleSheet.create({
 
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
      
         marginTop: 2,
