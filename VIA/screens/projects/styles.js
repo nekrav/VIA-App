@@ -11,7 +11,8 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#ffffff"
+const backgroundColor = "#4585C1"
+const complimentaryColor = "#023C74"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
@@ -34,7 +35,7 @@ module.exports = StyleSheet.create({
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -43,7 +44,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -65,9 +66,9 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: backgroundColor,
+        color: complimentaryColor,
         fontSize: 50,
-        color: backgroundColor
+        color: complimentaryColor
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -79,7 +80,7 @@ module.exports = StyleSheet.create({
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -92,7 +93,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: backgroundColor,
+        color: complimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
