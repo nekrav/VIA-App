@@ -208,10 +208,10 @@ module.exports = StyleSheet.create({
     /* #region  Create Project Selection Section */
     createProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -227,10 +227,10 @@ module.exports = StyleSheet.create({
     },
     hasProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -255,7 +255,7 @@ module.exports = StyleSheet.create({
     hasProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: complimentaryColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,

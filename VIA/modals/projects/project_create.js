@@ -96,7 +96,7 @@ export class CreateProject extends React.Component {
 					<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 					<Text style={styles.notificationTimeButtonText}>
 
-						<SIcon name="list" size={20} color="#ffffff" />
+						<SIcon name="list" size={20} color="#023C74" />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -105,7 +105,7 @@ export class CreateProject extends React.Component {
 				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 					<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="list" size={20} color="#ABABAB" />
+						<SIcon name="list" size={20} color="#35689C" />
 					</Text>
 				</TouchableOpacity>
 			);
