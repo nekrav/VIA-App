@@ -437,7 +437,7 @@ export class CreateRoutine extends React.Component {
 
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<SafeAreaView style={styles.outerView}>
-
+					<View>
 						{/* {TOP NAVIGATION REGION} */}
 						<View style={styles.topNav}>
 							<TouchableOpacity
@@ -507,11 +507,12 @@ export class CreateRoutine extends React.Component {
 
 						{/* {NOTES SECTION} */}
 						{/* {this.renderNotesSection()} */}
-
-
+						</View>
+						<View>
 						{/* {BOTTOM BUTTONS SECTION} */}
 						{this.renderBottomButtons()}
-
+						</View>
+						
 					</SafeAreaView>
 				</TouchableWithoutFeedback>
 			</Modal>

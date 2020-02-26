@@ -27,10 +27,12 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: backgroundColor,
+    justifyContent: 'space-between'
   },
   outerViewDone: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'space-between',
     backgroundColor: finishedBackgroundColor,
   },
   /* #endregion */
