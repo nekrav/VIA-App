@@ -51,6 +51,8 @@ export class CreateProject extends React.Component {
 				animationType="fade"
 				items={this.state.items}
 				itemName="Tasks"
+				titleTextColor="#023C74"
+				titleContainerColor="#4585C1"
 				transparent={true}
 				selectItems={items => {
 					this.setState({ tasks: items })
@@ -187,6 +189,8 @@ export class CreateProject extends React.Component {
 				<NotificationTimesModal
 					animationType="fade"
 					transparent={true}
+					saveButtonBackgroundColor={"#4585C1"}
+					disabledSaveButtonBackgroundColor={"#4585C1"}
 					setDate={item => {
 						this.props.notification_time(item);
 						this.setState({ itemNotificationTimes: item });
@@ -224,7 +228,7 @@ export class CreateProject extends React.Component {
 					</Text>
 
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="bell" size={20} color="#ffffff" />
+						<SIcon name="bell" size={20} color="#023C74" />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -241,7 +245,7 @@ export class CreateProject extends React.Component {
         </Text>
 
 				<Text style={styles.notificationTimeButtonText}>
-					<SIcon name="bell" size={20} color="#ABABAB" />
+					<SIcon name="bell" size={20} color="#35689C" />
 				</Text>
 			</TouchableOpacity>
 		);

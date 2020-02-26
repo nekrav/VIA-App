@@ -5,7 +5,7 @@ export class Habits {
         this.id = uuid.v4
         this.name = props.name
         this.created_date = props.created_date
-        this.due_time = props.due_time
+        this.end_time = props.end_time
         this.importance = props.importance
         this.percentage_done = props.percentage_done
         this.completed = props.completed
@@ -14,6 +14,7 @@ export class Habits {
         this.notification_time = props.notification_time
         this.days_to_do = props.days_to_do
         this.routine = props.routine
+        this.notes = props.notes
     }
 
     static get TABLE_CREATE() {
@@ -30,7 +31,8 @@ export class Habits {
             'time_spent text, ' +
             'notification_time text, ' +
             'days_to_do text, ' +
-            'routine text ' +
+            'routine text, ' +
+            'notes text ' +
             ')'
     }
 
