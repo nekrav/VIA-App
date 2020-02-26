@@ -339,6 +339,12 @@ export class CreateRoutine extends React.Component {
 					animationType="slide"
 					transparent={true}
 					existingNotes={this.state.itemNotes}
+					notesBackgroundColor="#E5C797"
+					notesButtonNoNotesTextColor="#B09B7A"
+					notesButtonNotesTextColor="#E5C797"
+					notesButtonContainerNoNotesText="#E5C797"
+					notesButtonContainerNotesText="#73521C"
+
 					placeholder={'Notes...'}
 					setNotes={item => {
 						this.props.notes(item);
