@@ -50,8 +50,8 @@ export class MultipleSelectionModal extends React.Component {
                     onRequestClose={this.props.onRequestClose}>
                     <SafeAreaView style={styles.outerView}>
                         {this.props.children}
-                        <View style={styles.titleView}>
-                            <Text style={styles.titleText}>Select {this.props.itemName} </Text>
+                        <View style={[styles.titleView, {backgroundColor: this.props.titleContainerColor}]}>
+                            <Text style={[styles.titleText,{color: this.props.titleTextColor}]}>Select {this.props.itemName} </Text>
                         </View>
                         <View style={styles.itemsContainerView}>
                             <FlatList

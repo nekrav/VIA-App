@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
+import { SelectionModal } from '../selectionModal/selectionModal';
+
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Habits, Routines } from '../../db'
@@ -53,6 +55,8 @@ export class CreateRoutine extends React.Component {
 			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
+				titleTextColor="#73521C"
+				titleContainerColor="#E5C797"
 				itemName="Habits"
 				transparent={true}
 				selectItems={items => {
@@ -60,6 +64,22 @@ export class CreateRoutine extends React.Component {
 				}}
 				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
 			</MultipleSelectionModal>
+
+			// return	<SelectionModal
+			// 		animationType="fade"
+			// 		items={this.state.items}
+			// 		itemName="Routine"
+			// 		titleTextColor="#9C7639"
+			// 		titleContainerColor="#E5C797"
+			// 		transparent={true}
+			// 		selectItem={item => {
+			// 			this.props.routine(item.key);
+			// 			this.setState({ theSelectedRoutine: item.value.name }, () => { });
+			// 		}}
+			// 		closeModal={() => {
+			// 			this.setTaskSelectionModalVisibility(false);
+			// 		}}
+			// 	></SelectionModal>
 		}
 	}
 
@@ -83,7 +103,7 @@ export class CreateRoutine extends React.Component {
 				this.state.tasks[i].item.value.routine = projectID
 				Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Habits.TABLE_NAME);
-					notifier.scheduleAllNotifications() 
+					notifier.scheduleAllNotifications()
 				})
 			}
 		}
@@ -126,6 +146,8 @@ export class CreateRoutine extends React.Component {
 				<DateModal
 					pickerMode="time"
 					animationType="fade"
+					disabledSaveButtonBackgroundColor="#E5C797"
+					saveButtonBackgroundColor="#E5C797"
 					transparent={true}
 					setDate={item => {
 						this.props.start_time(item);
@@ -183,6 +205,8 @@ export class CreateRoutine extends React.Component {
 				<DateModal
 					pickerMode="time"
 					animationType="fade"
+					disabledSaveButtonBackgroundColor="#E5C797"
+					saveButtonBackgroundColor="#E5C797"
 					transparent={true}
 					setDate={item => {
 						this.props.end_time(item);
@@ -241,7 +265,7 @@ export class CreateRoutine extends React.Component {
 					animationType="fade"
 					transparent={true}
 					saveButtonBackgroundColor={"#E5C797"}
-                    disabledSaveButtonBackgroundColor={"#E5C797"}
+					disabledSaveButtonBackgroundColor={"#E5C797"}
 					setDate={item => {
 						this.props.notification_time(item);
 						this.setState({ itemNotificationTimes: item });
