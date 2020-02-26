@@ -66,11 +66,11 @@ export class NotesModal extends React.Component {
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
-                        <TouchableOpacity style={this.state.notes != this.state.startingNotes ? [styles.modifiedBottomButtonContainer] : [styles.bottomButtonContainer]}
+                        <TouchableOpacity style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonContainer : styles.bottomButtonContainer}
                             onPress={() => {
                                 this.props.closeModal()
                             }}>
-                            <Text style={this.state.notes != this.state.startingNotes ? [styles.modifiedBottomButtonText] : [styles.bottomButtonText]}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
+                            <Text style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonText : styles.bottomButtonText}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
                         </TouchableOpacity>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
