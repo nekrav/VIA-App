@@ -10,12 +10,13 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#ffffff"
+const backgroundColor = "#4585C1"
+const complimentaryColor = "#023C74"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
+const placeholderColor = "#35689C"
 const homeColorButton = "#48A2F8"
 
 const { width, height } = Dimensions.get('window');
@@ -55,9 +56,9 @@ module.exports = StyleSheet.create({
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor: backgroundColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -73,9 +74,9 @@ module.exports = StyleSheet.create({
     },
     hasNameTextInputContainer: {
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -92,7 +93,14 @@ module.exports = StyleSheet.create({
     createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: complimentaryColor,
+        marginLeft: 10,
+        marginBottom: 5,
+    },
+      createNameText: {
+        fontSize: 30,
+        fontFamily: fontFamily,
+        color: complimentaryColor,
         marginLeft: 10,
         marginBottom: 5,
     },

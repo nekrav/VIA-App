@@ -329,15 +329,6 @@ export class CreateProject extends React.Component {
 								style={styles.topNavBackButton}
 								onPress={this.props.closeModal}>
 								<SIcon
-									style={{
-										shadowColor: '#ABABAB',
-										shadowOpacity: 0.8,
-										shadowRadius: 1.5,
-										shadowOffset: {
-											height: 1,
-											width: 0,
-										},
-									}}
 									name="arrow-left"
 									size={30}
 									color="#2d3142"
