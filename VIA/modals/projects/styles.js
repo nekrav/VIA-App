@@ -110,9 +110,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -138,7 +138,7 @@ module.exports = StyleSheet.create({
     createSelectedDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: complimentaryColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -147,11 +147,11 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #region  Sliders Section */
-
     sliderSlider: {
         width: 250,
         height: 1,
-        transform: [{ rotate: '270deg' }]
+        transform: [{ rotate: '270deg' }],
+        marginBottom: 10,
     },
     slidersSection: {
         flexDirection: "column",
