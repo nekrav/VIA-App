@@ -377,8 +377,8 @@ export class CreateProject extends React.Component {
 									<Text
 										style={
 											this.state.newTaskImportance > 0
-												? styles.sliderTitleNull
-												: styles.sliderTitle
+												? styles.sliderTitle
+												: styles.sliderTitleNull
 										}
 									>
 										Importance
