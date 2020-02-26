@@ -393,8 +393,9 @@ export class CreateProject extends React.Component {
 										style={styles.sliderSlider}
 										minimumValue={0}
 										maximumValue={100}
-										minimumTrackTintColor={styles.blueColor}
-										maximumTrackTintColor={styles.placeholderColor}
+										thumbTintColor={this.state.newTaskImportance  > 0 ? "#023C74" : "#35689C"}
+										minimumTrackTintColor={"#023C74"}
+										maximumTrackTintColor={"#35689C"}
 										onSlidingComplete={value => {
 											this.setState({ newTaskImportance: value });
 											this.props.importance(value);
