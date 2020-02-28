@@ -56,9 +56,9 @@ export class NotesModal extends React.Component {
                             style={styles.notesContainer}>
                             <TextInput ref={(input) => { this.notesTextInput = input; }}
                                 multiline={true}
-                                placeholderTextColor="#B0B0B0"
+                                placeholderTextColor={this.props.textPlacholderColor}
                                 placeholder={this.props.placeholder}
-                                style={styles.notesTextInput}
+                                style={[styles.notesTextInput, {color: this.props.textChangedColor}]}
                                 value={this.state.notes}
                                 onChangeText={value => {
                                     this.setState({notes: value})

@@ -62,7 +62,6 @@ module.exports = StyleSheet.create({
     notesTextInput: {
         fontSize: 24,
         fontFamily: fontFamily,
-        color: "#000",
         marginLeft: 10,
         marginRight: 10,
     },
