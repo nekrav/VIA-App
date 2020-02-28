@@ -45,7 +45,7 @@ export class NotesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={styles.outerView}>
+                    <SafeAreaView style={[styles.outerView, {backgroundColor: this.props.backgroundColor}]}>
                         <TouchableOpacity
                             onPress={() => { 
                                 if (this.notesTextInput.isFocused) {

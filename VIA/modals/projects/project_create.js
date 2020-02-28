@@ -264,6 +264,7 @@ export class CreateProject extends React.Component {
 					animationType="slide"
 					transparent={true}
 					existingNotes={this.state.itemNotes}
+					backgroundColor={"#4585C1"}
 					placeholder={'Notes...'}
 					setNotes={item => {
 						this.props.notes(item);

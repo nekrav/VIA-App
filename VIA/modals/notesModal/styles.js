@@ -27,7 +27,6 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: "#ffffff",
         justifyContent: 'center',
         alignContent: 'center',
     },
