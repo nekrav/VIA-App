@@ -266,7 +266,8 @@ export class CreateProject extends React.Component {
 					existingNotes={this.state.itemNotes}
 					backgroundColor={"#4585C1"}
 					buttonContainerNotChangedColor={"#35689C"}
-					textPlaceholderColor={"#4585C1"}
+					buttonContainerTextNotChangedColor={"#4585C1"}
+					textPlaceholderColor={"#35689C"}
 					textChangedColor={"#023C74"}
 
 					placeholder={'Notes...'}
