@@ -37,6 +37,23 @@ export class NotesModal extends React.Component {
         };
     }
 
+    getButtonContainerStyles() {
+        if (this.state.notes != this.state.startingNotes) {
+            return [styles.modifiedBottomButtonContainer, { backgroundColor: this.props.textChangedColor }]
+        }
+        return [styles.modifiedBottomButtonContainer, { backgroundColor: this.props.buttonContainerNotChangedColor }]
+
+    }
+
+    getButtonTextStyles() {
+        if (this.state.notes != this.state.startingNotes) {
+            return [styles.modifiedBottomButtonText, { color: this.props.textPlaceholderColor }]
+        } else {
+            return [styles.bottomButtonText, { color: this.props.textPlaceholderColor }]
+        }
+    }
+
+
     render() {
         return (
             <Modal
@@ -45,32 +62,32 @@ export class NotesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={[styles.outerView, {backgroundColor: this.props.backgroundColor}]}>
+                    <SafeAreaView style={[styles.outerView, { backgroundColor: this.props.backgroundColor }]}>
                         <TouchableOpacity
-                            onPress={() => { 
+                            onPress={() => {
                                 if (this.notesTextInput.isFocused) {
                                     Keyboard.dismiss()
                                 }
-                                this.notesTextInput.focus(); 
+                                this.notesTextInput.focus();
                             }}
                             style={styles.notesContainer}>
                             <TextInput ref={(input) => { this.notesTextInput = input; }}
                                 multiline={true}
-                                placeholderTextColor={this.props.textPlacholderColor}
+                                placeholderTextColor={this.props.textPlaceholderColor}
                                 placeholder={this.props.placeholder}
-                                style={[styles.notesTextInput, {color: this.props.textChangedColor}]}
+                                style={[styles.notesTextInput, { color: this.props.textChangedColor }]}
                                 value={this.state.notes}
                                 onChangeText={value => {
-                                    this.setState({notes: value})
+                                    this.setState({ notes: value })
                                     this.props.setNotes(value)
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
-                        <TouchableOpacity style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonContainer : styles.bottomButtonContainer}
+                        <TouchableOpacity style={this.getButtonContainerStyles()}
                             onPress={() => {
                                 this.props.closeModal()
                             }}>
-                            <Text style={this.state.notes != this.state.startingNotes ? styles.modifiedBottomButtonText : styles.bottomButtonText}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
+                            <Text style={this.getButtonTextStyles()}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
                         </TouchableOpacity>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
