@@ -168,7 +168,7 @@ module.exports = StyleSheet.create({
     },
     listItemText: {
         // height: '100%',
-        color: textColor,
+        color: complimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },

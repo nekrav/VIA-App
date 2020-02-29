@@ -12,12 +12,11 @@ const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
 const backgroundColor = "#58AAF9"
+const complimentaryColor = "#045CB1"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
-const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
+const placeholderColor = "#4485C8"
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,7 +33,7 @@ module.exports = StyleSheet.create({
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: blueColor,
+        backgroundColor: backgroundColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -43,7 +42,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -65,62 +64,34 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: backgroundColor,
         fontSize: 50,
-        color: backgroundColor
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
+        color: complimentaryColor
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: backgroundColor,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
+        color: complimentaryColor,
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: backgroundColor,
-        // shadowColor: "#000000",
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // }
+        color: complimentaryColor,
     },
     /* #endregion */
 
     listItemContainer: {
-        // flex: 1,
         backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -132,22 +103,17 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished:{
-        backgroundColor: finishedBackgroundColor,
+        backgroundColor: backgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        // height: '100%',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: placeholderColor,
         flexDirection: "row",
-     
         marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -157,17 +123,12 @@ module.exports = StyleSheet.create({
         }
     },
     listItemTextContainer: {
-        // flex: 1,
-        // flexGrow: 1,
-        // flexWrap: 'nowrap',
         width: 130,
         maxWidth: 130,
         marginRight: 10,
-        // backgroundColor: blueColor
     },
     listItemText: {
-        // height: '100%',
-        color: textColor,
+        color: complimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },

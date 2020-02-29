@@ -10,12 +10,13 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
 
-const backgroundColor = "#ffffff"
+const backgroundColor = "#58AAF9"
+const complimentaryColor = "#045CB1"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
+const placeholderColor = "#4485C8"
 const homeColorButton = "#48A2F8"
 
 const { width, height } = Dimensions.get('window');
@@ -54,9 +55,9 @@ module.exports = StyleSheet.create({
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor: backgroundColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor: backgroundColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
