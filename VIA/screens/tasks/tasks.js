@@ -192,8 +192,10 @@ export class TasksScreen extends React.Component {
                                     <CheckBox
                                         containerStyle={styles.checkBox}
                                         center
-                                        checkedIcon='dot-circle-o'
-                                        uncheckedIcon='circle-o'
+                                        checkedIcon='check-square'
+                                        uncheckedIcon='check-square'
+                                        checkedColor='#4DFF87'
+                                        uncheckedColor='#045CB1'
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
@@ -211,12 +213,12 @@ export class TasksScreen extends React.Component {
 
 
                                 <View style={styles.listItemActionButtonsContainer}>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.delete(this, dbTableName, item.value);  notifier.scheduleAllNotifications() }}
                                     >
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
@@ -229,7 +231,7 @@ export class TasksScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#045CB1" />
                                     </TouchableOpacity>
                                 </View>
 
