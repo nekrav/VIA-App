@@ -1,27 +1,19 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, PixelRatio, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 
-const buttonBackgroundColor = '#3a506b';
-const titleFontSize = 24;
-const bodyFontSize = 20;
-const leftMargin = 5;
-const buttonFontSize = 20;
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
 
 const backgroundColor = "#E5C797"
 const complimentaryColor = "#73521C";
 const blueColor = '#00bbb1';
 const textColor = '#73521C';
-const finishedBackgroundColor = '#4DFF87';
+const finishedBackgroundColor = '#E5C797'; //'#4DFF87'
 const grayColor = '#ededed';
 const placeholderColor = '#B09B7A';
-const homeColorButton = '#48A2F8';
 const childMainColor = "#D6A2AD"
 const childComplimentaryColor = "#711E30"
-
-const {width, height} = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -543,6 +535,7 @@ module.exports = StyleSheet.create({
   /* #endregion */
 
   /* #endregion */
+ 
   /* #region  Children Container */
   childrenContainer: {
     flexGrow: 1,
@@ -579,6 +572,7 @@ module.exports = StyleSheet.create({
   },
 
   /* #endregion */
+  
   /* #region  Child Item Section */
   childTitleContainer: {
     flex: 1,
