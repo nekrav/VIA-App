@@ -103,10 +103,8 @@ export class ViewRoutine extends React.Component {
     /* #endregion */
 
     /* #region  Habit Selection Region */
-
     setChildItemModalVisibility(visible) {
         this.setState({ childModalVisibility: visible })
-
     }
 
     renderChildItemModal() {
@@ -318,13 +316,15 @@ export class ViewRoutine extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#E5C797"
+					saveButtonBackgroundColor="#E5C797"
                     transparent={true}
                     setDate={item => {
-                        this.props.start_time(item);
+                        this.props.editStartTime(item);
                         this.setState({ itemStartDate: item });
                     }}
                     onSubmit={item => {
-                        this.props.start_time(item);
+                        this.props.editStartTime(item);
                         this.setState({ itemStartDate: item });
                         this.setStartDateModalVisibility(false);
                     }}
@@ -375,13 +375,15 @@ export class ViewRoutine extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#E5C797"
+					saveButtonBackgroundColor="#E5C797"
                     transparent={true}
                     setDate={item => {
-                        this.props.end_time(item);
+                        this.props.editEndTime(item);
                         this.setState({ itemEndDate: item });
                     }}
                     onSubmit={item => {
-                        this.props.end_time(item);
+                        this.props.editEndTime(item);
                         this.setState({ itemEndDate: item });
                         this.setEndDateModalVisibility(false);
                     }}

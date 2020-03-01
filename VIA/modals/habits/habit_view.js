@@ -478,6 +478,7 @@ export class ViewHabit extends React.Component {
 
                             {/* {NOTES SECTION} */}
                             {/* {this.renderNotesSection()} */}
+                            
                         </View>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>

@@ -18,6 +18,8 @@ const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
 const placeholderColor = '#B09B7A';
 const homeColorButton = '#48A2F8';
+const childMainColor = "#D6A2AD"
+const childComplimentaryColor = "#711E30"
 
 const {width, height} = Dimensions.get('window');
 
@@ -469,9 +471,9 @@ module.exports = StyleSheet.create({
     marginTop: 10,
     flex: 1,
     borderRadius: 10,
-    backgroundColor: grayColor,
+    backgroundColor: backgroundColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
+    borderTopColor: backgroundColor,
     marginRight: 10,
     marginLeft: 10,
     shadowOpacity: 0.8,
@@ -502,7 +504,7 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: fontFamily,
-    color: blueColor,
+    color: complimentaryColor,
     fontSize: 25,
   },
   /* #endregion */
@@ -518,7 +520,7 @@ module.exports = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderWidth: 1,
-    borderColor: placeholderColor,
+    borderColor: backgroundColor,
     backgroundColor: backgroundColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
@@ -554,7 +556,7 @@ module.exports = StyleSheet.create({
 
   childContainer: {
     flex: 1,
-    backgroundColor: blueColor,
+    backgroundColor: childMainColor,
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginRight: 10,
@@ -563,7 +565,7 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     borderTopWidth: 2,
-    borderTopColor: placeholderColor,
+    borderTopColor: childMainColor,
     flexDirection: 'row',
 
     marginTop: 2,
@@ -582,7 +584,7 @@ module.exports = StyleSheet.create({
     flex: 1,
   },
   childTitleText: {
-    color: backgroundColor,
+    color: childComplimentaryColor,
     fontSize: 30,
     marginLeft: 10,
   },

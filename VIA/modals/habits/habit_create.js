@@ -403,13 +403,12 @@ export class CreateHabit extends React.Component {
 
     render() {
         return (
-
             <Modal
                 animationType={this.props.animationType}
                 transparent={this.props.transparent}
                 visible={this.props.visible}
-                onRequestClose={this.props.onRequestClose}
-            >
+                onRequestClose={this.props.onRequestClose}>
+
                 {this.showRoutineSelectionModal()}
                 {this.renderEndDateModal()}
                 {this.renderStartDateModal()}
@@ -417,8 +416,8 @@ export class CreateHabit extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
-
                         <View>
+
                             {/* {TOP NAVIGATION REGION} */}
                             {this.renderTopBar()}
 
@@ -437,13 +436,14 @@ export class CreateHabit extends React.Component {
                             {/* {NOTIFICATION TIMES SECTION} */}
                             {this.renderNotificationTimes()}
 
-
                             {/* {NOTES SECTION} */}
                             {/* {this.renderNotesSection()} */}
 
                         </View>
+
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}
+                        
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
