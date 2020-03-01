@@ -267,7 +267,7 @@ export class ViewRoutine extends React.Component {
                                                 this.setChildItemModalVisibility(true)
                                             })
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#711E30" />
                                     </TouchableOpacity>
                                 </View>
                             </View>

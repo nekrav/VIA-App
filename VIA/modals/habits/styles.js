@@ -1,13 +1,8 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, PixelRatio, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 
-const buttonBackgroundColor = '#3a506b';
-const titleFontSize = 24;
-const bodyFontSize = 20;
-const leftMargin = 5;
-const buttonFontSize = 20;
 const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
 
@@ -17,10 +12,8 @@ const blueColor = '#00bbb1';
 const textColor = '#711E30';
 const finishColor = '#16E500'
 const finishColorBorderColor = '#10AE00'
-const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
 const placeholderColor = "#A77E8C";
-const homeColorButton = '#48A2F8';
 
 const {width, height} = Dimensions.get('window');
 
