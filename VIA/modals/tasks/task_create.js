@@ -250,7 +250,7 @@ export class CreateTask extends React.Component {
                             {this.state.theSelectedProject}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color="#ffffff" />
+                            <SIcon name="layers" size={20} color="#045CB1" />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -323,7 +323,7 @@ export class CreateTask extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color="#ffffff" />
+                        <SIcon name="bell" size={20} color="#045CB1" />
                     </Text>
                 </TouchableOpacity>
             );
@@ -340,7 +340,7 @@ export class CreateTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color="#4485C8" />
                 </Text>
             </TouchableOpacity>
         );
