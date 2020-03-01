@@ -286,6 +286,8 @@ export class CreateTask extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={"#045CB1"}
+					disabledSaveButtonBackgroundColor={"#045CB1"}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -359,6 +361,12 @@ export class CreateTask extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.itemNotes}
+                    backgroundColor={"#58AAF9"}
+					buttonContainerNotChangedColor={"#4485C8"}
+					buttonContainerTextNotChangedColor={"#045CB1"}
+					textPlaceholderColor={"#4485C8"}
+					textChangedColor={"#045CB1"}
+
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.notes(item);
