@@ -366,7 +366,6 @@ export class CreateTask extends React.Component {
 					buttonContainerTextNotChangedColor={"#045CB1"}
 					textPlaceholderColor={"#4485C8"}
 					textChangedColor={"#045CB1"}
-
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.notes(item);
