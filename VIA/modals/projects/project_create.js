@@ -36,12 +36,103 @@ export class CreateProject extends React.Component {
 			itemNotes: '',
 			numberOfTasks: '',
 			tasks: [],
-			projectId:  uuid.v4(),
+			projectId: uuid.v4(),
 		};
 	}
+
 	componentDidMount() {
 		controller.loadAll(this, Tasks.TABLE_NAME);
 	}
+
+	/* #region  Top Bar Region */
+
+	renderTopRegion() {
+		return (<View style={styles.topNav}>
+			<TouchableOpacity
+				style={styles.topNavBackButton}
+				onPress={this.props.closeModal}>
+				<SIcon
+					name="arrow-left"
+					size={30}
+					color="#023C74"
+				/>
+			</TouchableOpacity>
+		</View>)
+	}
+	/* #endregion */
+
+	/* #region  Name Input Region */
+	renderNameInputSection() {
+		return (<TouchableOpacity
+			onPress={() => {
+				this.nameTextInput.focus();
+			}}
+			style={
+				this.state.newProjectName != ''
+					? styles.hasNameTextInputContainer
+					: styles.createNameContainer
+			}
+		>
+			<TextInput
+				ref={input => {
+					this.nameTextInput = input;
+				}}
+				maxLength={40}
+				style={styles.createNameText}
+				multiline={true}
+				placeholder={'Name'}
+				onChangeText={value => {
+					this.setState({ newProjectName: value });
+					this.props.name(value);
+					this.props.id(this.state.projectId);
+				}}
+			></TextInput>
+		</TouchableOpacity>)
+	}
+	/* #endregion */
+
+	/* #region  Slider Region */
+	renderSliderSection() {
+		return (<View style={styles.slidersSection}>
+			<View style={styles.slidersTitlesContainer}>
+				<View style={styles.sliderTitleContainerCenter}>
+					<Text
+						style={
+							this.state.newTaskImportance > 0
+								? styles.sliderTitle
+								: styles.sliderTitleNull
+						}
+					>
+						Importance
+	  </Text>
+				</View>
+			</View>
+
+			<View style={styles.slidersContainer}>
+				{this.renderDueDateModal()}
+				<View style={styles.sliderContainerCenter}>
+					<Slider
+						style={styles.sliderSlider}
+						minimumValue={0}
+						maximumValue={100}
+						thumbTintColor={this.state.newTaskImportance > 0 ? "#023C74" : "#35689C"}
+						minimumTrackTintColor={"#023C74"}
+						maximumTrackTintColor={"#35689C"}
+						onSlidingComplete={value => {
+							this.setState({ newTaskImportance: value });
+							this.props.importance(value);
+						}}
+						onValueChange={value => {
+							this.setState({ newTaskImportance: value });
+							this.props.importance(value);
+						}}
+					/>
+				</View>
+			</View>
+		</View>
+		)
+	}
+	/* #endregion */
 
 	/* #region  Task Selection Region */
 
@@ -76,14 +167,13 @@ export class CreateProject extends React.Component {
 		return tasksString;
 	}
 
-	saveProjectInSelectedTask(projectID)
-	{
+	saveProjectInSelectedTask(projectID) {
 		if (this.state.tasks.length > 0) {
 			for (var i = 0; i < this.state.tasks.length; i++) {
-				this.state.tasks[i].item.value.project  = projectID
+				this.state.tasks[i].item.value.project = projectID
 				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Tasks.TABLE_NAME);
-					notifier.scheduleAllNotifications() 
+					notifier.scheduleAllNotifications()
 				})
 			}
 		}
@@ -92,24 +182,28 @@ export class CreateProject extends React.Component {
 	renderTaskSelection() {
 		if (this.state.tasks.length > 0) {
 			return (
-				<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
-					this.setTaskSelectionModalVisibility(true);
-				}}>
-					<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
-					<Text style={styles.notificationTimeButtonText}>
+				<View style={styles.projectSectionContainer}>
+					<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
+						this.setTaskSelectionModalVisibility(true);
+					}}>
+						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
+						<Text style={styles.notificationTimeButtonText}>
 
-						<SIcon name="list" size={20} color="#023C74" />
-					</Text>
-				</TouchableOpacity>
+							<SIcon name="list" size={20} color="#023C74" />
+						</Text>
+					</TouchableOpacity>
+				</View>
 			);
 		} else {
 			return (
-				<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
-					<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
-					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="list" size={20} color="#35689C" />
-					</Text>
-				</TouchableOpacity>
+				<View style={styles.projectSectionContainer}>
+					<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
+						<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
+						<Text style={styles.notificationTimeButtonText}>
+							<SIcon name="list" size={20} color="#35689C" />
+						</Text>
+					</TouchableOpacity>
+				</View>
 			);
 		}
 	}
@@ -127,7 +221,7 @@ export class CreateProject extends React.Component {
 					pickerMode="date"
 					animationType="fade"
 					disabledSaveButtonBackgroundColor="#4585C1"
-                    saveButtonBackgroundColor="#4585C1"
+					saveButtonBackgroundColor="#4585C1"
 					transparent={true}
 					setDate={item => {
 						this.props.due_date(item);
@@ -322,6 +416,42 @@ export class CreateProject extends React.Component {
 	}
 	/* #endregion */
 
+	/* #region  Bottom Buttons Region */
+	renderBottomButtons() {
+		return (<View style={styles.bottomButtonsContainer}>
+			<TouchableOpacity
+				disabled={this.state.newProjectName != '' ? false : true}
+				style={
+					this.state.newProjectName != ''
+						? styles.bottomButtonLeft
+						: styles.bottomButtonLeftDisabled
+				}
+				onPress={() => {
+					notifier.scheduleAllNotifications()
+					this.saveProjectInSelectedTask(this.state.projectId)
+					this.props.save()
+				}}
+			>
+				<Text
+					style={
+						this.state.newProjectName != ''
+							? styles.bottomButtonTextDisabled
+							: styles.bottomButtonText
+					}
+				>
+					Save
+	</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={styles.bottomButtonRight}
+				onPress={this.props.closeModal}
+			>
+				<Text style={styles.bottomButtonText}>Close</Text>
+			</TouchableOpacity>
+		</View>)
+	}
+	/* #endregion */
+
 	render() {
 		return (
 			<Modal
@@ -331,141 +461,36 @@ export class CreateProject extends React.Component {
 				onRequestClose={this.props.onRequestClose}
 			>
 				{this.showTasksSelectionModal()}
+				{this.renderNotificationTimesModal()}
+				{this.renderNotesModal()}
 
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<SafeAreaView style={styles.outerView}>
 
-						{/* {TOP NAVIGATION REGION} */}
-						<View style={styles.topNav}>
-							<TouchableOpacity
-								style={styles.topNavBackButton}
-								onPress={this.props.closeModal}>
-								<SIcon
-									name="arrow-left"
-									size={30}
-									color="#2d3142"
-								/>
-							</TouchableOpacity>
-						</View>
+						{/* {TOP BAR SECTION} */}
+						{this.renderTopRegion()}
 
+						{/* {NAME INPUT SECTION} */}
+						{this.renderNameInputSection()}
 
-						{/* {NAME CONTAINER} */}
-						<TouchableOpacity
-							onPress={() => {
-								this.nameTextInput.focus();
-							}}
-							style={
-                                this.state.newProjectName != ''
-                                    ? styles.hasNameTextInputContainer
-                                    : styles.createNameContainer
-                            }
-                        >
-							<TextInput
-								ref={input => {
-									this.nameTextInput = input;
-								}}
-								maxLength={40}
-								style={styles.createNameText}
-								multiline={true}
-								placeholder={'Name'}
-								onChangeText={value => {
-									this.setState({ newProjectName: value });
-									this.props.name(value);
-									this.props.id(this.state.projectId);
-								}}
-							></TextInput>
-						</TouchableOpacity>
-
+						{/* {DUE DATE SECTION} */}
 						{this.renderDueDate()}
-						{this.renderNotificationTimesModal()}
-						{this.renderNotesModal()}
 
 						{/* {SLIDER SECTION} */}
-						<View style={styles.slidersSection}>
-							<View style={styles.slidersTitlesContainer}>
-								<View style={styles.sliderTitleContainerCenter}>
-									<Text
-										style={
-											this.state.newTaskImportance > 0
-												? styles.sliderTitle
-												: styles.sliderTitleNull
-										}
-									>
-										Importance
-					  </Text>
-								</View>
-							</View>
+						{this.renderSliderSection()}
 
-							<View style={styles.slidersContainer}>
-								{this.renderDueDateModal()}
-								<View style={styles.sliderContainerCenter}>
-									<Slider
-										style={styles.sliderSlider}
-										minimumValue={0}
-										maximumValue={100}
-										thumbTintColor={this.state.newTaskImportance  > 0 ? "#023C74" : "#35689C"}
-										minimumTrackTintColor={"#023C74"}
-										maximumTrackTintColor={"#35689C"}
-										onSlidingComplete={value => {
-											this.setState({ newTaskImportance: value });
-											this.props.importance(value);
-										}}
-										onValueChange={value => {
-											this.setState({ newTaskImportance: value });
-											this.props.importance(value);
-										}}
-									/>
-								</View>
-							</View>
-						</View>
-
-
-						{/* {PROJECT SELECTION SECTION} */}
-						<View style={styles.projectSectionContainer}>
-							{this.renderTaskSelection()}
-						</View>
-
+						{/* {TASK SELECTION SECTION} */}
+						{this.renderTaskSelection()}
 
 						{/* {NOTIFICATION TIMES SECTION} */}
 						{this.renderNotificationTimes()}
 
-
 						{/* {NOTES SECTION} */}
 						{this.renderNotesSection()}
 
-
 						{/* {BOTTOM BUTTONS SECTION} */}
-						<View style={styles.bottomButtonsContainer}>
-							<TouchableOpacity
-								disabled={this.state.newProjectName != '' ? false : true}
-								style={
-									this.state.newProjectName != ''
-										? styles.bottomButtonLeft
-										: styles.bottomButtonLeftDisabled
-								}
-								onPress={() => {
-									notifier.scheduleAllNotifications() 
-									this.saveProjectInSelectedTask(this.state.projectId)
-									this.props.save()
-								}}
-							>
-								<Text
-									style={
-										this.state.newProjectName != ''
-											? styles.bottomButtonTextDisabled
-											: styles.bottomButtonText
-									}
-								>
-									Save
-					</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.bottomButtonRight}
-								onPress={this.props.closeModal}
-							>
-								<Text style={styles.bottomButtonText}>Close</Text>
-							</TouchableOpacity>
-						</View>
+						{this.renderBottomButtons()}
+
 					</SafeAreaView>
 				</TouchableWithoutFeedback>
 			</Modal>
