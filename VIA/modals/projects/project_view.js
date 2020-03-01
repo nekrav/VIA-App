@@ -103,8 +103,6 @@ export class ViewProject extends React.Component {
 
     /* #endregion */
 
-
-
     /* #region  Task Selection Region */
 
     setChildItemModalVisibility(visible) {
@@ -211,8 +209,8 @@ export class ViewProject extends React.Component {
         if (this.state.tasks.length > 0) {
             for (var i = 0; i < this.state.tasks.length; i++) {
                 this.state.tasks[i].item.value.routine = projectID
-                Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
-                    controller.loadAll(this, Habits.TABLE_NAME);
+                Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
+                    controller.loadAll(this, Tasks.TABLE_NAME);
                     notifier.scheduleAllNotifications() 
                 })
             }
@@ -256,7 +254,7 @@ export class ViewProject extends React.Component {
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             controller.delete(this, childTableName, item.value)
-                                            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "routine")
                                             notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
@@ -283,7 +281,7 @@ export class ViewProject extends React.Component {
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
                         <Text style={styles.childrenItemsTitleText}>
-                            Habits in {this.state.selectedItem.name}
+                            Tasks in {this.state.selectedItem.name}
                         </Text>
                         {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                         onPress={() => {
@@ -298,7 +296,7 @@ export class ViewProject extends React.Component {
                     </TouchableOpacity> */}
                     </View>
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-                    <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
+                    <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
                 </View>
             );
         }
@@ -604,12 +602,6 @@ export class ViewProject extends React.Component {
     }
     /* #endregion */
 
-
-
-
-
-
-
     render() {
         if (this.props.selectedItem != {}) {
             return (
@@ -623,7 +615,7 @@ export class ViewProject extends React.Component {
                     style={{ margin: 0 }}
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
-                    <Modal><View><Text>awelifnaweilfse</Text></View></Modal>
+                    
                     {this.renderChildItemModal()}
                     {this.renderShowDate()}
                     {/* {this.showTaskSelectionModal()} */}
