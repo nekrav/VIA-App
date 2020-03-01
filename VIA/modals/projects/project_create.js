@@ -91,6 +91,69 @@ export class CreateProject extends React.Component {
 	}
 	/* #endregion */
 
+	/* #region  Due Date Region */
+	setDueDateModalVisibility(visible) {
+		this.setState({ showDate: visible });
+	}
+
+	renderDueDateModal() {
+		if (this.state.showDate) {
+			return (
+				<DateModal
+					pickerMode="date"
+					animationType="fade"
+					disabledSaveButtonBackgroundColor="#4585C1"
+					saveButtonBackgroundColor="#4585C1"
+					transparent={true}
+					setDate={item => {
+						this.props.due_date(item);
+						this.setState({ itemDate: item });
+					}}
+					onSubmit={item => {
+						this.props.due_date(item);
+						this.setState({ itemDate: item });
+						this.setDueDateModalVisibility(false);
+					}}
+					closeModal={() => {
+						this.setDueDateModalVisibility(false);
+					}}
+				></DateModal>
+			);
+		}
+		return null;
+	}
+
+	renderDueDate() {
+		if (this.state.itemDate != '') {
+			return (
+				<View style={styles.createDueDateContainer}>
+					<TouchableOpacity
+						onPress={() => this.setDueDateModalVisibility(true)}
+					>
+						<Text style={styles.createSelectedDateText}>
+							{Moment(new Date(this.state.itemDate)).format(dateFormat)}
+						</Text>
+					</TouchableOpacity>
+					<Text style={styles.createSelectedDateText}>
+						{Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') +
+							' days left'}
+					</Text>
+				</View>
+			);
+		}
+		return (
+			<View style={styles.createNameContainer}>
+				<TouchableOpacity onPress={() => this.setDueDateModalVisibility(true)}>
+					<Text style={styles.createDateText}>
+						When do you want to finish this?
+          </Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
+
+	/* #endregion */
+
 	/* #region  Slider Region */
 	renderSliderSection() {
 		return (<View style={styles.slidersSection}>
@@ -207,69 +270,6 @@ export class CreateProject extends React.Component {
 			);
 		}
 	}
-	/* #endregion */
-
-	/* #region  Due Date Region */
-	setDueDateModalVisibility(visible) {
-		this.setState({ showDate: visible });
-	}
-
-	renderDueDateModal() {
-		if (this.state.showDate) {
-			return (
-				<DateModal
-					pickerMode="date"
-					animationType="fade"
-					disabledSaveButtonBackgroundColor="#4585C1"
-					saveButtonBackgroundColor="#4585C1"
-					transparent={true}
-					setDate={item => {
-						this.props.due_date(item);
-						this.setState({ itemDate: item });
-					}}
-					onSubmit={item => {
-						this.props.due_date(item);
-						this.setState({ itemDate: item });
-						this.setDueDateModalVisibility(false);
-					}}
-					closeModal={() => {
-						this.setDueDateModalVisibility(false);
-					}}
-				></DateModal>
-			);
-		}
-		return null;
-	}
-
-	renderDueDate() {
-		if (this.state.itemDate != '') {
-			return (
-				<View style={styles.createDueDateContainer}>
-					<TouchableOpacity
-						onPress={() => this.setDueDateModalVisibility(true)}
-					>
-						<Text style={styles.createSelectedDateText}>
-							{Moment(new Date(this.state.itemDate)).format(dateFormat)}
-						</Text>
-					</TouchableOpacity>
-					<Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text>
-				</View>
-			);
-		}
-		return (
-			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setDueDateModalVisibility(true)}>
-					<Text style={styles.createDateText}>
-						When do you want to finish this?
-          </Text>
-				</TouchableOpacity>
-			</View>
-		);
-	}
-
 	/* #endregion */
 
 	/* #region  Notification Times Region */

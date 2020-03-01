@@ -115,6 +115,8 @@ export class CreateTask extends React.Component {
                 <DateModal
                     pickerMode="date"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor="#045CB1"
+					saveButtonBackgroundColor="#045CB1"
                     transparent={true}
                     setDate={item => {
                         this.props.due_date(item);
@@ -214,6 +216,8 @@ export class CreateTask extends React.Component {
                     animationType="fade"
                     items={this.state.items}
                     itemName="Project"
+                    titleTextColor="#045CB1"
+                    titleContainerColor="#58AAF9"
                     transparent={true}
                     selectItem={item => {
                         this.props.project(item.key);
