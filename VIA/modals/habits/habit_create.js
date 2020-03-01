@@ -46,66 +46,58 @@ export class CreateHabit extends React.Component {
         controller.loadAll(this, Routines.TABLE_NAME);
     }
 
-    /* #region  Routine Selection Region */
-    showRoutineSelectionModal() {
-        if (this.state.routineSelectionModalVisible) {
-            return (
-                <SelectionModal
-                    animationType="fade"
-                    items={this.state.items}
-                    itemName="Routine"
-                    titleTextColor="#9C7639"
-                    titleContainerColor="#E5C797"
-                    transparent={true}
-                    selectItem={item => {
-                        this.props.routine(item.key);
-                        this.setState({ theSelectedRoutine: item.value.name }, () => { });
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return (<View style={styles.topNav}>
+            <TouchableOpacity
+                style={styles.topNavBackButton}
+                onPress={this.props.closeModal}>
+                <SIcon
+                    style={{
+                        shadowColor: '#ABABAB',
+                        shadowOpacity: 0.8,
+                        shadowRadius: 1.5,
+                        shadowOffset: {
+                            height: 1,
+                            width: 0,
+                        },
                     }}
-                    closeModal={() => {
-                        this.setRoutineSelectionModalVisibility(false);
-                    }}
-                ></SelectionModal>
-            );
-        }
+                    name="arrow-left"
+                    size={30}
+                    color="#711E30"
+                />
+            </TouchableOpacity>
+        </View>)
     }
+    /* #endregion */
 
-    setRoutineSelectionModalVisibility(visible) {
-        this.setState({ routineSelectionModalVisible: visible });
-    }
-
-    renderRoutineSelection() {
-        if (this.state.theSelectedRoutine != '') {
-            this.props.routine = this.state.theSelectedRoutine;
-            return (
-                <TouchableOpacity
-                    style={styles.hasProjectSelectionContainer}
-                    onPress={() => {
-                        this.setRoutineSelectionModalVisibility(true);
-                    }}
-                >
-                    <Text style={styles.hasProjectSelectionButtonText}>
-                        {this.state.theSelectedRoutine}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#711E30" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity
-                    style={styles.createProjectSelectionContainer}
-                    onPress={this.setRoutineSelectionModalVisibility.bind(this)}
-                >
-                    <Text style={styles.createProjectSelectionButtonText}>
-                        Is this part of a bigger routine?
-          </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#A77E8C" />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
+    /* #region  Name Input Region */
+    renderNameInputSection() {
+        return (<TouchableOpacity
+            onPress={() => {
+                this.nameTextInput.focus();
+            }}
+            style={
+                this.state.newHabitName != ''
+                    ? styles.hasNameTextInputContainer
+                    : styles.createNameContainer
+            }
+        >
+            <TextInput
+                ref={input => {
+                    this.nameTextInput = input;
+                }}
+                maxLength={40}
+                style={styles.createNameText}
+                multiline={true}
+                placeholder={'Name'}
+                onChangeText={value => {
+                    this.setState({ newHabitName: value });
+                    this.props.name(value);
+                    this.props.id(this.state.habitId);
+                }}
+            ></TextInput>
+        </TouchableOpacity>)
     }
     /* #endregion */
 
@@ -235,6 +227,70 @@ export class CreateHabit extends React.Component {
 
     /* #endregion */
 
+    /* #region  Routine Selection Region */
+    showRoutineSelectionModal() {
+        if (this.state.routineSelectionModalVisible) {
+            return (
+                <SelectionModal
+                    animationType="fade"
+                    items={this.state.items}
+                    itemName="Routine"
+                    titleTextColor="#9C7639"
+                    titleContainerColor="#E5C797"
+                    transparent={true}
+                    selectItem={item => {
+                        this.props.routine(item.key);
+                        this.setState({ theSelectedRoutine: item.value.name }, () => { });
+                    }}
+                    closeModal={() => {
+                        this.setRoutineSelectionModalVisibility(false);
+                    }}
+                ></SelectionModal>
+            );
+        }
+    }
+
+    setRoutineSelectionModalVisibility(visible) {
+        this.setState({ routineSelectionModalVisible: visible });
+    }
+
+    renderRoutineSelection() {
+        if (this.state.theSelectedRoutine != '') {
+            this.props.routine = this.state.theSelectedRoutine;
+            return (
+                <View style={styles.routineSectionContainer}>
+                    <TouchableOpacity
+                        style={styles.hasProjectSelectionContainer}
+                        onPress={() => {
+                            this.setRoutineSelectionModalVisibility(true);
+                        }}
+                    >
+                        <Text style={styles.hasProjectSelectionButtonText}>
+                            {this.state.theSelectedRoutine}
+                        </Text>
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="refresh" size={20} color="#711E30" />
+                        </Text>
+                    </TouchableOpacity></View>
+            );
+        } else {
+            return (
+                <View style={styles.routineSectionContainer}>
+                    <TouchableOpacity
+                        style={styles.createProjectSelectionContainer}
+                        onPress={this.setRoutineSelectionModalVisibility.bind(this)}
+                    >
+                        <Text style={styles.createProjectSelectionButtonText}>
+                            Is this part of a bigger routine?
+          </Text>
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="refresh" size={20} color="#A77E8C" />
+                        </Text>
+                    </TouchableOpacity></View>
+            );
+        }
+    }
+    /* #endregion */
 
     /* #region  Notification Times Region */
     setNotificationTimesVisibility(visible) {
@@ -312,6 +368,39 @@ export class CreateHabit extends React.Component {
     }
     /* #endregion */
 
+    /* #region  Bottom Buttons Region */
+    renderBottomButtons() {
+        return (<View style={styles.bottomButtonsContainer}>
+            <TouchableOpacity
+                disabled={this.state.newHabitName != '' ? false : true}
+                style={
+                    this.state.newHabitName != ''
+                        ? styles.bottomButtonLeft
+                        : styles.bottomButtonLeftDisabled
+                }
+                onPress={() => {
+                    notifier.scheduleAllNotifications()
+                    this.props.save()
+                }}>
+                <Text
+                    style={
+                        this.state.newHabitName != ''
+                            ? styles.bottomButtonTextDisabled
+                            : styles.bottomButtonText
+                    }>
+                    Save
+                    </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.bottomButtonRight}
+                onPress={this.props.closeModal}
+            >
+                <Text style={styles.bottomButtonText}>Close</Text>
+            </TouchableOpacity>
+        </View>)
+    }
+    /* #endregion */
+
     render() {
         return (
 
@@ -324,109 +413,37 @@ export class CreateHabit extends React.Component {
                 {this.showRoutineSelectionModal()}
                 {this.renderEndDateModal()}
                 {this.renderStartDateModal()}
+                {this.renderNotificationTimesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={styles.outerView}>
 
-<View>
-                        {/* {TOP NAVIGATION REGION} */}
-                        <View style={styles.topNav}>
-                            <TouchableOpacity
-                                style={styles.topNavBackButton}
-                                onPress={this.props.closeModal}>
-                                <SIcon
-                                    style={{
-                                        shadowColor: '#ABABAB',
-                                        shadowOpacity: 0.8,
-                                        shadowRadius: 1.5,
-                                        shadowOffset: {
-                                            height: 1,
-                                            width: 0,
-                                        },
-                                    }}
-                                    name="arrow-left"
-                                    size={30}
-                                    color="#2d3142"
-                                />
-                            </TouchableOpacity>
-                        </View>
+                        <View>
+                            {/* {TOP NAVIGATION REGION} */}
+                            {this.renderTopBar()}
 
+                            {/* {NAME CONTAINER} */}
+                            {this.renderNameInputSection()}
 
-                        {/* {NAME CONTAINER} */}
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.nameTextInput.focus();
-                            }}
-                            style={
-                                this.state.newHabitName != ''
-                                    ? styles.hasNameTextInputContainer
-                                    : styles.createNameContainer
-                            }
-                        >
-                            <TextInput
-                                ref={input => {
-                                    this.nameTextInput = input;
-                                }}
-                                maxLength={40}
-                                style={styles.createNameText}
-                                multiline={true}
-                                placeholder={'Name'}
-                                onChangeText={value => {
-                                    this.setState({ newHabitName: value });
-                                    this.props.name(value);
-                                    this.props.id(this.state.habitId);
-                                }}
-                            ></TextInput>
-                        </TouchableOpacity>
+                            {/* {Start Date SECTION} */}
+                            {this.renderStartDate()}
 
-                        {this.renderNotificationTimesModal()}
+                            {/* {End Date SECTION} */}
+                            {this.renderEndDate()}
 
-                        {this.renderStartDate()}
-                        {this.renderEndDate()}
-
-                        {/* {PROJECT SELECTION SECTION} */}
-                        <View style={styles.routineSectionContainer}>
+                            {/* {PROJECT SELECTION SECTION} */}
                             {this.renderRoutineSelection()}
-                        </View>
+
+                            {/* {NOTIFICATION TIMES SECTION} */}
+                            {this.renderNotificationTimes()}
 
 
-                        {/* {NOTIFICATION TIMES SECTION} */}
-                        {this.renderNotificationTimes()}
-
-
-                        {/* {NOTES SECTION} */}
-                        {/* {this.renderNotesSection()} */}
+                            {/* {NOTES SECTION} */}
+                            {/* {this.renderNotesSection()} */}
 
                         </View>
                         {/* {BOTTOM BUTTONS SECTION} */}
-                        <View style={styles.bottomButtonsContainer}>
-                            <TouchableOpacity
-                                disabled={this.state.newHabitName != '' ? false : true}
-                                style={
-                                    this.state.newHabitName != ''
-                                        ? styles.bottomButtonLeft
-                                        : styles.bottomButtonLeftDisabled
-                                }
-                                onPress={() => {
-                                    notifier.scheduleAllNotifications()
-                                    this.props.save()
-                                }}>
-                                <Text
-                                    style={
-                                        this.state.newHabitName != ''
-                                            ? styles.bottomButtonTextDisabled
-                                            : styles.bottomButtonText
-                                    }>
-                                    Save
-                                    </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.bottomButtonRight}
-                                onPress={this.props.closeModal}
-                            >
-                                <Text style={styles.bottomButtonText}>Close</Text>
-                            </TouchableOpacity>
-                        </View>
+                        {this.renderBottomButtons()}
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
