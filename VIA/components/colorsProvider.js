@@ -2,7 +2,7 @@ import React from 'react';
 
 /* #region  General */
 export const font = 'Roboto-Medium'
-export const finishedBackgroundColor = '#E5C797'; //'#4DFF87'
+export const finishedBackgroundColor = '#4DFF87'; //'#4DFF87'
 /* #endregion */
 
 /* #region  Routines */
@@ -13,7 +13,7 @@ export const routinesTextColor = '#73521C';
 /* #endregion */
 
 /* #region  Habits */
-export const habitsMainColor = "#E5C797"
+export const habitsMainColor = "#D6A2AD"
 export const habitsComplimentaryColor = "#711E30";
 export const habitsPlaceholderColor = '#A77E8C';
 export const habitsTextColor = '#711E30';
@@ -27,7 +27,7 @@ export const homeTextColor = '#2d3142';
 /* #endregion */
 
 /* #region  Random */
-export const randomMainColor = "#E5C797"
+export const randomMainColor = "#fffff"
 export const randomComplimentaryColor = "#73521C";
 export const randomPlaceholderColor = '#B09B7A';
 export const randomTextColor = '#73521C';
