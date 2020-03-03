@@ -1,4 +1,5 @@
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 import { NavigationActions } from 'react-navigation';
 import { Animated, TouchableHighlight, View, Image } from "react-native";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';

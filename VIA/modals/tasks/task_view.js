@@ -1,4 +1,5 @@
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
 import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'

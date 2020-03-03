@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 
 import * as colorsProvider from '../../components/colorsProvider';
 
-const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
+const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = colorsProvider.routinesMainColor
 const complimentaryColor = "#73521C";
@@ -14,8 +15,7 @@ const textColor = '#73521C';
 const finishedBackgroundColor = '#E5C797'; //'#4DFF87'
 const grayColor = '#ededed';
 const placeholderColor = '#B09B7A';
-const childMainColor = "#D6A2AD"
-const childComplimentaryColor = "#711E30"
+
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -551,7 +551,7 @@ module.exports = StyleSheet.create({
 
   childContainer: {
     flex: 1,
-    backgroundColor: childMainColor,
+    backgroundColor: colorsProvider.habitsMainColor,
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginRight: 10,
@@ -560,7 +560,7 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     borderTopWidth: 2,
-    borderTopColor: childMainColor,
+    borderTopColor: colorsProvider.habitsMainColor,
     flexDirection: 'row',
 
     marginTop: 2,
@@ -580,7 +580,7 @@ module.exports = StyleSheet.create({
     flex: 1,
   },
   childTitleText: {
-    color: childComplimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     fontSize: 30,
     marginLeft: 10,
   },

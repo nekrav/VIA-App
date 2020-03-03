@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, PixelRatio, Platform} from 'react-native';
 const buttonBackgroundColor = '#3a506b';

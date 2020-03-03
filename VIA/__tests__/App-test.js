@@ -4,6 +4,7 @@
 
 import 'react-native';
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 import App from '../App';
 
 // Note: test renderer must be required after react-native.

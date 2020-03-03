@@ -1,4 +1,5 @@
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 import {
     Text,
     View,

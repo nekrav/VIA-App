@@ -1,4 +1,5 @@
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, Button, TouchableOpacity, FlatList, CheckBox } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Habits } from './db'

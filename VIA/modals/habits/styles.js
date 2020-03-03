@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
+import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
