@@ -6,7 +6,7 @@ import {StyleSheet, Dimensions, Platform} from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontSize = 18;
-const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
+const fontFamily = Platform.OS == 'ios' ? colorProvider.font : colorProvider.font;
 
 const backgroundColor = '#D6A2AD';
 const complimentaryColor = "#711E30";

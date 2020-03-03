@@ -12,7 +12,7 @@ const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
 const homeColorButton = "#48A2F8"
-const fontFamily = Platform.OS == "ios" ? "Roboto-Medium" : "Roboto-Medium"
+const fontFamily = Platform.OS == "ios" ? colorProvider.font : colorProvider.font
 
 class TabButton extends React.Component {
     mode = new Animated.Value(0);
