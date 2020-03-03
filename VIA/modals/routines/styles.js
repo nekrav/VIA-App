@@ -3,9 +3,11 @@ import React from 'react';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 
+import * as colorsProvider from '../../components/colorsProvider';
+
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';
 
-const backgroundColor = "#E5C797"
+const backgroundColor = colorsProvider.routinesMainColor
 const complimentaryColor = "#73521C";
 const blueColor = '#00bbb1';
 const textColor = '#73521C';

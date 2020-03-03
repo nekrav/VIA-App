@@ -2,6 +2,7 @@
 import React from 'react';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, Dimensions, Platform} from 'react-native';
+import * as colorsProvider from '../../components/colorsProvider';
 
 const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? 'Roboto-Medium' : 'Roboto-Medium';

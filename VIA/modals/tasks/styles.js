@@ -2,7 +2,7 @@
 import React from 'react';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
-
+import * as colorsProvider from '../../components/colorsProvider';
 const buttonBackgroundColor = '#3a506b'
 const titleFontSize = 24
 const bodyFontSize = 20
