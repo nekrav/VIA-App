@@ -457,6 +457,8 @@ export class ViewRoutine extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={"#E5C797"}
+					disabledSaveButtonBackgroundColor={"#E5C797"}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
@@ -594,13 +596,12 @@ export class ViewRoutine extends React.Component {
                     animationInTiming={400}
                     animationOut='slideOutRight'
                     animationOutTiming={400}
-                    // isVisible={this.props.visible}
                     style={{ margin: 0 }}
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
+
                     {this.renderStartDateModal()}
                     {this.renderEndDateModal()}
-                    {/* {this.showRoutineSelectionModal()} */}
                     {this.showTasksSelectionModal()}
                     {this.renderChildItemModal()}
                     {this.renderNotificationTimesModal()}
