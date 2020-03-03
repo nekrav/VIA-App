@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontSize = 18;
-const fontFamily = Platform.OS == 'ios' ? colorProvider.font : colorProvider.font;
+const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = '#D6A2AD';
 const complimentaryColor = "#711E30";

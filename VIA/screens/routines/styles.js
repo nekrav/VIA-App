@@ -10,7 +10,7 @@ const titleFontSize = 24
 const bodyFontSize = 20
 const leftMargin = 5
 const buttonFontSize = 20
-const fontFamily = Platform.OS == "ios" ? colorProvider.font : colorProvider.font
+const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const backgroundColor = "#E5C797"
 const complimentaryColor = "#73521C";

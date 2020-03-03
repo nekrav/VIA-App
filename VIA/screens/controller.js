@@ -1,5 +1,4 @@
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 import { Database, Habits } from '../db'
 import { Notifier } from '../notifier/notifier'
 

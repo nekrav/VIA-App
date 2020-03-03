@@ -9,7 +9,7 @@ const titleFontSize = 24;
 const bodyFontSize = 20;
 const buttonFontSize = 20;
 const leftMargin = 5;
-const fontFamily = Platform.OS == 'ios' ? colorProvider.font : colorProvider.font;
+const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = '#ffffff';
 const blueColor = '#00bbb1';

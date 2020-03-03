@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
@@ -9,7 +8,7 @@ const titleFontSize = 24
 const bodyFontSize = 20
 const leftMargin = 5
 const buttonFontSize = 20
-const fontFamily = Platform.OS == "ios" ? colorProvider.font : colorProvider.font
+const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
+import * as colorsProvider from './colorsProvider';
 import { NavigationActions } from 'react-navigation';
 import { Animated, TouchableOpacity, View, Image, Text } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -12,7 +12,7 @@ const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
 const homeColorButton = "#48A2F8"
-const fontFamily = Platform.OS == "ios" ? colorProvider.font : colorProvider.font
+const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 class TabButton extends React.Component {
     mode = new Animated.Value(0);

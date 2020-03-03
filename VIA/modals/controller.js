@@ -1,5 +1,4 @@
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 import { Database } from '../db'
 export class Controller extends React.Component {
 

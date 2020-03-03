@@ -1,5 +1,4 @@
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 import { Database, Habits, Routines, Projects, Tasks, Random } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'

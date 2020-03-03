@@ -4,7 +4,7 @@ import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
-const fontFamily = Platform.OS == "ios" ? colorProvider.font : colorProvider.font
+const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const mainColor = "#D6A2AD"
 const complimentaryColor = "#711E30";

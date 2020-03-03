@@ -1,5 +1,4 @@
 // import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
 // import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, TouchableWithoutFeedback, Keyboard, SafeAreaView} from 'react-native'; // Version can be specified in package.json
 // import { Controller } from '../controller';
 
