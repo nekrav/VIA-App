@@ -297,7 +297,7 @@ export class ViewRoutine extends React.Component {
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
                     <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
                     {/* <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="reload" size={20} color="#ABABAB" />
+                            <SIcon name="reload" size={20} color={colorsProvider.homeMainColor}/>
                         </Text> */}
                     {/* </TouchableOpacity> */}
                 </View>

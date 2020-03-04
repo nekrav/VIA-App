@@ -6,9 +6,7 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const placeholderColor = "#ABABAB"
 const shadowColor = "#000000"
-
 
 module.exports = StyleSheet.create({
 
@@ -79,7 +77,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: shadowColor,
@@ -101,7 +99,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: shadowColor,

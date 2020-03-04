@@ -326,7 +326,7 @@ export class ViewRandom extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color={colorsProvider.homeMainColor} />
                 </Text>
             </TouchableOpacity>
         );

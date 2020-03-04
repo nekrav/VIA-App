@@ -8,7 +8,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 const textColor = "#2d3142"
 
 const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
 
 
 module.exports = StyleSheet.create({
@@ -100,7 +99,7 @@ module.exports = StyleSheet.create({
 
     mainGoalNotSelected: {
         flex: 1,
-        backgroundColor: placeholderColor,
+        backgroundColor: colorsProvider.homePlaceholderColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -109,7 +108,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         width: '100%',
         marginTop: 2,
@@ -133,7 +132,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         width: '100%',
         marginTop: 2,
@@ -177,7 +176,7 @@ module.exports = StyleSheet.create({
     createDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color: colorsProvider.homePlaceholderColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -225,7 +224,7 @@ module.exports = StyleSheet.create({
         color: textColor,
     },
     sliderTitle: {
-        color: placeholderColor,
+        color: colorsProvider.homePlaceholderColor,
         fontFamily: fontFamily,
         fontSize: 24,
     },
@@ -288,7 +287,7 @@ module.exports = StyleSheet.create({
     createProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color: colorsProvider.homePlaceholderColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -351,7 +350,7 @@ module.exports = StyleSheet.create({
     },
     notificationTimeButtonText: {
         fontSize: 16,
-        color: placeholderColor,
+        color: colorsProvider.homePlaceholderColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,
@@ -418,7 +417,7 @@ module.exports = StyleSheet.create({
         height: "100%",
     },
     createNotesText: {
-        color: placeholderColor,
+        color: colorsProvider.homePlaceholderColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
@@ -446,8 +445,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
-        backgroundColor: placeholderColor,
+        borderColor: colorsProvider.homePlaceholderColor,
+        backgroundColor: colorsProvider.homePlaceholderColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -482,7 +481,7 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
+        borderColor: colorsProvider.homePlaceholderColor,
         backgroundColor: colorsProvider.homeMainColor,
         marginRight: 50,
         shadowColor: "#000000",
@@ -606,7 +605,7 @@ module.exports = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5,
         borderWidth: 1,
-        borderColor: placeholderColor,
+        borderColor: colorsProvider.homePlaceholderColor,
         backgroundColor: colorsProvider.homeMainColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
@@ -651,7 +650,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
 
         marginTop: 2,

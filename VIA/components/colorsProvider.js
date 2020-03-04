@@ -21,7 +21,7 @@ export const habitsPlaceholderColor = "#A77E8C";
 /* #region  Home */
 export const homeMainColor = "#FFFFFF"
 export const homeComplimentaryColor = "#00bbb1";
-export const homePlaceholderColor = '#ABABAB';
+export const homePlaceholderColor = "#ABABAB";
 export const homeTextColor = '#2d3142';
 /* #endregion */
 

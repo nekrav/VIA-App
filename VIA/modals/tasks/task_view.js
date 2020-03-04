@@ -156,7 +156,7 @@ export class ViewTask extends React.Component {
                         Is this part of a bigger project?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ABABAB" />
+                        <SIcon name="layers" size={20} color={colorsProvider.homeMainColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -394,7 +394,7 @@ export class ViewTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#ABABAB" />
+                    <SIcon name="bell" size={20} color={colorsProvider.homeMainColor}/>
                 </Text>
             </TouchableOpacity>
         );
