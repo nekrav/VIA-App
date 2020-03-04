@@ -163,7 +163,7 @@ export class RoutinesScreen extends React.Component {
                                         center
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
-                                        checkedColor='#4DFF87'
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.routinesComplimentaryColor}
                                         size={35}
                                         onPress={() => {

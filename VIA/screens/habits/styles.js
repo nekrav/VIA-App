@@ -2,12 +2,11 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const blueColor = "#00bbb1"
-const finishedBackgroundColor = "#4DFF87"
 
 const fontSize = 16;
 
@@ -95,7 +94,7 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished: {
-        backgroundColor: finishedBackgroundColor,
+        backgroundColor: colorsProvider.finishedBackgroundColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,

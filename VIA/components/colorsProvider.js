@@ -2,7 +2,7 @@ import React from 'react';
 
 /* #region  General */
 export const font = "Roboto-Medium"
-export const finishedBackgroundColor = "#4DFF87"; //'#4DFF87'
+export const finishedBackgroundColor = "#4DFF87";
 /* #endregion */
 
 /* #region  Routines */

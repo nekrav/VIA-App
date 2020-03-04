@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -9,12 +9,9 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 const backgroundColor = "#ffffff"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
-const finishedBackgroundColor = "#4DFF87"
+
 const grayColor = "#ededed"
 const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
-
-const { width, height } = Dimensions.get('window');
 
 
 module.exports = StyleSheet.create({
@@ -28,7 +25,7 @@ module.exports = StyleSheet.create({
     outerViewDone: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: finishedBackgroundColor,
+        backgroundColor: colorsProvider.finishedBackgroundColor,
     },
     /* #endregion */
 

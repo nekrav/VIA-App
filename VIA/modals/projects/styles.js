@@ -14,7 +14,6 @@ const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
-const finishedBackgroundColor = "#4DFF87"
 const grayColor = "#ededed"
 const placeholderColor = "#35689C"
 const homeColorButton = "#48A2F8"
@@ -33,7 +32,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: finishedBackgroundColor,
+        backgroundColor: colorsProvider.finishedBackgroundColor,
     },
     /* #endregion */
 

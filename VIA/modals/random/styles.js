@@ -9,7 +9,6 @@ const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.f
 const backgroundColor = '#ffffff';
 const blueColor = '#00bbb1';
 const textColor = '#2d3142';
-const finishedBackgroundColor = '#4DFF87';
 const grayColor = '#ededed';
 const placeholderColor = '#ABABAB';
 
@@ -23,7 +22,7 @@ module.exports = StyleSheet.create({
   outerViewDone: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: finishedBackgroundColor,
+    backgroundColor: colorsProvider.finishedBackgroundColor,
   },
   /* #endregion */
 
