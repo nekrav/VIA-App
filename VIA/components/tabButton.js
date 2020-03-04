@@ -3,7 +3,6 @@ import * as colorsProvider from './colorsProvider';
 import { Animated, TouchableOpacity, View, Image, Text } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 
-const blueColor = "#00bbb1"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 class TabButton extends React.Component {
@@ -27,7 +26,6 @@ class TabButton extends React.Component {
             return (
                 <View style={{
                     width: '100%', height: '300%',
-                    // backgroundColor: blueColor,
                     marginTop: "25%", alignItems: 'center',
                     justifyContent: 'center',
                 }}>
@@ -48,7 +46,7 @@ class TabButton extends React.Component {
                         fontFamily: fontFamily, alignItems: 'center',
                         justifyContent: 'center',
                     } : {
-                            color: blueColor,
+                            color: colorsProvider.homeComplimentaryColor,
                             fontFamily: fontFamily, alignItems: 'center',
                             justifyContent: 'center',
 

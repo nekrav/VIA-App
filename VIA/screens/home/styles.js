@@ -5,7 +5,6 @@ import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 
 const grayColor = "#ededed"
@@ -18,7 +17,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     outerViewDone: {
         flex: 1,
@@ -64,9 +63,9 @@ module.exports = StyleSheet.create({
     },
     hasNameTextInputContainer: {
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: colorsProvider.homeComplimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -125,7 +124,7 @@ module.exports = StyleSheet.create({
 
     mainGoalContainer: {
         flex: 1,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -158,9 +157,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: colorsProvider.homeComplimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -269,10 +268,10 @@ module.exports = StyleSheet.create({
     },
     hasProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: colorsProvider.homeComplimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -332,9 +331,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: colorsProvider.homeComplimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -400,9 +399,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderTopWidth: 2,
-        borderTopColor: blueColor,
+        borderTopColor: colorsProvider.homeComplimentaryColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -465,8 +464,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
+        borderColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -517,8 +516,8 @@ module.exports = StyleSheet.create({
     completeButtonBody: {
         margin: 10,
         flex: 1,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
+        borderColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
@@ -591,7 +590,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontFamily: fontFamily,
-        color: blueColor,
+        color: colorsProvider.homeComplimentaryColor,
         fontSize: 25,
     },
     /* #endregion */
@@ -643,7 +642,7 @@ module.exports = StyleSheet.create({
 
     childContainer: {
         flex: 1,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -691,6 +690,6 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     checkbox: {
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
 })

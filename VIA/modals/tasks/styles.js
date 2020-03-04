@@ -8,7 +8,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 const backgroundColor = "#58AAF9"
 const complimentaryColor = "#045CB1"
-const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const placeholderColor = "#4485C8"
 
@@ -446,8 +445,8 @@ module.exports = StyleSheet.create({
     completeButtonBody: {
         margin: 10,
         flex: 1,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
+        borderColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",

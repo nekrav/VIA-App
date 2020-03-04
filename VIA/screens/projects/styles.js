@@ -8,7 +8,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
-const blueColor = "#00bbb1"
 
 module.exports = StyleSheet.create({
 
@@ -152,7 +151,7 @@ module.exports = StyleSheet.create({
         width: 130,
         maxWidth: 130,
         marginRight: 10,
-        // backgroundColor: blueColor
+        // backgroundColor: colorsProvider.homeComplimentaryColor
     },
     listItemText: {
         // height: '100%',
@@ -169,7 +168,7 @@ module.exports = StyleSheet.create({
 
     },
     checkbox: {
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     listItemActionButtonsContainer: {
         flexDirection: 'row',

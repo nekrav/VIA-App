@@ -6,8 +6,6 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const blueColor = "#00bbb1"
-
 const fontSize = 16;
 
 module.exports = StyleSheet.create({
@@ -132,7 +130,7 @@ module.exports = StyleSheet.create({
 
     },
     checkbox: {
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     listItemActionButtonsContainer: {
         flexDirection: 'row',

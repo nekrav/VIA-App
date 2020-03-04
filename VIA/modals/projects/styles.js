@@ -1,25 +1,16 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
-const buttonBackgroundColor = '#3a506b'
-const titleFontSize = 24
-const bodyFontSize = 20
-const leftMargin = 5
-const buttonFontSize = 20
+
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
-const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const grayColor = "#ededed"
 const placeholderColor = "#35689C"
-const homeColorButton = "#48A2F8"
-
-const { width, height } = Dimensions.get('window');
-
 
 module.exports = StyleSheet.create({
     /* #region Outer Structure */
@@ -469,8 +460,8 @@ module.exports = StyleSheet.create({
 
     completeButtonBody: {
         margin: 10,
-        borderColor: blueColor,
-        backgroundColor: blueColor,
+        borderColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         borderWidth: 5,
         borderRadius: 10,
         alignItems: "center",
@@ -526,7 +517,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontFamily: fontFamily,
-        color: blueColor,
+        color: colorsProvider.homeComplimentaryColor,
         fontSize: 25,
     },
     /* #endregion */
@@ -578,7 +569,7 @@ module.exports = StyleSheet.create({
 
     childContainer: {
         flex: 1,
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,

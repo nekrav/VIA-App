@@ -9,7 +9,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 const backgroundColor = "#58AAF9"
 const complimentaryColor = "#045CB1"
-const blueColor = "#00bbb1"
 
 const placeholderColor = "#4485C8"
 
@@ -134,7 +133,7 @@ module.exports = StyleSheet.create({
 
     },
     checkbox: {
-        backgroundColor: blueColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     listItemActionButtonsContainer: {
         flexDirection: 'row',
