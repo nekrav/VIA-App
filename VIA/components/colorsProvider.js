@@ -9,7 +9,6 @@ export const finishedBackgroundColor = '#4DFF87'; //'#4DFF87'
 export const routinesMainColor = "#E5C797"
 export const routinesComplimentaryColor = "#73521C";
 export const routinesPlaceholderColor = '#B09B7A';
-export const routinesTextColor = '#73521C';
 /* #endregion */
 
 /* #region  Habits */
@@ -24,13 +23,6 @@ export const homeMainColor = "#ffffff"
 export const homeComplimentaryColor = "#00bbb1";
 export const homePlaceholderColor = '#ABABAB';
 export const homeTextColor = '#2d3142';
-/* #endregion */
-
-/* #region  Random */
-export const randomMainColor = "#fffff"
-// export const randomComplimentaryColor = "#73521C";
-export const randomPlaceholderColor = '#B09B7A';
-export const randomTextColor = '#73521C';
 /* #endregion */
 
 /* #region  Projects */

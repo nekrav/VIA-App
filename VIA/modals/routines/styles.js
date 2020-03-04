@@ -9,7 +9,7 @@ const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.f
 
 const blueColor = '#00bbb1';
 const grayColor = '#ededed';
-const placeholderColor = '#B09B7A';
+const placeholderColor = colorsProvider.routinesPlaceholderColor;
 
 
 module.exports = StyleSheet.create({
