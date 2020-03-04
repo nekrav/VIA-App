@@ -8,7 +8,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
-const textColor = "#2d3142"
 const grayColor = "#ededed"
 const placeholderColor = "#35689C"
 
@@ -446,7 +445,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: textColor,
+        color: colorsProvider.homeTextColor,
     },
     bottomButtonTextDisabled: {
         fontSize: 18,

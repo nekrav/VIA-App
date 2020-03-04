@@ -20,21 +20,19 @@ export const habitsPlaceholderColor = "#A77E8C";
 
 /* #region  Home */
 export const homeMainColor = "#FFFFFF"
-export const homeComplimentaryColor = "#00bbb1";
+export const homeComplimentaryColor = "#00BBB1";
 export const homePlaceholderColor = "#ABABAB";
-export const homeTextColor = '#2d3142';
+export const homeTextColor = '#2D3142';
 /* #endregion */
 
 /* #region  Projects */
 export const projectsMainColor = "#4585C1"
 export const projectsComplimentaryColor = "#023C74";
 export const projectsPlaceholderColor = '#35689C';
-export const projectsTextColor = '#2d3142';
 /* #endregion */
 
 /* #region  Tasks */
 export const tasksMainColor = "#58AAF9"
 export const tasksComplimentaryColor = "#045CB1";
 export const tasksPlaceholderColor = '#4485C8';
-export const tasksTextColor = '#2d3142';
 /* #endregion */

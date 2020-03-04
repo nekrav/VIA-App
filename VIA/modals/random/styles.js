@@ -6,7 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const textColor = '#2d3142';
 const grayColor = '#ededed';
 
 module.exports = StyleSheet.create({
@@ -152,7 +151,7 @@ module.exports = StyleSheet.create({
   sliderTitleNull: {
     fontFamily: fontFamily,
     fontSize: 24,
-    color: textColor,
+    color: colorsProvider.homeTextColor,
   },
   sliderTitle: {
     color: colorsProvider.homePlaceholderColor,
@@ -425,7 +424,7 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: textColor,
+    color: colorsProvider.homeTextColor,
   },
   bottomButtonTextDisabled: {
     fontSize: 18,
