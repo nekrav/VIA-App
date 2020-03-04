@@ -1,17 +1,9 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { NavigationActions } from 'react-navigation';
 import { Animated, TouchableOpacity, View, Image, Text } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-const SIZE = 80;
 
-const backgroundColor = "#ffffff"
 const blueColor = "#00bbb1"
-const textColor = "#2d3142"
-const finishedBackgroundColor = "#4DFF87"
-const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 class TabButton extends React.Component {
