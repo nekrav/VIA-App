@@ -36,7 +36,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -53,7 +53,7 @@ module.exports = StyleSheet.create({
         color: colorsProvider.projectsComplimentaryColor,
         fontSize: 50,
         color: colorsProvider.projectsComplimentaryColor
-        // shadowColor: "#000000",
+        // shadowColor: colorsProvider.shadowColor,
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
         // shadowOffset: {
@@ -65,7 +65,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
-        // shadowColor: "#000000",
+        // shadowColor: colorsProvider.shadowColor,
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
         // shadowOffset: {
@@ -78,7 +78,7 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
         marginLeft: "-16%",
         color: colorsProvider.projectsComplimentaryColor,
-        // shadowColor: "#000000",
+        // shadowColor: colorsProvider.shadowColor,
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
         // shadowOffset: {
@@ -106,7 +106,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         // paddingRight: 10,
         // paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -133,7 +133,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         // paddingRight: 10,
         // paddingLeft: 10,
-        shadowColor: "#000000",
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {

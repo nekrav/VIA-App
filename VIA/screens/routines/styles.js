@@ -6,7 +6,7 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const shadowColor = "#000000"
+const shadowColor = colorsProvider.shadowColor
 
 module.exports = StyleSheet.create({
 

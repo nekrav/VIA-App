@@ -4,6 +4,8 @@
  */
 
 import React, { Component } from "react";
+import * as colorsProvider from './colorsProvider';
+
 import {
   View,
   Text,
@@ -223,7 +225,7 @@ export class VerticalSlider extends Component<Props, State> {
                 {
                   color: ballIndicatorTextColor
                     ? ballIndicatorTextColor
-                    : "#000000"
+                    : colorsProvider.shadowColor
                 }
               ]}
             >
