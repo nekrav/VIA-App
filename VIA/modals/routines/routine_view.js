@@ -517,7 +517,7 @@ export class ViewRoutine extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#B09B7A" />
+                    <SIcon name="bell" size={20} color={colorsProvider.routinesPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );

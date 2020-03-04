@@ -285,7 +285,7 @@ export class CreateRoutine extends React.Component {
 					<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 						<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
 						<Text style={styles.notificationTimeButtonText}>
-							<SIcon name="reload" size={20} color="#B09B7A" />
+							<SIcon name="reload" size={20} color={colorsProvider.routinesPlaceholderColor} />
 						</Text>
 					</TouchableOpacity></View>
 			);
@@ -361,7 +361,7 @@ export class CreateRoutine extends React.Component {
         </Text>
 
 				<Text style={styles.notificationTimeButtonText}>
-					<SIcon name="bell" size={20} color="#B09B7A" />
+					<SIcon name="bell" size={20} color={colorsProvider.routinesPlaceholderColor} />
 				</Text>
 			</TouchableOpacity>
 		);
@@ -381,7 +381,7 @@ export class CreateRoutine extends React.Component {
 					transparent={true}
 					existingNotes={this.state.itemNotes}
 					notesBackgroundColor={colorsProvider.routinesMainColor}
-					notesButtonNoNotesTextColor="#B09B7A"
+					notesButtonNoNotesTextColor={colorsProvider.routinesPlaceholderColor}
 					notesButtonNotesTextColor={colorsProvider.routinesMainColor}
 					notesButtonContainerNoNotesText={colorsProvider.routinesMainColor}
 					notesButtonContainerNotesText={colorsProvider.routinesComplimentaryColor}
