@@ -15,7 +15,7 @@ export const routinesPlaceholderColor = '#B09B7A';
 export const habitsMainColor = "#D6A2AD"
 export const habitsComplimentaryColor = "#711E30";
 export const habitsPlaceholderColor = '#A77E8C';
-export const habitsTextColor = '#711E30';
+export const habitsTextColor = "#711E30";
 /* #endregion */
 
 /* #region  Home */
