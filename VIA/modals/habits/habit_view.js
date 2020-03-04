@@ -171,8 +171,8 @@ export class ViewHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
-                    disabledSaveButtonBackgroundColor="#D6A2AD"
-                    saveButtonBackgroundColor="#D6A2AD"
+                    disabledSaveButtonBackgroundColor={colorsProvider.habitsMainColor}
+                    saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     transparent={true}
                     setDate={item => {
                         this.props.editStartTime(item);
@@ -232,8 +232,8 @@ export class ViewHabit extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
-                    disabledSaveButtonBackgroundColor="#D6A2AD"
-                    saveButtonBackgroundColor="#D6A2AD"
+                    disabledSaveButtonBackgroundColor={colorsProvider.habitsMainColor}
+                    saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     transparent={true}
                     setDate={item => {
                         this.props.editEndTime(item);
@@ -361,7 +361,7 @@ export class ViewHabit extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
-                    saveButtonBackgroundColor={"#D6A2AD"}
+                    saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
                     saveButtonTextColor={"711E30"}
                     disabledSaveButtonTextColor={"#711E30"}

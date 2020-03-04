@@ -17,17 +17,10 @@ import { Notifier } from '../../notifier/notifier'
 const notifier = new Notifier;
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
-const todayDate = new Date();
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 const childTableName = Habits.TABLE_NAME
 
-/* #region  Colors */
-const mainColor = colorsProvider.routinesMainColor
-const complimentaryColor = colorsProvider.routinesComplimentaryColor
-const childMainColor = "#D6A2AD"
-const childComplimentaryColor = "#711E30"
-/* #endregion */
 
 export class ViewRoutine extends React.Component {
 

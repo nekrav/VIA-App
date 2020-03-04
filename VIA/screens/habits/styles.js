@@ -6,14 +6,9 @@ import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const mainColor = "#D6A2AD"
 const complimentaryColor = "#711E30";
 const blueColor = "#00bbb1"
-const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
-const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
 
 const fontSize = 16;
 
@@ -25,14 +20,14 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: mainColor,
+        backgroundColor: colorsProvider.habitsMainColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: mainColor,
+        backgroundColor: colorsProvider.habitsMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -41,7 +36,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: mainColor,
+        borderTopColor: colorsProvider.habitsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -49,7 +44,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: mainColor,
+        shadowColor: colorsProvider.habitsMainColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -82,7 +77,7 @@ module.exports = StyleSheet.create({
 
     /* #region  List Item Section */
     listItemContainer: {
-        backgroundColor: mainColor,
+        backgroundColor: colorsProvider.habitsMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -90,7 +85,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: mainColor,
+        borderTopColor: colorsProvider.habitsMainColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
