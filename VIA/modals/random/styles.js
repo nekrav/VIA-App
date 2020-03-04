@@ -48,7 +48,7 @@ module.exports = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 2,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -66,7 +66,7 @@ module.exports = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 2,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -95,7 +95,7 @@ module.exports = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 2,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -187,7 +187,7 @@ module.exports = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 2,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -206,7 +206,7 @@ module.exports = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 2,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -246,7 +246,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
     marginTop: 2,
     justifyContent: 'space-between',
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -268,7 +268,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
     marginTop: 2,
     justifyContent: 'space-between',
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -312,7 +312,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
     marginTop: 2,
     justifyContent: 'space-between',
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -335,7 +335,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
     marginTop: 2,
     justifyContent: 'space-between',
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -375,7 +375,7 @@ module.exports = StyleSheet.create({
     borderWidth: 2,
     borderColor: colorsProvider.homePlaceholderColor,
     backgroundColor: colorsProvider.homePlaceholderColor,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -393,7 +393,7 @@ module.exports = StyleSheet.create({
     borderWidth: 2,
     borderColor: colorsProvider.homeComplimentaryColor,
     backgroundColor: colorsProvider.homeComplimentaryColor,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -412,7 +412,7 @@ module.exports = StyleSheet.create({
     borderColor: colorsProvider.homePlaceholderColor,
     backgroundColor: colorsProvider.homeMainColor,
     marginRight: 50,
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {
@@ -444,7 +444,7 @@ module.exports = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: colorsProvider.shadowColor,
+    shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: {

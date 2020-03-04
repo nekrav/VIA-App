@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         marginRight: 50,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -80,7 +80,7 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         marginRight: 50,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {

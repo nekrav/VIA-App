@@ -36,7 +36,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -78,7 +78,7 @@ module.exports = StyleSheet.create({
         borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -100,7 +100,7 @@ module.exports = StyleSheet.create({
         borderTopColor: colorsProvider.tasksComplimentaryColor,
         flexDirection: "row",
         marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {

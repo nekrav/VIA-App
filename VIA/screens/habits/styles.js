@@ -82,7 +82,7 @@ module.exports = StyleSheet.create({
         borderTopColor: colorsProvider.habitsMainColor,
         flexDirection: "row",
         marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
@@ -102,7 +102,7 @@ module.exports = StyleSheet.create({
         borderTopColor: colorsProvider.habitsComplimentaryColor,
         flexDirection: "row",
         marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
+        shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {
