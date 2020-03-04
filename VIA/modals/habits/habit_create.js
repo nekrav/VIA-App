@@ -306,7 +306,7 @@ export class CreateHabit extends React.Component {
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
-                    saveButtonTextColor={"711E30"}
+                    saveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);

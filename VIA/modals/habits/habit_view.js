@@ -21,6 +21,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 import { Notifier } from '../../notifier/notifier'
+import { colors } from 'react-native-elements';
 
 const notifier = new Notifier;
 const controller = new Controller;
@@ -363,7 +364,7 @@ export class ViewHabit extends React.Component {
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
-                    saveButtonTextColor={"711E30"}
+                    saveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
