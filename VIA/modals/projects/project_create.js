@@ -55,7 +55,7 @@ export class CreateProject extends React.Component {
 				<SIcon
 					name="arrow-left"
 					size={30}
-					color="#023C74"
+					color={colorsProvider.projectsComplimentaryColor}
 				/>
 			</TouchableOpacity>
 		</View>)
@@ -179,8 +179,8 @@ export class CreateProject extends React.Component {
 						style={styles.sliderSlider}
 						minimumValue={0}
 						maximumValue={100}
-						thumbTintColor={this.state.newTaskImportance > 0 ? "#023C74" : "#35689C"}
-						minimumTrackTintColor={"#023C74"}
+						thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.projectsComplimentaryColor : "#35689C"}
+						minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
 						maximumTrackTintColor={"#35689C"}
 						onSlidingComplete={value => {
 							this.setState({ newTaskImportance: value });
@@ -206,7 +206,7 @@ export class CreateProject extends React.Component {
 				animationType="fade"
 				items={this.state.items}
 				itemName="Tasks"
-				titleTextColor="#023C74"
+				titleTextColor={colorsProvider.projectsComplimentaryColor}
 				titleContainerColor={colorsProvider.projectsMainColor}
 				transparent={true}
 				selectItems={items => {
@@ -253,7 +253,7 @@ export class CreateProject extends React.Component {
 						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 						<Text style={styles.notificationTimeButtonText}>
 
-							<SIcon name="list" size={20} color="#023C74" />
+							<SIcon name="list" size={20} color={colorsProvider.projectsComplimentaryColor} />
 						</Text>
 					</TouchableOpacity>
 				</View>
@@ -323,7 +323,7 @@ export class CreateProject extends React.Component {
 					</Text>
 
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="bell" size={20} color="#023C74" />
+						<SIcon name="bell" size={20} color={colorsProvider.projectsComplimentaryColor} />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -363,7 +363,7 @@ export class CreateProject extends React.Component {
 					buttonContainerNotChangedColor={"#35689C"}
 					buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
 					textPlaceholderColor={"#35689C"}
-					textChangedColor={"#023C74"}
+					textChangedColor={colorsProvider.projectsComplimentaryColor}
 
 					placeholder={'Notes...'}
 					setNotes={item => {

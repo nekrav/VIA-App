@@ -5,7 +5,6 @@ import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-const complimentaryColor = "#023C74"
 const grayColor = "#ededed"
 const placeholderColor = "#35689C"
 
@@ -80,14 +79,14 @@ module.exports = StyleSheet.create({
     createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
         marginBottom: 5,
     },
       createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
         marginBottom: 5,
     },
@@ -125,7 +124,7 @@ module.exports = StyleSheet.create({
     createSelectedDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -171,7 +170,7 @@ module.exports = StyleSheet.create({
         color: placeholderColor,
     },
     sliderTitle: {
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: 24,
     },
@@ -242,7 +241,7 @@ module.exports = StyleSheet.create({
     hasProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -307,7 +306,7 @@ module.exports = StyleSheet.create({
 
     hasNotificationTimeButtonText: {
         fontSize: 16,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,
@@ -370,7 +369,7 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily
     },
     hasNotesText: {
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
@@ -410,8 +409,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: complimentaryColor,
-        backgroundColor: complimentaryColor,
+        borderColor: colorsProvider.projectsComplimentaryColor,
+        backgroundColor: colorsProvider.projectsComplimentaryColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,

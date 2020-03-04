@@ -2,11 +2,9 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-
-const complimentaryColor = "#023C74"
 
 module.exports = StyleSheet.create({
 
@@ -52,9 +50,9 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         fontSize: 50,
-        color: complimentaryColor
+        color: colorsProvider.projectsComplimentaryColor
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -66,7 +64,7 @@ module.exports = StyleSheet.create({
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -79,7 +77,7 @@ module.exports = StyleSheet.create({
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         // shadowColor: "#000000",
         // shadowOpacity: 0.8,
         // shadowRadius: 2,
@@ -154,7 +152,7 @@ module.exports = StyleSheet.create({
     },
     listItemText: {
         // height: '100%',
-        color: complimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },

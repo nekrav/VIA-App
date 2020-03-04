@@ -179,7 +179,7 @@ export class ProjectsScreen extends React.Component {
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
                                         checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor='#023C74'
+                                        uncheckedColor={colorsProvider.projectsComplimentaryColor}
                                         size={35}
                                         onPress={() => {
                                             item.value.completed   = !this.getChecked(item)
