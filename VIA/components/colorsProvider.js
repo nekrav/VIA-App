@@ -4,6 +4,7 @@ import React from 'react';
 export const font = "Roboto-Medium"
 export const finishedBackgroundColor = "#4DFF87";
 export const whiteColor = "#FFFFFF"
+export const shadowColor = "#000000"
 /* #endregion */
 
 /* #region  Routines */
