@@ -139,7 +139,7 @@ export class ViewHabit extends React.Component {
                         {this.state.routineName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#711E30" />
+                        <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -202,7 +202,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.start_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-play" size={20} color={"#711E30"} />
+                        <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -263,7 +263,7 @@ export class ViewHabit extends React.Component {
                         {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} color={"#711E30"} />
+                        <SIcon name="control-end" size={20} color={colorsProvider.habitsComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -364,7 +364,7 @@ export class ViewHabit extends React.Component {
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
                     saveButtonTextColor={"711E30"}
-                    disabledSaveButtonTextColor={"#711E30"}
+                    disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
@@ -408,7 +408,7 @@ export class ViewHabit extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color="#711E30" />
+                            <SIcon name="bell" size={20} color={colorsProvider.habitsComplimentaryColor} />
                         </Text>
                     </TouchableOpacity>
                 );

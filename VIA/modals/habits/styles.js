@@ -8,15 +8,12 @@ const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = '#D6A2AD';
-const complimentaryColor = "#711E30";
 const blueColor = '#00bbb1';
 const textColor = '#711E30';
 const finishColor = '#16E500'
 const finishColorBorderColor = '#10AE00'
 const grayColor = '#ededed';
 const placeholderColor = "#A77E8C";
-
-const {width, height} = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -89,14 +86,14 @@ module.exports = StyleSheet.create({
   createNameText: {
     fontSize: 30,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },
   hasNameText: {
     fontSize: 30,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },
@@ -133,7 +130,7 @@ module.exports = StyleSheet.create({
   hasDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -141,7 +138,7 @@ module.exports = StyleSheet.create({
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -150,7 +147,7 @@ module.exports = StyleSheet.create({
   hasSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -261,7 +258,7 @@ module.exports = StyleSheet.create({
   hasProjectSelectionButtonText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -324,7 +321,7 @@ module.exports = StyleSheet.create({
 
   hasNotificationTimeButtonText: {
     fontSize: 16,
-    color: complimentaryColor,
+    color: colorsProvider.habitsComplimentaryColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -427,8 +424,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: complimentaryColor,
-    backgroundColor: complimentaryColor,
+    borderColor: colorsProvider.habitsComplimentaryColor,
+    backgroundColor: colorsProvider.habitsComplimentaryColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -484,7 +481,7 @@ module.exports = StyleSheet.create({
   },
   completeButtonBodyDone: {
     margin: 10,
-    borderColor: complimentaryColor,
+    borderColor: colorsProvider.habitsComplimentaryColor,
     backgroundColor: backgroundColor,
     borderWidth: 2,
     borderRadius: 10,

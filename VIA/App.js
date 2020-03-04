@@ -30,9 +30,9 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#711E30"}
+          activeColor={colorsProvider.habitsComplimentaryColor}
           inactiveColor={"#ffffff"}
-          tintColor={{ tintColor }}
+          tintColor={ tintColor }
           routeName={'Habits'}
           iconName={'reload'}
           elementName={'Habits'}

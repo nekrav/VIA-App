@@ -65,7 +65,7 @@ export class CreateHabit extends React.Component {
                     }}
                     name="arrow-left"
                     size={30}
-                    color="#711E30"
+                    color={colorsProvider.habitsComplimentaryColor}
                 />
             </TouchableOpacity>
         </View>)
@@ -270,7 +270,7 @@ export class CreateHabit extends React.Component {
                             {this.state.theSelectedRoutine}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="refresh" size={20} color="#711E30" />
+                            <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
                         </Text>
                     </TouchableOpacity></View>
             );
@@ -307,7 +307,7 @@ export class CreateHabit extends React.Component {
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
                     disabledSaveButtonBackgroundColor={"#A77E8C"}
                     saveButtonTextColor={"711E30"}
-                    disabledSaveButtonTextColor={"#711E30"}
+                    disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -345,7 +345,7 @@ export class CreateHabit extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color="#711E30" />
+                        <SIcon name="bell" size={20} color={colorsProvider.habitsComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );

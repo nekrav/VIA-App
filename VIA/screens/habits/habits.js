@@ -210,7 +210,7 @@ export class HabitsScreen extends React.Component {
                                     {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications()}}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#711E30" />
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity> */}
 
                                     {/* <TouchableOpacity
@@ -224,7 +224,7 @@ export class HabitsScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#711E30" />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
                             </View>} />

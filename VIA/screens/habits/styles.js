@@ -6,13 +6,10 @@ import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const complimentaryColor = "#711E30";
 const blueColor = "#00bbb1"
 const finishedBackgroundColor = "#4DFF87"
 
 const fontSize = 16;
-
-const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
@@ -58,20 +55,20 @@ module.exports = StyleSheet.create({
     },
     addItemButtonText: {
         justifyContent: "center",
-        color: complimentaryColor,
+        color: colorsProvider.habitsComplimentaryColor,
         fontSize: 50,
-        color: complimentaryColor
+        color: colorsProvider.habitsComplimentaryColor
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.habitsComplimentaryColor,
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: complimentaryColor,
+        color: colorsProvider.habitsComplimentaryColor,
     },
     /* #endregion */
 
@@ -105,7 +102,7 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         borderRadius: 10,
-        borderTopColor: complimentaryColor,
+        borderTopColor: colorsProvider.habitsComplimentaryColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
@@ -122,7 +119,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
     },
     listItemText: {
-        color: complimentaryColor,
+        color: colorsProvider.habitsComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: fontSize,
     },
