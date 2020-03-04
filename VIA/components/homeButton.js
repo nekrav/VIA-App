@@ -32,7 +32,7 @@ class HomeButton extends React.Component {
                         borderColor: colorsProvider.homeComplimentaryColor,
                         borderRadius: SIZE / 2,
                         backgroundColor: colorsProvider.homeComplimentaryColor,
-                        shadowColor: "#000000",
+                        shadowColor: colorsProvider.shadowColor,
                         shadowOpacity: 0.8,
                         shadowRadius: 2,
                         shadowOffset: {
@@ -49,7 +49,7 @@ class HomeButton extends React.Component {
                         borderColor: colorsProvider.homeComplimentaryColor,
                         borderRadius: SIZE / 2,
                         backgroundColor: colorsProvider.homeComplimentaryColor,
-                        shadowColor: "#000000",
+                        shadowColor: colorsProvider.shadowColor,
                         shadowOpacity: 0.8,
                         shadowRadius: 2,
                         shadowOffset: {

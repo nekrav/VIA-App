@@ -223,7 +223,7 @@ export class VerticalSlider extends Component<Props, State> {
                 {
                   color: ballIndicatorTextColor
                     ? ballIndicatorTextColor
-                    : "#000000"
+                    : colorsProvider.shadowColor
                 }
               ]}
             >
