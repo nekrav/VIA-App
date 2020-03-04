@@ -6,7 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const complimentaryColor = "#045CB1"
 const placeholderColor = "#4485C8"
 
 module.exports = StyleSheet.create({
@@ -79,7 +78,7 @@ module.exports = StyleSheet.create({
     createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         marginLeft: 10,
         marginBottom: 5,
     },
@@ -117,7 +116,7 @@ module.exports = StyleSheet.create({
     createSelectedDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -157,7 +156,7 @@ module.exports = StyleSheet.create({
         color: placeholderColor,
     },
     sliderTitle: {
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: 24,
     },
@@ -228,7 +227,7 @@ module.exports = StyleSheet.create({
     hasProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -293,7 +292,7 @@ module.exports = StyleSheet.create({
 
     hasNotificationTimeButtonText: {
         fontSize: 16,
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,
@@ -356,7 +355,7 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily
     },
     hasNotesText: {
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
@@ -396,8 +395,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: complimentaryColor,
-        backgroundColor: complimentaryColor,
+        borderColor: colorsProvider.tasksComplimentaryColor,
+        backgroundColor: colorsProvider.tasksComplimentaryColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,

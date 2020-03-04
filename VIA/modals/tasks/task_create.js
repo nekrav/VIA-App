@@ -68,7 +68,7 @@ export class CreateTask extends React.Component {
                     }}
                     name="arrow-left"
                     size={30}
-                    color="#045CB1"
+                    color={colorsProvider.tasksComplimentaryColor}
                 />
             </TouchableOpacity>
         </View>
@@ -116,8 +116,8 @@ export class CreateTask extends React.Component {
                 <DateModal
                     pickerMode="date"
                     animationType="fade"
-                    disabledSaveButtonBackgroundColor="#045CB1"
-					saveButtonBackgroundColor="#045CB1"
+                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+					saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
                     transparent={true}
                     setDate={item => {
                         this.props.due_date(item);
@@ -188,8 +188,8 @@ export class CreateTask extends React.Component {
                             style={styles.sliderSlider}
                             minimumValue={0}
                             maximumValue={100}
-                            thumbTintColor={this.state.newTaskImportance > 0 ? "#045CB1" : "#4485C8"}
-                            minimumTrackTintColor={"#045CB1"}
+                            thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.tasksComplimentaryColor : "#4485C8"}
+                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
                             maximumTrackTintColor={"#4485C8"}
                             onSlidingComplete={value => {
                                 this.setState({ newTaskImportance: value });
@@ -217,7 +217,7 @@ export class CreateTask extends React.Component {
                     animationType="fade"
                     items={this.state.items}
                     itemName="Project"
-                    titleTextColor="#045CB1"
+                    titleTextColor={colorsProvider.tasksComplimentaryColor}
                     titleContainerColor={colorsProvider.tasksMainColor}
                     transparent={true}
                     selectItem={item => {
@@ -251,7 +251,7 @@ export class CreateTask extends React.Component {
                             {this.state.theSelectedProject}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color="#045CB1" />
+                            <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -287,8 +287,8 @@ export class CreateTask extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
-                    saveButtonBackgroundColor={"#045CB1"}
-					disabledSaveButtonBackgroundColor={"#045CB1"}
+                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+					disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -326,7 +326,7 @@ export class CreateTask extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color="#045CB1" />
+                        <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -364,9 +364,9 @@ export class CreateTask extends React.Component {
                     existingNotes={this.state.itemNotes}
                     backgroundColor={colorsProvider.tasksMainColor}
 					buttonContainerNotChangedColor={"#4485C8"}
-					buttonContainerTextNotChangedColor={"#045CB1"}
+					buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
 					textPlaceholderColor={"#4485C8"}
-					textChangedColor={"#045CB1"}
+					textChangedColor={colorsProvider.tasksComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.notes(item);

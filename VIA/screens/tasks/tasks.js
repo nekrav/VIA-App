@@ -232,7 +232,7 @@ export class TasksScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#045CB1" />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor}/>
                                     </TouchableOpacity>
                                 </View>
 

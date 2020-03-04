@@ -4,10 +4,7 @@ import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, Platform } from 'react-native';
 
-
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-
-const complimentaryColor = "#045CB1"
 
 const placeholderColor = "#4485C8"
 
@@ -56,18 +53,18 @@ module.exports = StyleSheet.create({
     addItemButtonText: {
         justifyContent: "center",
         fontSize: 50,
-        color: complimentaryColor
+        color: colorsProvider.tasksComplimentaryColor
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
     },
     /* #endregion */
 
@@ -119,7 +116,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
     },
     listItemText: {
-        color: complimentaryColor,
+        color: colorsProvider.tasksComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },
