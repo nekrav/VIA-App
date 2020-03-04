@@ -179,9 +179,9 @@ export class CreateProject extends React.Component {
 						style={styles.sliderSlider}
 						minimumValue={0}
 						maximumValue={100}
-						thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.projectsComplimentaryColor : "#35689C"}
+						thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
 						minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
-						maximumTrackTintColor={"#35689C"}
+						maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
 						onSlidingComplete={value => {
 							this.setState({ newTaskImportance: value });
 							this.props.importance(value);
@@ -264,7 +264,7 @@ export class CreateProject extends React.Component {
 					<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
 						<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
 						<Text style={styles.notificationTimeButtonText}>
-							<SIcon name="list" size={20} color="#35689C" />
+							<SIcon name="list" size={20} color={colorsProvider.projectsPlaceholderColor} />
 						</Text>
 					</TouchableOpacity>
 				</View>
@@ -340,7 +340,7 @@ export class CreateProject extends React.Component {
         </Text>
 
 				<Text style={styles.notificationTimeButtonText}>
-					<SIcon name="bell" size={20} color="#35689C" />
+					<SIcon name="bell" size={20} color={colorsProvider.projectsPlaceholderColor} />
 				</Text>
 			</TouchableOpacity>
 		);
@@ -360,9 +360,9 @@ export class CreateProject extends React.Component {
 					transparent={true}
 					existingNotes={this.state.itemNotes}
 					backgroundColor={colorsProvider.projectsMainColor}
-					buttonContainerNotChangedColor={"#35689C"}
+					buttonContainerNotChangedColor={colorsProvider.projectsPlaceholderColor}
 					buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
-					textPlaceholderColor={"#35689C"}
+					textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
 					textChangedColor={colorsProvider.projectsComplimentaryColor}
 
 					placeholder={'Notes...'}

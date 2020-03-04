@@ -28,7 +28,7 @@ export const homeTextColor = '#2D3142';
 /* #region  Projects */
 export const projectsMainColor = "#4585C1"
 export const projectsComplimentaryColor = "#023C74";
-export const projectsPlaceholderColor = '#35689C';
+export const projectsPlaceholderColor = "#35689C";
 /* #endregion */
 
 /* #region  Tasks */

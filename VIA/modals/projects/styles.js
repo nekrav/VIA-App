@@ -6,7 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 const grayColor = "#ededed"
-const placeholderColor = "#35689C"
 
 module.exports = StyleSheet.create({
     /* #region Outer Structure */
@@ -116,7 +115,7 @@ module.exports = StyleSheet.create({
     createDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color: colorsProvider.projectsPlaceholderColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -167,7 +166,7 @@ module.exports = StyleSheet.create({
     sliderTitleNull: {
         fontFamily: fontFamily,
         fontSize: 24,
-        color: placeholderColor,
+        color: colorsProvider.projectsPlaceholderColor,
     },
     sliderTitle: {
         color: colorsProvider.projectsComplimentaryColor,
@@ -233,7 +232,7 @@ module.exports = StyleSheet.create({
     createProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color: colorsProvider.projectsPlaceholderColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -296,7 +295,7 @@ module.exports = StyleSheet.create({
     },
     notificationTimeButtonText: {
         fontSize: 16,
-        color: placeholderColor,
+        color: colorsProvider.projectsPlaceholderColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,
@@ -363,7 +362,7 @@ module.exports = StyleSheet.create({
         height: "100%",
     },
     createNotesText: {
-        color: placeholderColor,
+        color: colorsProvider.projectsPlaceholderColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
@@ -391,8 +390,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
-        backgroundColor: placeholderColor,
+        borderColor: colorsProvider.projectsPlaceholderColor,
+        backgroundColor: colorsProvider.projectsPlaceholderColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -427,7 +426,7 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
+        borderColor: colorsProvider.projectsPlaceholderColor,
         backgroundColor: colorsProvider.projectsMainColor,
         marginRight: 50,
         shadowColor: "#000000",
@@ -529,7 +528,7 @@ module.exports = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5,
         borderWidth: 1,
-        borderColor: placeholderColor,
+        borderColor: colorsProvider.projectsPlaceholderColor,
         backgroundColor: colorsProvider.projectsMainColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
@@ -574,7 +573,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.projectsPlaceholderColor,
         flexDirection: "row",
 
         marginTop: 2,
