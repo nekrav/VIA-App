@@ -2,21 +2,11 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, PixelRatio, Platform} from 'react-native';
-const buttonBackgroundColor = '#3a506b';
-const titleFontSize = 24;
-const bodyFontSize = 20;
-const buttonFontSize = 20;
-const leftMargin = 5;
+import {StyleSheet, Platform} from 'react-native';
+
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const backgroundColor = '#ffffff';
-const blueColor = '#00bbb1';
-const textColor = '#2d3142';
-const finishedBackgroundColor = '#a8ffe0';
-const grayColor = '#ededed';
 const placeholderColor = '#ABABAB';
-const homeColorButton = '#48A2F8';
 
 module.exports = StyleSheet.create({
   outerView: {
@@ -26,6 +16,7 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   /* #region  Title Scetion */
   titleView: {
     marginLeft: 50,
@@ -34,24 +25,15 @@ module.exports = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 20,
-    // borderWidth: 2,
-    // borderColor: blueColor,
-    // backgroundColor: blueColor,
+
     marginRight: 50,
-    // shadowColor: '#000000',
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // shadowOffset: {
-    //   height: 1,
-    //   width: 0,
-    // },
+
     width: '90%',
   },
   titleText: {
     fontSize: 28,
     textAlign: 'center',
     fontFamily: fontFamily,
-    // color: backgroundColor,
   },
   /* #endregion */
 
@@ -65,7 +47,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: placeholderColor,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
     marginRight: 50,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
@@ -98,7 +80,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: placeholderColor,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -118,14 +100,14 @@ module.exports = StyleSheet.create({
 
   /* #region  Selection Item container */
   selectionItemContainer: {
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: 20,
     flex: 1,
     borderWidth: 1,
     borderColor: placeholderColor,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -147,11 +129,10 @@ module.exports = StyleSheet.create({
   /* #endregion */
 
   /* #region  Item selection checkbox */
-
   itemSelectionContainer: {
     borderWidth: 0,
     justifyContent: 'flex-start',
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
   },
 
   checkboxText: {

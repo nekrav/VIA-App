@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, PixelRatio, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const backgroundColor = '#ffffff';
 const blueColor = '#00bbb1';
 const textColor = '#2d3142';
 const grayColor = '#ededed';
@@ -17,7 +16,7 @@ module.exports = StyleSheet.create({
   outerView: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
   },
   outerViewDone: {
     flex: 1,
@@ -81,7 +80,7 @@ module.exports = StyleSheet.create({
   createNameText: {
     fontSize: 30,
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
     marginLeft: 10,
     marginBottom: 5,
   },
@@ -118,7 +117,7 @@ module.exports = StyleSheet.create({
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -229,7 +228,7 @@ module.exports = StyleSheet.create({
   hasProjectSelectionButtonText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
     marginLeft: 5,
     marginTop: 5,
     marginBottom: 5,
@@ -292,7 +291,7 @@ module.exports = StyleSheet.create({
 
   hasNotificationTimeButtonText: {
     fontSize: 16,
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -355,7 +354,7 @@ module.exports = StyleSheet.create({
     fontFamily: fontFamily,
   },
   hasNotesText: {
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
     marginTop: 5,
     marginLeft: 7,
     fontFamily: fontFamily,
@@ -414,7 +413,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: placeholderColor,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.homeMainColor,
     marginRight: 50,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
@@ -434,7 +433,7 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: colorsProvider.homeMainColor,
   },
   /* #endregion */
 
