@@ -11,7 +11,6 @@ const blueColor = '#00bbb1';
 const finishColor = '#16E500'
 const finishColorBorderColor = '#10AE00'
 const grayColor = '#ededed';
-const placeholderColor = "#A77E8C";
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -120,7 +119,7 @@ module.exports = StyleSheet.create({
   createDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: placeholderColor,
+    color: colorsProvider.habitsPlaceholderColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -185,7 +184,7 @@ module.exports = StyleSheet.create({
     color: colorsProvider.habitsComplimentaryColor,
   },
   sliderTitle: {
-    color: placeholderColor,
+    color: colorsProvider.habitsPlaceholderColor,
     fontFamily: fontFamily,
     fontSize: 24,
   },
@@ -248,7 +247,7 @@ module.exports = StyleSheet.create({
   createProjectSelectionButtonText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: placeholderColor,
+    color: colorsProvider.habitsPlaceholderColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -309,7 +308,7 @@ module.exports = StyleSheet.create({
   },
   notificationTimeButtonText: {
     fontSize: 16,
-    color: placeholderColor,
+    color: colorsProvider.habitsPlaceholderColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -376,7 +375,7 @@ module.exports = StyleSheet.create({
     height: '100%',
   },
   createNotesText: {
-    color: placeholderColor,
+    color: colorsProvider.habitsPlaceholderColor,
     marginTop: 5,
     marginLeft: 7,
     fontFamily: fontFamily,
@@ -404,8 +403,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
-    backgroundColor: placeholderColor,
+    borderColor: colorsProvider.habitsPlaceholderColor,
+    backgroundColor: colorsProvider.habitsPlaceholderColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -440,7 +439,7 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
+    borderColor: colorsProvider.habitsPlaceholderColor,
     backgroundColor: colorsProvider.habitsMainColor,
     marginRight: 50,
     shadowColor: '#000000',

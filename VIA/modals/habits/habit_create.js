@@ -285,7 +285,7 @@ export class CreateHabit extends React.Component {
                             Is this part of a bigger routine?
           </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="refresh" size={20} color="#A77E8C" />
+                            <SIcon name="refresh" size={20} color={colorsProvider.habitsPlaceholderColor} />
                         </Text>
                     </TouchableOpacity></View>
             );
@@ -305,7 +305,7 @@ export class CreateHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    disabledSaveButtonBackgroundColor={"#A77E8C"}
+                    disabledSaveButtonBackgroundColor={colorsProvider.habitsPlaceholderColor}
                     saveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     setDate={item => {
@@ -362,7 +362,7 @@ export class CreateHabit extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#A77E8C" />
+                    <SIcon name="bell" size={20} color={colorsProvider.habitsPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );

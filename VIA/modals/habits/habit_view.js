@@ -1,34 +1,20 @@
-// import React from 'react';
-// import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, BackHandler, TouchableWithoutFeedback, Keyboard, SafeAreaView} from 'react-native'; // Version can be specified in package.json
-// import { Controller } from '../controller';
-
-// import { SelectionModal } from '../selectionModal/selectionModal'
-// import { Database, Routines, Habits } from '../../db'
-
-// const controller = new Controller;
-
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
-import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
-import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Routines, Tasks } from '../../db'
 import { SelectionModal } from '../selectionModal/selectionModal';
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
-import Slider from '@react-native-community/slider';
 import { Notifier } from '../../notifier/notifier'
-import { colors } from 'react-native-elements';
 
 const notifier = new Notifier;
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
-const todayDate = new Date();
 const styles = require('./styles');
-var uuid = require('react-native-uuid');
+
 export class ViewHabit extends React.Component {
 
     constructor(props) {
@@ -154,7 +140,7 @@ export class ViewHabit extends React.Component {
                         Is this part of a bigger routine?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="refresh" size={20} color="#A77E8C" />
+                        <SIcon name="refresh" size={20} color={colorsProvider.habitsPlaceholderColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -214,7 +200,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to start?
                 </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-play" size={20} color={"#A77E8C"} />
+                    <SIcon name="control-play" size={20} color={colorsProvider.habitsPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );
@@ -275,7 +261,7 @@ export class ViewHabit extends React.Component {
                     When do you want this habit to end?
           </Text>
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-end" size={20} color={"#A77E8C"} />
+                    <SIcon name="control-end" size={20} color={colorsProvider.habitsPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
 
@@ -363,7 +349,7 @@ export class ViewHabit extends React.Component {
                     animationType="fade"
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    disabledSaveButtonBackgroundColor={"#A77E8C"}
+                    disabledSaveButtonBackgroundColor={colorsProvider.habitsPlaceholderColor}
                     saveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     disabledSaveButtonTextColor={colorsProvider.habitsComplimentaryColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
@@ -426,7 +412,7 @@ export class ViewHabit extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#A77E8C" />
+                    <SIcon name="bell" size={20} color={colorsProvider.habitsPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );

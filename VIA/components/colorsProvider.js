@@ -1,20 +1,20 @@
 import React from 'react';
 
 /* #region  General */
-export const font = 'Roboto-Medium'
-export const finishedBackgroundColor = '#4DFF87'; //'#4DFF87'
+export const font = "Roboto-Medium"
+export const finishedBackgroundColor = "#4DFF87"; //'#4DFF87'
 /* #endregion */
 
 /* #region  Routines */
 export const routinesMainColor = "#E5C797"
 export const routinesComplimentaryColor = "#73521C";
-export const routinesPlaceholderColor = '#B09B7A';
+export const routinesPlaceholderColor = "#B09B7A";
 /* #endregion */
 
 /* #region  Habits */
 export const habitsMainColor = "#D6A2AD"
 export const habitsComplimentaryColor = "#711E30";
-export const habitsPlaceholderColor = '#A77E8C';
+export const habitsPlaceholderColor = "#A77E8C";
 /* #endregion */
 
 /* #region  Home */
