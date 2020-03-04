@@ -31,7 +31,7 @@ const TabNavigator = createBottomTabNavigator({
         <TabButton
           focused={focused}
           activeColor={colorsProvider.habitsComplimentaryColor}
-          inactiveColor={"#ffffff"}
+          inactiveColor={colorsProvider.whiteColor}
           tintColor={ tintColor }
           routeName={'Habits'}
           iconName={'reload'}
@@ -53,7 +53,7 @@ const TabNavigator = createBottomTabNavigator({
         <TabButton
           focused={focused}
           activeColor={"#9C7639"}
-          inactiveColor={"#ffffff"}
+          inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Routines'}
           iconName={'refresh'}
@@ -93,7 +93,7 @@ const TabNavigator = createBottomTabNavigator({
         <TabButton
           focused={focused}
           activeColor={"#023C74"}
-          inactiveColor={"#ffffff"}
+          inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Projects'}
           iconName={'layers'}
@@ -115,7 +115,7 @@ const TabNavigator = createBottomTabNavigator({
         <TabButton
           focused={focused}
           activeColor={"#0F7EE9"}
-          inactiveColor={"#ffffff"}
+          inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
           iconName={'refresh'}

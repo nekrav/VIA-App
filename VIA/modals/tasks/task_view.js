@@ -142,7 +142,7 @@ export class ViewTask extends React.Component {
                         {this.state.projName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color="#ffffff" />
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -376,7 +376,7 @@ export class ViewTask extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color="#ffffff" />
+                            <SIcon name="bell" size={20} color={colorsProvider.whiteColor} />
                         </Text>
                     </TouchableOpacity>
                 );

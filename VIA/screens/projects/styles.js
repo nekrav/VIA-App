@@ -4,24 +4,11 @@ import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
-
-const buttonBackgroundColor = '#3a506b'
-const titleFontSize = 24
-const bodyFontSize = 20
-const leftMargin = 5
-const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
 const blueColor = "#00bbb1"
-const textColor = "#2d3142"
-const finishedBackgroundColor = "#4DFF87"
-const grayColor = "#ededed"
-const placeholderColor = "#ABABAB"
-const homeColorButton = "#48A2F8"
-
-const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 

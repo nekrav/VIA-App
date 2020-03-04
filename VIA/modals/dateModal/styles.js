@@ -11,7 +11,7 @@ const buttonFontSize = 20;
 const leftMargin = 5;
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const backgroundColor = '#ffffff';
+const backgroundColor = colorsProvider.whiteColor;
 const blueColor = '#00bbb1';
 const textColor = '#2d3142';
 const finishedBackgroundColor = '#a8ffe0';

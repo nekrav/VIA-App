@@ -3,6 +3,7 @@ import React from 'react';
 /* #region  General */
 export const font = "Roboto-Medium"
 export const finishedBackgroundColor = "#4DFF87";
+export const whiteColor = "#FFFFFF"
 /* #endregion */
 
 /* #region  Routines */
@@ -18,7 +19,7 @@ export const habitsPlaceholderColor = "#A77E8C";
 /* #endregion */
 
 /* #region  Home */
-export const homeMainColor = "#ffffff"
+export const homeMainColor = "#FFFFFF"
 export const homeComplimentaryColor = "#00bbb1";
 export const homePlaceholderColor = '#ABABAB';
 export const homeTextColor = '#2d3142';
