@@ -164,7 +164,7 @@ export class RoutinesScreen extends React.Component {
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
                                         checkedColor='#4DFF87'
-                                        uncheckedColor='#73521C'
+                                        uncheckedColor={colorsProvider.routinesComplimentaryColor}
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)

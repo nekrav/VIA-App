@@ -23,8 +23,8 @@ var uuid = require('react-native-uuid');
 const childTableName = Habits.TABLE_NAME
 
 /* #region  Colors */
-const mainColor = "#E5C797"
-const complimentaryColor = "#73521C"
+const mainColor = colorsProvider.routinesMainColor
+const complimentaryColor = colorsProvider.routinesComplimentaryColor
 const childMainColor = "#D6A2AD"
 const childComplimentaryColor = "#711E30"
 /* #endregion */
@@ -188,8 +188,8 @@ export class ViewRoutine extends React.Component {
                 animationType="fade"
                 items={this.state.items}
                 itemName="Habits"
-                titleTextColor="#73521C"
-                titleContainerColor="#E5C797"
+                titleTextColor={colorsProvider.routinesComplimentaryColor}
+                titleContainerColor={colorsProvider.routinesMainColor}
                 transparent={true}
                 selectItems={items => {
                     this.setState({ tasks: items })
@@ -324,8 +324,8 @@ export class ViewRoutine extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
-                    disabledSaveButtonBackgroundColor="#E5C797"
-                    saveButtonBackgroundColor="#E5C797"
+                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
+                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
                     transparent={true}
                     setDate={item => {
                         this.props.editStartTime(item);
@@ -377,8 +377,8 @@ export class ViewRoutine extends React.Component {
                 <DateModal
                     pickerMode="time"
                     animationType="fade"
-                    disabledSaveButtonBackgroundColor="#E5C797"
-                    saveButtonBackgroundColor="#E5C797"
+                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
+                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
                     transparent={true}
                     setDate={item => {
                         this.props.editEndTime(item);
@@ -400,21 +400,21 @@ export class ViewRoutine extends React.Component {
 
     renderEndDate() {
         if (this.state.selectedItem.end_time != '') {
-            return ( <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                        onPress={() => this.setEndDateModalVisibility(true)}
-                    >
-                        <Text style={styles.createSelectedDateText}>
-                            {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
+            return (<TouchableOpacity
+                style={styles.createDueDateContainer}
+                onPress={() => this.setEndDateModalVisibility(true)}
+            >
+                <Text style={styles.createSelectedDateText}>
+                    {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
+                </Text>
+            </TouchableOpacity>
             );
         }
         return (<TouchableOpacity style={styles.createNameContainer} onPress={() => this.setEndDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want this routine to end?
+            <Text style={styles.createDateText}>
+                When do you want this routine to end?
           </Text>
-                </TouchableOpacity>
+        </TouchableOpacity>
         );
     }
 
@@ -458,8 +458,8 @@ export class ViewRoutine extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
-                    saveButtonBackgroundColor={"#E5C797"}
-					disabledSaveButtonBackgroundColor={"#E5C797"}
+                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
@@ -500,7 +500,7 @@ export class ViewRoutine extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color="#73521C" />
+                        <SIcon name="bell" size={20} color={colorsProvider.routinesComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );

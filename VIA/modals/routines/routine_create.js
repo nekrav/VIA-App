@@ -67,7 +67,7 @@ export class CreateRoutine extends React.Component {
 					}}
 					name="arrow-left"
 					size={30}
-					color="#73521C"
+					color={colorsProvider.routinesComplimentaryColor}
 				/>
 			</TouchableOpacity>
 		</View>
@@ -114,8 +114,8 @@ export class CreateRoutine extends React.Component {
 				<DateModal
 					pickerMode="time"
 					animationType="fade"
-					disabledSaveButtonBackgroundColor="#E5C797"
-					saveButtonBackgroundColor="#E5C797"
+					disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
+					saveButtonBackgroundColor={colorsProvider.routinesMainColor}
 					transparent={true}
 					setDate={item => {
 						this.props.start_time(item);
@@ -173,8 +173,8 @@ export class CreateRoutine extends React.Component {
 				<DateModal
 					pickerMode="time"
 					animationType="fade"
-					disabledSaveButtonBackgroundColor="#E5C797"
-					saveButtonBackgroundColor="#E5C797"
+					disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
+					saveButtonBackgroundColor={colorsProvider.routinesMainColor}
 					transparent={true}
 					setDate={item => {
 						this.props.end_time(item);
@@ -227,8 +227,8 @@ export class CreateRoutine extends React.Component {
 			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
-				titleTextColor="#73521C"
-				titleContainerColor="#E5C797"
+				titleTextColor={colorsProvider.routinesComplimentaryColor}
+				titleContainerColor={colorsProvider.routinesMainColor}
 				itemName="Habits"
 				transparent={true}
 				selectItems={items => {
@@ -275,7 +275,7 @@ export class CreateRoutine extends React.Component {
 						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 						<Text style={styles.notificationTimeButtonText}>
 
-							<SIcon name="reload" size={20} color="#73521C" />
+							<SIcon name="reload" size={20} color={colorsProvider.routinesComplimentaryColor} />
 						</Text>
 					</TouchableOpacity></View>
 			);
@@ -305,8 +305,8 @@ export class CreateRoutine extends React.Component {
 				<NotificationTimesModal
 					animationType="fade"
 					transparent={true}
-					saveButtonBackgroundColor={"#E5C797"}
-					disabledSaveButtonBackgroundColor={"#E5C797"}
+					saveButtonBackgroundColor={colorsProvider.routinesMainColor}
+					disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
 					setDate={item => {
 						this.props.notification_time(item);
 						this.setState({ itemNotificationTimes: item });
@@ -344,7 +344,7 @@ export class CreateRoutine extends React.Component {
 					</Text>
 
 					<Text style={styles.notificationTimeButtonText}>
-						<SIcon name="bell" size={20} color="#73521C" />
+						<SIcon name="bell" size={20} color={colorsProvider.routinesComplimentaryColor} />
 					</Text>
 				</TouchableOpacity>
 			);
@@ -380,11 +380,11 @@ export class CreateRoutine extends React.Component {
 					animationType="slide"
 					transparent={true}
 					existingNotes={this.state.itemNotes}
-					notesBackgroundColor="#E5C797"
+					notesBackgroundColor={colorsProvider.routinesMainColor}
 					notesButtonNoNotesTextColor="#B09B7A"
-					notesButtonNotesTextColor="#E5C797"
-					notesButtonContainerNoNotesText="#E5C797"
-					notesButtonContainerNotesText="#73521C"
+					notesButtonNotesTextColor={colorsProvider.routinesMainColor}
+					notesButtonContainerNoNotesText={colorsProvider.routinesMainColor}
+					notesButtonContainerNotesText={colorsProvider.routinesComplimentaryColor}
 
 					placeholder={'Notes...'}
 					setNotes={item => {
@@ -477,7 +477,7 @@ export class CreateRoutine extends React.Component {
 				transparent={this.props.transparent}
 				visible={this.props.visible}
 				onRequestClose={this.props.onRequestClose}>
-					
+
 				{this.showTasksSelectionModal()}
 				{this.renderEndDateModal()}
 				{this.renderStartDateModal()}

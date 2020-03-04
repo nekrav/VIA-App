@@ -111,7 +111,7 @@ export class ViewHabit extends React.Component {
                 itemName="Routine"
                 itemName1="Routine"
                 titleTextColor="#9C7639"
-                titleContainerColor="#E5C797"
+                titleContainerColor={colorsProvider.routinesMainColor}
                 transparent={true}
                 selectItem={(item) => {
                     this.props.editRoutine(item.value.id)
@@ -479,7 +479,7 @@ export class ViewHabit extends React.Component {
 
                             {/* {NOTES SECTION} */}
                             {/* {this.renderNotesSection()} */}
-                            
+
                         </View>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>

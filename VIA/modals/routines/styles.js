@@ -7,11 +7,8 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const backgroundColor = colorsProvider.routinesMainColor
-const complimentaryColor = "#73521C";
+const complimentaryColor = colorsProvider.routinesComplimentaryColor;
 const blueColor = '#00bbb1';
-const textColor = '#73521C';
-const finishedBackgroundColor = '#E5C797'; //'#4DFF87'
 const grayColor = '#ededed';
 const placeholderColor = '#B09B7A';
 
@@ -21,14 +18,14 @@ module.exports = StyleSheet.create({
   outerView: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     justifyContent: 'space-between'
   },
   outerViewDone: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: finishedBackgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
   },
   /* #endregion */
 
@@ -50,9 +47,9 @@ module.exports = StyleSheet.create({
   /* #region  Create Name Section */
   createNameContainer: {
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -68,9 +65,9 @@ module.exports = StyleSheet.create({
   },
   hasNameTextInputContainer: {
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -97,9 +94,9 @@ module.exports = StyleSheet.create({
   createDueDateContainer: {
     justifyContent: 'space-between',
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -161,7 +158,7 @@ module.exports = StyleSheet.create({
   sliderTitleNull: {
     fontFamily: fontFamily,
     fontSize: 24,
-    color: textColor,
+    color: colorsProvider.routinesComplimentaryColor,
   },
   sliderTitle: {
     color: placeholderColor,
@@ -188,10 +185,10 @@ module.exports = StyleSheet.create({
   /* #region  Create Project Selection Section */
   createProjectSelectionContainer: {
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     justifyContent: 'space-between',
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -207,10 +204,10 @@ module.exports = StyleSheet.create({
   },
   hasProjectSelectionContainer: {
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     justifyContent: 'space-between',
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -247,9 +244,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -269,9 +266,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -361,7 +358,7 @@ module.exports = StyleSheet.create({
     fontFamily: fontFamily,
   },
   hasNotesText: {
-    color: backgroundColor,
+    color: colorsProvider.routinesMainColor,
     marginTop: 5,
     marginLeft: 7,
     fontFamily: fontFamily,
@@ -420,7 +417,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: placeholderColor,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     marginRight: 50,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
@@ -434,13 +431,13 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: textColor,
+    color: colorsProvider.routinesComplimentaryColor,
   },
   bottomButtonTextDisabled: {
     fontSize: 18,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: backgroundColor,
+    color: colorsProvider.routinesMainColor,
   },
   /* #endregion */
 
@@ -464,9 +461,9 @@ module.exports = StyleSheet.create({
     marginTop: 10,
     flex: 1,
     borderRadius: 10,
-    backgroundColor: backgroundColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     borderTopWidth: 2,
-    borderTopColor: backgroundColor,
+    borderTopColor: colorsProvider.routinesMainColor,
     marginRight: 10,
     marginLeft: 10,
     shadowOpacity: 0.8,
@@ -513,8 +510,8 @@ module.exports = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderWidth: 1,
-    borderColor: backgroundColor,
-    backgroundColor: backgroundColor,
+    borderColor: colorsProvider.routinesMainColor,
+    backgroundColor: colorsProvider.routinesMainColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,

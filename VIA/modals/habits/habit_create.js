@@ -237,7 +237,7 @@ export class CreateHabit extends React.Component {
                     items={this.state.items}
                     itemName="Routine"
                     titleTextColor="#9C7639"
-                    titleContainerColor="#E5C797"
+                    titleContainerColor={colorsProvider.routinesMainColor}
                     transparent={true}
                     selectItem={item => {
                         this.props.routine(item.key);

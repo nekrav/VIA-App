@@ -12,8 +12,8 @@ const leftMargin = 5
 const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const backgroundColor = "#E5C797"
-const complimentaryColor = "#73521C";
+const backgroundColor = colorsProvider.routinesMainColor
+const complimentaryColor = colorsProvider.routinesComplimentaryColor;
 const blueColor = "#00bbb1"
 const textColor = "#2d3142"
 const finishedBackgroundColor = "#4DFF87"
