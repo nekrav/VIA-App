@@ -6,7 +6,6 @@ import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
 
 module.exports = StyleSheet.create({
@@ -15,14 +14,14 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: "#4585C1",
+        backgroundColor: colorsProvider.projectsMainColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -31,7 +30,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -93,7 +92,7 @@ module.exports = StyleSheet.create({
 
     listItemContainer: {
         // flex: 1,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         // height: '100%',
@@ -103,7 +102,7 @@ module.exports = StyleSheet.create({
 
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
      
         marginTop: 2,
@@ -120,7 +119,7 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished:{
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         // height: '100%',
@@ -130,7 +129,7 @@ module.exports = StyleSheet.create({
 
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
      
         marginTop: 2,

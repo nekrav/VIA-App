@@ -103,8 +103,8 @@ export class CreateProject extends React.Component {
 				<DateModal
 					pickerMode="date"
 					animationType="fade"
-					disabledSaveButtonBackgroundColor="#4585C1"
-					saveButtonBackgroundColor="#4585C1"
+					disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
+					saveButtonBackgroundColor={colorsProvider.projectsMainColor}
 					transparent={true}
 					setDate={item => {
 						this.props.due_date(item);
@@ -207,7 +207,7 @@ export class CreateProject extends React.Component {
 				items={this.state.items}
 				itemName="Tasks"
 				titleTextColor="#023C74"
-				titleContainerColor="#4585C1"
+				titleContainerColor={colorsProvider.projectsMainColor}
 				transparent={true}
 				selectItems={items => {
 					this.setState({ tasks: items })
@@ -284,8 +284,8 @@ export class CreateProject extends React.Component {
 				<NotificationTimesModal
 					animationType="fade"
 					transparent={true}
-					saveButtonBackgroundColor={"#4585C1"}
-					disabledSaveButtonBackgroundColor={"#4585C1"}
+					saveButtonBackgroundColor={colorsProvider.projectsMainColor}
+					disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
 					setDate={item => {
 						this.props.notification_time(item);
 						this.setState({ itemNotificationTimes: item });
@@ -359,9 +359,9 @@ export class CreateProject extends React.Component {
 					animationType="slide"
 					transparent={true}
 					existingNotes={this.state.itemNotes}
-					backgroundColor={"#4585C1"}
+					backgroundColor={colorsProvider.projectsMainColor}
 					buttonContainerNotChangedColor={"#35689C"}
-					buttonContainerTextNotChangedColor={"#4585C1"}
+					buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
 					textPlaceholderColor={"#35689C"}
 					textChangedColor={"#023C74"}
 

@@ -5,8 +5,6 @@ import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-
-const backgroundColor = "#4585C1"
 const complimentaryColor = "#023C74"
 const grayColor = "#ededed"
 const placeholderColor = "#35689C"
@@ -16,7 +14,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
     },
     outerViewDone: {
         flex: 1,
@@ -45,9 +43,9 @@ module.exports = StyleSheet.create({
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -63,9 +61,9 @@ module.exports = StyleSheet.create({
     },
     hasNameTextInputContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -99,9 +97,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -197,10 +195,10 @@ module.exports = StyleSheet.create({
     /* #region  Create Project Selection Section */
     createProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -216,10 +214,10 @@ module.exports = StyleSheet.create({
     },
     hasProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -256,9 +254,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -279,9 +277,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -324,9 +322,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -347,9 +345,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -431,7 +429,7 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         marginRight: 50,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
@@ -451,7 +449,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: colorsProvider.projectsMainColor,
     },
     /* #endregion */
 
@@ -469,7 +467,7 @@ module.exports = StyleSheet.create({
     },
     completeButtonText: {
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: colorsProvider.projectsMainColor,
         fontSize: 30,
     },
 
@@ -533,7 +531,7 @@ module.exports = StyleSheet.create({
         paddingBottom: 5,
         borderWidth: 1,
         borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -596,7 +594,7 @@ module.exports = StyleSheet.create({
         flex: 1,
     },
     childTitleText: {
-        color: backgroundColor,
+        color: colorsProvider.projectsMainColor,
         fontSize: 30,
         marginLeft: 10,
     },
