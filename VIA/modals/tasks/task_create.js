@@ -218,7 +218,7 @@ export class CreateTask extends React.Component {
                     items={this.state.items}
                     itemName="Project"
                     titleTextColor="#045CB1"
-                    titleContainerColor="#58AAF9"
+                    titleContainerColor={colorsProvider.tasksMainColor}
                     transparent={true}
                     selectItem={item => {
                         this.props.project(item.key);
@@ -362,7 +362,7 @@ export class CreateTask extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.itemNotes}
-                    backgroundColor={"#58AAF9"}
+                    backgroundColor={colorsProvider.tasksMainColor}
 					buttonContainerNotChangedColor={"#4485C8"}
 					buttonContainerTextNotChangedColor={"#045CB1"}
 					textPlaceholderColor={"#4485C8"}

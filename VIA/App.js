@@ -108,7 +108,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarOptions: {
         style: {
          height: 55,
-         backgroundColor: "#58AAF9"
+         backgroundColor: colorsProvider.tasksMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (

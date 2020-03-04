@@ -7,7 +7,6 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const backgroundColor = "#58AAF9"
 const complimentaryColor = "#045CB1"
 
 const placeholderColor = "#4485C8"
@@ -18,14 +17,14 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor:backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -34,7 +33,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -73,7 +72,7 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     listItemContainer: {
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -81,7 +80,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
@@ -95,7 +94,7 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished:{
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,

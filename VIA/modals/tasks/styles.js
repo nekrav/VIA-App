@@ -6,7 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const backgroundColor = "#58AAF9"
 const complimentaryColor = "#045CB1"
 const placeholderColor = "#4485C8"
 
@@ -15,7 +14,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
     },
     outerViewDone: {
         flex: 1,
@@ -43,9 +42,9 @@ module.exports = StyleSheet.create({
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -61,9 +60,9 @@ module.exports = StyleSheet.create({
     },
     hasNameTextInputContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -90,9 +89,9 @@ module.exports = StyleSheet.create({
     createDueDateContainer: {
         justifyContent: 'space-between',
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -182,10 +181,10 @@ module.exports = StyleSheet.create({
     /* #region  Create Project Selection Section */
     createProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -201,10 +200,10 @@ module.exports = StyleSheet.create({
     },
     hasProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -241,9 +240,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -264,9 +263,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -309,9 +308,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -332,9 +331,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -416,7 +415,7 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         borderColor: placeholderColor,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         marginRight: 50,
         shadowColor: "#000000",
         shadowOpacity: 0.8,
@@ -436,7 +435,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: backgroundColor,
+        color: colorsProvider.tasksMainColor,
     },
     /* #endregion */
 
