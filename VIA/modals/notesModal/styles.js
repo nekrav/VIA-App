@@ -6,11 +6,7 @@ import { StyleSheet,Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-
-const textColor = "#2d3142"
 const finishedBackgroundColor = "#a8ffe0"
-
-
 
 module.exports = StyleSheet.create({
 
@@ -96,7 +92,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: textColor,
+        color: colorsProvider.homeTextColor,
     },
     modifiedBottomButtonText: {
         fontSize: 18,

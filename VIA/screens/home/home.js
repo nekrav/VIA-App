@@ -118,7 +118,7 @@ export class HomeScreen extends React.Component {
             </TouchableOpacity> */}
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
-                <SIcon name="options" size={30} color="#2d3142" />
+                <SIcon name="options" size={30} color={colorsProvider.homeTextColor} />
             </TouchableOpacity>
         </View>)
     }

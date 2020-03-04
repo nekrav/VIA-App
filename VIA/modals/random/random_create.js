@@ -290,7 +290,7 @@ export class CreateRandom extends React.Component {
                                     }}
                                     name="arrow-left"
                                     size={30}
-                                    color="#2d3142"
+                                    color={colorsProvider.homeTextColor}
                                 />
                             </TouchableOpacity>
                         </View>
