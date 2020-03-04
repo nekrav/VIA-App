@@ -2,25 +2,14 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import { StyleSheet, PixelRatio, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
-
-const buttonBackgroundColor = '#3a506b'
-const titleFontSize = 24
-const bodyFontSize = 20
-const leftMargin = 5
-const buttonFontSize = 20
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const backgroundColor = colorsProvider.routinesMainColor
-const complimentaryColor = colorsProvider.routinesComplimentaryColor;
 const blueColor = "#00bbb1"
-const textColor = "#2d3142"
-const finishedBackgroundColor = "#4DFF87"
 const placeholderColor = "#ABABAB"
 const shadowColor = "#000000"
 
-const { width, height } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
@@ -28,14 +17,14 @@ module.exports = StyleSheet.create({
      outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.routinesMainColor,
     },
     /* #endregion */
 
     /* #region  Top Navigation */
     topNav: {
         marginBottom: 5,
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.routinesMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
         marginLeft: "10%",
@@ -44,7 +33,7 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: backgroundColor,
+        borderTopColor: colorsProvider.routinesMainColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -67,23 +56,23 @@ module.exports = StyleSheet.create({
     addItemButtonText: {
         justifyContent: "center",
         fontSize: 50,
-        color: complimentaryColor
+        color: colorsProvider.routinesComplimentaryColor
     },
     topNavLeftTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
-        color: complimentaryColor,
+        color: colorsProvider.routinesComplimentaryColor,
     },
     topNavCenterTitleText: {
         fontSize: 30,
         fontFamily: fontFamily,
         marginLeft: "-16%",
-        color: complimentaryColor,
+        color: colorsProvider.routinesComplimentaryColor,
     },
     /* #endregion */
 
     listItemContainer: {
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.routinesMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -105,7 +94,7 @@ module.exports = StyleSheet.create({
     },
 
     listItemContainerFinished:{
-        backgroundColor: backgroundColor,
+        backgroundColor: colorsProvider.routinesMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -130,7 +119,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
     },
     listItemText: {
-        color: complimentaryColor,
+        color: colorsProvider.routinesComplimentaryColor,
         fontFamily: fontFamily,
         fontSize: 18,
     },

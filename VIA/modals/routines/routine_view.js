@@ -188,8 +188,8 @@ export class ViewRoutine extends React.Component {
                 animationType="fade"
                 items={this.state.items}
                 itemName="Habits"
-                titleTextColor={colorsProvider.routinesComplimentaryColor}
-                titleContainerColor={colorsProvider.routinesMainColor}
+                titleTextColor={colorsProvider.habitsComplimentaryColor}
+                titleContainerColor={colorsProvider.habitsMainColor}
                 transparent={true}
                 selectItems={items => {
                     this.setState({ tasks: items })

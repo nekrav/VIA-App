@@ -227,8 +227,8 @@ export class CreateRoutine extends React.Component {
 			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
-				titleTextColor={colorsProvider.routinesComplimentaryColor}
-				titleContainerColor={colorsProvider.routinesMainColor}
+				titleTextColor={colorsProvider.habitsComplimentaryColor}
+                titleContainerColor={colorsProvider.habitsMainColor}
 				itemName="Habits"
 				transparent={true}
 				selectItems={items => {

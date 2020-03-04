@@ -7,7 +7,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const complimentaryColor = colorsProvider.routinesComplimentaryColor;
 const blueColor = '#00bbb1';
 const grayColor = '#ededed';
 const placeholderColor = '#B09B7A';
@@ -84,7 +83,7 @@ module.exports = StyleSheet.create({
   createNameText: {
     fontSize: 30,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.routinesComplimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },
@@ -121,7 +120,7 @@ module.exports = StyleSheet.create({
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.routinesComplimentaryColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -232,7 +231,7 @@ module.exports = StyleSheet.create({
   hasProjectSelectionButtonText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.routinesComplimentaryColor,
     marginLeft: 5,
     marginTop: 5,
     marginBottom: 5,
@@ -295,7 +294,7 @@ module.exports = StyleSheet.create({
 
   hasNotificationTimeButtonText: {
     fontSize: 16,
-    color: complimentaryColor,
+    color: colorsProvider.routinesComplimentaryColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -398,8 +397,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: complimentaryColor,
-    backgroundColor: complimentaryColor,
+    borderColor: colorsProvider.routinesComplimentaryColor,
+    backgroundColor: colorsProvider.routinesComplimentaryColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -494,7 +493,7 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontFamily: fontFamily,
-    color: complimentaryColor,
+    color: colorsProvider.routinesComplimentaryColor,
     fontSize: 25,
   },
   /* #endregion */
