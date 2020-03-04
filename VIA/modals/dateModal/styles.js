@@ -2,24 +2,12 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, PixelRatio, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
-const buttonBackgroundColor = '#3a506b';
-const titleFontSize = 24;
-const bodyFontSize = 20;
-const buttonFontSize = 20;
-const leftMargin = 5;
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = colorsProvider.whiteColor;
-const blueColor = '#00bbb1';
-const textColor = '#2d3142';
 const finishedBackgroundColor = '#a8ffe0';
-const grayColor = '#ededed';
-const placeholderColor = '#ABABAB';
-const homeColorButton = '#48A2F8';
-
-const {width, height} = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
 
@@ -81,8 +69,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
-    // backgroundColor: placeholderColor,
+    borderColor: colorsProvider.homePlaceholderColor,
+    // backgroundColor: colorsProvider.homePlaceholderColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -99,8 +87,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     // borderWidth: 2,
-    // borderColor: blueColor,
-    backgroundColor: blueColor,
+    // borderColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     // alignContent: 'center',
     // alignItems: 'center',
     justifyContent: 'center',
@@ -120,8 +108,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
+    borderColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -138,7 +126,7 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
+    borderColor: colorsProvider.homePlaceholderColor,
     backgroundColor: backgroundColor,
     marginRight: 50,
     shadowColor: '#000000',

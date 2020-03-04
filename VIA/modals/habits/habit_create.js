@@ -55,7 +55,7 @@ export class CreateHabit extends React.Component {
                 onPress={this.props.closeModal}>
                 <SIcon
                     style={{
-                        shadowColor: '#ABABAB',
+                        shadowColor: colorsProvider.homePlaceholderColor,
                         shadowOpacity: 0.8,
                         shadowRadius: 1.5,
                         shadowOffset: {

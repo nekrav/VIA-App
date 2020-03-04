@@ -6,10 +6,8 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const blueColor = '#00bbb1';
 const textColor = '#2d3142';
 const grayColor = '#ededed';
-const placeholderColor = '#ABABAB';
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -61,9 +59,9 @@ module.exports = StyleSheet.create({
   },
   hasNameTextInputContainer: {
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -90,9 +88,9 @@ module.exports = StyleSheet.create({
   createDueDateContainer: {
     justifyContent: 'space-between',
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -109,7 +107,7 @@ module.exports = StyleSheet.create({
   createDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: placeholderColor,
+    color: colorsProvider.homePlaceholderColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -157,7 +155,7 @@ module.exports = StyleSheet.create({
     color: textColor,
   },
   sliderTitle: {
-    color: placeholderColor,
+    color: colorsProvider.homePlaceholderColor,
     fontFamily: fontFamily,
     fontSize: 24,
   },
@@ -200,10 +198,10 @@ module.exports = StyleSheet.create({
   },
   hasProjectSelectionContainer: {
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     justifyContent: 'space-between',
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -220,7 +218,7 @@ module.exports = StyleSheet.create({
   createProjectSelectionButtonText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: placeholderColor,
+    color: colorsProvider.homePlaceholderColor,
     marginLeft: 5,
     marginTop: 5,
     marginBottom: 5,
@@ -262,9 +260,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -281,7 +279,7 @@ module.exports = StyleSheet.create({
   },
   notificationTimeButtonText: {
     fontSize: 16,
-    color: placeholderColor,
+    color: colorsProvider.homePlaceholderColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -329,9 +327,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -348,7 +346,7 @@ module.exports = StyleSheet.create({
     height: '100%',
   },
   createNotesText: {
-    color: placeholderColor,
+    color: colorsProvider.homePlaceholderColor,
     marginTop: 5,
     marginLeft: 7,
     fontFamily: fontFamily,
@@ -376,8 +374,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
-    backgroundColor: placeholderColor,
+    borderColor: colorsProvider.homePlaceholderColor,
+    backgroundColor: colorsProvider.homePlaceholderColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -394,8 +392,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
+    borderColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -412,7 +410,7 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: placeholderColor,
+    borderColor: colorsProvider.homePlaceholderColor,
     backgroundColor: colorsProvider.homeMainColor,
     marginRight: 50,
     shadowColor: '#000000',
@@ -441,8 +439,8 @@ module.exports = StyleSheet.create({
   completeButtonBody: {
     margin: 10,
     flex: 1,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
+    borderColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderWidth: 5,
     borderRadius: 10,
     alignItems: 'center',

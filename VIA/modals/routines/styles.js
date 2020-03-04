@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const blueColor = '#00bbb1';
 const grayColor = '#ededed';
 const placeholderColor = colorsProvider.routinesPlaceholderColor;
 
@@ -420,8 +419,8 @@ module.exports = StyleSheet.create({
   /* #region  Complete Button Section */
   completeButtonBody: {
     margin: 10,
-    borderColor: blueColor,
-    backgroundColor: blueColor,
+    borderColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderWidth: 5,
     borderRadius: 10,
     alignItems: 'center',

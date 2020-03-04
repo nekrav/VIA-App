@@ -7,7 +7,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const blueColor = '#00bbb1';
 const finishColor = '#16E500'
 const finishColorBorderColor = '#10AE00'
 const grayColor = '#ededed';
@@ -356,9 +355,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: blueColor,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
     borderTopWidth: 2,
-    borderTopColor: blueColor,
+    borderTopColor: colorsProvider.homeComplimentaryColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
