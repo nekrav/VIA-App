@@ -188,9 +188,9 @@ export class CreateTask extends React.Component {
                             style={styles.sliderSlider}
                             minimumValue={0}
                             maximumValue={100}
-                            thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.tasksComplimentaryColor : "#4485C8"}
+                            thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.tasksComplimentaryColor : colorsProvider.tasksPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
-                            maximumTrackTintColor={"#4485C8"}
+                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
                             onSlidingComplete={value => {
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
@@ -267,7 +267,7 @@ export class CreateTask extends React.Component {
                             Is this part of a bigger project?
           </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color="#4485C8" />
+                            <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor}/>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -343,7 +343,7 @@ export class CreateTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color="#4485C8" />
+                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );
@@ -363,9 +363,9 @@ export class CreateTask extends React.Component {
                     transparent={true}
                     existingNotes={this.state.itemNotes}
                     backgroundColor={colorsProvider.tasksMainColor}
-					buttonContainerNotChangedColor={"#4485C8"}
+					buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
 					buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
-					textPlaceholderColor={"#4485C8"}
+					textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
 					textChangedColor={colorsProvider.tasksComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {

@@ -6,8 +6,6 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const placeholderColor = "#4485C8"
-
 module.exports = StyleSheet.create({
 
      /* #region Outer Structure */
@@ -99,7 +97,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: placeholderColor,
+        borderTopColor: colorsProvider.tasksComplimentaryColor,
         flexDirection: "row",
         marginTop: 2,
         shadowColor: "#000000",
