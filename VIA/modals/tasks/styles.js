@@ -6,8 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const placeholderColor = "#4485C8"
-
 module.exports = StyleSheet.create({
     /* #region Outer Structure */
     outerView: {
@@ -108,7 +106,7 @@ module.exports = StyleSheet.create({
     createDateText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color:  colorsProvider.tasksPlaceholderColor,
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
@@ -153,7 +151,7 @@ module.exports = StyleSheet.create({
     sliderTitleNull: {
         fontFamily: fontFamily,
         fontSize: 24,
-        color: placeholderColor,
+        color:  colorsProvider.tasksPlaceholderColor,
     },
     sliderTitle: {
         color: colorsProvider.tasksComplimentaryColor,
@@ -219,7 +217,7 @@ module.exports = StyleSheet.create({
     createProjectSelectionButtonText: {
         fontSize: 18,
         fontFamily: fontFamily,
-        color: placeholderColor,
+        color:  colorsProvider.tasksPlaceholderColor,
         marginLeft: 5,
         marginTop: 5,
         marginBottom: 5,
@@ -282,7 +280,7 @@ module.exports = StyleSheet.create({
     },
     notificationTimeButtonText: {
         fontSize: 16,
-        color: placeholderColor,
+        color:  colorsProvider.tasksPlaceholderColor,
         marginRight: 5,
         marginLeft: 8,
         marginTop: 5,
@@ -349,7 +347,7 @@ module.exports = StyleSheet.create({
         height: "100%",
     },
     createNotesText: {
-        color: placeholderColor,
+        color:  colorsProvider.tasksPlaceholderColor,
         marginTop: 5,
         marginLeft: 7,
         fontFamily: fontFamily
@@ -377,8 +375,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
-        backgroundColor: placeholderColor,
+        borderColor:  colorsProvider.tasksPlaceholderColor,
+        backgroundColor:  colorsProvider.tasksPlaceholderColor,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -413,7 +411,7 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: placeholderColor,
+        borderColor:  colorsProvider.tasksPlaceholderColor,
         backgroundColor: colorsProvider.tasksMainColor,
         marginRight: 50,
         shadowColor: colorsProvider.shadowColor,

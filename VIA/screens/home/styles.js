@@ -6,8 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-
-
 module.exports = StyleSheet.create({
 
     /* #region Outer Structure */
