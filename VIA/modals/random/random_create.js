@@ -138,7 +138,7 @@ export class CreateRandom extends React.Component {
                     animationType="fade"
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
-					disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -200,6 +200,7 @@ export class CreateRandom extends React.Component {
     }
     /* #endregion */
 
+    /* #region  Only For Today Modal */
     renderOnlyForToday() {
         return (<CheckBox
             center
@@ -220,6 +221,8 @@ export class CreateRandom extends React.Component {
         />)
     }
 
+    /* #endregion */
+    
     /* #region  Slider Section */
     renderSliderSection() {
         return (<View style={styles.slidersSection}>
@@ -261,6 +264,7 @@ export class CreateRandom extends React.Component {
     }
 
     /* #endregion */
+   
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
         this.setState({ notesModalVisible: visible });
@@ -273,6 +277,13 @@ export class CreateRandom extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.itemNotes}
+                    backgroundColor={colorsProvider.whiteColor}
+					buttonContainerNotChangedColor={colorsProvider.whiteColor}
+					buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+					textPlaceholderColor={colorsProvider.whitePlaceholderColor}
+                    textChangedColor={colorsProvider.homeComplimentaryColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    buttonTextPlaceholderColor={colorsProvider.homePlaceholderColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.notes(item);
