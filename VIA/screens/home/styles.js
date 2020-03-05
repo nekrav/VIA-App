@@ -6,7 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const grayColor = "#ededed"
 
 
 module.exports = StyleSheet.create({
@@ -43,9 +42,9 @@ module.exports = StyleSheet.create({
     /* #region  Create Name Section */
     createNameContainer: {
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor:  colorsProvider.whiteColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor:  colorsProvider.whiteColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -247,10 +246,10 @@ module.exports = StyleSheet.create({
     /* #region  Create Project Selection Section */
     createProjectSelectionContainer: {
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor:  colorsProvider.whiteColor,
         justifyContent: 'space-between',
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor:  colorsProvider.whiteColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -306,9 +305,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor:  colorsProvider.whiteColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor:  colorsProvider.whiteColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -374,9 +373,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor:  colorsProvider.whiteColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor:  colorsProvider.whiteColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -555,9 +554,9 @@ module.exports = StyleSheet.create({
         marginBottom: 10,
         flex: 1,
         borderRadius: 10,
-        backgroundColor: grayColor,
+        backgroundColor:  colorsProvider.whiteColor,
         borderTopWidth: 2,
-        borderTopColor: grayColor,
+        borderTopColor:  colorsProvider.whiteColor,
         marginRight: 10,
         marginLeft: 10,
         shadowOpacity: 0.8,
