@@ -77,7 +77,7 @@ export class ViewRandom extends React.Component {
                     this.props.delete()
                     notifier.scheduleAllNotifications();
                 }}>
-                <SIcon name="trash" size={30} color="#f00" />
+                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity>
         </View>)
     }

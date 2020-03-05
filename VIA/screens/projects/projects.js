@@ -197,7 +197,7 @@ export class ProjectsScreen extends React.Component {
                                     {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                     onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications() }}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
+                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.redColor} />
                                     </TouchableOpacity> */}
 
                                     {/* <TouchableOpacity

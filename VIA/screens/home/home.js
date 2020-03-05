@@ -171,7 +171,7 @@ export class HomeScreen extends React.Component {
     //                             // this.getRandomTasks()
 
     //                         }}>
-    //                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+    //                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
     //                     </TouchableOpacity>
 
     //                     <TouchableOpacity
@@ -409,7 +409,7 @@ export class HomeScreen extends React.Component {
                                             this.getRandomTasks()
                                             notifier.scheduleAllNotifications();
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                     </TouchableOpacity>
 
                                     <TouchableOpacity

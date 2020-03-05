@@ -78,7 +78,7 @@ export class ViewRoutine extends React.Component {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
                 }}>
-                <SIcon name="trash" size={30} color="#f00" />
+                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity>
         </View>)
     }
@@ -258,7 +258,7 @@ export class ViewRoutine extends React.Component {
                                             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
                                             notifier.scheduleAllNotifications();
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color="#f00" />
+                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                     </TouchableOpacity>
 
                                     <TouchableOpacity

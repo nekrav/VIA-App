@@ -64,7 +64,7 @@ export class ViewHabit extends React.Component {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
                 }}>
-                <SIcon name="trash" size={30} color="#f00" />
+                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity>
         </View>)
     }
