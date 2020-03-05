@@ -188,7 +188,6 @@ export class HabitsScreen extends React.Component {
 
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
-                                        containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'

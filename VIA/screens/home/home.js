@@ -135,7 +135,6 @@ export class HomeScreen extends React.Component {
     //             <View style={styles.mainGoalContainer}>
     //                 <View style={styles.childTitleContainer}>
     //                     <CheckBox
-    //                         containerStyle={styles.checkBox}
     //                         center
     //                         checkedIcon='dot-circle-o'
     //                         uncheckedIcon='circle-o'

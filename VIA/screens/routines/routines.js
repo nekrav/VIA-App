@@ -159,7 +159,6 @@ export class RoutinesScreen extends React.Component {
                             <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
-                                        containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
