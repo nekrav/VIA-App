@@ -485,7 +485,7 @@ export class HomeScreen extends React.Component {
                     backgroundColor={colorsProvider.homeMainColor}
 					buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
 					buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
-					textPlaceholderColor={colorsProvider.homePlaceholderColor}
+					textPlaceholderColor={colorsProvider.homeTextColor}
 					textChangedColor={colorsProvider.homeComplimentaryColor}
 
                     placeholder={'Notes...'}
