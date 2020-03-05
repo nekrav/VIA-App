@@ -114,6 +114,8 @@ export class ViewRandom extends React.Component {
                 animationType="fade"
                 itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
                 itemName="Project"
+                disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+                saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                 transparent={true}
                 setDate={(item) => {
                     this.props.editDueDate(item)
@@ -209,7 +211,7 @@ export class ViewRandom extends React.Component {
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            thumbTintColor={parseInt(this.state.selectedItem.importance)> 0 ? colorsProvider.homeComplimentaryColor : colorsProvider.whitePlaceholderColor}
+                            thumbTintColor={parseInt(this.state.selectedItem.importance) > 0 ? colorsProvider.homeComplimentaryColor : colorsProvider.whitePlaceholderColor}
                             minimumTrackTintColor={colorsProvider.homeComplimentaryColor}
                             maximumTrackTintColor={styles.placeholderColor}
                             value={parseInt(this.state.importanceVal)}

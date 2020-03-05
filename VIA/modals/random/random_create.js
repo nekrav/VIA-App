@@ -38,8 +38,9 @@ export class CreateRandom extends React.Component {
         controller.loadAll(this, Projects.TABLE_NAME);
     }
 
+    /* #region Top Bar Region */
     renderTopNavigation() {
-        return (                        <View style={styles.topNav}>
+        return (<View style={styles.topNav}>
             <TouchableOpacity
                 style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
@@ -60,6 +61,8 @@ export class CreateRandom extends React.Component {
             </TouchableOpacity>
         </View>)
     }
+
+    /* #endregion */
 
     /* #region  Name Input Section */
     renderNameInputSection() {
