@@ -2,7 +2,7 @@ import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, StatusBar, FlatList } from 'react-native';
 import { Controller } from '../controller';
-import { SelectionModal } from '../selectionModal/selectionModal'
+import { CheckBox } from 'react-native-elements'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { ViewTask } from '../'
@@ -278,6 +278,11 @@ export class ViewProject extends React.Component {
         }
     }
 
+    getChecked(item) {
+        if (item != null)
+            return checked = item.value.completed === "true"
+    }
+
     renderAllChildrenSection() {
         if (this.state.relatedChildren.length > 0) {
             return (
@@ -310,8 +315,22 @@ export class ViewProject extends React.Component {
                                         multiline={false}
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
+                                <CheckBox
+                                    center
+                                    checkedIcon='check-square'
+                                    uncheckedIcon='check-square'
+                                    checkedColor={colorsProvider.finishedBackgroundColor}
+                                    uncheckedColor={colorsProvider.homePlaceholderColor}
+                                    size={25}
+                                    onPress={() => {
+                                        item.value.completed = !this.getChecked(item)
+                                        controller.saveExisting(this, childDBTableName, item.value)
+                                        this.getRandomTasks();
+                                    }}
+                                    checked={this.getChecked(item)}
+                                />
                                 <View style={styles.childActionButtonsContainer}>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             controller.delete(this, childTableName, item.value)
@@ -319,7 +338,7 @@ export class ViewProject extends React.Component {
                                             notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.childActionButton}
