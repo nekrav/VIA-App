@@ -33,10 +33,8 @@ export class TasksScreen extends React.Component {
     }
 
     componentDidMount() {
-        StatusBar.setBackgroundColor = "#000"
-
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
     }
 
     saveNew(task) {
@@ -55,7 +53,7 @@ export class TasksScreen extends React.Component {
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications() 
+            notifier.scheduleAllNotifications()
         })
     }
 
@@ -78,7 +76,7 @@ export class TasksScreen extends React.Component {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
                         })
-                        newTask.notification_time = times 
+                        newTask.notification_time = times
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -210,32 +208,13 @@ export class TasksScreen extends React.Component {
                                             multiline={false}
                                             style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
-
-
-
                                 <View style={styles.listItemActionButtonsContainer}>
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value);  notifier.scheduleAllNotifications() }}
-                                    >
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity> */}
-
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => {
-                                            controller.silenceAlarms(this, dbTableName, item.value)
-                                        }}>
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
-                                    </TouchableOpacity> */}
-
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor}/>
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
-
                             </View>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>

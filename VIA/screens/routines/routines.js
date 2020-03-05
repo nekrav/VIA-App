@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox } from 'react-native-elements'
+import { CheckBox, colors } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Routines } from '../../db'
 import { CreateRoutine, ViewRoutine } from '../../modals'
@@ -178,16 +178,10 @@ export class RoutinesScreen extends React.Component {
                                             style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications() }}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color="#f00" />
-                                    </TouchableOpacity> */}
-
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
                                     </TouchableOpacity>
                                 </View>
                             </View>} />

@@ -72,7 +72,7 @@ export class ViewTask extends React.Component {
         return (<View style={styles.topNav}>
             <TouchableOpacity style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color="#000" />
+                <SIcon name="arrow-left" size={30} color={colorsProvider.shadowColor} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {

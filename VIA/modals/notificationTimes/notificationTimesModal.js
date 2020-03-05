@@ -129,7 +129,7 @@ export class NotificationTimesModal extends React.Component {
                                     })
                                 }}>
                                 <View style={styles.addTimeButtonContainerView}>
-                                    <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                    <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                                     <Text style={styles.addTimeButtonText}> Add Time</Text>
                                 </View>
                             </TouchableOpacity>

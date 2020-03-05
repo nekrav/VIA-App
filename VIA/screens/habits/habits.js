@@ -218,7 +218,7 @@ export class HabitsScreen extends React.Component {
                                     onPress={() => {
                                         controller.silenceAlarms(this, dbTableName, item.value)
                                     }}>
-                                    <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                    <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
                                 </TouchableOpacity> */}
 
                                     <TouchableOpacity

@@ -114,7 +114,7 @@ export class HomeScreen extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications()
                 }}>
-                <SIcon name="bell" size={30} color="#000" />
+                <SIcon name="bell" size={30} color={colorsProvider.shadowColor} />
             </TouchableOpacity> */}
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
@@ -384,7 +384,7 @@ export class HomeScreen extends React.Component {
                                 this.setCreateRandomModalVisibility(true)
                             }}>
                             <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                                 <Text style={styles.addTimeButtonText}> Add Random</Text>
                             </View>
                         </TouchableOpacity>
@@ -440,7 +440,7 @@ export class HomeScreen extends React.Component {
                                 this.setCreateRandomModalVisibility(true)
                             }}>
                             <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                                 <Text style={styles.addTimeButtonText}> Add Task</Text>
                             </View>
                         </TouchableOpacity>

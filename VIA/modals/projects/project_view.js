@@ -72,7 +72,7 @@ export class ViewProject extends React.Component {
         return (<View style={styles.topNav}>
             <TouchableOpacity style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color="#000" />
+                <SIcon name="arrow-left" size={30} color={colorsProvider.shadowColor} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
@@ -233,7 +233,7 @@ export class ViewProject extends React.Component {
                             this.setTaskSelectionModalVisibility(true)
                         }}>
                         <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                             <Text style={styles.addTimeButtonText}> Add Habit</Text>
                         </View>
                     </TouchableOpacity> */}
@@ -291,7 +291,7 @@ export class ViewProject extends React.Component {
                             })
                         }}>
                         <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color="#000" />
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                             <Text style={styles.addTimeButtonText}> Add Task</Text>
                         </View>
                     </TouchableOpacity> */}

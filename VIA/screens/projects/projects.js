@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox } from 'react-native-elements'
+import { CheckBox, colors } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Projects, Tasks } from '../../db'
 import { CreateProject, ViewProject } from '../../modals'
@@ -205,13 +205,13 @@ export class ProjectsScreen extends React.Component {
                                         onPress={() => {
                                             controller.silenceAlarms(this, dbTableName, item.value)
                                         }}>
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
                                     </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color="#000" />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
                                     </TouchableOpacity>
                                 </View>
                             </View>} />            

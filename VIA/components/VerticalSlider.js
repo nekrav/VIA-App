@@ -240,7 +240,7 @@ export class VerticalSlider extends Component<Props, State> {
 
 const styles = StyleSheet.create({
   shadow: {
-    shadowColor: "#000",
+    shadowColor: {colorsProvider.shadowColor},
     shadowOffset: {
       width: 0,
       height: 1
