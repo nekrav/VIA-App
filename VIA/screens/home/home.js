@@ -183,7 +183,7 @@ export class HomeScreen extends React.Component {
     //                             //     this.setViewRandomModalVisibility(true)
     //                             // })
     //                         }}>
-    //                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+    //                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
     //                     </TouchableOpacity>
     //                 </View>
     //             </View>
@@ -421,7 +421,7 @@ export class HomeScreen extends React.Component {
                                                 this.setViewRandomModalVisibility(true)
                                             })
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                     </TouchableOpacity>
                                 </View>
                             </View>

@@ -76,7 +76,6 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         borderRadius: 10,
-        borderTopWidth: 2,
         borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         marginTop: 2,

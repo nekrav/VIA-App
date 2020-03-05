@@ -52,7 +52,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#9C7639"}
+          activeColor={colorsProvider.routinesBottomTabHighlightColor}
           inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Routines'}
@@ -114,7 +114,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={"#0F7EE9"}
+          activeColor={colorsProvider.tasksPlaceholderColor}
           inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Tasks'}

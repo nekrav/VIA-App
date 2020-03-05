@@ -270,7 +270,7 @@ export class ViewProject extends React.Component {
                                                 this.setChildItemModalVisibility(true)
                                             })
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color="#fff" />
+                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                     </TouchableOpacity>
                                 </View>
                             </View>

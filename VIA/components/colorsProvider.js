@@ -12,6 +12,7 @@ export const redColor = "#f00"
 export const routinesMainColor = "#E5C797"
 export const routinesComplimentaryColor = "#73521C";
 export const routinesPlaceholderColor = "#B09B7A";
+export const routinesBottomTabHighlightColor = "#9C7639";
 /* #endregion */
 
 /* #region  Habits */
@@ -23,7 +24,7 @@ export const habitsPlaceholderColor = "#A77E8C";
 /* #region  Home */
 export const homeMainColor = "#FFFFFF"
 export const homeComplimentaryColor = "#00BBB1";
-export const homePlaceholderColor = "#ABABAB";
+export const homePlaceholderColor = "#006F6B";
 export const homeTextColor = "#2D3142";
 /* #endregion */
 
@@ -37,4 +38,5 @@ export const projectsPlaceholderColor = "#35689C";
 export const tasksMainColor = "#58AAF9"
 export const tasksComplimentaryColor = "#045CB1";
 export const tasksPlaceholderColor = "#4485C8";
+export const tasksBottomTabHighlightColor = "#0F7EE9"
 /* #endregion */
