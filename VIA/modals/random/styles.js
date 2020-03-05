@@ -451,4 +451,28 @@ module.exports = StyleSheet.create({
     },
   },
   /* #endregion */
+
+onlyForTodayContainer: {
+  backgroundColor: colorsProvider.whiteColor,
+  borderWidth: 0,
+},
+onlyForTodayCheckboxText: {
+  fontSize: 18,
+  fontFamily: fontFamily,
+  color: colorsProvider.whitePlaceholderColor,
+  marginLeft: 10,
+  marginTop: 5,
+  marginBottom: 5,
+  marginRight: 5,
+},
+onlyForTodayCheckboxTextChecked: {
+  fontSize: 18,
+  fontFamily: fontFamily,
+  color: colorsProvider.homeComplimentaryColor,
+  marginLeft: 10,
+  marginTop: 5,
+  marginBottom: 5,
+  marginRight: 5,
+},
+
 });

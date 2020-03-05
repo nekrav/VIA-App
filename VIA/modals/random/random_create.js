@@ -173,11 +173,13 @@ export class CreateRandom extends React.Component {
         return (<CheckBox
             center
             title={"Do you want this task to be removed after today?"}
-            checkedIcon='dot-circle-o'
-            uncheckedIcon='circle-o'
+            checkedIcon='check-square'
+            uncheckedIcon='check-square'
+            checkedColor={colorsProvider.homeComplimentaryColor}
+            uncheckedColor={colorsProvider.whitePlaceholderColor}
             checked={this.state.onlyTodayChecked}
-            textStyle={styles.checkboxText}
-            containerStyle={styles.itemSelectionContainer}
+            textStyle={this.state.onlyTodayChecked ? styles.onlyForTodayCheckboxTextChecked : styles.onlyForTodayCheckboxText}
+            containerStyle={styles.onlyForTodayContainer}
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
