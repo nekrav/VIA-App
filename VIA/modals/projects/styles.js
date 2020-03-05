@@ -503,7 +503,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontFamily: fontFamily,
-        color: colorsProvider.homeComplimentaryColor,
+        color: colorsProvider.tasksMainColors,
         fontSize: 25,
     },
     /* #endregion */
@@ -555,7 +555,7 @@ module.exports = StyleSheet.create({
 
     childContainer: {
         flex: 1,
-        backgroundColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
@@ -563,8 +563,6 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         alignItems: 'center',
         borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.projectsPlaceholderColor,
         flexDirection: "row",
 
         marginTop: 2,
