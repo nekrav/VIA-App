@@ -194,7 +194,7 @@ export class TasksScreen extends React.Component {
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
                                         checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor='#045CB1'
+                                        uncheckedColor={colorsProvider.tasksComplimentaryColor}
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)

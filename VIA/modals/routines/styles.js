@@ -7,7 +7,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const grayColor = '#ededed';
 const placeholderColor = colorsProvider.routinesPlaceholderColor;
 
 
@@ -308,9 +307,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: grayColor,
+    backgroundColor:  colorsProvider.dirtyWhiteColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
+    borderTopColor:  colorsProvider.dirtyWhiteColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
