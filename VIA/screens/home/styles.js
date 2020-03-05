@@ -667,8 +667,8 @@ module.exports = StyleSheet.create({
     },
     childTitleText: {
         color: colorsProvider.homeMainColor,
-        fontSize: 30,
-        marginLeft: 10,
+        fontSize: colorsProvider.fontSizeChildren,
+        marginLeft: 5,
     },
     childActionButtonsContainer: {
         flexDirection: 'row',

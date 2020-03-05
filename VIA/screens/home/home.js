@@ -392,13 +392,12 @@ export class HomeScreen extends React.Component {
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
                                 <CheckBox
-                                    containerStyle={styles.checkBox}
                                     center
                                     checkedIcon='check-square'
                                     uncheckedIcon='check-square'
                                     checkedColor={colorsProvider.finishedBackgroundColor}
                                     uncheckedColor={colorsProvider.projectsComplimentaryColor}
-                                    size={35}
+                                    size={25}
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
                                         controller.saveExisting(this, childDBTableName, item.value)

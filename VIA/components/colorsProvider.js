@@ -7,6 +7,7 @@ export const whiteColor = "#FFFFFF"
 export const shadowColor = "#000000"
 export const redColor = "#f00"
 export const dirtyWhiteColor = "#EDEDED"
+export const fontSizeChildren = 18
 /* #endregion */
 
 /* #region  Routines */
