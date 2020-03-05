@@ -171,13 +171,14 @@ export class ViewTask extends React.Component {
         this.setState({ showDate: visible })
     }
 
-
     renderShowDate() {
         if (this.state.showDate) {
             return <DateModal
                 animationType="fade"
                 itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
                 itemName="Project"
+                disabledSaveButtonBackgroundColor={colorsProvider.tasksMainColor}
+                saveButtonBackgroundColor={colorsProvider.tasksMainColor}
                 transparent={true}
                 setDate={(item) => {
                     this.props.editDueDate(item)
@@ -233,8 +234,8 @@ export class ViewTask extends React.Component {
                         <Text
                             style={
                                 this.state.selectedItem.percentage_done > 0
-                                    ? styles.sliderTitleNull
-                                    : styles.sliderTitle
+                                    ? styles.sliderTitle
+                                    : styles.sliderTitleNull
                             }>
                             % Done
                     </Text>
@@ -243,8 +244,8 @@ export class ViewTask extends React.Component {
                         <Text
                             style={
                                 this.state.selectedItem.importance > 0
-                                    ? styles.sliderTitleNull
-                                    : styles.sliderTitle
+                                    ? styles.sliderTitle
+                                    : styles.sliderTitleNull
                             }>
                             Importance
                     </Text>
@@ -256,8 +257,9 @@ export class ViewTask extends React.Component {
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor={styles.blueColor}
-                            maximumTrackTintColor={styles.placeholderColor}
+                            thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
+                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
                             value={parseInt(this.state.percentVal)}
 
                             onSlidingComplete={(value) => {
@@ -278,8 +280,9 @@ export class ViewTask extends React.Component {
                             style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor={styles.blueColor}
-                            maximumTrackTintColor={styles.placeholderColor}
+                            thumbTintColor={this.state.selectedItem.importance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
+                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
                                 this.props.save;
