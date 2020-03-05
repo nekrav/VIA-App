@@ -97,7 +97,7 @@ export class ViewHabit extends React.Component {
                 items={this.state.items}
                 itemName="Routine"
                 itemName1="Routine"
-                titleTextColor="#9C7639"
+                titleTextColor={colorsPrivider.routinesBottomTabHighlightColor}
                 titleContainerColor={colorsProvider.routinesMainColor}
                 transparent={true}
                 selectItem={(item) => {
