@@ -458,7 +458,7 @@ onlyForTodayContainer: {
 },
 onlyForTodayCheckboxText: {
   fontSize: 18,
-  fontFamily: fontFamily,
+  fontFamily: colorsProvider.font,
   color: colorsProvider.whitePlaceholderColor,
   marginLeft: 10,
   marginTop: 5,
@@ -467,7 +467,7 @@ onlyForTodayCheckboxText: {
 },
 onlyForTodayCheckboxTextChecked: {
   fontSize: 18,
-  fontFamily: fontFamily,
+  fontFamily: colorsProvider.font,
   color: colorsProvider.homeComplimentaryColor,
   marginLeft: 10,
   marginTop: 5,
