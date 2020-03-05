@@ -22,7 +22,6 @@ class HomeButton extends React.Component {
             }}>
                 <TouchableHighlight
                     onPress={() => this.props.nav.navigate('Home')}
-                    underlayColor="#2882D8"
                     style={this.props.focused ? {
                         alignItems: 'center',
                         justifyContent: 'center',

@@ -75,7 +75,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon:({ focused, tintColor }) => (
         <HomeButton
         focused={focused}
-        activeColor={"006F6B"}
+        activeColor={colorsProvider.homePlaceholderColor}
           nav={navigation} ></HomeButton>  ),})
     
   },
