@@ -276,7 +276,7 @@ module.exports = StyleSheet.create({
   },
   notificationTimeButtonText: {
     fontSize: 16,
-    color: colorsProvider.homePlaceholderColor,
+    color: colorsProvider.whitePlaceholderColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,
@@ -286,7 +286,7 @@ module.exports = StyleSheet.create({
 
   hasNotificationTimeButtonText: {
     fontSize: 16,
-    color: colorsProvider.homeMainColor,
+    color: colorsProvider.whiteColor,
     marginRight: 5,
     marginLeft: 8,
     marginTop: 5,

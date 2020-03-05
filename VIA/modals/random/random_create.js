@@ -38,6 +38,35 @@ export class CreateRandom extends React.Component {
         controller.loadAll(this, Projects.TABLE_NAME);
     }
 
+    /* #region  Name Input Section */
+    renderNameInputSection() {
+        return (<TouchableOpacity
+            onPress={() => {
+                this.nameTextInput.focus();
+            }}
+            style={
+                this.state.newRandomName != ''
+                    ? styles.hasNameTextInputContainer
+                    : styles.createNameContainer
+            }
+        >
+            <TextInput
+                ref={input => {
+                    this.nameTextInput = input;
+                }}
+                maxLength={40}
+                style={styles.createNameText}
+                multiline={true}
+                placeholder={'Name'}
+                onChangeText={value => {
+                    this.setState({ newRandomName: value });
+                    this.props.name(value);
+                }}
+            ></TextInput>
+        </TouchableOpacity>)
+    }
+    /* #endregion */
+
     /* #region  Due Date Region */
     setDueDateModalVisibility(visible) {
         this.setState({ showDate: visible });
@@ -145,7 +174,7 @@ export class CreateRandom extends React.Component {
                     </Text>
 
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color={colorsProvider.homeMainColor} />
+                        <SIcon name="bell" size={20} color={colorsProvider.homeComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -162,7 +191,7 @@ export class CreateRandom extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.homeMainColor} />
+                    <SIcon name="bell" size={20} color={colorsProvider.whitePlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );
@@ -365,30 +394,7 @@ export class CreateRandom extends React.Component {
 
 
                         {/* {NAME CONTAINER} */}
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.nameTextInput.focus();
-                            }}
-                            style={
-                                this.state.newRandomName != ''
-                                    ? styles.hasNameTextInputContainer
-                                    : styles.createNameContainer
-                            }
-                        >
-                            <TextInput
-                                ref={input => {
-                                    this.nameTextInput = input;
-                                }}
-                                maxLength={40}
-                                style={styles.createNameText}
-                                multiline={true}
-                                placeholder={'Name'}
-                                onChangeText={value => {
-                                    this.setState({ newRandomName: value });
-                                    this.props.name(value);
-                                }}
-                            ></TextInput>
-                        </TouchableOpacity>
+                        {this.renderNameInputSection()}
 
                         {this.renderDueDate()}
                         {this.renderNotificationTimesModal()}
