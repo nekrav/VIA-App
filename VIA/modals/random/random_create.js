@@ -1,16 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import {
-    Text,
-    View,
-    TouchableOpacity,
-    Modal,
-    TextInput,
-    SafeAreaView,
-    TouchableWithoutFeedback,
-    Keyboard,
-} from 'react-native'; // Version can be specified in package.json
-import { SelectionModal } from '../selectionModal/selectionModal';
+import {Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import { DateModal } from '../dateModal/dateModal';
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
@@ -21,9 +11,6 @@ import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 import { CheckBox } from 'react-native-elements'
 
-import { Notifier } from '../../notifier/notifier'
-
-const notifier = new Notifier;
 const controller = new Controller();
 const dateFormat = 'ddd, MMM Do, YY';
 const todayDate = new Date();
@@ -62,6 +49,8 @@ export class CreateRandom extends React.Component {
                 <DateModal
                     pickerMode="date"
                     animationType="fade"
+                    disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+					saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     transparent={true}
                     setDate={item => {
                         this.props.due_date(item);

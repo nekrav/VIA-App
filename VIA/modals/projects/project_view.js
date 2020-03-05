@@ -317,6 +317,8 @@ export class ViewProject extends React.Component {
                 itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
                 itemName="Project"
                 transparent={true}
+                disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
+					saveButtonBackgroundColor={colorsProvider.projectsMainColor}
                 setDate={(item) => {
                     this.props.editDueDate(item)
                     this.setState({ dueDate: item })

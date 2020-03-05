@@ -9,7 +9,7 @@ export const redColor = "#f00"
 export const dirtyWhiteColor = "#EDEDED"
 export const fontSizeChildren = 18
 export const fontButtonSize = 16
-export const whitePlaceholderColor = "#D0D0D0"
+export const whitePlaceholderColor = "#BAB9BF"
 /* #endregion */
 
 /* #region  Routines */

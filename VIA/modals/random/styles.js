@@ -104,7 +104,7 @@ module.exports = StyleSheet.create({
   createDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: colorsProvider.homePlaceholderColor,
+    color: colorsProvider.whitePlaceholderColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
@@ -112,7 +112,7 @@ module.exports = StyleSheet.create({
   createSelectedDateText: {
     fontSize: 18,
     fontFamily: fontFamily,
-    color: colorsProvider.homeMainColor,
+    color: colorsProvider.whiteColor,
     marginLeft: 10,
     marginTop: 5,
     marginBottom: 5,
