@@ -396,11 +396,12 @@ export class HomeScreen extends React.Component {
                                     checkedIcon='check-square'
                                     uncheckedIcon='check-square'
                                     checkedColor={colorsProvider.finishedBackgroundColor}
-                                    uncheckedColor={colorsProvider.projectsComplimentaryColor}
+                                    uncheckedColor={colorsProvider.homePlaceholderColor}
                                     size={25}
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
                                         controller.saveExisting(this, childDBTableName, item.value)
+                                        this.getRandomTasks();
                                     }}
                                     checked={this.getChecked(item)}
                                 />

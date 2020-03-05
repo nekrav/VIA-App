@@ -34,7 +34,7 @@ export class ProjectsScreen extends React.Component {
     }
 
     componentDidMount() {
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
         controller.loadAll(this, dbTableName)
     }
 
@@ -54,7 +54,7 @@ export class ProjectsScreen extends React.Component {
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications() 
+            notifier.scheduleAllNotifications()
         })
     }
 
@@ -64,7 +64,7 @@ export class ProjectsScreen extends React.Component {
             return <CreateProject
                 animationType="slide"
                 transparent={false}
-                id={(text) => { newProject.id = text}}
+                id={(text) => { newProject.id = text }}
                 name={(text) => { newProject.name = text }}
                 due_date={(text) => { newProject.due_date = text }}
                 importance={(text) => { newProject.importance = text }}
@@ -143,14 +143,14 @@ export class ProjectsScreen extends React.Component {
         {
             return checked = item.value.completed === "true"
         }
-       
+
     }
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
-                          {/* Modals Region */}
+                    {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewProject()}
 
@@ -171,10 +171,9 @@ export class ProjectsScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished: styles.listItemContainer}>
+                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
-                                        containerStyle={styles.checkBox}
                                         center
                                         checkedIcon='check-square'
                                         uncheckedIcon='check-square'
@@ -182,16 +181,16 @@ export class ProjectsScreen extends React.Component {
                                         uncheckedColor={colorsProvider.projectsComplimentaryColor}
                                         size={35}
                                         onPress={() => {
-                                            item.value.completed   = !this.getChecked(item)
+                                            item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}
-                                        />
+                                    />
                                     <View style={styles.listItemTextContainer}>
-                                    <Text
-                                    numberOfLines={1}
-                                    multiline={false}
-                                    style={styles.listItemText}>{item.value.name} </Text></View>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.listItemText}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
                                     {/* <TouchableOpacity
@@ -214,7 +213,7 @@ export class ProjectsScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>} />            
+                            </View>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
