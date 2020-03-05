@@ -52,10 +52,8 @@ export class HomeScreen extends React.Component {
             homeNotes: '',
             items: [],
             selectedRandom: {},
-
             mainGoalSelected: '',
             mainGoalSaveAction: '',
-
         };
     }
 
@@ -108,15 +106,10 @@ export class HomeScreen extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-            {/* <TouchableOpacity style={styles.topNavBackButton, {marginRight: 110}}
-                onPress={() => {
-                    notifier.scheduleAllNotifications()
-                }}>
-                <SIcon name="bell" size={30} color={colorsProvider.shadowColor} />
-            </TouchableOpacity> */}
+
             <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
-                <SIcon name="options" size={30} color={colorsProvider.homeTextColor} />
+                <SIcon name="options" size={30} color={colorsProvider.homePlaceholderColor} />
             </TouchableOpacity>
         </View>)
     }
@@ -369,11 +362,7 @@ export class HomeScreen extends React.Component {
 
     getChecked(item) {
         if (item != null)
-        // var checked = false
-        {
             return checked = item.value.completed === "true"
-        }
-       
     }
 
     renderRandomTasksSection() {
@@ -403,19 +392,19 @@ export class HomeScreen extends React.Component {
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
                                 <CheckBox
-                                        containerStyle={styles.checkBox}
-                                        center
-                                        checkedIcon='check-square'
-                                        uncheckedIcon='check-square'
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.projectsComplimentaryColor}
-                                        size={35}
-                                        onPress={() => {
-                                            item.value.completed   = !this.getChecked(item)
-                                            controller.saveExisting(this, childDBTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)}
-                                        />
+                                    containerStyle={styles.checkBox}
+                                    center
+                                    checkedIcon='check-square'
+                                    uncheckedIcon='check-square'
+                                    checkedColor={colorsProvider.finishedBackgroundColor}
+                                    uncheckedColor={colorsProvider.projectsComplimentaryColor}
+                                    size={35}
+                                    onPress={() => {
+                                        item.value.completed = !this.getChecked(item)
+                                        controller.saveExisting(this, childDBTableName, item.value)
+                                    }}
+                                    checked={this.getChecked(item)}
+                                />
                                 <View style={styles.childTitleContainer}>
                                     <Text
                                         numberOfLines={1}
