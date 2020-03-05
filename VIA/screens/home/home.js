@@ -30,11 +30,9 @@ const newHomeObject = {
 
 var uuid = require('react-native-uuid');
 
-const controller = new Controller;
-
-
-
 const childDBTableName = Random.TABLE_NAME
+
+const controller = new Controller;
 
 export class HomeScreen extends React.Component {
     constructor(props) {
@@ -369,6 +367,15 @@ export class HomeScreen extends React.Component {
         }
     }
 
+    getChecked(item) {
+        if (item != null)
+        // var checked = false
+        {
+            return checked = item.value.completed === "true"
+        }
+       
+    }
+
     renderRandomTasksSection() {
         if (this.state.randomTasks.length > 0) {
             return (
@@ -395,6 +402,20 @@ export class HomeScreen extends React.Component {
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
+                                <CheckBox
+                                        containerStyle={styles.checkBox}
+                                        center
+                                        checkedIcon='check-square'
+                                        uncheckedIcon='check-square'
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
+                                        uncheckedColor={colorsProvider.projectsComplimentaryColor}
+                                        size={35}
+                                        onPress={() => {
+                                            item.value.completed   = !this.getChecked(item)
+                                            controller.saveExisting(this, childDBTableName, item.value)
+                                        }}
+                                        checked={this.getChecked(item)}
+                                        />
                                 <View style={styles.childTitleContainer}>
                                     <Text
                                         numberOfLines={1}
