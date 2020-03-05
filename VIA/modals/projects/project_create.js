@@ -199,8 +199,8 @@ export class CreateProject extends React.Component {
 				animationType="fade"
 				items={this.state.items}
 				itemName="Tasks"
-				titleTextColor={colorsProvider.projectsComplimentaryColor}
-				titleContainerColor={colorsProvider.projectsMainColor}
+				titleTextColor={colorsProvider.tasksComplimentaryColor}
+				titleContainerColor={colorsProvider.tasksMainColor}
 				transparent={true}
 				selectItems={items => {
 					this.setState({ tasks: items })
