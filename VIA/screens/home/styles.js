@@ -14,11 +14,6 @@ module.exports = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: colorsProvider.homeComplimentaryColor,
     },
-    outerViewDone: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: colorsProvider.finishedBackgroundColor,
-    },
     /* #endregion */
 
     /* #region  Top Navigation */
@@ -682,8 +677,4 @@ module.exports = StyleSheet.create({
 
     /* #endregion */
     /* #endregion */
-
-    checkbox: {
-        backgroundColor: colorsProvider.homeComplimentaryColor,
-    },
 })

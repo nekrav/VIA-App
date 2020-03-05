@@ -107,10 +107,10 @@ export class HomeScreen extends React.Component {
     renderTopBar() {
         return (<View style={styles.topNav}>
 
-            <TouchableOpacity style={styles.trashButton}
+            {/* <TouchableOpacity style={styles.trashButton}
                 onPress={this.props.delete}>
                 <SIcon name="options" size={30} color={colorsProvider.homePlaceholderColor} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>)
     }
     /* #endregion */
@@ -481,13 +481,11 @@ export class HomeScreen extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.homeObject.notes}
-
                     backgroundColor={colorsProvider.homeMainColor}
 					buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
 					buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
 					textPlaceholderColor={colorsProvider.homeTextColor}
 					textChangedColor={colorsProvider.homeComplimentaryColor}
-
                     placeholder={'Notes...'}
                     setNotes={item => {
                         homeNotes = item
