@@ -124,7 +124,12 @@ export class ViewProject extends React.Component {
                     this.setState({ dueDate: item })
                     this.props.save();
                 }}
-                closeModal={() => { this.setDateModalVisibility() }}>
+                onSubmit={item => {
+                    this.props.editDueDate(item);
+                    this.setState({ dueDate: item });
+                    this.setDateModalVisibility(false);
+                }}
+                closeModal={() => { this.setDateModalVisibility(false) }}>
             </DateModal>
         }
         return null;
@@ -368,8 +373,8 @@ export class ViewProject extends React.Component {
                         <Text
                             style={
                                 this.state.selectedItem.percentage_done > 0
-                                    ? styles.sliderTitleNull
-                                    : styles.sliderTitle}>
+                                    ? styles.sliderTitle
+                                    : styles.sliderTitleNull}>
                             % Done
                         </Text>
                     </View>
@@ -401,8 +406,8 @@ export class ViewProject extends React.Component {
                         <Text
                             style={
                                 this.state.selectedItem.importance > 0
-                                    ? styles.sliderTitleNull
-                                    : styles.sliderTitle}>
+                                    ? styles.sliderTitle
+                                    : styles.sliderTitleNull}>
                             Importance
                         </Text>
                     </View>
