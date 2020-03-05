@@ -343,7 +343,7 @@ module.exports = StyleSheet.create({
     height: '100%',
   },
   createNotesText: {
-    color: colorsProvider.homePlaceholderColor,
+    color: colorsProvider.whitePlaceholderColor,
     marginTop: 5,
     marginLeft: 7,
     fontFamily: fontFamily,
@@ -371,8 +371,8 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: colorsProvider.homePlaceholderColor,
-    backgroundColor: colorsProvider.homePlaceholderColor,
+    borderColor: colorsProvider.whitePlaceholderColor,
+    backgroundColor: colorsProvider.whitePlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -406,8 +406,6 @@ module.exports = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 20,
-    borderWidth: 2,
-    borderColor: colorsProvider.homePlaceholderColor,
     backgroundColor: colorsProvider.homeMainColor,
     marginRight: 50,
     shadowColor: colorsProvider.shadowColor,
@@ -428,7 +426,7 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: colorsProvider.homeMainColor,
+    color: colorsProvider.whiteColor,
   },
   /* #endregion */
 
