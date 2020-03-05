@@ -8,6 +8,7 @@ export const shadowColor = "#000000"
 export const redColor = "#f00"
 export const dirtyWhiteColor = "#EDEDED"
 export const fontSizeChildren = 18
+export const whitePlaceholderColor = "#D0D0D0"
 /* #endregion */
 
 /* #region  Routines */

@@ -389,9 +389,9 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         borderRadius: 10,
-        backgroundColor: colorsProvider.homeComplimentaryColor,
+        backgroundColor: colorsProvider.whiteColor,
         borderTopWidth: 2,
-        borderTopColor: colorsProvider.homeComplimentaryColor,
+        borderTopColor: colorsProvider.whiteColor,
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
@@ -408,16 +408,18 @@ module.exports = StyleSheet.create({
         height: "100%",
     },
     createNotesText: {
-        color: colorsProvider.homePlaceholderColor,
+        color: colorsProvider.whitePlaceholderColor,
         marginTop: 5,
         marginLeft: 7,
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: colorsProvider.fontSizeChildren
     },
     hasNotesText: {
-        color: colorsProvider.homeMainColor,
+        color: colorsProvider.homeComplimentaryColor,
         marginTop: 5,
         marginLeft: 7,
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: colorsProvider.fontSizeChildren
     },
     /* #endregion */
 

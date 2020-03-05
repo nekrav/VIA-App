@@ -526,6 +526,7 @@ export class HomeScreen extends React.Component {
                 <Text
                     style={styles.createNotesText}
                     multiline={true}
+                    // placeholder="Notes..."
                     onChangeText={this.props.notes}>
                     Notes ...
                 </Text>
