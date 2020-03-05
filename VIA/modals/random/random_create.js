@@ -38,6 +38,29 @@ export class CreateRandom extends React.Component {
         controller.loadAll(this, Projects.TABLE_NAME);
     }
 
+    renderTopNavigation() {
+        return (                        <View style={styles.topNav}>
+            <TouchableOpacity
+                style={styles.topNavBackButton}
+                onPress={this.props.closeModal}>
+                <SIcon
+                    style={{
+                        shadowColor: colorsProvider.homePlaceholderColor,
+                        shadowOpacity: 0.8,
+                        shadowRadius: 1.5,
+                        shadowOffset: {
+                            height: 1,
+                            width: 0,
+                        },
+                    }}
+                    name="arrow-left"
+                    size={30}
+                    color={colorsProvider.homeTextColor}
+                />
+            </TouchableOpacity>
+        </View>)
+    }
+
     /* #region  Name Input Section */
     renderNameInputSection() {
         return (<TouchableOpacity
@@ -222,7 +245,7 @@ export class CreateRandom extends React.Component {
     }
 
     /* #endregion */
-    
+
     /* #region  Slider Section */
     renderSliderSection() {
         return (<View style={styles.slidersSection}>
@@ -264,7 +287,7 @@ export class CreateRandom extends React.Component {
     }
 
     /* #endregion */
-   
+
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
         this.setState({ notesModalVisible: visible });
@@ -278,9 +301,9 @@ export class CreateRandom extends React.Component {
                     transparent={true}
                     existingNotes={this.state.itemNotes}
                     backgroundColor={colorsProvider.whiteColor}
-					buttonContainerNotChangedColor={colorsProvider.whiteColor}
-					buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-					textPlaceholderColor={colorsProvider.whitePlaceholderColor}
+                    buttonContainerNotChangedColor={colorsProvider.whiteColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    textPlaceholderColor={colorsProvider.whitePlaceholderColor}
                     textChangedColor={colorsProvider.homeComplimentaryColor}
                     buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
                     buttonTextPlaceholderColor={colorsProvider.homePlaceholderColor}
@@ -384,26 +407,7 @@ export class CreateRandom extends React.Component {
                     <SafeAreaView style={styles.outerView}>
 
                         {/* {TOP NAVIGATION REGION} */}
-                        <View style={styles.topNav}>
-                            <TouchableOpacity
-                                style={styles.topNavBackButton}
-                                onPress={this.props.closeModal}>
-                                <SIcon
-                                    style={{
-                                        shadowColor: colorsProvider.homePlaceholderColor,
-                                        shadowOpacity: 0.8,
-                                        shadowRadius: 1.5,
-                                        shadowOffset: {
-                                            height: 1,
-                                            width: 0,
-                                        },
-                                    }}
-                                    name="arrow-left"
-                                    size={30}
-                                    color={colorsProvider.homeTextColor}
-                                />
-                            </TouchableOpacity>
-                        </View>
+                        {this.renderTopNavigation()}
 
 
                         {/* {NAME CONTAINER} */}

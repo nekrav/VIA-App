@@ -348,11 +348,13 @@ export class ViewRandom extends React.Component {
         return (<CheckBox
             center
             title={"Do you want this task to be removed after today?"}
-            checkedIcon='dot-circle-o'
-            uncheckedIcon='circle-o'
-            checked={this.getChecked(this.state.selectedItem.only_today)}
-            textStyle={styles.checkboxText}
-            containerStyle={styles.itemSelectionContainer}
+            checkedIcon='check-square'
+            uncheckedIcon='check-square'
+            checkedColor={colorsProvider.homeComplimentaryColor}
+            uncheckedColor={colorsProvider.whitePlaceholderColor}
+            checked={this.state.onlyTodayChecked}
+            textStyle={this.state.onlyTodayChecked ? styles.onlyForTodayCheckboxTextChecked : styles.onlyForTodayCheckboxText}
+            containerStyle={styles.onlyForTodayContainer}
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
@@ -375,6 +377,13 @@ export class ViewRandom extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.selectedItem.notes}
+                    backgroundColor={colorsProvider.whiteColor}
+                    buttonContainerNotChangedColor={colorsProvider.whiteColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    textPlaceholderColor={colorsProvider.whitePlaceholderColor}
+                    textChangedColor={colorsProvider.homeComplimentaryColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    buttonTextPlaceholderColor={colorsProvider.homePlaceholderColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.editNotes(item)
