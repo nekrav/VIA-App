@@ -552,6 +552,11 @@ export class ViewProject extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.selectedItem.notes}
+                    backgroundColor={colorsProvider.projectsMainColor}
+					buttonContainerNotChangedColor={colorsProvider.projectsPlaceholderColor}
+					buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
+					textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
+					textChangedColor={colorsProvider.projectsComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.editNotes(item)

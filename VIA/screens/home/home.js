@@ -481,6 +481,13 @@ export class HomeScreen extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.homeObject.notes}
+
+                    backgroundColor={colorsProvider.homeMainColor}
+					buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
+					buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
+					textPlaceholderColor={colorsProvider.homePlaceholderColor}
+					textChangedColor={colorsProvider.homeComplimentaryColor}
+
                     placeholder={'Notes...'}
                     setNotes={item => {
                         homeNotes = item
