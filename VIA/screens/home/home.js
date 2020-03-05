@@ -402,7 +402,7 @@ export class HomeScreen extends React.Component {
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
                                 <View style={styles.childActionButtonsContainer}>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             controller.delete(this, childDBTableName, item.value)
@@ -410,7 +410,7 @@ export class HomeScreen extends React.Component {
                                             notifier.scheduleAllNotifications();
                                         }}>
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
 
                                     <TouchableOpacity
                                         style={styles.childActionButton}

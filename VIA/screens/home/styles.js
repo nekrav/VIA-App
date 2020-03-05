@@ -645,7 +645,6 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         alignItems: 'center',
         borderRadius: 10,
-        borderTopWidth: 2,
         borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
 
