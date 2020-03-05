@@ -152,7 +152,7 @@ module.exports = StyleSheet.create({
     color: colorsProvider.whitePlaceholderColor,
   },
   sliderTitle: {
-    color: colorsProvider.homePlaceholderColor,
+    color: colorsProvider.homeComplimentaryColor,
     fontFamily: fontFamily,
     fontSize: 24,
   },
