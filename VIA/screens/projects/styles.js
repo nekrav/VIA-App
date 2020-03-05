@@ -164,9 +164,6 @@ module.exports = StyleSheet.create({
         alignItems: "center",
 
     },
-    checkbox: {
-        backgroundColor: colorsProvider.homeComplimentaryColor,
-    },
     listItemActionButtonsContainer: {
         flexDirection: 'row',
         alignItems: "center",

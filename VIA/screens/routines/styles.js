@@ -118,30 +118,19 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
         fontSize: 18,
     },
-    listItemIcon: {
-
-    },
     checkboxAndNameContainer: {
         flexDirection: 'row',
         alignItems: "center",
-
-    },
-    checkbox: {
-        backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     listItemActionButtonsContainer: {
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: 'space-evenly',
-        // marginLeft: 100,
-
     },
     listItemActionButton: {
         marginLeft: "3%",
         marginLeft: "3%",
         flexDirection: 'row',
         alignItems: "center",
-        // marginLeft: 10,
-
     }
 })

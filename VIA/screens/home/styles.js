@@ -597,9 +597,8 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        borderWidth: 1,
         borderColor: colorsProvider.homePlaceholderColor,
-        backgroundColor: colorsProvider.homeMainColor,
+        backgroundColor: colorsProvider.homeComplimentaryColor,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
@@ -612,11 +611,12 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     addTimeButtonText: {
-        fontSize: 14,
+        fontSize: colorsProvider.fontButtonSize,
         textAlign: 'center',
         fontFamily: fontFamily,
         marginLeft: 10,
         marginRight: 10,
+        color: colorsProvider.whiteColor
     },
     /* #endregion */
 

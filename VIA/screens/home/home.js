@@ -106,141 +106,10 @@ export class HomeScreen extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
-
-            {/* <TouchableOpacity style={styles.trashButton}
-                onPress={this.props.delete}>
-                <SIcon name="options" size={30} color={colorsProvider.homePlaceholderColor} />
-            </TouchableOpacity> */}
         </View>)
     }
     /* #endregion */
 
-
-    /* #region  3 Main Goals Section */
-
-    // getChecked(item) {
-    //     if (item != null)
-    //     // var checked = false
-    //     console.warn(item.completed)
-    //     {
-    //         return checked = item.completed === "true"
-    //     }
-    // }
-
-    // render1MainGoal(task) {
-    //     if (this.state.homeObject.main_goal_3) {
-    //         var mainG3 = JSON.parse(this.state.homeObject.main_goal_3)
-    //         // console.warn(mainG3.completed)
-    //         return (
-    //             <View style={styles.mainGoalContainer}>
-    //                 <View style={styles.childTitleContainer}>
-    //                     <CheckBox
-    //                         center
-    //                         checkedIcon='dot-circle-o'
-    //                         uncheckedIcon='circle-o'
-    //                         size={32}
-    //                         checked={this.getChecked(mainG3)}
-    //                         onPress={() => {
-    //                             console.warn(mainG3.completed)
-    //                             mainG3.completed = !this.getChecked(mainG3)
-    //                             // console.warn(this.getChecked(mainG3))
-    //                             controller.saveExisting(this, Tasks.TABLE_NAME, mainG3)
-    //                         }}
-
-    //                     />
-    //                     <Text
-    //                         numberOfLines={1}
-    //                         multiline={false}
-    //                         style={styles.childTitleText}>{mainG3.name}</Text>
-    //                 </View>
-    //                 <View style={styles.childActionButtonsContainer}>
-    //                     <TouchableOpacity
-    //                         style={styles.childActionButton}
-    //                         onPress={() => {
-    //                             // controller.delete(this, childDBTableName, item.value)
-    //                             // this.getRandomTasks()
-
-    //                         }}>
-    //                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-    //                     </TouchableOpacity>
-
-    //                     <TouchableOpacity
-    //                         style={styles.childActionButton}
-    //                         onPress={() => {
-    //                             // this.setDateModalVisibility(true)
-    //                             // this.setViewRandomModalVisibility(true)
-    //                             // this.setState({ selectedRandom: item.value }, () => {
-    //                             //     this.setViewRandomModalVisibility(true)
-    //                             // })
-    //                         }}>
-    //                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
-    //                     </TouchableOpacity>
-    //                 </View>
-    //             </View>
-    //         )
-    //     } else {
-    //         return (
-    //             <TouchableOpacity style={styles.mainGoalNotSelected}
-    //                 onPress={() => {
-    //                     this.selectTaskVisibility(true, 'main_goal_3', 'selectMainGoal3')
-    //                 }}>
-    //                 <View style={styles.childTitleContainer}>
-    //                     <Text
-    //                         numberOfLines={1}
-    //                         multiline={false}
-    //                         style={styles.childTitleText}>Main Goal for today</Text>
-    //                 </View>
-    //             </TouchableOpacity>
-    //         )
-    //     }
-    // }
-    // render3MainGoalSection() {
-    //     return (
-    //         <View style={styles.mainGoalsContainer}>
-    //             <TouchableOpacity style={styles.mainGoalContainer}>
-    //                 <Text style={styles.mainGoalText}>Select a main task for today</Text>
-    //             </TouchableOpacity>
-    //             <TouchableOpacity style={styles.mainGoalContainer}>
-    //                 <Text style={styles.mainGoalText}>Finish styling of app</Text>
-    //             </TouchableOpacity>
-    //             {this.render1MainGoal()}
-    //         </View>
-    //     )
-    // }
-
-    // selectTaskVisibility(visibility, mainGoalPicked, saveAction) {
-    //     this.setState({ viewTaskSelectionVisible: visibility, mainGoalSelected: mainGoalPicked, mainGoalSaveAction: saveAction })
-    // }
-
-
-    // selectMainGoal3(homeObject) {
-    //     Database.update(Home.TABLE_NAME, homeObject).then(() => {
-    //         Database.getFromHome();
-    //     })
-    // }
-
-    // renderSelectTaskModal() {
-    //     if (this.state.viewTaskSelectionVisible) {
-    //         return (
-    //             <SelectionModal
-    //                 animationType="fade"
-    //                 items={this.state.items}
-    //                 itemName="Tasks"
-    //                 transparent={true}
-    //                 selectItem={item => {
-    //                     let homeObject = this.state.homeObject
-    //                     homeObject.main_goal_3 = JSON.stringify(item.value)
-    //                     this[this.state.mainGoalSaveAction](homeObject);
-    //                     this.setState({ [this.state.mainGoalSelected]: item.name }, () => { });
-    //                 }}
-    //                 closeModal={() => {
-    //                     this.selectTaskVisibility(false, '', '');
-    //                 }}
-    //             ></SelectionModal>
-    //         );
-    //     }
-    // }
-    /* #endregion */
 
     /* #region  Random Tasks Region */
     saveNewRandom(random) {
@@ -379,7 +248,7 @@ export class HomeScreen extends React.Component {
                                 this.setCreateRandomModalVisibility(true)
                             }}>
                             <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={colorsProvider.fontSizeChildren} color={colorsProvider.whiteColor} />
                                 <Text style={styles.addTimeButtonText}> Add Random</Text>
                             </View>
                         </TouchableOpacity>
@@ -481,10 +350,10 @@ export class HomeScreen extends React.Component {
                     transparent={true}
                     existingNotes={this.state.homeObject.notes}
                     backgroundColor={colorsProvider.homeMainColor}
-					buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
-					buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
-					textPlaceholderColor={colorsProvider.homeTextColor}
-					textChangedColor={colorsProvider.homeComplimentaryColor}
+                    buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
+                    textPlaceholderColor={colorsProvider.homeTextColor}
+                    textChangedColor={colorsProvider.homeComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         homeNotes = item
