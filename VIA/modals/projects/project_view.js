@@ -384,8 +384,8 @@ export class ViewProject extends React.Component {
                             minimumValue={0}
                             maximumValue={100}
                             thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
-						minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
-						maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
+                            minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
+                            maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.percentVal)}
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
