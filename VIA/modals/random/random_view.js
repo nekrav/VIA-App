@@ -340,11 +340,7 @@ export class ViewRandom extends React.Component {
     /* #region  Only for Today Section */
     getChecked(item) {
         if (item != null)
-        // var checked = false
-        {
             return checked = this.state.selectedItem.only_today === "true"
-        }
-
     }
 
     renderOnlyForToday() {

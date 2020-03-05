@@ -412,7 +412,6 @@ export class CreateRandom extends React.Component {
                         {/* {TOP NAVIGATION REGION} */}
                         {this.renderTopNavigation()}
 
-
                         {/* {NAME CONTAINER} */}
                         {this.renderNameInputSection()}
 

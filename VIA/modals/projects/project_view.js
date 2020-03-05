@@ -78,7 +78,7 @@ export class ViewProject extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
-                    }}>
+                }}>
                 <SIcon name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity>
         </View>)
@@ -101,6 +101,61 @@ export class ViewProject extends React.Component {
             </TextInput>
         </TouchableOpacity>)
     }
+
+    /* #endregion */
+
+    /* #region  Due Date Region */
+    setDateModalVisibility(visible) {
+        this.setState({ showDate: visible })
+    }
+
+
+    renderShowDate() {
+        if (this.state.showDate) {
+            return <DateModal
+                animationType="fade"
+                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
+                itemName="Project"
+                transparent={true}
+                disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
+                saveButtonBackgroundColor={colorsProvider.projectsMainColor}
+                setDate={(item) => {
+                    this.props.editDueDate(item)
+                    this.setState({ dueDate: item })
+                    this.props.save();
+                }}
+                closeModal={() => { this.setDateModalVisibility() }}>
+            </DateModal>
+        }
+        return null;
+    }
+
+    renderDueDate() {
+        if (this.state.selectedItem.due_date != '') {
+            return (
+                <TouchableOpacity
+                    style={styles.createDueDateContainer}
+                    onPress={() => this.setDateModalVisibility(true)}>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
+                    </Text>
+
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.props.selectedItem.due_date)).diff({ todayDate }, 'days') +
+                            ' days left'}
+                    </Text>
+                </TouchableOpacity>
+            );
+        }
+        return (
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
+                <Text style={styles.createDateText}>
+                    When do you want to finish this?
+              </Text>
+            </TouchableOpacity>
+        );
+    }
+
 
     /* #endregion */
 
@@ -212,7 +267,7 @@ export class ViewProject extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Tasks.TABLE_NAME);
-                    notifier.scheduleAllNotifications() 
+                    notifier.scheduleAllNotifications()
                 })
             }
         }
@@ -304,61 +359,6 @@ export class ViewProject extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Due Date Region */
-    setDateModalVisibility(visible) {
-        this.setState({ showDate: visible })
-    }
-
-
-    renderShowDate() {
-        if (this.state.showDate) {
-            return <DateModal
-                animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
-                itemName="Project"
-                transparent={true}
-                disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
-					saveButtonBackgroundColor={colorsProvider.projectsMainColor}
-                setDate={(item) => {
-                    this.props.editDueDate(item)
-                    this.setState({ dueDate: item })
-                    this.props.save();
-                }}
-                closeModal={() => { this.setDateModalVisibility() }}>
-            </DateModal>
-        }
-        return null;
-    }
-
-    renderDueDate() {
-        if (this.state.selectedItem.due_date != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                    onPress={() => this.setDateModalVisibility(true)}>
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
-                    </Text>
-
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).diff({ todayDate }, 'days') +
-                            ' days left'}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
-                <Text style={styles.createDateText}>
-                    When do you want to finish this?
-              </Text>
-            </TouchableOpacity>
-        );
-    }
-
-
-    /* #endregion */
-
     /* #region  Slider Region */
     renderSliderSection() {
         return (
@@ -378,10 +378,10 @@ export class ViewProject extends React.Component {
                             style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor={colorsProvider.homeComplimentaryColor}
-                            maximumTrackTintColor={styles.placeholderColor}
+                            thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+						minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
+						maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.percentVal)}
-
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
                                 if (value == 100) {
@@ -400,7 +400,7 @@ export class ViewProject extends React.Component {
                     <View style={styles.sliderTitleContainer}>
                         <Text
                             style={
-                                this.state.selectedItem.percentage_done > 0
+                                this.state.selectedItem.importance > 0
                                     ? styles.sliderTitleNull
                                     : styles.sliderTitle}>
                             Importance
@@ -411,10 +411,10 @@ export class ViewProject extends React.Component {
                             style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
                             minimumValue={0}
                             maximumValue={100}
-                            minimumTrackTintColor={colorsProvider.homeComplimentaryColor}
-                            maximumTrackTintColor={styles.placeholderColor}
+                            thumbTintColor={this.state.selectedItem.importance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+                            minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
+                            maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.importanceVal)}
-
                             onValueChange={(value) => {
                                 this.props.save;
                                 this.props.editImportance(value);
@@ -475,7 +475,7 @@ export class ViewProject extends React.Component {
                     animationType="fade"
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.projectsMainColor}
-					disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
@@ -557,10 +557,10 @@ export class ViewProject extends React.Component {
                     transparent={true}
                     existingNotes={this.state.selectedItem.notes}
                     backgroundColor={colorsProvider.projectsMainColor}
-					buttonContainerNotChangedColor={colorsProvider.projectsPlaceholderColor}
-					buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
-					textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
-					textChangedColor={colorsProvider.projectsComplimentaryColor}
+                    buttonContainerNotChangedColor={colorsProvider.projectsPlaceholderColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
+                    textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
+                    textChangedColor={colorsProvider.projectsComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.editNotes(item)
@@ -625,7 +625,7 @@ export class ViewProject extends React.Component {
                     style={{ margin: 0 }}
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
-                    
+
                     {this.renderChildItemModal()}
                     {this.renderShowDate()}
                     {/* {this.showTaskSelectionModal()} */}

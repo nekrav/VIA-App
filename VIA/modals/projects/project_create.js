@@ -66,18 +66,11 @@ export class CreateProject extends React.Component {
 	renderNameInputSection() {
 		return (<TouchableOpacity
 			onPress={() => {
-				this.nameTextInput.focus();
-			}}
+				this.nameTextInput.focus();}}
 			style={
-				this.state.newProjectName != ''
-					? styles.hasNameTextInputContainer
-					: styles.createNameContainer
-			}
-		>
+				this.state.newProjectName != '' ? styles.hasNameTextInputContainer : styles.createNameContainer}>
 			<TextInput
-				ref={input => {
-					this.nameTextInput = input;
-				}}
+				ref={input => {this.nameTextInput = input}}
 				maxLength={40}
 				style={styles.createNameText}
 				multiline={true}
@@ -91,7 +84,7 @@ export class CreateProject extends React.Component {
 		</TouchableOpacity>)
 	}
 	/* #endregion */
-
+	
 	/* #region  Due Date Region */
 	setDueDateModalVisibility(visible) {
 		this.setState({ showDate: visible });

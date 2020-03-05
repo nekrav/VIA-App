@@ -110,8 +110,6 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        borderWidth: 1,
-        borderColor: colorsProvider.homePlaceholderColor,
         backgroundColor: colorsProvider.whiteColor,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
