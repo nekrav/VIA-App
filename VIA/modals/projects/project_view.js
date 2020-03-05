@@ -561,6 +561,8 @@ export class ViewProject extends React.Component {
                     buttonContainerTextNotChangedColor={colorsProvider.projectsMainColor}
                     textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
                     textChangedColor={colorsProvider.projectsComplimentaryColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.editNotes(item)
