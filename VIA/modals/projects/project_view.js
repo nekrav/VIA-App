@@ -523,7 +523,7 @@ export class ViewProject extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color={colorsProvider.whiteColor} />
+                            <SIcon name="bell" size={20} color={colorsProvider.projectsComplimentaryColor} />
                         </Text>
                     </TouchableOpacity>
                 );

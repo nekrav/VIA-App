@@ -479,16 +479,8 @@ module.exports = StyleSheet.create({
         flex: 1,
         borderRadius: 10,
         backgroundColor:  colorsProvider.dirtyWhiteColorolor,
-        borderTopWidth: 2,
-        borderTopColor:  colorsProvider.dirtyWhiteColorolor,
         marginRight: 10,
         marginLeft: 10,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
     },
     /* #region  Children Items Header */
     /* #region  Children Items Title */
