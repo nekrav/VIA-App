@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import {Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { DateModal } from '../dateModal/dateModal';
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
@@ -50,7 +50,7 @@ export class CreateRandom extends React.Component {
                     pickerMode="date"
                     animationType="fade"
                     disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
-					saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+                    saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     transparent={true}
                     setDate={item => {
                         this.props.due_date(item);
@@ -170,7 +170,7 @@ export class CreateRandom extends React.Component {
     /* #endregion */
 
     renderOnlyForToday() {
-        return ( <CheckBox
+        return (<CheckBox
             center
             title={"Do you want this task to be removed after today?"}
             checkedIcon='dot-circle-o'
@@ -180,13 +180,53 @@ export class CreateRandom extends React.Component {
             containerStyle={styles.itemSelectionContainer}
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
-                this.setState({onlyTodayChecked : !checked}, () => {
+                this.setState({ onlyTodayChecked: !checked }, () => {
                     this.props.only_today(this.state.onlyTodayChecked)
                 })
             }}
         />)
     }
 
+    /* #region  Slider Section */
+    renderSliderSection() {
+        return (<View style={styles.slidersSection}>
+            <View style={styles.slidersTitlesContainer}>
+                <View style={styles.sliderTitleContainerCenter}>
+                    <Text
+                        style={
+                            this.state.newRandomImportance > 0
+                                ? styles.sliderTitle
+                                : styles.sliderTitleNull
+                        }>
+                        Importance
+  </Text>
+                </View>
+            </View>
+
+            <View style={styles.slidersContainer}>
+                {this.renderDueDateModal()}
+                <View style={styles.sliderContainerCenter}>
+                    <Slider
+                        style={styles.sliderSlider}
+                        minimumValue={0}
+                        maximumValue={100}
+                        minimumTrackTintColor={styles.blueColor}
+                        maximumTrackTintColor={styles.placeholderColor}
+                        onSlidingComplete={value => {
+                            this.setState({ newRandomImportance: value });
+                            this.props.importance(value);
+                        }}
+                        onValueChange={value => {
+                            this.setState({ newRandomImportance: value });
+                            this.props.importance(value);
+                        }}
+                    />
+                </View>
+            </View>
+        </View>)
+    }
+
+    /* #endregion */
     /* #region  Notes Region */
     setNotesModalVisibility(visible) {
         this.setState({ notesModalVisible: visible });
@@ -248,6 +288,42 @@ export class CreateRandom extends React.Component {
         </Text>
             </TouchableOpacity>
         );
+    }
+    /* #endregion */
+
+    /* #region  Bottom Buttons Region */
+    renderBottomButtons() {
+        return (<View style={styles.bottomButtonsContainer}>
+            <TouchableOpacity
+                disabled={this.state.newRandomName != '' ? false : true}
+                style={
+                    this.state.newRandomName != ''
+                        ? styles.bottomButtonLeft
+                        : styles.bottomButtonLeftDisabled
+                }
+                onPress={() => {
+                    // notifier.scheduleAllNotifications() 
+                    this.props.save()
+                }
+                }
+            >
+                <Text
+                    style={
+                        this.state.newRandomName != ''
+                            ? styles.bottomButtonTextDisabled
+                            : styles.bottomButtonText
+                    }
+                >
+                    Save
+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.bottomButtonRight}
+                onPress={this.props.closeModal}
+            >
+                <Text style={styles.bottomButtonText}>Close</Text>
+            </TouchableOpacity>
+        </View>)
     }
     /* #endregion */
 
@@ -316,42 +392,8 @@ export class CreateRandom extends React.Component {
                         {this.renderNotesModal()}
 
                         {/* {SLIDER SECTION} */}
-                        <View style={styles.slidersSection}>
-                            <View style={styles.slidersTitlesContainer}>
-                                <View style={styles.sliderTitleContainerCenter}>
-                                    <Text
-                                        style={
-                                            this.state.newRandomImportance > 0
-                                                ? styles.sliderTitleNull
-                                                : styles.sliderTitle
-                                        }>
-                                        Importance
-                  </Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.slidersContainer}>
-                                {this.renderDueDateModal()}
-                                <View style={styles.sliderContainerCenter}>
-                                    <Slider
-                                        style={styles.sliderSlider}
-                                        minimumValue={0}
-                                        maximumValue={100}
-                                        minimumTrackTintColor={styles.blueColor}
-                                        maximumTrackTintColor={styles.placeholderColor}
-                                        onSlidingComplete={value => {
-                                            this.setState({ newRandomImportance: value });
-                                            this.props.importance(value);
-                                        }}
-                                        onValueChange={value => {
-                                            this.setState({ newRandomImportance: value });
-                                            this.props.importance(value);
-                                        }}
-                                    />
-                                </View>
-                            </View>
-                        </View>
-                         {this.renderOnlyForToday()}               
+                        {this.renderSliderSection()}
+                        {this.renderOnlyForToday()}
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}
 
@@ -361,36 +403,7 @@ export class CreateRandom extends React.Component {
 
 
                         {/* {BOTTOM BUTTONS SECTION} */}
-                        <View style={styles.bottomButtonsContainer}>
-                            <TouchableOpacity
-                                disabled={this.state.newRandomName != '' ? false : true}
-                                style={
-                                    this.state.newRandomName != ''
-                                        ? styles.bottomButtonLeft
-                                        : styles.bottomButtonLeftDisabled
-                                }
-                                onPress={() => {
-                                    // notifier.scheduleAllNotifications() 
-                                    this.props.save()}
-                                }
-                            >
-                                <Text
-                                    style={
-                                        this.state.newRandomName != ''
-                                            ? styles.bottomButtonTextDisabled
-                                            : styles.bottomButtonText
-                                    }
-                                >
-                                    Save
-                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.bottomButtonRight}
-                                onPress={this.props.closeModal}
-                            >
-                                <Text style={styles.bottomButtonText}>Close</Text>
-                            </TouchableOpacity>
-                        </View>
+                        {this.renderBottomButtons()}
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
