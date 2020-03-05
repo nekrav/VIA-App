@@ -309,13 +309,7 @@ export class ViewProject extends React.Component {
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
-                                <View style={styles.childTitleContainer}>
-                                    <Text
-                                        numberOfLines={1}
-                                        multiline={false}
-                                        style={styles.childTitleText}>{item.value.name} </Text>
-                                </View>
-                                <CheckBox
+                                  <CheckBox
                                     center
                                     checkedIcon='check-square'
                                     uncheckedIcon='check-square'
@@ -324,11 +318,18 @@ export class ViewProject extends React.Component {
                                     size={25}
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
-                                        controller.saveExisting(this, childDBTableName, item.value)
-                                        this.getRandomTasks();
+                                        controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
+                                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, item.value.id, "project")
                                     }}
                                     checked={this.getChecked(item)}
                                 />
+                                <View style={styles.childTitleContainer}>
+                                    <Text
+                                        numberOfLines={1}
+                                        multiline={false}
+                                        style={styles.childTitleText}>{item.value.name} </Text>
+                                </View>
+                              
                                 <View style={styles.childActionButtonsContainer}>
                                     {/* <TouchableOpacity
                                         style={styles.childActionButton}
