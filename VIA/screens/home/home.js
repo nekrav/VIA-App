@@ -213,7 +213,7 @@ export class HomeScreen extends React.Component {
                                 return JSON.stringify(time)
                             })
                             theRandom.notification_time = times
-                            this.setState({ selectedRandom: theTask })
+                            this.setState({ selectedRandom: theRandom })
                         }
                     }}
                     save={() => { controller.saveExisting(this, childDBTableName, theRandom) }}
