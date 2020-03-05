@@ -6,8 +6,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const grayColor = '#ededed';
-
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
   outerView: {
@@ -40,9 +38,9 @@ module.exports = StyleSheet.create({
   /* #region  Create Name Section */
   createNameContainer: {
     borderRadius: 10,
-    backgroundColor: grayColor,
+    backgroundColor: colorsProvider.whiteColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
+    borderTopColor: colorsProvider.whiteColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -178,10 +176,8 @@ module.exports = StyleSheet.create({
   /* #region  Create Project Selection Section */
   createProjectSelectionContainer: {
     borderRadius: 10,
-    backgroundColor: grayColor,
     justifyContent: 'space-between',
     borderTopWidth: 2,
-    borderTopColor: grayColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -237,9 +233,7 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: grayColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -303,9 +297,7 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: grayColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
