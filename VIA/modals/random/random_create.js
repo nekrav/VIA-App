@@ -210,7 +210,7 @@ export class CreateRandom extends React.Component {
                         style={styles.sliderSlider}
                         minimumValue={0}
                         maximumValue={100}
-                        thumbTintColor={colorsProvider.homeComplimentaryColor}
+                        thumbTintColor={this.state.newRandomImportance > 0 ? colorsProvider.homeComplimentaryColor : colorsProvider.whitePlaceholderColor}
                         minimumTrackTintColor={colorsProvider.homeComplimentaryColor}
                         maximumTrackTintColor={styles.placeholderColor}
                         onSlidingComplete={value => {
