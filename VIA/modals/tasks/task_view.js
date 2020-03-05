@@ -184,7 +184,12 @@ export class ViewTask extends React.Component {
                     this.setState({ dueDate: item })
                     this.props.save();
                 }}
-                closeModal={() => { this.setDateModalVisibility() }}>
+                onSubmit={item => {
+                    this.props.editDueDate(item);
+                    this.setState({ dueDate: item });
+                    this.setDateModalVisibility(false);
+                }}
+                closeModal={() => { this.setDateModalVisibility(false) }}>
             </DateModal>
         }
         return null;
