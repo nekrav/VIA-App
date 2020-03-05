@@ -474,6 +474,8 @@ export class ViewProject extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.projectsMainColor}
+					disabledSaveButtonBackgroundColor={colorsProvider.projectsMainColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);

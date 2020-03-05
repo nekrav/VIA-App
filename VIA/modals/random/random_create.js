@@ -137,6 +137,8 @@ export class CreateRandom extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+					disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
