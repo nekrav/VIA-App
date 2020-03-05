@@ -23,7 +23,7 @@ export const habitsPlaceholderColor = "#A77E8C";
 export const homeMainColor = "#FFFFFF"
 export const homeComplimentaryColor = "#00BBB1";
 export const homePlaceholderColor = "#ABABAB";
-export const homeTextColor = '#2D3142';
+export const homeTextColor = "#2D3142";
 /* #endregion */
 
 /* #region  Projects */
@@ -35,5 +35,5 @@ export const projectsPlaceholderColor = "#35689C";
 /* #region  Tasks */
 export const tasksMainColor = "#58AAF9"
 export const tasksComplimentaryColor = "#045CB1";
-export const tasksPlaceholderColor = '#4485C8';
+export const tasksPlaceholderColor = "#4485C8";
 /* #endregion */

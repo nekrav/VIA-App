@@ -7,9 +7,6 @@ import * as colorsProvider from '../../components/colorsProvider';
 const fontSize = 18;
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
-const finishColor = '#16E500'
-const finishColorBorderColor = '#10AE00'
-const grayColor = '#ededed';
 
 module.exports = StyleSheet.create({
   /* #region Outer Structure */
@@ -23,7 +20,6 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: finishColor,
   },
   /* #endregion */
 
@@ -332,9 +328,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor: grayColor,
+    backgroundColor: colorsProvider.habitsMainColor,
     borderTopWidth: 2,
-    borderTopColor: grayColor,
+    borderTopColor: colorsProvider.habitsMainColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -466,14 +462,11 @@ module.exports = StyleSheet.create({
   /* #region  Complete Button Section */
   completeButtonBody: {
     margin: 10,
-    borderColor: finishColor,
-    backgroundColor: finishColor,
     borderWidth: 2,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     height: '12%',
-    borderColor: finishColorBorderColor,
   },
   completeButtonBodyDone: {
     margin: 10,
@@ -484,7 +477,6 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '12%',
-    borderColor: finishColorBorderColor,
   },
   completeButtonText: {
     fontFamily: fontFamily,

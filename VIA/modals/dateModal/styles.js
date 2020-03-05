@@ -7,7 +7,6 @@ import {StyleSheet, Platform} from 'react-native';
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
 const backgroundColor = colorsProvider.whiteColor;
-const finishedBackgroundColor = '#a8ffe0';
 
 module.exports = StyleSheet.create({
 
@@ -23,7 +22,6 @@ module.exports = StyleSheet.create({
   outerViewDone: {
     flex: 2,
     flexDirection: 'column',
-    backgroundColor: finishedBackgroundColor,
   },
   /* #endregion */
 
