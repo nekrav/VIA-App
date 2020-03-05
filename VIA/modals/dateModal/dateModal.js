@@ -1,8 +1,6 @@
 import React from 'react';
-import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Moment from 'moment'
 
 const styles = require('./styles');
 
