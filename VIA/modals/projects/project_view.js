@@ -319,7 +319,7 @@ export class ViewProject extends React.Component {
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
                                         controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
-                                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, item.value.id, "project")
+                                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
                                     }}
                                     checked={this.getChecked(item)}
                                 />
