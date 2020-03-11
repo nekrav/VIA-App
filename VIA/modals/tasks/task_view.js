@@ -72,7 +72,7 @@ export class ViewTask extends React.Component {
         return (<View style={styles.topNav}>
             <TouchableOpacity style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color={colorsProvider.shadowColor} />
+                <SIcon name="arrow-left" size={30} color={colorsProvider.tasksComplimentaryColor} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
@@ -142,7 +142,7 @@ export class ViewTask extends React.Component {
                         {this.state.projName}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                        <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -156,7 +156,7 @@ export class ViewTask extends React.Component {
                         Is this part of a bigger project?
           </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color={colorsProvider.homeMainColor} />
+                        <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
                     </Text>
                 </TouchableOpacity>
             );
@@ -384,7 +384,7 @@ export class ViewTask extends React.Component {
                         </Text>
 
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color={colorsProvider.whiteColor} />
+                            <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
                         </Text>
                     </TouchableOpacity>
                 );
@@ -402,7 +402,7 @@ export class ViewTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.homeMainColor}/>
+                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor}/>
                 </Text>
             </TouchableOpacity>
         );
