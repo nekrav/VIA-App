@@ -306,15 +306,16 @@ export class ViewProject extends React.Component {
                     <FlatList
                         data={this.state.relatedChildren}
                         extraData={this.state}
-                        contentContainerStyle={styles.childrenContainer}
+                        // contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <View style={styles.childContainer}>
-                                  <CheckBox
+                                <CheckBox
                                     center
                                     checkedIcon='check-square'
                                     uncheckedIcon='check-square'
                                     checkedColor={colorsProvider.finishedBackgroundColor}
                                     uncheckedColor={colorsProvider.homePlaceholderColor}
+                                    containerStyle={{ margin: 0, padding: 0 }}
                                     size={25}
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
@@ -329,7 +330,7 @@ export class ViewProject extends React.Component {
                                         multiline={false}
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
-                              
+
                                 <View style={styles.childActionButtonsContainer}>
                                     {/* <TouchableOpacity
                                         style={styles.childActionButton}
@@ -350,7 +351,7 @@ export class ViewProject extends React.Component {
                                                 this.setChildItemModalVisibility(true)
                                             })
                                         }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
+                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} />
                                     </TouchableOpacity>
                                 </View>
                             </View>

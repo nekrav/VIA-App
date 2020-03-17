@@ -3,6 +3,7 @@ import React from 'react';
 /* eslint-enable no-unused-vars*/
 import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
+import { colors } from 'react-native-elements';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -30,7 +31,6 @@ module.exports = StyleSheet.create({
     trashButton: {
         marginRight: "8%",
         justifyContent: "center",
-
     },
     topNavBackButton: {
         marginLeft: "8%",
@@ -81,7 +81,7 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
     },
-      createNameText: {
+    createNameText: {
         fontSize: 30,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
@@ -478,7 +478,9 @@ module.exports = StyleSheet.create({
         marginBottom: 10,
         flex: 1,
         borderRadius: 10,
-        backgroundColor:  colorsProvider.dirtyWhiteColorolor,
+        borderWidth: 2,
+        borderColor: colorsProvider.tasksMainColor,
+        backgroundColor: colorsProvider.tasksMainColor,
         marginRight: 10,
         marginLeft: 10,
     },
@@ -503,7 +505,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontFamily: fontFamily,
-        color: colorsProvider.tasksMainColors,
+        color: colorsProvider.tasksComplimentaryColor,
         fontSize: 25,
     },
     /* #endregion */
@@ -552,9 +554,13 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
         marginTop: 2,
     },
+    childOuterContainer: {
+        // flex: 1,
+    },
 
-    childContainer: {
-        flex: 1,
+ 
+   childContainer: {
+        // flex: 1,
         backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -562,17 +568,19 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         alignItems: 'center',
-        borderRadius: 10,
-        flexDirection: "row",
-
-        marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        flexWrap: 'wrap',
+        borderWidth: 1,
+        borderRadius: 100,
+        // flexDirection: "row",
+        // marginTop: 2,
+        // shadowColor: colorsProvider.shadowColor,
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // shadowOffset: {
+        //     height: 1,
+        //     width: 0
+        // },
+        padding: 1,
     },
 
     /* #endregion */
@@ -581,9 +589,11 @@ module.exports = StyleSheet.create({
         flex: 1,
     },
     childTitleText: {
-        color: colorsProvider.projectsMainColor,
-        fontSize: 30,
+        color: colorsProvider.tasksComplimentaryColor,
+        fontSize: 16,
         marginLeft: 10,
+        fontFamily: fontFamily,
+
     },
     childActionButtonsContainer: {
         flexDirection: 'row',
@@ -593,6 +603,8 @@ module.exports = StyleSheet.create({
         fontSize: 24,
         marginLeft: 10,
         marginRight: 10,
+        fontFamily: fontFamily,
+        color: colorsProvider.tasksComplimentaryColor
     },
     /* #endregion */
     /* #endregion */
