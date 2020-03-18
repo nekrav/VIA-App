@@ -367,6 +367,19 @@ module.exports = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 10,
     },
+    bottomButtonLeftClose: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor:  colorsProvider.tasksPlaceholderColor,
+        backgroundColor:  colorsProvider.tasksPlaceholderColor,
+        shadowColor: colorsProvider.shadowColor,
+
+    },
     bottomButtonLeftDisabled: {
         marginLeft: 50,
         paddingLeft: 35,
@@ -411,8 +424,8 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor:  colorsProvider.tasksPlaceholderColor,
-        backgroundColor: colorsProvider.tasksMainColor,
+        borderColor:  colorsProvider.tasksComplimentaryColor,
+        backgroundColor: colorsProvider.tasksComplimentaryColor,
         marginRight: 50,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
@@ -421,6 +434,17 @@ module.exports = StyleSheet.create({
             height: 1,
             width: 0
         }
+    },
+    bottomButtonRightDisabled: {
+        marginLeft: 50,
+        marginRight: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor:  colorsProvider.tasksPlaceholderColor,
     },
     bottomButtonText: {
         fontSize: 18,

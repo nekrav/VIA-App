@@ -117,7 +117,7 @@ export class CreateTask extends React.Component {
                     pickerMode="date"
                     animationType="fade"
                     disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-					saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
                     transparent={true}
                     setDate={item => {
                         this.props.due_date(item);
@@ -267,7 +267,7 @@ export class CreateTask extends React.Component {
                             Is this part of a bigger project?
           </Text>
                         <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor}/>
+                            <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -288,7 +288,7 @@ export class CreateTask extends React.Component {
                     animationType="fade"
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-					disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
@@ -363,10 +363,10 @@ export class CreateTask extends React.Component {
                     transparent={true}
                     existingNotes={this.state.itemNotes}
                     backgroundColor={colorsProvider.tasksMainColor}
-					buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
-					buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
-					textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
-					textChangedColor={colorsProvider.tasksComplimentaryColor}
+                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
+                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
+                    textChangedColor={colorsProvider.tasksComplimentaryColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.notes(item);
@@ -422,34 +422,25 @@ export class CreateTask extends React.Component {
     /* #region  Bottom Buttons Section */
     renderBottomButtons() {
         return (<View style={styles.bottomButtonsContainer}>
+              <TouchableOpacity
+                style={styles.bottomButtonLeftClose}
+                onPress={this.props.closeModal}>
+                <Text style={styles.bottomButtonText}>Close</Text>
+            </TouchableOpacity>
             <TouchableOpacity
                 disabled={this.state.newTaskName != '' ? false : true}
                 style={
                     this.state.newTaskName != ''
-                        ? styles.bottomButtonLeft
-                        : styles.bottomButtonLeftDisabled
+                        ? styles.bottomButtonRight
+                        : styles.bottomButtonRightDisabled
                 }
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.save()
-                }}
-            >
-                <Text
-                    style={
-                        this.state.newTaskName != ''
-                            ? styles.bottomButtonTextDisabled
-                            : styles.bottomButtonText
-                    }
-                >
-                    Save
-</Text>
+                }}>
+                <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.bottomButtonRight}
-                onPress={this.props.closeModal}
-            >
-                <Text style={styles.bottomButtonText}>Close</Text>
-            </TouchableOpacity>
+          
         </View>)
     }
     /* #endregion */
