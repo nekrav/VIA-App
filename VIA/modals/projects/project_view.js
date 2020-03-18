@@ -315,7 +315,7 @@ export class ViewProject extends React.Component {
                                     uncheckedIcon='check-square'
                                     checkedColor={colorsProvider.finishedBackgroundColor}
                                     uncheckedColor={colorsProvider.homePlaceholderColor}
-                                    containerStyle={{ margin: 0, padding: 0 }}
+                                    containerStyle={colorsProvider.checkboxContainerStyle}
                                     size={25}
                                     onPress={() => {
                                         item.value.completed = !this.getChecked(item)
@@ -330,7 +330,6 @@ export class ViewProject extends React.Component {
                                         multiline={false}
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
-
                                 <View style={styles.childActionButtonsContainer}>
                                     {/* <TouchableOpacity
                                         style={styles.childActionButton}

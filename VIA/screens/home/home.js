@@ -263,6 +263,7 @@ export class HomeScreen extends React.Component {
                                     center
                                     checkedIcon='check-square'
                                     uncheckedIcon='check-square'
+                                    containerStyle={colorsProvider.checkboxContainerStyle}
                                     checkedColor={colorsProvider.finishedBackgroundColor}
                                     uncheckedColor={colorsProvider.homePlaceholderColor}
                                     size={25}

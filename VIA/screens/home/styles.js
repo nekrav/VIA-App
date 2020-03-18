@@ -639,12 +639,11 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         marginRight: 10,
         marginLeft: 10,
-        marginBottom: 5,
+        marginBottom: 10,
         alignItems: 'center',
         borderRadius: 10,
         borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
-
         marginTop: 2,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
@@ -652,7 +651,8 @@ module.exports = StyleSheet.create({
         shadowOffset: {
             height: 1,
             width: 0
-        }
+        },
+        padding: 5,
     },
 
     /* #endregion */

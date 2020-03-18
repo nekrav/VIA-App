@@ -44,3 +44,7 @@ export const tasksComplimentaryColor = "#045CB1";
 export const tasksPlaceholderColor = "#4485C8";
 export const tasksBottomTabHighlightColor = "#0F7EE9"
 /* #endregion */
+
+/* #region  Styles - Checkbox */
+export const checkboxContainerStyle = { margin: 0, padding: 0 }
+/* #endregion */
