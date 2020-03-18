@@ -39,10 +39,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
 
     },
     addItemButtonContainer: {
@@ -73,20 +70,15 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 20,
-        marginTop: 20,
+        marginTop: 2,
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
-        marginTop: 2,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-
+        shadowOffset: colorsProvider.shadow
     },
 
     listItemContainerFinished:{
@@ -95,19 +87,16 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         marginRight: 10,
         marginLeft: 10,
-        marginBottom: 5,
+        marginBottom: 20,
+        marginTop: 2,
         borderRadius: 10,
         borderTopWidth: 2,
-        borderTopColor: colorsProvider.tasksComplimentaryColor,
+        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
-        marginTop: 2,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     listItemTextContainer: {
         width: 130,

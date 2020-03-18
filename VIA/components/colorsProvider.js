@@ -9,7 +9,7 @@ export const redColor = "#C30707"
 export const dirtyWhiteColor = "#EDEDED"
 export const fontSizeChildren = 16
 export const fontButtonSize = 16
-export const fontSizeMain = 25
+export const fontSizeMain = 30
 export const fontSizeAddButton = 50
 export const whitePlaceholderColor = "#BAB9BF"
 export const checkboxIconSize = 25
@@ -51,4 +51,5 @@ export const tasksBottomTabHighlightColor = "#0F7EE9"
 
 /* #region  Styles - Checkbox */
 export const checkboxContainerStyle = { margin: 0, padding: 0 }
+export const shadow = { height: 1, width: 0 }
 /* #endregion */

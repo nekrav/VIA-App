@@ -64,10 +64,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     modifiedBottomButtonContainer: {
         marginLeft: 50,
@@ -80,10 +77,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     bottomButtonText: {
         fontSize: 18,

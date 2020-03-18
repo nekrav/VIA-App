@@ -52,10 +52,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     bottomButtonText: {
         fontSize: 18,
@@ -77,10 +74,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         marginRight: 5,
         alignItems: 'center',
         marginBottom: 10,
@@ -112,10 +106,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
@@ -164,10 +155,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',

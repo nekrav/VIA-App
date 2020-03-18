@@ -46,10 +46,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     hasNameTextInputContainer: {
         borderRadius: 10,
@@ -64,10 +61,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     createNameText: {
         fontSize: 30,
@@ -106,10 +100,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
 
     mainGoalContainer: {
@@ -130,10 +121,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
 
     mainGoalText: {
@@ -158,10 +146,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
 
     },
     createDateText: {
@@ -251,10 +236,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     hasProjectSelectionContainer: {
         borderRadius: 10,
@@ -270,10 +252,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     createProjectSelectionButtonText: {
         fontSize: 18,
@@ -310,10 +289,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
 
     },
 
@@ -333,10 +309,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
 
     },
     notificationTimeButtonText: {
@@ -378,10 +351,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         height: "100%",
     },
     hasNotesContainer: {
@@ -401,10 +371,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         height: "100%",
     },
     createNotesText: {
@@ -443,10 +410,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     bottomButtonLeft: {
         marginLeft: 50,
@@ -461,10 +425,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     bottomButtonRight: {
         marginLeft: 50,
@@ -480,10 +441,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
+        shadowOffset: colorsProvider.shadow
     },
     bottomButtonText: {
         fontSize: 18,
@@ -517,10 +475,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
     },
     completeAndNotifSection: {
         flexDirection: "row",
@@ -556,10 +511,7 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
     },
     /* #region  Children Items Header */
     /* #region  Children Items Title */
@@ -602,10 +554,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
@@ -648,10 +597,7 @@ module.exports = StyleSheet.create({
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        },
+        shadowOffset: colorsProvider.shadow,
         padding: 5,
     },
 
