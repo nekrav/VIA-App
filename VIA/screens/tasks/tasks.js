@@ -186,6 +186,7 @@ export class TasksScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
+                        <TouchableWithoutFeedback onPress={()=>{}}>
                             <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
@@ -194,6 +195,7 @@ export class TasksScreen extends React.Component {
                                         uncheckedIcon='check-square'
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.tasksComplimentaryColor}
+                                        containerStyle={colorsProvider.checkboxContainerStyle}
                                         size={35}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
@@ -214,7 +216,7 @@ export class TasksScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>} />
+                            </View></TouchableWithoutFeedback>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
