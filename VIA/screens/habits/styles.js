@@ -53,16 +53,16 @@ module.exports = StyleSheet.create({
     addItemButtonText: {
         justifyContent: "center",
         color: colorsProvider.habitsComplimentaryColor,
-        fontSize: 50,
+        fontSize: colorsProvider.fontSizeAddButton,
         color: colorsProvider.habitsComplimentaryColor
     },
     topNavLeftTitleText: {
-        fontSize: 30,
+        fontSize: colorsProvider.fontSizeMain,
         fontFamily: fontFamily,
         color: colorsProvider.habitsComplimentaryColor,
     },
     topNavCenterTitleText: {
-        fontSize: 30,
+        fontSize: colorsProvider.fontSizeMain,
         fontFamily: fontFamily,
         marginLeft: "-16%",
         color: colorsProvider.habitsComplimentaryColor,
@@ -89,7 +89,8 @@ module.exports = StyleSheet.create({
         shadowOffset: {
             height: 1,
             width: 0
-        }
+        },
+        padding: 5,
     },
 
     listItemContainerFinished: {
@@ -119,7 +120,7 @@ module.exports = StyleSheet.create({
     listItemText: {
         color: colorsProvider.habitsComplimentaryColor,
         fontFamily: fontFamily,
-        fontSize: fontSize,
+        fontSize: colorsProvider.fontSizeChildren,
     },
     listItemIcon: {
 

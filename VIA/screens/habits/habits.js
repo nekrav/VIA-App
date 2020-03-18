@@ -225,7 +225,7 @@ export class HabitsScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity></TouchableWithoutFeedback>} />

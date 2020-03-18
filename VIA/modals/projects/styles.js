@@ -75,14 +75,14 @@ module.exports = StyleSheet.create({
         }
     },
     createNameText: {
-        fontSize: 30,
+        fontSize: colorsProvider.fontSizeMain,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
         marginBottom: 5,
     },
     createNameText: {
-        fontSize: 30,
+        fontSize: colorsProvider.fontSizeMain,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
@@ -112,7 +112,7 @@ module.exports = StyleSheet.create({
 
     },
     createDateText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         fontFamily: fontFamily,
         color: colorsProvider.projectsPlaceholderColor,
         marginLeft: 10,
@@ -120,7 +120,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
     },
     createSelectedDateText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 10,
@@ -164,13 +164,13 @@ module.exports = StyleSheet.create({
     },
     sliderTitleNull: {
         fontFamily: fontFamily,
-        fontSize: 24,
+        fontSize: colorsProvider.fontSizeMain,
         color: colorsProvider.projectsPlaceholderColor,
     },
     sliderTitle: {
         color: colorsProvider.projectsComplimentaryColor,
         fontFamily: fontFamily,
-        fontSize: 24,
+        fontSize: colorsProvider.fontSizeMain,
     },
     slidersContainer: {
         flexDirection: "column",
@@ -229,7 +229,7 @@ module.exports = StyleSheet.create({
         }
     },
     createProjectSelectionButtonText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         fontFamily: fontFamily,
         color: colorsProvider.projectsPlaceholderColor,
         marginLeft: 5,
@@ -237,7 +237,7 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
     },
     hasProjectSelectionButtonText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
         marginLeft: 5,
@@ -293,7 +293,7 @@ module.exports = StyleSheet.create({
 
     },
     notificationTimeButtonText: {
-        fontSize: 16,
+        fontSize: colorsProvider.fontSizeChildren,
         color: colorsProvider.projectsPlaceholderColor,
         marginRight: 5,
         marginLeft: 8,
@@ -303,7 +303,7 @@ module.exports = StyleSheet.create({
     },
 
     hasNotificationTimeButtonText: {
-        fontSize: 16,
+        fontSize: colorsProvider.fontSizeChildren,
         color: colorsProvider.projectsComplimentaryColor,
         marginRight: 5,
         marginLeft: 8,
@@ -437,13 +437,13 @@ module.exports = StyleSheet.create({
         }
     },
     bottomButtonText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         textAlign: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.homeTextColor,
     },
     bottomButtonTextDisabled: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontSizeChildren,
         textAlign: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.projectsMainColor,
@@ -465,7 +465,7 @@ module.exports = StyleSheet.create({
     completeButtonText: {
         fontFamily: fontFamily,
         color: colorsProvider.projectsMainColor,
-        fontSize: 30,
+        fontSize: colorsProvider.fontSizeMain,
     },
 
     /* #endregion */
@@ -506,7 +506,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.tasksComplimentaryColor,
-        fontSize: 25,
+        fontSize: colorsProvider.fontSizeMain,
     },
     /* #endregion */
 
@@ -535,7 +535,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     addTimeButtonText: {
-        fontSize: 14,
+        fontSize: colorsProvider.fontSizeChildren,
         textAlign: 'center',
         fontFamily: fontFamily,
         marginLeft: 10,
@@ -590,7 +590,7 @@ module.exports = StyleSheet.create({
     },
     childTitleText: {
         color: colorsProvider.tasksComplimentaryColor,
-        fontSize: 16,
+        fontSize: colorsProvider.fontSizeChildren,
         marginLeft: 10,
         fontFamily: fontFamily,
 
@@ -600,7 +600,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     childActionButtonText: {
-        fontSize: 24,
+        fontSize: colorsProvider.fontSizeMain,
         marginLeft: 10,
         marginRight: 10,
         fontFamily: fontFamily,
