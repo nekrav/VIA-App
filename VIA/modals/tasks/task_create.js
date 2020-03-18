@@ -440,7 +440,6 @@ export class CreateTask extends React.Component {
                 }}>
                 <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
             </TouchableOpacity>
-          
         </View>)
     }
     /* #endregion */

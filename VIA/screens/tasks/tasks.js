@@ -161,8 +161,6 @@ export class TasksScreen extends React.Component {
 
     render() {
         return (
-
-
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <SafeAreaView style={styles.outerView}>
 

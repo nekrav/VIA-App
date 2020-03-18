@@ -200,7 +200,7 @@ module.exports = StyleSheet.create({
         shadowOffset: colorsProvider.shadow
     },
     createProjectSelectionButtonText: {
-        fontSize: 18,
+        fontSize: colorsProvider.fontButtonSize,
         fontFamily: fontFamily,
         color:  colorsProvider.tasksPlaceholderColor,
         marginLeft: 5,
@@ -268,7 +268,7 @@ module.exports = StyleSheet.create({
     },
 
     hasNotificationTimeButtonText: {
-        fontSize: 16,
+        fontSize: colorsProvider.fontButtonSize,
         color: colorsProvider.tasksComplimentaryColor,
         marginRight: 5,
         marginLeft: 8,

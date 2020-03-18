@@ -386,11 +386,11 @@ module.exports = StyleSheet.create({
   /* #region Create Bottom Buttons Section */
   bottomButtonsContainer: {
     paddingTop: 18,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 10,
-  },
-  bottomButtonLeftDisabled: {
+},
+bottomButtonLeftClose: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -398,17 +398,27 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: colorsProvider.habitsPlaceholderColor,
-    backgroundColor: colorsProvider.habitsPlaceholderColor,
+    borderColor:  colorsProvider.habitsPlaceholderColor,
+    backgroundColor:  colorsProvider.habitsPlaceholderColor,
+    shadowColor: colorsProvider.shadowColor,
+
+},
+bottomButtonLeftDisabled: {
+    marginLeft: 50,
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor:  colorsProvider.habitsPlaceholderColor,
+    backgroundColor:  colorsProvider.habitsPlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonLeft: {
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonLeft: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -421,12 +431,9 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonRight: {
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonRight: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -434,29 +441,37 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: colorsProvider.habitsPlaceholderColor,
-    backgroundColor: colorsProvider.habitsMainColor,
+    borderColor:  colorsProvider.habitsComplimentaryColor,
+    backgroundColor: colorsProvider.habitsComplimentaryColor,
     marginRight: 50,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonText: {
-    fontSize: 18,
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonRightDisabled: {
+    marginLeft: 50,
+    marginRight: 50,
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor:  colorsProvider.habitsPlaceholderColor,
+},
+bottomButtonText: {
+  fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: colorsProvider.habitsComplimentaryColor,
-  },
-  bottomButtonTextDisabled: {
-    fontSize: 18,
+    color: colorsProvider.homeTextColor,
+},
+bottomButtonTextDisabled: {
+    fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
     color: colorsProvider.habitsMainColor,
-  },
+},
   /* #endregion */
 
   /* #region  Complete Button Section */

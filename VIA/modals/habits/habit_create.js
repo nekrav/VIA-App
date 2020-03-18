@@ -54,15 +54,6 @@ export class CreateHabit extends React.Component {
                 style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
                 <SIcon
-                    style={{
-                        shadowColor: colorsProvider.homePlaceholderColor,
-                        shadowOpacity: 0.8,
-                        shadowRadius: 1.5,
-                        shadowOffset: {
-                            height: 1,
-                            width: 0,
-                        },
-                    }}
                     name="arrow-left"
                     size={30}
                     color={colorsProvider.habitsComplimentaryColor}
@@ -371,34 +362,59 @@ export class CreateHabit extends React.Component {
 
     /* #region  Bottom Buttons Region */
     renderBottomButtons() {
-        return (<View style={styles.bottomButtonsContainer}>
+        return (
+        //     <View style={styles.bottomButtonsContainer}>
+        // //     <TouchableOpacity
+        //         disabled={this.state.newHabitName != '' ? false : true}
+        //         style={
+        //             this.state.newHabitName != ''
+        //                 ? styles.bottomButtonLeft
+        //                 : styles.bottomButtonLeftDisabled
+        //         }
+        //         onPress={() => {
+        //             notifier.scheduleAllNotifications()
+        //             this.props.save()
+        //         }}>
+        //         <Text
+        //             style={
+        //                 this.state.newHabitName != ''
+        //                     ? styles.bottomButtonTextDisabled
+        //                     : styles.bottomButtonText
+        //             }>
+        //             Save
+        //             </Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //         style={styles.bottomButtonRight}
+        //         onPress={this.props.closeModal}
+        //     >
+        //         <Text style={styles.bottomButtonText}>Close</Text>
+        //     </TouchableOpacity>
+        // </View>
+
+<View style={styles.bottomButtonsContainer}>
+            <TouchableOpacity
+                style={styles.bottomButtonLeftClose}
+                onPress={this.props.closeModal}>
+                <Text style={styles.bottomButtonText}>Close</Text>
+            </TouchableOpacity>
             <TouchableOpacity
                 disabled={this.state.newHabitName != '' ? false : true}
                 style={
                     this.state.newHabitName != ''
-                        ? styles.bottomButtonLeft
-                        : styles.bottomButtonLeftDisabled
+                        ? styles.bottomButtonRight
+                        : styles.bottomButtonRightDisabled
                 }
                 onPress={() => {
-                    notifier.scheduleAllNotifications()
+                    notifier.scheduleAllNotifications();
                     this.props.save()
                 }}>
-                <Text
-                    style={
-                        this.state.newHabitName != ''
-                            ? styles.bottomButtonTextDisabled
-                            : styles.bottomButtonText
-                    }>
-                    Save
-                    </Text>
+                <Text style={this.state.newHabitName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.bottomButtonRight}
-                onPress={this.props.closeModal}
-            >
-                <Text style={styles.bottomButtonText}>Close</Text>
-            </TouchableOpacity>
-        </View>)
+</View >
+        
+        
+        )
     }
     /* #endregion */
 
@@ -444,7 +460,7 @@ export class CreateHabit extends React.Component {
 
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}
-                        
+
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
