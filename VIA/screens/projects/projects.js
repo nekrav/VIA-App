@@ -104,6 +104,10 @@ export class ProjectsScreen extends React.Component {
                         theProject.importance = text;
                         this.setState({ selectedProject: theProject })
                     }}
+                    editCompleted={(text) => {
+                        theProject.completed = text;
+                        this.setState({ selectedProject: theProject })
+                    }}
                     editTimeSpent={(text) => {
                         theProject.time_spent = text;
                         this.setState({ selectedProject: theProject })
