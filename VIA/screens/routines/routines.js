@@ -166,7 +166,7 @@ export class RoutinesScreen extends React.Component {
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.routinesComplimentaryColor}
                                         containerStyle={colorsProvider.checkboxContainerStyle}
-                                        size={35}
+                                        size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)

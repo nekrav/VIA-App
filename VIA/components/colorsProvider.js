@@ -10,6 +10,7 @@ export const dirtyWhiteColor = "#EDEDED"
 export const fontSizeChildren = 18
 export const fontButtonSize = 16
 export const whitePlaceholderColor = "#BAB9BF"
+export const checkboxIconSize = 25
 /* #endregion */
 
 /* #region  Routines */

@@ -196,7 +196,7 @@ export class TasksScreen extends React.Component {
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.tasksComplimentaryColor}
                                         containerStyle={colorsProvider.checkboxContainerStyle}
-                                        size={25}
+                                        size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)

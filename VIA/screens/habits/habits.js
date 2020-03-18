@@ -194,7 +194,8 @@ export class HabitsScreen extends React.Component {
                                         uncheckedIcon='check-square'
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.habitsComplimentaryColor}
-                                        size={35}
+                                        containerStyle={colorsProvider.checkboxContainerStyle}
+                                        size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)

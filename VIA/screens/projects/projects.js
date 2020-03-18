@@ -184,7 +184,7 @@ export class ProjectsScreen extends React.Component {
                                         uncheckedIcon='check-square'
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.projectsComplimentaryColor}
-                                        size={35}
+                                        size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
