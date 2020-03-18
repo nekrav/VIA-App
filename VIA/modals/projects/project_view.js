@@ -312,8 +312,8 @@ export class ViewProject extends React.Component {
                             <View style={styles.childContainer}>
                                 <CheckBox
                                     center
-                                    checkedIcon='check-square'
-                                    uncheckedIcon='check-square'
+                                    checkedIcon={colorsProvider.checkboxIcon}
+                                    uncheckedIcon={colorsProvider.checkboxIcon}
                                     checkedColor={colorsProvider.finishedBackgroundColor}
                                     uncheckedColor={colorsProvider.homePlaceholderColor}
                                     containerStyle={colorsProvider.checkboxContainerStyle}

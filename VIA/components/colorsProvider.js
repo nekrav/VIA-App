@@ -11,6 +11,7 @@ export const fontSizeChildren = 18
 export const fontButtonSize = 16
 export const whitePlaceholderColor = "#BAB9BF"
 export const checkboxIconSize = 25
+export const checkboxIcon = 'check-square'
 /* #endregion */
 
 /* #region  Routines */
