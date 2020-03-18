@@ -186,8 +186,8 @@ export class TasksScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={()=>{}}>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                        <TouchableWithoutFeedback onPress={() => {}}>
+                            <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
                                         center
@@ -196,7 +196,7 @@ export class TasksScreen extends React.Component {
                                         checkedColor={colorsProvider.finishedBackgroundColor}
                                         uncheckedColor={colorsProvider.tasksComplimentaryColor}
                                         containerStyle={colorsProvider.checkboxContainerStyle}
-                                        size={35}
+                                        size={25}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
@@ -216,7 +216,7 @@ export class TasksScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View></TouchableWithoutFeedback>} />
+                            </TouchableOpacity></TouchableWithoutFeedback>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

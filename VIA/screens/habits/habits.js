@@ -184,7 +184,8 @@ export class HabitsScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                            <View style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
+                        <TouchableWithoutFeedback onPress={() => {}}>
+                            <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
 
                                 <View style={styles.checkboxAndNameContainer}>
                                     <CheckBox
@@ -226,7 +227,7 @@ export class HabitsScreen extends React.Component {
                                         <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>} />
+                            </TouchableOpacity></TouchableWithoutFeedback>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

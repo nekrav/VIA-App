@@ -243,6 +243,7 @@ export class ViewRoutine extends React.Component {
                         extraData={this.state}
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
+                        <TouchableWithoutFeedback onPress={() => {}}>
                             <View style={styles.childContainer}>
                                 <View style={styles.childTitleContainer}>
                                     <Text
@@ -271,7 +272,7 @@ export class ViewRoutine extends React.Component {
                                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>
+                            </View></TouchableWithoutFeedback>
                         } />
                 </View>
             );

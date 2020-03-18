@@ -308,6 +308,7 @@ export class ViewProject extends React.Component {
                         extraData={this.state}
                         // contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
+                        <TouchableWithoutFeedback onPress={() => {}}>
                             <View style={styles.childContainer}>
                                 <CheckBox
                                     center
@@ -353,7 +354,7 @@ export class ViewProject extends React.Component {
                                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>
+                            </View></TouchableWithoutFeedback>
                         } />
                 </View>
             );

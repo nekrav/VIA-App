@@ -258,6 +258,7 @@ export class HomeScreen extends React.Component {
                         extraData={this.state}
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
+                        <TouchableWithoutFeedback onPress={() => {}}>
                             <View style={styles.childContainer}>
                                 <CheckBox
                                     center
@@ -303,7 +304,7 @@ export class HomeScreen extends React.Component {
                                         <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                     </TouchableOpacity>
                                 </View>
-                            </View>
+                            </View></TouchableWithoutFeedback>
                         } />
                 </View>
             );
