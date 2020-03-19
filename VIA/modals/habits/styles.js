@@ -76,14 +76,14 @@ module.exports = StyleSheet.create({
     },
   },
   createNameText: {
-    fontSize: 30,
+    fontSize: colorsProvider.fontSizeMain,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
     marginBottom: 5,
   },
   hasNameText: {
-    fontSize: 30,
+    fontSize: colorsProvider.fontSizeMain,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
@@ -112,7 +112,7 @@ module.exports = StyleSheet.create({
     },
   },
   createDateText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsPlaceholderColor,
     marginLeft: 10,
@@ -120,7 +120,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
   },
   hasDateText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
@@ -128,7 +128,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
   },
   createSelectedDateText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
@@ -137,7 +137,7 @@ module.exports = StyleSheet.create({
     marginRight: 5,
   },
   hasSelectedDateText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
@@ -175,13 +175,13 @@ module.exports = StyleSheet.create({
   },
   sliderTitleNull: {
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: colorsProvider.fontSizeSliderTitle,
     color: colorsProvider.habitsComplimentaryColor,
   },
   sliderTitle: {
     color: colorsProvider.habitsPlaceholderColor,
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: colorsProvider.fontSizeSliderTitle,
   },
   slidersContainer: {
     flexDirection: 'row',
@@ -240,7 +240,7 @@ module.exports = StyleSheet.create({
     },
   },
   createProjectSelectionButtonText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsPlaceholderColor,
     marginLeft: 10,
@@ -248,7 +248,7 @@ module.exports = StyleSheet.create({
     marginBottom: 5,
   },
   hasProjectSelectionButtonText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.habitsComplimentaryColor,
     marginLeft: 10,
@@ -302,7 +302,7 @@ module.exports = StyleSheet.create({
     },
   },
   notificationTimeButtonText: {
-    fontSize: 16,
+    fontSize: colorsProvider.fontSizeChildren,
     color: colorsProvider.habitsPlaceholderColor,
     marginRight: 5,
     marginLeft: 8,
@@ -312,7 +312,7 @@ module.exports = StyleSheet.create({
   },
 
   hasNotificationTimeButtonText: {
-    fontSize: 16,
+    fontSize: colorsProvider.fontSizeChildren,
     color: colorsProvider.habitsComplimentaryColor,
     marginRight: 5,
     marginLeft: 8,
@@ -495,7 +495,7 @@ bottomButtonTextDisabled: {
   },
   completeButtonText: {
     fontFamily: fontFamily,
-    fontSize: fontSize
+    fontSize: colorsProvider.fontSizeChildren,
   },
   /* #endregion */
 
