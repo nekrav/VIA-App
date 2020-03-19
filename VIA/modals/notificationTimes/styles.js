@@ -87,7 +87,6 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-
     },
     /* #endregion */
 
