@@ -227,7 +227,7 @@ export class CreateHabit extends React.Component {
                     animationType="fade"
                     items={this.state.items}
                     itemName="Routine"
-                    titleTextColor={colorsProvider.routinesBottomTabHighlightColor}
+                    titleTextColor={colorsProvider.routinesComplimentaryColor}
                     titleContainerColor={colorsProvider.routinesMainColor}
                     transparent={true}
                     selectItem={item => {

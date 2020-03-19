@@ -74,9 +74,6 @@ module.exports = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 20,
-    borderWidth: 2,
-    borderColor: colorsProvider.homePlaceholderColor,
-    backgroundColor: colorsProvider.homeMainColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -88,9 +85,9 @@ module.exports = StyleSheet.create({
     marginRight: 5,
   },
   itemText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     textAlign: 'center',
-    fontFamily: fontFamily,
+    fontFamily: colorsProvider.font,
   },
   /* #endregion */
 
