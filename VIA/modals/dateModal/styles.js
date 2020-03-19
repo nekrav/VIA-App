@@ -52,9 +52,24 @@ module.exports = StyleSheet.create({
   },
   bottomButtonExtraButtonContainer: {
     paddingTop: 18,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 10,
+  },
+  bottomButtonExtraButton: {
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    backgroundColor: colorsProvider.homeComplimentaryColor,
+    justifyContent: 'center',
+    shadowColor: colorsProvider.shadowColor,
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0,
+    },
   },
   /* #endregion */
 
@@ -68,7 +83,6 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colorsProvider.homePlaceholderColor,
-    // backgroundColor: colorsProvider.homePlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
