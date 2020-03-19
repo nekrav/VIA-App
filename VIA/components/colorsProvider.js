@@ -1,7 +1,7 @@
 import React from 'react';
 
 /* #region  Font Sizes */
-export const fontSizeChildren = 16
+export const fontSizeChildren = 18
 export const fontButtonSize = 16
 export const fontSizeMain = 30
 export const fontSizeAddButton = 50
@@ -32,7 +32,7 @@ export const routinesBottomTabHighlightColor = "#9C7639";
 /* #region  Habits */
 export const habitsMainColor = "#D6A2AD"
 export const habitsComplimentaryColor = "#711E30";
-export const habitsPlaceholderColor = "#A77E8C";
+export const habitsPlaceholderColor = "#8f6d78";
 /* #endregion */
 
 /* #region  Home */
