@@ -36,12 +36,12 @@ export class DateModal extends React.Component {
         if (this.props.fromNotificationTimesModal) {
             return (
                 <View style={styles.bottomButtonExtraButtonContainer}>
-            <TouchableOpacity style={[styles.bottomButtonExtraButton, { backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor }]}
-                onPress={() => {this.props.onSubmit(this.state.itemDate); this.props.closeModal()}}>
-                <Text style={[styles.bottomButtonText, { color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor }]}>Select And Close</Text>
-            </TouchableOpacity>
-            </View>
-)
+                    <TouchableOpacity style={[styles.bottomButtonExtraButton, { backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor }]}
+                        onPress={() => { this.props.onSubmit(this.state.itemDate); this.props.closeModal() }}>
+                        <Text style={[styles.bottomButtonText, { color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor }]}>Select And Close</Text>
+                    </TouchableOpacity>
+                </View>
+            )
         }
     }
 
