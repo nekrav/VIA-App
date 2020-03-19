@@ -103,9 +103,10 @@ export class NotificationTimesModal extends React.Component {
                             <CheckBox
                                 center
                                 key={day.item.key.toString()}
-                                // title={day.item.name}
-                                checkedIcon ={colorsProvider.checkboxIcon}
-                                uncheckedIcon = {colorsProvider.checkboxIcon}
+                                checkedIcon={colorsProvider.checkboxIcon}
+                                uncheckedIcon={colorsProvider.checkboxIcon}
+                                checkedColor={this.props.saveButtonBackgroundColor}
+                                // uncheckedColor={colorsProvider.habitsComplimentaryColor}
                                 checked={day.item.checked}
                                 textStyle={styles.checkboxText}
                                 containerStyle={styles.weekSelectionContainer}
@@ -142,7 +143,7 @@ export class NotificationTimesModal extends React.Component {
                                             this.setState({ times: newMain })
                                         }
                                     }}>
-                                    <View style={[styles.weekdayNotificationTimeContainerView, {backgroundColor: this.props.saveButtonBackgroundColor}]}>
+                                    <View style={[styles.weekdayNotificationTimeContainerView, { backgroundColor: this.props.saveButtonBackgroundColor }]}>
                                         <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
                                         <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color={colorsProvider.whiteColor} />
                                     </View>
@@ -162,6 +163,7 @@ export class NotificationTimesModal extends React.Component {
                 saveButtonTextColor={this.props.saveButtonTextColor}
                 disabledSaveButtonTextColor={this.props.disabledSaveButtonTextColor}
                 transparent={true}
+                fromNotificationTimesModal={true}
                 onSubmit={(item) => {
                     selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
                     selectedDay.checked = true

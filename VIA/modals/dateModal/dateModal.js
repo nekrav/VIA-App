@@ -32,6 +32,19 @@ export class DateModal extends React.Component {
         });
     }
 
+    renderSetAndCloseButton(itemDate) {
+        if (this.props.fromNotificationTimesModal) {
+            return (
+                <View style={styles.bottomButtonExtraButtonContainer}>
+            <TouchableOpacity style={[styles.bottomButtonLeft, { backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor }]}
+                onPress={() => {this.props.onSubmit(this.state.itemDate); this.props.closeModal()}}>
+                <Text style={[styles.bottomButtonText, { color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor }]}>Select And Close</Text>
+            </TouchableOpacity>
+            </View>
+)
+        }
+    }
+
     render() {
         const { itemDate } = this.state
         return (
@@ -42,28 +55,31 @@ export class DateModal extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
                 <View style={styles.outerView}>
                     {this.props.children}
-                    <View style={styles.datePickerView}> 
-                    <DateTimePicker
-                        value={itemDate}
-                        mode={this.props.pickerMode}
-                        is24Hour={true}
-                        minimumDate={dateInDate}
-                        display="spinner"
-                        onChange={this.setDate}
-                    /></View>
+                    <View style={styles.datePickerView}>
+                        <DateTimePicker
+                            value={itemDate}
+                            mode={this.props.pickerMode}
+                            is24Hour={true}
+                            minimumDate={dateInDate}
+                            display="spinner"
+                            onChange={this.setDate}
+                        /></View>
                     <View style={styles.bottomButtonsContainer}>
-                    <TouchableOpacity style={[styles.bottomButtonLeft, {backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor}]} 
-                    onPress={() => this.props.onSubmit(this.state.itemDate)}>
-                        <Text style={[styles.bottomButtonText,{color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor}]}>Select</Text>
-                    </TouchableOpacity>
-                    
-                     <TouchableOpacity style={styles.bottomButtonRight} 
-                    onPress={
-                        this.props.closeModal}>
-                        <Text style={styles.bottomButtonText}>Close</Text>
-                    </TouchableOpacity>
-                   </View>
-                   {/* <View>
+                        <TouchableOpacity style={[styles.bottomButtonLeft, { backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor }]}
+                            onPress={() => this.props.onSubmit(this.state.itemDate)}>
+                            <Text style={[styles.bottomButtonText, { color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor }]}>Select</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.bottomButtonRight}
+                            onPress={
+                                this.props.closeModal}>
+                            <Text style={styles.bottomButtonText}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                  
+                    {this.renderSetAndCloseButton(itemDate)}
+    
+                    {/* <View>
                    <TouchableOpacity style={[styles.bottomButtonLeft, {backgroundColor: itemDate ? this.props.disabledSaveButtonBackgroundColor : this.props.saveButtonBackgroundColor}]} 
                     onPress={() => this.props.onSubmit(this.state.itemDate)}>
                         <Text style={[styles.bottomButtonText,{color: itemDate ? this.props.saveButtonTextColor : this.props.disabledSaveButtonTextColor}]}>Select</Text>

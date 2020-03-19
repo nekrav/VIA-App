@@ -50,15 +50,15 @@ module.exports = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
   },
+  bottomButtonExtraButtonContainer: {
+    paddingTop: 18,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
   /* #endregion */
 
   /* #region Create Bottom Buttons Section */
-  bottomButtonsContainer: {
-    paddingTop: 18,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
   bottomButtonLeftDisabled: {
     marginLeft: 50,
     paddingLeft: 35,
