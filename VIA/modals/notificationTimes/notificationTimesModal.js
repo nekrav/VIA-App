@@ -128,30 +128,28 @@ export class NotificationTimesModal extends React.Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        {/* <View style={{margin: 0,backgroundColor: 'yellow'}}> */}
-                            <FlatList
-                                horizontal={true}
-                                data={day.item.times}
-                                contentContainerStyle={{alignContent: 'center'}}
-                                style={{marginLeft: 10, marginRight: 10}}
-                                renderItem={({ item }) =>
-                                    <TouchableOpacity style={styles.weekdayNotificationTimeContainer}
-                                        onPress={() => {
-                                            var index = day.item.times.indexOf(item)
-                                            if (index !== -1) {
-                                                var newArr = day.item.times
-                                                newArr.splice(index, 1)
-                                                day.item.times = newArr
-                                                var newMain = this.state.times
-                                                this.setState({ times: newMain })
-                                            }
-                                        }}>
-                                        <View style={[styles.weekdayNotificationTimeContainerView, { backgroundColor: this.props.saveButtonBackgroundColor }]}>
-                                            <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
-                                            <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color={colorsProvider.whiteColor} />
-                                        </View>
-                                    </TouchableOpacity>} />
-                                    {/* </View> */}
+                        <FlatList
+                            horizontal={true}
+                            data={day.item.times}
+                            contentContainerStyle={{marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                            style={{ marginLeft: 10, marginRight: 10 }}
+                            renderItem={({ item }) =>
+                                <TouchableOpacity style={styles.weekdayNotificationTimeContainer}
+                                    onPress={() => {
+                                        var index = day.item.times.indexOf(item)
+                                        if (index !== -1) {
+                                            var newArr = day.item.times
+                                            newArr.splice(index, 1)
+                                            day.item.times = newArr
+                                            var newMain = this.state.times
+                                            this.setState({ times: newMain })
+                                        }
+                                    }}>
+                                    <View style={[styles.weekdayNotificationTimeContainerView, { backgroundColor: this.props.saveButtonBackgroundColor }]}>
+                                        <Text style={styles.weekdayNotificationTimeText}>{item}</Text>
+                                        <SIcon style={{ marginLeft: 10, }} name="minus" size={16} color={colorsProvider.whiteColor} />
+                                    </View>
+                                </TouchableOpacity>} />
                     </View>
                 } />
         )
