@@ -40,6 +40,7 @@ module.exports = StyleSheet.create({
 
   /* #region  Create Name Section */
   createNameContainer: {
+    justifyContent: 'space-between',
     borderRadius: 10,
     backgroundColor: colorsProvider.habitsMainColor,
     borderTopWidth: 2,

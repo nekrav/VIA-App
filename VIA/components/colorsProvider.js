@@ -6,6 +6,7 @@ export const fontButtonSize = 16
 export const fontSizeMain = 30
 export const fontSizeAddButton = 50
 export const fontSizeSliderTitle = 24
+export const fontSizeInputButton = 18
 /* #endregion */
 
 /* #region  General */
