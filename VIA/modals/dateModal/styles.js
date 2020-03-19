@@ -85,7 +85,7 @@ module.exports = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: colorsProvider.shadow,
   },
-  bottomButtonLeft: {
+  bottomButtonRight: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -94,7 +94,7 @@ module.exports = StyleSheet.create({
     borderRadius: 20,
     // borderWidth: 2,
     // borderColor: colorsProvider.homeComplimentaryColor,
-    backgroundColor: colorsProvider.homeComplimentaryColor,
+    backgroundColor: colorsProvider.whitePlaceholderColor,
     // alignContent: 'center',
     // alignItems: 'center',
     justifyContent: 'center',
@@ -118,7 +118,7 @@ module.exports = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: colorsProvider.shadow,
   },
-  bottomButtonRight: {
+  bottomButtonLeft: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
