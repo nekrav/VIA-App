@@ -52,10 +52,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   hasNameTextInputContainer: {
     borderRadius: 10,
@@ -70,10 +67,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   createNameText: {
     fontSize: colorsProvider.fontSizeMain,
@@ -106,10 +100,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   createDateText: {
     fontSize: colorsProvider.fontSizeChildren,
@@ -215,10 +206,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   hasProjectSelectionContainer: {
     borderRadius: 10,
@@ -234,10 +222,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   createProjectSelectionButtonText: {
     fontSize: colorsProvider.fontSizeChildren,
@@ -274,10 +259,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
 
   hasNotificationTimesButtonContainer: {
@@ -296,10 +278,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   notificationTimeButtonText: {
     fontSize: colorsProvider.fontSizeChildren,
@@ -340,10 +319,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
     height: '100%',
   },
   hasNotesContainer: {
@@ -363,10 +339,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
     height: '100%',
   },
   createNotesText: {

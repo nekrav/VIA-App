@@ -2,7 +2,7 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
 
@@ -66,10 +66,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   /* #endregion */
 
@@ -86,10 +83,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   bottomButtonLeft: {
     marginLeft: 50,
@@ -107,10 +101,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   bottomButtonCenter: {
     marginLeft: 50,
@@ -125,10 +116,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   bottomButtonRight: {
     marginLeft: 50,
@@ -142,10 +130,7 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    shadowOffset: colorsProvider.shadow,
   },
   bottomButtonText: {
     fontSize: 18,
