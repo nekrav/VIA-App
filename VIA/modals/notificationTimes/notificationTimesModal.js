@@ -1,21 +1,14 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView } from 'react-native'; // Version can be specified in package.json
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { Text, View, TouchableOpacity, Modal, FlatList, SafeAreaView } from 'react-native'; // Version can be specified in package.json
 import Moment from 'moment'
-import { TabView, SceneMap } from 'react-native-tab-view';
 import { CheckBox } from 'react-native-elements'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import { ScrollView } from 'react-native-gesture-handler';
 import { DateModal } from '../dateModal/dateModal'
-
 import { Notifier } from '../../notifier/notifier'
 
 const styles = require('./styles');
 
-var date = new Date().getDate(); //Current Date
-var month = new Date().getMonth(); //Current Month
-var year = new Date().getFullYear(); //Current Year
 var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
@@ -111,8 +104,8 @@ export class NotificationTimesModal extends React.Component {
                                 center
                                 key={day.item.key.toString()}
                                 // title={day.item.name}
-                                checkedIcon='dot-circle-o'
-                                uncheckedIcon='circle-o'
+                                checkedIcon ={colorsProvider.checkboxIcon}
+                                uncheckedIcon = {colorsProvider.checkboxIcon}
                                 checked={day.item.checked}
                                 textStyle={styles.checkboxText}
                                 containerStyle={styles.weekSelectionContainer}
@@ -171,6 +164,7 @@ export class NotificationTimesModal extends React.Component {
                 transparent={true}
                 onSubmit={(item) => {
                     selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
+                    selectedDay.checked = true
                     newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
                     selectedDay.times = newArray
                     this.setState({ times: arr });

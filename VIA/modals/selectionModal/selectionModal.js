@@ -13,7 +13,7 @@ export class SelectionModal extends React.Component {
             items: this.props.items,
         };
     }
-    
+
     render() {
         if (this.state.items != null) {
             return (
@@ -24,24 +24,22 @@ export class SelectionModal extends React.Component {
                     onRequestClose={this.props.onRequestClose}>
                     <SafeAreaView style={styles.outerView}>
                         {this.props.children}
-                        <View style={[styles.titleView, {backgroundColor: this.props.titleContainerColor}]}>
-                            <Text style={[styles.titleText, {color: this.props.titleTextColor}]}>Select {this.props.itemName} </Text>
+                        <View style={[styles.titleView, { backgroundColor: this.props.titleContainerColor }]}>
+                            <Text style={[styles.titleText, { color: this.props.titleTextColor }]}>Select {this.props.itemName} </Text>
                         </View>
-                        <View style={styles.itemsContainerView}> 
-                        <FlatList
-                            data={this.props.items}
-                            renderItem={({ item }) => 
-                            <TouchableOpacity
-                                style={[styles.itemsContainer, {backgroundColor: this.props.titleContainerColor}]}
-                                onPress={() => {
-                                    this.props.closeModal();
-                                    this.props.selectItem(item)
-                                }}>
-                                    <Text
-                                        style={[styles.itemText, {color: this.props.titleTextColor}]}
-                                    >{item.value.name}</Text>
-                            </TouchableOpacity>} />
-                            </View>
+                        <View style={styles.itemsContainerView}>
+                            <FlatList
+                                data={this.props.items}
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity
+                                        style={[styles.itemsContainer, { backgroundColor: this.props.titleContainerColor }]}
+                                        onPress={() => {
+                                            this.props.closeModal();
+                                            this.props.selectItem(item)
+                                        }}>
+                                        <Text style={[styles.itemText, { color: this.props.titleTextColor }]}>{item.value.name}</Text>
+                                    </TouchableOpacity>} />
+                        </View>
                         <View>
                             <TouchableOpacity style={styles.bottomButtonContainer} onPress={this.props.closeModal}>
                                 <Text style={styles.bottomButtonText}>Close</Text>
