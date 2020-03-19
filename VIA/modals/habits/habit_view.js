@@ -15,6 +15,12 @@ const controller = new Controller;
 const dateFormat = 'hh:mm A'
 const styles = require('./styles');
 
+var date = new Date().getDate(); //Current Date
+var month = new Date().getMonth(); //Current Month
+var year = new Date().getFullYear(); //Current Year
+const todaysDate = year + '-' + month + '-' + date;
+const dateToday = new Date(year, month, date);
+
 export class ViewHabit extends React.Component {
 
     constructor(props) {
@@ -271,27 +277,6 @@ export class ViewHabit extends React.Component {
     /* #endregion */
 
     /* #region  Complete Button Section */
-
-    // renderCompleteButton() {
-    //     return (<TouchableOpacity
-    //         style={styles.completeButtonBody}
-    //         onLongPress={() => {
-    //             this.setState({ percentVal: 0 })
-    //             this.props.editCompleted("false")
-    //             this.props.editPercentageDone(0)
-    //         }
-    //         }
-    //         onPress={() => {
-    //             this.setState({ percentVal: 100 })
-    //             this.props.editPercentageDone(100)
-    //             this.props.editCompleted("true")
-
-    //         }
-    //         }>
-    //         {this.renderCompleteButtonText()}
-    //     </TouchableOpacity>)
-    // }
-
     renderCompleteButton() {
         if (this.state.selectedItem.completed == "true")
             return (
@@ -301,13 +286,13 @@ export class ViewHabit extends React.Component {
                         this.setState({ percentVal: 0 })
                         this.props.editCompleted("false")
                         this.props.editPercentageDone(0)
+                        this.props.editFinishedDate("");
                     }
                     }
                     onPress={() => {
                         this.setState({ percentVal: 100 })
                         this.props.editPercentageDone(100)
                         this.props.editCompleted("true")
-
                     }
                     }>
                     <Text style={styles.completeButtonText}>Done</Text>
@@ -328,7 +313,7 @@ export class ViewHabit extends React.Component {
                         this.setState({ percentVal: 100 })
                         this.props.editPercentageDone(100)
                         this.props.editCompleted("true")
-
+                        this.props.editFinishedDate(dateToday);
                     }
                     }>
                     <Text style={styles.completeButtonText}>Complete</Text>

@@ -9,6 +9,7 @@ export class Habits {
         this.importance = props.importance
         this.percentage_done = props.percentage_done
         this.completed = props.completed
+        this.finished_date = props.finished_date
         this.time_to_spend = props.time_to_spend
         this.time_spent = props.time_spent
         this.notification_time = props.notification_time
@@ -22,6 +23,7 @@ export class Habits {
             'id text not null primary key unique, ' +
             'name text NOT NULL, ' +
             'created_date text NOT NULL, ' +
+            'finished_date text, ' +
             'start_time text, ' +
             'end_time text, ' +
             'importance text, ' +

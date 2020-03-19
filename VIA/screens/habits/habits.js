@@ -120,6 +120,10 @@ export class HabitsScreen extends React.Component {
                         theHabit.completed = text;
                         this.setState({ selectedItem: theHabit })
                     }}
+                    editFinishedDate={(text) => {
+                        theHabit.finished_date = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
                     editTimeToSpend={(text) => {
                         theHabit.time_to_spend = text;
                         this.setState({ selectedItem: theHabit })

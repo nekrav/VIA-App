@@ -20,6 +20,7 @@ export class Random {
         'id text not null primary key unique, ' +
         'name text NOT NULL, ' +
         'created_date text NOT NULL, ' +
+        'finished_date text, ' +
         'due_date text, ' +
         'importance text, ' +
         'percentage_done text, ' +

@@ -19,6 +19,7 @@ module.exports = StyleSheet.create({
   outerViewDone: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: colorsProvider.habitsMainColor,
     justifyContent: 'space-between',
   },
   /* #endregion */
@@ -453,6 +454,7 @@ bottomButtonTextDisabled: {
   completeButtonBody: {
     margin: 10,
     borderWidth: 2,
+    borderColor: colorsProvider.habitsComplimentaryColor,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -461,8 +463,9 @@ bottomButtonTextDisabled: {
   completeButtonBodyDone: {
     margin: 10,
     borderColor: colorsProvider.habitsComplimentaryColor,
-    backgroundColor: colorsProvider.habitsMainColor,
+    backgroundColor: colorsProvider.finishedBackgroundColor,
     borderWidth: 2,
+    borderColor: colorsProvider.habitsComplimentaryColor,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -470,6 +473,7 @@ bottomButtonTextDisabled: {
   },
   completeButtonText: {
     fontFamily: fontFamily,
+    color: colorsProvider.habitsComplimentaryColor,
     fontSize: colorsProvider.fontSizeChildren,
   },
   /* #endregion */

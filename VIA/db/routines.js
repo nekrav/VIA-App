@@ -19,6 +19,7 @@ export class Routines {
             'id text not null primary key unique, ' +
             'name text NOT NULL, ' +
             'created_date text NOT NULL, ' +
+            'finished_date text, ' +
             'start_time text, ' +
             'end_time text, ' +
             'due_time text,' + 
