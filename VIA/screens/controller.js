@@ -2,7 +2,11 @@ import React from 'react';
 import { Database, Habits } from '../db'
 import { Notifier } from '../notifier/notifier'
 
+const oneDay = 60 * 60 * 24 * 1000;
+
 export class Controller extends React.Component {
+
+
 
     setAddModalVisible(object, visible) {
         object.setState({ addModalVisible: visible });
@@ -67,6 +71,18 @@ export class Controller extends React.Component {
             }, () => {
                 this.saveExisting(object, tableName, item)
             })
+        }
+    }
+
+    getTodaysDate() {
+        return new Date(Date.now());
+    }
+
+    deleteAfterOneDay(object, tableName, item) {
+        if (item.finished_date != "") {
+            if (this.getTodaysDate() - Date.parse(item.finished_date) > oneDay) {
+                this.delete(object, tableName, item);
+            }
         }
     }
 
