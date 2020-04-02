@@ -20,7 +20,6 @@ module.exports = StyleSheet.create({
 
     /* #region  Top Navigation */
     topNav: {
-        marginBottom: 5,
         backgroundColor: colorsProvider.routinesMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',

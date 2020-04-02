@@ -20,30 +20,6 @@ module.exports = StyleSheet.create({
 
     /* #region  Top Navigation */
     topNav: {
-        // marginBottom: 5,
-        // backgroundColor: colorsProvider.habitsMainColor,
-        // flexDirection: "row",
-        // justifyContent: 'space-between',
-        // marginLeft: "10%",
-        // marginRight: "10%",
-        // alignItems: "center",
-        // alignContent: "center",
-        // borderRadius: 10,
-        // borderTopWidth: 2,
-        // borderTopColor: colorsProvider.habitsMainColor,
-        // flexDirection: "row",
-        // marginRight: 10,
-        // marginLeft: 10,
-        // marginBottom: 5,
-        // marginTop: 2,
-        // paddingRight: 10,
-        // paddingLeft: 10,
-        // shadowColor: colorsProvider.habitsMainColor,
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: colorsProvider.shadow
-
-        marginBottom: 5,
         backgroundColor: colorsProvider.habitsMainColor,
         flexDirection: "row",
         justifyContent: 'space-between',
