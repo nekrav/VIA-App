@@ -120,8 +120,6 @@ module.exports = StyleSheet.create({
         marginBottom: 5,
 
         borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.projectsMainColor,
         flexDirection: "row",
      
         marginTop: 2,

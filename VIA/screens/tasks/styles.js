@@ -90,8 +90,7 @@ module.exports = StyleSheet.create({
         marginBottom: 20,
         marginTop: 2,
         borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.tasksMainColor,
+       
         flexDirection: "row",
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
