@@ -257,15 +257,6 @@ export class ViewRoutine extends React.Component {
                                 Habits in {this.state.selectedItem.name}
                             </Text>
                         </View>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setTaskSelectionModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Habit</Text>
-                            </View>
-                        </TouchableOpacity> */}
                     </View>
                     <FlatList
                         data={this.state.relatedChildren}
@@ -324,6 +315,16 @@ export class ViewRoutine extends React.Component {
                                     </View>
                                 </View></TouchableWithoutFeedback>
                         } />
+                        <View style={{alignItems:'center', marginTop: 5, marginBottom: 10}}>
+                    <TouchableOpacity style={styles.addTimeButtonContainer}
+                        onPress={() => {
+                            this.setTaskSelectionModalVisibility(true)
+                        }}>
+                        <View style={styles.addTimeButtonContainerView}>
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                        </View>
+                    </TouchableOpacity></View>
                 </View>
             );
         } else {
@@ -333,7 +334,7 @@ export class ViewRoutine extends React.Component {
                         <Text style={styles.childrenItemsTitleText}>
                             Habits in {this.state.selectedItem.name}
                         </Text>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
                                     this.toggleNotificationTimeSelectionModal(true)
@@ -343,7 +344,7 @@ export class ViewRoutine extends React.Component {
                                 <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                                 <Text style={styles.addTimeButtonText}> Add Habit</Text>
                             </View>
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
                     </View>
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
                     <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
