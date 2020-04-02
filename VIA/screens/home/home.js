@@ -78,7 +78,6 @@ export class HomeScreen extends React.Component {
                     randomTasks: itemsArr
                 })
             })
-
     }
 
     getHomeData() {
@@ -258,31 +257,31 @@ export class HomeScreen extends React.Component {
                         extraData={this.state}
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={() => {}}>
-                            <View style={styles.childContainer}>
-                                <CheckBox
-                                    center
-                                    checkedIcon={colorsProvider.checkboxIcon}
-                                    uncheckedIcon={colorsProvider.checkboxIcon}
-                                    containerStyle={colorsProvider.checkboxContainerStyle}
-                                    checkedColor={colorsProvider.finishedBackgroundColor}
-                                    uncheckedColor={colorsProvider.homePlaceholderColor}
-                                    size={colorsProvider.checkboxIconSize}
-                                    onPress={() => {
-                                        item.value.completed = !this.getChecked(item)
-                                        controller.saveExisting(this, childDBTableName, item.value)
-                                        this.getRandomTasks();
-                                    }}
-                                    checked={this.getChecked(item)}
-                                />
-                                <View style={styles.childTitleContainer}>
-                                    <Text
-                                        numberOfLines={1}
-                                        multiline={false}
-                                        style={styles.childTitleText}>{item.value.name} </Text>
-                                </View>
-                                <View style={styles.childActionButtonsContainer}>
-                                    {/* <TouchableOpacity
+                            <TouchableWithoutFeedback onPress={() => { }}>
+                                <View style={styles.childContainer}>
+                                    <CheckBox
+                                        center
+                                        checkedIcon={colorsProvider.checkboxIcon}
+                                        uncheckedIcon={colorsProvider.checkboxIcon}
+                                        containerStyle={colorsProvider.checkboxContainerStyle}
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
+                                        uncheckedColor={colorsProvider.homePlaceholderColor}
+                                        size={colorsProvider.checkboxIconSize}
+                                        onPress={() => {
+                                            item.value.completed = !this.getChecked(item)
+                                            controller.saveExisting(this, childDBTableName, item.value)
+                                            this.getRandomTasks();
+                                        }}
+                                        checked={this.getChecked(item)}
+                                    />
+                                    <View style={styles.childTitleContainer}>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.childTitleText}>{item.value.name} </Text>
+                                    </View>
+                                    <View style={styles.childActionButtonsContainer}>
+                                        {/* <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             controller.delete(this, childDBTableName, item.value)
@@ -292,19 +291,19 @@ export class HomeScreen extends React.Component {
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                     </TouchableOpacity> */}
 
-                                    <TouchableOpacity
-                                        style={styles.childActionButton}
-                                        onPress={() => {
-                                            // this.setDateModalVisibility(true)
-                                            this.setViewRandomModalVisibility(true)
-                                            this.setState({ selectedRandom: item.value }, () => {
+                                        <TouchableOpacity
+                                            style={styles.childActionButton}
+                                            onPress={() => {
+                                                // this.setDateModalVisibility(true)
                                                 this.setViewRandomModalVisibility(true)
-                                            })
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View></TouchableWithoutFeedback>
+                                                this.setState({ selectedRandom: item.value }, () => {
+                                                    this.setViewRandomModalVisibility(true)
+                                                })
+                                            }}>
+                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View></TouchableWithoutFeedback>
                         } />
                 </View>
             );

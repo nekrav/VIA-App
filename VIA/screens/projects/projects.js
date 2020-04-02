@@ -187,7 +187,7 @@ export class ProjectsScreen extends React.Component {
                                         checkedIcon={colorsProvider.checkboxIcon}
                                         uncheckedIcon={colorsProvider.checkboxIcon}
                                         checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.projectsComplimentaryColor}
+                                        uncheckedColor={colorsProvider.habitsPlaceholderColor}
                                         size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)

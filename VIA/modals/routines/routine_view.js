@@ -67,6 +67,23 @@ export class ViewRoutine extends React.Component {
         this.props.editCompleted("true")
     }
 
+    getHabits() {
+        const itemsArr = []
+        Database.getAll(Habits.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    children: itemsArr
+                })
+            })
+
+    }
+
     /* #region  Top Bar Region */
     renderTopBar() {
         return (<View style={styles.topNav}>
@@ -138,6 +155,10 @@ export class ViewRoutine extends React.Component {
                     }}
                     editCompleted={(text) => {
                         theHabit.completed = text;
+                        this.setState({ selectedChildItem: theHabit })
+                    }}
+                    editFinishedDate={(text) => {
+                        theHabit.finished_date = text;
                         this.setState({ selectedChildItem: theHabit })
                     }}
                     editTimeToSpend={(text) => {
@@ -219,6 +240,12 @@ export class ViewRoutine extends React.Component {
         }
     }
 
+    getChecked(item) {
+        if (item != null)
+            var checked = false
+        return checked = item.value.completed === "true"
+    }
+
     renderAllChildrenSection() {
         if (this.state.relatedChildren.length > 0) {
             return (
@@ -247,13 +274,32 @@ export class ViewRoutine extends React.Component {
                             <TouchableWithoutFeedback onPress={() => { }}>
                                 <View style={styles.childContainer}>
                                     <View style={styles.childTitleContainer}>
+                                        <CheckBox
+                                            center
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            containerStyle={colorsProvider.checkboxContainerStyle}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            uncheckedColor={colorsProvider.homePlaceholderColor}
+                                            size={colorsProvider.checkboxIconSize}
+                                            onPress={() => {
+                                                item.value.completed = !this.getChecked(item)
+                                                if (item.value.completed == true) {
+                                                    item.value.finished_date = new Date(Date.now())
+                                                } else {
+                                                    item.value.finished_date == ""
+                                                }
+                                                controller.saveExisting(this, childTableName, item.value)
+                                                this.getHabits();
+                                            }}
+                                            checked={this.getChecked(item)} />
                                         <Text
                                             numberOfLines={1}
                                             multiline={false}
                                             style={styles.childTitleText}>{item.value.name} </Text>
                                     </View>
                                     <View style={styles.childActionButtonsContainer}>
-                                        <TouchableOpacity
+                                        {/* <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
                                                 controller.delete(this, childTableName, item.value)
@@ -261,7 +307,7 @@ export class ViewRoutine extends React.Component {
                                                 notifier.scheduleAllNotifications();
                                             }}>
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-                                        </TouchableOpacity>
+                                        </TouchableOpacity> */}
 
                                         <TouchableOpacity
                                             style={styles.childActionButton}

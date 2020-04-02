@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../../components/colorsProvider';
 
 const fontFamily = Platform.OS == 'ios' ? colorsProvider.font : colorsProvider.font;
@@ -127,7 +127,7 @@ module.exports = StyleSheet.create({
   sliderSlider: {
     width: 250,
     height: 1,
-    transform: [{rotate: '270deg'}],
+    transform: [{ rotate: '270deg' }],
   },
   slidersSection: {
     flexDirection: 'column',
@@ -303,9 +303,9 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     borderRadius: 10,
-    backgroundColor:  colorsProvider.dirtyWhiteColor,
+    backgroundColor: colorsProvider.dirtyWhiteColor,
     borderTopWidth: 2,
-    borderTopColor:  colorsProvider.dirtyWhiteColor,
+    borderTopColor: colorsProvider.dirtyWhiteColor,
     flexDirection: 'row',
     marginRight: 10,
     marginLeft: 10,
@@ -411,14 +411,14 @@ module.exports = StyleSheet.create({
   // },
   // /* #endregion */
 
-   /* #region Create Bottom Buttons Section */
-   bottomButtonsContainer: {
+  /* #region Create Bottom Buttons Section */
+  bottomButtonsContainer: {
     paddingTop: 18,
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
-},
-bottomButtonLeftClose: {
+  },
+  bottomButtonLeftClose: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -426,12 +426,12 @@ bottomButtonLeftClose: {
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor:  colorsProvider.routinesPlaceholderColor,
-    backgroundColor:  colorsProvider.routinesPlaceholderColor,
+    borderColor: colorsProvider.routinesPlaceholderColor,
+    backgroundColor: colorsProvider.routinesPlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
 
-},
-bottomButtonLeftDisabled: {
+  },
+  bottomButtonLeftDisabled: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -439,14 +439,14 @@ bottomButtonLeftDisabled: {
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor:  colorsProvider.routinesPlaceholderColor,
-    backgroundColor:  colorsProvider.routinesPlaceholderColor,
+    borderColor: colorsProvider.routinesPlaceholderColor,
+    backgroundColor: colorsProvider.routinesPlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: colorsProvider.shadow
-},
-bottomButtonLeft: {
+  },
+  bottomButtonLeft: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -460,8 +460,8 @@ bottomButtonLeft: {
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: colorsProvider.shadow
-},
-bottomButtonRight: {
+  },
+  bottomButtonRight: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -469,15 +469,15 @@ bottomButtonRight: {
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor:  colorsProvider.routinesComplimentaryColor,
+    borderColor: colorsProvider.routinesComplimentaryColor,
     backgroundColor: colorsProvider.routinesComplimentaryColor,
     marginRight: 50,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
     shadowOffset: colorsProvider.shadow
-},
-bottomButtonRightDisabled: {
+  },
+  bottomButtonRightDisabled: {
     marginLeft: 50,
     marginRight: 50,
     paddingLeft: 35,
@@ -486,20 +486,20 @@ bottomButtonRightDisabled: {
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor:  colorsProvider.routinesPlaceholderColor,
-},
-bottomButtonText: {
-  fontSize: colorsProvider.fontButtonSize,
+    borderColor: colorsProvider.routinesPlaceholderColor,
+  },
+  bottomButtonText: {
+    fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
     color: colorsProvider.homeTextColor,
-},
-bottomButtonTextDisabled: {
+  },
+  bottomButtonTextDisabled: {
     fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
     color: colorsProvider.routinesMainColor,
-},
+  },
   /* #endregion */
 
 
@@ -606,7 +606,7 @@ bottomButtonTextDisabled: {
   /* #endregion */
 
   /* #endregion */
- 
+
   /* #region  Children Container */
   childrenContainer: {
     flexGrow: 1,
@@ -631,7 +631,6 @@ bottomButtonTextDisabled: {
     borderTopWidth: 2,
     borderTopColor: colorsProvider.habitsMainColor,
     flexDirection: 'row',
-
     marginTop: 2,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
@@ -643,14 +642,17 @@ bottomButtonTextDisabled: {
   },
 
   /* #endregion */
-  
+
   /* #region  Child Item Section */
   childTitleContainer: {
     flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   childTitleText: {
     color: colorsProvider.habitsComplimentaryColor,
     fontSize: 30,
+    fontFamily: colorsProvider.font,
     marginLeft: 10,
   },
   childActionButtonsContainer: {
