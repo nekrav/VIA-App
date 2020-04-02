@@ -517,7 +517,7 @@ export class ViewRoutine extends React.Component {
 
     renderCompleteButtonText() {
         if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, fontFamily: colorsProvider.font}}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
             )
         else
             return (<Text style={styles.completeButtonText}>Complete</Text>)

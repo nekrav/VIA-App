@@ -525,6 +525,11 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     height: '12%',
   },
+  completeButtonText: {
+    fontFamily: fontFamily,
+    color: colorsProvider.routinesComplimentaryColor,
+    fontSize: colorsProvider.fontSizeChildren,
+  },
   /* #endregion */
 
   /* #region  Children Items Section */

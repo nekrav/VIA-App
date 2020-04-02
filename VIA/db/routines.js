@@ -7,7 +7,7 @@ export class Routines {
         this.created_date = props.created_date
         this.start_time = props.start_time
         this.end_time = props.end_time
-        this.due_time = props.due_time
+        // this.due_time = props.due_time
         this.completed = props.completed
         this.time_spent = props.time_spent
         this.notification_time = props.notification_time
@@ -22,7 +22,7 @@ export class Routines {
             'finished_date text, ' +
             'start_time text, ' +
             'end_time text, ' +
-            'due_time text,' + 
+            // 'due_time text,' + 
             'completed text,' + 
             'time_spent text, ' +
             'notification_time text, ' +
