@@ -429,6 +429,7 @@ export class ViewRoutine extends React.Component {
                 onPress={() => {
                     this.setState({ percentVal: 100 })
                     this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
                 }
                 }>
                 {this.renderCompleteButtonText()}
@@ -446,6 +447,7 @@ export class ViewRoutine extends React.Component {
                 onPress={() => {
                     this.setState({ percentVal: 100 })
                     this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
                 }
                 }>
                 {this.renderCompleteButtonText()}
@@ -468,7 +470,6 @@ export class ViewRoutine extends React.Component {
     }
 
     renderCompleteButtonText() {
-        console.warn()
         if (this.state.selectedItem.completed == "true")
             return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
             )

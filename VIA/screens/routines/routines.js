@@ -173,12 +173,12 @@ export class RoutinesScreen extends React.Component {
                                         size={colorsProvider.checkboxIconSize}
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
-                                            controller.saveExisting(this, dbTableName, item.value)
                                             if (item.value.completed == true) {
                                                 item.value.finished_date = new Date(Date.now())
                                             } else {
                                                 item.value.finished_date == ""
                                             }
+                                            controller.saveExisting(this, dbTableName, item.value)
                                         }}
                                         checked={this.getChecked(item)}/>
                                     <View style={styles.listItemTextContainer}>
