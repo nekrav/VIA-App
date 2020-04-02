@@ -656,7 +656,7 @@ module.exports = StyleSheet.create({
   },
   childTitleText: {
     color: colorsProvider.habitsComplimentaryColor,
-    fontSize: 30,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: colorsProvider.font,
     marginLeft: 10,
   },
