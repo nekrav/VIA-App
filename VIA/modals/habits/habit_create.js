@@ -128,29 +128,31 @@ export class CreateHabit extends React.Component {
     renderStartDate() {
         if (this.state.itemStartDate != '') {
             return (
-                <View style={styles.createNameContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.setStartDateModalVisibility(true)}
-                    >
-                        <Text style={styles.hasDateText}>
-                            {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
-                    {/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
-                </View>
+                <TouchableOpacity
+                    style={styles.createNameContainer}
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        this.setStartDateModalVisibility(true)
+                    }}>
+                    <Text style={styles.hasDateText}>
+                        {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
+                    </Text>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
+                            ' days left'}
+                    </Text>
+                </TouchableOpacity>
             );
         }
         return (
-            <View style={styles.createNameContainer}>
-                <TouchableOpacity onPress={() => this.setStartDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want this habit to start?
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss();
+                this.setStartDateModalVisibility(true)
+            }}>
+                <Text style={styles.createDateText}>
+                    When do you want this habit to start?
           </Text>
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
         );
     }
 
@@ -191,29 +193,36 @@ export class CreateHabit extends React.Component {
     renderEndDate() {
         if (this.state.itemEndDate != '') {
             return (
-                <View style={styles.createNameContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.setEndDateModalVisibility(true)}
-                    >
-                        <Text style={styles.hasDateText}>
-                            {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
-                        </Text>
-                    </TouchableOpacity>
-                    {/* <Text style={styles.createSelectedDateText}>
-						{Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
-							' days left'}
-					</Text> */}
-                </View>
+                // <View style={styles.createNameContainer}>
+                <TouchableOpacity
+                    style={styles.createNameContainer}
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        this.setEndDateModalVisibility(true)
+                    }}>
+                    <Text style={styles.hasDateText}>
+                        {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
+                    </Text>
+                    <Text style={styles.createSelectedDateText}>
+                        {Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
+                            ' days left'}
+                    </Text>
+                </TouchableOpacity>
+
+                // </View>
             );
         }
         return (
-            <View style={styles.createNameContainer}>
-                <TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
-                    <Text style={styles.createDateText}>
-                        When do you want this habit to end?
+            // <View style={styles.createNameContainer}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss();
+                this.setEndDateModalVisibility(true)
+            }}>
+                <Text style={styles.createDateText}>
+                    When do you want this habit to end?
           </Text>
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
+            // </View>
         );
     }
 
@@ -254,7 +263,10 @@ export class CreateHabit extends React.Component {
                     <TouchableOpacity
                         style={styles.hasProjectSelectionContainer}
                         onPress={() => {
-                            this.setRoutineSelectionModalVisibility(true);
+                            Keyboard.dismiss()
+                            // this.setRoutineSelectionModalVisibility.bind(this)
+                            this.setState({ routineSelectionModalVisible: true })
+                            // this.setRoutineSelectionModalVisibility.
                         }}
                     >
                         <Text style={styles.hasProjectSelectionButtonText}>
@@ -270,7 +282,12 @@ export class CreateHabit extends React.Component {
                 <View style={styles.routineSectionContainer}>
                     <TouchableOpacity
                         style={styles.createProjectSelectionContainer}
-                        onPress={this.setRoutineSelectionModalVisibility.bind(this)}
+                        onPress={() => {
+                            Keyboard.dismiss()
+                            // this.setRoutineSelectionModalVisibility.bind(this)
+                            this.setState({ routineSelectionModalVisible: true })
+                            // this.setRoutineSelectionModalVisibility.
+                        }}
                     >
                         <Text style={styles.createProjectSelectionButtonText}>
                             Is this part of a bigger routine?

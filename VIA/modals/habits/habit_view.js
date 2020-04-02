@@ -141,7 +141,11 @@ export class ViewHabit extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createProjectSelectionContainer}
-                    onPress={this.setRoutineSelectionModalVisibility.bind(this)}
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setRoutineSelectionModalVisibility.bind(this)
+                    }
+                    }
                 >
                     <Text style={styles.createProjectSelectionButtonText}>
                         Is this part of a bigger routine?

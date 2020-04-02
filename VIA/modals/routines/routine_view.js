@@ -81,7 +81,6 @@ export class ViewRoutine extends React.Component {
                     children: itemsArr
                 })
             })
-
     }
 
     /* #region  Top Bar Region */
@@ -280,7 +279,7 @@ export class ViewRoutine extends React.Component {
                                             uncheckedIcon={colorsProvider.checkboxIcon}
                                             containerStyle={colorsProvider.checkboxContainerStyle}
                                             checkedColor={colorsProvider.finishedBackgroundColor}
-                                            uncheckedColor={colorsProvider.homePlaceholderColor}
+                                            uncheckedColor={colorsProvider.habitsPlaceholderColor}
                                             size={colorsProvider.checkboxIconSize}
                                             onPress={() => {
                                                 item.value.completed = !this.getChecked(item)
@@ -289,6 +288,7 @@ export class ViewRoutine extends React.Component {
                                                 } else {
                                                     item.value.finished_date == ""
                                                 }
+                                                console.warn(item.value)
                                                 controller.saveExisting(this, childTableName, item.value)
                                                 this.getHabits();
                                             }}
@@ -499,25 +499,11 @@ export class ViewRoutine extends React.Component {
                 {this.renderCompleteButtonText()}
             </TouchableOpacity>);
         }
-        // return (<TouchableOpacity
-        //     style={styles.completeButtonBody}
-        //     onLongPress={() => {
-        //         this.setState({ percentVal: 0 })
-        //         this.props.editCompleted("false")
-        //     }
-        //     }
-        //     onPress={() => {
-        //         this.setState({ percentVal: 100 })
-        //         this.props.editCompleted("true")
-        //     }
-        //     }>
-        //     {this.renderCompleteButtonText()}
-        // </TouchableOpacity>)
     }
 
     renderCompleteButtonText() {
         if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, fontFamily: colorsProvider.font}}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, fontFamily: colorsProvider.font }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
             )
         else
             return (<Text style={styles.completeButtonText}>Complete</Text>)
