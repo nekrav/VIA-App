@@ -196,9 +196,9 @@ export class ViewHabit extends React.Component {
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
                     onPress={() => this.setStartDateModalVisibility(true)}>
-                    <Text style={styles.createSelectedDateText}>
+                    {/* <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
-                    </Text>
+                    </Text> */}
                     <Text style={styles.notificationTimeButtonText}>
                         <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
                     </Text>

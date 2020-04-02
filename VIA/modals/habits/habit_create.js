@@ -137,10 +137,10 @@ export class CreateHabit extends React.Component {
                     <Text style={styles.hasDateText}>
                         {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
                     </Text>
-                    <Text style={styles.createSelectedDateText}>
+                    {/* <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
                             ' days left'}
-                    </Text>
+                    </Text> */}
                 </TouchableOpacity>
             );
         }
@@ -203,10 +203,10 @@ export class CreateHabit extends React.Component {
                     <Text style={styles.hasDateText}>
                         {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
                     </Text>
-                    <Text style={styles.createSelectedDateText}>
+                    {/* <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
                             ' days left'}
-                    </Text>
+                    </Text> */}
                 </TouchableOpacity>
 
                 // </View>
@@ -345,6 +345,7 @@ export class CreateHabit extends React.Component {
                 <TouchableOpacity
                     style={styles.hasNotificationTimesButtonContainer}
                     onPress={() => {
+                        Keyboard.dismiss();
                         this.setNotificationTimesVisibility(true);
                     }}
                 >
@@ -362,6 +363,7 @@ export class CreateHabit extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
                 onPress={() => {
+                    Keyboard.dismiss();
                     this.setNotificationTimesVisibility(true);
                 }}
             >
