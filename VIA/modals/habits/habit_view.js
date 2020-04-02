@@ -318,7 +318,7 @@ export class ViewHabit extends React.Component {
                         this.props.editCompleted("true")
                     }
                     }>
-                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: {this.state.selectedItem.finished_date.toString()})</Text></Text>
+                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateFormat)})</Text></Text>
                 </TouchableOpacity>
 
             )
