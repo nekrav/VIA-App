@@ -35,6 +35,9 @@ export class HabitsScreen extends React.Component {
     }
 
     componentDidMount() {
+        this.props.navigation.addListener('willFocus', (playload)=>{
+            controller.loadAll(this, dbTableName)
+          });
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications() 
     }

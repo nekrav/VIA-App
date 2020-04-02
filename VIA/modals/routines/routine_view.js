@@ -52,6 +52,7 @@ export class ViewRoutine extends React.Component {
     }
 
     componentDidMount() {
+        notifier.scheduleAllNotifications();
         controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
     }
 
@@ -81,6 +82,7 @@ export class ViewRoutine extends React.Component {
                     children: itemsArr
                 })
             })
+
     }
 
     /* #region  Top Bar Region */
@@ -288,9 +290,10 @@ export class ViewRoutine extends React.Component {
                                                 } else {
                                                     item.value.finished_date == ""
                                                 }
-                                                console.warn(item.value)
                                                 controller.saveExisting(this, childTableName, item.value)
-                                                this.getHabits();
+                                                // this.getHabits();
+                                                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+                                                controller.loadAll(this, Habits.TABLE_NAME)
                                             }}
                                             checked={this.getChecked(item)} />
                                         <Text

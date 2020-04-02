@@ -5,6 +5,8 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Habits } from './db'
 import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen, HomeScreen } from './screens'
 import { CreateHabit } from './modals'
+import { Controller } from './screens/controller'
+
 import { Notifier } from './notifier/notifier'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { TabButton } from '../VIA/components/tabButton'
@@ -12,6 +14,8 @@ import { TabBar } from '../VIA/components/tabBar'
 import { HomeButton } from '../VIA/components/homeButton'
 
 const notifier = new Notifier;
+const controller = new Controller;
+
 
 notifier.registerNotificationService();
 
@@ -30,6 +34,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
+          // loadElements={Database.init()}
           activeColor={colorsProvider.habitsComplimentaryColor}
           inactiveColor={colorsProvider.whiteColor}
           tintColor={ tintColor }

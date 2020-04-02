@@ -35,6 +35,9 @@ export class ProjectsScreen extends React.Component {
 
     componentDidMount() {
         notifier.scheduleAllNotifications()
+        this.props.navigation.addListener('willFocus', (playload)=>{
+            controller.loadAll(this, dbTableName)
+          });
         controller.loadAll(this, dbTableName)
     }
 
