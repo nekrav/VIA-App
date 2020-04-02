@@ -42,14 +42,13 @@ module.exports = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: colorsProvider.shadow
-
     },
     addItemButtonContainer: {
         justifyContent: "center",
     },
     addItemButtonText: {
         justifyContent: "center",
-        fontSize: 50,
+        fontSize: colorsProvider.fontSizeAddButton,
         color: colorsProvider.routinesComplimentaryColor
     },
     topNavLeftTitleText: {
