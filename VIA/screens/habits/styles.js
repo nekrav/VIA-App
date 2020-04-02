@@ -74,7 +74,6 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 20,
-        marginTop: 20,
         borderRadius: 10,
         borderTopWidth: 2,
         borderTopColor: colorsProvider.habitsMainColor,

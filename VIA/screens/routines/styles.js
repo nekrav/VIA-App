@@ -65,6 +65,7 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+     /* #region  List Item Section */
     listItemContainer: {
         backgroundColor: colorsProvider.routinesMainColor,
         justifyContent: 'space-between',
@@ -79,7 +80,8 @@ module.exports = StyleSheet.create({
         shadowColor: shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
+        shadowOffset: colorsProvider.shadow,
+        padding: 5,
     },
 
     listItemContainerFinished:{
@@ -97,7 +99,8 @@ module.exports = StyleSheet.create({
         shadowColor: shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
+        shadowOffset: colorsProvider.shadow,
+        padding: 5,
     },
     listItemTextContainer: {
         width: 130,
@@ -124,4 +127,5 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
     }
+       /* #endregion */
 })
