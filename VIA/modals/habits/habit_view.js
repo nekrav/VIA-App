@@ -63,7 +63,7 @@ export class ViewHabit extends React.Component {
         return (<View style={styles.topNav}>
             <TouchableOpacity style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color={colorsProvider.shadowColor} />
+                <SIcon name="arrow-left" size={30} color={colorsProvider.habitsComplimentaryColor} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
@@ -103,7 +103,7 @@ export class ViewHabit extends React.Component {
                 items={this.state.items}
                 itemName="Routine"
                 itemName1="Routine"
-                titleTextColor={colorsPrivider.routinesBottomTabHighlightColor}
+                titleTextColor={colorsProvider.routinesBottomTabHighlightColor}
                 titleContainerColor={colorsProvider.routinesMainColor}
                 transparent={true}
                 selectItem={(item) => {
