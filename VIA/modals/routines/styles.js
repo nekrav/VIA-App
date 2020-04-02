@@ -335,14 +335,90 @@ module.exports = StyleSheet.create({
   },
   /* #endregion */
 
-  /* #region Create Bottom Buttons Section */
-  bottomButtonsContainer: {
+  // /* #region Create Bottom Buttons Section */
+  // bottomButtonsContainer: {
+  //   paddingTop: 18,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   marginBottom: 10,
+  // },
+  // bottomButtonLeftDisabled: {
+  //   marginLeft: 50,
+  //   paddingLeft: 35,
+  //   paddingRight: 35,
+  //   paddingTop: 10,
+  //   paddingBottom: 10,
+  //   borderRadius: 20,
+  //   borderWidth: 2,
+  //   borderColor: colorsProvider.routinesPlaceholderColor,
+  //   backgroundColor: colorsProvider.routinesPlaceholderColor,
+  //   shadowColor: colorsProvider.shadowColor,
+  //   shadowOpacity: 0.8,
+  //   shadowRadius: 2,
+  //   shadowOffset: {
+  //     height: 1,
+  //     width: 0,
+  //   },
+  // },
+  // bottomButtonLeft: {
+  //   marginLeft: 50,
+  //   paddingLeft: 35,
+  //   paddingRight: 35,
+  //   paddingTop: 10,
+  //   paddingBottom: 10,
+  //   borderRadius: 20,
+  //   borderWidth: 2,
+  //   borderColor: colorsProvider.routinesComplimentaryColor,
+  //   backgroundColor: colorsProvider.routinesComplimentaryColor,
+  //   shadowColor: colorsProvider.shadowColor,
+  //   shadowOpacity: 0.8,
+  //   shadowRadius: 2,
+  //   shadowOffset: {
+  //     height: 1,
+  //     width: 0,
+  //   },
+  // },
+  // bottomButtonRight: {
+  //   marginLeft: 50,
+  //   paddingLeft: 35,
+  //   paddingRight: 35,
+  //   paddingTop: 10,
+  //   paddingBottom: 10,
+  //   borderRadius: 20,
+  //   borderWidth: 2,
+  //   borderColor: colorsProvider.routinesPlaceholderColor,
+  //   backgroundColor: colorsProvider.routinesMainColor,
+  //   marginRight: 50,
+  //   shadowColor: colorsProvider.shadowColor,
+  //   shadowOpacity: 0.8,
+  //   shadowRadius: 2,
+  //   shadowOffset: {
+  //     height: 1,
+  //     width: 0,
+  //   },
+  // },
+  // bottomButtonText: {
+  //   fontSize: 18,
+  //   textAlign: 'center',
+  //   fontFamily: fontFamily,
+  //   color: colorsProvider.routinesComplimentaryColor,
+  // },
+  // bottomButtonTextDisabled: {
+  //   fontSize: 18,
+  //   textAlign: 'center',
+  //   fontFamily: fontFamily,
+  //   color: colorsProvider.routinesMainColor,
+  // },
+  // /* #endregion */
+
+   /* #region Create Bottom Buttons Section */
+   bottomButtonsContainer: {
     paddingTop: 18,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 10,
-  },
-  bottomButtonLeftDisabled: {
+},
+bottomButtonLeftClose: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -350,17 +426,27 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: colorsProvider.routinesPlaceholderColor,
-    backgroundColor: colorsProvider.routinesPlaceholderColor,
+    borderColor:  colorsProvider.routinesPlaceholderColor,
+    backgroundColor:  colorsProvider.routinesPlaceholderColor,
+    shadowColor: colorsProvider.shadowColor,
+
+},
+bottomButtonLeftDisabled: {
+    marginLeft: 50,
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor:  colorsProvider.routinesPlaceholderColor,
+    backgroundColor:  colorsProvider.routinesPlaceholderColor,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonLeft: {
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonLeft: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -373,12 +459,9 @@ module.exports = StyleSheet.create({
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonRight: {
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonRight: {
     marginLeft: 50,
     paddingLeft: 35,
     paddingRight: 35,
@@ -386,30 +469,39 @@ module.exports = StyleSheet.create({
     paddingBottom: 10,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: colorsProvider.routinesPlaceholderColor,
-    backgroundColor: colorsProvider.routinesMainColor,
+    borderColor:  colorsProvider.routinesComplimentaryColor,
+    backgroundColor: colorsProvider.routinesComplimentaryColor,
     marginRight: 50,
     shadowColor: colorsProvider.shadowColor,
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-  bottomButtonText: {
-    fontSize: 18,
+    shadowOffset: colorsProvider.shadow
+},
+bottomButtonRightDisabled: {
+    marginLeft: 50,
+    marginRight: 50,
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor:  colorsProvider.routinesPlaceholderColor,
+},
+bottomButtonText: {
+  fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
-    color: colorsProvider.routinesComplimentaryColor,
-  },
-  bottomButtonTextDisabled: {
-    fontSize: 18,
+    color: colorsProvider.homeTextColor,
+},
+bottomButtonTextDisabled: {
+    fontSize: colorsProvider.fontButtonSize,
     textAlign: 'center',
     fontFamily: fontFamily,
     color: colorsProvider.routinesMainColor,
-  },
+},
   /* #endregion */
+
 
   /* #region  Complete Button Section */
   completeButtonBody: {

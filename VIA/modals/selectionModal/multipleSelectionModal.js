@@ -51,8 +51,8 @@ export class MultipleSelectionModal extends React.Component {
                     onRequestClose={this.props.onRequestClose}>
                     <SafeAreaView style={styles.outerView}>
                         {this.props.children}
-                        <View style={[styles.titleView, {backgroundColor: this.props.titleContainerColor}]}>
-                            <Text style={[styles.titleText,{color: this.props.titleTextColor}]}>Select {this.props.itemName} </Text>
+                        <View style={[styles.titleView, { backgroundColor: this.props.titleContainerColor }]}>
+                            <Text style={[styles.titleText, { color: this.props.titleTextColor }]}>Select {this.props.itemName} </Text>
                         </View>
                         <View style={styles.itemsContainerView}>
                             <FlatList
@@ -64,8 +64,9 @@ export class MultipleSelectionModal extends React.Component {
                                             center
                                             key={item.item.value.id}
                                             title={item.item.value.name}
-                                            checkedIcon='dot-circle-o'
-                                            uncheckedIcon='circle-o'
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            checkedColor={this.props.checkBoxColor}
                                             checked={item.checked}
                                             textStyle={styles.checkboxText}
                                             containerStyle={styles.itemSelectionContainer}
