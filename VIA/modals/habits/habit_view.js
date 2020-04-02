@@ -12,7 +12,8 @@ import { Notifier } from '../../notifier/notifier'
 
 const notifier = new Notifier;
 const controller = new Controller;
-const dateFormat = 'hh:mm A'
+const timeDisplayFormat = 'hh:mm A'
+const dateDisplayFormat = 'MMM Do'
 const styles = require('./styles');
 
 var date = new Date().getDate(); //Current Date
@@ -192,7 +193,7 @@ export class ViewHabit extends React.Component {
                     style={styles.createDueDateContainer}
                     onPress={() => this.setStartDateModalVisibility(true)}>
                     <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.selectedItem.start_time)).format(dateFormat)}
+                        {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
                         <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
@@ -253,7 +254,7 @@ export class ViewHabit extends React.Component {
                     style={styles.createDueDateContainer}
                     onPress={() => this.setEndDateModalVisibility(true)}>
                     <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.selectedItem.end_time)).format(dateFormat)}
+                        {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
                         <SIcon name="control-end" size={20} color={colorsProvider.habitsComplimentaryColor} />
@@ -318,7 +319,7 @@ export class ViewHabit extends React.Component {
                         this.props.editCompleted("true")
                     }
                     }>
-                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateFormat)})</Text></Text>
+                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
                 </TouchableOpacity>
 
             )
