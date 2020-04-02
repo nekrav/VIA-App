@@ -34,7 +34,7 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         marginRight: 10,
         marginLeft: 10,
-        marginBottom: 5,
+        marginBottom: 10,
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
