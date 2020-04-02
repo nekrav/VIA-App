@@ -100,6 +100,10 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.completed = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
+                    editFinishedDate={(text) => {
+                        theRoutine.finished_date = text;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
                     editNotificationTime={(text) => {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
@@ -170,6 +174,11 @@ export class RoutinesScreen extends React.Component {
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
+                                            if (item.value.completed == true) {
+                                                item.value.finished_date = new Date(Date.now())
+                                            } else {
+                                                item.value.finished_date == ""
+                                            }
                                         }}
                                         checked={this.getChecked(item)}/>
                                     <View style={styles.listItemTextContainer}>
@@ -182,7 +191,7 @@ export class RoutinesScreen extends React.Component {
                                     <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.routinesComplimentaryColor} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity></TouchableWithoutFeedback>} />

@@ -506,9 +506,20 @@ bottomButtonTextDisabled: {
   /* #region  Complete Button Section */
   completeButtonBody: {
     margin: 10,
-    borderColor: colorsProvider.homeComplimentaryColor,
-    backgroundColor: colorsProvider.homeComplimentaryColor,
-    borderWidth: 5,
+    borderColor: colorsProvider.routinesComplimentaryColor,
+    // backgroundColor: colorsProvider.homeComplimentaryColor,
+    borderWidth: 2,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '12%',
+  },
+  completeButtonBodyDone: {
+    margin: 10,
+    borderColor: colorsProvider.habitsComplimentaryColor,
+    backgroundColor: colorsProvider.finishedBackgroundColor,
+    borderWidth: 2,
+    borderColor: colorsProvider.habitsComplimentaryColor,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

@@ -115,6 +115,10 @@ export class TasksScreen extends React.Component {
                         theTask.completed = text;
                         this.setState({ selectedTask: theTask })
                     }}
+                    editFinishedDate={(text) => {
+                        theTask.finished_date = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
                     editProject={(text) => {
                         theTask.project = text;
                         this.setState({ selectedTask: theTask })
@@ -198,6 +202,11 @@ export class TasksScreen extends React.Component {
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
+                                            if (item.value.completed == true) {
+                                                item.value.finished_date = new Date(Date.now())
+                                            } else {
+                                                item.value.finished_date == ""
+                                            }
                                         }}
                                         checked={this.getChecked(item)}
                                     />

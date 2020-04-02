@@ -108,6 +108,10 @@ export class ProjectsScreen extends React.Component {
                         theProject.completed = text;
                         this.setState({ selectedProject: theProject })
                     }}
+                    editFinishedDate={(text) => {
+                        theProject.finished_date = text;
+                        this.setState({ selectedProject: theProject })
+                    }}
                     editTimeSpent={(text) => {
                         theProject.time_spent = text;
                         this.setState({ selectedProject: theProject })
@@ -188,6 +192,11 @@ export class ProjectsScreen extends React.Component {
                                         onPress={() => {
                                             item.value.completed = !this.getChecked(item)
                                             controller.saveExisting(this, dbTableName, item.value)
+                                            if (item.value.completed == true) {
+                                                item.value.finished_date = new Date(Date.now())
+                                            } else {
+                                                item.value.finished_date == ""
+                                            }
                                         }}
                                         checked={this.getChecked(item)}
                                     />
