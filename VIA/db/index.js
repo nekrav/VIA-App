@@ -322,6 +322,19 @@ export class Database {
     static mockHome(tx) {
         tx.executeSql('INSERT INTO home (id, three_main_goals, main_goal, quote, notes) VALUES (?,?,?,?,?)', ['homeID1', '', '', '', ''])
     }
+
+    static updateTablesWithNewVariable( tableName, newVarSQLString) {
+        return new Promise((resolve, reject) => {
+            this.database.transaction(tx => {
+                tx.executeSql('ALTER TABLE ' + tableName + ' ADD ' + newVarSQLString + ' text')
+            })
+                .then(res => {
+                    resolve(res)
+                })
+                .catch(reject)
+        })
+        
+    }
 }
 
 export { Home } from './home'

@@ -133,4 +133,6 @@ const TabNavigator = createBottomTabNavigator({
 
 Database.init();
 
+// Database.updateTablesWithNewVariable(Habits.TABLE_NAME, 'finished_date')
+
 export default createAppContainer(TabNavigator);

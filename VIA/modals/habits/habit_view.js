@@ -278,7 +278,30 @@ export class ViewHabit extends React.Component {
 
     /* #region  Complete Button Section */
     renderCompleteButton() {
-        if (this.state.selectedItem.completed == "true")
+        if (this.state.selectedItem.completed == "true") {
+
+            if (this.state.selectedItem.finished_date == null) {
+                return (
+                    <TouchableOpacity
+                        style={styles.completeButtonBodyDone}
+                        onLongPress={() => {
+                            this.setState({ percentVal: 0 })
+                            this.props.editCompleted("false")
+                            this.props.editPercentageDone(0)
+                            this.props.editFinishedDate("");
+                        }
+                        }
+                        onPress={() => {
+                            this.setState({ percentVal: 100 })
+                            this.props.editPercentageDone(100)
+                            this.props.editCompleted("true")
+                        }
+                        }>
+                        <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
+                    </TouchableOpacity>
+
+                )
+            }
             return (
                 <TouchableOpacity
                     style={styles.completeButtonBodyDone}
@@ -295,10 +318,11 @@ export class ViewHabit extends React.Component {
                         this.props.editCompleted("true")
                     }
                     }>
-                    <Text style={styles.completeButtonText}>Done <Text style={{fontSize: 10,}}>(finished on: {this.state.selectedItem.finished_date.toString() })</Text></Text>
+                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: {this.state.selectedItem.finished_date.toString()})</Text></Text>
                 </TouchableOpacity>
 
             )
+        }
         else
             return (
                 <TouchableOpacity
@@ -313,11 +337,11 @@ export class ViewHabit extends React.Component {
                         this.setState({ percentVal: 100 })
                         this.props.editPercentageDone(100)
                         this.props.editCompleted("true")
-                        this.props.editFinishedDate(dateToday);
+                        this.props.editFinishedDate(dateToday.toString());
                     }
                     }>
                     <Text style={styles.completeButtonText}>Complete</Text>
-                </TouchableOpacity>
+                </TouchableOpacity >
             )
     }
     /* #endregion */
