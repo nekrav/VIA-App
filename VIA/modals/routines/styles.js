@@ -579,11 +579,15 @@ module.exports = StyleSheet.create({
 
   /* #region  Add Child Button */
   addTimeButtonContainer: {
+    // flex: 2,
     marginRight: 5,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   addTimeButtonContainerView: {
+    // flex: 2,
+    width: '90%',
     borderRadius: 20,
     paddingTop: 5,
     paddingBottom: 5,
@@ -600,6 +604,8 @@ module.exports = StyleSheet.create({
     marginRight: 5,
     flexDirection: 'row',
     alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   addTimeButtonText: {
     fontSize: 14,
