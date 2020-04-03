@@ -284,7 +284,7 @@ export class ViewRoutine extends React.Component {
     }
 
     renderAllChildrenSection() {
-        if (this.state.relatedChildren.length > 0) {
+        // if (this.state.relatedChildren.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
@@ -364,34 +364,34 @@ export class ViewRoutine extends React.Component {
                         </TouchableOpacity></View>
                 </View>
             );
-        } else {
-            return (
-                <View style={styles.childrenItemsContainer}>
-                    <View style={styles.childrenItemsTitleContainer}>
-                        <Text style={styles.childrenItemsTitleText}>
-                            Habits in {this.state.selectedItem.name}
-                        </Text>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
-                                    this.toggleNotificationTimeSelectionModal(true)
-                                })
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Habit</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-                    <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
-                    {/* <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="reload" size={20} color={colorsProvider.homeMainColor}/>
-                        </Text> */}
-                    {/* </TouchableOpacity> */}
-                </View>
-            );
-        }
+        // } else {
+        //     return (
+        //         <View style={styles.childrenItemsContainer}>
+        //             <View style={styles.childrenItemsTitleContainer}>
+        //                 <Text style={styles.childrenItemsTitleText}>
+        //                     Habits in {this.state.selectedItem.name}
+        //                 </Text>
+        //                 <TouchableOpacity style={styles.addTimeButtonContainer}
+        //                     onPress={() => {
+        //                         this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
+        //                             this.toggleNotificationTimeSelectionModal(true)
+        //                         })
+        //                     }}>
+        //                     <View style={styles.addTimeButtonContainerView}>
+        //                         <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+        //                         <Text style={styles.addTimeButtonText}> Add Habit</Text>
+        //                     </View>
+        //                 </TouchableOpacity>
+        //             </View>
+        //             {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
+        //             <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
+        //             {/* <Text style={styles.notificationTimeButtonText}>
+        //                     <SIcon name="reload" size={20} color={colorsProvider.homeMainColor}/>
+        //                 </Text> */}
+        //             {/* </TouchableOpacity> */}
+        //         </View>
+        //     );
+        // }
     }
     /* #endregion */
 
