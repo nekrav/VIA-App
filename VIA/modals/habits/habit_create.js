@@ -40,10 +40,23 @@ export class CreateHabit extends React.Component {
             notificationTimesModal: false,
             itemStartDate: '',
             itemEndDate: '',
+            fromRoutineID: this.props.fromRoutine ? this.props.fromRoutine : '',
+            fromRoutineName: ''
         };
     }
 
+    getFromRoutine(routineID) {
+        if (routineID) {
+            Database.getOne(Routines.TABLE_NAME, routineID).then((res) => {
+                this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
+            })
+        }
+        console.warn(this.state.fromRoutineID)
+    }
+
+
     componentDidMount() {
+        this.getFromRoutine(this.props.fromRoutine)
         controller.loadAll(this, Routines.TABLE_NAME);
     }
 

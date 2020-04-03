@@ -200,6 +200,7 @@ export class ViewRoutine extends React.Component {
     }
 
     saveNewHabit(habit) {
+        console.warn(habit)
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
@@ -227,6 +228,7 @@ export class ViewRoutine extends React.Component {
             return <CreateHabit
                 animationType="slide"
                 transparent={false}
+                fromRoutine={this.state.selectedItem.id}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
                 importance={(text) => { newHabit.importance = text }}
