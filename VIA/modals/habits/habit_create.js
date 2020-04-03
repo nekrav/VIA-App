@@ -51,7 +51,6 @@ export class CreateHabit extends React.Component {
                 this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
             })
         }
-        console.warn(this.state.fromRoutineID)
     }
 
 
@@ -415,8 +414,6 @@ export class CreateHabit extends React.Component {
                     <Text style={this.state.newHabitName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
                 </TouchableOpacity>
             </View >
-
-
         )
     }
     /* #endregion */

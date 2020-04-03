@@ -48,7 +48,6 @@ export class ViewRoutine extends React.Component {
             tasks: [],
             projectId: uuid.v4(),
             selectedChildItem: '',
-            newHabit: {},
         };
     }
 
@@ -200,7 +199,6 @@ export class ViewRoutine extends React.Component {
     }
 
     saveNewHabit(habit) {
-        console.warn(habit)
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
@@ -228,14 +226,13 @@ export class ViewRoutine extends React.Component {
             return <CreateHabit
                 animationType="slide"
                 transparent={false}
-                fromRoutine={this.state.selectedItem.id}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
                 importance={(text) => { newHabit.importance = text }}
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => {
+                notification_time={(text) => { 
                     if (text) {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
@@ -249,6 +246,32 @@ export class ViewRoutine extends React.Component {
                 save={() => { this.saveNewHabit(newHabit) }}
             ></CreateHabit>
         }
+        // let newHabit = {};
+        // if (this.state.tasksSelectionModalVisible) {
+        //     return <CreateHabit
+        //         animationType="slide"
+        //         transparent={false}
+        //         fromRoutine={this.state.selectedItem.id}
+        //         id={(text) => { newHabit.id = text }}
+        //         name={(text) => { newHabit.name = text }}
+        //         importance={(text) => { newHabit.importance = text }}
+        //         time_to_spend={(text) => { newHabit.time_to_spend = text }}
+        //         start_time={(text) => { newHabit.start_time = text }}
+        //         end_time={(text) => { newHabit.end_time = text }}
+        //         notification_time={(text) => {
+        //             if (text) {
+        //                 var times = text.map(function (time) {
+        //                     return JSON.stringify(time)
+        //                 })
+        //                 newHabit.notification_time = times
+        //             }
+        //         }}
+        //         routine={(text) => { newHabit.routine = text }}
+        //         days_to_do={(text) => { newHabit.days_to_do = text }}
+        //         closeModal={() => { this.setState({ tasksSelectionModalVisible: false }) }}
+        //         save={() => { this.saveNewHabit(newHabit) }}
+        //     ></CreateHabit>
+        // }
     }
 
     setTaskSelectionModalVisibility(visible) {
@@ -285,51 +308,51 @@ export class ViewRoutine extends React.Component {
 
     renderAllChildrenSection() {
         // if (this.state.relatedChildren.length > 0) {
-            return (
-                <View style={styles.childrenItemsContainer}>
-                    <View style={styles.childrenItemsTitleContainer}>
-                        <View style={styles.childrenItemsTitleTextContainer}>
-                            <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Habits in {this.state.selectedItem.name}
-                            </Text>
-                        </View>
+        return (
+            <View style={styles.childrenItemsContainer}>
+                <View style={styles.childrenItemsTitleContainer}>
+                    <View style={styles.childrenItemsTitleTextContainer}>
+                        <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
+                            Habits in {this.state.selectedItem.name}
+                        </Text>
                     </View>
-                    <FlatList
-                        data={this.state.relatedChildren}
-                        extraData={this.state}
-                        contentContainerStyle={styles.childrenContainer}
-                        renderItem={({ item }) =>
-                            <TouchableWithoutFeedback onPress={() => { }}>
-                                <View style={styles.childContainer}>
-                                    <View style={styles.childTitleContainer}>
-                                        <CheckBox
-                                            center
-                                            checkedIcon={colorsProvider.checkboxIcon}
-                                            uncheckedIcon={colorsProvider.checkboxIcon}
-                                            containerStyle={colorsProvider.checkboxContainerStyle}
-                                            checkedColor={colorsProvider.finishedBackgroundColor}
-                                            uncheckedColor={colorsProvider.habitsPlaceholderColor}
-                                            size={colorsProvider.checkboxIconSize}
-                                            onPress={() => {
-                                                item.value.completed = !this.getChecked(item)
-                                                if (item.value.completed == true) {
-                                                    item.value.finished_date = new Date(Date.now())
-                                                } else {
-                                                    item.value.finished_date == ""
-                                                }
-                                                controller.saveExisting(this, childTableName, item.value)
-                                                // this.getHabits();
-                                                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-                                                controller.loadAll(this, Habits.TABLE_NAME)
-                                            }}
-                                            checked={this.getChecked(item)} />
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.childTitleText}>{item.value.name} </Text>
-                                    </View>
-                                    {/* <View style={styles.childActionButtonsContainer}> */}
-                                    {/* <TouchableOpacity
+                </View>
+                <FlatList
+                    data={this.state.relatedChildren}
+                    extraData={this.state}
+                    contentContainerStyle={styles.childrenContainer}
+                    renderItem={({ item }) =>
+                        <TouchableWithoutFeedback onPress={() => { }}>
+                            <View style={styles.childContainer}>
+                                <View style={styles.childTitleContainer}>
+                                    <CheckBox
+                                        center
+                                        checkedIcon={colorsProvider.checkboxIcon}
+                                        uncheckedIcon={colorsProvider.checkboxIcon}
+                                        containerStyle={colorsProvider.checkboxContainerStyle}
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
+                                        uncheckedColor={colorsProvider.habitsPlaceholderColor}
+                                        size={colorsProvider.checkboxIconSize}
+                                        onPress={() => {
+                                            item.value.completed = !this.getChecked(item)
+                                            if (item.value.completed == true) {
+                                                item.value.finished_date = new Date(Date.now())
+                                            } else {
+                                                item.value.finished_date == ""
+                                            }
+                                            controller.saveExisting(this, childTableName, item.value)
+                                            // this.getHabits();
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+                                            controller.loadAll(this, Habits.TABLE_NAME)
+                                        }}
+                                        checked={this.getChecked(item)} />
+                                    <Text
+                                        numberOfLines={1}
+                                        multiline={false}
+                                        style={styles.childTitleText}>{item.value.name} </Text>
+                                </View>
+                                {/* <View style={styles.childActionButtonsContainer}> */}
+                                {/* <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
                                                 controller.delete(this, childTableName, item.value)
@@ -339,59 +362,31 @@ export class ViewRoutine extends React.Component {
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                         </TouchableOpacity> */}
 
-                                    <TouchableOpacity
-                                        style={styles.childActionButtonsContainer}
-                                        onPress={() => {
-                                            this.setState({ selectedChildItem: item.value }, () => {
-                                                this.setChildItemModalVisibility(true)
-                                            })
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
-                                    </TouchableOpacity>
-                                </View>
-                                {/* </View> */}
-                            </TouchableWithoutFeedback>
-                        } />
-                    <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setTaskSelectionModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                                <TouchableOpacity
+                                    style={styles.childActionButtonsContainer}
+                                    onPress={() => {
+                                        this.setState({ selectedChildItem: item.value }, () => {
+                                            this.setChildItemModalVisibility(true)
+                                        })
+                                    }}>
+                                    <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
+                                </TouchableOpacity>
                             </View>
-                        </TouchableOpacity></View>
-                </View>
-            );
-        // } else {
-        //     return (
-        //         <View style={styles.childrenItemsContainer}>
-        //             <View style={styles.childrenItemsTitleContainer}>
-        //                 <Text style={styles.childrenItemsTitleText}>
-        //                     Habits in {this.state.selectedItem.name}
-        //                 </Text>
-        //                 <TouchableOpacity style={styles.addTimeButtonContainer}
-        //                     onPress={() => {
-        //                         this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
-        //                             this.toggleNotificationTimeSelectionModal(true)
-        //                         })
-        //                     }}>
-        //                     <View style={styles.addTimeButtonContainerView}>
-        //                         <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-        //                         <Text style={styles.addTimeButtonText}> Add Habit</Text>
-        //                     </View>
-        //                 </TouchableOpacity>
-        //             </View>
-        //             {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-        //             <Text style={styles.createProjectSelectionButtonText}>You don't have any habits here</Text>
-        //             {/* <Text style={styles.notificationTimeButtonText}>
-        //                     <SIcon name="reload" size={20} color={colorsProvider.homeMainColor}/>
-        //                 </Text> */}
-        //             {/* </TouchableOpacity> */}
-        //         </View>
-        //     );
-        // }
+                            {/* </View> */}
+                        </TouchableWithoutFeedback>
+                    } />
+                <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
+                    <TouchableOpacity style={styles.addTimeButtonContainer}
+                        onPress={() => {
+                            this.setTaskSelectionModalVisibility(true)
+                        }}>
+                        <View style={styles.addTimeButtonContainerView}>
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                        </View>
+                    </TouchableOpacity></View>
+            </View>
+        );
     }
     /* #endregion */
 

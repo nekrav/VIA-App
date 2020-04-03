@@ -35,11 +35,11 @@ export class HabitsScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.props.navigation.addListener('willFocus', (playload)=>{
-            controller.loadAll(this, dbTableName)
-          });
+        this.props.navigation.addListener('willFocus', (playload) => {
+            // console.warn(playload);
+        });
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
     }
 
     saveNew(habit) {
@@ -60,7 +60,7 @@ export class HabitsScreen extends React.Component {
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications() 
+            notifier.scheduleAllNotifications()
         })
     }
 
@@ -76,7 +76,7 @@ export class HabitsScreen extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => { 
+                notification_time={(text) => {
                     if (text) {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
@@ -164,7 +164,7 @@ export class HabitsScreen extends React.Component {
             var checked = false
         return checked = item.value.completed === "true"
     }
-    
+
 
     render() {
         return (
@@ -191,42 +191,42 @@ export class HabitsScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={() => {}}>
-                            <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
+                            <TouchableWithoutFeedback onPress={() => { }}>
+                                <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
 
-                                <View style={styles.checkboxAndNameContainer}>
-                                    <CheckBox
-                                        center
-                                        checkedIcon={colorsProvider.checkboxIcon}
-                                        uncheckedIcon={colorsProvider.checkboxIcon}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.habitsComplimentaryColor}
-                                        containerStyle={colorsProvider.checkboxContainerStyle}
-                                        size={colorsProvider.checkboxIconSize}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            if (item.value.completed == true) {
-                                                item.value.finished_date = new Date(Date.now())
-                                            } else {
-                                                item.value.finished_date == ""
-                                            }
-                                            controller.saveExisting(this, dbTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)} />
-                                    <View style={styles.listItemTextContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
-                                </View>
-                                <View style={styles.listItemActionButtonsContainer}>
-                                    {/* <TouchableOpacity
+                                    <View style={styles.checkboxAndNameContainer}>
+                                        <CheckBox
+                                            center
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            uncheckedColor={colorsProvider.habitsComplimentaryColor}
+                                            containerStyle={colorsProvider.checkboxContainerStyle}
+                                            size={colorsProvider.checkboxIconSize}
+                                            onPress={() => {
+                                                item.value.completed = !this.getChecked(item)
+                                                if (item.value.completed == true) {
+                                                    item.value.finished_date = new Date(Date.now())
+                                                } else {
+                                                    item.value.finished_date == ""
+                                                }
+                                                controller.saveExisting(this, dbTableName, item.value)
+                                            }}
+                                            checked={this.getChecked(item)} />
+                                        <View style={styles.listItemTextContainer}>
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                    </View>
+                                    <View style={styles.listItemActionButtonsContainer}>
+                                        {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
                                         onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications()}}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity> */}
 
-                                    {/* <TouchableOpacity
+                                        {/* <TouchableOpacity
                                     style={styles.listItemActionButton}
                                     onPress={() => {
                                         controller.silenceAlarms(this, dbTableName, item.value)
@@ -234,13 +234,13 @@ export class HabitsScreen extends React.Component {
                                     <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
                                 </TouchableOpacity> */}
 
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
-                                    </TouchableOpacity>
-                                </View>
-                            </TouchableOpacity></TouchableWithoutFeedback>} />
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </TouchableOpacity></TouchableWithoutFeedback>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
