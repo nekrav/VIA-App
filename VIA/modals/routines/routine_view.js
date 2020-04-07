@@ -328,7 +328,12 @@ export class ViewRoutine extends React.Component {
                     contentContainerStyle={styles.childrenContainer}
                     renderItem={({ item }) =>
                         <TouchableWithoutFeedback onPress={() => { }}>
-                            <View style={styles.childContainer}>
+                            <TouchableOpacity style={styles.childContainer}
+                                onPress={() => {
+                                    this.setState({ selectedChildItem: item.value }, () => {
+                                        this.setChildItemModalVisibility(true)
+                                    })
+                                }}>
                                 <View style={styles.childTitleContainer}>
                                     <CheckBox
                                         center
@@ -356,7 +361,7 @@ export class ViewRoutine extends React.Component {
                                         multiline={false}
                                         style={styles.childTitleText}>{item.value.name} </Text>
                                 </View>
-                                {/* <View style={styles.childActionButtonsContainer}> */}
+                                {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
                                 {/* <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
@@ -376,8 +381,8 @@ export class ViewRoutine extends React.Component {
                                     }}>
                                     <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                 </TouchableOpacity>
-                            </View>
-                            {/* </View> */}
+                            </TouchableOpacity>
+                            {/* </TouchableOpacity> */}
                         </TouchableWithoutFeedback>
                     } />
                 {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
