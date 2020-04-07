@@ -308,6 +308,7 @@ export class ViewHabit extends React.Component {
                         }
                         }
                         onPress={() => {
+                            Keyboard.dismiss();
                             this.setState({ percentVal: 100 })
                             this.props.editPercentageDone(100)
                             this.props.editCompleted("true")
@@ -330,6 +331,7 @@ export class ViewHabit extends React.Component {
                     }
                     }
                     onPress={() => {
+                        Keyboard.dismiss();
                         this.setState({ percentVal: 100 })
                         this.props.editPercentageDone(100)
                         this.props.editCompleted("true")
