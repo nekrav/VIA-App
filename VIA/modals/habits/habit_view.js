@@ -143,7 +143,7 @@ export class ViewHabit extends React.Component {
                     style={styles.createProjectSelectionContainer}
                     onPress={() => {
                         Keyboard.dismiss()
-                        this.setRoutineSelectionModalVisibility.bind(this)
+                        this.setRoutineSelectionModalVisibility(true)
                     }
                     }
                 >
@@ -195,7 +195,10 @@ export class ViewHabit extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setStartDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        this.setStartDateModalVisibility(true)
+                    }}>
                     {/* <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
                     </Text> */}
@@ -206,7 +209,10 @@ export class ViewHabit extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setStartDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss();
+                this.setStartDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want this habit to start?
                 </Text>
@@ -256,7 +262,10 @@ export class ViewHabit extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setEndDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setEndDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
                     </Text>
@@ -267,7 +276,10 @@ export class ViewHabit extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setEndDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setEndDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want this habit to end?
           </Text>
@@ -402,6 +414,7 @@ export class ViewHabit extends React.Component {
                     <TouchableOpacity
                         style={styles.hasNotificationTimesButtonContainer}
                         onPress={() => {
+                            Keyboard.dismiss()
                             this.setNotificationTimesVisibility(true);
                         }}
                     >
@@ -420,6 +433,7 @@ export class ViewHabit extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setNotificationTimesVisibility(true);
                 }}>
                 <Text style={styles.notificationTimeButtonText}>
