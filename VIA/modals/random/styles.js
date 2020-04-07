@@ -440,13 +440,42 @@ module.exports = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: colorsProvider.shadowColor,
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
+    // shadowColor: colorsProvider.shadowColor,
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
+    // shadowOffset: {
+    //   height: 1,
+    //   width: 0,
+    // },
+  },
+
+  completeButtonBodyDone: {
+    margin: 10,
+    flex: 1,
+    borderColor: colorsProvider.finishedBackgroundColor,
+    backgroundColor: colorsProvider.finishedBackgroundColor,
+    borderWidth: 5,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // shadowColor: colorsProvider.shadowColor,
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
+    // shadowOffset: {
+    //   height: 1,
+    //   width: 0,
+    // },
+  },
+
+  completeButtonText: {
+    fontFamily: colorsProvider.font,
+    color: colorsProvider.whiteColor,
+    fontSize: colorsProvider.fontSizeChildren,
+  },
+  completeButtonTextDone: {
+    fontFamily: colorsProvider.font,
+    color: colorsProvider.homeComplimentaryColor,
+    fontSize: colorsProvider.fontSizeChildren,
   },
   /* #endregion */
 

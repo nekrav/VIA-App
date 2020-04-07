@@ -53,9 +53,9 @@ export class ViewRandom extends React.Component {
     }
 
     getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
-            return styles.outerViewDone
-        }
+        // if (this.props.selectedItem.completed == "true") {
+        //     return styles.outerViewDone
+        // }
         return styles.outerView;
     }
 
@@ -231,7 +231,46 @@ export class ViewRandom extends React.Component {
     /* #endregion */
 
     /* #region  Complete Button Section */
+    // renderCompleteButton() {
+        // return (<TouchableOpacity
+        //     style={styles.completeButtonBody}
+        //     onLongPress={() => {
+        //         this.setState({ percentVal: 0 })
+        //         this.props.editCompleted("false")
+        //         this.props.editPercentageDone(0)
+        //     }
+        //     }
+        //     onPress={() => {
+        //         this.setState({ percentVal: 100 })
+        //         this.props.editPercentageDone(100)
+        //         this.props.editCompleted("true")
+
+        //     }
+        //     }>
+        //     {this.renderCompleteButtonText()}
+        // </TouchableOpacity>)
+    // }
+
     renderCompleteButton() {
+        if (this.state.selectedItem.completed == "true")
+            return (<TouchableOpacity
+                style={styles.completeButtonBodyDone}
+                onLongPress={() => {
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editPercentageDone(0)
+                }
+                }
+                onPress={() => {
+                    this.setState({ percentVal: 100 })
+                    this.props.editPercentageDone(100)
+                    this.props.editCompleted("true")
+    
+                }
+                }>
+               <Text style={styles.completeButtonTextDone}>Done</Text>
+            </TouchableOpacity>)
+        else
         return (<TouchableOpacity
             style={styles.completeButtonBody}
             onLongPress={() => {
@@ -247,15 +286,8 @@ export class ViewRandom extends React.Component {
 
             }
             }>
-            {this.renderCompleteButtonText()}
+           <Text style={styles.completeButtonText}>Complete</Text>
         </TouchableOpacity>)
-    }
-
-    renderCompleteButtonText() {
-        if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done</Text>)
-        else
-            return (<Text style={styles.completeButtonText}>Complete</Text>)
     }
     /* #endregion */
 
