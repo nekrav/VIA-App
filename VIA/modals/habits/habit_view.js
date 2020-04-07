@@ -144,9 +144,7 @@ export class ViewHabit extends React.Component {
                     onPress={() => {
                         Keyboard.dismiss()
                         this.setRoutineSelectionModalVisibility(true)
-                    }
-                    }
-                >
+                    }}>
                     <Text style={styles.createProjectSelectionButtonText}>
                         Is this part of a bigger routine?
           </Text>
@@ -250,8 +248,8 @@ export class ViewHabit extends React.Component {
                     }}
                     closeModal={() => {
                         this.setEndDateModalVisibility(false);
-                    }}
-                ></DateModal>
+                    }}>
+                </DateModal>
             );
         }
         return null;
@@ -305,16 +303,14 @@ export class ViewHabit extends React.Component {
                             this.props.editCompleted("false")
                             this.props.editPercentageDone(0)
                             this.props.editFinishedDate("");
-                        }
-                        }
+                        }}
                         onPress={() => {
                             Keyboard.dismiss();
                             this.setState({ percentVal: 100 })
                             this.props.editPercentageDone(100)
                             this.props.editCompleted("true")
                             this.props.editFinishedDate(new Date(Date.now()));
-                        }
-                        }>
+                        }}>
                         <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
                     </TouchableOpacity>
 
@@ -328,16 +324,14 @@ export class ViewHabit extends React.Component {
                         this.props.editCompleted("false")
                         this.props.editPercentageDone(0)
                         this.props.editFinishedDate("");
-                    }
-                    }
+                    }}
                     onPress={() => {
                         Keyboard.dismiss();
                         this.setState({ percentVal: 100 })
                         this.props.editPercentageDone(100)
                         this.props.editCompleted("true")
                         this.props.editFinishedDate(new Date(Date.now()));
-                    }
-                    }>
+                    }}>
                     <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
                 </TouchableOpacity>
 
@@ -418,8 +412,7 @@ export class ViewHabit extends React.Component {
                         onPress={() => {
                             Keyboard.dismiss()
                             this.setNotificationTimesVisibility(true);
-                        }}
-                    >
+                        }}>
                         <Text style={styles.hasNotificationTimeButtonText}>
                             {daysWithNotifications}
                         </Text>
@@ -448,7 +441,6 @@ export class ViewHabit extends React.Component {
             </TouchableOpacity>
         );
     }
-
     /* #endregion */
 
     render() {
