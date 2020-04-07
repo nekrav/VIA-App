@@ -334,13 +334,12 @@ export class CreateRoutine extends React.Component {
 				<TouchableOpacity
 					style={styles.hasNotificationTimesButtonContainer}
 					onPress={() => {
+						Keyboard.dismiss();
 						this.setNotificationTimesVisibility(true);
-					}}
-				>
+					}}>
 					<Text style={styles.hasNotificationTimeButtonText}>
 						{daysWithNotifications}
 					</Text>
-
 					<Text style={styles.notificationTimeButtonText}>
 						<SIcon name="bell" size={20} color={colorsProvider.routinesComplimentaryColor} />
 					</Text>
@@ -351,13 +350,11 @@ export class CreateRoutine extends React.Component {
 			<TouchableOpacity
 				style={styles.notificationTimesButtonContainer}
 				onPress={() => {
+					Keyboard.dismiss();
 					this.setNotificationTimesVisibility(true);
-				}}
-			>
+				}}>
 				<Text style={styles.notificationTimeButtonText}>
-					When would you like to be notified?
-        </Text>
-
+					When would you like to be notified?</Text>
 				<Text style={styles.notificationTimeButtonText}>
 					<SIcon name="bell" size={20} color={colorsProvider.routinesPlaceholderColor} />
 				</Text>
