@@ -28,7 +28,7 @@ export class CreateRoutine extends React.Component {
 		super(props);
 		this.state = {
 			newRoutine: this.props.newRoutine,
-			tasksSelectionModalVisible: false,
+			habitsSelectionModalVisibility: false,
 			items: [],
 			showStartDate: false,
 			showEndDate: false,
@@ -214,25 +214,25 @@ export class CreateRoutine extends React.Component {
 
 	/* #region  Habit Selection Region */
 	showTasksSelectionModal() {
-		if (this.state.tasksSelectionModalVisible) {
+		if (this.state.habitsSelectionModalVisibility) {
 			return <MultipleSelectionModal
 				animationType="fade"
 				items={this.state.items}
 				titleTextColor={colorsProvider.habitsComplimentaryColor}
-                titleContainerColor={colorsProvider.habitsMainColor}
+				titleContainerColor={colorsProvider.habitsMainColor}
 				itemName="Habits"
 				checkBoxColor={colorsProvider.habitsComplimentaryColor}
 				transparent={true}
 				selectItems={items => {
 					this.setState({ tasks: items })
 				}}
-				closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
+				closeModal={() => { this.setHabitsSelectionModalVisibility(false) }}>
 			</MultipleSelectionModal>
 		}
 	}
 
-	setTaskSelectionModalVisibility(visible) {
-		this.setState({ tasksSelectionModalVisible: visible })
+	setHabitsSelectionModalVisibility(visible) {
+		this.setState({ habitsSelectionModalVisibility: visible })
 	}
 
 	renderSelectedTasksString() {
@@ -261,9 +261,12 @@ export class CreateRoutine extends React.Component {
 		if (this.state.tasks.length > 0) {
 			return (
 				<View style={styles.projectSectionContainer}>
-					<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
-						this.setTaskSelectionModalVisibility(true);
-					}}>
+					<TouchableOpacity
+						style={styles.hasProjectSelectionContainer}
+						onPress={() => {
+							Keyboard.dismiss();
+							this.setHabitsSelectionModalVisibility(true);
+						}}>
 						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 						<Text style={styles.notificationTimeButtonText}>
 
@@ -274,7 +277,12 @@ export class CreateRoutine extends React.Component {
 		} else {
 			return (
 				<View style={styles.projectSectionContainer}>
-					<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
+					<TouchableOpacity
+						style={styles.createProjectSelectionContainer}
+						onPress={() => {
+							Keyboard.dismiss();
+							this.setHabitsSelectionModalVisibility(true);
+						}}>
 						<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
 						<Text style={styles.notificationTimeButtonText}>
 							<SIcon name="reload" size={20} color={colorsProvider.routinesPlaceholderColor} />
@@ -432,57 +440,57 @@ export class CreateRoutine extends React.Component {
 	/* #region  Bottom Buttons Region */
 	renderBottomButtons() {
 		return (
-		// <View><View style={styles.bottomButtonsContainer}>
-		// 	<TouchableOpacity
-		// 		disabled={this.state.newRoutineName != '' ? false : true}
-		// 		style={
-		// 			this.state.newRoutineName != ''
-		// 				? styles.bottomButtonLeft
-		// 				: styles.bottomButtonLeftDisabled
-		// 		}
-		// 		onPress={() => {
-		// 			this.saveProjectInSelectedTask(this.state.projectId)
-		// 			this.props.save()
-		// 		}}
-		// 	>
-		// 		<Text
-		// 			style={
-		// 				this.state.newRoutineName != ''
-		// 					? styles.bottomButtonTextDisabled
-		// 					: styles.bottomButtonText
-		// 			}>
-		// 			Save
-		// </Text>
-		// 	</TouchableOpacity>
-		// 	<TouchableOpacity
-		// 		style={styles.bottomButtonRight}
-		// 		onPress={this.props.closeModal}>
-		// 		<Text style={styles.bottomButtonText}>Close</Text>
-		// 	</TouchableOpacity>
-		// </View></View>
-		// )
+			// <View><View style={styles.bottomButtonsContainer}>
+			// 	<TouchableOpacity
+			// 		disabled={this.state.newRoutineName != '' ? false : true}
+			// 		style={
+			// 			this.state.newRoutineName != ''
+			// 				? styles.bottomButtonLeft
+			// 				: styles.bottomButtonLeftDisabled
+			// 		}
+			// 		onPress={() => {
+			// 			this.saveProjectInSelectedTask(this.state.projectId)
+			// 			this.props.save()
+			// 		}}
+			// 	>
+			// 		<Text
+			// 			style={
+			// 				this.state.newRoutineName != ''
+			// 					? styles.bottomButtonTextDisabled
+			// 					: styles.bottomButtonText
+			// 			}>
+			// 			Save
+			// </Text>
+			// 	</TouchableOpacity>
+			// 	<TouchableOpacity
+			// 		style={styles.bottomButtonRight}
+			// 		onPress={this.props.closeModal}>
+			// 		<Text style={styles.bottomButtonText}>Close</Text>
+			// 	</TouchableOpacity>
+			// </View></View>
+			// )
 
-		<View style={styles.bottomButtonsContainer}>
-		<TouchableOpacity
-			style={styles.bottomButtonLeftClose}
-			onPress={this.props.closeModal}>
-			<Text style={styles.bottomButtonText}>Close</Text>
-		</TouchableOpacity>
-		<TouchableOpacity
-			disabled={this.state.newRoutineName != '' ? false : true}
-			style={
-				this.state.newRoutineName != ''
-					? styles.bottomButtonRight
-					: styles.bottomButtonRightDisabled
-			}
-			onPress={() => {
-				this.saveProjectInSelectedTask(this.state.projectId)
-				notifier.scheduleAllNotifications();
-				this.props.save()
-			}}>
-			<Text style={this.state.newRoutineName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
-		</TouchableOpacity>
-	</View >)
+			<View style={styles.bottomButtonsContainer}>
+				<TouchableOpacity
+					style={styles.bottomButtonLeftClose}
+					onPress={this.props.closeModal}>
+					<Text style={styles.bottomButtonText}>Close</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					disabled={this.state.newRoutineName != '' ? false : true}
+					style={
+						this.state.newRoutineName != ''
+							? styles.bottomButtonRight
+							: styles.bottomButtonRightDisabled
+					}
+					onPress={() => {
+						this.saveProjectInSelectedTask(this.state.projectId)
+						notifier.scheduleAllNotifications();
+						this.props.save()
+					}}>
+					<Text style={this.state.newRoutineName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
+				</TouchableOpacity>
+			</View >)
 	}
 	/* #endregion */
 
