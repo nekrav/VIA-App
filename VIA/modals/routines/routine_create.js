@@ -131,7 +131,10 @@ export class CreateRoutine extends React.Component {
 			return (
 				<View style={styles.createDueDateContainer}>
 					<TouchableOpacity
-						onPress={() => this.setStartDateModalVisibility(true)}
+						onPress={() => {
+							Keyboard.dismiss()
+							this.setStartDateModalVisibility(true)
+						}}
 					>
 						<Text style={styles.createSelectedDateText}>
 							{Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
@@ -142,7 +145,10 @@ export class CreateRoutine extends React.Component {
 		}
 		return (
 			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setStartDateModalVisibility(true)}>
+				<TouchableOpacity onPress={() => {
+					Keyboard.dismiss()
+					this.setStartDateModalVisibility(true)
+				}}>
 					<Text style={styles.createDateText}>
 						When do you want this routine to start?
 			  </Text>
@@ -190,8 +196,10 @@ export class CreateRoutine extends React.Component {
 			return (
 				<View style={styles.createDueDateContainer}>
 					<TouchableOpacity
-						onPress={() => this.setEndDateModalVisibility(true)}
-					>
+						onPress={() => {
+							Keyboard.dismiss()
+							this.setEndDateModalVisibility(true)
+						}}>
 						<Text style={styles.createSelectedDateText}>
 							{Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
 						</Text>
@@ -201,7 +209,10 @@ export class CreateRoutine extends React.Component {
 		}
 		return (
 			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setEndDateModalVisibility(true)}>
+				<TouchableOpacity onPress={() => {
+					Keyboard.dismiss()
+					this.setEndDateModalVisibility(true)
+				}}>
 					<Text style={styles.createDateText}>
 						When do you want this routine to end?
 			  </Text>
