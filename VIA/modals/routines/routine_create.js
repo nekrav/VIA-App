@@ -260,34 +260,32 @@ export class CreateRoutine extends React.Component {
 	renderTaskSelection() {
 		if (this.state.tasks.length > 0) {
 			return (
-				<View style={styles.projectSectionContainer}>
-					<TouchableOpacity
-						style={styles.hasProjectSelectionContainer}
-						onPress={() => {
-							Keyboard.dismiss();
-							this.setHabitsSelectionModalVisibility(true);
-						}}>
-						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
-						<Text style={styles.notificationTimeButtonText}>
+				<TouchableOpacity
+					style={styles.hasProjectSelectionContainer}
+					onPress={() => {
+						Keyboard.dismiss();
+						this.setHabitsSelectionModalVisibility(true);
+					}}>
+					<Text maxLines={2} style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
+					<Text style={styles.notificationTimeButtonText}>
 
-							<SIcon name="reload" size={20} color={colorsProvider.routinesComplimentaryColor} />
-						</Text>
-					</TouchableOpacity></View>
+						<SIcon name="reload" size={20} color={colorsProvider.routinesComplimentaryColor} />
+					</Text>
+				</TouchableOpacity>
 			);
 		} else {
 			return (
-				<View style={styles.projectSectionContainer}>
-					<TouchableOpacity
-						style={styles.createProjectSelectionContainer}
-						onPress={() => {
-							Keyboard.dismiss();
-							this.setHabitsSelectionModalVisibility(true);
-						}}>
-						<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
-						<Text style={styles.notificationTimeButtonText}>
-							<SIcon name="reload" size={20} color={colorsProvider.routinesPlaceholderColor} />
-						</Text>
-					</TouchableOpacity></View>
+				<TouchableOpacity
+					style={styles.createProjectSelectionContainer}
+					onPress={() => {
+						Keyboard.dismiss();
+						this.setHabitsSelectionModalVisibility(true);
+					}}>
+					<Text style={styles.createProjectSelectionButtonText}>Do you have any habits that go here?</Text>
+					<Text style={styles.notificationTimeButtonText}>
+						<SIcon name="reload" size={20} color={colorsProvider.routinesPlaceholderColor} />
+					</Text>
+				</TouchableOpacity>
 			);
 		}
 	}

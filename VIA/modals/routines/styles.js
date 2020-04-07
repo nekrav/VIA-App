@@ -194,6 +194,7 @@ module.exports = StyleSheet.create({
       height: 1,
       width: 0,
     },
+    alignItems: 'center'
   },
   hasProjectSelectionContainer: {
     borderRadius: 10,
