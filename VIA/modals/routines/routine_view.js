@@ -199,6 +199,7 @@ export class ViewRoutine extends React.Component {
     }
 
     saveNewHabit(habit) {
+        console.warn(habit)
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
@@ -213,15 +214,19 @@ export class ViewRoutine extends React.Component {
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
-        Database.save(childTableName, newHabit).then(() => {
-            this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
-            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-            notifier.scheduleAllNotifications()
-        })
+        // Database.save(childTableName, newHabit).then(() => {
+        //     this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
+        //     controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+        //     notifier.scheduleAllNotifications()
+        // })
     }
 
     showTasksSelectionModal() {
-        let newHabit = {};
+        if (newHabit != {}) {
+            var newHabit = {};
+        }
+        var newHabit = {};
+        // let newHabit = {};
         if (this.state.tasksSelectionModalVisible) {
             return <CreateHabit
                 animationType="slide"
@@ -232,7 +237,7 @@ export class ViewRoutine extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => { 
+                notification_time={(text) => {
                     if (text) {
                         var times = text.map(function (time) {
                             return JSON.stringify(time)
@@ -375,7 +380,7 @@ export class ViewRoutine extends React.Component {
                             {/* </View> */}
                         </TouchableWithoutFeedback>
                     } />
-                <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
+                {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
                     <TouchableOpacity style={styles.addTimeButtonContainer}
                         onPress={() => {
                             this.setTaskSelectionModalVisibility(true)
@@ -384,7 +389,8 @@ export class ViewRoutine extends React.Component {
                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                             <Text style={styles.addTimeButtonText}> Add Habit</Text>
                         </View>
-                    </TouchableOpacity></View>
+                    </TouchableOpacity>
+                </View> */}
             </View>
         );
     }
