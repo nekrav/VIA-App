@@ -149,10 +149,6 @@ export class CreateHabit extends React.Component {
                     <Text style={styles.hasDateText}>
                         {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
                     </Text>
-                    {/* <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.itemStartDate)).diff({ todayDate }, 'days') +
-                            ' days left'}
-                    </Text> */}
                 </TouchableOpacity>
             );
         }
@@ -205,7 +201,6 @@ export class CreateHabit extends React.Component {
     renderEndDate() {
         if (this.state.itemEndDate != '') {
             return (
-                // <View style={styles.createNameContainer}>
                 <TouchableOpacity
                     style={styles.createNameContainer}
                     onPress={() => {
@@ -220,12 +215,9 @@ export class CreateHabit extends React.Component {
                             ' days left'}
                     </Text> */}
                 </TouchableOpacity>
-
-                // </View>
             );
         }
         return (
-            // <View style={styles.createNameContainer}>
             <TouchableOpacity style={styles.createNameContainer} onPress={() => {
                 Keyboard.dismiss();
                 this.setEndDateModalVisibility(true)
@@ -234,7 +226,6 @@ export class CreateHabit extends React.Component {
                     When do you want this habit to end?
           </Text>
             </TouchableOpacity>
-            // </View>
         );
     }
 
@@ -276,11 +267,8 @@ export class CreateHabit extends React.Component {
                         style={styles.hasProjectSelectionContainer}
                         onPress={() => {
                             Keyboard.dismiss()
-                            // this.setRoutineSelectionModalVisibility.bind(this)
                             this.setState({ routineSelectionModalVisible: true })
-                            // this.setRoutineSelectionModalVisibility.
-                        }}
-                    >
+                        }}>
                         <Text style={styles.hasProjectSelectionButtonText}>
                             {this.state.theSelectedRoutine}
                         </Text>
@@ -296,14 +284,10 @@ export class CreateHabit extends React.Component {
                         style={styles.createProjectSelectionContainer}
                         onPress={() => {
                             Keyboard.dismiss()
-                            // this.setRoutineSelectionModalVisibility.bind(this)
                             this.setState({ routineSelectionModalVisible: true })
-                            // this.setRoutineSelectionModalVisibility.
-                        }}
-                    >
+                        }}>
                         <Text style={styles.createProjectSelectionButtonText}>
-                            Is this part of a bigger routine?
-          </Text>
+                            Is this part of a bigger routine?</Text>
                         <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="refresh" size={20} color={colorsProvider.habitsPlaceholderColor} />
                         </Text>
@@ -359,8 +343,7 @@ export class CreateHabit extends React.Component {
                     onPress={() => {
                         Keyboard.dismiss();
                         this.setNotificationTimesVisibility(true);
-                    }}
-                >
+                    }}>
                     <Text style={styles.hasNotificationTimeButtonText}>
                         {daysWithNotifications}
                     </Text>
