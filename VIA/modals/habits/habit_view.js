@@ -299,6 +299,7 @@ export class ViewHabit extends React.Component {
                     <TouchableOpacity
                         style={styles.completeButtonBodyDone}
                         onLongPress={() => {
+                            Keyboard.dismiss()
                             this.setState({ percentVal: 0 })
                             this.props.editCompleted("false")
                             this.props.editPercentageDone(0)
@@ -320,6 +321,7 @@ export class ViewHabit extends React.Component {
                 <TouchableOpacity
                     style={styles.completeButtonBodyDone}
                     onLongPress={() => {
+                        Keyboard.dismiss()
                         this.setState({ percentVal: 0 })
                         this.props.editCompleted("false")
                         this.props.editPercentageDone(0)

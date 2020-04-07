@@ -432,14 +432,21 @@ export class ViewRoutine extends React.Component {
         if (this.state.selectedItem.start_time != '') {
             return (<TouchableOpacity
                 style={styles.createDueDateContainer}
-                onPress={() => this.setStartDateModalVisibility(true)}>
+                onPress={() => {
+                    Keyboard.dismiss()
+                    this.setStartDateModalVisibility(true)
+                }}>
                 <Text style={styles.createSelectedDateText}>
                     {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
                 </Text>
             </TouchableOpacity>
             );
         }
-        return (<TouchableOpacity style={styles.createNameContainer} onPress={() => this.setStartDateModalVisibility(true)}>
+        return (<TouchableOpacity style={styles.createNameContainer}
+            onPress={() => {
+                Keyboard.dismiss()
+                this.setStartDateModalVisibility(true)
+            }}>
             <Text style={styles.createDateText}>
                 When do you want this routine to start?
           </Text>
@@ -485,15 +492,21 @@ export class ViewRoutine extends React.Component {
         if (this.state.selectedItem.end_time != '') {
             return (<TouchableOpacity
                 style={styles.createDueDateContainer}
-                onPress={() => this.setEndDateModalVisibility(true)}
-            >
+                onPress={() => {
+                    Keyboard.dismiss()
+                    this.setEndDateModalVisibility(true)
+                }}>
                 <Text style={styles.createSelectedDateText}>
                     {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
                 </Text>
             </TouchableOpacity>
             );
         }
-        return (<TouchableOpacity style={styles.createNameContainer} onPress={() => this.setEndDateModalVisibility(true)}>
+        return (<TouchableOpacity style={styles.createNameContainer}
+            onPress={() => {
+                Keyboard.dismiss()
+                this.setEndDateModalVisibility(true)
+            }}>
             <Text style={styles.createDateText}>
                 When do you want this routine to end?
           </Text>
@@ -510,11 +523,13 @@ export class ViewRoutine extends React.Component {
             return (<TouchableOpacity
                 style={styles.completeButtonBodyDone}
                 onLongPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 0 })
                     this.props.editCompleted("false")
                 }
                 }
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 100 })
                     this.props.editCompleted("true")
                     this.props.editFinishedDate(new Date(Date.now()));
@@ -526,6 +541,7 @@ export class ViewRoutine extends React.Component {
             return (<TouchableOpacity
                 style={styles.completeButtonBody}
                 onLongPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 0 })
                     this.props.editCompleted("false")
                     this.props.editFinishedDate("");
@@ -533,6 +549,7 @@ export class ViewRoutine extends React.Component {
                 }
                 }
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 100 })
                     this.props.editCompleted("true")
                     this.props.editFinishedDate(new Date(Date.now()));
