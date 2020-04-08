@@ -133,7 +133,10 @@ export class ViewRandom extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
                     </Text>
@@ -146,7 +149,10 @@ export class ViewRandom extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
           </Text>
@@ -201,6 +207,7 @@ export class ViewRandom extends React.Component {
                                 this.props.save();
                             }}
                             onValueChange={(value) => {
+                                Keyboard.dismiss()
                                 this.props.editPercentageDone(value);
                             }}
                         />
@@ -216,6 +223,7 @@ export class ViewRandom extends React.Component {
                             maximumTrackTintColor={styles.placeholderColor}
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
+                                Keyboard.dismiss()
                                 this.props.save;
                                 this.props.editImportance(value);
                             }}
@@ -232,23 +240,23 @@ export class ViewRandom extends React.Component {
 
     /* #region  Complete Button Section */
     // renderCompleteButton() {
-        // return (<TouchableOpacity
-        //     style={styles.completeButtonBody}
-        //     onLongPress={() => {
-        //         this.setState({ percentVal: 0 })
-        //         this.props.editCompleted("false")
-        //         this.props.editPercentageDone(0)
-        //     }
-        //     }
-        //     onPress={() => {
-        //         this.setState({ percentVal: 100 })
-        //         this.props.editPercentageDone(100)
-        //         this.props.editCompleted("true")
+    // return (<TouchableOpacity
+    //     style={styles.completeButtonBody}
+    //     onLongPress={() => {
+    //         this.setState({ percentVal: 0 })
+    //         this.props.editCompleted("false")
+    //         this.props.editPercentageDone(0)
+    //     }
+    //     }
+    //     onPress={() => {
+    //         this.setState({ percentVal: 100 })
+    //         this.props.editPercentageDone(100)
+    //         this.props.editCompleted("true")
 
-        //     }
-        //     }>
-        //     {this.renderCompleteButtonText()}
-        // </TouchableOpacity>)
+    //     }
+    //     }>
+    //     {this.renderCompleteButtonText()}
+    // </TouchableOpacity>)
     // }
 
     renderCompleteButton() {
@@ -256,38 +264,36 @@ export class ViewRandom extends React.Component {
             return (<TouchableOpacity
                 style={styles.completeButtonBodyDone}
                 onLongPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 0 })
                     this.props.editCompleted("false")
                     this.props.editPercentageDone(0)
-                }
-                }
+                }}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setState({ percentVal: 100 })
                     this.props.editPercentageDone(100)
                     this.props.editCompleted("true")
-    
-                }
-                }>
-               <Text style={styles.completeButtonTextDone}>Done</Text>
+                }}>
+                <Text style={styles.completeButtonTextDone}>Done</Text>
             </TouchableOpacity>)
         else
-        return (<TouchableOpacity
-            style={styles.completeButtonBody}
-            onLongPress={() => {
-                this.setState({ percentVal: 0 })
-                this.props.editCompleted("false")
-                this.props.editPercentageDone(0)
-            }
-            }
-            onPress={() => {
-                this.setState({ percentVal: 100 })
-                this.props.editPercentageDone(100)
-                this.props.editCompleted("true")
-
-            }
-            }>
-           <Text style={styles.completeButtonText}>Complete</Text>
-        </TouchableOpacity>)
+            return (<TouchableOpacity
+                style={styles.completeButtonBody}
+                onLongPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editPercentageDone(0)
+                }}
+                onPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 100 })
+                    this.props.editPercentageDone(100)
+                    this.props.editCompleted("true")
+                }}>
+                <Text style={styles.completeButtonText}>Complete</Text>
+            </TouchableOpacity>)
     }
     /* #endregion */
 
@@ -335,9 +341,9 @@ export class ViewRandom extends React.Component {
                     <TouchableOpacity
                         style={styles.hasNotificationTimesButtonContainer}
                         onPress={() => {
+                            Keyboard.dismiss()
                             this.setNotificationTimesVisibility(true);
-                        }}
-                    >
+                        }}>
                         <Text style={styles.hasNotificationTimeButtonText}>
                             {daysWithNotifications}
                         </Text>
@@ -353,9 +359,9 @@ export class ViewRandom extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setNotificationTimesVisibility(true);
-                }}
-            >
+                }}>
                 <Text style={styles.notificationTimeButtonText}>
                     When would you like to be notified?
         </Text>
@@ -434,6 +440,7 @@ export class ViewRandom extends React.Component {
                 <TouchableOpacity
                     style={styles.hasNotesContainer}
                     onPress={() => {
+                        Keyboard.dismiss()
                         this.setNotesModalVisibility(true);
                     }}
                 >
@@ -451,6 +458,7 @@ export class ViewRandom extends React.Component {
             <TouchableOpacity
                 style={styles.createNotesContainer}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setNotesModalVisibility(true);
                 }}
             >
