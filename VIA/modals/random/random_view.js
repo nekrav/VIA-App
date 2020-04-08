@@ -308,6 +308,10 @@ export class ViewRandom extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.homePlaceholderColor}
+                    saveButtonTextColor={colorsProvider.homeComplimentaryColor}
+                    disabledSaveButtonTextColor={colorsProvider.homeComplimentaryColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
