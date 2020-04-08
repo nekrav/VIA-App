@@ -45,15 +45,6 @@ export class CreateRandom extends React.Component {
                 style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
                 <SIcon
-                    style={{
-                        shadowColor: colorsProvider.homePlaceholderColor,
-                        shadowOpacity: 0.8,
-                        shadowRadius: 1.5,
-                        shadowOffset: {
-                            height: 1,
-                            width: 0,
-                        },
-                    }}
                     name="arrow-left"
                     size={30}
                     color={colorsProvider.homeTextColor}
@@ -74,8 +65,7 @@ export class CreateRandom extends React.Component {
                 this.state.newRandomName != ''
                     ? styles.hasNameTextInputContainer
                     : styles.createNameContainer
-            }
-        >
+            }>
             <TextInput
                 ref={input => {
                     this.nameTextInput = input;
@@ -87,8 +77,8 @@ export class CreateRandom extends React.Component {
                 onChangeText={value => {
                     this.setState({ newRandomName: value });
                     this.props.name(value);
-                }}
-            ></TextInput>
+                }}>
+            </TextInput>
         </TouchableOpacity>)
     }
     /* #endregion */
@@ -130,7 +120,10 @@ export class CreateRandom extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setDueDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss
+                        this.setDueDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemDate)).format(dateFormat)}
                     </Text>
@@ -143,7 +136,10 @@ export class CreateRandom extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDueDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setDueDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
           </Text>
@@ -163,6 +159,10 @@ export class CreateRandom extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.homePlaceholderColor}
+                    saveButtonTextColor={colorsProvider.homeComplimentaryColor}
+                    disabledSaveButtonTextColor={colorsProvider.homeComplimentaryColor}
                     saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     setDate={item => {
@@ -194,9 +194,9 @@ export class CreateRandom extends React.Component {
                 <TouchableOpacity
                     style={styles.hasNotificationTimesButtonContainer}
                     onPress={() => {
+                        Keyboard.dismiss()
                         this.setNotificationTimesVisibility(true);
-                    }}
-                >
+                    }}>
                     <Text style={styles.hasNotificationTimeButtonText}>
                         {daysWithNotifications}
                     </Text>
@@ -211,9 +211,9 @@ export class CreateRandom extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setNotificationTimesVisibility(true);
-                }}
-            >
+                }}>
                 <Text style={styles.notificationTimeButtonText}>
                     When would you like to be notified?
         </Text>
@@ -239,6 +239,7 @@ export class CreateRandom extends React.Component {
             textStyle={this.state.onlyTodayChecked ? styles.onlyForTodayCheckboxTextChecked : styles.onlyForTodayCheckboxText}
             containerStyle={styles.onlyForTodayContainer}
             onPress={() => {
+                Keyboard.dismiss()
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
                     this.props.only_today(this.state.onlyTodayChecked)
@@ -280,6 +281,7 @@ export class CreateRandom extends React.Component {
                             this.props.importance(value);
                         }}
                         onValueChange={value => {
+                            Keyboard.dismiss()
                             this.setState({ newRandomImportance: value });
                             this.props.importance(value);
                         }}

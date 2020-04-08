@@ -400,7 +400,6 @@ export class ViewRandom extends React.Component {
                 Keyboard.dismiss()
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
-                    console.warn(this.state.onlyTodayChecked)
                     this.props.editOnlyToday(this.state.onlyTodayChecked)
                 })
             }}

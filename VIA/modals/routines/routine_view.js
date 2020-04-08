@@ -199,7 +199,6 @@ export class ViewRoutine extends React.Component {
     }
 
     saveNewHabit(habit) {
-        console.warn(habit)
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
