@@ -378,7 +378,7 @@ export class ViewRandom extends React.Component {
     /* #region  Only for Today Section */
     getChecked(item) {
         if (item != null)
-            return checked = this.state.selectedItem.only_today === "true"
+            return this.state.selectedItem.only_today === "true"
     }
 
     renderOnlyForToday() {
@@ -395,7 +395,8 @@ export class ViewRandom extends React.Component {
             onPress={() => {
                 var checked = this.state.onlyTodayChecked;
                 this.setState({ onlyTodayChecked: !checked }, () => {
-                    this.props.editOnlyToday(JSON.stringify(this.state.onlyTodayChecked))
+                    console.warn(this.state.onlyTodayChecked)
+                    this.props.editOnlyToday(this.state.onlyTodayChecked)
                 })
             }}
         />)
