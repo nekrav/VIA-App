@@ -366,37 +366,54 @@ export class CreateRandom extends React.Component {
 
     /* #region  Bottom Buttons Region */
     renderBottomButtons() {
-        return (<View style={styles.bottomButtonsContainer}>
-            <TouchableOpacity
-                disabled={this.state.newRandomName != '' ? false : true}
-                style={
-                    this.state.newRandomName != ''
-                        ? styles.bottomButtonLeft
-                        : styles.bottomButtonLeftDisabled
-                }
-                onPress={() => {
-                    // notifier.scheduleAllNotifications() 
-                    this.props.save()
-                }
-                }
-            >
-                <Text
+        return (
+            // <View style={styles.bottomButtonsContainer}>
+            //     <TouchableOpacity
+            //         disabled={this.state.newRandomName != '' ? false : true}
+            //         style={
+            //             this.state.newRandomName != ''
+            //                 ? styles.bottomButtonLeft
+            //                 : styles.bottomButtonLeftDisabled
+            //         }
+            //         onPress={() => {
+            //             // notifier.scheduleAllNotifications() 
+            //             this.props.save()
+            //         }}>
+            //         <Text
+            //             style={
+            //                 this.state.newRandomName != ''
+            //                     ? styles.bottomButtonTextDisabled
+            //                     : styles.bottomButtonText
+            //             }>
+            //             Save</Text>
+            //     </TouchableOpacity>
+            //     <TouchableOpacity
+            //         style={styles.bottomButtonRight}
+            //         onPress={this.props.closeModal}>
+            //         <Text style={styles.bottomButtonText}>Close</Text>
+            //     </TouchableOpacity>
+            // </View>
+            <View style={styles.bottomButtonsContainer}>
+                <TouchableOpacity
+                    style={styles.bottomButtonLeftClose}
+                    onPress={this.props.closeModal}>
+                    <Text style={styles.bottomButtonText}>Close</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    disabled={this.state.newRandomName != '' ? false : true}
                     style={
                         this.state.newRandomName != ''
-                            ? styles.bottomButtonTextDisabled
-                            : styles.bottomButtonText
+                            ? styles.bottomButtonRight
+                            : styles.bottomButtonRightDisabled
                     }
-                >
-                    Save
-</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.bottomButtonRight}
-                onPress={this.props.closeModal}
-            >
-                <Text style={styles.bottomButtonText}>Close</Text>
-            </TouchableOpacity>
-        </View>)
+                    onPress={() => {
+                        notifier.scheduleAllNotifications();
+                        this.props.save()
+                    }}>
+                    <Text style={this.state.newRandomName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
+                </TouchableOpacity>
+            </View >
+        )
     }
     /* #endregion */
 
