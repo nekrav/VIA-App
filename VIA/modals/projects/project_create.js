@@ -46,7 +46,6 @@ export class CreateProject extends React.Component {
 	}
 
 	/* #region  Top Bar Region */
-
 	renderTopRegion() {
 		return (<View style={styles.topNav}>
 			<TouchableOpacity
@@ -66,11 +65,12 @@ export class CreateProject extends React.Component {
 	renderNameInputSection() {
 		return (<TouchableOpacity
 			onPress={() => {
-				this.nameTextInput.focus();}}
+				this.nameTextInput.focus();
+			}}
 			style={
 				this.state.newProjectName != '' ? styles.hasNameTextInputContainer : styles.createNameContainer}>
 			<TextInput
-				ref={input => {this.nameTextInput = input}}
+				ref={input => { this.nameTextInput = input }}
 				maxLength={40}
 				style={styles.createNameText}
 				multiline={true}
@@ -84,7 +84,7 @@ export class CreateProject extends React.Component {
 		</TouchableOpacity>)
 	}
 	/* #endregion */
-	
+
 	/* #region  Due Date Region */
 	setDueDateModalVisibility(visible) {
 		this.setState({ showDate: visible });
@@ -122,8 +122,10 @@ export class CreateProject extends React.Component {
 			return (
 				<View style={styles.createDueDateContainer}>
 					<TouchableOpacity
-						onPress={() => this.setDueDateModalVisibility(true)}
-					>
+						onPress={() => {
+							Keyboard.dismiss()
+							this.setDueDateModalVisibility(true)
+						}}>
 						<Text style={styles.createSelectedDateText}>
 							{Moment(new Date(this.state.itemDate)).format(dateFormat)}
 						</Text>
@@ -137,7 +139,10 @@ export class CreateProject extends React.Component {
 		}
 		return (
 			<View style={styles.createNameContainer}>
-				<TouchableOpacity onPress={() => this.setDueDateModalVisibility(true)}>
+				<TouchableOpacity onPress={() => {
+					Keyboard.dismiss()
+					this.setDueDateModalVisibility(true)
+				}}>
 					<Text style={styles.createDateText}>
 						When do you want to finish this?
           </Text>
@@ -158,10 +163,8 @@ export class CreateProject extends React.Component {
 							this.state.newTaskImportance > 0
 								? styles.sliderTitle
 								: styles.sliderTitleNull
-						}
-					>
-						Importance
-	  </Text>
+						}>
+						Importance</Text>
 				</View>
 			</View>
 
@@ -180,6 +183,7 @@ export class CreateProject extends React.Component {
 							this.props.importance(value);
 						}}
 						onValueChange={value => {
+							Keyboard.dismiss()
 							this.setState({ newTaskImportance: value });
 							this.props.importance(value);
 						}}
@@ -241,6 +245,7 @@ export class CreateProject extends React.Component {
 			return (
 				<View style={styles.projectSectionContainer}>
 					<TouchableOpacity style={styles.hasProjectSelectionContainer} onPress={() => {
+						Keyboard.dismiss()
 						this.setTaskSelectionModalVisibility(true);
 					}}>
 						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
@@ -254,7 +259,11 @@ export class CreateProject extends React.Component {
 		} else {
 			return (
 				<View style={styles.projectSectionContainer}>
-					<TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}>
+					<TouchableOpacity style={styles.createProjectSelectionContainer}
+						onPress={() => {
+							Keyboard.dismiss
+							this.setTaskSelectionModalVisibility(true);
+						}}>
 						<Text style={styles.createProjectSelectionButtonText}>Do you have any tasks that go here?</Text>
 						<Text style={styles.notificationTimeButtonText}>
 							<SIcon name="list" size={20} color={colorsProvider.projectsPlaceholderColor} />
@@ -308,9 +317,9 @@ export class CreateProject extends React.Component {
 				<TouchableOpacity
 					style={styles.hasNotificationTimesButtonContainer}
 					onPress={() => {
+						Keyboard.dismiss()
 						this.setNotificationTimesVisibility(true);
-					}}
-				>
+					}}>
 					<Text style={styles.hasNotificationTimeButtonText}>
 						{daysWithNotifications}
 					</Text>
@@ -325,9 +334,9 @@ export class CreateProject extends React.Component {
 			<TouchableOpacity
 				style={styles.notificationTimesButtonContainer}
 				onPress={() => {
+					Keyboard.dismiss()
 					this.setNotificationTimesVisibility(true);
-				}}
-			>
+				}}>
 				<Text style={styles.notificationTimeButtonText}>
 					When would you like to be notified?
         </Text>
@@ -358,7 +367,7 @@ export class CreateProject extends React.Component {
 					textPlaceholderColor={colorsProvider.projectsPlaceholderColor}
 					textChangedColor={colorsProvider.projectsComplimentaryColor}
 					buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
+					buttonTextPlaceholderColor={colorsProvider.whiteColor}
 					placeholder={'Notes...'}
 					setNotes={item => {
 						this.props.notes(item);
@@ -379,14 +388,13 @@ export class CreateProject extends React.Component {
 				<TouchableOpacity
 					style={styles.hasNotesContainer}
 					onPress={() => {
+						Keyboard.dismiss()
 						this.setNotesModalVisibility(true);
-					}}
-				>
+					}}>
 					<Text
 						style={styles.hasNotesText}
 						multiline={true}
-						onChangeText={this.props.notes}
-					>
+						onChangeText={this.props.notes}>
 						{this.state.itemNotes}
 					</Text>
 				</TouchableOpacity>
@@ -396,16 +404,14 @@ export class CreateProject extends React.Component {
 			<TouchableOpacity
 				style={styles.createNotesContainer}
 				onPress={() => {
+					Keyboard.dismiss()
 					this.setNotesModalVisibility(true);
-				}}
-			>
+				}}>
 				<Text
 					style={styles.createNotesText}
 					multiline={true}
-					onChangeText={this.props.notes}
-				>
-					Notes ...
-	</Text>
+					onChangeText={this.props.notes}>
+					Notes ...</Text>
 			</TouchableOpacity>
 		);
 	}
@@ -413,37 +419,60 @@ export class CreateProject extends React.Component {
 
 	/* #region  Bottom Buttons Region */
 	renderBottomButtons() {
-		return (<View style={styles.bottomButtonsContainer}>
+	// 	return (<View style={styles.bottomButtonsContainer}>
+	// 		<TouchableOpacity
+	// 			disabled={this.state.newProjectName != '' ? false : true}
+	// 			style={
+	// 				this.state.newProjectName != ''
+	// 					? styles.bottomButtonLeft
+	// 					: styles.bottomButtonLeftDisabled
+	// 			}
+	// 			onPress={() => {
+	// 				notifier.scheduleAllNotifications()
+	// 				this.saveProjectInSelectedTask(this.state.projectId)
+	// 				this.props.save()
+	// 			}}
+	// 		>
+	// 			<Text
+	// 				style={
+	// 					this.state.newProjectName != ''
+	// 						? styles.bottomButtonTextDisabled
+	// 						: styles.bottomButtonText
+	// 				}
+	// 			>
+	// 				Save
+	// </Text>
+	// 		</TouchableOpacity>
+	// 		<TouchableOpacity
+	// 			style={styles.bottomButtonRight}
+	// 			onPress={this.props.closeModal}
+	// 		>
+	// 			<Text style={styles.bottomButtonText}>Close</Text>
+	// 		</TouchableOpacity>
+	// 	</View>)
+
+	return (
+		<View style={styles.bottomButtonsContainer}>
+			<TouchableOpacity
+				style={styles.bottomButtonLeftClose}
+				onPress={this.props.closeModal}>
+				<Text style={styles.bottomButtonText}>Close</Text>
+			</TouchableOpacity>
 			<TouchableOpacity
 				disabled={this.state.newProjectName != '' ? false : true}
 				style={
 					this.state.newProjectName != ''
-						? styles.bottomButtonLeft
-						: styles.bottomButtonLeftDisabled
+						? styles.bottomButtonRight
+						: styles.bottomButtonRightDisabled
 				}
 				onPress={() => {
 					notifier.scheduleAllNotifications()
 					this.saveProjectInSelectedTask(this.state.projectId)
 					this.props.save()
-				}}
-			>
-				<Text
-					style={
-						this.state.newProjectName != ''
-							? styles.bottomButtonTextDisabled
-							: styles.bottomButtonText
-					}
-				>
-					Save
-	</Text>
+				}}>
+				<Text style={this.state.newProjectName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
 			</TouchableOpacity>
-			<TouchableOpacity
-				style={styles.bottomButtonRight}
-				onPress={this.props.closeModal}
-			>
-				<Text style={styles.bottomButtonText}>Close</Text>
-			</TouchableOpacity>
-		</View>)
+		</View >)
 	}
 	/* #endregion */
 

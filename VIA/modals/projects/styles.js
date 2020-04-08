@@ -354,6 +354,19 @@ module.exports = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 10,
     },
+    bottomButtonLeftClose: {
+        marginLeft: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: colorsProvider.projectsPlaceholderColor,
+        backgroundColor: colorsProvider.projectsPlaceholderColor,
+        shadowColor: colorsProvider.shadowColor,
+
+    },
     bottomButtonLeftDisabled: {
         marginLeft: 50,
         paddingLeft: 35,
@@ -392,22 +405,33 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: colorsProvider.projectsPlaceholderColor,
-        backgroundColor: colorsProvider.projectsMainColor,
+        borderColor: colorsProvider.projectsComplimentaryColor,
+        backgroundColor: colorsProvider.projectsComplimentaryColor,
         marginRight: 50,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: colorsProvider.shadow
     },
+    bottomButtonRightDisabled: {
+        marginLeft: 50,
+        marginRight: 50,
+        paddingLeft: 35,
+        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: colorsProvider.projectsPlaceholderColor,
+    },
     bottomButtonText: {
-        fontSize: colorsProvider.fontSizeChildren,
+        fontSize: colorsProvider.fontButtonSize,
         textAlign: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.homeTextColor,
     },
     bottomButtonTextDisabled: {
-        fontSize: colorsProvider.fontSizeChildren,
+        fontSize: colorsProvider.fontButtonSize,
         textAlign: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.projectsMainColor,
@@ -415,7 +439,6 @@ module.exports = StyleSheet.create({
     /* #endregion */
 
     /* #region  Complete Button Section */
-
     completeButtonBody: {
         margin: 10,
         borderColor: colorsProvider.homeComplimentaryColor,
@@ -519,8 +542,8 @@ module.exports = StyleSheet.create({
         // flex: 1,
     },
 
- 
-   childContainer: {
+
+    childContainer: {
         // flex: 1,
         backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
