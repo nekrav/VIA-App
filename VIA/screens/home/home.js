@@ -258,7 +258,12 @@ export class HomeScreen extends React.Component {
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <TouchableWithoutFeedback onPress={() => { }}>
-                                <View style={styles.childContainer}>
+                                <TouchableOpacity onPress={() => {
+                                    this.setViewRandomModalVisibility(true)
+                                    this.setState({ selectedRandom: item.value }, () => {
+                                        this.setViewRandomModalVisibility(true)
+                                    })
+                                }} style={styles.childContainer}>
                                     <CheckBox
                                         center
                                         checkedIcon={colorsProvider.checkboxIcon}
@@ -303,7 +308,7 @@ export class HomeScreen extends React.Component {
                                             <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                         </TouchableOpacity>
                                     </View>
-                                </View></TouchableWithoutFeedback>
+                                </TouchableOpacity></TouchableWithoutFeedback>
                         } />
                 </View>
             );
