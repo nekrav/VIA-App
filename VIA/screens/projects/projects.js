@@ -35,9 +35,9 @@ export class ProjectsScreen extends React.Component {
 
     componentDidMount() {
         notifier.scheduleAllNotifications()
-        this.props.navigation.addListener('willFocus', (playload)=>{
+        this.props.navigation.addListener('willFocus', (playload) => {
             controller.loadAll(this, dbTableName)
-          });
+        });
         controller.loadAll(this, dbTableName)
     }
 
@@ -182,55 +182,42 @@ export class ProjectsScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={() => {}}>
-                            <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
-                                <View style={styles.checkboxAndNameContainer}>
-                                    <CheckBox
-                                        center
-                                        checkedIcon={colorsProvider.checkboxIcon}
-                                        uncheckedIcon={colorsProvider.checkboxIcon}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.habitsPlaceholderColor}
-                                        size={colorsProvider.checkboxIconSize}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            if (item.value.completed == true) {
-                                                item.value.finished_date = new Date(Date.now())
-                                            } else {
-                                                item.value.finished_date == ""
-                                            }
-                                            controller.saveExisting(this, dbTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)}
-                                    />
-                                    <View style={styles.listItemTextContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
-                                </View>
-                                <View style={styles.listItemActionButtonsContainer}>
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                    onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications() }}>
-                                        <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.redColor} />
-                                    </TouchableOpacity> */}
-
-                                    {/* <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => {
-                                            controller.silenceAlarms(this, dbTableName, item.value)
-                                        }}>
-                                        <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
-                                    </TouchableOpacity> */}
-
-                                    <TouchableOpacity
-                                        style={styles.listItemActionButton}
-                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
-                                    </TouchableOpacity>
-                                </View>
-                            </TouchableOpacity></TouchableWithoutFeedback>} />
+                            <TouchableWithoutFeedback onPress={() => { }}>
+                                <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                                    <View style={styles.checkboxAndNameContainer}>
+                                        <CheckBox
+                                            center
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            uncheckedColor={colorsProvider.projectsComplimentaryColor}
+                                            containerStyle={colorsProvider.checkboxContainerStyle}
+                                            size={colorsProvider.checkboxIconSize}
+                                            onPress={() => {
+                                                item.value.completed = !this.getChecked(item)
+                                                if (item.value.completed == true) {
+                                                    item.value.finished_date = new Date(Date.now())
+                                                } else {
+                                                    item.value.finished_date == ""
+                                                }
+                                                controller.saveExisting(this, dbTableName, item.value)
+                                            }}
+                                            checked={this.getChecked(item)}
+                                        />
+                                        <View style={styles.listItemTextContainer}>
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                    </View>
+                                    <View style={styles.listItemActionButtonsContainer}>
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </TouchableOpacity></TouchableWithoutFeedback>} />
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );

@@ -6,12 +6,10 @@ import { StyleSheet, Platform } from 'react-native';
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const shadowColor = colorsProvider.shadowColor
-
 module.exports = StyleSheet.create({
 
-     /* #region Outer Structure */
-     outerView: {
+    /* #region Outer Structure */
+    outerView: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: colorsProvider.routinesMainColor,
@@ -37,7 +35,7 @@ module.exports = StyleSheet.create({
         marginTop: 2,
         paddingRight: 10,
         paddingLeft: 10,
-        shadowColor: shadowColor,
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: colorsProvider.shadow
@@ -63,7 +61,7 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-     /* #region  List Item Section */
+    /* #region  List Item Section */
     listItemContainer: {
         backgroundColor: colorsProvider.routinesMainColor,
         justifyContent: 'space-between',
@@ -75,14 +73,14 @@ module.exports = StyleSheet.create({
         borderTopColor: colorsProvider.homePlaceholderColor,
         flexDirection: "row",
         marginTop: 10,
-        shadowColor: shadowColor,
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: colorsProvider.shadow,
         padding: 5,
     },
 
-    listItemContainerFinished:{
+    listItemContainerFinished: {
         backgroundColor: colorsProvider.routinesMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -92,7 +90,7 @@ module.exports = StyleSheet.create({
         borderRadius: 10,
         flexDirection: "row",
         marginTop: 10,
-        shadowColor: shadowColor,
+        shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: colorsProvider.shadow,
@@ -123,5 +121,5 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
     }
-       /* #endregion */
+    /* #endregion */
 })
