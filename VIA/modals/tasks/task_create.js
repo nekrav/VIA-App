@@ -134,7 +134,10 @@ export class CreateTask extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setDueDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setDueDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemDate)).format(dateFormat)}
                     </Text>
@@ -147,7 +150,10 @@ export class CreateTask extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDueDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setDueDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
   </Text>
@@ -188,6 +194,7 @@ export class CreateTask extends React.Component {
                                 this.props.importance(value);
                             }}
                             onValueChange={value => {
+                                Keyboard.dismiss()
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
                             }}
@@ -236,6 +243,7 @@ export class CreateTask extends React.Component {
                     <TouchableOpacity
                         style={styles.hasProjectSelectionContainer}
                         onPress={() => {
+                            Keyboard.dismiss()
                             this.setProjectSelectionModalVisibility(true);
                         }}
                     >
@@ -253,11 +261,12 @@ export class CreateTask extends React.Component {
                 <View style={styles.projectSectionContainer}>
                     <TouchableOpacity
                         style={styles.createProjectSelectionContainer}
-                        onPress={this.setProjectSelectionModalVisibility.bind(this)}
-                    >
+                        onPress={() => {
+                            Keyboard.dismiss()
+                            this.setProjectSelectionModalVisibility(true)
+                        }}>
                         <Text style={styles.createProjectSelectionButtonText}>
-                            Is this part of a bigger project?
-          </Text>
+                            Is this part of a bigger project?</Text>
                         <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
                         </Text>
@@ -310,6 +319,7 @@ export class CreateTask extends React.Component {
                 <TouchableOpacity
                     style={styles.hasNotificationTimesButtonContainer}
                     onPress={() => {
+                        Keyboard.dismiss()
                         this.setNotificationTimesVisibility(true);
                     }}
                 >
@@ -327,6 +337,7 @@ export class CreateTask extends React.Component {
             <TouchableOpacity
                 style={styles.notificationTimesButtonContainer}
                 onPress={() => {
+                    Keyboard.dismiss()
                     this.setNotificationTimesVisibility(true);
                 }}
             >
@@ -380,13 +391,11 @@ export class CreateTask extends React.Component {
                     style={styles.hasNotesContainer}
                     onPress={() => {
                         this.setNotesModalVisibility(true);
-                    }}
-                >
+                    }}>
                     <Text
                         style={styles.hasNotesText}
                         multiline={true}
-                        onChangeText={this.props.notes}
-                    >
+                        onChangeText={this.props.notes}>
                         {this.state.itemNotes}
                     </Text>
                 </TouchableOpacity>
@@ -397,15 +406,12 @@ export class CreateTask extends React.Component {
                 style={styles.createNotesContainer}
                 onPress={() => {
                     this.setNotesModalVisibility(true);
-                }}
-            >
+                }}>
                 <Text
                     style={styles.createNotesText}
                     multiline={true}
-                    onChangeText={this.props.notes}
-                >
-                    Notes ...
-        </Text>
+                    onChangeText={this.props.notes}>
+                    Notes ...</Text>
             </TouchableOpacity>
         );
     }
@@ -414,7 +420,7 @@ export class CreateTask extends React.Component {
     /* #region  Bottom Buttons Section */
     renderBottomButtons() {
         return (<View style={styles.bottomButtonsContainer}>
-              <TouchableOpacity
+            <TouchableOpacity
                 style={styles.bottomButtonLeftClose}
                 onPress={this.props.closeModal}>
                 <Text style={styles.bottomButtonText}>Close</Text>
