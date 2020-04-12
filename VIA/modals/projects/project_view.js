@@ -344,6 +344,7 @@ export class ViewProject extends React.Component {
                                             }}>
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                         </TouchableOpacity> */}
+
                                         <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
