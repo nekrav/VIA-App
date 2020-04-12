@@ -350,7 +350,6 @@ export class ViewRoutine extends React.Component {
                                                 item.value.finished_date == ""
                                             }
                                             controller.saveExisting(this, childTableName, item.value)
-                                            // this.getHabits();
                                             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
                                             controller.loadAll(this, Habits.TABLE_NAME)
                                         }}

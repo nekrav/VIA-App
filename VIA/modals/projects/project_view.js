@@ -318,33 +318,35 @@ export class ViewProject extends React.Component {
                                             size={25}
                                             onPress={() => {
                                                 item.value.completed = !this.getChecked(item)
+                                                if (item.value.completed == true) {
+                                                    item.value.finished_date = new Date(Date.now())
+                                                } else {
+                                                    item.value.finished_date == ""
+                                                }
                                                 controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
                                                 controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                                controller.loadAll(this, Tasks.TABLE_NAME)
                                             }}
-                                            checked={this.getChecked(item)}
-                                        />
-                                        <View style={styles.childTitleContainer}>
-                                            <Text
-                                                numberOfLines={1}
-                                                multiline={false}
-                                                style={styles.childTitleText}>{item.value.name} </Text>
-                                        </View>
+                                            checked={this.getChecked(item)} />
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.childTitleText}>{item.value.name} </Text>
                                     </View>
                                     <View style={styles.childActionButtonsContainer}>
+                                        {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
                                         {/* <TouchableOpacity
-                                        style={styles.childActionButton}
-                                        onPress={() => {
-                                            controller.delete(this, childTableName, item.value)
-                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "routine")
-                                            notifier.scheduleAllNotifications();
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-                                    </TouchableOpacity> */}
-
+                                            style={styles.childActionButton}
+                                            onPress={() => {
+                                                controller.delete(this, childTableName, item.value)
+                                                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                                notifier.scheduleAllNotifications();
+                                            }}>
+                                            <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
+                                        </TouchableOpacity> */}
                                         <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
-                                                // this.setDateModalVisibility(true)
                                                 this.setChildItemModalVisibility(true)
                                                 this.setState({ selectedChildItem: item.value }, () => {
                                                     this.setChildItemModalVisibility(true)
@@ -353,7 +355,8 @@ export class ViewProject extends React.Component {
                                             <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
                                         </TouchableOpacity>
                                     </View>
-                                </TouchableOpacity></TouchableWithoutFeedback>
+                                </TouchableOpacity>
+                            </TouchableWithoutFeedback>
                         } />
                 </View>
             );
