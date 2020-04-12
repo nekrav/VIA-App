@@ -293,23 +293,14 @@ export class ViewProject extends React.Component {
                                 Tasks in {this.state.selectedItem.name}
                             </Text>
                         </View>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
-                        onPress={() => {
-                            this.setTaskSelectionModalVisibility(true)
-                        }}>
-                        <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
-                        </View>
-                    </TouchableOpacity> */}
                     </View>
                     <FlatList
                         data={this.state.relatedChildren}
                         extraData={this.state}
-                        // contentContainerStyle={styles.childrenContainer}
+                        contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <TouchableWithoutFeedback onPress={() => { }}>
-                                <View style={styles.childContainer}>
+                                <TouchableOpacity style={styles.childContainer}>
                                     <CheckBox
                                         center
                                         checkedIcon={colorsProvider.checkboxIcon}
@@ -355,7 +346,7 @@ export class ViewProject extends React.Component {
                                             <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
                                         </TouchableOpacity>
                                     </View>
-                                </View></TouchableWithoutFeedback>
+                                </TouchableOpacity></TouchableWithoutFeedback>
                         } />
                 </View>
             );
