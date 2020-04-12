@@ -18,7 +18,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: colorsProvider.finishedBackgroundColor,
+        backgroundColor: colorsProvider.projectsMainColor,
     },
     /* #endregion */
 
@@ -441,21 +441,32 @@ module.exports = StyleSheet.create({
     /* #region  Complete Button Section */
     completeButtonBody: {
         margin: 10,
-        borderColor: colorsProvider.homeComplimentaryColor,
-        backgroundColor: colorsProvider.homeComplimentaryColor,
-        borderWidth: 5,
+        borderColor: colorsProvider.projectsMainColor,
+        // backgroundColor: colorsProvider.homeComplimentaryColor,
+        borderWidth: 2,
         borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        height: '12%'
-    },
-    completeButtonText: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '12%',
+      },
+      completeButtonBodyDone: {
+        margin: 10,
+        borderColor: colorsProvider.tasksComplimentaryColor,
+        backgroundColor: colorsProvider.finishedBackgroundColor,
+        borderWidth: 2,
+        borderColor: colorsProvider.tasksComplimentaryColor,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '12%',
+      },
+      completeButtonText: {
         fontFamily: fontFamily,
-        color: colorsProvider.projectsMainColor,
-        fontSize: colorsProvider.fontSizeMain,
-    },
-
-    /* #endregion */
+        color: colorsProvider.projectsComplimentaryColor,
+        fontSize: colorsProvider.fontSizeChildren,
+      },
+      /* #endregion */
+    
 
     /* #region  Children Section */
     childrenItemsContainer: {

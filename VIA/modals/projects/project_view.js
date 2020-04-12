@@ -22,6 +22,7 @@ const styles = require('./styles');
 
 const empty = ""
 const todayDate = new Date();
+const dateDisplayFormat = 'MMM Do'
 const dateFormat = 'ddd, MMM Do, YY'
 const childTableName = Tasks.TABLE_NAME
 
@@ -474,28 +475,68 @@ export class ViewProject extends React.Component {
     /* #region  Complete Button Section */
 
     renderCompleteButton() {
-        return (<TouchableOpacity
-            style={styles.completeButtonBody}
-            onLongPress={() => {
-                this.setState({ percentVal: 0 })
-                this.props.editCompleted("false")
-                this.props.editPercentageDone(0)
-            }
-            }
-            onPress={() => {
-                this.setState({ percentVal: 100 })
-                this.props.editPercentageDone(100)
-                this.props.editCompleted("true")
+        // return (<TouchableOpacity
+        //     style={styles.completeButtonBody}
+        //     onLongPress={() => {
+        //         this.setState({ percentVal: 0 })
+        //         this.props.editCompleted("false")
+        //         this.props.editPercentageDone(0)
+        //     }
+        //     }
+        //     onPress={() => {
+        //         this.setState({ percentVal: 100 })
+        //         this.props.editPercentageDone(100)
+        //         this.props.editCompleted("true")
 
-            }
-            }>
-            {this.renderCompleteButtonText()}
-        </TouchableOpacity>)
+        //     }
+        //     }>
+        //     {this.renderCompleteButtonText()}
+        // </TouchableOpacity>)
+        if (this.state.selectedItem.completed == "true") {
+            return (<TouchableOpacity
+                style={styles.completeButtonBodyDone}
+                onLongPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                }
+                }
+                onPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 100 })
+                    this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
+                }
+                }>
+                {this.renderCompleteButtonText()}
+            </TouchableOpacity>);
+        } else {
+            return (<TouchableOpacity
+                style={styles.completeButtonBody}
+                onLongPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editFinishedDate("");
+
+                }
+                }
+                onPress={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 100 })
+                    this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
+                }
+                }>
+                {this.renderCompleteButtonText()}
+            </TouchableOpacity>);
+        }
     }
 
     renderCompleteButtonText() {
         if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done</Text>)
+            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, fontFamily: colorsProvider.font }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+            )
         else
             return (<Text style={styles.completeButtonText}>Complete</Text>)
     }
