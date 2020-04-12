@@ -300,28 +300,35 @@ export class ViewProject extends React.Component {
                         contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
                             <TouchableWithoutFeedback onPress={() => { }}>
-                                <TouchableOpacity style={styles.childContainer}>
-                                    <CheckBox
-                                        center
-                                        checkedIcon={colorsProvider.checkboxIcon}
-                                        uncheckedIcon={colorsProvider.checkboxIcon}
-                                        containerStyle={colorsProvider.checkboxContainerStyle}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.tasksPlaceholderColor}
-                                        size={25}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
-                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                                        }}
-                                        checked={this.getChecked(item)}
-                                    />
+                                <TouchableOpacity style={styles.childContainer}
+                                    onPress={() => {
+                                        this.setState({ selectedChildItem: item.value }, () => {
+                                            this.setChildItemModalVisibility(true)
+                                        })
+                                    }}>
                                     <View style={styles.childTitleContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.childTitleText}>{item.value.name} </Text>
+                                        <CheckBox
+                                            center
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            containerStyle={colorsProvider.checkboxContainerStyle}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            uncheckedColor={colorsProvider.tasksPlaceholderColor}
+                                            size={25}
+                                            onPress={() => {
+                                                item.value.completed = !this.getChecked(item)
+                                                controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
+                                                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                            }}
+                                            checked={this.getChecked(item)}
+                                        />
+                                        <View style={styles.childTitleContainer}>
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={styles.childTitleText}>{item.value.name} </Text>
+                                        </View>
                                     </View>
                                     <View style={styles.childActionButtonsContainer}>
                                         {/* <TouchableOpacity
