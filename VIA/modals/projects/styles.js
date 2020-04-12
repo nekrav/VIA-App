@@ -441,7 +441,7 @@ module.exports = StyleSheet.create({
     /* #region  Complete Button Section */
     completeButtonBody: {
         margin: 10,
-        borderColor: colorsProvider.projectsMainColor,
+        borderColor: colorsProvider.projectsComplimentaryColor,
         // backgroundColor: colorsProvider.homeComplimentaryColor,
         borderWidth: 2,
         borderRadius: 10,
