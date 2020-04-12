@@ -140,7 +140,10 @@ export class ViewProject extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
                     </Text>
@@ -153,7 +156,10 @@ export class ViewProject extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
               </Text>
@@ -302,6 +308,7 @@ export class ViewProject extends React.Component {
                             <TouchableWithoutFeedback onPress={() => { }}>
                                 <TouchableOpacity style={styles.childContainer}
                                     onPress={() => {
+                                        Keyboard.dismiss()
                                         this.setState({ selectedChildItem: item.value }, () => {
                                             this.setChildItemModalVisibility(true)
                                         })
@@ -419,6 +426,7 @@ export class ViewProject extends React.Component {
                                 this.props.save();
                             }}
                             onValueChange={(value) => {
+                                Keyboard.dismiss()
                                 this.props.editPercentageDone(value);
                             }}
                         />
@@ -445,6 +453,7 @@ export class ViewProject extends React.Component {
                             maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
+                                Keyboard.dismiss()
                                 this.props.save;
                                 this.props.editImportance(value);
                             }}

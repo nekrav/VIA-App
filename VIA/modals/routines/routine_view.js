@@ -373,6 +373,7 @@ export class ViewRoutine extends React.Component {
                                     <TouchableOpacity
                                         style={styles.childActionButtonsContainer}
                                         onPress={() => {
+                                            Keyboard.dismiss()
                                             this.setState({ selectedChildItem: item.value }, () => {
                                                 this.setChildItemModalVisibility(true)
                                             })
