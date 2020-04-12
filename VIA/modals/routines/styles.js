@@ -219,12 +219,12 @@ module.exports = StyleSheet.create({
     fontSize: 18,
     fontFamily: fontFamily,
     color: colorsProvider.routinesPlaceholderColor,
-    marginLeft: 10,
+    marginLeft: 10, 
     marginTop: 5,
     marginBottom: 5,
   },
   hasProjectSelectionButtonText: {
-    fontSize: 18,
+    fontSize: colorsProvider.fontSizeChildren,
     fontFamily: fontFamily,
     color: colorsProvider.routinesComplimentaryColor,
     marginLeft: 10,
@@ -498,13 +498,12 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     fontFamily: fontFamily,
     color: colorsProvider.routinesComplimentaryColor,
-    fontSize: 25,
+    fontSize: colorsProvider.fontSizeMain,
   },
   /* #endregion */
 
   /* #region  Add Child Button */
   addTimeButtonContainer: {
-    // flex: 2,
     marginRight: 5,
     flexDirection: 'row',
     alignItems: 'center',
@@ -533,7 +532,7 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   addTimeButtonText: {
-    fontSize: 14,
+    fontSize: colorsProvider.fontSizeChildren,
     textAlign: 'center',
     fontFamily: fontFamily,
     marginLeft: 10,

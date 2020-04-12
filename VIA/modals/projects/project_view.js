@@ -308,31 +308,32 @@ export class ViewProject extends React.Component {
                         extraData={this.state}
                         // contentContainerStyle={styles.childrenContainer}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={() => {}}>
-                            <View style={styles.childContainer}>
-                                <CheckBox
-                                    center
-                                    checkedIcon={colorsProvider.checkboxIcon}
-                                    uncheckedIcon={colorsProvider.checkboxIcon}
-                                    checkedColor={colorsProvider.finishedBackgroundColor}
-                                    uncheckedColor={colorsProvider.homePlaceholderColor}
-                                    containerStyle={colorsProvider.checkboxContainerStyle}
-                                    size={25}
-                                    onPress={() => {
-                                        item.value.completed = !this.getChecked(item)
-                                        controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
-                                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                                    }}
-                                    checked={this.getChecked(item)}
-                                />
-                                <View style={styles.childTitleContainer}>
-                                    <Text
-                                        numberOfLines={1}
-                                        multiline={false}
-                                        style={styles.childTitleText}>{item.value.name} </Text>
-                                </View>
-                                <View style={styles.childActionButtonsContainer}>
-                                    {/* <TouchableOpacity
+                            <TouchableWithoutFeedback onPress={() => { }}>
+                                <View style={styles.childContainer}>
+                                    <CheckBox
+                                        center
+                                        checkedIcon={colorsProvider.checkboxIcon}
+                                        uncheckedIcon={colorsProvider.checkboxIcon}
+                                        containerStyle={colorsProvider.checkboxContainerStyle}
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
+                                        checkedColor={colorsProvider.finishedBackgroundColor}
+                                        uncheckedColor={colorsProvider.tasksPlaceholderColor}
+                                        size={25}
+                                        onPress={() => {
+                                            item.value.completed = !this.getChecked(item)
+                                            controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
+                                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                        }}
+                                        checked={this.getChecked(item)}
+                                    />
+                                    <View style={styles.childTitleContainer}>
+                                        <Text
+                                            numberOfLines={1}
+                                            multiline={false}
+                                            style={styles.childTitleText}>{item.value.name} </Text>
+                                    </View>
+                                    <View style={styles.childActionButtonsContainer}>
+                                        {/* <TouchableOpacity
                                         style={styles.childActionButton}
                                         onPress={() => {
                                             controller.delete(this, childTableName, item.value)
@@ -342,19 +343,19 @@ export class ViewProject extends React.Component {
                                         <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                     </TouchableOpacity> */}
 
-                                    <TouchableOpacity
-                                        style={styles.childActionButton}
-                                        onPress={() => {
-                                            // this.setDateModalVisibility(true)
-                                            this.setChildItemModalVisibility(true)
-                                            this.setState({ selectedChildItem: item.value }, () => {
+                                        <TouchableOpacity
+                                            style={styles.childActionButton}
+                                            onPress={() => {
+                                                // this.setDateModalVisibility(true)
                                                 this.setChildItemModalVisibility(true)
-                                            })
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View></TouchableWithoutFeedback>
+                                                this.setState({ selectedChildItem: item.value }, () => {
+                                                    this.setChildItemModalVisibility(true)
+                                                })
+                                            }}>
+                                            <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View></TouchableWithoutFeedback>
                         } />
                 </View>
             );

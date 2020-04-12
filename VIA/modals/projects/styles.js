@@ -466,10 +466,16 @@ module.exports = StyleSheet.create({
         flex: 1,
         borderRadius: 10,
         borderWidth: 2,
-        borderColor: colorsProvider.tasksMainColor,
-        backgroundColor: colorsProvider.tasksMainColor,
+        borderColor: colorsProvider.projectsMainColor,
+        backgroundColor: colorsProvider.projectsMainColor,
         marginRight: 10,
         marginLeft: 10,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
     },
     /* #region  Children Items Header */
     /* #region  Children Items Title */
@@ -492,7 +498,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         fontFamily: fontFamily,
-        color: colorsProvider.tasksComplimentaryColor,
+        color: colorsProvider.projectsComplimentaryColor,
         fontSize: colorsProvider.fontSizeMain,
     },
     /* #endregion */
@@ -502,21 +508,28 @@ module.exports = StyleSheet.create({
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     addTimeButtonContainerView: {
+        width: '90%',
         borderRadius: 20,
         paddingTop: 5,
         paddingBottom: 5,
         borderWidth: 1,
-        borderColor: colorsProvider.projectsPlaceholderColor,
+        borderColor: colorsProvider.projectsMainColor,
         backgroundColor: colorsProvider.projectsMainColor,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
         marginRight: 5,
         flexDirection: 'row',
         alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
     },
     addTimeButtonText: {
         fontSize: colorsProvider.fontSizeChildren,
@@ -544,7 +557,7 @@ module.exports = StyleSheet.create({
 
 
     childContainer: {
-        // flex: 1,
+        flex: 1,
         backgroundColor: colorsProvider.tasksMainColor,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -552,31 +565,32 @@ module.exports = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 5,
         alignItems: 'center',
-        flexWrap: 'wrap',
-        borderWidth: 1,
-        borderRadius: 100,
-        // flexDirection: "row",
-        // marginTop: 2,
-        // shadowColor: colorsProvider.shadowColor,
-        // shadowOpacity: 0.8,
-        // shadowRadius: 2,
-        // shadowOffset: {
-        //     height: 1,
-        //     width: 0
-        // },
-        padding: 1,
+        borderRadius: 10,
+        borderTopWidth: 2,
+        borderTopColor: colorsProvider.tasksMainColor,
+        flexDirection: 'row',
+        marginTop: 2,
+        shadowColor: colorsProvider.shadowColor,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
     },
 
     /* #endregion */
     /* #region  Child Item Section */
     childTitleContainer: {
         flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     childTitleText: {
         color: colorsProvider.tasksComplimentaryColor,
         fontSize: colorsProvider.fontSizeChildren,
         marginLeft: 10,
-        fontFamily: fontFamily,
+        fontFamily: colorsProvider.font
 
     },
     childActionButtonsContainer: {
@@ -584,11 +598,9 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
     },
     childActionButtonText: {
-        fontSize: colorsProvider.fontSizeMain,
+        fontSize: 24,
         marginLeft: 10,
         marginRight: 10,
-        fontFamily: fontFamily,
-        color: colorsProvider.tasksComplimentaryColor
     },
     /* #endregion */
     /* #endregion */

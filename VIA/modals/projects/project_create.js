@@ -248,7 +248,7 @@ export class CreateProject extends React.Component {
 						Keyboard.dismiss()
 						this.setTaskSelectionModalVisibility(true);
 					}}>
-						<Text style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
+						<Text maxLines={2} style={styles.hasProjectSelectionButtonText}>{this.renderSelectedTasksString()}</Text>
 						<Text style={styles.notificationTimeButtonText}>
 
 							<SIcon name="list" size={20} color={colorsProvider.projectsComplimentaryColor} />

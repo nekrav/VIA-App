@@ -10,6 +10,7 @@ import { Habits } from './habits'
 import { Tasks } from './tasks'
 import { Random } from './random'
 import { Routines } from './routines'
+import { Notifications } from './notifications'
 import { restElement } from '@babel/types';
 
 
@@ -260,6 +261,7 @@ export class Database {
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Tasks.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Routines.TABLE_CREATE}`);
         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Home.TABLE_CREATE}`);
+        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${Notifications.TABLE_CREATE}`);
 
     }
 
@@ -343,4 +345,5 @@ export { Habits } from './habits'
 export { Routines } from './routines'
 export { Tasks } from './tasks'
 export { Random } from './random'
+export { Notifications } from './notifications'
 
