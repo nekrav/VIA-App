@@ -69,16 +69,15 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         marginRight: 10,
         marginLeft: 10,
-        marginBottom: 20,
-        marginTop: 2,
+        marginBottom: 5,
         borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.tasksMainColor,
         flexDirection: "row",
+        marginTop: 10,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
+        shadowOffset: colorsProvider.shadow,
+        padding: 5,
     },
 
     listItemContainerFinished:{
@@ -87,15 +86,15 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         marginRight: 10,
         marginLeft: 10,
-        marginBottom: 20,
-        marginTop: 2,
+        marginBottom: 5,
         borderRadius: 10,
-       
         flexDirection: "row",
+        marginTop: 10,
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
+        shadowOffset: colorsProvider.shadow,
+        padding: 5,
     },
     listItemTextContainer: {
         width: 130,

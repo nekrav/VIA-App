@@ -57,15 +57,7 @@ export class CreateTask extends React.Component {
                 style={styles.topNavBackButton}
                 onPress={this.props.closeModal}>
                 <SIcon
-                    style={{
-                        shadowColor: colorsProvider.homePlaceholderColor,
-                        shadowOpacity: 0.8,
-                        shadowRadius: 1.5,
-                        shadowOffset: {
-                            height: 1,
-                            width: 0,
-                        },
-                    }}
+                    style={{}}
                     name="arrow-left"
                     size={30}
                     color={colorsProvider.tasksComplimentaryColor}
