@@ -161,7 +161,7 @@ export class CreateRandom extends React.Component {
                     transparent={true}
                     saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     disabledSaveButtonBackgroundColor={colorsProvider.homePlaceholderColor}
-                    saveButtonTextColor={colorsProvider.homeComplimentaryColor}
+                    saveButtonTextColor={colorsProvider.whiteColor}
                     disabledSaveButtonTextColor={colorsProvider.homeComplimentaryColor}
                     saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
                     disabledSaveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
