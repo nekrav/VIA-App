@@ -281,7 +281,7 @@ module.exports = StyleSheet.create({
     fontSize: 16,
     color: colorsProvider.routinesPlaceholderColor,
     marginRight: 5,
-    marginLeft: 8,
+    // marginLeft: 8,
     marginTop: 5,
     marginBottom: 5,
     fontFamily: fontFamily,
