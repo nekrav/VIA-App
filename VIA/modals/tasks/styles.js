@@ -203,7 +203,7 @@ module.exports = StyleSheet.create({
         fontSize: colorsProvider.fontButtonSize,
         fontFamily: fontFamily,
         color:  colorsProvider.tasksPlaceholderColor,
-        marginLeft: 5,
+        marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
     },
