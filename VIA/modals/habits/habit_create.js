@@ -149,6 +149,9 @@ export class CreateHabit extends React.Component {
                     <Text style={styles.hasDateText}>
                         {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
                     </Text>
+                    <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
+                </Text>
                 </TouchableOpacity>
             );
         }
@@ -160,6 +163,9 @@ export class CreateHabit extends React.Component {
                 <Text style={styles.createDateText}>
                     When do you want this habit to start?
           </Text>
+          <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="control-play" size={20} color={colorsProvider.habitsPlaceholderColor} />
+                </Text>
             </TouchableOpacity>
         );
     }
@@ -210,6 +216,9 @@ export class CreateHabit extends React.Component {
                     <Text style={styles.hasDateText}>
                         {Moment(new Date(this.state.itemEndDate)).format(dateFormat)}
                     </Text>
+                    <Text style={styles.notificationTimeButtonText}>
+                        <SIcon name="control-end" size={20} color={colorsProvider.habitsComplimentaryColor} />
+                    </Text>
                     {/* <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.state.itemEndDate)).diff({ todayDate }, 'days') +
                             ' days left'}
@@ -225,6 +234,9 @@ export class CreateHabit extends React.Component {
                 <Text style={styles.createDateText}>
                     When do you want this habit to end?
           </Text>
+          <Text style={styles.notificationTimeButtonText}>
+                        <SIcon name="control-end" size={20} color={colorsProvider.habitsPlaceholderColor} />
+                    </Text>
             </TouchableOpacity>
         );
     }
