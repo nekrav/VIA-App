@@ -47,7 +47,7 @@ export class ViewTask extends React.Component {
 
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
@@ -78,7 +78,7 @@ export class ViewTask extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.delete()
-                    }}>
+                }}>
                 <SIcon name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity>
         </View>)
@@ -135,9 +135,9 @@ export class ViewTask extends React.Component {
                 <TouchableOpacity
                     style={styles.hasProjectSelectionContainer}
                     onPress={() => {
+                        Keyboard.dismiss();
                         this.setProjectSelectionModalVisibility(true);
-                    }}
-                >
+                    }}>
                     <Text style={styles.hasProjectSelectionButtonText}>
                         {this.state.projName}
                     </Text>
@@ -150,8 +150,10 @@ export class ViewTask extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createProjectSelectionContainer}
-                    onPress={this.setProjectSelectionModalVisibility.bind(this)}
-                >
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setProjectSelectionModalVisibility(true)
+                    }}>
                     <Text style={styles.createProjectSelectionButtonText}>
                         Is this part of a bigger project?
           </Text>
@@ -201,7 +203,10 @@ export class ViewTask extends React.Component {
             return (
                 <TouchableOpacity
                     style={styles.createDueDateContainer}
-                    onPress={() => this.setDateModalVisibility(true)}>
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setDateModalVisibility(true)
+                    }}>
                     <Text style={styles.createSelectedDateText}>
                         {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
                     </Text>
@@ -214,7 +219,10 @@ export class ViewTask extends React.Component {
             );
         }
         return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => this.setDateModalVisibility(true)}>
+            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
+                Keyboard.dismiss()
+                this.setDateModalVisibility(true)
+            }}>
                 <Text style={styles.createDateText}>
                     When do you want to finish this?
           </Text>
@@ -270,6 +278,7 @@ export class ViewTask extends React.Component {
                                 this.props.save();
                             }}
                             onValueChange={(value) => {
+                                Keyboard.dismiss()
                                 this.props.editPercentageDone(value);
                             }}
                         />
@@ -285,7 +294,8 @@ export class ViewTask extends React.Component {
                             maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
                             value={parseInt(this.state.importanceVal)}
                             onValueChange={(value) => {
-                                this.props.save;
+                                Keyboard.dismiss()
+                                this.props.save();
                                 this.props.editImportance(value);
                             }}
                             onSlidingComplete={(value) => {
@@ -402,7 +412,7 @@ export class ViewTask extends React.Component {
         </Text>
 
                 <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor}/>
+                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
         );

@@ -16,7 +16,7 @@ module.exports = StyleSheet.create({
     outerViewDone: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: colorsProvider.finishedBackgroundColor,
+        backgroundColor: colorsProvider.tasksMainColor,
     },
     /* #endregion */
 
@@ -424,20 +424,31 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
- /* #region  Complete Button Section */
-    completeButtonBody: {
-        margin: 10,
-        flex: 1,
-        borderColor: colorsProvider.homeComplimentaryColor,
-        backgroundColor: colorsProvider.homeComplimentaryColor,
-        borderWidth: 5,
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow,
-    },
- /* #endregion */
+/* #region  Complete Button Section */
+completeButtonBody: {
+    margin: 10,
+    borderColor: colorsProvider.tasksComplimentaryColor,
+    borderWidth: 2,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '12%',
+  },
+  completeButtonBodyDone: {
+    margin: 10,
+    borderColor: colorsProvider.tasksComplimentaryColor,
+    backgroundColor: colorsProvider.finishedBackgroundColor,
+    borderWidth: 2,
+    borderColor: colorsProvider.tasksComplimentaryColor,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '12%',
+  },
+  completeButtonText: {
+    fontFamily: fontFamily,
+    color: colorsProvider.tasksComplimentaryColor,
+    fontSize: colorsProvider.fontSizeChildren,
+  },
+  /* #endregion */
 })
