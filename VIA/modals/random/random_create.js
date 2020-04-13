@@ -10,8 +10,11 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 import { CheckBox } from 'react-native-elements'
+import { Notifier } from '../../notifier/notifier'
+
 
 const controller = new Controller();
+const notifier = new Notifier;
 const dateFormat = 'ddd, MMM Do, YY';
 const todayDate = new Date();
 const styles = require('./styles');
