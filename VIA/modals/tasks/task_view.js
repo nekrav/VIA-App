@@ -431,6 +431,8 @@ export class ViewTask extends React.Component {
                 <NotificationTimesModal
                     animationType="fade"
                     transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
                     times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
                     setDate={item => {
                         this.props.editNotificationTime(item);
@@ -511,6 +513,13 @@ export class ViewTask extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.selectedItem.notes}
+                    backgroundColor={colorsProvider.tasksMainColor}
+                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.tasksMainColor}
+                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
+                    textChangedColor={colorsProvider.tasksComplimentaryColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.props.editNotes(item)
