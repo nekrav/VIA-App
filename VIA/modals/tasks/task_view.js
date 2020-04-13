@@ -124,6 +124,8 @@ export class ViewTask extends React.Component {
                 animationType="fade"
                 items={this.state.items}
                 itemName="Project"
+                titleTextColor={colorsProvider.projectsComplimentaryColor}
+                titleContainerColor={colorsProvider.projectsMainColor}
                 transparent={true}
                 selectItem={(item) => {
                     this.props.editProject(item.value.id)

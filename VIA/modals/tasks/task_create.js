@@ -216,8 +216,8 @@ export class CreateTask extends React.Component {
                     animationType="fade"
                     items={this.state.items}
                     itemName="Project"
-                    titleTextColor={colorsProvider.tasksComplimentaryColor}
-                    titleContainerColor={colorsProvider.tasksMainColor}
+                    titleTextColor={colorsProvider.projectsComplimentaryColor}
+                    titleContainerColor={colorsProvider.projectsMainColor}
                     transparent={true}
                     selectItem={item => {
                         this.props.project(item.key);
