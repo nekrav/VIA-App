@@ -15,6 +15,7 @@ export class Habits {
         this.notification_time = props.notification_time
         this.days_to_do = props.days_to_do
         this.routine = props.routine
+        this.properties = props.properties
         this.notes = props.notes
     }
 
@@ -34,6 +35,7 @@ export class Habits {
             'notification_time text, ' +
             'days_to_do text, ' +
             'routine text, ' +
+            'properties text, ' +
             'notes text ' +
             ')'
     }

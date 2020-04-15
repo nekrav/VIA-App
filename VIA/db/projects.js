@@ -11,6 +11,7 @@ export class Projects {
         this.completed = props.completed
         this.time_spent = props.time_spent
         this.notification_time = props.notification_time
+        this.properties = props.properties
         this.notes = props.notes
     }
 
@@ -26,6 +27,7 @@ export class Projects {
             'completed text, ' +
             'time_spent text, ' +
             'notes text,' + 
+            'properties text, ' +
             'notification_time ' +
             ')'
     }

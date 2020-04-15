@@ -12,6 +12,7 @@ export class Random {
         this.time_spent = props.time_spent
         this.notes = props.notes
         this.only_today = props.only_today
+        this.properties = props.properties
         this.notification_time = props.notification_time
     }
 
@@ -28,6 +29,7 @@ export class Random {
         'time_spent text, ' +
         'notes text,' +
         'notification_time text,' +
+        'properties text, ' +
         'only_today text' +
         ')'
     }

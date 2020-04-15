@@ -15,17 +15,22 @@ export class Notifications {
         this.notification_time = props.notification_time
         this.days_to_do = props.days_to_do
         this.routine = props.routine
+        this.properties = props.properties
         this.notes = props.notes
     }
 
     static get TABLE_CREATE() {
         return `${Notifications.TABLE_NAME} (` +
-            'id text not null primary key unique, ' +
-            'name text NOT NULL, ' +
-            'created_date text NOT NULL, ' +
-            'time text,  ' +
+            'id not null primary key unique, ' +
+            'userInfo text, ' +
+            'title text NOT NULL, ' +
+            'date text NOT NULL,' +
+            'message text NOT NULL, ' +
+            'playSound text,  ' +
+            'soundName text, ' +
+            'number text, ' +
             'data text, ' +
-            'object text' +
+            'repeatType text' +
             ')'
     }
 

@@ -12,6 +12,7 @@ export class Tasks {
         this.project = props.project
         this.time_spent = props.time_spent
         this.notification_time = props.notification_time
+        this.properties = props.properties
         this.notes = props.notes
         
     }
@@ -29,6 +30,7 @@ export class Tasks {
         'project text,' +
         'time_spent text, ' +
         'notes text,' + 
+        'properties text, ' +
         'notification_time ' +
         ')'
     }

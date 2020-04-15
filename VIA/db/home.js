@@ -6,6 +6,7 @@ export class Home {
         this.three_main_goals = props.three_main_goals
         this.main_goal = props.main_goal
         this.quote = props.quote
+        this.properties = props.properties
         this.notes = props.notes
     }
 
@@ -21,6 +22,7 @@ export class Home {
             'main_goal text, ' +
             'main_goal_date text, ' +
             'quote text, ' +
+            'properties text, ' +
             'notes text ' +
             ')'
     }
