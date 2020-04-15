@@ -3,20 +3,16 @@ var uuid = require('react-native-uuid');
 export class Notifications {
     constructor(props) {
         this.id = props.id
-        this.name = props.name
-        this.created_date = props.created_date
-        this.end_time = props.end_time
-        this.importance = props.importance
-        this.percentage_done = props.percentage_done
-        this.completed = props.completed
-        this.finished_date = props.finished_date
-        this.time_to_spend = props.time_to_spend
-        this.time_spent = props.time_spent
-        this.notification_time = props.notification_time
-        this.days_to_do = props.days_to_do
-        this.routine = props.routine
+        this.userInfo = props.userInfo
+        this.title = props.title
+        this.date = props.date
+        this.message = props.message
+        this.playSound = props.playSound
+        this.soundName = props.soundName
+        this.number = props.number
+        this.data = props.data
         this.properties = props.properties
-        this.notes = props.notes
+        this.repeatType = props.repeatType
     }
 
     static get TABLE_CREATE() {
@@ -30,6 +26,7 @@ export class Notifications {
             'soundName text, ' +
             'number text, ' +
             'data text, ' +
+            'properties text, ' +
             'repeatType text' +
             ')'
     }
