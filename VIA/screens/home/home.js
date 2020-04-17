@@ -219,7 +219,11 @@ export class HomeScreen extends React.Component {
 
                     selectedItem={theRandom}
 
-                    delete={() => { controller.delete(this, childDBTableName, theRandom) }}
+                    delete={() => { 
+                        this.setViewRandomModalVisibility(false)
+                        controller.delete(this, childDBTableName, theRandom) 
+                        this.getRandomTasks()
+                    }}
 
                     closeModal={() => { this.setViewRandomModalVisibility(false) }}>
                 </ViewRandom>

@@ -73,7 +73,6 @@ export class ViewRandom extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
-                    notifier.scheduleAllNotifications();
                     this.props.delete()
                     notifier.scheduleAllNotifications();
                 }}>
