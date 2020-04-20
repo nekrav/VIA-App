@@ -41,7 +41,7 @@ export class CreateHabit extends React.Component {
             itemStartDate: '',
             itemEndDate: '',
             fromRoutineID: this.props.fromRoutine ? this.props.fromRoutine : '',
-            fromRoutineName: ''
+            fromRoutineName: this.props.fromRoutineName ? this.props.fromRoutineName : ''
         };
     }
 
@@ -56,6 +56,7 @@ export class CreateHabit extends React.Component {
 
     componentDidMount() {
         this.getFromRoutine(this.props.fromRoutine)
+        console.warn(this.props.fromRoutine)
         controller.loadAll(this, Routines.TABLE_NAME);
     }
 
@@ -256,7 +257,7 @@ export class CreateHabit extends React.Component {
                     transparent={true}
                     selectItem={item => {
                         this.props.routine(item.key);
-                        this.setState({ theSelectedRoutine: item.value.name }, () => { });
+                        this.setState({ theSelectedRoutine: item.value.name, fromRoutineName: item.value.name }, () => { });
                     }}
                     closeModal={() => {
                         this.setRoutineSelectionModalVisibility(false);
@@ -271,6 +272,26 @@ export class CreateHabit extends React.Component {
     }
 
     renderRoutineSelection() {
+        if (this.props.fromRoutineName != '')
+        {
+            this.props.routine = this.state.theSelectedRoutine;
+            return (
+                <View style={styles.routineSectionContainer}>
+                    <TouchableOpacity
+                        style={styles.hasProjectSelectionContainer}
+                        onPress={() => {
+                            Keyboard.dismiss()
+                            this.setState({ routineSelectionModalVisible: true })
+                        }}>
+                        <Text style={styles.hasProjectSelectionButtonText}>
+                            {this.props.fromRoutineName}
+                        </Text>
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
+                        </Text>
+                    </TouchableOpacity></View>
+            );
+        }
         if (this.state.theSelectedRoutine != '') {
             this.props.routine = this.state.theSelectedRoutine;
             return (
@@ -282,7 +303,7 @@ export class CreateHabit extends React.Component {
                             this.setState({ routineSelectionModalVisible: true })
                         }}>
                         <Text style={styles.hasProjectSelectionButtonText}>
-                            {this.state.theSelectedRoutine}
+                            {this.props.fromRoutineName ? this.props.fromRoutineName : this.state.theSelectedRoutine}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
@@ -395,6 +416,13 @@ export class CreateHabit extends React.Component {
                     onPress={this.props.closeModal}>
                     <Text style={styles.bottomButtonText}>Close</Text>
                 </TouchableOpacity>
+                {/* <TouchableOpacity
+                    style={styles.bottomButtonLeftClose}
+                    onPress={() => {
+                        // console.warn(this.state.)
+                    }}>
+                    <Text style={styles.bottomButtonText}>Close</Text>
+                </TouchableOpacity> */}
                 <TouchableOpacity
                     disabled={this.state.newHabitName != '' ? false : true}
                     style={

@@ -161,8 +161,8 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setCreateRandomModalVisibility(false) }}
-                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}
-            ></CreateRandom>
+                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
+            </CreateRandom>
         }
     }
 
@@ -219,9 +219,9 @@ export class HomeScreen extends React.Component {
 
                     selectedItem={theRandom}
 
-                    delete={() => { 
+                    delete={() => {
                         this.setViewRandomModalVisibility(false)
-                        controller.delete(this, childDBTableName, theRandom) 
+                        controller.delete(this, childDBTableName, theRandom)
                         this.getRandomTasks()
                     }}
 
