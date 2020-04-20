@@ -151,8 +151,8 @@ export class CreateHabit extends React.Component {
                         {Moment(new Date(this.state.itemStartDate)).format(dateFormat)}
                     </Text>
                     <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
-                </Text>
+                        <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
+                    </Text>
                 </TouchableOpacity>
             );
         }
@@ -164,7 +164,7 @@ export class CreateHabit extends React.Component {
                 <Text style={styles.createDateText}>
                     When do you want this habit to start?
           </Text>
-          <Text style={styles.notificationTimeButtonText}>
+                <Text style={styles.notificationTimeButtonText}>
                     <SIcon name="control-play" size={20} color={colorsProvider.habitsPlaceholderColor} />
                 </Text>
             </TouchableOpacity>
@@ -235,9 +235,9 @@ export class CreateHabit extends React.Component {
                 <Text style={styles.createDateText}>
                     When do you want this habit to end?
           </Text>
-          <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} color={colorsProvider.habitsPlaceholderColor} />
-                    </Text>
+                <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="control-end" size={20} color={colorsProvider.habitsPlaceholderColor} />
+                </Text>
             </TouchableOpacity>
         );
     }
@@ -272,8 +272,26 @@ export class CreateHabit extends React.Component {
     }
 
     renderRoutineSelection() {
-        if (this.props.fromRoutineName != '')
-        {
+        if (this.state.fromRoutineName != '') {
+            if (this.state.theSelectedRoutine != '') {
+                this.props.routine = this.state.theSelectedRoutine;
+                return (
+                    <View style={styles.routineSectionContainer}>
+                        <TouchableOpacity
+                            style={styles.hasProjectSelectionContainer}
+                            onPress={() => {
+                                Keyboard.dismiss()
+                                this.setState({ routineSelectionModalVisible: true })
+                            }}>
+                            <Text style={styles.hasProjectSelectionButtonText}>
+                                {this.state.fromRoutineName ? this.state.fromRoutineName : this.state.theSelectedRoutine}
+                            </Text>
+                            <Text style={styles.notificationTimeButtonText}>
+                                <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
+                            </Text>
+                        </TouchableOpacity></View>
+                );
+            }
             this.props.routine = this.state.theSelectedRoutine;
             return (
                 <View style={styles.routineSectionContainer}>
@@ -292,25 +310,7 @@ export class CreateHabit extends React.Component {
                     </TouchableOpacity></View>
             );
         }
-        if (this.state.theSelectedRoutine != '') {
-            this.props.routine = this.state.theSelectedRoutine;
-            return (
-                <View style={styles.routineSectionContainer}>
-                    <TouchableOpacity
-                        style={styles.hasProjectSelectionContainer}
-                        onPress={() => {
-                            Keyboard.dismiss()
-                            this.setState({ routineSelectionModalVisible: true })
-                        }}>
-                        <Text style={styles.hasProjectSelectionButtonText}>
-                            {this.props.fromRoutineName ? this.props.fromRoutineName : this.state.theSelectedRoutine}
-                        </Text>
-                        <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
-                        </Text>
-                    </TouchableOpacity></View>
-            );
-        } else {
+        else {
             return (
                 <View style={styles.routineSectionContainer}>
                     <TouchableOpacity
