@@ -43,6 +43,8 @@ export class CreateTask extends React.Component {
             notificationTimesModal: false,
             newTaskName: '',
             itemNotes: '',
+            fromProjectID: this.props.fromProject ? this.props.fromProject : '',
+            fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : ''
         };
     }
 
@@ -236,8 +238,28 @@ export class CreateTask extends React.Component {
     }
 
     renderProjectSelection() {
-        if (this.state.theSelectedProject != '') {
-            this.props.project = this.state.theSelectedProject;
+        if (this.state.fromProjectName != '') {
+            if (this.state.theSelectedProject != '') {
+                this.props.project = this.state.theSelectedProject;
+                return (
+                    <View style={styles.projectSectionContainer}>
+                        <TouchableOpacity
+                            style={styles.hasProjectSelectionContainer}
+                            onPress={() => {
+                                Keyboard.dismiss()
+                                this.setProjectSelectionModalVisibility(true);
+                            }}
+                        >
+                            <Text style={styles.hasProjectSelectionButtonText}>
+                                {this.state.theSelectedProject}
+                            </Text>
+                            <Text style={styles.notificationTimeButtonText}>
+                                <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                );
+            }
             return (
                 <View style={styles.projectSectionContainer}>
                     <TouchableOpacity
@@ -245,10 +267,9 @@ export class CreateTask extends React.Component {
                         onPress={() => {
                             Keyboard.dismiss()
                             this.setProjectSelectionModalVisibility(true);
-                        }}
-                    >
+                        }}>
                         <Text style={styles.hasProjectSelectionButtonText}>
-                            {this.state.theSelectedProject}
+                            {this.state.fromProjectName}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
@@ -256,7 +277,8 @@ export class CreateTask extends React.Component {
                     </TouchableOpacity>
                 </View>
             );
-        } else {
+        }
+        else {
             return (
                 <View style={styles.projectSectionContainer}>
                     <TouchableOpacity

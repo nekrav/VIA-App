@@ -215,7 +215,7 @@ export class ViewRoutine extends React.Component {
 
         Database.save(childTableName, newHabit).then(() => {
             this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
-            // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
             notifier.scheduleAllNotifications()
         })
     }
@@ -361,16 +361,16 @@ export class ViewRoutine extends React.Component {
                             </TouchableWithoutFeedback>
                         } />
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                    <TouchableOpacity style={styles.addTimeButtonContainer}
-                        onPress={() => {
-                            this.setTaskSelectionModalVisibility(true)
-                        }}>
-                        <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                            <Text style={styles.addTimeButtonText}> Add Habit</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => {
+                                this.setTaskSelectionModalVisibility(true)
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                                <Text style={styles.addTimeButtonText}> Add Habit</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             );
         }

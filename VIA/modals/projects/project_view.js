@@ -5,7 +5,7 @@ import { Controller } from '../controller';
 import { CheckBox } from 'react-native-elements'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
-import { ViewTask } from '../'
+import { ViewTask, CreateTask } from '../'
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
 import { Database, Projects, Tasks } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -13,6 +13,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
+var uuid = require('react-native-uuid');
 
 const notifier = new Notifier;
 
@@ -46,7 +47,8 @@ export class ViewProject extends React.Component {
             itemNotificationTimes: this.props.selectedItem.notification_time,
             childModalVisibility: false,
             selectedChildItem: '',
-            relatedChildren: []
+            relatedChildren: [],
+            tasksCreateModalVisible: false,
         };
     }
 
@@ -178,6 +180,62 @@ export class ViewProject extends React.Component {
 
     }
 
+    saveNewTask(task) {
+        let newTask = {}
+        newTask.id = uuid.v4();
+        newTask.name = task.name;
+        newTask.created_date = new Date().getDate();
+        newTask.due_date = task.due_date ? task.due_date : "";
+        newTask.importance = task.importance ? task.importance : 0;
+        newTask.percentage_done = 0;
+        newTask.completed = "false";
+        newTask.project = task.project ? task.project : "";
+        newTask.time_spent = 0;
+        newTask.notes = task.notes ? task.notes : "";
+        newTask.notification_time = task.notification_time ? task.notification_time : ''
+        Database.save(childTableName, newTask).then(() => {
+            this.setCreateTaskModalVisibility(false)
+            // controller.setAddModalVisible(this, false)
+            controller.loadAll(this, childTableName)
+            controller.loadAllChildrenAndGetRelatedChildren(this, childTableName, this.state.selectedItem.id, "project");
+            notifier.scheduleAllNotifications()
+        })
+    }
+
+    showTaskAddModal() {
+        let newTask = {};
+        if (this.state.tasksCreateModalVisible) {
+            return <CreateTask
+                animationType="slide"
+                transparent={false}
+                name={(text) => { newTask.name = text }}
+                due_date={(text) => {
+                    newTask.due_date = text
+                }}
+                importance={(text) => { newTask.importance = text }}
+                project={(text) => { newTask.project = text }}
+                time_spent={(text) => { newTask.time_spent = text }}
+                notes={(text) => { newTask.notes = text }}
+                notification_time={(text) => {
+                    if (text) {
+                        var times = text.map(function (time) {
+                            return JSON.stringify(time)
+                        })
+                        newTask.notification_time = times
+                    }
+                }}
+                fromProject={this.props.selectedItem.id}
+                fromProjectName={this.props.selectedItem.name}
+                closeModal={() => { 
+                    this.setCreateTaskModalVisibility(false)
+                    controller.setAddModalVisible(this, false) }}
+                save={() => {
+                    this.saveNewTask(newTask)
+                }}
+            ></CreateTask>
+        }
+    }
+
     renderChildItemModal() {
         if (this.state.childModalVisibility) {
             if (this.state.selectedChildItem != '') {
@@ -235,32 +293,17 @@ export class ViewProject extends React.Component {
                     delete={() => {
                         controller.delete(this, childTableName, theTask)
                         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                        this.setChildItemModalVisibility(false)
+                        this.setCreateTaskModalVisibility(false)
                     }}
 
-                    closeModal={() => { this.setChildItemModalVisibility(false) }}>
+                    closeModal={() => { this.setCreateTaskModalVisibility(false) }}>
                 </ViewTask>
             }
         }
     }
 
-    showTasksSelectionModal() {
-        if (this.state.tasksSelectionModalVisible) {
-            return <MultipleSelectionModal
-                animationType="fade"
-                items={this.state.items}
-                itemName="Tasks"
-                transparent={true}
-                selectItems={items => {
-                    this.setState({ tasks: items })
-                }}
-                closeModal={() => { this.setTaskSelectionModalVisibility(false) }}>
-            </MultipleSelectionModal>
-        }
-    }
-
-    setTaskSelectionModalVisibility(visible) {
-        this.setState({ tasksSelectionModalVisible: visible })
+    setCreateTaskModalVisibility(visible) {
+        this.setState({ tasksCreateModalVisible: visible })
     }
 
     renderSelectedTasksString() {
@@ -366,7 +409,19 @@ export class ViewProject extends React.Component {
                                     </View>
                                 </TouchableOpacity>
                             </TouchableWithoutFeedback>
+
                         } />
+                    <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => {
+                                this.setCreateTaskModalVisibility(true)
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                                <Text style={styles.addTimeButtonText}> Add Task</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             );
         } else {
@@ -376,20 +431,31 @@ export class ViewProject extends React.Component {
                         <Text style={styles.childrenItemsTitleText}>
                             Tasks in {this.state.selectedItem.name}
                         </Text>
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
                         onPress={() => {
-                            this.setState({ selectedDayToAddTimeTo: day.item.key }, () => {
-                                this.toggleNotificationTimeSelectionModal(true)
-                            })
+                            this.setCreateTaskModalVisibility(true)
                         }}>
                         <View style={styles.addTimeButtonContainerView}>
                             <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                             <Text style={styles.addTimeButtonText}> Add Task</Text>
                         </View>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
+
                     </View>
+
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
                     <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
+                    {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
+                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                            onPress={() => {
+                                this.setCreateTaskModalVisibility(true)
+                            }}>
+                            <View style={styles.addTimeButtonContainerView}>
+                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                                <Text style={styles.addTimeButtonText}> Add Task</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View> */}
                 </View>
             );
         }
@@ -713,6 +779,7 @@ export class ViewProject extends React.Component {
                     {this.renderNotesModal()}
                     {this.renderNotificationTimesModal()}
 
+                    {this.showTaskAddModal()}
 
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 

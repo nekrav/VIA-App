@@ -302,7 +302,7 @@ export class CreateHabit extends React.Component {
                             this.setState({ routineSelectionModalVisible: true })
                         }}>
                         <Text style={styles.hasProjectSelectionButtonText}>
-                            {this.props.fromRoutineName}
+                            {this.state.fromRoutineName}
                         </Text>
                         <Text style={styles.notificationTimeButtonText}>
                             <SIcon name="refresh" size={20} color={colorsProvider.habitsComplimentaryColor} />
