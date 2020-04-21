@@ -44,12 +44,19 @@ export class CreateTask extends React.Component {
             newTaskName: '',
             itemNotes: '',
             fromProjectID: this.props.fromProject ? this.props.fromProject : '',
-            fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : ''
+            fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : '',
+            newTaskFromProject: {}
         };
     }
 
     componentDidMount() {
         controller.loadAll(this, Projects.TABLE_NAME);
+        if (this.state.fromProjectID) {
+            this.state.newTaskFromProject.project = this.state.fromProjectID
+            this.setState({newTaskFromProject: this.state.newTaskFromProject})
+
+        }
+            
     }
 
     /* #region  Top Bar Region */
@@ -93,6 +100,8 @@ export class CreateTask extends React.Component {
                 onChangeText={value => {
                     this.setState({ newTaskName: value });
                     this.props.name(value);
+                    this.state.newTaskFromProject.name = value;
+                    this.setState({newTaskFromProject: this.state.newTaskFromProject})
                 }}
             ></TextInput>
         </TouchableOpacity>)
@@ -116,11 +125,17 @@ export class CreateTask extends React.Component {
                     setDate={item => {
                         this.props.due_date(item);
                         this.setState({ itemDate: item });
+                        this.state.newTaskFromProject.due_date = item
+                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
+
                     }}
                     onSubmit={item => {
                         this.props.due_date(item);
                         this.setState({ itemDate: item });
                         this.setDueDateModalVisibility(false);
+                        this.state.newTaskFromProject.due_date = item
+                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
+
                     }}
                     closeModal={() => {
                         this.setDueDateModalVisibility(false);
@@ -194,11 +209,15 @@ export class CreateTask extends React.Component {
                             onSlidingComplete={value => {
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
+                                this.state.newTaskFromProject.importance = value;
+                                this.setState({newTaskFromProject: this.state.newTaskFromProject})
                             }}
                             onValueChange={value => {
                                 Keyboard.dismiss()
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
+                                this.state.newTaskFromProject.importance = value;
+                                this.setState({newTaskFromProject: this.state.newTaskFromProject})
                             }}
                         />
                     </View>
@@ -224,6 +243,8 @@ export class CreateTask extends React.Component {
                     selectItem={item => {
                         this.props.project(item.key);
                         this.setState({ theSelectedProject: item.value.name }, () => { });
+                        this.state.newTaskFromProject.project = item.value.name;
+                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
                     }}
                     closeModal={() => {
                         this.setProjectSelectionModalVisibility(false);
@@ -315,6 +336,7 @@ export class CreateTask extends React.Component {
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
+                        
                     }}
                     closeModal={() => {
                         this.setNotificationTimesVisibility(false);
@@ -396,6 +418,7 @@ export class CreateTask extends React.Component {
                     setNotes={item => {
                         this.props.notes(item);
                         this.setState({ itemNotes: item });
+                        this.state.newTaskFromProject.n
                     }}
                     closeModal={() => {
                         this.setNotesModalVisibility(false);
@@ -456,7 +479,10 @@ export class CreateTask extends React.Component {
                 }
                 onPress={() => {
                     notifier.scheduleAllNotifications();
-                    this.props.save()
+                    if (this.props.fromProject)
+                        this.props.saveFromProject(this.state.newTaskFromProject)
+                    else
+                        this.props.save()
                 }}>
                 <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
             </TouchableOpacity>

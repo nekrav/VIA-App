@@ -446,7 +446,7 @@ module.exports = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        height: '12%',
+        // height: '12%',
       },
       completeButtonBodyDone: {
         margin: 10,
@@ -457,7 +457,7 @@ module.exports = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        height: '12%',
+        // height: '12%',
       },
       completeButtonText: {
         fontFamily: fontFamily,
@@ -509,7 +509,7 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
-        fontSize: colorsProvider.fontSizeMain,
+        fontSize: colorsProvider.fontSizeChildren,
     },
     /* #endregion */
 

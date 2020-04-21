@@ -232,6 +232,9 @@ export class ViewProject extends React.Component {
                 save={() => {
                     this.saveNewTask(newTask)
                 }}
+                saveFromProject={newTaskFromProject => {
+                    this.saveNewTask(newTaskFromProject)
+                }}
             ></CreateTask>
         }
     }
@@ -470,7 +473,7 @@ export class ViewProject extends React.Component {
                     <View style={styles.sliderTitleContainer}>
                         <Text
                             style={
-                                this.state.selectedItem.percentage_done > 0
+                                this.state.percentVal > 0
                                     ? styles.sliderTitle
                                     : styles.sliderTitleNull}>
                             % Done
@@ -481,7 +484,7 @@ export class ViewProject extends React.Component {
                             style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
                             minimumValue={0}
                             maximumValue={100}
-                            thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+                            thumbTintColor={ this.state.percentVal > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.percentVal)}

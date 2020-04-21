@@ -56,7 +56,6 @@ export class CreateHabit extends React.Component {
 
     componentDidMount() {
         this.getFromRoutine(this.props.fromRoutine)
-        console.warn(this.props.fromRoutine)
         controller.loadAll(this, Routines.TABLE_NAME);
     }
 
