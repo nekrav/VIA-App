@@ -1,3 +1,2 @@
-export {Slider} from "./slider"
-export {VerticalSlider} from "./VerticalSlider"
-export {NotificationService} from './notificationService'
+export { Slider } from "./slider"
+export { NotificationService } from './notificationService'

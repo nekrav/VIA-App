@@ -84,6 +84,157 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
+    /* #region  Children Section */
+    childrenItemsContainer: {
+        // flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        flex: 1,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: colorsProvider.projectsMainColor,
+        backgroundColor: colorsProvider.projectsMainColor,
+        marginRight: 10,
+        marginLeft: 10,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
+    },
+    /* #region  Children Items Header */
+    /* #region  Children Items Title */
+    childrenItemsTitleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 10,
+        marginLeft: 10,
+
+    },
+    childrenItemsTitleTextContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    childrenItemsTitleText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        fontFamily: fontFamily,
+        color: colorsProvider.projectsComplimentaryColor,
+        fontSize: colorsProvider.fontSizeChildren,
+    },
+    /* #endregion */
+
+    /* #region  Add Child Button */
+    addTimeButtonContainer: {
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    addTimeButtonContainerView: {
+        width: '90%',
+        borderRadius: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderWidth: 1,
+        borderColor: colorsProvider.projectsMainColor,
+        backgroundColor: colorsProvider.projectsMainColor,
+        shadowColor: colorsProvider.shadowColor,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
+        marginRight: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+    addTimeButtonText: {
+        fontSize: colorsProvider.fontSizeChildren,
+        textAlign: 'center',
+        fontFamily: fontFamily,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    /* #endregion */
+
+    /* #endregion */
+    /* #region  Children Container */
+    childrenContainer: {
+        flexGrow: 1,
+        marginRight: 10,
+        marginLeft: 10,
+        alignContent: "center",
+        flexDirection: "column",
+        marginBottom: 5,
+        marginTop: 2,
+    },
+    childOuterContainer: {
+        // flex: 1,
+    },
+
+
+    childContainer: {
+        flex: 1,
+        backgroundColor: colorsProvider.tasksMainColor,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 5,
+        alignItems: 'center',
+        borderRadius: 10,
+        borderTopWidth: 2,
+        borderTopColor: colorsProvider.tasksMainColor,
+        flexDirection: 'row',
+        marginTop: 2,
+        shadowColor: colorsProvider.shadowColor,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        shadowOffset: {
+          height: 1,
+          width: 0,
+        },
+    },
+
+    /* #endregion */
+    /* #region  Child Item Section */
+    childTitleContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    childTitleText: {
+        color: colorsProvider.tasksComplimentaryColor,
+        fontSize: colorsProvider.fontSizeChildren,
+        marginLeft: 10,
+        fontFamily: colorsProvider.font
+
+    },
+    childActionButtonsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    childActionButtonText: {
+        fontSize: 24,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    /* #endregion */
+    /* #endregion */
+ 
     /* #region Create Due Date Section */
     createDueDateContainer: {
         justifyContent: 'space-between',
@@ -466,152 +617,4 @@ module.exports = StyleSheet.create({
       },
       /* #endregion */
     
-
-    /* #region  Children Section */
-    childrenItemsContainer: {
-        flexDirection: 'column',
-        marginLeft: 10,
-        marginTop: 10,
-        marginBottom: 10,
-        flex: 1,
-        borderRadius: 10,
-        borderWidth: 2,
-        borderColor: colorsProvider.projectsMainColor,
-        backgroundColor: colorsProvider.projectsMainColor,
-        marginRight: 10,
-        marginLeft: 10,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
-    },
-    /* #region  Children Items Header */
-    /* #region  Children Items Title */
-    childrenItemsTitleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        marginLeft: 10,
-
-    },
-    childrenItemsTitleTextContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    childrenItemsTitleText: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        fontFamily: fontFamily,
-        color: colorsProvider.projectsComplimentaryColor,
-        fontSize: colorsProvider.fontSizeChildren,
-    },
-    /* #endregion */
-
-    /* #region  Add Child Button */
-    addTimeButtonContainer: {
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    addTimeButtonContainerView: {
-        width: '90%',
-        borderRadius: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderWidth: 1,
-        borderColor: colorsProvider.projectsMainColor,
-        backgroundColor: colorsProvider.projectsMainColor,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-    addTimeButtonText: {
-        fontSize: colorsProvider.fontSizeChildren,
-        textAlign: 'center',
-        fontFamily: fontFamily,
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    /* #endregion */
-
-    /* #endregion */
-    /* #region  Children Container */
-    childrenContainer: {
-        flexGrow: 1,
-        marginRight: 10,
-        marginLeft: 10,
-        alignContent: "center",
-        flexDirection: "column",
-        marginBottom: 5,
-        marginTop: 2,
-    },
-    childOuterContainer: {
-        // flex: 1,
-    },
-
-
-    childContainer: {
-        flex: 1,
-        backgroundColor: colorsProvider.tasksMainColor,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        marginRight: 10,
-        marginLeft: 10,
-        marginBottom: 5,
-        alignItems: 'center',
-        borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.tasksMainColor,
-        flexDirection: 'row',
-        marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
-    },
-
-    /* #endregion */
-    /* #region  Child Item Section */
-    childTitleContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    childTitleText: {
-        color: colorsProvider.tasksComplimentaryColor,
-        fontSize: colorsProvider.fontSizeChildren,
-        marginLeft: 10,
-        fontFamily: colorsProvider.font
-
-    },
-    childActionButtonsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    childActionButtonText: {
-        fontSize: 24,
-        marginLeft: 10,
-        marginRight: 10,
-    },
-    /* #endregion */
-    /* #endregion */
 })

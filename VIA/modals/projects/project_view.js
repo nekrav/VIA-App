@@ -6,6 +6,7 @@ import { CheckBox } from 'react-native-elements'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { ViewTask, CreateTask } from '../'
+import { PlusButton } from '../../components/plusButton'
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
 import { Database, Projects, Tasks } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -415,7 +416,8 @@ export class ViewProject extends React.Component {
 
                         } />
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
+                        <PlusButton/>
+                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setCreateTaskModalVisibility(true)
                             }}>
@@ -423,7 +425,7 @@ export class ViewProject extends React.Component {
                                 <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
                                 <Text style={styles.addTimeButtonText}> Add Task</Text>
                             </View>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                 </View>
             );
@@ -434,20 +436,19 @@ export class ViewProject extends React.Component {
                         <Text style={styles.childrenItemsTitleText}>
                             Tasks in {this.state.selectedItem.name}
                         </Text>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                        onPress={() => {
-                            this.setCreateTaskModalVisibility(true)
-                        }}>
-                        <View style={styles.addTimeButtonContainerView}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                            <Text style={styles.addTimeButtonText}> Add Task</Text>
-                        </View>
-                    </TouchableOpacity>
-
+         
                     </View>
 
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
                     <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
+                    <TouchableOpacity style={styles.addTimeButtonContainerView}
+                        onPress={() => {
+                            this.setCreateTaskModalVisibility(true)
+                        }}>
+                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                            {/* <Text style={styles.addTimeButtonText}> Add Task</Text> */}
+                    </TouchableOpacity>
+
                     {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
