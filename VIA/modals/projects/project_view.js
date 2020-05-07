@@ -417,18 +417,13 @@ export class ViewProject extends React.Component {
 
                         } />
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <PlusButton action={() => {
+                        <PlusButton 
+                        iconSize={40}
+                        iconName="ios-add"
+                        iconColor={colorsProvider.projectsMainColor} 
+                        action={() => {
                             this.setCreateTaskModalVisibility(true)
                         }} />
-                        {/* <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setCreateTaskModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Task</Text>
-                            </View>
-                        </TouchableOpacity> */}
                     </View>
                 </View>
             );
