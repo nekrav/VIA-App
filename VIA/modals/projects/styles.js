@@ -87,24 +87,19 @@ module.exports = StyleSheet.create({
     /* #region  Children Section */
     childrenItemsContainer: {
         flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        // alignItems: 'center',
+        alignContent: 'center',
+        // justifyContent: 'center',
         marginLeft: 10,
         marginTop: 10,
         marginBottom: 10,
-        flex: 1,
         borderRadius: 10,
-        borderWidth: 2,
-        borderColor: colorsProvider.projectsMainColor,
+        borderWidth: 1,
+        borderColor: colorsProvider.projectsComplimentaryColor,
         backgroundColor: colorsProvider.projectsMainColor,
         marginRight: 10,
         marginLeft: 10,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
+        height: '30%',
     },
     /* #region  Children Items Header */
     /* #region  Children Items Title */
@@ -115,7 +110,6 @@ module.exports = StyleSheet.create({
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
-
     },
     childrenItemsTitleTextContainer: {
         flex: 1,
@@ -133,41 +127,22 @@ module.exports = StyleSheet.create({
 
     /* #endregion */
     /* #region  Children Container */
-    childrenContainer: {
-        flexGrow: 1,
-        marginRight: 10,
-        marginLeft: 10,
-        alignContent: "center",
-        flexDirection: "column",
-        marginBottom: 5,
-        marginTop: 2,
-    },
-    childOuterContainer: {
-        // flex: 1,
-    },
 
 
     childContainer: {
         flex: 1,
         backgroundColor: colorsProvider.tasksMainColor,
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
         flexDirection: 'row',
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
         alignItems: 'center',
         borderRadius: 10,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.tasksMainColor,
-        flexDirection: 'row',
+        borderWidth: 1,
+        borderColor: colorsProvider.tasksComplimentaryColor,
         marginTop: 2,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
+        // width: '65%'
     },
 
     /* #endregion */
@@ -181,7 +156,8 @@ module.exports = StyleSheet.create({
         color: colorsProvider.tasksComplimentaryColor,
         fontSize: colorsProvider.fontSizeChildren,
         marginLeft: 10,
-        fontFamily: colorsProvider.font
+        fontFamily: colorsProvider.font,
+        width: '10%',
 
     },
     childActionButtonsContainer: {
@@ -331,7 +307,7 @@ module.exports = StyleSheet.create({
         color: colorsProvider.projectsPlaceholderColor,
         marginLeft: 5,
         marginTop: 5,
-        marginBottom: 5,
+        marginBottom: 15,
     },
     hasProjectSelectionButtonText: {
         fontSize: colorsProvider.fontSizeChildren,
@@ -411,19 +387,13 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         backgroundColor: colorsProvider.projectsMainColor,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.projectsMainColor,
-        flexDirection: "row",
+        borderWidth: 1,
+        borderColor: colorsProvider.projectsComplimentaryColor,
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
         marginTop: 2,
         justifyContent: 'space-between',
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow,
-        height: "100%",
     },
     hasNotesContainer: {
         flex: 1,
@@ -431,19 +401,13 @@ module.exports = StyleSheet.create({
         alignContent: "center",
         borderRadius: 10,
         backgroundColor: colorsProvider.projectsMainColor,
-        borderTopWidth: 2,
-        borderTopColor: colorsProvider.projectsMainColor,
-        flexDirection: "row",
+        borderWidth: 1,
+        borderColor: colorsProvider.projectsComplimentaryColor,
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
         marginTop: 2,
         justifyContent: 'space-between',
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow,
-        height: "100%",
     },
     createNotesText: {
         color: colorsProvider.projectsPlaceholderColor,
