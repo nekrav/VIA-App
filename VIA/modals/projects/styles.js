@@ -157,7 +157,7 @@ module.exports = StyleSheet.create({
         fontSize: colorsProvider.fontSizeChildren,
         marginLeft: 10,
         fontFamily: colorsProvider.font,
-        width: '10%',
+        width: '80%',
 
     },
     childActionButtonsContainer: {
