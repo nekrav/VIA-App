@@ -112,8 +112,7 @@ module.exports = StyleSheet.create({
     childrenItemsTitleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-around',
-        // marginTop: 10,
+        // justifyContent:'space-around',
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,

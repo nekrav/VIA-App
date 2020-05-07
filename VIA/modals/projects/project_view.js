@@ -345,7 +345,7 @@ export class ViewProject extends React.Component {
                     <View style={styles.childrenItemsTitleContainer}>
                         <View style={styles.childrenItemsTitleTextContainer}>
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Tasks in {this.state.selectedItem.name}
+                                Tasks
                             </Text>
                         </View>
                         <PlusButton
@@ -430,8 +430,8 @@ export class ViewProject extends React.Component {
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
                         <View style={styles.childrenItemsTitleTextContainer}>
-                            <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Tasks in {this.state.selectedItem.name}
+                            <Text style={styles.childrenItemsTitleText}>
+                                Tasks
                             </Text>
                         </View>
                         <PlusButton
