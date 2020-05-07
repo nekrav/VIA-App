@@ -86,10 +86,9 @@ module.exports = StyleSheet.create({
 
     /* #region  Children Section */
     childrenItemsContainer: {
-        // flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginLeft: 10,
         marginTop: 10,
         marginBottom: 10,
@@ -112,7 +111,7 @@ module.exports = StyleSheet.create({
     childrenItemsTitleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        // justifyContent:'space-around',
+        marginTop: 2,
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
@@ -122,7 +121,6 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        // justifyContent:'space-around'
     },
     childrenItemsTitleText: {
         flexDirection: 'row',
@@ -130,43 +128,6 @@ module.exports = StyleSheet.create({
         fontFamily: fontFamily,
         color: colorsProvider.projectsComplimentaryColor,
         fontSize: colorsProvider.fontSizeChildren,
-    },
-    /* #endregion */
-
-    /* #region  Add Child Button */
-    addTimeButtonContainer: {
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    addTimeButtonContainerView: {
-        width: '90%',
-        borderRadius: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderWidth: 1,
-        borderColor: colorsProvider.projectsMainColor,
-        backgroundColor: colorsProvider.projectsMainColor,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-          height: 1,
-          width: 0,
-        },
-        marginRight: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
-    addTimeButtonText: {
-        fontSize: colorsProvider.fontSizeChildren,
-        textAlign: 'center',
-        fontFamily: fontFamily,
-        marginLeft: 10,
-        marginRight: 10,
     },
     /* #endregion */
 
