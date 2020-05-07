@@ -347,7 +347,6 @@ export class ViewProject extends React.Component {
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
                                 Tasks in {this.state.selectedItem.name}
                             </Text>
-
                         </View>
                         <PlusButton
                             iconSize={30}
@@ -430,33 +429,20 @@ export class ViewProject extends React.Component {
             return (
                 <View style={styles.childrenItemsContainer}>
                     <View style={styles.childrenItemsTitleContainer}>
-                        <Text style={styles.childrenItemsTitleText}>
-                            Tasks in {this.state.selectedItem.name}
-                        </Text>
-
-                    </View>
-
-                    {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
-                    <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
-                    <TouchableOpacity style={styles.addTimeButtonContainerView}
-                        onPress={() => {
-                            this.setCreateTaskModalVisibility(true)
-                        }}>
-                        <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                        {/* <Text style={styles.addTimeButtonText}> Add Task</Text> */}
-                    </TouchableOpacity>
-
-                    {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
+                        <View style={styles.childrenItemsTitleTextContainer}>
+                            <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
+                                Tasks in {this.state.selectedItem.name}
+                            </Text>
+                        </View>
+                        <PlusButton
+                            iconSize={30}
+                            iconName="ios-add"
+                            iconColor={colorsProvider.projectsMainColor}
+                            action={() => {
                                 this.setCreateTaskModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Task</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View> */}
+                            }} />
+                    </View>
+                    <Text style={styles.createProjectSelectionButtonText}>You don't have any tasks here</Text>
                 </View>
             );
         }
