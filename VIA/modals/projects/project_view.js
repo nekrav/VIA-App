@@ -227,9 +227,10 @@ export class ViewProject extends React.Component {
                 }}
                 fromProject={this.props.selectedItem.id}
                 fromProjectName={this.props.selectedItem.name}
-                closeModal={() => { 
+                closeModal={() => {
                     this.setCreateTaskModalVisibility(false)
-                    controller.setAddModalVisible(this, false) }}
+                    controller.setAddModalVisible(this, false)
+                }}
                 save={() => {
                     this.saveNewTask(newTask)
                 }}
@@ -416,7 +417,9 @@ export class ViewProject extends React.Component {
 
                         } />
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <PlusButton/>
+                        <PlusButton action={() => {
+                            this.setCreateTaskModalVisibility(true)
+                        }} />
                         {/* <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
                                 this.setCreateTaskModalVisibility(true)
@@ -436,7 +439,7 @@ export class ViewProject extends React.Component {
                         <Text style={styles.childrenItemsTitleText}>
                             Tasks in {this.state.selectedItem.name}
                         </Text>
-         
+
                     </View>
 
                     {/* <TouchableOpacity style={styles.createProjectSelectionContainer} onPress={this.setTaskSelectionModalVisibility.bind(this)}> */}
@@ -445,8 +448,8 @@ export class ViewProject extends React.Component {
                         onPress={() => {
                             this.setCreateTaskModalVisibility(true)
                         }}>
-                            <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                            {/* <Text style={styles.addTimeButtonText}> Add Task</Text> */}
+                        <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
+                        {/* <Text style={styles.addTimeButtonText}> Add Task</Text> */}
                     </TouchableOpacity>
 
                     {/* <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
@@ -485,7 +488,7 @@ export class ViewProject extends React.Component {
                             style={{ width: 350, height: 1, marginRight: 10, marginLeft: 10 }}
                             minimumValue={0}
                             maximumValue={100}
-                            thumbTintColor={ this.state.percentVal > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
+                            thumbTintColor={this.state.percentVal > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.projectsComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.projectsPlaceholderColor}
                             value={parseInt(this.state.percentVal)}
