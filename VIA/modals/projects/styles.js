@@ -112,8 +112,8 @@ module.exports = StyleSheet.create({
     childrenItemsTitleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: 10,
+        justifyContent:'space-around',
+        // marginTop: 10,
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
@@ -123,6 +123,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        // justifyContent:'space-around'
     },
     childrenItemsTitleText: {
         flexDirection: 'row',

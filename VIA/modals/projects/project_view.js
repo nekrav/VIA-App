@@ -347,7 +347,15 @@ export class ViewProject extends React.Component {
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
                                 Tasks in {this.state.selectedItem.name}
                             </Text>
+
                         </View>
+                        <PlusButton
+                            iconSize={30}
+                            iconName="ios-add"
+                            iconColor={colorsProvider.projectsMainColor}
+                            action={() => {
+                                this.setCreateTaskModalVisibility(true)
+                            }} />
                     </View>
                     <FlatList
                         data={this.state.relatedChildren}
@@ -416,15 +424,6 @@ export class ViewProject extends React.Component {
                             </TouchableWithoutFeedback>
 
                         } />
-                    <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
-                        <PlusButton 
-                        iconSize={40}
-                        iconName="ios-add"
-                        iconColor={colorsProvider.projectsMainColor} 
-                        action={() => {
-                            this.setCreateTaskModalVisibility(true)
-                        }} />
-                    </View>
                 </View>
             );
         } else {
