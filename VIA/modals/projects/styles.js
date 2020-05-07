@@ -106,7 +106,7 @@ module.exports = StyleSheet.create({
     childrenItemsTitleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 2,
+        marginTop: 5,
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
