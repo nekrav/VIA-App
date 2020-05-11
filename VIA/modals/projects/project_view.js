@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, StatusBar, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, StatusBar, FlatList, ScrollView } from 'react-native';
 import { Controller } from '../controller';
 import { CheckBox } from 'react-native-elements'
 import { DateModal } from '../dateModal/dateModal'
@@ -31,7 +31,6 @@ const childTableName = Tasks.TABLE_NAME
 
 
 export class ViewProject extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -54,9 +53,9 @@ export class ViewProject extends React.Component {
     }
 
     componentDidMount() {
+        _isMounted = true;
         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
-
 
     getStyleIfDone() {
         if (this.props.selectedItem.completed == "true") {
@@ -339,45 +338,48 @@ export class ViewProject extends React.Component {
     }
 
     renderChildItem(item) {
-        return (<TouchableWithoutFeedback onPress={() => { }}>
-            <TouchableOpacity
-                style={styles.childContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setState({ selectedChildItem: item.value }, () => {
-                        this.setChildItemModalVisibility(true)
-                    })
-                }}>
-                <View style={styles.childTitleContainer}>
-                    <CheckBox
-                        center
-                        checkedIcon={colorsProvider.checkboxIcon}
-                        uncheckedIcon={colorsProvider.checkboxIcon}
-                        containerStyle={colorsProvider.checkboxContainerStyle}
-                        checkedColor={colorsProvider.finishedBackgroundColor}
-                        checkedColor={colorsProvider.finishedBackgroundColor}
-                        uncheckedColor={colorsProvider.tasksPlaceholderColor}
-                        size={25}
-                        onPress={() => {
-                            item.value.completed = !this.getChecked(item)
-                            if (item.value.completed == true) {
-                                item.value.finished_date = new Date(Date.now())
-                            } else {
-                                item.value.finished_date == ""
-                            }
-                            controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
-                            controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                            controller.loadAll(this, Tasks.TABLE_NAME)
-                        }}
-                        checked={this.getChecked(item)} />
-                    <Text
-                        numberOfLines={1}
-                        multiline={false}
-                        style={styles.childTitleText}>{item.value.name} </Text>
-                </View>
-                <View style={styles.childActionButtonsContainer}>
-                    {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
+        return (
+            <TouchableWithoutFeedback onPress={() => { }}>
+                <View style={styles.childContainer}>
                     {/* <TouchableOpacity
+                    style={styles.childContainer}
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.setState({ selectedChildItem: item.value }, () => {
+                            this.props.closeModal();
+                            this.setChildItemModalVisibility(true)
+                        })
+                    }}> */}
+                    <View style={styles.childTitleContainer}>
+                        <CheckBox
+                            center
+                            checkedIcon={colorsProvider.checkboxIcon}
+                            uncheckedIcon={colorsProvider.checkboxIcon}
+                            containerStyle={colorsProvider.checkboxContainerStyle}
+                            checkedColor={colorsProvider.finishedBackgroundColor}
+                            checkedColor={colorsProvider.finishedBackgroundColor}
+                            uncheckedColor={colorsProvider.tasksPlaceholderColor}
+                            size={25}
+                            onPress={() => {
+                                item.value.completed = !this.getChecked(item)
+                                if (item.value.completed == true) {
+                                    item.value.finished_date = new Date(Date.now())
+                                } else {
+                                    item.value.finished_date == ""
+                                }
+                                controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
+                                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                controller.loadAll(this, Tasks.TABLE_NAME)
+                            }}
+                            checked={this.getChecked(item)} />
+                        <Text
+                            numberOfLines={1}
+                            multiline={false}
+                            style={styles.childTitleText}>{item.value.name} </Text>
+                    </View>
+                    <View style={styles.childActionButtonsContainer}>
+                        {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
+                        {/* <TouchableOpacity
                 style={styles.childActionButton}
                 onPress={() => {
                     controller.delete(this, childTableName, item.value)
@@ -387,19 +389,20 @@ export class ViewProject extends React.Component {
                 <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity> */}
 
-                    <TouchableOpacity
-                        style={styles.childActionButton}
-                        onPress={() => {
-                            this.setChildItemModalVisibility(true)
-                            this.setState({ selectedChildItem: item.value }, () => {
+                        <TouchableOpacity
+                            style={styles.childActionButton}
+                            onPress={() => {
                                 this.setChildItemModalVisibility(true)
-                            })
-                        }}>
-                        <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
-                    </TouchableOpacity>
+                                this.setState({ selectedChildItem: item.value }, () => {
+                                    this.setChildItemModalVisibility(true)
+                                })
+                            }}>
+                            <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </TouchableOpacity>
-        </TouchableWithoutFeedback>
+                {/* </TouchableOpacity> */}
+            </TouchableWithoutFeedback>
         )
     }
 
@@ -407,7 +410,7 @@ export class ViewProject extends React.Component {
         if (this.state.relatedChildren.length > 0) {
             return (
                 <View style={styles.childrenItemsContainer}>
-                    <View style={styles.childrenItemsTitleContainer}>
+                    {/* <View style={styles.childrenItemsTitleContainer}>
                         <View style={styles.childrenItemsTitleTextContainer}>
                             <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
                                 Tasks
@@ -420,17 +423,27 @@ export class ViewProject extends React.Component {
                             action={() => {
                                 this.setCreateTaskModalVisibility(true)
                             }} />
-                    </View>
-                    {/* <View style={{}}> */}
-                    <FlatList
-                        data={this.state.relatedChildren}
-                        extraData={this.state}
-                        horizontal={false}
-                        contentContainerStyle={{}}
-                        renderItem={({ item }) =>
-                            this.renderChildItem(item)
-                        } />
-                    {/* </View> */}
+                    </View> */}
+                    <ScrollView>
+                        <FlatList
+                            data={this.state.relatedChildren}
+                            // contentContainerStyle={{
+                            //     flexGrow: 1,
+                            //     }}
+                            extraData={this.state}
+                            horizontal={false}
+                            renderItem={({ item }) =>
+                                <TouchableWithoutFeedback onPress={() => { }}>
+                                                                            {this.renderChildItem(item)}
+
+{/* 
+                                    <View style={{ flex: 1 }}>
+
+                                        <Text>BOBB</Text>
+                                    </View> */}
+                                </TouchableWithoutFeedback>
+                            } />
+                    </ScrollView>
                 </View>
             );
         } else {
@@ -756,6 +769,7 @@ export class ViewProject extends React.Component {
         if (this.props.selectedItem != {}) {
             return (
                 <Modal
+                propagateSwipe={true}
                     backdropOpacity={0}
                     animationIn='slideInRight'
                     animationInTiming={400}

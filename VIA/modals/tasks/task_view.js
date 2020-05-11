@@ -32,7 +32,7 @@ const dateToday = new Date(year, month, date);
 
 
 export class ViewTask extends React.Component {
-
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -54,6 +54,7 @@ export class ViewTask extends React.Component {
     }
 
     componentDidMount() {
+        _isMounted = true; 
         controller.loadAll(this, Projects.TABLE_NAME);
         notifier.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
@@ -61,6 +62,11 @@ export class ViewTask extends React.Component {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
             })
         }
+    }
+
+    componentWillUnmount() {
+        _isMounted = false;
+        // controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
 
     getStyleIfDone() {

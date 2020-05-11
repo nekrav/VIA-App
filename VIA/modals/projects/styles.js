@@ -151,6 +151,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        padding: 5,
     },
     childTitleText: {
         color: colorsProvider.tasksComplimentaryColor,

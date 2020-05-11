@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList, StatusBar } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList, ScrollView, StatusBar } from 'react-native'; // Version can be specified in package.json
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
@@ -297,6 +297,7 @@ export class ViewRoutine extends React.Component {
                             </Text>
                         </View>
                     </View>
+                    <ScrollView>
                     <FlatList
                         data={this.state.relatedChildren}
                         extraData={this.state}
@@ -359,7 +360,7 @@ export class ViewRoutine extends React.Component {
                                 </TouchableOpacity>
                                 {/* </TouchableOpacity> */}
                             </TouchableWithoutFeedback>
-                        } />
+                        } /></ScrollView>
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
