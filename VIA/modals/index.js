@@ -13,3 +13,4 @@ export { NotificationTimesModal } from './notificationTimes/notificationTimesMod
 export { NotesModal } from './notesModal/notesModal'
 export { CreateRandom } from './random/random_create'
 export { ViewRandom } from './random/random_view'
+export { ViewTaskFromProject } from './tasks/task_view_from_project'

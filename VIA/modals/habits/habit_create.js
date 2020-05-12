@@ -418,7 +418,6 @@ export class CreateHabit extends React.Component {
                 {/* <TouchableOpacity
                     style={styles.bottomButtonLeftClose}
                     onPress={() => {
-                        // console.warn(this.state.)
                     }}>
                     <Text style={styles.bottomButtonText}>Close</Text>
                 </TouchableOpacity> */}

@@ -26,6 +26,19 @@ export class Controller extends React.Component {
             })
     }
 
+    loadOne(object, item, tableName) {
+        console.warn("seighaowieu ")
+        console.warn(object)
+        console.warn(item)
+
+        console.warn(tableName)
+
+        // Database.getOne(tableName, item).then((res) => {
+        //     selectedItem = res.rows.item(0)
+        //     object.setState({ selectedItem: selectedItem })
+        // })
+    }
+
     loadAllChildrenAndGetRelatedChildren(object, tableName, parentId, parent) {
         const itemsArr = []
         const relatedChildren = []

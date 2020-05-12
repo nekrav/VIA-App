@@ -175,8 +175,9 @@ export class ViewProject extends React.Component {
 
     /* #region  Task Selection Region */
 
-    setChildItemModalVisibility(visible) {
-        this.setState({ childModalVisibility: visible })
+    setChildItemModalVisibility(visible, item) {
+        // this.setState({ childModalVisibility: visible })
+        this.props.goToChildItem(item.id)
 
     }
 
@@ -195,7 +196,6 @@ export class ViewProject extends React.Component {
         newTask.notification_time = task.notification_time ? task.notification_time : ''
         Database.save(childTableName, newTask).then(() => {
             this.setCreateTaskModalVisibility(false)
-            // controller.setAddModalVisible(this, false)
             controller.loadAll(this, childTableName)
             controller.loadAllChildrenAndGetRelatedChildren(this, childTableName, this.state.selectedItem.id, "project");
             notifier.scheduleAllNotifications()
@@ -240,71 +240,71 @@ export class ViewProject extends React.Component {
         }
     }
 
-    renderChildItemModal() {
-        if (this.state.childModalVisibility) {
-            if (this.state.selectedChildItem != '') {
-                theTask = this.state.selectedChildItem
-                return <ViewTask
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.childModalVisibility}
-                    editName={(text) => {
-                        theTask.name = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editDueDate={(text) => {
-                        theTask.due_date = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editImportance={(text) => {
-                        theTask.importance = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editPercentageDone={(text) => {
-                        theTask.percentage_done = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editCompleted={(text) => {
-                        theTask.completed = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editProject={(text) => {
-                        theTask.project = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editTimeSpent={(text) => {
-                        theTask.time_spent = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editNotes={(text) => {
-                        theTask.notes = text;
-                        this.setState({ selectedTask: theTask })
-                    }}
-                    editNotificationTime={(text) => {
-                        if (text) {
-                            var times = text.map(function (time) {
-                                return JSON.stringify(time)
-                            })
-                            theTask.notification_time = times
-                            this.setState({ selectedTask: theTask })
-                        }
-                    }}
+    // renderChildItemModal() {
+    //     if (this.state.childModalVisibility) {
+    //         if (this.state.selectedChildItem != '') {
+    //             theTask = this.state.selectedChildItem
+    //             return <ViewTask
+    //                 animationType="slide"
+    //                 transparent={false}
+    //                 visible={this.state.childModalVisibility}
+    //                 editName={(text) => {
+    //                     theTask.name = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editDueDate={(text) => {
+    //                     theTask.due_date = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editImportance={(text) => {
+    //                     theTask.importance = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editPercentageDone={(text) => {
+    //                     theTask.percentage_done = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editCompleted={(text) => {
+    //                     theTask.completed = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editProject={(text) => {
+    //                     theTask.project = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editTimeSpent={(text) => {
+    //                     theTask.time_spent = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editNotes={(text) => {
+    //                     theTask.notes = text;
+    //                     this.setState({ selectedTask: theTask })
+    //                 }}
+    //                 editNotificationTime={(text) => {
+    //                     if (text) {
+    //                         var times = text.map(function (time) {
+    //                             return JSON.stringify(time)
+    //                         })
+    //                         theTask.notification_time = times
+    //                         this.setState({ selectedTask: theTask })
+    //                     }
+    //                 }}
 
-                    save={() => { controller.saveExisting(this, childTableName, theTask) }}
+    //                 save={() => { controller.saveExisting(this, childTableName, theTask) }}
 
-                    selectedItem={theTask}
+    //                 selectedItem={theTask}
 
-                    delete={() => {
-                        controller.delete(this, childTableName, theTask)
-                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                        this.setCreateTaskModalVisibility(false)
-                    }}
+    //                 delete={() => {
+    //                     controller.delete(this, childTableName, theTask)
+    //                     controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+    //                     this.setCreateTaskModalVisibility(false)
+    //                 }}
 
-                    closeModal={() => { this.setCreateTaskModalVisibility(false) }}>
-                </ViewTask>
-            }
-        }
-    }
+    //                 closeModal={() => { this.setCreateTaskModalVisibility(false) }}>
+    //             </ViewTask>
+    //         }
+    //     }
+    // }
 
     setCreateTaskModalVisibility(visible) {
         this.setState({ tasksCreateModalVisible: visible })
@@ -340,46 +340,46 @@ export class ViewProject extends React.Component {
     renderChildItem(item) {
         return (
             <TouchableWithoutFeedback onPress={() => { }}>
-                <View style={styles.childContainer}>
-                    {/* <TouchableOpacity
-                    style={styles.childContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setState({ selectedChildItem: item.value }, () => {
-                            this.props.closeModal();
-                            this.setChildItemModalVisibility(true)
-                        })
-                    }}> */}
-                    <View style={styles.childTitleContainer}>
-                        <CheckBox
-                            center
-                            checkedIcon={colorsProvider.checkboxIcon}
-                            uncheckedIcon={colorsProvider.checkboxIcon}
-                            containerStyle={colorsProvider.checkboxContainerStyle}
-                            checkedColor={colorsProvider.finishedBackgroundColor}
-                            checkedColor={colorsProvider.finishedBackgroundColor}
-                            uncheckedColor={colorsProvider.tasksPlaceholderColor}
-                            size={25}
-                            onPress={() => {
-                                item.value.completed = !this.getChecked(item)
-                                if (item.value.completed == true) {
-                                    item.value.finished_date = new Date(Date.now())
-                                } else {
-                                    item.value.finished_date == ""
-                                }
-                                controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
-                                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                                controller.loadAll(this, Tasks.TABLE_NAME)
-                            }}
-                            checked={this.getChecked(item)} />
-                        <Text
-                            numberOfLines={1}
-                            multiline={false}
-                            style={styles.childTitleText}>{item.value.name} </Text>
-                    </View>
-                    <View style={styles.childActionButtonsContainer}>
-                        {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
-                        {/* <TouchableOpacity
+                <View>
+                    <TouchableOpacity
+                        style={styles.childContainer}
+                        onPress={() => {
+                            Keyboard.dismiss()
+                            this.setState({ selectedChildItem: item.value }, () => {
+                                this.props.closeModal();
+                                this.setChildItemModalVisibility(true, item.value)
+                            })
+                        }}>
+                        <View style={styles.childTitleContainer}>
+                            <CheckBox
+                                center
+                                checkedIcon={colorsProvider.checkboxIcon}
+                                uncheckedIcon={colorsProvider.checkboxIcon}
+                                containerStyle={colorsProvider.checkboxContainerStyle}
+                                checkedColor={colorsProvider.finishedBackgroundColor}
+                                checkedColor={colorsProvider.finishedBackgroundColor}
+                                uncheckedColor={colorsProvider.tasksPlaceholderColor}
+                                size={25}
+                                onPress={() => {
+                                    item.value.completed = !this.getChecked(item)
+                                    if (item.value.completed == true) {
+                                        item.value.finished_date = new Date(Date.now())
+                                    } else {
+                                        item.value.finished_date == ""
+                                    }
+                                    controller.saveExisting(this, Tasks.TABLE_NAME, item.value)
+                                    controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                    controller.loadAll(this, Tasks.TABLE_NAME)
+                                }}
+                                checked={this.getChecked(item)} />
+                            <Text
+                                numberOfLines={1}
+                                multiline={false}
+                                style={styles.childTitleText}>{item.value.name} </Text>
+                        </View>
+                        <View style={styles.childActionButtonsContainer}>
+                            {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
+                            {/* <TouchableOpacity
                 style={styles.childActionButton}
                 onPress={() => {
                     controller.delete(this, childTableName, item.value)
@@ -389,19 +389,19 @@ export class ViewProject extends React.Component {
                 <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
             </TouchableOpacity> */}
 
-                        <TouchableOpacity
-                            style={styles.childActionButton}
-                            onPress={() => {
-                                this.setChildItemModalVisibility(true)
-                                this.setState({ selectedChildItem: item.value }, () => {
-                                    this.setChildItemModalVisibility(true)
-                                })
-                            }}>
-                            <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
-                        </TouchableOpacity>
-                    </View>
+                            <TouchableOpacity
+                                style={styles.childActionButton}
+                                onPress={() => {
+                                    this.setState({ selectedChildItem: item.value }, () => {
+                                        this.setChildItemModalVisibility(true, item.value)
+                                    })
+                                }}>
+                                <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />
+                            </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                {/* </TouchableOpacity> */}
+
             </TouchableWithoutFeedback>
         )
     }
@@ -434,9 +434,9 @@ export class ViewProject extends React.Component {
                             horizontal={false}
                             renderItem={({ item }) =>
                                 <TouchableWithoutFeedback onPress={() => { }}>
-                                                                            {this.renderChildItem(item)}
+                                    {this.renderChildItem(item)}
 
-{/* 
+                                    {/* 
                                     <View style={{ flex: 1 }}>
 
                                         <Text>BOBB</Text>
@@ -769,7 +769,7 @@ export class ViewProject extends React.Component {
         if (this.props.selectedItem != {}) {
             return (
                 <Modal
-                propagateSwipe={true}
+                    propagateSwipe={true}
                     backdropOpacity={0}
                     animationIn='slideInRight'
                     animationInTiming={400}
@@ -780,7 +780,7 @@ export class ViewProject extends React.Component {
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
 
-                    {this.renderChildItemModal()}
+                    {/* {this.renderChildItemModal()} */}
                     {this.renderShowDate()}
                     {/* {this.showTaskSelectionModal()} */}
                     {this.renderNotesModal()}

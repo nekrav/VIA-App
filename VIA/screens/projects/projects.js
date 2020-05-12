@@ -3,7 +3,7 @@ import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox, colors } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Projects, Tasks } from '../../db'
-import { CreateProject, ViewProject } from '../../modals'
+import { CreateProject, ViewProject, ViewTask, ViewTaskFromProject } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -20,6 +20,9 @@ const controller = new Controller;
 
 const dbTableName = Projects.TABLE_NAME
 
+
+const childTableName = Tasks.TABLE_NAME
+
 export class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +32,9 @@ export class ProjectsScreen extends React.Component {
             items: [],
             numberOfItems: 0,
             numberOfFinishedItems: 0,
-            selectedItem: {}
+            selectedItem: {},
+            selectedChildItem: '',
+            childOfListItemModalVisible: false,
         };
     }
 
@@ -136,6 +141,11 @@ export class ProjectsScreen extends React.Component {
                             this.setState({ selectedProject: theProject })
                         }
                     }}
+
+                    goToChildItem={(passedChildItem) => {
+                        this.setState({ selectedChildItem: passedChildItem, childOfListItemModalVisible: true })
+                    }}
+
                     save={() => { controller.saveExisting(this, dbTableName, theProject) }}
 
                     selectedItem={theProject}
@@ -144,6 +154,74 @@ export class ProjectsScreen extends React.Component {
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewProject>
+            }
+        }
+    }
+
+    renderChildItemModal() {
+        if (this.state.childOfListItemModalVisible) {
+            if (this.state.selectedChildItem != '') {
+                console.warn(this.state.selectedChildItem)
+                theTask = this.state.selectedChildItem
+                return <ViewTaskFromProject
+                    animationType="slide"
+                    transparent={false}
+                    theChildItem={theTask}
+                    visible={this.state.childOfListItemModalVisible}
+                    editName={(text) => {
+                        theTask.name = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editDueDate={(text) => {
+                        theTask.due_date = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    // editImportance={(text) => {
+                    //     theTask.importance = text;
+                    //     this.setState({ selectedTask: theTask })
+                    // }}
+                    editPercentageDone={(text) => {
+                        theTask.percentage_done = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editCompleted={(text) => {
+                        theTask.completed = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editProject={(text) => {
+                        theTask.project = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editTimeSpent={(text) => {
+                        theTask.time_spent = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editNotes={(text) => {
+                        theTask.notes = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    editNotificationTime={(text) => {
+                        if (text) {
+                            var times = text.map(function (time) {
+                                return JSON.stringify(time)
+                            })
+                            theTask.notification_time = times
+                            this.setState({ selectedTask: theTask })
+                        }
+                    }}
+
+                    save={() => { controller.saveExisting(this, childTableName, theTask) }}
+
+                    selectedItem={theTask}
+
+                    delete={() => {
+                        controller.delete(this, childTableName, theTask)
+                        controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, selectedChildItem, "project")
+                        this.setCreateTaskModalVisibility(false)
+                    }}
+
+                    closeModal={() => { this.setCreateTaskModalVisibility(false) }}>
+                </ViewTaskFromProject>
             }
         }
     }
@@ -164,6 +242,7 @@ export class ProjectsScreen extends React.Component {
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewProject()}
+                    {this.renderChildItemModal()}
 
                     {/* /* #region Top Navigation Section  */}
                     <View style={styles.topNav}>

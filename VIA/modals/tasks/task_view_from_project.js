@@ -6,7 +6,7 @@ import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
-import { Database, Projects } from '../../db'
+import { Database, Projects, Tasks } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
@@ -31,8 +31,7 @@ const dateFormat = 'ddd, MMM Do, YY'
 const dateToday = new Date(year, month, date);
 
 
-export class ViewTask extends React.Component {
-    _isMounted = false;
+export class ViewTaskFromProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,31 +41,31 @@ export class ViewTask extends React.Component {
             proj: null,
             projName: empty,
             theSelectedProject: empty,
-            // importance: this.props.selectedItem.importance? this.props.selectedItem.importance : "",
+            importance: this.props.selectedItem.importance? this.props.selectedItem.importance : "",
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
-            // percentVal: this.props.selectedItem.percentage_done,
-            // importanceVal: this.props.selectedItem.importance ? this.props.selectedItem.importance : "",
+            percentVal: this.props.selectedItem.percentage_done,
+            importanceVal: this.props.selectedItem.importance ? this.props.selectedItem.importance : "",
             notesModalVisible: false,
-            // itemNotificationTimes: this.props.selectedItem.notification_time
+            itemNotificationTimes: this.props.selectedItem.notification_time
         };
     }
 
     componentDidMount() {
-        _isMounted = true; 
-        controller.loadAll(this, Projects.TABLE_NAME);
-        notifier.scheduleAllNotifications()
-        if (this.state.selectedItem.project != empty) {
-            Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-                this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
-            })
-        }
-    }
-
-    componentWillUnmount() {
-        _isMounted = false;
-        // controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
+        // _isMounted = true; 
+        // controller.loadAll(this, Projects.TABLE_NAME);
+        // notifier.scheduleAllNotifications()
+        // if (this.state.selectedItem.project != empty) {
+        //     Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
+        //         this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
+        //     })
+        // }
+        console.warn("seilwfhiaewu")
+        // if (this.props.theChildItem) {
+        //     console.warn(this.props.theChildItem)
+        //     controller.loadOne(this, this.props.theChildItem, Tasks.TABLE_NAME);
+        // }
     }
 
     getStyleIfDone() {
@@ -599,30 +598,23 @@ export class ViewTask extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
-
-                        {/* Top Bar Section */}
+                        <Text>ALIWFUHOIWEUhgfoiesuhrog</Text>
+{/* 
                         {this.renderTopBar()}
 
-                        {/* Name Section */}
                         {this.renderNameSection()}
 
-                        {/* Project Section*/}
                         {this.renderProjectSection()}
 
-                        {/* Due Date Section*/}
                         {this.renderDueDate()}
 
-                        {/* Sliders Section*/}
                         {this.renderSliderSection()}
 
-                        {/* Complete Button Section */}
                         {this.renderCompleteButton()}
 
-                        {/* Notification Times Section */}
                         {this.renderNotificationTimesSection()}
 
-                        {/* {NOTES SECTION} */}
-                        {this.renderNotesSection()}
+                        {this.renderNotesSection()} */}
 
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
