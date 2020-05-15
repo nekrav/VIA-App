@@ -41,34 +41,15 @@ export class ViewTaskFromProject extends React.Component {
             proj: null,
             projName: empty,
             theSelectedProject: empty,
-            importance: this.props.theChildItem.importance? this.props.theChildItem.importance : "",
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
-            percentVal: this.props.theChildItem.percentage_done,
-            importanceVal: this.props.theChildItem.importance ? this.props.theChildItem.importance : "",
             notesModalVisible: false,
-            itemNotificationTimes: this.props.theChildItem.notification_time
         };
     }
 
-    componentDidMount() {
-        // _isMounted = true; 
-        // controller.loadAll(this, Projects.TABLE_NAME);
-        // notifier.scheduleAllNotifications()
-        // if (this.state.selectedItem.project != empty) {
-        //     Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
-        //         this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
-        //     })
-        // }
-        if (this.props.theChildItem) {
-            // console.warn(this.props.theChildItem.name)
-            // controller.loadOne(this, this.props.theChildItem.id, Tasks.TABLE_NAME);
-        }
-    }
-
     getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
+        if (this.state.selectedItem.completed == "true") {
             return styles.outerViewDone
         }
         return styles.outerView;
@@ -102,14 +83,14 @@ export class ViewTaskFromProject extends React.Component {
     renderNameSection() {
         return (<TouchableOpacity
             onPress={() => { this.nameTextInput.focus(); }}
-            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
+            style={this.state.selectedItem.name != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
             <TextInput
                 ref={(input) => { this.nameTextInput = input; }}
                 maxLength={40}
                 onEndEditing={this.props.save()}
                 style={styles.createNameText}
                 multiline={true}
-                value={this.props.selectedItem.name}
+                value={this.state.selectedItem.name}
                 onChangeText={this.props.editName}>
             </TextInput>
         </TouchableOpacity>)
@@ -192,19 +173,17 @@ export class ViewTaskFromProject extends React.Component {
         if (this.state.showDate) {
             return <DateModal
                 animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
+                itemDate={this.state.selectedItem.due_date ? this.state.selectedItem.due_date : empty}
                 itemName="Project"
                 disabledSaveButtonBackgroundColor={colorsProvider.tasksMainColor}
                 saveButtonBackgroundColor={colorsProvider.tasksMainColor}
                 transparent={true}
                 setDate={(item) => {
                     this.props.editDueDate(item)
-                    this.setState({ dueDate: item })
                     this.props.save();
                 }}
                 onSubmit={item => {
                     this.props.editDueDate(item);
-                    this.setState({ dueDate: item });
                     this.setDateModalVisibility(false);
                 }}
                 closeModal={() => { this.setDateModalVisibility(false) }}>
@@ -223,11 +202,11 @@ export class ViewTaskFromProject extends React.Component {
                         this.setDateModalVisibility(true)
                     }}>
                     <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
+                        {Moment(new Date(this.state.selectedItem.due_date)).format(dateFormat)}
                     </Text>
 
                     <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).diff({ todayDate }, 'days') +
+                        {Moment(new Date(this.state.selectedItem.due_date)).diff({ todayDate }, 'days') +
                             ' days left'}
                     </Text>
                 </TouchableOpacity>
@@ -283,8 +262,7 @@ export class ViewTaskFromProject extends React.Component {
                             thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.percentVal)}
-
+                            value={parseInt(this.state.selectedItem.percentage_done)}
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
                                 if (value == 100) {
@@ -307,7 +285,7 @@ export class ViewTaskFromProject extends React.Component {
                             thumbTintColor={this.state.selectedItem.importance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.importanceVal)}
+                            value={parseInt(this.state.selectedItem.importance)}
                             onValueChange={(value) => {
                                 Keyboard.dismiss()
                                 this.props.save();
@@ -365,14 +343,18 @@ export class ViewTaskFromProject extends React.Component {
                             style={styles.completeButtonBodyDone}
                             onLongPress={() => {
                                 Keyboard.dismiss()
-                                this.setState({ percentVal: 0 })
+                                let temp = this.state.selectedItem
+                                temp.percentage_done = 0
+                                this.setState({ selectedItem: temp })
                                 this.props.editCompleted("false")
                                 this.props.editPercentageDone(0)
                                 this.props.editFinishedDate("");
                             }}
                             onPress={() => {
                                 Keyboard.dismiss();
-                                this.setState({ percentVal: 100 })
+                                let temp = this.state.selectedItem
+                                temp.percentage_done = 100
+                                this.setState({ selectedItem: temp })
                                 this.props.editPercentageDone(100)
                                 this.props.editCompleted("true")
                                 this.props.editFinishedDate(new Date(Date.now()));
@@ -387,13 +369,17 @@ export class ViewTaskFromProject extends React.Component {
                         style={styles.completeButtonBodyDone}
                         onLongPress={() => {
                             Keyboard.dismiss()
-                            this.setState({ percentVal: 0 })
+                            let temp = this.state.selectedItem
+                            temp.percentage_done = 0
+                            this.setState({ selectedItem: temp })
                             this.props.editCompleted("false")
                             this.props.editPercentageDone(0)
                             this.props.editFinishedDate("");
                         }}
                         onPress={() => {
                             Keyboard.dismiss();
+                            let temp = this.state.selectedItem
+                            temp.percentage_done = 100
                             this.setState({ percentVal: 100 })
                             this.props.editPercentageDone(100)
                             this.props.editCompleted("true")
@@ -409,12 +395,16 @@ export class ViewTaskFromProject extends React.Component {
                     <TouchableOpacity
                         style={styles.completeButtonBody}
                         onLongPress={() => {
-                            this.setState({ percentVal: 0 })
+                            let temp = this.state.selectedItem
+                            temp.percentage_done = 0
+                            this.setState({ selectedItem: temp })
                             this.props.editCompleted("false")
                             this.props.editPercentageDone(0)
                         }
                         }
                         onPress={() => {
+                            let temp = this.state.selectedItem
+                            temp.percentage_done = 100
                             this.setState({ percentVal: 100 })
                             this.props.editPercentageDone(100)
                             this.props.editCompleted("true")

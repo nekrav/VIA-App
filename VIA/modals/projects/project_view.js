@@ -345,8 +345,8 @@ export class ViewProject extends React.Component {
                         onPress={() => {
                             Keyboard.dismiss()
                             this.setState({ selectedChildItem: item.value }, () => {
+                                this.setChildItemModalVisibility(true, item.value, this.state.selectedItem.id)
                                 this.props.closeModal();
-                                this.setChildItemModalVisibility(true, item.value)
                             })
                         }}>
                         <View style={styles.childTitleContainer}>
@@ -377,22 +377,22 @@ export class ViewProject extends React.Component {
                                 style={styles.childTitleText}>{item.value.name} </Text>
                         </View>
                         <View style={styles.childActionButtonsContainer}>
-                            {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
-                            {/* <TouchableOpacity
-                style={styles.childActionButton}
-                onPress={() => {
-                    controller.delete(this, childTableName, item.value)
-                    controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                    notifier.scheduleAllNotifications();
-                }}>
-                <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-            </TouchableOpacity> */}
+                            <TouchableOpacity
+                                style={styles.childActionButton}
+                                onPress={() => {
+                                    controller.delete(this, childTableName, item.value)
+                                    controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                                    notifier.scheduleAllNotifications();
+                                }}>
+                                <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
+                            </TouchableOpacity>
 
                             <TouchableOpacity
                                 style={styles.childActionButton}
                                 onPress={() => {
                                     this.setState({ selectedChildItem: item.value }, () => {
-                                        this.setChildItemModalVisibility(true, item.value)
+                                        this.setChildItemModalVisibility(true, item.value, this.state.selectedItem.id)
+                                        this.props.closeModal();
                                     })
                                 }}>
                                 <SIcon style={styles.childActionButtonText} color={colorsProvider.tasksComplimentaryColor} name="arrow-right" size={30} />

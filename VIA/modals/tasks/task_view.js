@@ -284,7 +284,7 @@ export class ViewTask extends React.Component {
                             thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.percentVal)}
+                            value={parseInt(this.state.selectedItem.percentage_done)}
 
                             onSlidingComplete={(value) => {
                                 this.props.editPercentageDone(value)
@@ -308,7 +308,7 @@ export class ViewTask extends React.Component {
                             thumbTintColor={this.state.selectedItem.importance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
                             minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
                             maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.importanceVal)}
+                            value={parseInt(this.state.selectedItem.importance)}
                             onValueChange={(value) => {
                                 Keyboard.dismiss()
                                 this.props.save();

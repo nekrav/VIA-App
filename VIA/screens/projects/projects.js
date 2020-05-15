@@ -11,7 +11,6 @@ import { Notifier } from '../../notifier/notifier'
 
 const notifier = new Notifier;
 
-
 const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
@@ -40,7 +39,7 @@ export class ProjectsScreen extends React.Component {
 
     componentDidMount() {
         notifier.scheduleAllNotifications()
-        this.props.navigation.addListener('willFocus', (playload) => {
+        this.props.navigation.addListener('willFocus', (payload) => {
             controller.loadAll(this, dbTableName)
         });
         controller.loadAll(this, dbTableName)
@@ -143,7 +142,6 @@ export class ProjectsScreen extends React.Component {
                     }}
 
                     goToChildItem={(passedChildItem) => {
-
                         this.setState({ selectedChildItem: passedChildItem, childOfListItemModalVisible: true })
                     }}
 
@@ -166,7 +164,6 @@ export class ProjectsScreen extends React.Component {
                 return <ViewTaskFromProject
                     animationType="slide"
                     transparent={false}
-                    selectedItem={theTask}awesome
                     theChildItem={theTask}
                     visible={this.state.childOfListItemModalVisible}
                     editName={(text) => {
@@ -213,8 +210,6 @@ export class ProjectsScreen extends React.Component {
 
                     save={() => { controller.saveExisting(this, childTableName, theTask) }}
 
-                   
-
                     delete={() => {
                         // controller.delete(this, childTableName, theTask)
                         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, selectedChildItem, "project")
@@ -222,7 +217,10 @@ export class ProjectsScreen extends React.Component {
                         this.setState({ childOfListItemModalVisible: false })
                     }}
 
-                    closeModal={() => {   this.setState({ childOfListItemModalVisible: false })}}>
+                    closeModal={() => {
+                        this.setState({ childOfListItemModalVisible: false})
+                        controller.setViewModalVisible(this, true)
+                    }}>
                 </ViewTaskFromProject>
             }
         }

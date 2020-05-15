@@ -16,6 +16,7 @@ import { HomeButton } from '../VIA/components/homeButton'
 const notifier = new Notifier;
 const controller = new Controller;
 
+console.disableYellowBox = true;
 
 notifier.registerNotificationService();
 
