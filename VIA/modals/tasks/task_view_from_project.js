@@ -35,20 +35,20 @@ export class ViewTaskFromProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: this.props.selectedItem,
+            selectedItem: this.props.theChildItem,
             projectSelectionModalVisible: false,
             items: [],
             proj: null,
             projName: empty,
             theSelectedProject: empty,
-            importance: this.props.selectedItem.importance? this.props.selectedItem.importance : "",
+            importance: this.props.theChildItem.importance? this.props.theChildItem.importance : "",
             showDate: false,
             dueDate: '',
             notificationTimesModal: false,
-            percentVal: this.props.selectedItem.percentage_done,
-            importanceVal: this.props.selectedItem.importance ? this.props.selectedItem.importance : "",
+            percentVal: this.props.theChildItem.percentage_done,
+            importanceVal: this.props.theChildItem.importance ? this.props.theChildItem.importance : "",
             notesModalVisible: false,
-            itemNotificationTimes: this.props.selectedItem.notification_time
+            itemNotificationTimes: this.props.theChildItem.notification_time
         };
     }
 
@@ -61,11 +61,10 @@ export class ViewTaskFromProject extends React.Component {
         //         this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
         //     })
         // }
-        console.warn("seilwfhiaewu")
-        // if (this.props.theChildItem) {
-        //     console.warn(this.props.theChildItem)
-        //     controller.loadOne(this, this.props.theChildItem, Tasks.TABLE_NAME);
-        // }
+        if (this.props.theChildItem) {
+            // console.warn(this.props.theChildItem.name)
+            // controller.loadOne(this, this.props.theChildItem.id, Tasks.TABLE_NAME);
+        }
     }
 
     getStyleIfDone() {
@@ -90,6 +89,7 @@ export class ViewTaskFromProject extends React.Component {
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
                     notifier.scheduleAllNotifications();
+                    this.props.visible = false;
                     this.props.delete()
                 }}>
                 <SIcon name="trash" size={30} color={colorsProvider.redColor} />
@@ -598,8 +598,7 @@ export class ViewTaskFromProject extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <SafeAreaView style={this.getStyleIfDone()}>
-                        <Text>ALIWFUHOIWEUhgfoiesuhrog</Text>
-{/* 
+
                         {this.renderTopBar()}
 
                         {this.renderNameSection()}
@@ -614,7 +613,7 @@ export class ViewTaskFromProject extends React.Component {
 
                         {this.renderNotificationTimesSection()}
 
-                        {this.renderNotesSection()} */}
+                        {this.renderNotesSection()}
 
                     </SafeAreaView>
                 </TouchableWithoutFeedback>

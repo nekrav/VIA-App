@@ -143,6 +143,7 @@ export class ProjectsScreen extends React.Component {
                     }}
 
                     goToChildItem={(passedChildItem) => {
+
                         this.setState({ selectedChildItem: passedChildItem, childOfListItemModalVisible: true })
                     }}
 
@@ -161,11 +162,11 @@ export class ProjectsScreen extends React.Component {
     renderChildItemModal() {
         if (this.state.childOfListItemModalVisible) {
             if (this.state.selectedChildItem != '') {
-                console.warn(this.state.selectedChildItem)
                 theTask = this.state.selectedChildItem
                 return <ViewTaskFromProject
                     animationType="slide"
                     transparent={false}
+                    selectedItem={theTask}awesome
                     theChildItem={theTask}
                     visible={this.state.childOfListItemModalVisible}
                     editName={(text) => {
@@ -176,10 +177,10 @@ export class ProjectsScreen extends React.Component {
                         theTask.due_date = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    // editImportance={(text) => {
-                    //     theTask.importance = text;
-                    //     this.setState({ selectedTask: theTask })
-                    // }}
+                    editImportance={(text) => {
+                        theTask.importance = text;
+                        this.setState({ selectedTask: theTask })
+                    }}
                     editPercentageDone={(text) => {
                         theTask.percentage_done = text;
                         this.setState({ selectedTask: theTask })
@@ -212,15 +213,16 @@ export class ProjectsScreen extends React.Component {
 
                     save={() => { controller.saveExisting(this, childTableName, theTask) }}
 
-                    selectedItem={theTask}
+                   
 
                     delete={() => {
-                        controller.delete(this, childTableName, theTask)
+                        // controller.delete(this, childTableName, theTask)
                         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, selectedChildItem, "project")
-                        this.setCreateTaskModalVisibility(false)
+                        // this.setCreateTaskModalVisibility(false)
+                        this.setState({ childOfListItemModalVisible: false })
                     }}
 
-                    closeModal={() => { this.setCreateTaskModalVisibility(false) }}>
+                    closeModal={() => {   this.setState({ childOfListItemModalVisible: false })}}>
                 </ViewTaskFromProject>
             }
         }

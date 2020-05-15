@@ -177,8 +177,7 @@ export class ViewProject extends React.Component {
 
     setChildItemModalVisibility(visible, item) {
         // this.setState({ childModalVisibility: visible })
-        this.props.goToChildItem(item.id)
-
+        this.props.goToChildItem(item)
     }
 
     saveNewTask(task) {
