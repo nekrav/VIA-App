@@ -9,6 +9,11 @@ export const fontSizeSliderTitle = 24
 export const fontSizeInputButton = 18
 /* #endregion */
 
+/* #region Icons */
+export const backIcon = 'arrow-left'
+export const trash = 'trash'
+/* #endregion */
+
 /* #region  General */
 export const font = "Roboto-Medium"
 export const finishedBackgroundColor = "#4DFF87";

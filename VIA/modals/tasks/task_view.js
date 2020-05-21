@@ -12,6 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
+import { TopBar } from '../../components'
 
 const notifier = new Notifier;
 
@@ -27,7 +28,7 @@ var month = new Date().getMonth(); //Current Month
 var year = new Date().getFullYear(); //Current Year
 const dateDisplayFormat = 'MMM Do'
 const todayDate = new Date();
-const dateFormat = 'ddd, MMM Do, YY'
+const dateFormat = 'dd/mm/yy'
 const dateToday = new Date(year, month, date);
 
 
@@ -83,19 +84,13 @@ export class ViewTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton}
-                onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color={colorsProvider.tasksComplimentaryColor} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.trashButton}
-                onPress={() => {
-                    notifier.scheduleAllNotifications();
-                    this.props.delete()
-                }}>
-                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
-            </TouchableOpacity>
-        </View>)
+        return <TopBar
+        nameOfItem={this.state.selectedItem.name}
+        dueDate={this.state.selectedItem.due_date}
+        importance={this.state.selectedItem.importance}
+        closeModal={this.props.closeModal}
+        editName={this.props.editName}
+        />
     }
     /* #endregion */
 
