@@ -4,6 +4,7 @@ import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
+import { ImportanceRadio } from './importanceRadio';
 
 const todayDate = new Date();
 
@@ -45,8 +46,8 @@ export class TopBar extends React.Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor, }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "5%" }}>
                     <TouchableOpacity
                         onPress={() => { this.props.closeModal() }}
                         style={{ margin: 5 }}>
@@ -70,6 +71,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
+                <ImportanceRadio/>
             </View>
         );
     }

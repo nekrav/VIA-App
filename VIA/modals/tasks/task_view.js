@@ -588,7 +588,7 @@ export class ViewTask extends React.Component {
                 animationOut='slideOutRight'
                 animationOutTiming={400}
                 isVisible={this.props.visible}
-                style={{ margin: 0 }}
+                style={{ margin: 0, }}
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
                 {this.renderShowDate()}

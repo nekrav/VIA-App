@@ -35,6 +35,7 @@
     "react-native-popover": "^0.2.0",
     "react-native-push-notification": "^3.1.9",
     "react-native-reanimated": "^1.4.0",
+    "react-native-simple-radio-button": "^2.7.4",
     "react-native-slider": "^0.11.0",
     "react-native-sliding-up-down-panels": "^1.0.0",
     "react-native-sqlite-storage": "^3.3.11",
