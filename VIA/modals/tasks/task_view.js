@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar } from '../../components'
+import { TopBar, DoneSlider } from '../../components'
 
 const notifier = new Notifier;
 
@@ -118,6 +118,10 @@ export class ViewTask extends React.Component {
         />
     }
     /* #endregion */
+
+    renderDoneSlider() {
+        return (<DoneSlider/>)
+    }
 
     /* #region  Name Region */
     renderNameSection() {
@@ -622,7 +626,7 @@ export class ViewTask extends React.Component {
 
                         {/* Top Bar Section */}
                         {this.renderTopBar()}
-
+                        {this.renderDoneSlider() }
                         {/* Name Section */}
                         {/* {this.renderNameSection()} */}
 
