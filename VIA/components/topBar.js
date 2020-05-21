@@ -27,40 +27,40 @@ export class TopBar extends React.Component {
 
     getDueDate(date) {
         if (date)
-            return (<View style={{ flexDirection: 'column', margin: 5, alignItems: 'center' }}>
-            <Text style={{ color: colorsProvider.whiteColor }}>{Moment(date).format('DD/MM/YY')}</Text>
-            <Text style={{ color: colorsProvider.whiteColor }}>{this.getNumberOfDaysLeft(date)} till due</Text>
-        </View>)
-        else 
-            return <Text style={{ color: colorsProvider.whiteColor}}>No due {"\n"}date set</Text>
+            return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
+                <TouchableOpacity onPress={this.props.editDueDate}>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
+                </TouchableOpacity>
+                <Text style={{ color: colorsProvider.whiteColor }}>{this.getNumberOfDaysLeft(date)} days till due</Text>
+            </View>)
+        else
+            return <Text style={{ color: colorsProvider.whiteColor }}>No due {"\n"}date set</Text>
     }
 
     getNumberOfDaysLeft(date) {
         if (date)
-            return (Moment(new Date(date)).diff({ todayDate }))
+            // return (Moment(new Date(date)).subtract(new Date(date)).day)
+            return (Moment(new Date(date)).diff({ todayDate }, 'days'))
     }
 
     render() {
         return (
-            <View style={{ flexDirection: 'column', marginBottom: 10, }}>
+            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor, }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <TouchableOpacity
-                        onPress={() => { this.props.closeModal()}}
-                        style={{margin: 5}}>
+                        onPress={() => { this.props.closeModal() }}
+                        style={{ margin: 5 }}>
                         <SIcon name={colorsProvider.backIcon} size={30} color={colorsProvider.whiteColor} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => { this.nameTextInput.focus(); }}
-                        style={{}}>
+                        style={{ width: '60%', marginBottom: 10, }}>
                         <TextInput
                             ref={(input) => { this.nameTextInput = input; }}
                             maxLength={40}
                             numberOfLines={2}
                             onEndEditing={() => this.props.save()}
-                            style={{
-                                color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeMain, borderBottomColor: colorsProvider.whiteColor,
-                                borderBottomWidth: 2
-                            }}
+                            style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeMain, borderBottomColor: colorsProvider.whiteColor, borderBottomWidth: 1 }}
                             multiline={true}
                             value={this.props.nameOfItem}
                             onChangeText={this.props.editName}>

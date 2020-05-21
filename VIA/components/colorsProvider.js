@@ -3,7 +3,7 @@ import React from 'react';
 /* #region  Font Sizes */
 export const fontSizeChildren = 18
 export const fontButtonSize = 16
-export const fontSizeMain = 30
+export const fontSizeMain = 25
 export const fontSizeAddButton = 50
 export const fontSizeSliderTitle = 24
 export const fontSizeInputButton = 18
@@ -12,6 +12,10 @@ export const fontSizeInputButton = 18
 /* #region Icons */
 export const backIcon = 'arrow-left'
 export const trash = 'trash'
+/* #endregion */
+
+/* #region NewColors */
+export const topBarColor = '#0e64c4'
 /* #endregion */
 
 /* #region  General */

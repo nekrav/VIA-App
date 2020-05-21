@@ -90,6 +90,10 @@ export class ViewTask extends React.Component {
         importance={this.state.selectedItem.importance}
         closeModal={this.props.closeModal}
         editName={this.props.editName}
+        editDueDate={() => {
+            Keyboard.dismiss()
+            this.setDateModalVisibility(true)
+        }}
         />
     }
     /* #endregion */
