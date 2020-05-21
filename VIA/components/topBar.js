@@ -12,6 +12,13 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 export class TopBar extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            importanceValue: this.props.importance,
+        };
+    }
+
     getDueDate(date) {
         if (date)
             return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
@@ -67,7 +74,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
-                {this.renderImportance(this.props.importance)}
+                {this.renderImportance(this.state.importanceValue)}
             </View>
         );
     }

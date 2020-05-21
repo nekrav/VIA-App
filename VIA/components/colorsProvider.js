@@ -16,6 +16,10 @@ export const trash = 'trash'
 
 /* #region NewColors */
 export const topBarColor = '#0e64c4'
+export const notINotUColor = '#60ff00'
+export const notIUColor = '#f2f929'
+export const iNotUColor = '#fb8201'
+export const iUColor = '#ec4d4d'
 /* #endregion */
 
 /* #region  General */

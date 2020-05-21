@@ -13,48 +13,51 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 export class ImportanceRadio extends React.Component {
 
     constructor(props) {
-
         super(props);
         this.state = {
             value3Index: this.props.importance,
         };
-        this.setState({ value3Index: this.props.importance })
     }
 
     renderB1(val) {
-        return <View style={{
-            height: 42,
-            width: 42,  //The Width must be the same as the height
-            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
-            backgroundColor: 'rgb(195, 125, 198)',
-        }}></View>
+        if (this.state.value3Index == 1)
+            return <View style={{
+                height: 42,
+                width: 42,  //The Width must be the same as the height
+                borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+                backgroundColor: colorsProvider.notINotUColor,
+            }}></View>
     }
     renderB2() {
-        return <View style={{
-            height: 42,
-            width: 42,  //The Width must be the same as the height
-            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
-            backgroundColor: 'rgb(195, 125, 198)',
-        }}></View>
+        if (this.state.value3Index == 2)
+            return <View style={{
+                height: 42,
+                width: 42,  //The Width must be the same as the height
+                borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+                backgroundColor: colorsProvider.notIUColor,
+            }}></View>
     }
     renderB3() {
-        return <View style={{
-            height: 42,
-            width: 42,  //The Width must be the same as the height
-            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
-            backgroundColor: 'rgb(195, 125, 198)',
-        }}></View>
+        if (this.state.value3Index == 3)
+            return <View style={{
+                height: 42,
+                width: 42,  //The Width must be the same as the height
+                borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+                backgroundColor: colorsProvider.iNotUColor,
+            }}></View>
     }
     renderB4() {
-        return <View style={{
-            height: 42,
-            width: 42,  //The Width must be the same as the height
-            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
-            backgroundColor: 'rgb(195, 125, 198)',
-        }}></View>
+        if (this.state.value3Index == 4)
+            return <View style={{
+                height: 42,
+                width: 42,  //The Width must be the same as the height
+                borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+                backgroundColor: colorsProvider.iUColor,
+            }}></View>
     }
 
-    renderOneSelected() {
+
+    renderImportance() {
         return (<View style={{ flexDirection: 'row', marginBottom: 10, backgroundColor: colorsProvider.topBarColor, justifyContent: 'space-around' }}>
             <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                 <TouchableOpacity
@@ -142,33 +145,6 @@ export class ImportanceRadio extends React.Component {
             </View>
         </View>)
     }
-
-
-    renderImportance() {
-        switch (this.props.importance) {
-            case '1':
-                return this.renderOneSelected()
-                break;
-
-            case '2':
-                return this.renderOneSelected()
-                break;
-
-            case '3':
-                return this.renderOneSelected()
-                break;
-
-            case '4':
-                return this.renderOneSelected()
-                break;
-
-            default:
-                return this.renderOneSelected()
-
-        }
-    }
-
-
 
     render() {
         return this.renderImportance()
