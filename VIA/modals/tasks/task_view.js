@@ -55,7 +55,7 @@ export class ViewTask extends React.Component {
     }
 
     componentDidMount() {
-        _isMounted = true; 
+        _isMounted = true;
         controller.loadAll(this, Projects.TABLE_NAME);
         notifier.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
@@ -85,15 +85,36 @@ export class ViewTask extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
-        nameOfItem={this.state.selectedItem.name}
-        dueDate={this.state.selectedItem.due_date}
-        importance={this.state.selectedItem.importance}
-        closeModal={this.props.closeModal}
-        editName={this.props.editName}
-        editDueDate={() => {
-            Keyboard.dismiss()
-            this.setDateModalVisibility(true)
-        }}
+            nameOfItem={this.state.selectedItem.name}
+            dueDate={this.state.selectedItem.due_date}
+            importance={this.state.selectedItem.importance}
+            closeModal={this.props.closeModal}
+            editName={this.props.editName}
+            hasImportance={true}
+            editDueDate={() => {
+                Keyboard.dismiss()
+                this.setDateModalVisibility(true)
+            }}
+            setImportanceNN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNN(1)
+                this.props.save();
+            }}
+            setImportanceNU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNU(2)
+                this.props.save();
+            }}
+            setImportanceIN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIN(3)
+                this.props.save();
+            }}
+            setImportanceIU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIU(4)
+                this.props.save();
+            }}
         />
     }
     /* #endregion */
@@ -356,32 +377,10 @@ export class ViewTask extends React.Component {
     // }
     // /* #endregion */
 
-        /* #region  Complete Button Section */
-        renderCompleteButton() {
-            if (this.state.selectedItem.completed == "true") {
-                if (this.state.selectedItem.finished_date == null) {
-                    return (
-                        <TouchableOpacity
-                            style={styles.completeButtonBodyDone}
-                            onLongPress={() => {
-                                Keyboard.dismiss()
-                                this.setState({ percentVal: 0 })
-                                this.props.editCompleted("false")
-                                this.props.editPercentageDone(0)
-                                this.props.editFinishedDate("");
-                            }}
-                            onPress={() => {
-                                Keyboard.dismiss();
-                                this.setState({ percentVal: 100 })
-                                this.props.editPercentageDone(100)
-                                this.props.editCompleted("true")
-                                this.props.editFinishedDate(new Date(Date.now()));
-                            }}>
-                            <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
-                        </TouchableOpacity>
-    
-                    )
-                }
+    /* #region  Complete Button Section */
+    renderCompleteButton() {
+        if (this.state.selectedItem.completed == "true") {
+            if (this.state.selectedItem.finished_date == null) {
                 return (
                     <TouchableOpacity
                         style={styles.completeButtonBodyDone}
@@ -399,33 +398,55 @@ export class ViewTask extends React.Component {
                             this.props.editCompleted("true")
                             this.props.editFinishedDate(new Date(Date.now()));
                         }}>
-                        <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+                        <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
                     </TouchableOpacity>
-    
+
                 )
             }
-            else
-                return (
-                    <TouchableOpacity
-                        style={styles.completeButtonBody}
-                        onLongPress={() => {
-                            this.setState({ percentVal: 0 })
-                            this.props.editCompleted("false")
-                            this.props.editPercentageDone(0)
-                        }
-                        }
-                        onPress={() => {
-                            this.setState({ percentVal: 100 })
-                            this.props.editPercentageDone(100)
-                            this.props.editCompleted("true")
-                            this.props.editFinishedDate(dateToday.toString());
-                        }
-                        }>
-                        <Text style={styles.completeButtonText}>Complete</Text>
-                    </TouchableOpacity >
-                )
+            return (
+                <TouchableOpacity
+                    style={styles.completeButtonBodyDone}
+                    onLongPress={() => {
+                        Keyboard.dismiss()
+                        this.setState({ percentVal: 0 })
+                        this.props.editCompleted("false")
+                        this.props.editPercentageDone(0)
+                        this.props.editFinishedDate("");
+                    }}
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        this.setState({ percentVal: 100 })
+                        this.props.editPercentageDone(100)
+                        this.props.editCompleted("true")
+                        this.props.editFinishedDate(new Date(Date.now()));
+                    }}>
+                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+                </TouchableOpacity>
+
+            )
         }
-        /* #endregion */
+        else
+            return (
+                <TouchableOpacity
+                    style={styles.completeButtonBody}
+                    onLongPress={() => {
+                        this.setState({ percentVal: 0 })
+                        this.props.editCompleted("false")
+                        this.props.editPercentageDone(0)
+                    }
+                    }
+                    onPress={() => {
+                        this.setState({ percentVal: 100 })
+                        this.props.editPercentageDone(100)
+                        this.props.editCompleted("true")
+                        this.props.editFinishedDate(dateToday.toString());
+                    }
+                    }>
+                    <Text style={styles.completeButtonText}>Complete</Text>
+                </TouchableOpacity >
+            )
+    }
+    /* #endregion */
 
     /* #region  Notification Times Region */
     setNotificationTimesVisibility(visible) {
@@ -603,7 +624,7 @@ export class ViewTask extends React.Component {
                         {this.renderTopBar()}
 
                         {/* Name Section */}
-                        {this.renderNameSection()}
+                        {/* {this.renderNameSection()} */}
 
                         {/* Project Section*/}
                         {this.renderProjectSection()}

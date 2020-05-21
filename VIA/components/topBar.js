@@ -11,20 +11,6 @@ const todayDate = new Date();
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 export class TopBar extends React.Component {
-    // mode = new Animated.Value(0);
-    // toggleView = () => {
-    //     Animated.timing(this.mode, {
-    //         toValue: this.mode._value === 0 ? 1 : 0,
-    //         duration: 300
-    //     }).start();
-    // };
-
-    // isCurrentRoute(routeName) {
-    //     if (routeName != '') {
-    //         return routeName == this.props.nav.state.routeName
-    //     }
-
-    // }
 
     getDueDate(date) {
         if (date)
@@ -40,8 +26,18 @@ export class TopBar extends React.Component {
 
     getNumberOfDaysLeft(date) {
         if (date)
-            // return (Moment(new Date(date)).subtract(new Date(date)).day)
             return (Moment(new Date(date)).diff({ todayDate }, 'days'))
+    }
+
+    renderImportance(importance) {
+        if (this.props.hasImportance)
+            return (<ImportanceRadio
+                importance={importance}
+                setImportanceNN={this.props.setImportanceNN}
+                setImportanceNU={this.props.setImportanceNU}
+                setImportanceIN={this.props.setImportanceIN}
+                setImportanceIU={this.props.setImportanceIU} />
+            )
     }
 
     render() {
@@ -71,7 +67,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
-                <ImportanceRadio/>
+                {this.renderImportance(this.props.importance)}
             </View>
         );
     }

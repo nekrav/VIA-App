@@ -13,119 +13,164 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 export class ImportanceRadio extends React.Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
-            value3Index: '',
+            value3Index: this.props.importance,
         };
+        this.setState({ value3Index: this.props.importance })
+    }
+
+    renderB1(val) {
+        return <View style={{
+            height: 42,
+            width: 42,  //The Width must be the same as the height
+            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+            backgroundColor: 'rgb(195, 125, 198)',
+        }}></View>
+    }
+    renderB2() {
+        return <View style={{
+            height: 42,
+            width: 42,  //The Width must be the same as the height
+            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+            backgroundColor: 'rgb(195, 125, 198)',
+        }}></View>
+    }
+    renderB3() {
+        return <View style={{
+            height: 42,
+            width: 42,  //The Width must be the same as the height
+            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+            backgroundColor: 'rgb(195, 125, 198)',
+        }}></View>
+    }
+    renderB4() {
+        return <View style={{
+            height: 42,
+            width: 42,  //The Width must be the same as the height
+            borderRadius: 400, //Then Make the Border Radius twice the size of width or Height   
+            backgroundColor: 'rgb(195, 125, 198)',
+        }}></View>
+    }
+
+    renderOneSelected() {
+        return (<View style={{ flexDirection: 'row', marginBottom: 10, backgroundColor: colorsProvider.topBarColor, justifyContent: 'space-around' }}>
+            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.setImportanceNN(1)
+                        this.setState({ value3Index: 1 })
+                    }}
+                    style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        padding: 5,
+                        height: 50,
+                        width: 50,
+                        borderRadius: 400,
+                        backgroundColor: colorsProvider.whiteColor,
+                        marginBottom: 2,
+                    }}>
+                    {this.renderB1()}
+                </TouchableOpacity>
+                <Text style={{ textAlign: 'center', alignItems: 'center', color: colorsProvider.whiteColor }}>Not Important {"\n"} Not Urgent</Text></View>
+
+            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.setImportanceNU(2)
+                        this.setState({ value3Index: 2 })
+                    }}
+                    style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        padding: 5,
+                        height: 50,
+                        width: 50,
+                        borderRadius: 400,
+                        backgroundColor: colorsProvider.whiteColor,
+                        marginBottom: 2,
+                    }}>
+                    {this.renderB2()}
+                </TouchableOpacity>
+                <Text style={{ textAlign: 'center', alignItems: 'center', color: colorsProvider.whiteColor }}>Not Important {"\n"} Urgent</Text>
+            </View>
+            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.setImportanceIN(3)
+                        this.setState({ value3Index: 3 })
+                    }}
+                    style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        padding: 5,
+                        height: 50,
+                        width: 50,
+                        borderRadius: 400,
+                        backgroundColor: colorsProvider.whiteColor,
+                        marginBottom: 2,
+                    }}>
+                    {this.renderB3()}
+                </TouchableOpacity>
+                <Text style={{ textAlign: 'center', alignItems: 'center', color: colorsProvider.whiteColor }}>Important {"\n"} Not Urgent</Text>
+            </View>
+            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.setImportanceIU(4)
+                        this.setState({ value3Index: 4 })
+                    }}
+                    style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        padding: 5,
+                        height: 50,
+                        width: 50,
+                        borderRadius: 400,
+                        backgroundColor: colorsProvider.whiteColor,
+                        marginBottom: 2,
+                    }}>
+                    {this.renderB4()}
+                </TouchableOpacity>
+                <Text style={{ textAlign: 'center', alignItems: 'center', color: colorsProvider.whiteColor }}>Important {"\n"} Urgent</Text>
+            </View>
+        </View>)
+    }
+
+
+    renderImportance() {
+        switch (this.props.importance) {
+            case '1':
+                return this.renderOneSelected()
+                break;
+
+            case '2':
+                return this.renderOneSelected()
+                break;
+
+            case '3':
+                return this.renderOneSelected()
+                break;
+
+            case '4':
+                return this.renderOneSelected()
+                break;
+
+            default:
+                return this.renderOneSelected()
+
+        }
     }
 
 
 
     render() {
-        return (
-            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
-                <RadioForm
-                    formHorizontal={true}
-                    animation={true}>
-
-                    <RadioButton labelHorizontal={true} key={0} >
-                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                        <RadioButtonInput
-                            obj={0}
-                            index={0}
-                            isSelected={this.state.value3Index === 0}
-                            onPress={() => { this.setState({value3Index: 0})}}
-                            borderWidth={1}
-                            buttonInnerColor={'#e74c3c'}
-                            buttonOuterColor={this.state.value3Index === 0 ? '#2196f3' : '#000'}
-                            buttonSize={40}
-                            buttonOuterSize={80}
-                            buttonStyle={{}}
-                            buttonWrapStyle={{ marginLeft: 10 }}
-                        />
-                        <RadioButtonLabel
-                            obj={0}
-                            index={0}
-                            labelHorizontal={true}
-                            onPress={{}}
-                            labelStyle={{ fontSize: 20, color: '#2ecc71' }}
-                            labelWrapStyle={{}}
-                        />
-                    </RadioButton>
-                    <RadioButton labelHorizontal={true} key={1} >
-                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                        <RadioButtonInput
-                             obj={1}
-                            index={1}
-                            isSelected={this.state.value3Index === 1}
-                            onPress={() => { this.setState({value3Index: 1})}}
-                            borderWidth={1}
-                            buttonInnerColor={'#e74c3c'}
-                            buttonOuterColor={this.state.value3Index === 1 ? '#2196f3' : '#000'}
-                            buttonSize={40}
-                            buttonOuterSize={80}
-                            buttonStyle={{}}
-                            buttonWrapStyle={{ marginLeft: 10 }}
-                        />
-                        <RadioButtonLabel
-                             obj={1}
-                            index={1}
-                            labelHorizontal={true}
-                            onPress={{}}
-                            labelStyle={{ fontSize: 20, color: '#2ecc71' }}
-                            labelWrapStyle={{}}
-                        />
-                    </RadioButton>
-                    <RadioButton labelHorizontal={true} key={2} >
-                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                        <RadioButtonInput
-                              obj={2}
-                            index={2}
-                            isSelected={this.state.value3Index === 2}
-                            onPress={() => { this.setState({value3Index: 2})}}
-                            borderWidth={1}
-                            buttonInnerColor={'#e74c3c'}
-                            buttonOuterColor={this.state.value3Index === 2 ? '#2196f3' : '#000'}
-                            buttonSize={40}
-                            buttonOuterSize={80}
-                            buttonStyle={{}}
-                            buttonWrapStyle={{ marginLeft: 10 }}
-                        />
-                        <RadioButtonLabel
-                              obj={2}
-                            index={2}
-                            labelHorizontal={true}
-                            onPress={{}}
-                            labelStyle={{ fontSize: 20, color: '#2ecc71' }}
-                            labelWrapStyle={{}}
-                        />
-                    </RadioButton>
-                    <RadioButton labelHorizontal={true} key={3} >
-                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                        <RadioButtonInput
-                               obj={3}
-                            index={3}
-                            isSelected={this.state.value3Index === 3}
-                            onPress={() => { this.setState({value3Index: 3})}}
-                            borderWidth={1}
-                            buttonInnerColor={'#e74c3c'}
-                            buttonOuterColor={this.state.value3Index === 3 ? '#2196f3' : '#000'}
-                            buttonSize={40}
-                            buttonOuterSize={80}
-                            buttonStyle={{}}
-                            buttonWrapStyle={{ marginLeft: 10 }}
-                        />
-                        <RadioButtonLabel
-                               obj={3}
-                            index={3}
-                            labelHorizontal={true}
-                            onPress={{}}
-                            labelStyle={{ fontSize: 20, color: '#2ecc71' }}
-                            labelWrapStyle={{}}
-                        />
-                    </RadioButton>
-                </RadioForm>
-            </View>
-        );
+        return this.renderImportance()
     }
 }

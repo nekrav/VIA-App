@@ -106,8 +106,20 @@ export class TasksScreen extends React.Component {
                         theTask.due_date = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    editImportance={(text) => {
-                        theTask.importance = text;
+                    setImportanceNN={(text) => {
+                        theTask.importance = 1;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    setImportanceNU={(text) => {
+                        theTask.importance = 2;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    setImportanceIN={(text) => {
+                        theTask.importance = 3;
+                        this.setState({ selectedTask: theTask })
+                    }}
+                    setImportanceIU={(text) => {
+                        theTask.importance = 4;
                         this.setState({ selectedTask: theTask })
                     }}
                     editPercentageDone={(text) => {
