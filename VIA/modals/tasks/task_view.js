@@ -632,13 +632,7 @@ export class ViewTask extends React.Component {
 
                         {/* Project Section*/}
                         {this.renderProjectSection()}
-
-                        {/* Due Date Section*/}
-                        {this.renderDueDate()}
-
-                        {/* Sliders Section*/}
-                        {this.renderSliderSection()}
-
+                        
                         {/* Complete Button Section */}
                         {this.renderCompleteButton()}
 
