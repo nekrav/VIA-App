@@ -1,6 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Slider } from "react-native";
+import { Slider } from 'react-native-elements';
+import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -15,31 +16,29 @@ export class DoneSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // value3Index: this.props.importance,
+            value: this.props.percentage_done,
         };
     }
 
     renderImportance() {
-        return (<View style={{margin: 30,}}><Slider
-            style={{ width: 250, height: 100, }}
-            minimumValue={0}
-            maximumValue={100}
-            thumbTintColor={colorsProvider.projectsComplimentaryColor}
-            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
-            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-            value={10}
-
-            onSlidingComplete={(value) => {
-                if (value == 100) {
-                    this.finishTask();
-                }
-                this.props.save();
-            }}
-            onValueChange={(value) => {
-                Keyboard.dismiss()
-            }}
-        /></View>
-)
+        return (<View style={{ margin: 10, flexDirection: 'column' }}>
+            <Slider
+                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
+                trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
+                minimumValue={0}
+                maximumTrackTintColor={colorsProvider.topBarColor}
+                minimumTrackTintColor={colorsProvider.completeColor}
+                step={1}
+                maximumValue={10}
+                animationType={'timing'}
+                value={this.state.value}
+                onValueChange={value => this.setState({ value })} />
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
+                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
+                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
+            </View>
+        </View>
+        )
     }
 
     render() {

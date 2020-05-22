@@ -20,15 +20,22 @@ export class TopBar extends React.Component {
     }
 
     getDueDate(date) {
-        if (date)
+
+        if (this.getNumberOfDaysLeft(date) === 0) {
+            return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
+        }
+        else if (date) {
             return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
                 <TouchableOpacity onPress={this.props.editDueDate}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
                 </TouchableOpacity>
                 <Text style={{ color: colorsProvider.whiteColor }}>{this.getNumberOfDaysLeft(date)} days till due</Text>
             </View>)
-        else
+        }
+        else {
             return <Text style={{ color: colorsProvider.whiteColor }}>No due {"\n"}date set</Text>
+        }
+
     }
 
     getNumberOfDaysLeft(date) {

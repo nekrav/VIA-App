@@ -7,6 +7,7 @@ export const fontSizeMain = 25
 export const fontSizeAddButton = 50
 export const fontSizeSliderTitle = 24
 export const fontSizeInputButton = 18
+export const fontSizeSmall = 14
 /* #endregion */
 
 /* #region Icons */
@@ -20,6 +21,7 @@ export const notINotUColor = '#60ff00'
 export const notIUColor = '#f2f929'
 export const iNotUColor = '#fb8201'
 export const iUColor = '#ec4d4d'
+export const completeColor = "#07c34e"
 /* #endregion */
 
 /* #region  General */
