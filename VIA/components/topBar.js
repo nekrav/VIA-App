@@ -67,11 +67,12 @@ export class TopBar extends React.Component {
             )
     }
 
-    renderParent(parent, parentName) {
+    renderParent(parent) {
+        console.warn(this.props.parentName)
         if (this.props.hasParent) {
             return <ParentSelection
-                parentName={parentName}
-                parent={parent}
+                parentName={parent}
+                parent={this.state.parent}
                 selectParent={this.props.selectParent} />
         }
 
@@ -103,7 +104,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
-                {this.renderParent(this.state.parent, this.state.parentName)}
+                {this.renderParent(this.props.parentName)}
                 {this.renderImportance(this.state.importanceValue)}
             </View>
         );

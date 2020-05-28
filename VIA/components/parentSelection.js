@@ -21,7 +21,12 @@ export class ParentSelection extends React.Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({name: newProps.parentName});
+    }
+
     render() {
+        console.warn(this.state.name)
         if (this.state.name) {
             return (
                 <TouchableOpacity
@@ -30,7 +35,7 @@ export class ParentSelection extends React.Component {
                     <Text style={{}}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
-                    <Text style={{color: colorsProvider.whiteColor}}>
+                    <Text style={{ color: colorsProvider.whiteColor }}>
                         {this.state.name}
                     </Text>
 
@@ -47,7 +52,6 @@ export class ParentSelection extends React.Component {
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
                         Is this part of a bigger project?
           </Text>
-
                 </TouchableOpacity>
             );
         }

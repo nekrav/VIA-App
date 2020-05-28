@@ -34,8 +34,8 @@ export class SelectionModal extends React.Component {
                                     <TouchableOpacity
                                         style={[styles.itemsContainer, { backgroundColor: this.props.titleContainerColor }]}
                                         onPress={() => {
-                                            this.props.closeModal();
                                             this.props.selectItem(item)
+                                            this.props.closeModal();
                                         }}>
                                         <Text style={[styles.itemText, { color: this.props.titleTextColor }]}>{item.value.name}</Text>
                                     </TouchableOpacity>} />

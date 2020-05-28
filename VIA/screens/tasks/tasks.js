@@ -123,7 +123,6 @@ export class TasksScreen extends React.Component {
                         this.setState({ selectedTask: theTask })
                     }}
                     editPercentageDone={(text) => {
-                        // console.warn(text)
                         theTask.percentage_done = text;
                         this.setState({ selectedTask: theTask })
                     }}
@@ -160,7 +159,6 @@ export class TasksScreen extends React.Component {
 
 
                     save={() => {
-                        console.warn(theTask)
                         controller.saveExisting(this, dbTableName, theTask)
                     }}
 

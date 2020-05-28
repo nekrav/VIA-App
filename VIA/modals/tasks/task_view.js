@@ -171,53 +171,6 @@ export class ViewTask extends React.Component {
         return null;
     }
 
-    renderProjectSection() {
-        <ParentSelection
-            parent={this.state.selectedItem.project}
-            selectParent={() => {
-                Keyboard.dismiss();
-                this.setProjectSelectionModalVisibility(true);
-            }}
-        />
-        // if (this.state.projName != empty) {
-        //     this.props.project = this.state.theSelectedProject;
-        //     return (
-        //         <TouchableOpacity
-        //             style={styles.hasProjectSelectionContainer}
-        //             onPress={() => {
-        //                 Keyboard.dismiss();
-        //                 this.setProjectSelectionModalVisibility(true);
-        //             }}>
-        //             <Text style={styles.hasProjectSelectionButtonText}>
-        //                 {this.state.projName}
-        //             </Text>
-        //             <Text style={styles.notificationTimeButtonText}>
-        //                 <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
-        //             </Text>
-        //         </TouchableOpacity>
-        //     );
-        // } else {
-        //     return (
-        //         <TouchableOpacity
-        //             style={styles.createProjectSelectionContainer}
-        //             onPress={() => {
-        //                 Keyboard.dismiss()
-        //                 this.setProjectSelectionModalVisibility(true)
-        //             }}>
-        //             <Text style={styles.createProjectSelectionButtonText}>
-        //                 Is this part of a bigger project?
-        //   </Text>
-        //             <Text style={styles.notificationTimeButtonText}>
-        //                 <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
-        //             </Text>
-        //         </TouchableOpacity>
-        //     );
-        // }
-    }
-
-
-    /* #endregion */
-
     /* #region  Due Date Region */
     setDateModalVisibility(visible) {
         this.setState({ showDate: visible })
