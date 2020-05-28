@@ -44,7 +44,9 @@ export class TopBar extends React.Component {
             </View>)
         }
         else {
-            return <Text style={{ color: colorsProvider.whiteColor }}>No due {"\n"}date set</Text>
+            return <TouchableOpacity onPress={this.props.editDueDate}>
+                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', margin: 10, }}>No due {"\n"}date set</Text>
+            </TouchableOpacity>
         }
 
     }
