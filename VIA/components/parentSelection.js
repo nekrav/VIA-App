@@ -22,7 +22,7 @@ export class ParentSelection extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({name: newProps.parentName});
+        this.setState({ name: newProps.parentName });
     }
 
     render() {
@@ -30,12 +30,12 @@ export class ParentSelection extends React.Component {
         if (this.state.name) {
             return (
                 <TouchableOpacity
-                    style={{ marginLeft: "12%", flexDirection: 'row', marginBottom: '3%' }}
+                    style={{ marginLeft: "16%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={this.props.selectParent}>
-                    <Text style={{}}>
+                    <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
-                    <Text style={{ color: colorsProvider.whiteColor }}>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
                         {this.state.name}
                     </Text>
 
@@ -44,13 +44,12 @@ export class ParentSelection extends React.Component {
         } else {
             return (
                 <TouchableOpacity
-                    style={{ marginLeft: "12%", flexDirection: 'row', marginBottom: '3%' }}
+                    style={{ marginLeft: "16%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={this.props.selectParent}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
-                        Is this part of a bigger project?
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>Is this part of a bigger project?
           </Text>
                 </TouchableOpacity>
             );
