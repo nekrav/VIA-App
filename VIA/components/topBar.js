@@ -28,7 +28,7 @@ export class TopBar extends React.Component {
             return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
         }
         else if (this.getNumberOfDaysLeft(date) < 0) {
-            return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
+            return (<View style={{ flexDirection: 'column', marginTop : 15, marginRight: 15, marginLeft: 10,  alignItems: 'center' }}>
                 <TouchableOpacity onPress={this.props.editDueDate}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
                 </TouchableOpacity>
@@ -36,16 +36,16 @@ export class TopBar extends React.Component {
             </View>)
         }
         else if (date) {
-            return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
+            return (<View style={{ flexDirection: 'column',  marginTop : 15, marginRight: 15,marginLeft: 10,  alignItems: 'center' }}>
                 <TouchableOpacity onPress={this.props.editDueDate}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
                 </TouchableOpacity>
-                <Text style={{ color: colorsProvider.whiteColor }}>{this.getNumberOfDaysLeft(date)} days till due</Text>
+                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', }}>{this.getNumberOfDaysLeft(date)} days {"\n"}till due</Text>
             </View>)
         }
         else {
             return <TouchableOpacity onPress={this.props.editDueDate}>
-                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', margin: 10, }}>No due {"\n"}date set</Text>
+                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop : 15, marginRight: 15,marginLeft: 10,  textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
             </TouchableOpacity>
         }
 

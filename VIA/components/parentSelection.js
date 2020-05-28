@@ -30,7 +30,7 @@ export class ParentSelection extends React.Component {
         if (this.state.name) {
             return (
                 <TouchableOpacity
-                    style={{ marginLeft: "16%", flexDirection: 'row', marginBottom: '3%' }}
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={this.props.selectParent}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
@@ -44,7 +44,7 @@ export class ParentSelection extends React.Component {
         } else {
             return (
                 <TouchableOpacity
-                    style={{ marginLeft: "16%", flexDirection: 'row', marginBottom: '3%' }}
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={this.props.selectParent}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
