@@ -5,6 +5,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
 import { ImportanceRadio } from './importanceRadio';
+import { ParentSelection } from './parentSelection';
 
 const todayDate = new Date();
 
@@ -16,13 +17,21 @@ export class TopBar extends React.Component {
         super(props);
         this.state = {
             importanceValue: this.props.importance,
+            parent: this.props.parent,
         };
     }
 
     getDueDate(date) {
-
         if (this.getNumberOfDaysLeft(date) === 0) {
             return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
+        }
+        else if (this.getNumberOfDaysLeft(date) < 0) {
+            return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
+                <TouchableOpacity onPress={this.props.editDueDate}>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
+                </TouchableOpacity>
+                <Text style={{ color: colorsProvider.whiteColor }}>{Math.abs(this.getNumberOfDaysLeft(date))} days late</Text>
+            </View>)
         }
         else if (date) {
             return (<View style={{ flexDirection: 'column', margin: 10, alignItems: 'center' }}>
@@ -54,10 +63,19 @@ export class TopBar extends React.Component {
             )
     }
 
+    renderParent(parent) {
+        if (this.props.hasParent) {
+            return <ParentSelection
+                parent={parent}
+                selectParent={this.props.selectParent} />
+        }
+
+    }
+
     render() {
         return (
             <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "5%" }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                     <TouchableOpacity
                         onPress={() => { this.props.closeModal() }}
                         style={{ margin: 5 }}>
@@ -70,7 +88,6 @@ export class TopBar extends React.Component {
                             ref={(input) => { this.nameTextInput = input; }}
                             maxLength={40}
                             numberOfLines={2}
-                            onEndEditing={() => this.props.save()}
                             style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeMain, borderBottomColor: colorsProvider.whiteColor, borderBottomWidth: 1 }}
                             multiline={true}
                             value={this.props.nameOfItem}
@@ -81,6 +98,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
+                {this.renderParent(this.state.parent)}
                 {this.renderImportance(this.state.importanceValue)}
             </View>
         );

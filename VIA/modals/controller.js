@@ -27,9 +27,7 @@ export class Controller extends React.Component {
     }
 
     loadOne(object, item, tableName) {
-        // console.warn(item)
         Database.getOne(tableName, item).then((res) => {
-            console.warn(res.rows.item(0))
             // selectedItem = res.rows.item(0)
             // object.setState({ selectedItem: selectedItem })
         })

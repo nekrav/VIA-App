@@ -29,7 +29,7 @@ export const font = "Roboto-Medium"
 export const finishedBackgroundColor = "#4DFF87";
 export const whiteColor = "#FFFFFF"
 export const shadowColor = "#000000"
-export const redColor = "#C30707"
+export const redColor = "#E14D4D"
 export const dirtyWhiteColor = "#EDEDED"
 
 export const whitePlaceholderColor = "#BAB9BF"

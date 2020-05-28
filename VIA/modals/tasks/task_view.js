@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider } from '../../components'
+import { TopBar, DoneSlider, ParentSelection } from '../../components'
 
 const notifier = new Notifier;
 
@@ -88,9 +88,12 @@ export class ViewTask extends React.Component {
             nameOfItem={this.state.selectedItem.name}
             dueDate={this.state.selectedItem.due_date}
             importance={this.state.selectedItem.importance}
+            parent={this.state.selectedItem.parent}
             closeModal={this.props.closeModal}
             editName={this.props.editName}
             hasImportance={true}
+            hasParent={true}
+            editName={this.props.editName}
             editDueDate={() => {
                 Keyboard.dismiss()
                 this.setDateModalVisibility(true)
@@ -115,32 +118,31 @@ export class ViewTask extends React.Component {
                 this.props.setImportanceIU(4)
                 this.props.save();
             }}
+            selectParent={() => {
+                Keyboard.dismiss();
+                this.setProjectSelectionModalVisibility(true);
+            }}
         />
     }
     /* #endregion */
 
     renderDoneSlider() {
-        return (<DoneSlider/>)
+        return (<DoneSlider
+            percentageDone={this.state.selectedItem.percentage_done}
+            onSlidingComplete={(value) => {
+                this.props.editPercentageDone(value)
+                if (value == 10) {
+                    this.finishTask();
+                }
+                this.props.save();
+            }}
+            onValueChange={(value) => {
+                Keyboard.dismiss()
+                this.props.editPercentageDone(value);
+                this.props.save();
+            }}
+        />)
     }
-
-    /* #region  Name Region */
-    renderNameSection() {
-        return (<TouchableOpacity
-            onPress={() => { this.nameTextInput.focus(); }}
-            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
-            <TextInput
-                ref={(input) => { this.nameTextInput = input; }}
-                maxLength={40}
-                onEndEditing={this.props.save()}
-                style={styles.createNameText}
-                multiline={true}
-                value={this.props.selectedItem.name}
-                onChangeText={this.props.editName}>
-            </TextInput>
-        </TouchableOpacity>)
-    }
-
-    /* #endregion */
 
     /* #region  Project Selection Region */
     setProjectSelectionModalVisibility(visible) {
@@ -169,40 +171,47 @@ export class ViewTask extends React.Component {
     }
 
     renderProjectSection() {
-        if (this.state.projName != empty) {
-            this.props.project = this.state.theSelectedProject;
-            return (
-                <TouchableOpacity
-                    style={styles.hasProjectSelectionContainer}
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        this.setProjectSelectionModalVisibility(true);
-                    }}>
-                    <Text style={styles.hasProjectSelectionButtonText}>
-                        {this.state.projName}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity
-                    style={styles.createProjectSelectionContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setProjectSelectionModalVisibility(true)
-                    }}>
-                    <Text style={styles.createProjectSelectionButtonText}>
-                        Is this part of a bigger project?
-          </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
+        <ParentSelection
+            parent={this.state.selectedItem.project}
+            selectParent={() => {
+                Keyboard.dismiss();
+                this.setProjectSelectionModalVisibility(true);
+            }}
+        />
+        // if (this.state.projName != empty) {
+        //     this.props.project = this.state.theSelectedProject;
+        //     return (
+        //         <TouchableOpacity
+        //             style={styles.hasProjectSelectionContainer}
+        //             onPress={() => {
+        //                 Keyboard.dismiss();
+        //                 this.setProjectSelectionModalVisibility(true);
+        //             }}>
+        //             <Text style={styles.hasProjectSelectionButtonText}>
+        //                 {this.state.projName}
+        //             </Text>
+        //             <Text style={styles.notificationTimeButtonText}>
+        //                 <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
+        //             </Text>
+        //         </TouchableOpacity>
+        //     );
+        // } else {
+        //     return (
+        //         <TouchableOpacity
+        //             style={styles.createProjectSelectionContainer}
+        //             onPress={() => {
+        //                 Keyboard.dismiss()
+        //                 this.setProjectSelectionModalVisibility(true)
+        //             }}>
+        //             <Text style={styles.createProjectSelectionButtonText}>
+        //                 Is this part of a bigger project?
+        //   </Text>
+        //             <Text style={styles.notificationTimeButtonText}>
+        //                 <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
+        //             </Text>
+        //         </TouchableOpacity>
+        //     );
+        // }
     }
 
 
@@ -237,40 +246,6 @@ export class ViewTask extends React.Component {
         }
         return null;
     }
-
-    renderDueDate() {
-        if (this.state.selectedItem.due_date != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setDateModalVisibility(true)
-                    }}>
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).format(dateFormat)}
-                    </Text>
-
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.props.selectedItem.due_date)).diff({ todayDate }, 'days') +
-                            ' days left'}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
-                Keyboard.dismiss()
-                this.setDateModalVisibility(true)
-            }}>
-                <Text style={styles.createDateText}>
-                    When do you want to finish this?
-          </Text>
-            </TouchableOpacity>
-        );
-    }
-
-
     /* #endregion */
 
     /* #region  Slider Region */
@@ -626,13 +601,14 @@ export class ViewTask extends React.Component {
 
                         {/* Top Bar Section */}
                         {this.renderTopBar()}
-                        {this.renderDoneSlider() }
+
+                        {this.renderDoneSlider()}
                         {/* Name Section */}
                         {/* {this.renderNameSection()} */}
 
                         {/* Project Section*/}
-                        {this.renderProjectSection()}
-                        
+                        {/* {this.renderProjectSection()} */}
+
                         {/* Complete Button Section */}
                         {this.renderCompleteButton()}
 

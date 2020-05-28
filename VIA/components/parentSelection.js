@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -14,34 +14,46 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 export class ParentSelection extends React.Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
-            value: this.props.percentage_done,
+            value: this.props.parent,
         };
     }
 
-    renderImportance() {
-        return (<View style={{ margin: 10, flexDirection: 'column' }}>
-            <Slider
-                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
-                trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
-                minimumValue={0}
-                maximumTrackTintColor={colorsProvider.topBarColor}
-                minimumTrackTintColor={colorsProvider.completeColor}
-                step={1}
-                maximumValue={20}
-                animationType={'timing'}
-                value={this.state.value}
-                onValueChange={value => this.setState({ value })} />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
-            </View>
-        </View>
-        )
-    }
-
     render() {
-        return this.renderImportance()
+        if (this.state.parent != undefined) {
+            return (
+                <TouchableOpacity
+                    style={{ flexDirection: 'row' }}
+                    onPress={() => {
+                        this.props.selectParent()
+                    }}>
+                    <Text style={{}}>
+                        <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
+                    </Text>
+                    <Text style={{}}>
+                        {this.state.projName}
+                    </Text>
+
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity
+                    style={{ marginLeft: "12%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={() => {
+                        this.props.selectParent()
+                    }}>
+                    <Text style={{ marginRight: 5 }}>
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                    </Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
+                        Is this part of a bigger project?
+          </Text>
+
+                </TouchableOpacity>
+            );
+        }
     }
 }

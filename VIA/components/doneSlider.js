@@ -16,7 +16,7 @@ export class DoneSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: this.props.percentage_done,
+            value: parseInt(this.props.percentageDone),
         };
     }
 
@@ -32,7 +32,11 @@ export class DoneSlider extends React.Component {
                 maximumValue={10}
                 animationType={'timing'}
                 value={this.state.value}
-                onValueChange={value => this.setState({ value })} />
+                onSlidingComplete={value => this.props.onSlidingComplete(value)}
+                onValueChange={value => {
+                    this.setState({ value })
+                    this.props.onValueChange(value)
+                }} />
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
                 <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
                 <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
