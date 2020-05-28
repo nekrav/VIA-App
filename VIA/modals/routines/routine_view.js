@@ -173,7 +173,8 @@ export class ViewRoutine extends React.Component {
                         theHabit.notification_time = times
                         this.setState({ selectedChildItem: theHabit })
                     }}
-                    editRoutine={(text) => {
+                    editRoutine={(text, name) => {
+                        theHabit.routineName = name
                         theHabit.routine = text;
                         this.setState({ selectedChildItem: theHabit })
                     }}

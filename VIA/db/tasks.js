@@ -10,6 +10,7 @@ export class Tasks {
         this.percentage_done = props.percentage_done
         this.completed = props.completed
         this.project = props.project
+        this.projectName = props.project
         this.time_spent = props.time_spent
         this.notification_time = props.notification_time
         this.properties = props.properties
@@ -28,6 +29,7 @@ export class Tasks {
         'percentage_done text, ' +
         'completed text, ' +
         'project text,' +
+        'projectName text, ' + 
         'time_spent text, ' +
         'notes text,' + 
         'properties text, ' +

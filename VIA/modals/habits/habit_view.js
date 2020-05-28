@@ -108,7 +108,7 @@ export class ViewHabit extends React.Component {
                 titleContainerColor={colorsProvider.routinesMainColor}
                 transparent={true}
                 selectItem={(item) => {
-                    this.props.editRoutine(item.value.id)
+                    this.props.editRoutine(item.value.id, item.value.name)
                     this.setState({ routineName: item.value.name })
                 }}
                 closeModal={() => { this.setRoutineSelectionModalVisibility(false) }}>

@@ -186,7 +186,8 @@ export class ProjectsScreen extends React.Component {
                         theTask.completed = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    editProject={(text) => {
+                    editProject={(text, name) => {
+                        theTask.projectname = name;
                         theTask.project = text;
                         this.setState({ selectedTask: theTask })
                     }}

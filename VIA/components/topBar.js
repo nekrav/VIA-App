@@ -18,8 +18,10 @@ export class TopBar extends React.Component {
         this.state = {
             importanceValue: this.props.importance,
             parent: this.props.parent,
+            parentName: this.props.parentName,
         };
     }
+
 
     getDueDate(date) {
         if (this.getNumberOfDaysLeft(date) === 0) {
@@ -63,9 +65,10 @@ export class TopBar extends React.Component {
             )
     }
 
-    renderParent(parent) {
+    renderParent(parent, parentName) {
         if (this.props.hasParent) {
             return <ParentSelection
+                parentName={parentName}
                 parent={parent}
                 selectParent={this.props.selectParent} />
         }
@@ -98,7 +101,7 @@ export class TopBar extends React.Component {
                         {this.getDueDate(this.props.dueDate)}
                     </View>
                 </View>
-                {this.renderParent(this.state.parent)}
+                {this.renderParent(this.state.parent, this.state.parentName)}
                 {this.renderImportance(this.state.importanceValue)}
             </View>
         );

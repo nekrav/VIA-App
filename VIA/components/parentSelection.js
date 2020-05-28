@@ -17,23 +17,21 @@ export class ParentSelection extends React.Component {
 
         super(props);
         this.state = {
-            value: this.props.parent,
+            name: this.props.parentName,
         };
     }
 
     render() {
-        if (this.state.parent != undefined) {
+        if (this.state.name) {
             return (
                 <TouchableOpacity
-                    style={{ flexDirection: 'row' }}
-                    onPress={() => {
-                        this.props.selectParent()
-                    }}>
+                    style={{ marginLeft: "12%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={this.props.selectParent}>
                     <Text style={{}}>
-                        <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
-                    <Text style={{}}>
-                        {this.state.projName}
+                    <Text style={{color: colorsProvider.whiteColor}}>
+                        {this.state.name}
                     </Text>
 
                 </TouchableOpacity>
@@ -42,9 +40,7 @@ export class ParentSelection extends React.Component {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "12%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={() => {
-                        this.props.selectParent()
-                    }}>
+                    onPress={this.props.selectParent}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>

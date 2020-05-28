@@ -135,7 +135,8 @@ export class TasksScreen extends React.Component {
                         theTask.finished_date = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    editProject={(text) => {
+                    editProject={(text, name) => {
+                        theTask.projectName = name
                         theTask.project = text;
                         this.setState({ selectedTask: theTask })
                     }}

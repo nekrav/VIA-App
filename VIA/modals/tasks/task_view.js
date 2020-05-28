@@ -88,7 +88,8 @@ export class ViewTask extends React.Component {
             nameOfItem={this.state.selectedItem.name}
             dueDate={this.state.selectedItem.due_date}
             importance={this.state.selectedItem.importance}
-            parent={this.state.selectedItem.parent}
+            parent={this.state.selectedItem.project}
+            parentName={this.state.selectedItem.projectName}
             closeModal={this.props.closeModal}
             editName={this.props.editName}
             hasImportance={true}
@@ -160,7 +161,7 @@ export class ViewTask extends React.Component {
                 titleContainerColor={colorsProvider.projectsMainColor}
                 transparent={true}
                 selectItem={(item) => {
-                    this.props.editProject(item.value.id)
+                    this.props.editProject(item.value.id, item.value.name)
                     this.setState({ projName: item.value.name })
                     this.props.save();
                 }}

@@ -114,7 +114,7 @@ export class ViewTaskFromProject extends React.Component {
                 titleContainerColor={colorsProvider.projectsMainColor}
                 transparent={true}
                 selectItem={(item) => {
-                    this.props.editProject(item.value.id)
+                    this.props.editProject(item.value.id, item.value.name)
                     this.setState({ projName: item.value.name })
                     this.props.save();
                 }}

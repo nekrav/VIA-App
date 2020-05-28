@@ -137,7 +137,8 @@ export class HabitsScreen extends React.Component {
                         theHabit.notification_time = times
                         this.setState({ selectedTask: theHabit })
                     }}
-                    editRoutine={(text) => {
+                    editRoutine={(text, name) => {
+                        theHabit.routineName = name;
                         theHabit.routine = text;
                         this.setState({ selectedItem: theHabit })
                     }}
