@@ -5,7 +5,6 @@ import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } fr
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 const todayDate = new Date();
 
@@ -26,7 +25,6 @@ export class ParentSelection extends React.Component {
     }
 
     render() {
-        console.warn(this.state.name)
         if (this.state.name) {
             return (
                 <TouchableOpacity
