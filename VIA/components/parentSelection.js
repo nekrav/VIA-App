@@ -21,7 +21,8 @@ export class ParentSelection extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({ name: newProps.parentName });
+        if (newProps != null)
+            this.setState({ name: newProps.parentName });
     }
 
     render() {
