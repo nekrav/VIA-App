@@ -4,7 +4,6 @@ import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 const todayDate = new Date();
 
