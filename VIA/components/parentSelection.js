@@ -26,7 +26,7 @@ export class ParentSelection extends React.Component {
     }
 
     render() {
-        if (this.state.name) {
+        if (this.state.name != "null") {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
