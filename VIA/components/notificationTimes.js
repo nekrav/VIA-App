@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -19,28 +19,30 @@ export class NotificationTimes extends React.Component {
         };
     }
 
-    renderImportance() {
-        return (<View style={{ margin: 10, flexDirection: 'column' }}>
-            <Slider
-                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
-                trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
-                minimumValue={0}
-                maximumTrackTintColor={colorsProvider.topBarColor}
-                minimumTrackTintColor={colorsProvider.completeColor}
-                step={1}
-                maximumValue={20}
-                animationType={'timing'}
-                value={this.state.value}
-                onValueChange={value => this.setState({ value })} />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
+    renderDayOfWeekBubble(dayOfWeek) {
+        return (
+            <TouchableOpacity style={{ borderRadius: 45, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+                <Text style={{ margin: 10, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
+            </TouchableOpacity>
+        )
+    }
+
+    renderNotificationTimes() {
+        return (<View style={{ margin: 10, flexDirection: 'row' }}>
+            <View style={{ flex: 1, margin: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}>
+                {this.renderDayOfWeekBubble("Mon")}
+                {this.renderDayOfWeekBubble("Tue")}
+                {this.renderDayOfWeekBubble("Wed")}
+                {this.renderDayOfWeekBubble("Thur")}
+                {this.renderDayOfWeekBubble("Fri")}
+                {this.renderDayOfWeekBubble("Sat")}
+                {this.renderDayOfWeekBubble("Sun")}
             </View>
         </View>
         )
     }
 
     render() {
-        return this.renderImportance()
+        return this.renderNotificationTimes()
     }
 }
