@@ -27,7 +27,6 @@ export class CompleteButton extends React.Component {
                 <TouchableOpacity
                     style={{}}
                     onLongPress={() => {
-                        console.warn("Nnon")
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
                     
@@ -43,13 +42,10 @@ export class CompleteButton extends React.Component {
                 <TouchableOpacity
                     style={{}}
                     onLongPress={() => {
-                        console.warn("Nnon")
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
-                    
                     }}
                     onPress={() => {
-                        console.warn("Yes")
                         this.setState({ completed: "true", finishedDate: new Date(Date.now()).toString(), percentageDone: 10 })
                         this.props.onCompletePressed()
                     }}>
