@@ -23,29 +23,6 @@ export class CompleteButton extends React.Component {
 
     renderCompleteButton() {
         if (this.state.completed == "true") {
-            if (this.state.selectedItem.finished_date == null) {
-                return (
-                    <TouchableOpacity
-                        style={{}}
-                        onLongPress={() => {
-                            Keyboard.dismiss()
-                            this.setState({ percentVal: 0 })
-                            this.props.editCompleted("false")
-                            this.props.editPercentageDone(0)
-                            this.props.editFinishedDate("");
-                        }}
-                        onPress={() => {
-                            Keyboard.dismiss();
-                            this.setState({ percentVal: 100 })
-                            this.props.editPercentageDone(100)
-                            this.props.editCompleted("true")
-                            this.props.editFinishedDate(new Date(Date.now()));
-                        }}>
-                        <Text style={{}}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
-                    </TouchableOpacity>
-
-                )
-            }
             return (
                 <TouchableOpacity
                     style={{}}
@@ -63,9 +40,8 @@ export class CompleteButton extends React.Component {
                         this.props.editCompleted("true")
                         this.props.editFinishedDate(new Date(Date.now()));
                     }}>
-                    <Text style={{}}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+                    <Text style={{fontFamily: colorsProvider.fontFamily}}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
                 </TouchableOpacity>
-
             )
         }
         else
@@ -85,7 +61,7 @@ export class CompleteButton extends React.Component {
                         this.props.editFinishedDate(dateToday.toString());
                     }
                     }>
-                    <Text style={{}}>Complete</Text>
+                    <Text style={{fontSize: colorsProvider.fontSizeMain, fontFamily: colorsProvider.fontFamily, color: colorsProvider.whiteColor}}>Complete</Text>
                 </TouchableOpacity >
             )
     }
