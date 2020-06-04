@@ -314,7 +314,6 @@ export class ViewTask extends React.Component {
 
     /* #region  Complete Button Section */
     renderCompleteButton() {
-        console.warn(this.state.selectedItem)
         return (<CompleteButton
             percentageDone={this.state.selectedItem.percentage_done}
             completed={this.state.selectedItem.completed}
@@ -331,8 +330,8 @@ export class ViewTask extends React.Component {
             }}
             onCompletePressed={() => {
                 Keyboard.dismiss();
-                this.setState({ percentVal: 100 })
-                this.props.editPercentageDone(100)
+                this.setState({ percentVal: 10 })
+                this.props.editPercentageDone(10)
                 this.props.editCompleted("true")
                 this.props.editFinishedDate(new Date(Date.now()));
                 this.props.save();

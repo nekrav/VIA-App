@@ -157,7 +157,6 @@ export class TasksScreen extends React.Component {
                         }
                     }}
 
-
                     save={() => {
                         controller.saveExisting(this, dbTableName, theTask)
                     }}
