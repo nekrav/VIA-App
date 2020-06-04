@@ -32,8 +32,7 @@ export class TrashButton extends React.Component {
                     marginRight: 10,
                     marginTop: 10,
                     marginBottom: 10,
-                    borderRadius: 10,
-                    // backgroundColor: colorsProvider.incompleteColor
+                    // borderRadius: 10,
                 }}
                 onLongPress={() => {
                     this.props.onUnCompletePressed()
@@ -46,7 +45,6 @@ export class TrashButton extends React.Component {
                 <SIcon name={colorsProvider.trash} style={{}} size={40} color={colorsProvider.incompleteColor} />
             </TouchableOpacity >)
     }
-
     render() {
         return this.renderTrashButton()
     }
