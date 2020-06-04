@@ -27,7 +27,7 @@ export class DoneSlider extends React.Component {
     renderDoneSlider() {
         return (<View style={{ margin: 10, flexDirection: 'column', }}>
             <Slider
-                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
+                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.topBarColor }}
                 trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
                 minimumValue={0}
                 maximumTrackTintColor={colorsProvider.doneSliderNotFinished}
@@ -42,8 +42,8 @@ export class DoneSlider extends React.Component {
                     this.props.onValueChange(value)
                 }} />
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
+                <Text style={{ color: colorsProvider.topBarColor, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Didn't Start</Text>
+                <Text style={{ color: colorsProvider.topBarColor, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Done</Text>
             </View>
         </View>
         )

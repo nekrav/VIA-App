@@ -47,6 +47,8 @@ export class CompleteButton extends React.Component {
                         marginTop: 10,
                         marginBottom: 10,
                         borderRadius: 10,
+                        borderWidth: 2,
+                        borderColor: colorsProvider.topBarColor,
                         backgroundColor: colorsProvider.finishedBackgroundColor
                     }}
                     onLongPress={() => {
