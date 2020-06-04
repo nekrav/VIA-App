@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider, ParentSelection } from '../../components'
+import { TopBar, DoneSlider, CompleteButton } from '../../components'
 
 const notifier = new Notifier;
 
@@ -127,6 +127,7 @@ export class ViewTask extends React.Component {
     }
     /* #endregion */
 
+    /* #region  Done Slider Region */
     renderDoneSlider() {
         return (<DoneSlider
             percentageDone={this.state.selectedItem.percentage_done}
@@ -144,6 +145,7 @@ export class ViewTask extends React.Component {
             }}
         />)
     }
+    /* #endregion */
 
     /* #region  Project Selection Region */
     setProjectSelectionModalVisibility(visible) {
@@ -312,72 +314,25 @@ export class ViewTask extends React.Component {
 
     /* #region  Complete Button Section */
     renderCompleteButton() {
-        if (this.state.selectedItem.completed == "true") {
-            if (this.state.selectedItem.finished_date == null) {
-                return (
-                    <TouchableOpacity
-                        style={styles.completeButtonBodyDone}
-                        onLongPress={() => {
-                            Keyboard.dismiss()
-                            this.setState({ percentVal: 0 })
-                            this.props.editCompleted("false")
-                            this.props.editPercentageDone(0)
-                            this.props.editFinishedDate("");
-                        }}
-                        onPress={() => {
-                            Keyboard.dismiss();
-                            this.setState({ percentVal: 100 })
-                            this.props.editPercentageDone(100)
-                            this.props.editCompleted("true")
-                            this.props.editFinishedDate(new Date(Date.now()));
-                        }}>
-                        <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 10, }}>(finished on: no finished date info)</Text></Text>
-                    </TouchableOpacity>
-
-                )
-            }
-            return (
-                <TouchableOpacity
-                    style={styles.completeButtonBodyDone}
-                    onLongPress={() => {
-                        Keyboard.dismiss()
-                        this.setState({ percentVal: 0 })
-                        this.props.editCompleted("false")
-                        this.props.editPercentageDone(0)
-                        this.props.editFinishedDate("");
-                    }}
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        this.setState({ percentVal: 100 })
-                        this.props.editPercentageDone(100)
-                        this.props.editCompleted("true")
-                        this.props.editFinishedDate(new Date(Date.now()));
-                    }}>
-                    <Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
-                </TouchableOpacity>
-
-            )
-        }
-        else
-            return (
-                <TouchableOpacity
-                    style={styles.completeButtonBody}
-                    onLongPress={() => {
-                        this.setState({ percentVal: 0 })
-                        this.props.editCompleted("false")
-                        this.props.editPercentageDone(0)
-                    }
-                    }
-                    onPress={() => {
-                        this.setState({ percentVal: 100 })
-                        this.props.editPercentageDone(100)
-                        this.props.editCompleted("true")
-                        this.props.editFinishedDate(dateToday.toString());
-                    }
-                    }>
-                    <Text style={styles.completeButtonText}>Complete</Text>
-                </TouchableOpacity >
-            )
+        return (<CompleteButton
+            percentageDone={this.state.selectedItem.percentage_done}
+            completed={this.state.selectedItem.completed}
+            dateCompleted={this.state.selectedItem.finished_date}
+            onUnCompletePressed={() => {
+                Keyboard.dismiss()
+                this.setState({ percentVal: 0 })
+                this.props.editCompleted("false")
+                this.props.editPercentageDone(0)
+                this.props.editFinishedDate("");
+            }}
+            onCompletePressed={() => {
+                Keyboard.dismiss();
+                this.setState({ percentVal: 100 })
+                this.props.editPercentageDone(100)
+                this.props.editCompleted("true")
+                this.props.editFinishedDate(new Date(Date.now()));
+            }}
+        />)
     }
     /* #endregion */
 
