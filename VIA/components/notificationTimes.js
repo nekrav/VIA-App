@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { NotificationTimesModal } from '../modals/notificationTimes/notificationTimesModal';
 
@@ -26,20 +26,34 @@ export class NotificationTimes extends React.Component {
     renderDayOfWeekBubble(dayOfWeek) {
         var daysWithNotifications = '';
 
-        var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
+        var jsonArr = JSON.parse("[" + this.state.notificationTimes + "]");
 
-        Object.keys(jsonArr).map(key => {
-            if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-                daysWithNotifications = daysWithNotifications.concat(
-                    jsonArr[key].name + ', '
-                );
-            }
-        });
-        return (
-            <TouchableOpacity style={{ borderRadius: 45, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
-                <Text style={{ margin: 10, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
-            </TouchableOpacity>
-        )
+        // Object.keys(jsonArr).map(key => {
+        //     console.warn(jsonArr)
+            Object.keys(jsonArr).forEach(key => {
+                console.warn(key)
+                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                    console.warn("Befawef")
+                    return (
+                        <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+                            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{jsonArr[key].value}</Text>
+                        </TouchableOpacity>
+                    )
+
+                } else {
+                    console.warn("AAAA")
+                    return (
+                        <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
+                            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
+                        </TouchableOpacity>
+                    )
+                }
+            });
+        // return (
+        //     <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+        //         <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
+        //     </TouchableOpacity>
+        // )
     }
 
     setNotificationTimesVisibility(visible) {
@@ -69,25 +83,39 @@ export class NotificationTimes extends React.Component {
         return null;
     }
 
+    renderSingleDay(checked, name) {
+        if (checked)
+            return (<TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{name}</Text>
+        </TouchableOpacity>)
+        else 
+        return (
+            <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
+                <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{name}</Text>
+            </TouchableOpacity>
+        )
+
+    }
+
     renderNotificationTimes() {
-        
+
         // return (<View style={{ margin: 10, flexDirection: 'row' }}>
         //     <View style={{ flex: 1, margin: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}>
         //         {this.renderDayOfWeekBubble("Mon")}
         //         {this.renderDayOfWeekBubble("Tue")}
         //         {this.renderDayOfWeekBubble("Wed")}
-        //         {this.renderDayOfWeekBubble("Thur")}
+        //         {this.renderDayOfWeekBubble("Thurs")}
         //         {this.renderDayOfWeekBubble("Fri")}
         //         {this.renderDayOfWeekBubble("Sat")}
         //         {this.renderDayOfWeekBubble("Sun")}
         //     </View>
         // </View>
         // )
+        // if (this.state.notificationTimes != '') {
+        var daysWithNotifications = '';
+
+        var jsonArr = JSON.parse("[" + this.state.notificationTimes + "]");
         if (this.state.notificationTimes != '') {
-            var daysWithNotifications = '';
-
-            var jsonArr = JSON.parse("[" + this.state.notificationTimes + "]");
-
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
                     daysWithNotifications = daysWithNotifications.concat(
@@ -95,42 +123,70 @@ export class NotificationTimes extends React.Component {
                     );
                 }
             });
-            if (daysWithNotifications != '') {
-                return (
-                    <TouchableOpacity
-                        style={{}}
-                        onPress={() => {
-                            this.setNotificationTimesVisibility(true)
-                        }}>
-                        <Text style={{}}>
-                            {daysWithNotifications}
-                        </Text>
-
-                        <Text style={{}}>
-                            <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
-                        </Text>
-                    </TouchableOpacity>
-                );
-            }
         }
         return (
-            <TouchableOpacity
-                style={{}}
-                onPress={() => {
-                    this.setNotificationTimesVisibility(true)
-                }}>
-                <Text style={{}}>
-                    When would you like to be notified?
-        </Text>
-
+            <View style={{ flexDirection: 'column' }}>
                 <Text style={{}}>
                     <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
+                    Notification Times
                 </Text>
-            </TouchableOpacity>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+
+                <FlatList
+                            horizontal={true}
+                            data={Object.keys(jsonArr)}
+                            contentContainerStyle={{marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                            style={{ marginLeft: 10, marginRight: 10 }}
+                            renderItem={({ item }) =>
+                            this.renderSingleDay(jsonArr[item].checked, jsonArr[item].value)} />
+
+                    {/* <View style={{ flex: 1, margin: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}> */}
+                    {/* {this.renderDayOfWeekBubble("Mon")} */}
+                    {/* {this.renderDayOfWeekBubble("Tue")}
+                    {this.renderDayOfWeekBubble("Wed")}
+                    {this.renderDayOfWeekBubble("Thurs")}
+                    {this.renderDayOfWeekBubble("Fri")}
+                    {this.renderDayOfWeekBubble("Sat")}
+                    {this.renderDayOfWeekBubble("Sun")} */}
+                    {/* </View> */}
+                </View>
+            </View>
+            // <TouchableOpacity
+            //     style={{}}
+            //     onPress={() => {
+            //         this.setNotificationTimesVisibility(true)
+            //     }}>
+            //     <Text style={{}}>
+            //         {daysWithNotifications}
+            //     </Text>
+
+            //     <Text style={{}}>
+            //         <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
+            //     </Text>
+            // </TouchableOpacity>
         );
+        // }
+        // return (
+        //     <TouchableOpacity
+        //         style={{}}
+        //         onPress={() => {
+        //             this.setNotificationTimesVisibility(true)
+        //         }}>
+        //         <Text style={{}}>
+        //             When would you like to be notified?
+        // </Text>
+
+        // <Text style={{}}>
+        //     <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
+        // </Text>
+        //     </TouchableOpacity>
+        // );
     }
 
     render() {
-    return <View>{this.renderNotificationTimesModal()}{this.renderNotificationTimes()}</View>
+        return (<View>
+            {this.renderNotificationTimesModal()}
+            {this.renderNotificationTimes()}
+        </View>)
     }
 }
