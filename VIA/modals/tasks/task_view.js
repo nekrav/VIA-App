@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider, CompleteButton } from '../../components'
+import { TopBar, DoneSlider, CompleteButton, TrashButton } from '../../components'
 
 const notifier = new Notifier;
 
@@ -306,31 +306,34 @@ export class ViewTask extends React.Component {
     // /* #endregion */
 
     /* #region  Complete Button Section */
-    renderCompleteButton() {
-        return (<CompleteButton
-            percentageDone={this.state.selectedItem.percentage_done}
-            completed={this.state.selectedItem.completed}
-            // finishedDate={this.state.selectedItem.finished_date}
-            onUnCompletePressed={() => {
-                Keyboard.dismiss()
-                this.setState({ percentVal: 0 })
-                this.props.editCompleted("false")
-                this.props.editPercentageDone(0)
-                this.props.editFinishedDate("null")
-                this.setState({ selectedItem })
-                this.props.save();
+    renderCompleteAndTrashButton() {
+        return (<View style={{ flexDirection: 'row' }}>
+            <CompleteButton
+                percentageDone={this.state.selectedItem.percentage_done}
+                completed={this.state.selectedItem.completed}
+                // finishedDate={this.state.selectedItem.finished_date}
+                onUnCompletePressed={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editPercentageDone(0)
+                    this.props.editFinishedDate("null")
+                    this.setState({ selectedItem })
+                    this.props.save();
 
-            }}
-            onCompletePressed={() => {
-                Keyboard.dismiss();
-                this.setState({ percentVal: 10 })
-                this.props.editPercentageDone(10)
-                this.props.editCompleted("true")
-                this.props.editFinishedDate(new Date(Date.now()));
-                this.props.save();
-                this.setState({ selectedItem })
-            }}
-        />)
+                }}
+                onCompletePressed={() => {
+                    Keyboard.dismiss();
+                    this.setState({ percentVal: 10 })
+                    this.props.editPercentageDone(10)
+                    this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
+                    this.props.save();
+                    this.setState({ selectedItem })
+                }}
+            />
+            <TrashButton />
+        </View>)
     }
     /* #endregion */
 
@@ -510,14 +513,9 @@ export class ViewTask extends React.Component {
                         {this.renderTopBar()}
 
                         {this.renderDoneSlider()}
-                        {/* Name Section */}
-                        {/* {this.renderNameSection()} */}
-
-                        {/* Project Section*/}
-                        {/* {this.renderProjectSection()} */}
 
                         {/* Complete Button Section */}
-                        {this.renderCompleteButton()}
+                        {this.renderCompleteAndTrashButton()}
 
                         {/* Notification Times Section */}
                         {this.renderNotificationTimesSection()}
