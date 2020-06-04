@@ -332,7 +332,11 @@ export class ViewTask extends React.Component {
                     this.setState({ selectedItem })
                 }}
             />
-            <TrashButton />
+            <TrashButton
+                delete={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete()
+                }} />
         </View>)
     }
     /* #endregion */

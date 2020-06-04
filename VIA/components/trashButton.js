@@ -12,15 +12,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 
 export class TrashButton extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            percentageDone: this.props.percentageDone,
-            completed: this.props.completed,
-            finishedDate: this.props.finishedDate,
-        };
-    }
-
     renderTrashButton() {
         return (
             <TouchableOpacity
@@ -32,19 +23,12 @@ export class TrashButton extends React.Component {
                     marginRight: 10,
                     marginTop: 10,
                     marginBottom: 10,
-                    // borderRadius: 10,
                 }}
-                onLongPress={() => {
-                    this.props.onUnCompletePressed()
-                    this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
-                }}
-                onPress={() => {
-                    this.setState({ completed: "true", finishedDate: new Date(Date.now()).toString(), percentageDone: 10 })
-                    this.props.onCompletePressed()
-                }}>
+                onPress={this.props.delete}>
                 <SIcon name={colorsProvider.trash} style={{}} size={40} color={colorsProvider.incompleteColor} />
             </TouchableOpacity >)
     }
+
     render() {
         return this.renderTrashButton()
     }
