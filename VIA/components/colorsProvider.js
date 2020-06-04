@@ -22,7 +22,8 @@ export const notINotUColor = '#60ff00'
 export const notIUColor = '#f2f929'
 export const iNotUColor = '#fb8201'
 export const iUColor = '#ec4d4d'
-export const completeColor = "#07c34e"
+export const completeColor = "#3FE81D"
+export const completeButtonColor = '#3FE81D'
 /* #endregion */
 
 /* #region  General */
