@@ -26,7 +26,22 @@ export class ParentSelection extends React.Component {
     }
 
     render() {
-        if (this.state.name != "null") {
+        if (this.state.name == null) {
+            return (
+                <TouchableOpacity
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={this.props.selectParent}>
+                    <Text style={{ marginRight: 5 }}>
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                    </Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
+                    Is this part of a bigger project?
+                    </Text>
+
+                </TouchableOpacity>
+            );
+        }
+        else if (this.state.name != "null") {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
