@@ -27,20 +27,12 @@ export class CompleteButton extends React.Component {
                 <TouchableOpacity
                     style={{}}
                     onLongPress={() => {
-                        Keyboard.dismiss()
-                        this.setState({ percentVal: 0 })
-                        this.props.editCompleted("false")
-                        this.props.editPercentageDone(0)
-                        this.props.editFinishedDate("");
-                    }}
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        this.setState({ percentVal: 100 })
-                        this.props.editPercentageDone(100)
-                        this.props.editCompleted("true")
-                        this.props.editFinishedDate(new Date(Date.now()));
+                        this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
+                        this.props.onUnCompletePressed()
                     }}>
-                    <Text style={{fontFamily: colorsProvider.fontFamily}}>Done <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
+                    <Text style={{ fontFamily: colorsProvider.fontFamily }}>Done
+                    {/* <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.finishedDate.toString())).format(dateDisplayFormat)})</Text> */}
+                    </Text>
                 </TouchableOpacity>
             )
         }
@@ -48,22 +40,12 @@ export class CompleteButton extends React.Component {
             return (
                 <TouchableOpacity
                     style={{}}
-                    onLongPress={() => {
-                        this.setState({ percentVal: 0 })
-                        this.props.editCompleted("false")
-                        this.props.editPercentageDone(0)
-                    }
-                    }
                     onPress={() => {
-                        this.setState({ percentVal: 100 })
-                        this.props.editPercentageDone(100)
-                        this.props.editCompleted("true")
-                        this.props.editFinishedDate(dateToday.toString());
-                    }
-                    }>
-                    <Text style={{fontSize: colorsProvider.fontSizeMain, fontFamily: colorsProvider.fontFamily, color: colorsProvider.whiteColor}}>Complete</Text>
-                </TouchableOpacity >
-            )
+                        this.setState({ completed: "true", finishedDate: new Date(Date.now()).toString(), percentageDone: 10 })
+                        this.props.onCompletePressed()
+                    }}>
+                    <Text style={{ fontSize: colorsProvider.fontSizeMain, fontFamily: colorsProvider.fontFamily, color: colorsProvider.whiteColor }}>Complete</Text>
+                </TouchableOpacity >)
     }
 
     render() {

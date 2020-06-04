@@ -314,16 +314,20 @@ export class ViewTask extends React.Component {
 
     /* #region  Complete Button Section */
     renderCompleteButton() {
+        console.warn(this.state.selectedItem)
         return (<CompleteButton
             percentageDone={this.state.selectedItem.percentage_done}
             completed={this.state.selectedItem.completed}
-            dateCompleted={this.state.selectedItem.finished_date}
+            // finishedDate={this.state.selectedItem.finished_date}
             onUnCompletePressed={() => {
                 Keyboard.dismiss()
                 this.setState({ percentVal: 0 })
                 this.props.editCompleted("false")
                 this.props.editPercentageDone(0)
-                this.props.editFinishedDate("");
+                this.props.editFinishedDate("null")
+                this.setState({ selectedItem })
+                this.props.save();
+
             }}
             onCompletePressed={() => {
                 Keyboard.dismiss();
@@ -331,6 +335,8 @@ export class ViewTask extends React.Component {
                 this.props.editPercentageDone(100)
                 this.props.editCompleted("true")
                 this.props.editFinishedDate(new Date(Date.now()));
+                this.props.save();
+                this.setState({ selectedItem })
             }}
         />)
     }
