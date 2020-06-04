@@ -129,7 +129,6 @@ export class ViewTask extends React.Component {
 
     /* #region  Done Slider Region */
     renderDoneSlider() {
-        console.warn(this.state.selectedItem.percentage_done)
         return (<DoneSlider
             percentageDone={this.state.selectedItem.percentage_done}
             onSlidingComplete={(value) => {

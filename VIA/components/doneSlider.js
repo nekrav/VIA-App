@@ -21,11 +21,14 @@ export class DoneSlider extends React.Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps != null)
-            this.setState({ value: newProps.percentageDone });
+        {
+            // console.warn(newProps.percentageDone)
+            this.setState({ value: parseInt(this.props.percentageDone) });
+        }
+           
     }
 
     renderImportance() {
-        console.warn(this.state.value)
         return (<View style={{ margin: 10, flexDirection: 'column' }}>
             <Slider
                 thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
