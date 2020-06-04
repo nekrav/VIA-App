@@ -21,11 +21,7 @@ export class DoneSlider extends React.Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps != null)
-        {
-            // console.warn(newProps.percentageDone)
             this.setState({ value: parseInt(this.props.percentageDone) });
-        }
-           
     }
 
     renderImportance() {
