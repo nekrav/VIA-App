@@ -29,7 +29,7 @@ export class CompleteButton extends React.Component {
                     onLongPress={() => {
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
-                    
+
                     }}>
                     <Text style={{ fontFamily: colorsProvider.fontFamily }}>Done
                     {/* <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.finishedDate.toString())).format(dateDisplayFormat)})</Text> */}
@@ -40,7 +40,15 @@ export class CompleteButton extends React.Component {
         else
             return (
                 <TouchableOpacity
-                    style={{}}
+                    style={{
+                        alignItems: 'center',
+                        marginLeft: 10,
+                        marginRight: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        borderRadius: 10,
+                        backgroundColor: colorsProvider.finishedBackgroundColor
+                    }}
                     onLongPress={() => {
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
@@ -49,7 +57,16 @@ export class CompleteButton extends React.Component {
                         this.setState({ completed: "true", finishedDate: new Date(Date.now()).toString(), percentageDone: 10 })
                         this.props.onCompletePressed()
                     }}>
-                    <Text style={{ fontSize: colorsProvider.fontSizeMain, fontFamily: colorsProvider.fontFamily, color: colorsProvider.whiteColor }}>Complete</Text>
+                    <Text style={{
+                        marginLeft: 10,
+                        marginRight: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        borderRadius: 10,
+                        fontSize: colorsProvider.fontSizeMain,
+                        fontFamily: colorsProvider.fontFamily,
+                        color: colorsProvider.topBarColor
+                    }}>Complete</Text>
                 </TouchableOpacity >)
     }
 

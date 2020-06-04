@@ -16,7 +16,8 @@ export const trash = 'trash'
 /* #endregion */
 
 /* #region NewColors */
-export const topBarColor = '#0e64c4'
+export const topBarColor = '#1A9ED8'
+export const doneSliderNotFinished = '#BAC1C4'
 export const notINotUColor = '#60ff00'
 export const notIUColor = '#f2f929'
 export const iNotUColor = '#fb8201'

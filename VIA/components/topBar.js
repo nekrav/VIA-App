@@ -79,8 +79,8 @@ export class TopBar extends React.Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
+            <View style={{  flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
+                <View style={{ marginTop: '10%',flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                     <TouchableOpacity
                         onPress={() => { this.props.closeModal() }}
                         style={{ margin: 5 }}>

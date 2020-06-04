@@ -70,13 +70,6 @@ export class ViewTask extends React.Component {
         // controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
 
-    getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
-            return styles.outerViewDone
-        }
-        return styles.outerView;
-    }
-
     finishTask() {
         this.setState({ selectedItem })
         this.props.editCompleted("true")
@@ -511,7 +504,7 @@ export class ViewTask extends React.Component {
                 {this.renderNotificationTimesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={this.getStyleIfDone()}>
+                    <View style={styles.outerView}>
 
                         {/* Top Bar Section */}
                         {this.renderTopBar()}
@@ -532,7 +525,7 @@ export class ViewTask extends React.Component {
                         {/* {NOTES SECTION} */}
                         {this.renderNotesSection()}
 
-                    </SafeAreaView>
+                    </View>
                 </TouchableWithoutFeedback>
             </Modal>
         );

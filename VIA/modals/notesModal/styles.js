@@ -21,22 +21,6 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    /* #region  Top Navigation */
-    topNav: {
-        marginBottom: 5,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-    },
-    trashButton: {
-        marginRight: "8%",
-        justifyContent: "center",
-
-    },
-    topNavBackButton: {
-        marginLeft: "8%",
-    },
-    /* #endregion */
-
     /* #region  Notes Section */
     notesContainer: {
         flex: 1,

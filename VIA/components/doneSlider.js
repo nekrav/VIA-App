@@ -24,13 +24,13 @@ export class DoneSlider extends React.Component {
             this.setState({ value: parseInt(this.props.percentageDone) });
     }
 
-    renderImportance() {
-        return (<View style={{ margin: 10, flexDirection: 'column' }}>
+    renderDoneSlider() {
+        return (<View style={{ margin: 10, flexDirection: 'column', }}>
             <Slider
                 thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
                 trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
                 minimumValue={0}
-                maximumTrackTintColor={colorsProvider.topBarColor}
+                maximumTrackTintColor={colorsProvider.doneSliderNotFinished}
                 minimumTrackTintColor={colorsProvider.completeColor}
                 step={1}
                 maximumValue={10}
@@ -50,6 +50,6 @@ export class DoneSlider extends React.Component {
     }
 
     render() {
-        return this.renderImportance()
+        return this.renderDoneSlider()
     }
 }
