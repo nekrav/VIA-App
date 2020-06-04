@@ -24,6 +24,7 @@ export const iNotUColor = '#fb8201'
 export const iUColor = '#ec4d4d'
 export const completeColor = "#3FE81D"
 export const completeButtonColor = '#3FE81D'
+export const incompleteColor = '#F1637A'
 /* #endregion */
 
 /* #region  General */

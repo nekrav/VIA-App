@@ -25,13 +25,30 @@ export class CompleteButton extends React.Component {
         if (this.state.completed == "true") {
             return (
                 <TouchableOpacity
-                    style={{}}
+                style={{
+                    alignItems: 'center',
+                    marginLeft: 10,
+                    marginRight: 10,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderRadius: 10,
+                    backgroundColor: colorsProvider.completeButtonColor
+                }}
                     onLongPress={() => {
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
 
                     }}>
-                    <Text style={{ fontFamily: colorsProvider.fontFamily }}>Done
+                    <Text style={{
+                        marginLeft: 10,
+                        marginRight: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        borderRadius: 10,
+                        fontSize: colorsProvider.fontSizeMain,
+                        fontFamily: colorsProvider.font,
+                        color: colorsProvider.topBarColor
+                    }}>Done
                     {/* <Text style={{ fontSize: 14, }}>(finished on: {Moment(new Date(this.state.finishedDate.toString())).format(dateDisplayFormat)})</Text> */}
                     </Text>
                 </TouchableOpacity>
@@ -47,9 +64,7 @@ export class CompleteButton extends React.Component {
                         marginTop: 10,
                         marginBottom: 10,
                         borderRadius: 10,
-                        // borderWidth: 2,
-                        // borderColor: colorsProvider.topBarColor,
-                        backgroundColor: colorsProvider.completeButtonColor
+                        backgroundColor: colorsProvider.incompleteColor
                     }}
                     onLongPress={() => {
                         this.props.onUnCompletePressed()
@@ -67,7 +82,7 @@ export class CompleteButton extends React.Component {
                         borderRadius: 10,
                         fontSize: colorsProvider.fontSizeMain,
                         fontFamily: colorsProvider.font,
-                        color: colorsProvider.topBarColor
+                        color: colorsProvider.whiteColor
                     }}>Complete</Text>
                 </TouchableOpacity >)
     }
