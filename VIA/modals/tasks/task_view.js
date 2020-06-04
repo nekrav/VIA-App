@@ -344,85 +344,91 @@ export class ViewTask extends React.Component {
     /* #region  Notification Times Region */
 
     renderNotificationTimes() {
-        return (<NotificationTimes/>)
+        return (<NotificationTimes
+            notificationTimes={this.state.selectedItem.notification_time}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}
+        />
+        )
     }
-    // setNotificationTimesVisibility(visible) {
-    //     this.setState({ notificationTimesModal: visible })
-    // }
+    setNotificationTimesVisibility(visible) {
+        this.setState({ notificationTimesModal: visible })
+    }
 
-    // renderNotificationTimesModal() {
-    //     if (this.state.notificationTimesModal) {
-    //         return (
-    //             <NotificationTimesModal
-    //                 animationType="fade"
-    //                 transparent={true}
-    //                 saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-    //                 disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-    //                 times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
-    //                 setDate={item => {
-    //                     this.props.editNotificationTime(item);
-    //                     // this.setState({ itemNotificationTimes: item });
-    //                 }}
-    //                 closeModal={() => {
-    //                     notifier.scheduleAllNotifications();
-    //                     this.setNotificationTimesVisibility(false);
-    //                 }}
-    //             ></NotificationTimesModal>
-    //         );
-    //     }
-    //     return null;
-    // }
+    renderNotificationTimesModal() {
+        if (this.state.notificationTimesModal) {
+            return (
+                <NotificationTimesModal
+                    animationType="fade"
+                    transparent={true}
+                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
+                    setDate={item => {
+                        this.props.editNotificationTime(item);
+                        // this.setState({ itemNotificationTimes: item });
+                    }}
+                    closeModal={() => {
+                        notifier.scheduleAllNotifications();
+                        this.setNotificationTimesVisibility(false);
+                    }}
+                ></NotificationTimesModal>
+            );
+        }
+        return null;
+    }
 
 
-    // renderNotificationTimesSection() {
-    //     if (this.state.selectedItem.notification_time != '') {
-    //         var daysWithNotifications = '';
+    renderNotificationTimesSection() {
+        if (this.state.selectedItem.notification_time != '') {
+            var daysWithNotifications = '';
 
-    //         var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
+            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
 
-    //         Object.keys(jsonArr).map(key => {
-    //             if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-    //                 daysWithNotifications = daysWithNotifications.concat(
-    //                     jsonArr[key].name + ', '
-    //                 );
-    //             }
-    //         });
-    //         if (daysWithNotifications != '') {
-    //             return (
-    //                 <TouchableOpacity
-    //                     style={styles.hasNotificationTimesButtonContainer}
-    //                     onPress={() => {
-    //                         this.setNotificationTimesVisibility(true);
-    //                     }}
-    //                 >
-    //                     <Text style={styles.hasNotificationTimeButtonText}>
-    //                         {daysWithNotifications}
-    //                     </Text>
+            Object.keys(jsonArr).map(key => {
+                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                    daysWithNotifications = daysWithNotifications.concat(
+                        jsonArr[key].name + ', '
+                    );
+                }
+            });
+            if (daysWithNotifications != '') {
+                return (
+                    <TouchableOpacity
+                        style={styles.hasNotificationTimesButtonContainer}
+                        onPress={() => {
+                            this.setNotificationTimesVisibility(true);
+                        }}
+                    >
+                        <Text style={styles.hasNotificationTimeButtonText}>
+                            {daysWithNotifications}
+                        </Text>
 
-    //                     <Text style={styles.notificationTimeButtonText}>
-    //                         <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
-    //                     </Text>
-    //                 </TouchableOpacity>
-    //             );
-    //         }
-    //     }
-    //     return (
-    //         <TouchableOpacity
-    //             style={styles.notificationTimesButtonContainer}
-    //             onPress={() => {
-    //                 this.setNotificationTimesVisibility(true);
-    //             }}
-    //         >
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 When would you like to be notified?
-    //     </Text>
+                        <Text style={styles.notificationTimeButtonText}>
+                            <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
+                        </Text>
+                    </TouchableOpacity>
+                );
+            }
+        }
+        return (
+            <TouchableOpacity
+                style={styles.notificationTimesButtonContainer}
+                onPress={() => {
+                    this.setNotificationTimesVisibility(true);
+                }}
+            >
+                <Text style={styles.notificationTimeButtonText}>
+                    When would you like to be notified?
+        </Text>
 
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
-    //             </Text>
-    //         </TouchableOpacity>
-    //     );
-    // }
+                <Text style={styles.notificationTimeButtonText}>
+                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
+                </Text>
+            </TouchableOpacity>
+        );
+    }
 
     /* #endregion */
 
@@ -512,7 +518,7 @@ export class ViewTask extends React.Component {
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
                 {this.renderNotesModal()}
-                {/* {this.renderNotificationTimesModal()} */}
+                {this.renderNotificationTimesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
