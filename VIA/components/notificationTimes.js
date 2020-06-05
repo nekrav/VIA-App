@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Slider } from 'react-native-elements';
+import { Slider, colors } from 'react-native-elements';
 import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { NotificationTimesModal } from '../modals/notificationTimes/notificationTimesModal';
@@ -30,25 +30,25 @@ export class NotificationTimes extends React.Component {
 
         // Object.keys(jsonArr).map(key => {
         //     console.warn(jsonArr)
-            Object.keys(jsonArr).forEach(key => {
-                console.warn(key)
-                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-                    console.warn("Befawef")
-                    return (
-                        <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
-                            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{jsonArr[key].value}</Text>
-                        </TouchableOpacity>
-                    )
+        Object.keys(jsonArr).forEach(key => {
+            console.warn(key)
+            if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
+                console.warn("Befawef")
+                return (
+                    <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+                        <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{jsonArr[key].value}</Text>
+                    </TouchableOpacity>
+                )
 
-                } else {
-                    console.warn("AAAA")
-                    return (
-                        <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
-                            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
-                        </TouchableOpacity>
-                    )
-                }
-            });
+            } else {
+                console.warn("AAAA")
+                return (
+                    <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
+                        <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
+                    </TouchableOpacity>
+                )
+            }
+        });
         // return (
         //     <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
         //         <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
@@ -84,16 +84,17 @@ export class NotificationTimes extends React.Component {
     }
 
     renderSingleDay(checked, name) {
+        var shortenedName = name.substring(0, 3)
         if (checked)
             return (<TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
-            <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{name}</Text>
-        </TouchableOpacity>)
-        else 
-        return (
-            <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
-                <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{name}</Text>
-            </TouchableOpacity>
-        )
+                <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
+            </TouchableOpacity>)
+        else
+            return (
+                <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
+                    <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
+                </TouchableOpacity>
+            )
 
     }
 
@@ -126,30 +127,22 @@ export class NotificationTimes extends React.Component {
         }
         return (
             <View style={{ flexDirection: 'column' }}>
-                <Text style={{}}>
-                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
-                    Notification Times
+                <View style={{ flexDirection: 'row', marginRight: 10, marginLeft: 10, marginTop: 10}}>
+                    <SIcon name="bell" size={20} color={colorsProvider.topBarColor} />
+                    <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.topBarColor }}>
+                        Notification Times
                 </Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
 
-                <FlatList
-                            horizontal={true}
-                            data={Object.keys(jsonArr)}
-                            contentContainerStyle={{marginLeft: 10, marginRight: 10, alignContent: 'center' }}
-                            style={{ marginLeft: 10, marginRight: 10 }}
-                            renderItem={({ item }) =>
-                            this.renderSingleDay(jsonArr[item].checked, jsonArr[item].value)} />
-
-                    {/* <View style={{ flex: 1, margin: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}> */}
-                    {/* {this.renderDayOfWeekBubble("Mon")} */}
-                    {/* {this.renderDayOfWeekBubble("Tue")}
-                    {this.renderDayOfWeekBubble("Wed")}
-                    {this.renderDayOfWeekBubble("Thurs")}
-                    {this.renderDayOfWeekBubble("Fri")}
-                    {this.renderDayOfWeekBubble("Sat")}
-                    {this.renderDayOfWeekBubble("Sun")} */}
-                    {/* </View> */}
                 </View>
+                <FlatList
+                    horizontal={true}
+                    scrollEnabled={false}
+                    data={Object.keys(jsonArr)}
+                    contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10,}}
+                    style={{}}
+                    renderItem={({ item }) =>
+                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name)} />
+                {/* </View> */}
             </View>
             // <TouchableOpacity
             //     style={{}}
