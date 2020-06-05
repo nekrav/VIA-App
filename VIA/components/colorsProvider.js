@@ -13,6 +13,7 @@ export const fontSizeSmall = 14
 /* #region Icons */
 export const backIcon = 'arrow-left'
 export const trash = 'trash'
+export const close = 'close'
 /* #endregion */
 
 /* #region NewColors */

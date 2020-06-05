@@ -7,7 +7,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { DateModal } from '../dateModal/dateModal'
 import { Notifier } from '../../notifier/notifier'
 
-const styles = require('./styles');
+const styles = require('../notificationTimes/styles');
 
 var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
@@ -25,55 +25,9 @@ export class NotifTimeModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mondayChecked: false,
-            mondayNotificationTimes: [],
-            notificationTimeSelectionModalVisibility: false,
-            selectedDayToAddTimeTo: '',
-            times: this.props.times ? this.props.times : [
-                {
-                    key: "1",
-                    name: "Monday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "2",
-                    name: "Tuesday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "3",
-                    name: "Wednesday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "4",
-                    name: "Thursday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "5",
-                    name: "Friday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "6",
-                    name: "Saturday",
-                    checked: false,
-                    times: []
-                },
-                {
-                    key: "7",
-                    name: "Sunday",
-                    checked: false,
-                    times: []
-                },
-            ]
-
+            dayOfTheWeek: this.props.dayOfTheWeek,
+            notificationTimes: '',
+            visible: this.props.visible,
         };
     }
 
@@ -131,7 +85,7 @@ export class NotifTimeModal extends React.Component {
                         <FlatList
                             horizontal={true}
                             data={day.item.times}
-                            contentContainerStyle={{marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                            contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
                             style={{ marginLeft: 10, marginRight: 10 }}
                             renderItem={({ item }) =>
                                 <TouchableOpacity style={styles.weekdayNotificationTimeContainer}
@@ -190,14 +144,13 @@ export class NotifTimeModal extends React.Component {
                 onRequestClose={this.props.onRequestClose}>
 
                 <SafeAreaView style={styles.outerView}>
-                    {this.renderDaysOfWeekTimeSelection()}
-                    <TouchableOpacity style={styles.bottomButtonContainer}
-                        onPress={() => {
-                            this.setDate(null, this.state.times)
-                            this.props.closeModal()
-                        }}>
-                        <Text style={styles.bottomButtonText}>Close</Text>
-                    </TouchableOpacity>
+                    <View>
+                        <TouchableOpacity
+                        onPress={this.props.closeModal}>
+                            <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
+                        </TouchableOpacity>
+                    </View>
+                    <FlatList />
                 </SafeAreaView>
             </Modal>
         );
