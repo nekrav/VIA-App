@@ -4,6 +4,8 @@ import { Slider } from 'react-native-elements';
 import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
+import { NotesModal } from '../modals/notesModal/notesModal';
+
 import Moment from 'moment';
 
 const todayDate = new Date();
@@ -15,32 +17,100 @@ export class Notes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: this.props.percentage_done,
+            notes: this.props.notes,
+            notesModalVisible: false,
         };
     }
 
-    renderImportance() {
-        return (<View style={{ margin: 10, flexDirection: 'column' }}>
-            <Slider
-                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.whiteColor }}
-                trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
-                minimumValue={0}
-                maximumTrackTintColor={colorsProvider.topBarColor}
-                minimumTrackTintColor={colorsProvider.completeColor}
-                step={1}
-                maximumValue={20}
-                animationType={'timing'}
-                value={this.state.value}
-                onValueChange={value => this.setState({ value })} />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Didn't Start</Text>
-                <Text style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeSmall }}>Done</Text>
-            </View>
-        </View>
-        )
+    setNotesModalVisibility(visible) {
+        this.setState({ notesModalVisible: visible });
+    }
+
+    renderNotesModal() {
+        if (this.state.notesModalVisible) {
+            return (
+                <NotesModal
+                    animationType="slide"
+                    transparent={true}
+                    existingNotes={this.state.notes}
+                    backgroundColor={colorsProvider.tasksMainColor}
+                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.tasksMainColor}
+                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
+                    textChangedColor={colorsProvider.tasksComplimentaryColor}
+                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
+                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
+                    placeholder={'Notes...'}
+                    setNotes={item => {
+                        this.props.editNotes(item)
+                    }}
+                    closeModal={() => {
+                        this.setNotesModalVisibility(false);
+                    }}
+                ></NotesModal>
+            );
+        }
+        return null;
+    }
+
+    renderNotes() {
+        if (this.state.notes) {
+            return (<View><Text>aweilfhaweiuf</Text></View>)
+        } else {
+            return (
+                <TouchableOpacity
+                    style={{ backgroundColor: colorsProvider.habitsComplimentaryColor }}
+                    onPress={() => {
+                        this.setNotesModalVisibility(true);
+                    }}>
+                    <View style={{ flex: 1, margin: 10, marginBottom: 40, backgroundColor: colorsProvider.topBarColor, flexDirection: 'column' }}>
+                        <Text>No Notes</Text>
+                        <Text>No Notes</Text>
+                        <Text>No Notes</Text></View>
+                </TouchableOpacity>
+            )
+        }
+        // if (this.state.notes) {
+        //     console.warn("ghrynryh")
+        //     return (
+        //         <TouchableOpacity
+        //             style={{ backgroundColor: colorsProvider.topBarColor }}
+        //             onPress={() => {
+        //                 this.setNotesModalVisibility(true);
+        //             }}
+        //         >
+        //             <Text
+        //                 style={{}}
+        //                 multiline={true}
+        //                 onChangeText={this.props.notes}>
+        //                 {this.state.notes}
+        //             </Text>
+        //         </TouchableOpacity>
+        //     );
+        // } else {
+        //     console.warn("Aaewf")
+        //     return (
+        //         <View style={{  flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
+        //             <TouchableOpacity
+        //                 style={{ backgroundColor: colorsProvider.topBarColor }}
+        //                 onPress={() => {
+        //                     this.setNotesModalVisibility(true);
+        //                 }}>
+        //                 {/* <Text
+        //                     style={{ color: colorsProvider.topBarColor }}
+        //                     multiline={true}
+        //                     onChangeText={this.props.notes}>
+        //                     Notes ...</Text> */}
+        //             </TouchableOpacity>
+        //         </View>
+        //     );
+        // }
     }
 
     render() {
-        return this.renderImportance()
+        return <View>
+            {this.renderNotesModal()}
+            {this.renderNotes()}
+        </View>
     }
 }

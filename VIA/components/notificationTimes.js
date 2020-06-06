@@ -86,7 +86,7 @@ export class NotificationTimes extends React.Component {
                 animationType="slide"
                 transparent={true}
                 closeModal={() => {this.setAddNotifTimeModalVisibility(false)}}
-                visible={this.state.notifTimeModalVisibility} >
+                visible={this.state.notifTimeModalVisibility}>
             </NotifTimeModal>
         }
         return null;

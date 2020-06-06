@@ -6,6 +6,7 @@ import { CheckBox } from 'react-native-elements'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { DateModal } from '../dateModal/dateModal'
 import { Notifier } from '../../notifier/notifier'
+import DatePicker from 'react-native-date-picker'
 
 const styles = require('../notificationTimes/styles');
 
@@ -109,30 +110,30 @@ export class NotifTimeModal extends React.Component {
         )
     }
 
-    renderShowNotificationTimeSelection(arr) {
-        if (this.state.notificationTimeSelectionModalVisibility) {
-            return <DateModal
-                pickerMode="time"
-                animationType="fade"
-                saveButtonBackgroundColor={this.props.saveButtonBackgroundColor}
-                disabledSaveButtonBackgroundColor={this.props.disabledSaveButtonBackgroundColor}
-                saveButtonTextColor={this.props.saveButtonTextColor}
-                disabledSaveButtonTextColor={this.props.disabledSaveButtonTextColor}
-                transparent={true}
-                fromNotificationTimesModal={true}
-                onSubmit={(item) => {
-                    selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
-                    selectedDay.checked = true
-                    newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
-                    selectedDay.times = newArray
-                    this.setState({ times: arr });
-                }}
-                setDate={(item) => { }}
-                closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
-            </DateModal>
-        }
-        return null;
-    }
+    // renderShowNotificationTimeSelection(arr) {
+    //     if (this.state.notificationTimeSelectionModalVisibility) {
+    //         return <DateModal
+    //             pickerMode="time"
+    //             animationType="fade"
+    //             saveButtonBackgroundColor={this.props.saveButtonBackgroundColor}
+    //             disabledSaveButtonBackgroundColor={this.props.disabledSaveButtonBackgroundColor}
+    //             saveButtonTextColor={this.props.saveButtonTextColor}
+    //             disabledSaveButtonTextColor={this.props.disabledSaveButtonTextColor}
+    //             transparent={true}
+    //             fromNotificationTimesModal={true}
+    //             onSubmit={(item) => {
+    //                 selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
+    //                 selectedDay.checked = true
+    //                 newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
+    //                 selectedDay.times = newArray
+    //                 this.setState({ times: arr });
+    //             }}
+    //             setDate={(item) => { }}
+    //             closeModal={() => { this.toggleNotificationTimeSelectionModal(false) }}>
+    //         </DateModal>
+    //     }
+    //     return null;
+    // }
 
 
     render() {
@@ -142,16 +143,28 @@ export class NotifTimeModal extends React.Component {
                 transparent={true}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-
-                <SafeAreaView style={styles.outerView}>
-                    <View>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column', backgroundColor: 'rgba(26, 26, 26, 0.9)'
+                }}>
+                    <View style={{ flexDirection: 'row-reverse' }}>
                         <TouchableOpacity
-                        onPress={this.props.closeModal}>
+                            style={{ marginRight: 10, marginTop: 100,}}
+                            onPress={this.props.closeModal}>
                             <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
                         </TouchableOpacity>
                     </View>
                     <FlatList />
-                </SafeAreaView>
+                    <View style={{ alignItems: 'center', backgroundColor: colorsProvider.topBarColor }}>
+                        <View style={{ alignItems: 'center', marginBottom: 20, }}>
+                            <DatePicker
+                                textColor={colorsProvider.whiteColor}
+                                mode="time"
+                            // date={date}
+                            // onDateChange={setDate}
+                            /></View>
+                    </View>
+                </View>
             </Modal>
         );
     }

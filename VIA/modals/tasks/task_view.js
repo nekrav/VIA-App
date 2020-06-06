@@ -12,7 +12,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes } from '../../components'
+import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
 
 const notifier = new Notifier;
 
@@ -361,72 +361,9 @@ export class ViewTask extends React.Component {
     /* #endregion */
 
     /* #region  Notes Region */
-    setNotesModalVisibility(visible) {
-        this.setState({ notesModalVisible: visible });
-    }
-
-    renderNotesModal() {
-        if (this.state.notesModalVisible) {
-            return (
-                <NotesModal
-                    animationType="slide"
-                    transparent={true}
-                    existingNotes={this.state.selectedItem.notes}
-                    backgroundColor={colorsProvider.tasksMainColor}
-                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.tasksMainColor}
-                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
-                    textChangedColor={colorsProvider.tasksComplimentaryColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
-                    placeholder={'Notes...'}
-                    setNotes={item => {
-                        this.props.editNotes(item)
-                    }}
-                    closeModal={() => {
-                        this.setNotesModalVisibility(false);
-                    }}
-                ></NotesModal>
-            );
-        }
-        return null;
-    }
 
     renderNotesSection() {
-        if (this.state.selectedItem.notes != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotesContainer}
-                    onPress={() => {
-                        this.setNotesModalVisibility(true);
-                    }}
-                >
-                    <Text
-                        style={styles.hasNotesText}
-                        multiline={true}
-                        onChangeText={this.props.notes}
-                    >
-                        {this.state.selectedItem.notes}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.createNotesContainer}
-                onPress={() => {
-                    this.setNotesModalVisibility(true);
-                }}
-            >
-                <Text
-                    style={styles.createNotesText}
-                    multiline={true}
-                    onChangeText={this.props.notes}
-                >
-                    Notes ...
-    </Text>
-            </TouchableOpacity>
-        );
+        return <Notes/>
     }
     /* #endregion */
 
@@ -445,7 +382,6 @@ export class ViewTask extends React.Component {
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
                 {this.showProjectSelectionModal()}
-                {this.renderNotesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
