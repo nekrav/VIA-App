@@ -42,7 +42,8 @@ export class Notes extends React.Component {
                     buttonTextPlaceholderColor={colorsProvider.whiteColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
-                        this.props.editNotes(item)
+                        this.setState({notes: item})
+                        // this.props.editNotes(item)
                     }}
                     closeModal={() => {
                         this.setNotesModalVisibility(false);
