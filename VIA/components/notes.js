@@ -55,18 +55,55 @@ export class Notes extends React.Component {
 
     renderNotes() {
         if (this.state.notes) {
-            return (<View><Text>aweilfhaweiuf</Text></View>)
-        } else {
             return (
                 <TouchableOpacity
-                    style={{ backgroundColor: colorsProvider.habitsComplimentaryColor }}
+                    style={{
+                        height: "58%",
+                        marginLeft: 10,
+                        marginRight: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        backgroundColor: colorsProvider.topBarColor,
+                        borderRadius: 20
+                    }}
                     onPress={() => {
                         this.setNotesModalVisibility(true);
                     }}>
-                    <View style={{ flex: 1, margin: 10, marginBottom: 40, backgroundColor: colorsProvider.topBarColor, flexDirection: 'column' }}>
-                        <Text>No Notes</Text>
-                        <Text>No Notes</Text>
-                        <Text>No Notes</Text></View>
+                    <View style={{ margin: 10, flexDirection: 'column' }}>
+                        <Text style={{
+                            marginLeft: 5,
+                            marginTop: 5,
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeSmall,
+                            color: colorsProvider.whiteColor
+                        }}>{this.state.notes}</Text>
+                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <TouchableOpacity
+                    style={{
+                        height: "58%",
+                        marginLeft: 10,
+                        marginRight: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        backgroundColor: colorsProvider.topBarColor,
+                        borderRadius: 20
+                    }}
+                    onPress={() => {
+                        this.setNotesModalVisibility(true);
+                    }}>
+                    <View style={{ margin: 10, flexDirection: 'column' }}>
+                        <Text style={{
+                            marginLeft: 5,
+                            marginTop: 5,
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeSmall,
+                            color: colorsProvider.whiteColor
+                        }}>No Notes...</Text>
+                    </View>
                 </TouchableOpacity>
             )
         }
