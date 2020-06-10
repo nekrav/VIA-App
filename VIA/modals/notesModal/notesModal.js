@@ -40,17 +40,17 @@ export class NotesModal extends React.Component {
 
     getButtonContainerStyles() {
         if (this.state.notes != this.state.startingNotes) {
-            return [styles.modifiedBottomButtonContainer, { borderColor: this.props.textChangedColor, backgroundColor: this.props.textChangedColor }]
+            return [styles.modifiedBottomButtonContainer, { borderColor: this.props.textChangedColor, backgroundColor: this.props.textChangedColor}]
         }
-        return [styles.modifiedBottomButtonContainer, {  backgroundColor: this.props.buttonContainerNotChangedColor }]
+        return [styles.modifiedBottomButtonContainer, {  backgroundColor: this.props.buttonContainerNotChangedColor}]
 
     }
 
     getButtonTextStyles() {
         if (this.state.notes != this.state.startingNotes) {
-            return [styles.modifiedBottomButtonText, { color: this.props.buttonTextPlaceholderColor }]
+            return [styles.modifiedBottomButtonText, { color: colorsProvider.whiteColor }]
         } else {
-            return [styles.bottomButtonText, { color: this.props.buttonContainerTextNotChangedColor }]
+            return [styles.bottomButtonText, { color: colorsProvider.whiteColor }]
         }
     }
 
