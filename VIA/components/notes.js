@@ -43,7 +43,7 @@ export class Notes extends React.Component {
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.setState({notes: item})
-                        // this.props.editNotes(item)
+                        this.props.editNotes(item)
                     }}
                     closeModal={() => {
                         this.setNotesModalVisibility(false);

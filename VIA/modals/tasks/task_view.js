@@ -352,18 +352,17 @@ export class ViewTask extends React.Component {
         />
         )
     }
-
-
-
-
-    
-
     /* #endregion */
 
     /* #region  Notes Region */
 
     renderNotesSection() {
-        return <Notes/>
+        return <Notes
+            notes={this.state.selectedItem.notes}
+            editNotes={value => {
+                this.props.editNotes(value);
+                this.props.save();
+            }}/>
     }
     /* #endregion */
 
