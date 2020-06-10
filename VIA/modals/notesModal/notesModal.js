@@ -63,7 +63,7 @@ export class NotesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={[styles.outerView, { backgroundColor: this.props.backgroundColor }]}>
+                    <SafeAreaView style={[styles.outerView, { backgroundColor: colorsProvider.topBarColor }]}>
                         <TouchableOpacity
                             onPress={() => {
                                 if (this.notesTextInput.isFocused) {
@@ -76,7 +76,7 @@ export class NotesModal extends React.Component {
                                 multiline={true}
                                 placeholderTextColor={this.props.textPlaceholderColor}
                                 placeholder={this.props.placeholder}
-                                style={[styles.notesTextInput, { color: this.props.textChangedColor }]}
+                                style={[styles.notesTextInput, { color: colorsProvider.whiteColor }]}
                                 value={this.state.notes}
                                 onChangeText={value => {
                                     this.setState({ notes: value })
