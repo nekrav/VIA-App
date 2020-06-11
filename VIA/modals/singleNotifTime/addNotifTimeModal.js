@@ -144,12 +144,13 @@ export class NotifTimeModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <View style={{
-                    flex: 1,
+                    // marginTop: '100%',
+                    // height: '50%',
                     flexDirection: 'column', backgroundColor: 'rgba(26, 26, 26, 0.9)'
                 }}>
                     <View style={{ flexDirection: 'row-reverse' }}>
                         <TouchableOpacity
-                            style={{ marginRight: 10, marginTop: 100,}}
+                            style={{ marginRight: 10, marginTop: 100, }}
                             onPress={this.props.closeModal}>
                             <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
                         </TouchableOpacity>

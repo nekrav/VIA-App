@@ -1,13 +1,14 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider, colors } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList, Dimensions } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { NotifTimeModal } from '../modals/singleNotifTime/addNotifTimeModal';
-
+import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
 
+const screenHeight = Math.round(Dimensions.get('window').height);
 const todayDate = new Date();
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -21,6 +22,7 @@ export class NotificationTimes extends React.Component {
             value: this.props.percentage_done,
             notificationTimesModal: false,
             notifTimeModalVisibility: false,
+            dayOfTheWeek: '',
         };
     }
 
@@ -65,14 +67,22 @@ export class NotificationTimes extends React.Component {
         var shortenedName = name.substring(0, 3)
         if (checked)
             return (<TouchableOpacity
-                onPress={() => this.setAddNotifTimeModalVisibility(true)}
+                onPress={() => {
+                    this.setState({ dayOfTheWeek: name })
+                    this.RBSheet.open()
+                    // this.setAddNotifTimeModalVisibility(true)
+                }}
                 style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
                 <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
             </TouchableOpacity>)
         else
             return (
                 <TouchableOpacity
-                    onPress={() => this.setAddNotifTimeModalVisibility(true)}
+                    onPress={() => {
+                        this.setState({ dayOfTheWeek: name })
+                        this.RBSheet.open()
+                        // this.setAddNotifTimeModalVisibility(true)
+                    }}
                     style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.noNotificationTime, justifyContent: 'center', alignContent: 'center' }}>
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
                 </TouchableOpacity>
@@ -86,7 +96,8 @@ export class NotificationTimes extends React.Component {
                 animationType="slide"
                 transparent={true}
                 closeModal={() => { this.setAddNotifTimeModalVisibility(false) }}
-                visible={this.state.notifTimeModalVisibility}>
+                visible={this.state.notifTimeModalVisibility}
+                dayOfTheWeek={this.state.dayOfTheWeek}>
             </NotifTimeModal>
         }
         return null;
@@ -128,9 +139,27 @@ export class NotificationTimes extends React.Component {
     }
 
     render() {
-        return (<View>
+        return (<View style={{}}>
             {this.renderAddNotifTimeModal()}
             {this.renderNotificationTimes()}
+            <RBSheet
+                ref={ref => {
+                    this.RBSheet = ref;
+                }}
+                closeOnPressMask={true}
+                dragFromTopOnly={true}
+                height={screenHeight / 1.36}
+                openDuration={250}
+                customStyles={{
+                   
+                    container: {
+                        // justifyContent: "center",
+                        alignItems: "center"
+                    }
+                }}>
+                <TouchableOpacity style={{backgroundColor: colorsProvider.topBarColor}}onPress={() => {   this.RBSheet.close()}}><Text>Close</Text></TouchableOpacity>
+                <View><Text>{this.state.dayOfTheWeek}</Text></View>
+            </RBSheet>
         </View>)
     }
 }
