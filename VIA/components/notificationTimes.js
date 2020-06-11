@@ -21,7 +21,6 @@ export class NotificationTimes extends React.Component {
         super(props);
         this.state = {
             notificationTimes: this.props.notificationTimes,
-            value: this.props.percentage_done,
             notificationTimesModal: false,
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
@@ -68,7 +67,7 @@ export class NotificationTimes extends React.Component {
 
     renderSingleDay(checked, name, times) {
         var shortenedName = name.substring(0, 3)
-        if (checked)
+        if (times.length > 0)
             return (<TouchableOpacity
                 onPress={() => {
                     this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
@@ -129,6 +128,7 @@ export class NotificationTimes extends React.Component {
     }
 
     renderBottomSlidingPane() {
+        console.warn(this.state.notificationTimes)
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -156,7 +156,28 @@ export class NotificationTimes extends React.Component {
                     <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
                 </TouchableOpacity>
             </View>
-            <FlatList />
+            <FlatList
+                data={this.state.dayNotificationTimes}
+                contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                style={{ marginLeft: 10, marginRight: 10 }}
+                renderItem={({ item }) =>
+                    <TouchableOpacity style={{}}
+                        onPress={() => {
+                            var index = day.item.times.indexOf(item)
+                            if (index !== -1) {
+                                var newArr = day.item.times
+                                newArr.splice(index, 1)
+                                day.item.times = newArr
+                                var newMain = this.state.times
+                                this.setState({ times: newMain })
+                            }
+                        }}>
+                        <View style={{}}>
+                            <Text style={{}}>{item}</Text>
+                            <SIcon style={{}} name="minus" size={16} color={colorsProvider.whiteColor} />
+                        </View>
+                    </TouchableOpacity>} 
+                    />
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
                     <View style={{ flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
@@ -167,18 +188,6 @@ export class NotificationTimes extends React.Component {
                         // onDateChange={setDate}
                         />
                     </View>
-                    {/* <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
-                        <TouchableOpacity>
-                            <View style={{  width: '100%', backgroundColor: 'white' }}>
-                                <Text>Set</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <View style={{  width: '100%', backgroundColor: 'white' }}>
-                                <Text>Close</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View> */}
                 </View>
                 <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
                     <TouchableOpacity>
