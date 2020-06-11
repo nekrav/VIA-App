@@ -169,8 +169,9 @@ export class NotificationTimes extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList />
-                <View style={{ alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row' }}>
-                    <View style={{ alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
+                        <View style={{flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
@@ -178,7 +179,7 @@ export class NotificationTimes extends React.Component {
                         // onDateChange={setDate}
                         />
                     </View>
-                    <View style={{ height: '100%', backgroundColor: 'red', flexDirection: 'column' }}>
+                    {/* <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
                         <TouchableOpacity>
                             <View style={{  width: '100%', backgroundColor: 'white' }}>
                                 <Text>Set</Text>
@@ -186,6 +187,19 @@ export class NotificationTimes extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <View style={{  width: '100%', backgroundColor: 'white' }}>
+                                <Text>Close</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View> */}
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
+                        <TouchableOpacity>
+                            <View style={{ width: '100%', backgroundColor: 'white' }}>
+                                <Text>Set</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <View style={{ width: '100%', backgroundColor: 'white' }}>
                                 <Text>Close</Text>
                             </View>
                         </TouchableOpacity>
