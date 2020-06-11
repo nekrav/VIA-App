@@ -7,6 +7,8 @@ import { NotifTimeModal } from '../modals/singleNotifTime/addNotifTimeModal';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
+import DatePicker from 'react-native-date-picker'
+
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const todayDate = new Date();
@@ -151,14 +153,31 @@ export class NotificationTimes extends React.Component {
                 height={screenHeight / 1.36}
                 openDuration={250}
                 customStyles={{
-                   
+
                     container: {
-                        // justifyContent: "center",
-                        alignItems: "center"
+                        // flexDirection: 'column',
+                        // alignItems: "center"
                     }
                 }}>
-                <TouchableOpacity style={{backgroundColor: colorsProvider.topBarColor}}onPress={() => {   this.RBSheet.close()}}><Text>Close</Text></TouchableOpacity>
-                <View><Text>{this.state.dayOfTheWeek}</Text></View>
+                {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
+                <View><Text>{this.state.dayOfTheWeek}</Text></View> */}
+                <View style={{ flexDirection: 'row-reverse' }}>
+                    <TouchableOpacity
+                        style={{ marginRight: 10, marginTop: 10, }}
+                        onPress={this.props.closeModal}>
+                        <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
+                    </TouchableOpacity>
+                </View>
+                <FlatList />
+                <View style={{ alignItems: 'center', backgroundColor: colorsProvider.topBarColor }}>
+                    <View style={{ alignItems: 'center', marginBottom: 20, flexDirection: 'row' }}>
+                        <DatePicker
+                            textColor={colorsProvider.whiteColor}
+                            mode="time"
+                        // date={date}
+                        // onDateChange={setDate}
+                        /><TouchableOpacity><View><Text>Set</Text></View></TouchableOpacity></View>
+                </View>
             </RBSheet>
         </View>)
     }
