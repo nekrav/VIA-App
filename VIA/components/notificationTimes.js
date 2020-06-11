@@ -140,38 +140,37 @@ export class NotificationTimes extends React.Component {
         );
     }
 
-    render() {
-        return (<View style={{}}>
-            {this.renderAddNotifTimeModal()}
-            {this.renderNotificationTimes()}
-            <RBSheet
-                ref={ref => {
-                    this.RBSheet = ref;
-                }}
-                closeOnPressMask={true}
-                dragFromTopOnly={true}
-                height={screenHeight / 1.36}
-                openDuration={250}
-                customStyles={{
+    renderBottomSlidingPane() {
+        return (<RBSheet
+            ref={ref => {
+                this.RBSheet = ref;
+            }}
+            closeOnPressMask={true}
+            dragFromTopOnly={true}
+            height={screenHeight / 1.36}
+            openDuration={250}
+            customStyles={{
 
-                    container: {
-                        // flexDirection: 'column',
-                        // alignItems: "center"
-                    }
-                }}>
-                {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
+                container: {
+                    // flexDirection: 'column',
+                    // alignItems: "center"
+                }
+            }}>
+            {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
                 <View><Text>{this.state.dayOfTheWeek}</Text></View> */}
-                <View style={{ flexDirection: 'row-reverse' }}>
-                    <TouchableOpacity
-                        style={{ marginRight: 10, marginTop: 10, }}
-                        onPress={this.props.closeModal}>
-                        <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
-                    </TouchableOpacity>
-                </View>
-                <FlatList />
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
-                        <View style={{flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
+            <View style={{ flexDirection: 'row-reverse' }}>
+                <TouchableOpacity
+                    style={{ marginRight: 10, marginTop: 10, }}
+                    onPress={() => {
+                        this.RBSheet.close()
+                    }}>
+                    <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
+                </TouchableOpacity>
+            </View>
+            <FlatList />
+            <View style={{ flexDirection: 'row' }}>
+                <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
+                    <View style={{ flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
@@ -191,21 +190,31 @@ export class NotificationTimes extends React.Component {
                             </View>
                         </TouchableOpacity>
                     </View> */}
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
-                        <TouchableOpacity>
-                            <View style={{ width: '100%', backgroundColor: 'white' }}>
-                                <Text>Set</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <View style={{ width: '100%', backgroundColor: 'white' }}>
-                                <Text>Close</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
                 </View>
-            </RBSheet>
+                <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
+                    <TouchableOpacity>
+                        <View style={{ width: '100%', backgroundColor: 'white' }}>
+                            <Text>Set</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.RBSheet.close()
+                    }}>
+                        <View style={{ width: '100%', backgroundColor: 'white' }}>
+                            <Text>Close</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </RBSheet>)
+    }
+
+    render() {
+        return (<View style={{}}>
+            {this.renderAddNotifTimeModal()}
+            {this.renderNotificationTimes()}
+            {this.renderBottomSlidingPane()}
+
         </View>)
     }
 }
