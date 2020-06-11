@@ -13,6 +13,8 @@ import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
+import SlidingPanel from 'react-native-sliding-up-down-panels';
+
 
 const notifier = new Notifier;
 

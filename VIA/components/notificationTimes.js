@@ -85,7 +85,7 @@ export class NotificationTimes extends React.Component {
             return <NotifTimeModal
                 animationType="slide"
                 transparent={true}
-                closeModal={() => {this.setAddNotifTimeModalVisibility(false)}}
+                closeModal={() => { this.setAddNotifTimeModalVisibility(false) }}
                 visible={this.state.notifTimeModalVisibility}>
             </NotifTimeModal>
         }
@@ -116,6 +116,7 @@ export class NotificationTimes extends React.Component {
                 </View>
                 <FlatList
                     horizontal={true}
+                    keyExtractor={(item) => jsonArr[item].key}
                     scrollEnabled={false}
                     data={Object.keys(jsonArr)}
                     contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
