@@ -169,14 +169,27 @@ export class NotificationTimes extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList />
-                <View style={{ alignItems: 'center', backgroundColor: colorsProvider.topBarColor }}>
-                    <View style={{ alignItems: 'center', marginBottom: 20, flexDirection: 'row' }}>
+                <View style={{ alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row' }}>
+                    <View style={{ alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
                         // date={date}
                         // onDateChange={setDate}
-                        /><TouchableOpacity><View><Text>Set</Text></View></TouchableOpacity></View>
+                        />
+                    </View>
+                    <View style={{ height: '100%', backgroundColor: 'red', flexDirection: 'column' }}>
+                        <TouchableOpacity>
+                            <View style={{  width: '100%', backgroundColor: 'white' }}>
+                                <Text>Set</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <View style={{  width: '100%', backgroundColor: 'white' }}>
+                                <Text>Close</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </RBSheet>
         </View>)
