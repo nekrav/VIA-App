@@ -184,8 +184,14 @@ export class NotificationTimes extends React.Component {
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
-                        // date={date}
-                        // onDateChange={setDate}
+                        date={todayDate}
+                        onDateChange={() => {
+                            // var newArr = day.item.times
+                            // newArr.splice(index, 1)
+                            // day.item.times = newArr
+                            // var newMain = this.state.times
+                            // this.setState({ times: newMain })
+                        }}
                         />
                     </View>
                 </View>
