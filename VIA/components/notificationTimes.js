@@ -25,6 +25,7 @@ export class NotificationTimes extends React.Component {
             notificationTimesModal: false,
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
+            dayNotificationTimes: '',
         };
     }
 
@@ -65,12 +66,12 @@ export class NotificationTimes extends React.Component {
         this.setState({ notifTimeModalVisibility: visible })
     }
 
-    renderSingleDay(checked, name) {
+    renderSingleDay(checked, name, times) {
         var shortenedName = name.substring(0, 3)
         if (checked)
             return (<TouchableOpacity
                 onPress={() => {
-                    this.setState({ dayOfTheWeek: name })
+                    this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
                     this.RBSheet.open()
                     // this.setAddNotifTimeModalVisibility(true)
                 }}
@@ -81,7 +82,7 @@ export class NotificationTimes extends React.Component {
             return (
                 <TouchableOpacity
                     onPress={() => {
-                        this.setState({ dayOfTheWeek: name })
+                        this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
                         this.RBSheet.open()
                         // this.setAddNotifTimeModalVisibility(true)
                     }}
@@ -90,19 +91,6 @@ export class NotificationTimes extends React.Component {
                 </TouchableOpacity>
             )
 
-    }
-
-    renderAddNotifTimeModal() {
-        if (this.state.notifTimeModalVisibility) {
-            return <NotifTimeModal
-                animationType="slide"
-                transparent={true}
-                closeModal={() => { this.setAddNotifTimeModalVisibility(false) }}
-                visible={this.state.notifTimeModalVisibility}
-                dayOfTheWeek={this.state.dayOfTheWeek}>
-            </NotifTimeModal>
-        }
-        return null;
     }
 
     renderNotificationTimes() {
@@ -135,7 +123,7 @@ export class NotificationTimes extends React.Component {
                     contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                     style={{}}
                     renderItem={({ item }) =>
-                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name)} />
+                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} />
             </View>
         );
     }
@@ -163,6 +151,7 @@ export class NotificationTimes extends React.Component {
                     style={{ marginRight: 10, marginTop: 10, }}
                     onPress={() => {
                         this.RBSheet.close()
+                        this.setState({ dayNotificationTimes: '' })
                     }}>
                     <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
                 </TouchableOpacity>
@@ -199,6 +188,7 @@ export class NotificationTimes extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         this.RBSheet.close()
+                        this.setState({ dayNotificationTimes: '' })
                     }}>
                         <View style={{ width: '100%', backgroundColor: 'white' }}>
                             <Text>Close</Text>
@@ -211,10 +201,8 @@ export class NotificationTimes extends React.Component {
 
     render() {
         return (<View style={{}}>
-            {this.renderAddNotifTimeModal()}
             {this.renderNotificationTimes()}
             {this.renderBottomSlidingPane()}
-
         </View>)
     }
 }
