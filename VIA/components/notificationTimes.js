@@ -160,22 +160,23 @@ export class NotificationTimes extends React.Component {
             }}>
             {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
                 <View><Text>{this.state.dayOfTheWeek}</Text></View> */}
-            <View style={{ flexDirection: 'row-reverse' }}>
-                <TouchableOpacity
+            <View style={{ }}>
+                <Text>{this.state.dayOfTheWeek}</Text>
+                {/* <TouchableOpacity
                     style={{ marginRight: 10, marginTop: 10, }}
                     onPress={() => {
                         this.RBSheet.close()
                         this.setState({ dayNotificationTimes: '' })
                     }}>
                     <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
             <FlatList
                 data={this.state.dayNotificationTimes}
                 contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
                 style={{ marginLeft: 10, marginRight: 10 }}
                 renderItem={({ item }) =>
-                    <TouchableOpacity style={{}}
+                    <TouchableOpacity style={{ flex: 1, borderRadius: 10, backgroundColor: colorsProvider.topBarColor}}
                         onPress={() => {
                             var index = day.item.times.indexOf(item)
                             if (index !== -1) {
@@ -215,11 +216,8 @@ export class NotificationTimes extends React.Component {
                 <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
                     <TouchableOpacity onPress={() => {
                         var oldArr = this.state.dayNotificationTimes
-                        // var dateTime = this.state.newNotifTimeDate.getHours() + ":" + this.state.newNotifTimeDate.getMinutes()
                         var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
-                        // console.warn(dateTime)
                         newArr = oldArr.concat(dateTime)
-                        // console.warn(newArr)
                         this.setState({ dayNotificationTimes: newArr })
                     }}>
                         <View style={{ width: '100%', backgroundColor: 'white' }}>
