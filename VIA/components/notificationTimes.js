@@ -25,6 +25,8 @@ export class NotificationTimes extends React.Component {
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
             dayNotificationTimes: '',
+            newNotifTimeDate: todayDate,
+            newNotifTimeString: '',
         };
     }
 
@@ -127,8 +129,20 @@ export class NotificationTimes extends React.Component {
         );
     }
 
+    formatAMPM(date) {
+        // console.warn(date)
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
+
     renderBottomSlidingPane() {
-        console.warn(this.state.notificationTimes)
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -176,27 +190,38 @@ export class NotificationTimes extends React.Component {
                             <Text style={{}}>{item}</Text>
                             <SIcon style={{}} name="minus" size={16} color={colorsProvider.whiteColor} />
                         </View>
-                    </TouchableOpacity>} 
-                    />
+                    </TouchableOpacity>}
+            />
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
                     <View style={{ flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
-                        date={todayDate}
-                        onDateChange={() => {
-                            // var newArr = day.item.times
-                            // newArr.splice(index, 1)
-                            // day.item.times = newArr
-                            // var newMain = this.state.times
-                            // this.setState({ times: newMain })
-                        }}
+                            date={this.state.newNotifTimeDate}
+                            onDateChange={date => {
+                                // var newArr = this.state.dayNotificationTimes
+                                // newArr.splice(index, 1)
+                                // day.item.times = newArr
+                                // var newMain = this.state.times
+                                dateDate = date;
+                                dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
+                                // console.warn(dateString)
+                                this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
+                            }}
                         />
                     </View>
                 </View>
                 <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        var oldArr = this.state.dayNotificationTimes
+                        // var dateTime = this.state.newNotifTimeDate.getHours() + ":" + this.state.newNotifTimeDate.getMinutes()
+                        var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
+                        // console.warn(dateTime)
+                        newArr = oldArr.concat(dateTime)
+                        // console.warn(newArr)
+                        this.setState({ dayNotificationTimes: newArr })
+                    }}>
                         <View style={{ width: '100%', backgroundColor: 'white' }}>
                             <Text>Set</Text>
                         </View>
