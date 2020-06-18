@@ -141,6 +141,13 @@ export class NotificationTimes extends React.Component {
         return strTime;
     }
 
+    sortByTime(a, b) {
+        var time = new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
+        timeHour = time.getHours();
+        timeMinute = time.getMinutes();
+        return formatAMPM(time)
+    }
+
 
     renderBottomSlidingPane() {
         return (<RBSheet
@@ -160,23 +167,21 @@ export class NotificationTimes extends React.Component {
             }}>
             {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
                 <View><Text>{this.state.dayOfTheWeek}</Text></View> */}
-            <View style={{ }}>
+            <View style={{}}>
                 <Text>{this.state.dayOfTheWeek}</Text>
-                {/* <TouchableOpacity
-                    style={{ marginRight: 10, marginTop: 10, }}
-                    onPress={() => {
-                        this.RBSheet.close()
-                        this.setState({ dayNotificationTimes: '' })
-                    }}>
-                    <SIcon name={colorsProvider.close} style={{}} size={40} color={colorsProvider.incompleteColor} />
-                </TouchableOpacity> */}
             </View>
             <FlatList
                 data={this.state.dayNotificationTimes}
                 contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
                 style={{ marginLeft: 10, marginRight: 10 }}
                 renderItem={({ item }) =>
-                    <TouchableOpacity style={{ flex: 1, borderRadius: 10, backgroundColor: colorsProvider.topBarColor}}
+                    <View style={{
+                        flex: 1,
+                        borderRadius: 10,
+                        backgroundColor: colorsProvider.topBarColor,
+                        marginTop: 10,
+                        marginBottom: 10,
+                    }}
                         onPress={() => {
                             var index = day.item.times.indexOf(item)
                             if (index !== -1) {
@@ -187,11 +192,30 @@ export class NotificationTimes extends React.Component {
                                 this.setState({ times: newMain })
                             }
                         }}>
-                        <View style={{}}>
-                            <Text style={{}}>{item}</Text>
-                            <SIcon style={{}} name="minus" size={16} color={colorsProvider.whiteColor} />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily
+                            }}>{item}</Text>
+                            <TouchableOpacity onPress={() => {
+                                var index = day.item.times.indexOf(item)
+                                if (index !== -1) {
+                                    var newArr = day.item.times
+                                    newArr.splice(index, 1)
+                                    day.item.times = newArr
+                                    var newMain = this.state.times
+                                    this.setState({ times: newMain })
+                                }
+                            }}>
+                                <SIcon style={{}} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={colorsProvider.whiteColor} />
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>}
+                    </View>
+                }
             />
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
