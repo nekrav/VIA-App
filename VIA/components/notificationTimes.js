@@ -239,13 +239,24 @@ export class NotificationTimes extends React.Component {
                             var oldArr = this.state.dayNotificationTimes
                             var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                             newArr = oldArr.concat(dateTime)
-                            this.setState({ dayNotificationTimes: newArr })
+                            this.setState({ dayNotificationTimes: newArr }, () => {
+
+                                var arrayOfAllTimes = JSON.parse("[" +this.state.notificationTimes + "]")
+
+
+                                // "[" + this.state.selectedItem.notification_time + "]"
+                               
+                                selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                selectedDay.times = newArr
+                                console.warn(selectedDay.times)
+                            })
                             // this.props.addNotificationTime(newArr)
 
-
-                            // selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
+                            // selectedDay = oldArr.find(theDay => theDay.key === this.state.dayOfTheWeek)
                             // selectedDay.checked = true
                             // newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
+
+                            // console.warn(newArray)
                             // selectedDay.times = newArray
                             // this.setState({ times: arr });
 
