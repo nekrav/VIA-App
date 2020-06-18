@@ -3,6 +3,8 @@ import * as colorsProvider from './colorsProvider';
 import { Slider, colors } from 'react-native-elements';
 import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList, Dimensions } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/FontAwesome';
+
 import { NotifTimeModal } from '../modals/singleNotifTime/addNotifTimeModal';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
@@ -157,18 +159,16 @@ export class NotificationTimes extends React.Component {
             closeOnPressMask={true}
             dragFromTopOnly={true}
             height={screenHeight / 1.36}
-            openDuration={250}
-            customStyles={{
-
-                container: {
-                    // flexDirection: 'column',
-                    // alignItems: "center"
-                }
+            openDuration={250}>
+            <View style={{
+                marginTop: 10,
+                marginLeft: 20,
             }}>
-            {/* <TouchableOpacity style={{ backgroundColor: colorsProvider.topBarColor }} onPress={() => { this.RBSheet.close() }}><Text>Close</Text></TouchableOpacity>
-                <View><Text>{this.state.dayOfTheWeek}</Text></View> */}
-            <View style={{}}>
-                <Text>{this.state.dayOfTheWeek}</Text>
+                <Text style={{
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.topBarColor,
+                    fontSize: colorsProvider.fontSizeMain
+                }}>{this.state.dayOfTheWeek}</Text>
             </View>
             <FlatList
                 data={this.state.dayNotificationTimes}
@@ -199,7 +199,8 @@ export class NotificationTimes extends React.Component {
                                 marginTop: 10,
                                 marginBottom: 10,
                                 fontSize: colorsProvider.fontSizeChildren,
-                                fontFamily: colorsProvider.fontFamily
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
                             }}>{item}</Text>
                             <TouchableOpacity onPress={() => {
                                 var index = day.item.times.indexOf(item)
@@ -211,7 +212,7 @@ export class NotificationTimes extends React.Component {
                                     this.setState({ times: newMain })
                                 }
                             }}>
-                                <SIcon style={{}} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={colorsProvider.whiteColor} />
+                                <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -225,35 +226,46 @@ export class NotificationTimes extends React.Component {
                             mode="time"
                             date={this.state.newNotifTimeDate}
                             onDateChange={date => {
-                                // var newArr = this.state.dayNotificationTimes
-                                // newArr.splice(index, 1)
-                                // day.item.times = newArr
-                                // var newMain = this.state.times
                                 dateDate = date;
                                 dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                                // console.warn(dateString)
                                 this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
                             }}
                         />
                     </View>
                 </View>
-                <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column' }}>
+                <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column',alignItems: 'stretch' }}>
                     <TouchableOpacity onPress={() => {
                         var oldArr = this.state.dayNotificationTimes
                         var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                         newArr = oldArr.concat(dateTime)
                         this.setState({ dayNotificationTimes: newArr })
                     }}>
-                        <View style={{ width: '100%', backgroundColor: 'white' }}>
-                            <Text>Set</Text>
+                        <View style={{ width: '100%', justifyContent: 'center', backgroundColor: colorsProvider.finishedBackgroundColor }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>Set</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         this.RBSheet.close()
                         this.setState({ dayNotificationTimes: '' })
                     }}>
-                        <View style={{ width: '100%', backgroundColor: 'white' }}>
-                            <Text>Close</Text>
+                        <View style={{ width: '100%',  justifyContent: 'center', backgroundColor: colorsProvider.doneSliderNotFinished }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>Close</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
