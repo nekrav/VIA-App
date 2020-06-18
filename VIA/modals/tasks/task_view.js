@@ -351,6 +351,12 @@ export class ViewTask extends React.Component {
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}
+            addNotificationTime={item => {
+                console.warn(item)
+                // this.props.editNotificationTime(item);
+                // notifier.scheduleAllNotifications();
+                // this.setNotificationTimesVisibility(false);
+            }}
         />
         )
     }
@@ -364,7 +370,7 @@ export class ViewTask extends React.Component {
             editNotes={value => {
                 this.props.editNotes(value);
                 this.props.save();
-            }}/>
+            }} />
     }
     /* #endregion */
 

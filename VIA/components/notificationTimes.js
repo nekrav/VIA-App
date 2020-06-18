@@ -132,7 +132,6 @@ export class NotificationTimes extends React.Component {
     }
 
     formatAMPM(date) {
-        // console.warn(date)
         var hours = date.getHours();
         var minutes = date.getMinutes();
         var ampm = hours >= 12 ? 'PM' : 'AM';
@@ -181,17 +180,7 @@ export class NotificationTimes extends React.Component {
                         backgroundColor: colorsProvider.topBarColor,
                         marginTop: 10,
                         marginBottom: 10,
-                    }}
-                        onPress={() => {
-                            var index = day.item.times.indexOf(item)
-                            if (index !== -1) {
-                                var newArr = day.item.times
-                                newArr.splice(index, 1)
-                                day.item.times = newArr
-                                var newMain = this.state.times
-                                this.setState({ times: newMain })
-                            }
-                        }}>
+                    }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                             <Text style={{
                                 marginRight: 5,
@@ -203,13 +192,12 @@ export class NotificationTimes extends React.Component {
                                 color: colorsProvider.whiteColor
                             }}>{item}</Text>
                             <TouchableOpacity onPress={() => {
-                                var index = day.item.times.indexOf(item)
+                                var index = this.state.dayNotificationTimes.indexOf(item)
                                 if (index !== -1) {
-                                    var newArr = day.item.times
-                                    newArr.splice(index, 1)
-                                    day.item.times = newArr
-                                    var newMain = this.state.times
-                                    this.setState({ times: newMain })
+                                    var oldArr = this.state.dayNotificationTimes
+                                    oldArr.splice(index, 1)
+                                    this.setState({ dayNotificationTimes: newArr })
+                                    this.props.addNotificationTime(newArr)
                                 }
                             }}>
                                 <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
@@ -252,6 +240,17 @@ export class NotificationTimes extends React.Component {
                             var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                             newArr = oldArr.concat(dateTime)
                             this.setState({ dayNotificationTimes: newArr })
+                            // this.props.addNotificationTime(newArr)
+
+
+                            // selectedDay = arr.find(theDay => theDay.key === this.state.selectedDayToAddTimeTo)
+                            // selectedDay.checked = true
+                            // newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
+                            // selectedDay.times = newArray
+                            // this.setState({ times: arr });
+
+
+
                         }}>
                         <Text style={{
                             marginRight: 5,
@@ -290,7 +289,7 @@ export class NotificationTimes extends React.Component {
     }
 
     render() {
-        return (<View style={{}}>
+        return (<View>
             {this.renderNotificationTimes()}
             {this.renderBottomSlidingPane()}
         </View>)
