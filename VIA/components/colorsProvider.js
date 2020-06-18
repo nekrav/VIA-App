@@ -28,7 +28,10 @@ export const completeColor = "#3FE81D"
 export const completeButtonColor = '#3FE81D'
 export const incompleteColor = '#F1637A'
 /* #endregion */
-
+/* #region  Button Colors  */
+export const setButtonColor = "#19AF0F"
+export const closeButtonColor = "#7B7B7B"
+/* #endregion */
 /* #region  General */
 export const font = "Roboto-Medium"
 export const finishedBackgroundColor = "#4DFF87";

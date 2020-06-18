@@ -218,56 +218,72 @@ export class NotificationTimes extends React.Component {
                     </View>
                 }
             />
-            <View style={{ flexDirection: 'row' }}>
-                <View style={{ flex: 2, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
-                    {/* <View style={{ flex: 2, alignItems: 'center', marginBottom: 20, flexDirection: 'row', width: '80%' }}> */}
-                        <DatePicker
-                            textColor={colorsProvider.whiteColor}
-                            mode="time"
-                            date={this.state.newNotifTimeDate}
-                            onDateChange={date => {
-                                dateDate = date;
-                                dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                                this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
-                            }}
-                        />
-                    {/* </View> */}
+            <View style={{ flexDirection: 'row', }}>
+                <View style={{
+                    flex: 2,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: colorsProvider.topBarColor,
+                }}>
+                    <DatePicker
+                        textColor={colorsProvider.whiteColor}
+                        mode="time"
+                        date={this.state.newNotifTimeDate}
+                        onDateChange={date => {
+                            dateDate = date;
+                            dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
+                            this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
+                        }}
+                    />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column',}}>
-                    {/* <TouchableOpacity onPress={() => {
-                        var oldArr = this.state.dayNotificationTimes
-                        var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
-                        newArr = oldArr.concat(dateTime)
-                        this.setState({ dayNotificationTimes: newArr })
-                    }}> */}
-                        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: colorsProvider.finishedBackgroundColor }}>
-                            <Text style={{
-                                marginRight: 5,
-                                marginLeft: 10,
-                                marginTop: 10,
-                                marginBottom: 10,
-                                fontSize: colorsProvider.fontSizeChildren,
-                                fontFamily: colorsProvider.fontFamily,
-                                color: colorsProvider.whiteColor
-                            }}>Set</Text>
-                        </View>
-                    {/* </TouchableOpacity> */}
-                    {/* <TouchableOpacity onPress={() => {
-                        this.RBSheet.close()
-                        this.setState({ dayNotificationTimes: '' })
-                    }}> */}
-                        <View style={{ flex: 1,  justifyContent: 'center', backgroundColor: colorsProvider.doneSliderNotFinished }}>
-                            <Text style={{
-                                marginRight: 5,
-                                marginLeft: 10,
-                                marginTop: 10,
-                                marginBottom: 10,
-                                fontSize: colorsProvider.fontSizeChildren,
-                                fontFamily: colorsProvider.fontFamily,
-                                color: colorsProvider.whiteColor
-                            }}>Close</Text>
-                        </View>
-                    {/* </TouchableOpacity> */}
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                }}>
+                    <TouchableOpacity
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: colorsProvider.setButtonColor
+                        }}
+                        onPress={() => {
+                            var oldArr = this.state.dayNotificationTimes
+                            var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
+                            newArr = oldArr.concat(dateTime)
+                            this.setState({ dayNotificationTimes: newArr })
+                        }}>
+                        <Text style={{
+                            marginRight: 5,
+                            marginLeft: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: colorsProvider.fontSizeChildren,
+                            fontFamily: colorsProvider.fontFamily,
+                            color: colorsProvider.whiteColor
+                        }}>Set</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: colorsProvider.closeButtonColor
+                        }}
+                        onPress={() => {
+                            this.RBSheet.close()
+                            this.setState({ dayNotificationTimes: '' })
+                        }}>
+                        <Text style={{
+                            marginRight: 5,
+                            marginLeft: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: colorsProvider.fontSizeChildren,
+                            fontFamily: colorsProvider.fontFamily,
+                            color: colorsProvider.whiteColor
+                        }}>Close</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </RBSheet>)
