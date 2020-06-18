@@ -219,8 +219,8 @@ export class NotificationTimes extends React.Component {
                 }
             />
             <View style={{ flexDirection: 'row' }}>
-                <View style={{ flex: 1, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
-                    <View style={{ flex: 1, alignItems: 'center', marginBottom: 20, flexDirection: 'row', flex: 1, }}>
+                <View style={{ flex: 2, alignItems: 'center', backgroundColor: colorsProvider.topBarColor, flexDirection: 'row', }}>
+                    {/* <View style={{ flex: 2, alignItems: 'center', marginBottom: 20, flexDirection: 'row', width: '80%' }}> */}
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             mode="time"
@@ -231,16 +231,16 @@ export class NotificationTimes extends React.Component {
                                 this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
                             }}
                         />
-                    </View>
+                    {/* </View> */}
                 </View>
-                <View style={{ justifyContent: 'center', backgroundColor: 'red', flexDirection: 'column',alignItems: 'stretch' }}>
-                    <TouchableOpacity onPress={() => {
+                <View style={{ flex: 1, flexDirection: 'column',}}>
+                    {/* <TouchableOpacity onPress={() => {
                         var oldArr = this.state.dayNotificationTimes
                         var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                         newArr = oldArr.concat(dateTime)
                         this.setState({ dayNotificationTimes: newArr })
-                    }}>
-                        <View style={{ width: '100%', justifyContent: 'center', backgroundColor: colorsProvider.finishedBackgroundColor }}>
+                    }}> */}
+                        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: colorsProvider.finishedBackgroundColor }}>
                             <Text style={{
                                 marginRight: 5,
                                 marginLeft: 10,
@@ -251,12 +251,12 @@ export class NotificationTimes extends React.Component {
                                 color: colorsProvider.whiteColor
                             }}>Set</Text>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
+                    {/* </TouchableOpacity> */}
+                    {/* <TouchableOpacity onPress={() => {
                         this.RBSheet.close()
                         this.setState({ dayNotificationTimes: '' })
-                    }}>
-                        <View style={{ width: '100%',  justifyContent: 'center', backgroundColor: colorsProvider.doneSliderNotFinished }}>
+                    }}> */}
+                        <View style={{ flex: 1,  justifyContent: 'center', backgroundColor: colorsProvider.doneSliderNotFinished }}>
                             <Text style={{
                                 marginRight: 5,
                                 marginLeft: 10,
@@ -267,7 +267,7 @@ export class NotificationTimes extends React.Component {
                                 color: colorsProvider.whiteColor
                             }}>Close</Text>
                         </View>
-                    </TouchableOpacity>
+                    {/* </TouchableOpacity> */}
                 </View>
             </View>
         </RBSheet>)
