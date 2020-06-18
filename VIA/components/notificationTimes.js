@@ -99,7 +99,7 @@ export class NotificationTimes extends React.Component {
     renderNotificationTimes() {
         var daysWithNotifications = '';
 
-        var jsonArr = JSON.parse("[" + this.state.notificationTimes + "]");
+        var jsonArr = JSON.parse( this.state.notificationTimes);
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
@@ -240,28 +240,13 @@ export class NotificationTimes extends React.Component {
                             var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                             newArr = oldArr.concat(dateTime)
                             this.setState({ dayNotificationTimes: newArr }, () => {
-
-                                var arrayOfAllTimes = JSON.parse("[" +this.state.notificationTimes + "]")
-
-
-                                // "[" + this.state.selectedItem.notification_time + "]"
-                               
+                                var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                 selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+
                                 selectedDay.times = newArr
-                                console.warn(selectedDay.times)
+                                var newTimes = JSON.stringify(arrayOfAllTimes)
+                                this.props.addNotificationTime(newTimes)
                             })
-                            // this.props.addNotificationTime(newArr)
-
-                            // selectedDay = oldArr.find(theDay => theDay.key === this.state.dayOfTheWeek)
-                            // selectedDay.checked = true
-                            // newArray = selectedDay.times.concat(Moment(new Date(item)).format(timeFormat))
-
-                            // console.warn(newArray)
-                            // selectedDay.times = newArray
-                            // this.setState({ times: arr });
-
-
-
                         }}>
                         <Text style={{
                             marginRight: 5,

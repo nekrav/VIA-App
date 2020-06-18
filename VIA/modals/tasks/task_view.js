@@ -353,8 +353,9 @@ export class ViewTask extends React.Component {
             }}
             addNotificationTime={item => {
                 console.warn(item)
-                // this.props.editNotificationTime(item);
-                // notifier.scheduleAllNotifications();
+                this.props.editNotificationTime(item);
+                notifier.scheduleAllNotifications();
+                this.props.save();
                 // this.setNotificationTimesVisibility(false);
             }}
         />
