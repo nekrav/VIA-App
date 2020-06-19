@@ -83,7 +83,11 @@ export class ViewTask extends React.Component {
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
             closeModal={this.props.closeModal}
-            editName={item => {this.props.editName(item); this.props.save();}}
+            editName={item => {
+                this.props.editName(item);
+                this.props.save();
+                notifier.scheduleAllNotifications()
+            }}
             hasImportance={true}
             hasParent={true}
             editDueDate={() => {
@@ -349,7 +353,7 @@ export class ViewTask extends React.Component {
             }}
             addNotificationTime={item => {
                 this.props.editNotificationTime(item);
-                this.setState({ notificationTimes: item})
+                this.setState({ notificationTimes: item })
                 this.props.save();
                 notifier.scheduleAllNotifications();
             }}
