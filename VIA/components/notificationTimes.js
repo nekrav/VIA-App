@@ -213,14 +213,12 @@ export class NotificationTimes extends React.Component {
                                 if (index !== -1) {
                                     var oldArr = this.state.dayNotificationTimes
                                     oldArr.splice(index, 1)
-                                    this.setState({ dayNotificationTimes: oldArr }, () => {
-                                        var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                        selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                        selectedDay.times = newArr
-                                        var newTimes = JSON.stringify(arrayOfAllTimes)
-                                        console.warn(newTimes)
-                                        this.props.addNotificationTime(newTimes)
-                                    })
+                                    var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                    selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                    selectedDay.times = oldArr
+                                    var newTimes = JSON.stringify(arrayOfAllTimes)
+                                    this.props.addNotificationTime(newTimes)
+                                    this.setState({ dayNotificationTimes: oldArr })
                                 }
                             }}>
                                 <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
