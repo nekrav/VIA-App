@@ -2,6 +2,7 @@ import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks, Random } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
+import Moment from 'moment';
 
 var PushNotification = require("react-native-push-notification");
 
@@ -60,9 +61,9 @@ export class Notifier extends React.Component {
                         let notificationTimes = [];
                         item = res.rows.item(i)
                         if (item.notification_time != '') {
-                            nt = JSON.parse('[' + item.notification_time + ']')
+                            nt = JSON.parse(item.notification_time)
                             for (let j = 0; j < nt.length; j++) {
-                                if (nt[j].checked == true) {
+                                // if (nt[j].checked == true) {
                                     dayWithTimes = nt[j]
                                     ntTimes = nt[j].times
                                     for (let k = 0; k < ntTimes.length; k++) {
@@ -91,7 +92,7 @@ export class Notifier extends React.Component {
 
                                     }
                                     let it = { name: item.name, notificationTimes: notificationTimes }
-                                }
+                                // }
                             }
                             if (notificationTimes.length > 0) {
                                 itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
@@ -127,10 +128,11 @@ export class Notifier extends React.Component {
     scheduleTaskNotifications() {
         this.getAllObjectNotificationTimes(Tasks.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
                 let title = "Time to start your task: " + res[i].item.name
                 let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    console.warn(new Date(res[i].notificationTimes[j]))
+                    console.warn(Moment(new Date(res[i].notificationTimes[j])).format("dddd, MMMM Do YYYY, h:mm:ss a"))
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),

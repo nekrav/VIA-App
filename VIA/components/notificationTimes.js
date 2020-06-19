@@ -77,39 +77,6 @@ export class NotificationTimes extends React.Component {
         };
     }
 
-    // renderDayOfWeekBubble(dayOfWeek) {
-    //     var daysWithNotifications = '';
-
-    //     var jsonArr = JSON.parse("[" + this.state.notificationTimes + "]");
-
-    //     // Object.keys(jsonArr).map(key => {
-    //     //     console.warn(jsonArr)
-    //     Object.keys(jsonArr).forEach(key => {
-    //         console.warn(key)
-    //         if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-    //             console.warn("Befawef")
-    //             return (
-    //                 <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
-    //                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{jsonArr[key].value}</Text>
-    //                 </TouchableOpacity>
-    //             )
-
-    //         } else {
-    //             console.warn("AAAA")
-    //             return (
-    //                 <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.incompleteColor, justifyContent: 'center', alignContent: 'center' }}>
-    //                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
-    //                 </TouchableOpacity>
-    //             )
-    //         }
-    //     });
-    //     // return (
-    //     //     <TouchableOpacity style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
-    //     //         <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 12, color: colorsProvider.whiteColor, textAlign: 'center' }}>{dayOfWeek}</Text>
-    //     //     </TouchableOpacity>
-    //     // )
-    // }
-
     setAddNotifTimeModalVisibility(visible) {
         this.setState({ notifTimeModalVisibility: visible })
     }
@@ -143,12 +110,11 @@ export class NotificationTimes extends React.Component {
 
     renderNotificationTimes() {
         var daysWithNotifications = '';
-        console.warn(this.state.notificationTimes)
-        var jsonArr = emptyTimes
-        if (this.state.notificationTimes) {
-            jsonArr = JSON.parse(this.state.notificationTimes);
-        }
-        // var jsonArr = JSON.parse(this.state.notificationTimes);
+        // var jsonArr = emptyTimes
+        // if (this.state.notificationTimes) {
+        //     jsonArr = JSON.parse(this.state.notificationTimes);
+        // }
+        var jsonArr = JSON.parse(this.state.notificationTimes);
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {

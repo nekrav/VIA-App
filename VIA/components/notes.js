@@ -108,41 +108,6 @@ export class Notes extends React.Component {
                 </TouchableOpacity>
             )
         }
-        // if (this.state.notes) {
-        //     console.warn("ghrynryh")
-        //     return (
-        //         <TouchableOpacity
-        //             style={{ backgroundColor: colorsProvider.topBarColor }}
-        //             onPress={() => {
-        //                 this.setNotesModalVisibility(true);
-        //             }}
-        //         >
-        //             <Text
-        //                 style={{}}
-        //                 multiline={true}
-        //                 onChangeText={this.props.notes}>
-        //                 {this.state.notes}
-        //             </Text>
-        //         </TouchableOpacity>
-        //     );
-        // } else {
-        //     console.warn("Aaewf")
-        //     return (
-        //         <View style={{  flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
-        //             <TouchableOpacity
-        //                 style={{ backgroundColor: colorsProvider.topBarColor }}
-        //                 onPress={() => {
-        //                     this.setNotesModalVisibility(true);
-        //                 }}>
-        //                 {/* <Text
-        //                     style={{ color: colorsProvider.topBarColor }}
-        //                     multiline={true}
-        //                     onChangeText={this.props.notes}>
-        //                     Notes ...</Text> */}
-        //             </TouchableOpacity>
-        //         </View>
-        //     );
-        // }
     }
 
     render() {
