@@ -10,10 +10,14 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
 import DatePicker from 'react-native-date-picker'
+import { Notifier } from '../notifier/notifier'
+
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const todayDate = new Date();
+const notifier = new Notifier;
+const timeFormat = "hh:mm A"
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -222,7 +226,6 @@ export class NotificationTimes extends React.Component {
 
 
                                     var oldArr = this.state.dayNotificationTimes
-                                    var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                                     oldArr.splice(index, 1)
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                     selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
@@ -269,7 +272,7 @@ export class NotificationTimes extends React.Component {
                         }}
                         onPress={() => {
                             var oldArr = this.state.dayNotificationTimes
-                            var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
+                            var dateTime =  Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
                             newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
@@ -298,6 +301,7 @@ export class NotificationTimes extends React.Component {
                         onPress={() => {
                             this.RBSheet.close()
                             this.setState({ dayNotificationTimes: '' })
+                            notifier.scheduleAllNotifications();
                         }}>
                         <Text style={{
                             marginRight: 5,

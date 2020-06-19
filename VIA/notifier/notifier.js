@@ -80,10 +80,13 @@ export class Notifier extends React.Component {
 
                                         var distance = parseInt(day) - currentDay;
 
-                                        date.setDate(date.getDate() + distance);
+                                        // date.setDate(date.getDate() + distance);
+                                        date.setDate(date.getDate());
                                         date.setHours(parseInt(hour))
                                         date.setMinutes(parseInt(minute))
                                         date.setSeconds(0)
+                                        console.warn("HEre 1")
+                                        console.warn(Moment(date).format("dddd, MMMM Do YYYY, h:mm:ss a"))
 
                                         // if (date < new Date()) {
                                         //     date.setDate(date.getDate() + 7)
@@ -131,6 +134,7 @@ export class Notifier extends React.Component {
                 let title = "Time to start your task: " + res[i].item.name
                 let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    // console.warn(Moment(new Date(res[i].notificationTimes[j])).format("dddd, MMMM Do YYYY, h:mm:ss a"))
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
