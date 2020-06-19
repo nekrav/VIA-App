@@ -17,6 +17,51 @@ const todayDate = new Date();
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
+
 export class NotificationTimes extends React.Component {
 
     constructor(props) {
@@ -98,8 +143,12 @@ export class NotificationTimes extends React.Component {
 
     renderNotificationTimes() {
         var daysWithNotifications = '';
-
-        var jsonArr = JSON.parse( this.state.notificationTimes);
+        console.warn(this.state.notificationTimes)
+        var jsonArr = emptyTimes
+        if (this.state.notificationTimes) {
+            jsonArr = JSON.parse(this.state.notificationTimes);
+        }
+        // var jsonArr = JSON.parse(this.state.notificationTimes);
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {

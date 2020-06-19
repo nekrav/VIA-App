@@ -5,7 +5,6 @@ import { Controller } from '../controller';
 import { SelectionModal } from '../selectionModal/selectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
-import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
 import { Database, Projects } from '../../db'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
@@ -44,11 +43,9 @@ export class ViewTask extends React.Component {
             items: [],
             proj: null,
             projName: empty,
-            theSelectedProject: empty,
-            // importance: this.props.selectedItem.importance? this.props.selectedItem.importance : "",
             showDate: false,
             dueDate: '',
-            notificationTimesModal: false,
+            notificationTimes: "",
             // percentVal: this.props.selectedItem.percentage_done,
             // importanceVal: this.props.selectedItem.importance ? this.props.selectedItem.importance : "",
             notesModalVisible: false,
@@ -355,6 +352,7 @@ export class ViewTask extends React.Component {
                 console.warn(item)
                 this.props.editNotificationTime(item);
                 notifier.scheduleAllNotifications();
+                this.setState({ notificationTimes: item})
                 this.props.save();
                 // this.setNotificationTimesVisibility(false);
             }}
