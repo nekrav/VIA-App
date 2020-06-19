@@ -9,8 +9,53 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
 import { Notifier } from '../../notifier/notifier'
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 const notifier = new Notifier;
+
 const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
@@ -76,10 +121,12 @@ export class TasksScreen extends React.Component {
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => {
                     if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                        // var times = text.map(function (time) {
+                        //     return JSON.stringify(time)
+                        // })
                         newTask.notification_time = times
+                    } else {
+                        newTask.notification_time = emptyTimes
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
