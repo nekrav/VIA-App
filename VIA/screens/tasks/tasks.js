@@ -263,8 +263,10 @@ export class TasksScreen extends React.Component {
                                                 item.value.completed = !this.getChecked(item)
                                                 if (item.value.completed == true) {
                                                     item.value.finished_date = new Date(Date.now())
+                                                    item.value.percentage_done = 10
                                                 } else {
                                                     item.value.finished_date == ""
+                                                    item.value.percentage_done = 0
                                                 }
                                                 controller.saveExisting(this, dbTableName, item.value)
                                             }}
