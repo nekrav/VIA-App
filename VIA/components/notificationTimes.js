@@ -211,7 +211,18 @@ export class NotificationTimes extends React.Component {
                             <TouchableOpacity onPress={() => {
                                 var index = this.state.dayNotificationTimes.indexOf(item)
                                 if (index !== -1) {
+                                    // var oldArr = this.state.dayNotificationTimes
+                                    // oldArr.splice(index, 1)
+                                    // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                    // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                    // selectedDay.times = oldArr
+                                    // var newTimes = JSON.stringify(arrayOfAllTimes)
+                                    // this.props.addNotificationTime(newTimes)
+                                    // this.setState({ dayNotificationTimes: oldArr })
+
+
                                     var oldArr = this.state.dayNotificationTimes
+                                    var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                                     oldArr.splice(index, 1)
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                     selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
