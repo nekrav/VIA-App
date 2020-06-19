@@ -65,6 +65,7 @@ const emptyTimes = [
 export class NotificationTimes extends React.Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
             notificationTimes: this.props.notificationTimes,
@@ -75,6 +76,11 @@ export class NotificationTimes extends React.Component {
             newNotifTimeDate: todayDate,
             newNotifTimeString: '',
         };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps != null)
+            this.setState({ notificationTimes: newProps.notificationTimes });
     }
 
     setAddNotifTimeModalVisibility(visible) {
@@ -110,10 +116,6 @@ export class NotificationTimes extends React.Component {
 
     renderNotificationTimes() {
         var daysWithNotifications = '';
-        // var jsonArr = emptyTimes
-        // if (this.state.notificationTimes) {
-        //     jsonArr = JSON.parse(this.state.notificationTimes);
-        // }
         var jsonArr = JSON.parse(this.state.notificationTimes);
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
@@ -211,12 +213,12 @@ export class NotificationTimes extends React.Component {
                                 if (index !== -1) {
                                     var oldArr = this.state.dayNotificationTimes
                                     oldArr.splice(index, 1)
-                                    this.setState({ dayNotificationTimes: newArr }, () => {
+                                    this.setState({ dayNotificationTimes: oldArr }, () => {
                                         var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                         selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-
                                         selectedDay.times = newArr
                                         var newTimes = JSON.stringify(arrayOfAllTimes)
+                                        console.warn(newTimes)
                                         this.props.addNotificationTime(newTimes)
                                     })
                                 }
@@ -260,14 +262,12 @@ export class NotificationTimes extends React.Component {
                             var oldArr = this.state.dayNotificationTimes
                             var dateTime = this.formatAMPM(this.state.newNotifTimeDate)
                             newArr = oldArr.concat(dateTime)
-                            this.setState({ dayNotificationTimes: newArr }, () => {
-                                var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-
-                                selectedDay.times = newArr
-                                var newTimes = JSON.stringify(arrayOfAllTimes)
-                                this.props.addNotificationTime(newTimes)
-                            })
+                            var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                            selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                            selectedDay.times = newArr
+                            var newTimes = JSON.stringify(arrayOfAllTimes)
+                            this.props.addNotificationTime(newTimes)
+                            this.setState({ dayNotificationTimes: newArr })
                         }}>
                         <Text style={{
                             marginRight: 5,

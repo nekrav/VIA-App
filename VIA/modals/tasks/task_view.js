@@ -344,15 +344,15 @@ export class ViewTask extends React.Component {
 
     renderNotificationTimes() {
         return (<NotificationTimes
-            notificationTimes={this.state.selectedItem.notification_time}
+            notificationTimes={this.props.selectedItem.notification_time}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
                 this.props.editNotificationTime(item);
-                notifier.scheduleAllNotifications();
                 this.setState({ notificationTimes: item})
                 this.props.save();
+                notifier.scheduleAllNotifications();
             }}
         />
         )
