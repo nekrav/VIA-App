@@ -83,10 +83,9 @@ export class ViewTask extends React.Component {
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
             closeModal={this.props.closeModal}
-            editName={this.props.editName}
+            editName={item => {this.props.editName(item); this.props.save();}}
             hasImportance={true}
             hasParent={true}
-            editName={this.props.editName}
             editDueDate={() => {
                 Keyboard.dismiss()
                 this.setDateModalVisibility(true)

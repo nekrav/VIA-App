@@ -82,11 +82,6 @@ export class NotificationTimes extends React.Component {
         };
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps != null)
-            this.setState({ notificationTimes: newProps.notificationTimes });
-    }
-
     setAddNotifTimeModalVisibility(visible) {
         this.setState({ notifTimeModalVisibility: visible })
     }
@@ -98,7 +93,6 @@ export class NotificationTimes extends React.Component {
                 onPress={() => {
                     this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
                     this.RBSheet.open()
-                    // this.setAddNotifTimeModalVisibility(true)
                 }}
                 style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
                 <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
@@ -177,6 +171,9 @@ export class NotificationTimes extends React.Component {
                 this.RBSheet = ref;
             }}
             closeOnPressMask={true}
+            onClose={() => {
+                notifier.scheduleAllNotifications();
+            }}
             dragFromTopOnly={true}
             height={screenHeight / 1.36}
             openDuration={250}>
@@ -272,7 +269,7 @@ export class NotificationTimes extends React.Component {
                         }}
                         onPress={() => {
                             var oldArr = this.state.dayNotificationTimes
-                            var dateTime =  Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
+                            var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
                             newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)

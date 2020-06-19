@@ -63,39 +63,31 @@ export class Notifier extends React.Component {
                         if (item.notification_time != '') {
                             nt = JSON.parse(item.notification_time)
                             for (let j = 0; j < nt.length; j++) {
-                                // if (nt[j].checked == true) {
-                                    dayWithTimes = nt[j]
-                                    ntTimes = nt[j].times
-                                    for (let k = 0; k < ntTimes.length; k++) {
-                                        let day = dayWithTimes.key
-                                        let hour = ntTimes[k].split(':')[0]
-                                        let minute = ntTimes[k].split(':')[1]
-                                        let ampm = minute.slice(-2);
-                                        if (ampm == 'PM') {
-                                            hour = parseInt(hour) + 12;
-                                        }
-                                        var date = new Date();
-
-                                        var currentDay = date.getDay();
-
-                                        var distance = parseInt(day) - currentDay;
-
-                                        // date.setDate(date.getDate() + distance);
-                                        date.setDate(date.getDate());
-                                        date.setHours(parseInt(hour))
-                                        date.setMinutes(parseInt(minute))
-                                        date.setSeconds(0)
-                                        console.warn("HEre 1")
-                                        console.warn(Moment(date).format("dddd, MMMM Do YYYY, h:mm:ss a"))
-
-                                        // if (date < new Date()) {
-                                        //     date.setDate(date.getDate() + 7)
-                                        // }
-                                        notificationTimes.push(date.toString())
-
+                                dayWithTimes = nt[j]
+                                ntTimes = nt[j].times
+                                for (let k = 0; k < ntTimes.length; k++) {
+                                    let day = dayWithTimes.key
+                                    let hour = ntTimes[k].split(':')[0]
+                                    let minute = ntTimes[k].split(':')[1]
+                                    let ampm = minute.slice(-2);
+                                    if (ampm == 'PM') {
+                                        hour = parseInt(hour) + 12;
                                     }
-                                    let it = { name: item.name, notificationTimes: notificationTimes }
-                                // }
+                                    var date = new Date();
+
+                                    var currentDay = date.getDay();
+
+                                    var distance = parseInt(day) - currentDay;
+
+                                    // date.setDate(date.getDate() + distance);
+                                    date.setDate(date.getDate());
+                                    date.setHours(parseInt(hour))
+                                    date.setMinutes(parseInt(minute))
+                                    date.setSeconds(0)
+                                    notificationTimes.push(date.toString())
+
+                                }
+                                let it = { name: item.name, notificationTimes: notificationTimes }
                             }
                             if (notificationTimes.length > 0) {
                                 itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
