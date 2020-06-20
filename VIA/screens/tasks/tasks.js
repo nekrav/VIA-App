@@ -115,15 +115,24 @@ export class TasksScreen extends React.Component {
                 due_date={(text) => {
                     newTask.due_date = text
                 }}
+                setImportanceNN={(text) => {
+                    newTask.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newTask.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newTask.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newTask.importance = 4;
+                }}
                 importance={(text) => { newTask.importance = text }}
                 project={(text) => { newTask.project = text }}
                 time_spent={(text) => { newTask.time_spent = text }}
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => {
                     if (text) {
-                        // var times = text.map(function (time) {
-                        //     return JSON.stringify(time)
-                        // })
                         newTask.notification_time = times
                     } else {
                         newTask.notification_time = emptyTimes
@@ -131,6 +140,10 @@ export class TasksScreen extends React.Component {
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
+                    if (!newTask.notification_time) {
+                        newTask.notification_time = JSON.stringify(emptyTimes)
+                    }
+                    console.warn(newTask)
                     this.saveNew(newTask)
                 }}
             ></CreateTask>

@@ -74,7 +74,6 @@ export class TopBar extends React.Component {
                 parent={this.state.parent}
                 selectParent={this.props.selectParent} />
         }
-
     }
 
     render() {

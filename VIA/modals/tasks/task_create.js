@@ -19,12 +19,20 @@ import { Controller } from '../controller';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
+import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
+
 
 import { Notifier } from '../../notifier/notifier'
+const empty = ""
+var date = new Date().getDate(); //Current Date
+var month = new Date().getMonth(); //Current Month
+var year = new Date().getFullYear(); //Current Year
+const timeDisplayFormat = 'hh:mm A'
+const dateToday = new Date(year, month, date);
 
 const notifier = new Notifier;
 const controller = new Controller();
-const dateFormat = 'ddd, MMM Do, YY';
+const dateFormat = 'dd/mm/yy'
 const todayDate = new Date();
 const styles = require('./styles');
 
@@ -45,7 +53,14 @@ export class CreateTask extends React.Component {
             itemNotes: '',
             fromProjectID: this.props.fromProject ? this.props.fromProject : '',
             fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : '',
-            newTaskFromProject: {}
+            newTaskFromProject: {},
+            items: [],
+            proj: null,
+            projName: empty,
+            showDate: false,
+            dueDate: '',
+            notificationTimes: "",
+            notesModalVisible: false,
         };
     }
 
@@ -53,59 +68,108 @@ export class CreateTask extends React.Component {
         controller.loadAll(this, Projects.TABLE_NAME);
         if (this.state.fromProjectID) {
             this.state.newTaskFromProject.project = this.state.fromProjectID
-            this.setState({newTaskFromProject: this.state.newTaskFromProject})
+            this.setState({ newTaskFromProject: this.state.newTaskFromProject })
 
         }
-            
+
     }
 
     /* #region  Top Bar Region */
-    renderTopBarSection() {
-        return (<View style={styles.topNav}>
-            <TouchableOpacity
-                style={styles.topNavBackButton}
-                onPress={this.props.closeModal}>
-                <SIcon
-                    style={{}}
-                    name="arrow-left"
-                    size={30}
-                    color={colorsProvider.tasksComplimentaryColor}
-                />
-            </TouchableOpacity>
-        </View>
-        )
+    renderTopBar() {
+        return <TopBar
+            nameOfItem={this.state.newTaskName}
+            dueDate={this.state.dueDate}
+            importance={this.state.newTaskImportance}
+            parent={this.state.proj}
+            parentName={this.state.projName}
+            closeModal={this.props.closeModal}
+            editName={item => {
+                this.setState({ newTaskName: item });
+                this.props.name(item);
+                this.state.newTaskFromProject.name = item;
+                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
+            }}
+            hasImportance={true}
+            hasParent={true}
+            editDueDate={() => {
+                Keyboard.dismiss()
+                this.setDateModalVisibility(true)
+            }}
+            setImportanceNN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNN(1)
+                this.props.save();
+            }}
+            setImportanceNU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNU(2)
+                this.props.save();
+            }}
+            setImportanceIN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIN(3)
+                this.props.save();
+            }}
+            setImportanceIU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIU(4)
+                this.props.save();
+            }}
+            selectParent={() => {
+                Keyboard.dismiss();
+                this.setProjectSelectionModalVisibility(true);
+            }}
+        />
     }
     /* #endregion */
 
+    /* #region  Top Bar Region */
+    // renderTopBarSection() {
+    //     return (<View style={styles.topNav}>
+    //         <TouchableOpacity
+    //             style={styles.topNavBackButton}
+    //             onPress={this.props.closeModal}>
+    //             <SIcon
+    //                 style={{}}
+    //                 name="arrow-left"
+    //                 size={30}
+    //                 color={colorsProvider.tasksComplimentaryColor}
+    //             />
+    //         </TouchableOpacity>
+    //     </View>
+    //     )
+    // }
+    /* #endregion */
+
     /* #region  Name Section */
-    renderNameSection() {
-        return (<TouchableOpacity
-            onPress={() => {
-                this.nameTextInput.focus();
-            }}
-            style={
-                this.state.newTaskName != ''
-                    ? styles.hasNameTextInputContainer
-                    : styles.createNameContainer
-            }
-        >
-            <TextInput
-                ref={input => {
-                    this.nameTextInput = input;
-                }}
-                maxLength={40}
-                style={styles.createNameText}
-                multiline={true}
-                placeholder={'Name'}
-                onChangeText={value => {
-                    this.setState({ newTaskName: value });
-                    this.props.name(value);
-                    this.state.newTaskFromProject.name = value;
-                    this.setState({newTaskFromProject: this.state.newTaskFromProject})
-                }}
-            ></TextInput>
-        </TouchableOpacity>)
-    }
+    // renderNameSection() {
+    //     return (<TouchableOpacity
+    //         onPress={() => {
+    //             this.nameTextInput.focus();
+    //         }}
+    //         style={
+    //             this.state.newTaskName != ''
+    //                 ? styles.hasNameTextInputContainer
+    //                 : styles.createNameContainer
+    //         }
+    //     >
+    //         <TextInput
+    //             ref={input => {
+    //                 this.nameTextInput = input;
+    //             }}
+    //             maxLength={40}
+    //             style={styles.createNameText}
+    //             multiline={true}
+    //             placeholder={'Name'}
+    //             onChangeText={value => {
+    //                 this.setState({ newTaskName: value });
+    //                 this.props.name(value);
+    //                 this.state.newTaskFromProject.name = value;
+    //                 this.setState({ newTaskFromProject: this.state.newTaskFromProject })
+    //             }}
+    //         ></TextInput>
+    //     </TouchableOpacity>)
+    // }
     /* #endregion */
 
     /* #region  Due Date Region */
@@ -126,7 +190,7 @@ export class CreateTask extends React.Component {
                         this.props.due_date(item);
                         this.setState({ itemDate: item });
                         this.state.newTaskFromProject.due_date = item
-                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
+                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
 
                     }}
                     onSubmit={item => {
@@ -134,7 +198,7 @@ export class CreateTask extends React.Component {
                         this.setState({ itemDate: item });
                         this.setDueDateModalVisibility(false);
                         this.state.newTaskFromProject.due_date = item
-                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
+                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
 
                     }}
                     closeModal={() => {
@@ -210,14 +274,14 @@ export class CreateTask extends React.Component {
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
                                 this.state.newTaskFromProject.importance = value;
-                                this.setState({newTaskFromProject: this.state.newTaskFromProject})
+                                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
                             }}
                             onValueChange={value => {
                                 Keyboard.dismiss()
                                 this.setState({ newTaskImportance: value });
                                 this.props.importance(value);
                                 this.state.newTaskFromProject.importance = value;
-                                this.setState({newTaskFromProject: this.state.newTaskFromProject})
+                                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
                             }}
                         />
                     </View>
@@ -244,7 +308,7 @@ export class CreateTask extends React.Component {
                         this.props.project(item.key);
                         this.setState({ theSelectedProject: item.value.name }, () => { });
                         this.state.newTaskFromProject.project = item.value.name;
-                        this.setState({newTaskFromProject: this.state.newTaskFromProject})
+                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
                     }}
                     closeModal={() => {
                         this.setProjectSelectionModalVisibility(false);
@@ -336,7 +400,7 @@ export class CreateTask extends React.Component {
                     setDate={item => {
                         this.props.notification_time(item);
                         this.setState({ itemNotificationTimes: item });
-                        
+
                     }}
                     closeModal={() => {
                         this.setNotificationTimesVisibility(false);
@@ -503,22 +567,24 @@ export class CreateTask extends React.Component {
                 {this.renderNotesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={styles.outerView}>
+                    <View style={styles.outerView}>
+
+                        {this.renderTopBar()}
 
                         {/* {TOP NAVIGATION SECTION} */}
-                        {this.renderTopBarSection()}
+                        {/* {this.renderTopBarSection()} */}
 
                         {/* { NAME INPUT SECTION} */}
-                        {this.renderNameSection()}
+                        {/* {this.renderNameSection()} */}
 
                         {/* { DUE DATE SECTION} */}
-                        {this.renderDueDate()}
+                        {/* {this.renderDueDate()} */}
 
                         {/* { SLIDER SECTION} */}
-                        {this.renderSliderSection()}
+                        {/* {this.renderSliderSection()} */}
 
                         {/* {PROJECT SELECTION SECTION} */}
-                        {this.renderProjectSelection()}
+                        {/* {this.renderProjectSelection()} */}
 
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}
@@ -529,7 +595,7 @@ export class CreateTask extends React.Component {
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}
 
-                    </SafeAreaView>
+                    </View>
                 </TouchableWithoutFeedback>
             </Modal>
         );

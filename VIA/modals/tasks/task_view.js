@@ -12,7 +12,6 @@ import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
-import SlidingPanel from 'react-native-sliding-up-down-panels';
 
 
 const notifier = new Notifier;
@@ -46,10 +45,7 @@ export class ViewTask extends React.Component {
             showDate: false,
             dueDate: '',
             notificationTimes: "",
-            // percentVal: this.props.selectedItem.percentage_done,
-            // importanceVal: this.props.selectedItem.importance ? this.props.selectedItem.importance : "",
             notesModalVisible: false,
-            // itemNotificationTimes: this.props.selectedItem.notification_time
         };
     }
 
