@@ -72,7 +72,6 @@ export class ViewTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        console.warn(this.state.selectedItem)
         return <TopBar
             nameOfItem={this.state.selectedItem.name}
             dueDate={this.state.selectedItem.due_date}
@@ -80,6 +79,7 @@ export class ViewTask extends React.Component {
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
             allParents={this.state.items}
+            hasParent={true}
             closeModal={this.props.closeModal}
             editName={item => {
                 this.props.editName(item);
@@ -87,7 +87,7 @@ export class ViewTask extends React.Component {
                 notifier.scheduleAllNotifications()
             }}
             hasImportance={true}
-            hasParent={true}
+
             editDueDate={() => {
                 Keyboard.dismiss()
                 this.setDateModalVisibility(true)
@@ -111,10 +111,6 @@ export class ViewTask extends React.Component {
                 Keyboard.dismiss()
                 this.props.setImportanceIU(4)
                 this.props.save();
-            }}
-            selectParent={() => {
-                Keyboard.dismiss();
-                this.setProjectSelectionModalVisibility(true);
             }}
         />
     }
@@ -400,7 +396,7 @@ export class ViewTask extends React.Component {
                         {this.renderCompleteAndTrashButton()}
 
                         {/* Notification Times Section */}
-                        {/* {this.renderNotificationTimes()} */}
+                        {this.renderNotificationTimes()}
 
                         {/* {NOTES SECTION} */}
                         {this.renderNotesSection()}

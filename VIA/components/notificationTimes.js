@@ -12,8 +12,6 @@ import Moment from 'moment';
 import DatePicker from 'react-native-date-picker'
 import { Notifier } from '../notifier/notifier'
 
-
-
 const screenHeight = Math.round(Dimensions.get('window').height);
 const todayDate = new Date();
 const notifier = new Notifier;

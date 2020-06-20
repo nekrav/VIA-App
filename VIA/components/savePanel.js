@@ -9,6 +9,7 @@ import Moment from 'moment';
 const todayDate = new Date();
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 export class SavePanel extends React.Component {
 
@@ -25,17 +26,17 @@ export class SavePanel extends React.Component {
         if (this.state.completed == "true") {
             return (
                 <TouchableOpacity
-                    style={{
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginLeft: 10,
-                        marginRight: 10,
-                        marginTop: 10,
-                        marginBottom: 10,
-                        borderRadius: 10,
-                        backgroundColor: colorsProvider.completeButtonColor
-                    }}
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    marginRight: 10,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderRadius: 10,
+                    backgroundColor: colorsProvider.completeButtonColor
+                }}
                     onLongPress={() => {
                         this.props.onUnCompletePressed()
                         this.setState({ completed: "false", finishedDate: "null", percentageDone: 0 })
@@ -90,160 +91,8 @@ export class SavePanel extends React.Component {
                     }}>Complete</Text>
                 </TouchableOpacity >)
     }
-    renderBottomSlidingPane() {
-        return (<RBSheet
-            ref={ref => {
-                this.RBSheet = ref;
-            }}
-            closeOnPressMask={true}
-            onClose={() => {
-                notifier.scheduleAllNotifications();
-            }}
-            dragFromTopOnly={true}
-            height={screenHeight / 1.36}
-            openDuration={250}>
-            <View style={{
-                marginTop: 10,
-                marginLeft: 20,
-            }}>
-                <Text style={{
-                    fontFamily: colorsProvider.font,
-                    color: colorsProvider.topBarColor,
-                    fontSize: colorsProvider.fontSizeMain
-                }}>{this.state.dayOfTheWeek}</Text>
-            </View>
-            <FlatList
-                data={this.state.dayNotificationTimes}
-                contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
-                style={{ marginLeft: 10, marginRight: 10 }}
-                renderItem={({ item }) =>
-                    <View style={{
-                        flex: 1,
-                        borderRadius: 10,
-                        backgroundColor: colorsProvider.topBarColor,
-                        marginTop: 10,
-                        marginBottom: 10,
-                    }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={{
-                                marginRight: 5,
-                                marginLeft: 10,
-                                marginTop: 10,
-                                marginBottom: 10,
-                                fontSize: colorsProvider.fontSizeChildren,
-                                fontFamily: colorsProvider.fontFamily,
-                                color: colorsProvider.whiteColor
-                            }}>{item}</Text>
-                            <TouchableOpacity onPress={() => {
-                                var index = this.state.dayNotificationTimes.indexOf(item)
-                                if (index !== -1) {
-                                    // var oldArr = this.state.dayNotificationTimes
-                                    // oldArr.splice(index, 1)
-                                    // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                    // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                    // selectedDay.times = oldArr
-                                    // var newTimes = JSON.stringify(arrayOfAllTimes)
-                                    // this.props.addNotificationTime(newTimes)
-                                    // this.setState({ dayNotificationTimes: oldArr })
 
-
-                                    var oldArr = this.state.dayNotificationTimes
-                                    oldArr.splice(index, 1)
-                                    var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                    selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                    selectedDay.times = oldArr
-                                    var newTimes = JSON.stringify(arrayOfAllTimes)
-
-                                    this.props.addNotificationTime(newTimes)
-                                    this.setState({ dayNotificationTimes: oldArr, notificationTimes: newTimes })
-                                }
-                            }}>
-                                <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                }
-            />
-            <View style={{ flexDirection: 'row', }}>
-                <View style={{
-                    flex: 2,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    backgroundColor: colorsProvider.topBarColor,
-                }}>
-                    <DatePicker
-                        textColor={colorsProvider.whiteColor}
-                        mode="time"
-                        date={this.state.newNotifTimeDate}
-                        onDateChange={date => {
-                            dateDate = date;
-                            dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                            this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
-                        }}
-                    />
-                </View>
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'column',
-                }}>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.setButtonColor
-                        }}
-                        onPress={() => {
-                            var oldArr = this.state.dayNotificationTimes
-                            var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
-                            newArr = oldArr.concat(dateTime)
-                            var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                            selectedDay.times = newArr
-                            var newTimes = JSON.stringify(arrayOfAllTimes)
-                            this.props.addNotificationTime(newTimes)
-                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Set</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.closeButtonColor
-                        }}
-                        onPress={() => {
-                            this.RBSheet.close()
-                            this.setState({ dayNotificationTimes: '' })
-                            notifier.scheduleAllNotifications();
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Close</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </RBSheet>)
-    }
     render() {
-        return (
-            <View>
-                {this.renderCompleteButton()}
-            </View>)
+        return this.renderCompleteButton()
     }
 }

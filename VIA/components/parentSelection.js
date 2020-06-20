@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard, Dimensions, FlatList } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -10,6 +10,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 const todayDate = new Date();
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 export class ParentSelection extends React.Component {
 
@@ -18,25 +19,142 @@ export class ParentSelection extends React.Component {
         super(props);
         this.state = {
             name: this.props.parentName,
+            allParents: this.props.allParents,
         };
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps != null)
-            this.setState({ name: newProps.parentName });
+            this.setState({ name: newProps.parentName, allParents: newProps.allParents });
     }
 
-    render() {
+    renderBottomSlidingPane() {
+        return (<RBSheet
+            ref={ref => {
+                this.RBSheet = ref;
+            }}
+            closeOnPressMask={true}
+            dragFromTopOnly={true}
+            height={screenHeight / 1.36}
+            openDuration={250}>
+            <View style={{
+                marginTop: 10,
+                marginLeft: 20,
+            }}>
+                <Text style={{
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.topBarColor,
+                    fontSize: colorsProvider.fontSizeMain
+                }}>Select Project</Text>
+            </View>
+            <FlatList
+                data={this.state.allParents}
+                contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                style={{ marginLeft: 10, marginRight: 10 }}
+                renderItem={({ item }) =>
+                    <View style={{
+                        flex: 1,
+                        borderRadius: 10,
+                        backgroundColor: colorsProvider.topBarColor,
+                        marginTop: 10,
+                        marginBottom: 10,
+                    }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>{item.value.name}</Text>
+                        </View>
+                    </View>
+                }
+            />
+            <View style={{ flexDirection: 'row', }}>
+                <View style={{
+                    flex: 2,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: colorsProvider.topBarColor,
+                }}>
+                </View>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                }}>
+                    <TouchableOpacity
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: colorsProvider.setButtonColor
+                        }}
+                        onPress={() => {
+                            // var oldArr = this.state.dayNotificationTimes
+                            // var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
+                            // newArr = oldArr.concat(dateTime)
+                            // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                            // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                            // selectedDay.times = newArr
+                            // var newTimes = JSON.stringify(arrayOfAllTimes)
+                            // this.props.addNotificationTime(newTimes)
+                            // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                        }}>
+                        <Text style={{
+                            marginRight: 5,
+                            marginLeft: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: colorsProvider.fontSizeChildren,
+                            fontFamily: colorsProvider.fontFamily,
+                            color: colorsProvider.whiteColor
+                        }}>Set</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: colorsProvider.closeButtonColor
+                        }}
+                        onPress={() => {
+                            this.RBSheet.close()
+                            this.setState({ dayNotificationTimes: '' })
+                            notifier.scheduleAllNotifications();
+                        }}>
+                        <Text style={{
+                            marginRight: 5,
+                            marginLeft: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: colorsProvider.fontSizeChildren,
+                            fontFamily: colorsProvider.fontFamily,
+                            color: colorsProvider.whiteColor
+                        }}>Close</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </RBSheet>)
+    }
+
+    renderProjectText() {
         if (this.state.name == null) {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={this.props.selectParent}>
+                    onPress={() => {
+                        console.warn(this.state.allParents)
+
+                        this.RBSheet.open()
+                    }}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
-                    Is this part of a bigger project?
+                        Is this part of a bigger project?
                     </Text>
 
                 </TouchableOpacity>
@@ -46,7 +164,9 @@ export class ParentSelection extends React.Component {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={this.props.selectParent}>
+                    onPress={() => {
+                        this.RBSheet.open()
+                    }}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
@@ -60,7 +180,9 @@ export class ParentSelection extends React.Component {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={this.props.selectParent}>
+                    onPress={() => {
+                        this.RBSheet.open()
+                    }}>
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
@@ -69,5 +191,14 @@ export class ParentSelection extends React.Component {
                 </TouchableOpacity>
             );
         }
+    }
+
+
+    render() {
+        return (<View>
+            {this.renderProjectText()}
+            {this.renderBottomSlidingPane()}
+
+        </View>)
     }
 }

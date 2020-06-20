@@ -202,7 +202,6 @@ export class CreateTask extends React.Component {
                     titleContainerColor={colorsProvider.projectsMainColor}
                     transparent={true}
                     selectItem={item => {
-                        console.warn(item.value.id)
                         this.props.project(item.value.id, item.value.name);
                         this.setState({ projName: item.value.name, proj: item.value.id }, () => { });
                         this.state.newTaskFromProject.project = item.value.name;
