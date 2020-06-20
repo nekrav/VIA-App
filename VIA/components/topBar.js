@@ -74,6 +74,14 @@ export class TopBar extends React.Component {
                 parent={this.state.parent}
                 selectParent={this.props.selectParent} 
                 allParents={this.props.allParents}
+                addParent={(id, name) => {
+                    this.props.setParent(id, name)
+                    this.setState({parent: id, parentName: name})
+                }}
+                removeParent={() => {
+                    this.props.setParent(null, null)
+                    this.setState({parent: null, parentName: null})
+                }}
                 />
         }
     }

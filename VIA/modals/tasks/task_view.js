@@ -78,6 +78,16 @@ export class ViewTask extends React.Component {
             importance={this.state.selectedItem.importance}
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
+            setParent={(id, name) => {
+                this.props.editProject(id, name)
+                this.setState({ projName: name })
+                this.props.save();
+            }}
+            removeParent={() => {
+                this.props.editProject(null, null)
+                this.setState({ projName: null })
+                this.props.save();
+            }}
             allParents={this.state.items}
             hasParent={true}
             closeModal={this.props.closeModal}

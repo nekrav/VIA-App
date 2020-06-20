@@ -60,7 +60,12 @@ export class ParentSelection extends React.Component {
                         marginTop: 10,
                         marginBottom: 10,
                     }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <TouchableOpacity 
+                        onPress={() => {
+                            this.props.addParent(item.value.id, item.value.name);
+                            this.RBSheet.close()
+                        }}
+                        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                             <Text style={{
                                 marginRight: 5,
                                 marginLeft: 10,
@@ -70,7 +75,7 @@ export class ParentSelection extends React.Component {
                                 fontFamily: colorsProvider.fontFamily,
                                 color: colorsProvider.whiteColor
                             }}>{item.value.name}</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 }
             />
@@ -85,6 +90,8 @@ export class ParentSelection extends React.Component {
                         alignContent: 'center',
                     }}
                     onPress={() => {
+                        this.props.removeParent();
+                        this.RBSheet.close()
                     }}>
                     <Text style={{
                         marginRight: 10,
@@ -106,6 +113,7 @@ export class ParentSelection extends React.Component {
                         borderRadius: 10,
                     }}
                     onPress={() => {
+                        this.RBSheet.close()
                     }}>
                     <Text style={{
                         marginRight: 10,
