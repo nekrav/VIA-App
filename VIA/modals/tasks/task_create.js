@@ -98,22 +98,22 @@ export class CreateTask extends React.Component {
             setImportanceNN={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceNN(1)
-                this.props.save();
+                // this.props.save();
             }}
             setImportanceNU={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceNU(2)
-                this.props.save();
+                // this.props.save();
             }}
             setImportanceIN={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceIN(3)
-                this.props.save();
+                // this.props.save();
             }}
             setImportanceIU={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceIU(4)
-                this.props.save();
+                // this.props.save();
             }}
             selectParent={() => {
                 Keyboard.dismiss();
