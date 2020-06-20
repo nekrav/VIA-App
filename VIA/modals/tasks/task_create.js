@@ -56,7 +56,7 @@ export class CreateTask extends React.Component {
             newTaskFromProject: {},
             items: [],
             proj: null,
-            projName: empty,
+            projName: null,
             showDate: false,
             dueDate: '',
             notificationTimes: "",

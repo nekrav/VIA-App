@@ -28,7 +28,7 @@ export class TopBar extends React.Component {
             return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
         }
         else if (this.getNumberOfDaysLeft(date) < 0) {
-            return (<View style={{ flexDirection: 'column', marginTop : 15, marginRight: 15, marginLeft: 10,  alignItems: 'center' }}>
+            return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
                 <TouchableOpacity onPress={this.props.editDueDate}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
                 </TouchableOpacity>
@@ -36,7 +36,7 @@ export class TopBar extends React.Component {
             </View>)
         }
         else if (date) {
-            return (<View style={{ flexDirection: 'column',  marginTop : 15, marginRight: 15,marginLeft: 10,  alignItems: 'center' }}>
+            return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
                 <TouchableOpacity onPress={this.props.editDueDate}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
                 </TouchableOpacity>
@@ -45,7 +45,7 @@ export class TopBar extends React.Component {
         }
         else {
             return <TouchableOpacity onPress={this.props.editDueDate}>
-                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop : 15, marginRight: 15,marginLeft: 10,  textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
+                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop: 15, marginRight: 15, marginLeft: 10, textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
             </TouchableOpacity>
         }
 
@@ -78,8 +78,8 @@ export class TopBar extends React.Component {
 
     render() {
         return (
-            <View style={{  flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
-                <View style={{ marginTop: '10%',flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
+            <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
+                <View style={{ marginTop: '10%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                     <TouchableOpacity
                         onPress={() => { this.props.closeModal() }}
                         style={{ margin: 5 }}>
@@ -92,7 +92,14 @@ export class TopBar extends React.Component {
                             ref={(input) => { this.nameTextInput = input; }}
                             maxLength={40}
                             numberOfLines={2}
-                            style={{ color: colorsProvider.whiteColor, fontSize: colorsProvider.fontSizeMain, borderBottomColor: colorsProvider.whiteColor, borderBottomWidth: 1 }}
+                            placeholder={"Name"}
+                            style={{
+                                color: colorsProvider.whiteColor,
+                                fontFamily: colorsProvider.font,
+                                fontSize: colorsProvider.fontSizeMain,
+                                borderBottomColor: colorsProvider.whiteColor,
+                                borderBottomWidth: 1
+                            }}
                             multiline={true}
                             value={this.props.nameOfItem}
                             onChangeText={this.props.editName}>
