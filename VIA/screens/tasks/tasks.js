@@ -146,7 +146,6 @@ export class TasksScreen extends React.Component {
                     visible={this.state.viewModalVisible}
                     transparent={false}
                     editName={(text) => {
-                        console.warn(text)
                         theTask.name = text;
                         this.setState({ selectedTask: theTask })
                     }}

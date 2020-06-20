@@ -228,8 +228,9 @@ export class NotificationTimes extends React.Component {
                                     selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
                                     selectedDay.times = oldArr
                                     var newTimes = JSON.stringify(arrayOfAllTimes)
+
                                     this.props.addNotificationTime(newTimes)
-                                    this.setState({ dayNotificationTimes: oldArr })
+                                    this.setState({ dayNotificationTimes: oldArr, notificationTimes: newTimes })
                                 }
                             }}>
                                 <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
@@ -276,7 +277,7 @@ export class NotificationTimes extends React.Component {
                             selectedDay.times = newArr
                             var newTimes = JSON.stringify(arrayOfAllTimes)
                             this.props.addNotificationTime(newTimes)
-                            this.setState({ dayNotificationTimes: newArr })
+                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
                         }}>
                         <Text style={{
                             marginRight: 5,
