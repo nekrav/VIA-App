@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';

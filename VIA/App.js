@@ -16,7 +16,7 @@ import { HomeButton } from '../VIA/components/homeButton'
 const notifier = new Notifier;
 const controller = new Controller;
 
-console.disableYellowBox = true;
+console.disableYellowBox = false;
 
 notifier.registerNotificationService();
 
@@ -35,7 +35,6 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          // loadElements={Database.init()}
           activeColor={colorsProvider.habitsComplimentaryColor}
           inactiveColor={colorsProvider.whiteColor}
           tintColor={ tintColor }

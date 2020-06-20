@@ -95,6 +95,7 @@ export class TasksScreen extends React.Component {
         newTask.percentage_done = 0;
         newTask.completed = "false";
         newTask.project = task.project ? task.project : "";
+        newTask.projectName = task.projectName ? task.projectName : "";
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
@@ -146,6 +147,7 @@ export class TasksScreen extends React.Component {
                     if (!newTask.notification_time) {
                         newTask.notification_time = JSON.stringify(emptyTimes)
                     }
+                    console.warn(newTask)
                     this.saveNew(newTask)
                 }}
             ></CreateTask>

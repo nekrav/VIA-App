@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard, Dimensions, FlatList } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Dimensions, FlatList, Keyboard } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -136,8 +136,7 @@ export class ParentSelection extends React.Component {
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={() => {
-                        console.warn(this.state.allParents)
-
+                        Keyboard.dismiss()
                         this.RBSheet.open()
                     }}>
                     <Text style={{ marginRight: 5 }}>
@@ -155,6 +154,7 @@ export class ParentSelection extends React.Component {
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={() => {
+                        Keyboard.dismiss()
                         this.RBSheet.open()
                     }}>
                     <Text style={{ marginRight: 5 }}>
@@ -171,6 +171,7 @@ export class ParentSelection extends React.Component {
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
                     onPress={() => {
+                        Keyboard.dismiss()
                         this.RBSheet.open()
                     }}>
                     <Text style={{ marginRight: 5 }}>

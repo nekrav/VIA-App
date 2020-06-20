@@ -54,7 +54,6 @@ export class CreateTask extends React.Component {
             fromProjectID: this.props.fromProject ? this.props.fromProject : '',
             fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : '',
             newTaskFromProject: {},
-            items: [],
             proj: null,
             projName: null,
             showDate: false,
@@ -82,6 +81,16 @@ export class CreateTask extends React.Component {
             importance={this.state.newTaskImportance}
             parent={this.state.proj}
             parentName={this.state.projName}
+            allParents={this.state.items}
+            setParent={(id, name) => {
+                console.warn(name)
+                this.props.project(id, name);
+                this.setState({ projName: name, proj: id });
+            }}
+            removeParent={() => {
+                this.props.project(null, null)
+                this.setState({ projName: null, proj: null });
+            }}
             closeModal={this.props.closeModal}
             editName={item => {
                 this.setState({ newTaskName: item });
@@ -396,6 +405,7 @@ export class CreateTask extends React.Component {
                 <TouchableOpacity
                     style={styles.hasNotesContainer}
                     onPress={() => {
+                        Keyboard.dismiss
                         this.setNotesModalVisibility(true);
                     }}>
                     <Text
@@ -411,6 +421,7 @@ export class CreateTask extends React.Component {
             <TouchableOpacity
                 style={styles.createNotesContainer}
                 onPress={() => {
+                    Keyboard.dismiss
                     this.setNotesModalVisibility(true);
                 }}>
                 <Text
@@ -487,7 +498,7 @@ export class CreateTask extends React.Component {
                         {this.renderNotificationTimes()}
 
                         {/* {NOTES SECTION} */}
-                        {this.renderNotesSection()}
+                        {/* {this.renderNotesSection()} */}
 
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}
