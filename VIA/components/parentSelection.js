@@ -19,6 +19,7 @@ export class ParentSelection extends React.Component {
         super(props);
         this.state = {
             name: this.props.parentName,
+            selectedParent: this.props.parent,
             allParents: this.props.allParents,
         };
     }
@@ -73,69 +74,50 @@ export class ParentSelection extends React.Component {
                     </View>
                 }
             />
-            <View style={{ flexDirection: 'row', }}>
-                <View style={{
-                    flex: 2,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    backgroundColor: colorsProvider.topBarColor,
-                }}>
-                </View>
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'column',
-                }}>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.setButtonColor
-                        }}
-                        onPress={() => {
-                            // var oldArr = this.state.dayNotificationTimes
-                            // var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
-                            // newArr = oldArr.concat(dateTime)
-                            // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                            // selectedDay.times = newArr
-                            // var newTimes = JSON.stringify(arrayOfAllTimes)
-                            // this.props.addNotificationTime(newTimes)
-                            // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Set</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.closeButtonColor
-                        }}
-                        onPress={() => {
-                            this.RBSheet.close()
-                            this.setState({ dayNotificationTimes: '' })
-                            notifier.scheduleAllNotifications();
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Close</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 50, justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: colorsProvider.redColor,
+                        margin: 10,
+                        borderRadius: 10,
+                        alignContent: 'center',
+                    }}
+                    onPress={() => {
+                    }}>
+                    <Text style={{
+                        marginRight: 10,
+                        marginLeft: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        fontSize: colorsProvider.fontSizeChildren,
+                        fontFamily: colorsProvider.fontFamily,
+                        color: colorsProvider.whiteColor
+                    }}>Remove From Project</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        alignContent: 'center',
+                        backgroundColor: colorsProvider.closeButtonColor,
+                        margin: 10,
+                        borderRadius: 10,
+                    }}
+                    onPress={() => {
+                    }}>
+                    <Text style={{
+                        marginRight: 10,
+                        marginLeft: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        fontSize: colorsProvider.fontSizeChildren,
+                        fontFamily: colorsProvider.fontFamily,
+                        color: colorsProvider.whiteColor
+                    }}>Close</Text>
+                </TouchableOpacity>
+
             </View>
         </RBSheet>)
     }
