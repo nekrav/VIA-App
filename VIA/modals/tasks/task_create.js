@@ -98,22 +98,18 @@ export class CreateTask extends React.Component {
             setImportanceNN={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceNN(1)
-                // this.props.save();
             }}
             setImportanceNU={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceNU(2)
-                // this.props.save();
             }}
             setImportanceIN={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceIN(3)
-                // this.props.save();
             }}
             setImportanceIU={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceIU(4)
-                // this.props.save();
             }}
             selectParent={() => {
                 Keyboard.dismiss();
@@ -121,55 +117,6 @@ export class CreateTask extends React.Component {
             }}
         />
     }
-    /* #endregion */
-
-    /* #region  Top Bar Region */
-    // renderTopBarSection() {
-    //     return (<View style={styles.topNav}>
-    //         <TouchableOpacity
-    //             style={styles.topNavBackButton}
-    //             onPress={this.props.closeModal}>
-    //             <SIcon
-    //                 style={{}}
-    //                 name="arrow-left"
-    //                 size={30}
-    //                 color={colorsProvider.tasksComplimentaryColor}
-    //             />
-    //         </TouchableOpacity>
-    //     </View>
-    //     )
-    // }
-    /* #endregion */
-
-    /* #region  Name Section */
-    // renderNameSection() {
-    //     return (<TouchableOpacity
-    //         onPress={() => {
-    //             this.nameTextInput.focus();
-    //         }}
-    //         style={
-    //             this.state.newTaskName != ''
-    //                 ? styles.hasNameTextInputContainer
-    //                 : styles.createNameContainer
-    //         }
-    //     >
-    //         <TextInput
-    //             ref={input => {
-    //                 this.nameTextInput = input;
-    //             }}
-    //             maxLength={40}
-    //             style={styles.createNameText}
-    //             multiline={true}
-    //             placeholder={'Name'}
-    //             onChangeText={value => {
-    //                 this.setState({ newTaskName: value });
-    //                 this.props.name(value);
-    //                 this.state.newTaskFromProject.name = value;
-    //                 this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-    //             }}
-    //         ></TextInput>
-    //     </TouchableOpacity>)
-    // }
     /* #endregion */
 
     /* #region  Due Date Region */
@@ -243,56 +190,6 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Slider Region */
-    renderSliderSection() {
-        return (
-            <View style={styles.slidersSection}>
-                <View style={styles.slidersTitlesContainer}>
-                    <View style={styles.sliderTitleContainerCenter}>
-                        <Text
-                            style={
-                                this.state.newTaskImportance > 0
-                                    ? styles.sliderTitle
-                                    : styles.sliderTitleNull
-                            }>
-                            Importance
-</Text>
-                    </View>
-                </View>
-
-                <View style={styles.slidersContainer}>
-                    {this.renderDueDateModal()}
-                    <View style={styles.sliderContainerCenter}>
-                        <Slider
-                            style={styles.sliderSlider}
-                            minimumValue={0}
-                            maximumValue={100}
-                            thumbTintColor={this.state.newTaskImportance > 0 ? colorsProvider.tasksComplimentaryColor : colorsProvider.tasksPlaceholderColor}
-                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
-                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            onSlidingComplete={value => {
-                                this.setState({ newTaskImportance: value });
-                                this.props.importance(value);
-                                this.state.newTaskFromProject.importance = value;
-                                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-                            }}
-                            onValueChange={value => {
-                                Keyboard.dismiss()
-                                this.setState({ newTaskImportance: value });
-                                this.props.importance(value);
-                                this.state.newTaskFromProject.importance = value;
-                                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-                            }}
-                        />
-                    </View>
-                </View>
-            </View>
-
-        )
-
-    }
-    /* #endregion */
-
     /* #region  Project Selection Region */
     showProjectSelectionModal() {
         if (this.state.projectSelectionModalVisible) {
@@ -305,8 +202,9 @@ export class CreateTask extends React.Component {
                     titleContainerColor={colorsProvider.projectsMainColor}
                     transparent={true}
                     selectItem={item => {
-                        this.props.project(item.key);
-                        this.setState({ theSelectedProject: item.value.name }, () => { });
+                        console.warn(item.value.id)
+                        this.props.project(item.value.id, item.value.name);
+                        this.setState({ projName: item.value.name, proj: item.value.id }, () => { });
                         this.state.newTaskFromProject.project = item.value.name;
                         this.setState({ newTaskFromProject: this.state.newTaskFromProject })
                     }}

@@ -72,12 +72,14 @@ export class ViewTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
+        console.warn(this.state.selectedItem)
         return <TopBar
             nameOfItem={this.state.selectedItem.name}
             dueDate={this.state.selectedItem.due_date}
             importance={this.state.selectedItem.importance}
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
+            allParents={this.state.items}
             closeModal={this.props.closeModal}
             editName={item => {
                 this.props.editName(item);
@@ -398,7 +400,7 @@ export class ViewTask extends React.Component {
                         {this.renderCompleteAndTrashButton()}
 
                         {/* Notification Times Section */}
-                        {this.renderNotificationTimes()}
+                        {/* {this.renderNotificationTimes()} */}
 
                         {/* {NOTES SECTION} */}
                         {this.renderNotesSection()}

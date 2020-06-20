@@ -128,7 +128,10 @@ export class TasksScreen extends React.Component {
                     newTask.importance = 4;
                 }}
                 importance={(text) => { newTask.importance = text }}
-                project={(text) => { newTask.project = text }}
+                project={(id, name) => {
+                    newTask.projectName = name;
+                    newTask.project = id
+                }}
                 time_spent={(text) => { newTask.time_spent = text }}
                 notes={(text) => { newTask.notes = text }}
                 notification_time={(text) => {

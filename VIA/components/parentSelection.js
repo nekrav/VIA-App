@@ -5,6 +5,7 @@ import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } fr
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const todayDate = new Date();
 
