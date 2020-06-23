@@ -105,6 +105,7 @@ export class CreateTask extends React.Component {
             dueDate: '',
             notificationTimes: "",
             notesModalVisible: false,
+            notes: ""
         };
     }
 
@@ -128,7 +129,6 @@ export class CreateTask extends React.Component {
             parentName={this.state.projName}
             allParents={this.state.items}
             setParent={(id, name) => {
-                console.warn(name)
                 this.props.project(id, name);
                 this.setState({ projName: name, proj: id });
             }}
@@ -342,70 +342,70 @@ export class CreateTask extends React.Component {
     /* #endregion */
 
     /* #region  Notes Region */
-    setNotesModalVisibility(visible) {
-        this.setState({ notesModalVisible: visible });
-    }
+    // setNotesModalVisibility(visible) {
+    //     this.setState({ notesModalVisible: visible });
+    // }
 
-    renderNotesModal() {
-        if (this.state.notesModalVisible) {
-            return (
-                <NotesModal
-                    animationType="slide"
-                    transparent={true}
-                    existingNotes={this.state.itemNotes}
-                    backgroundColor={colorsProvider.tasksMainColor}
-                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
-                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
-                    textChangedColor={colorsProvider.tasksComplimentaryColor}
-                    placeholder={'Notes...'}
-                    setNotes={item => {
-                        this.props.notes(item);
-                        this.setState({ itemNotes: item });
-                        this.state.newTaskFromProject.n
-                    }}
-                    closeModal={() => {
-                        this.setNotesModalVisibility(false);
-                    }}
-                ></NotesModal>
-            );
-        }
-        return null;
-    }
+    // renderNotesModal() {
+    //     if (this.state.notesModalVisible) {
+    //         return (
+    //             <NotesModal
+    //                 animationType="slide"
+    //                 transparent={true}
+    //                 existingNotes={this.state.itemNotes}
+    //                 backgroundColor={colorsProvider.tasksMainColor}
+    //                 buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
+    //                 buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
+    //                 textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
+    //                 textChangedColor={colorsProvider.tasksComplimentaryColor}
+    //                 placeholder={'Notes...'}
+    //                 setNotes={item => {
+    //                     this.props.notes(item);
+    //                     this.setState({ itemNotes: item });
+    //                     this.state.newTaskFromProject.n
+    //                 }}
+    //                 closeModal={() => {
+    //                     this.setNotesModalVisibility(false);
+    //                 }}
+    //             ></NotesModal>
+    //         );
+    //     }
+    //     return null;
+    // }
 
-    renderNotesSection() {
-        if (this.state.itemNotes != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotesContainer}
-                    onPress={() => {
-                        Keyboard.dismiss
-                        this.setNotesModalVisibility(true);
-                    }}>
-                    <Text
-                        style={styles.hasNotesText}
-                        multiline={true}
-                        onChangeText={this.props.notes}>
-                        {this.state.itemNotes}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.createNotesContainer}
-                onPress={() => {
-                    Keyboard.dismiss
-                    this.setNotesModalVisibility(true);
-                }}>
-                <Text
-                    style={styles.createNotesText}
-                    multiline={true}
-                    onChangeText={this.props.notes}>
-                    Notes ...</Text>
-            </TouchableOpacity>
-        );
-    }
+    // renderNotesSection() {
+    //     if (this.state.itemNotes != '') {
+    //         return (
+    //             <TouchableOpacity
+    //                 style={styles.hasNotesContainer}
+    //                 onPress={() => {
+    //                     Keyboard.dismiss
+    //                     this.setNotesModalVisibility(true);
+    //                 }}>
+    //                 <Text
+    //                     style={styles.hasNotesText}
+    //                     multiline={true}
+    //                     onChangeText={this.props.notes}>
+    //                     {this.state.itemNotes}
+    //                 </Text>
+    //             </TouchableOpacity>
+    //         );
+    //     }
+    //     return (
+    //         <TouchableOpacity
+    //             style={styles.createNotesContainer}
+    //             onPress={() => {
+    //                 Keyboard.dismiss
+    //                 this.setNotesModalVisibility(true);
+    //             }}>
+    //             <Text
+    //                 style={styles.createNotesText}
+    //                 multiline={true}
+    //                 onChangeText={this.props.notes}>
+    //                 Notes ...</Text>
+    //         </TouchableOpacity>
+    //     );
+    // }
     /* #endregion */
 
     /* #region  Bottom Buttons Section */
@@ -436,6 +436,17 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
+      /* #region  Notes Region */
+
+      renderNotesSection() {
+        return <Notes
+            notes={this.state.notes}
+            editNotes={value => {
+                this.props.notes(value);
+            }} />
+    }
+    /* #endregion */
+
     render() {
         return (
             <Modal
@@ -444,21 +455,10 @@ export class CreateTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
 
-                {this.renderNotesModal()}
-
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
 
                         {this.renderTopBar()}
-
-                        {/* {TOP NAVIGATION SECTION} */}
-                        {/* {this.renderTopBarSection()} */}
-
-                        {/* { NAME INPUT SECTION} */}
-                        {/* {this.renderNameSection()} */}
-
-                        {/* { DUE DATE SECTION} */}
-                        {/* {this.renderDueDate()} */}
 
                         {/* { SLIDER SECTION} */}
                         {/* {this.renderSliderSection()} */}
@@ -470,7 +470,7 @@ export class CreateTask extends React.Component {
                         {this.renderNotificationTimes()}
 
                         {/* {NOTES SECTION} */}
-                        {/* {this.renderNotesSection()} */}
+                        {this.renderNotesSection()}
 
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}

@@ -72,7 +72,6 @@ export class ViewTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        console.warn(this.state.selectedItem)
         return <TopBar
             nameOfItem={this.state.selectedItem.name}
             dueDate={this.state.selectedItem.due_date}

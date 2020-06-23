@@ -147,7 +147,6 @@ export class TasksScreen extends React.Component {
                     if (!newTask.notification_time) {
                         newTask.notification_time = JSON.stringify(emptyTimes)
                     }
-                    console.warn(newTask)
                     this.saveNew(newTask)
                 }}
             ></CreateTask>

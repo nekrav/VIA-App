@@ -113,14 +113,11 @@ export class NotificationTimes extends React.Component {
     renderNotificationTimes() {
         var daysWithNotifications = '';
         var jsonArr = ''
-        console.warn(this.state.notificationTimes)
         if (this.state.notificationTimes != "") {
-            console.warn("has")
             jsonArr = JSON.parse(this.state.notificationTimes);
         } else {
-            console.warn("has not")
-            console.warn(emptyTimes)
             jsonArr = emptyTimes
+            this.setState({notificationTimes: JSON.stringify(emptyTimes)})
         }
         
         if (this.state.notificationTimes != '') {
@@ -282,10 +279,11 @@ export class NotificationTimes extends React.Component {
                             newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                            selectedDay.times = newArr
-                            var newTimes = JSON.stringify(arrayOfAllTimes)
-                            this.props.addNotificationTime(newTimes)
-                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                            console.warn(selectedDay)
+                            // selectedDay.times = newArr
+                            // var newTimes = JSON.stringify(arrayOfAllTimes)
+                            // this.props.addNotificationTime(newTimes)
+                            // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
                         }}>
                         <Text style={{
                             marginRight: 5,
