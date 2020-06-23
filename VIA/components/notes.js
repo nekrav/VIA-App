@@ -62,12 +62,13 @@ export class Notes extends React.Component {
                         this.setNotesModalVisibility(true);
                     }}
                     style={{
+                        // flex: 2,
                         flexDirection: 'column',
                         height: "58%",
                         marginLeft: 10,
                         marginRight: 10,
                         marginTop: 10,
-                        marginBottom: 10,
+                        // marginBottom: 10,
                         backgroundColor: colorsProvider.topBarColor,
                         borderRadius: 20
                     }}>
@@ -87,12 +88,13 @@ export class Notes extends React.Component {
                         this.setNotesModalVisibility(true);
                     }}
                     style={{
+                        // flex: 2,
                         flexDirection: 'column',
                         height: "58%",
                         marginLeft: 10,
                         marginRight: 10,
                         marginTop: 10,
-                        marginBottom: 10,
+                        // marginBottom: 10,
                         backgroundColor: colorsProvider.topBarColor,
                         borderRadius: 20
                     }}>
@@ -109,7 +111,7 @@ export class Notes extends React.Component {
     }
 
     render() {
-        return <View>
+        return <View style={ { flex: 1, marginBottom: 10,}}>
             {this.renderNotesModal()}
             {this.renderNotes()}
         </View>
