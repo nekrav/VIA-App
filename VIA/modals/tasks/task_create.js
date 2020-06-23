@@ -411,7 +411,12 @@ export class CreateTask extends React.Component {
 
     /* #region  Bottom Buttons Section */
     renderBottomButtons() {
-        return (<View style={styles.bottomButtonsContainer}>
+        return (<View style={{
+            // paddingTop: 18,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 50,
+        }}>
             <TouchableOpacity
                 style={{
                     flex: 1,
@@ -445,7 +450,9 @@ export class CreateTask extends React.Component {
                             marginRight: 10,
                             marginTop: 10,
                             marginBottom: 10,
-                            borderRadius: 10,
+                            borderRadius: 20,
+                            borderWidth: 2,
+                            borderColor: colorsProvider.completeButtonColor,
                             backgroundColor: colorsProvider.completeButtonColor
                         }
                         : {
@@ -456,8 +463,9 @@ export class CreateTask extends React.Component {
                             marginRight: 10,
                             marginTop: 10,
                             marginBottom: 10,
-                            borderRadius: 10,
-                            backgroundColor: colorsProvider.incompleteColor
+                            borderWidth: 2,
+                            borderRadius: 20,
+                            borderColor: colorsProvider.completeButtonColor,
                         }
                 }
                 onPress={() => {
