@@ -60,9 +60,16 @@ export class Notes extends React.Component {
         if (this.state.notes) {
             return (
                 <TouchableOpacity
-                    onPress={() => {
+                onPress={() => {
+                    if (this.state.keyboardOpen)
+                    {
+                        Keyboard.dismiss()
+                    } else {
                         this.setNotesModalVisibility(true);
-                    }}
+                        Keyboard.dismiss()
+                    }
+                    
+                }}
                     style={{
                         // flex: 2,
                         flexDirection: 'column',

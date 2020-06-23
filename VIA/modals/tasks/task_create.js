@@ -413,16 +413,52 @@ export class CreateTask extends React.Component {
     renderBottomButtons() {
         return (<View style={styles.bottomButtonsContainer}>
             <TouchableOpacity
-                style={styles.bottomButtonLeftClose}
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    marginRight: 10,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderRadius: 20,
+                    backgroundColor: colorsProvider.closeButtonColor
+                }}
                 onPress={this.props.closeModal}>
-                <Text style={styles.bottomButtonText}>Close</Text>
+                <Text style={{
+                    fontSize: 18,
+                    textAlign: 'center',
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.whiteColor,
+                    margin: 10,
+                }}>Close</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 disabled={this.state.newTaskName != '' ? false : true}
                 style={
                     this.state.newTaskName != ''
-                        ? styles.bottomButtonRight
-                        : styles.bottomButtonRightDisabled
+                        ? {
+                            flex: 2,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginLeft: 10,
+                            marginRight: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            borderRadius: 10,
+                            backgroundColor: colorsProvider.completeButtonColor
+                        }
+                        : {
+                            flex: 2,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginLeft: 10,
+                            marginRight: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            borderRadius: 10,
+                            backgroundColor: colorsProvider.incompleteColor
+                        }
                 }
                 onPress={() => {
                     notifier.scheduleAllNotifications();
