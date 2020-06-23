@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
@@ -88,6 +88,7 @@ export class TopBar extends React.Component {
 
     render() {
         return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
                 <View style={{ marginTop: '10%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                     <TouchableOpacity
@@ -103,6 +104,7 @@ export class TopBar extends React.Component {
                             maxLength={40}
                             numberOfLines={2}
                             placeholder={"Name"}
+                            onSubmitEditing={Keyboard.dismiss}
                             style={{
                                 color: colorsProvider.whiteColor,
                                 fontFamily: colorsProvider.font,
@@ -122,6 +124,7 @@ export class TopBar extends React.Component {
                 {this.renderParent(this.props.parentName)}
                 {this.renderImportance(this.state.importanceValue)}
             </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

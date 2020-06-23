@@ -423,7 +423,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: colorsProvider.tasksMainColor,
+        color: colorsProvider.whiteColor,
     },
     /* #endregion */
 

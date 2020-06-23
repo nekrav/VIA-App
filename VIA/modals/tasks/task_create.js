@@ -10,6 +10,7 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native'; // Version can be specified in package.json
+import KeyboardListener from 'react-native-keyboard-listener';
 import { SelectionModal } from '../selectionModal/selectionModal';
 import { DateModal } from '../dateModal/dateModal';
 import { NotesModal } from '../notesModal/notesModal';
@@ -245,24 +246,24 @@ export class CreateTask extends React.Component {
     /* #endregion */
 
 
- /* #region  Notification Times Region */
+    /* #region  Notification Times Region */
 
- renderNotificationTimes() {
-    return (<NotificationTimes
-        notificationTimes={this.state.notificationTimes}
-        onPress={() => {
-            this.setNotificationTimesVisibility(true);
-        }}
-        addNotificationTime={item => {
-            this.props.notification_time(item);
-            this.setState({ notificationTimes: item })
-            this.props.save();
-            notifier.scheduleAllNotifications();
-        }}
-    />
-    )
-}
-/* #endregion */
+    renderNotificationTimes() {
+        return (<NotificationTimes
+            notificationTimes={this.state.notificationTimes}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}
+            addNotificationTime={item => {
+                this.props.notification_time(item);
+                this.setState({ notificationTimes: item })
+                this.props.save();
+                notifier.scheduleAllNotifications();
+            }}
+        />
+        )
+    }
+    /* #endregion */
 
     /* #region  Notification Times Region */
     // setNotificationTimesVisibility(visible) {
@@ -436,9 +437,9 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-      /* #region  Notes Region */
+    /* #region  Notes Region */
 
-      renderNotesSection() {
+    renderNotesSection() {
         return <Notes
             notes={this.state.notes}
             editNotes={value => {
@@ -462,9 +463,6 @@ export class CreateTask extends React.Component {
 
                         {/* { SLIDER SECTION} */}
                         {/* {this.renderSliderSection()} */}
-
-                        {/* {PROJECT SELECTION SECTION} */}
-                        {/* {this.renderProjectSelection()} */}
 
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}

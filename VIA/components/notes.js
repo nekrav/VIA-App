@@ -1,10 +1,12 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import { NotesModal } from '../modals/notesModal/notesModal';
+import KeyboardListener from 'react-native-keyboard-listener';
+
 
 import Moment from 'moment';
 
@@ -85,7 +87,14 @@ export class Notes extends React.Component {
             return (
                 <TouchableOpacity
                     onPress={() => {
-                        this.setNotesModalVisibility(true);
+                        if (this.state.keyboardOpen)
+                        {
+                            Keyboard.dismiss()
+                        } else {
+                            this.setNotesModalVisibility(true);
+                            Keyboard.dismiss()
+                        }
+                        
                     }}
                     style={{
                         // flex: 2,
@@ -111,7 +120,11 @@ export class Notes extends React.Component {
     }
 
     render() {
-        return <View style={ { flex: 1, marginBottom: 10,}}>
+        return <View style={{ flex: 1, marginBottom: 10, }}>
+            <KeyboardListener
+                onWillShow={() => { this.setState({ keyboardOpen: true }); }}
+                onWillHide={() => { this.setState({ keyboardOpen: false }); }}
+            />
             {this.renderNotesModal()}
             {this.renderNotes()}
         </View>
