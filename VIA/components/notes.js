@@ -72,8 +72,8 @@ export class Notes extends React.Component {
                         borderRadius: 20
                     }}>
                     <Text style={{
-                        marginLeft: 5,
-                        marginTop: 5,
+                        marginLeft: 10,
+                        marginTop: 10,
                         fontFamily: colorsProvider.font,
                         fontSize: colorsProvider.fontSizeSmall,
                         color: colorsProvider.whiteColor
@@ -97,8 +97,8 @@ export class Notes extends React.Component {
                         borderRadius: 20
                     }}>
                     <Text style={{
-                        marginLeft: 5,
-                        marginTop: 5,
+                        marginLeft: 10,
+                        marginTop: 10,
                         fontFamily: colorsProvider.font,
                         fontSize: colorsProvider.fontSizeSmall,
                         color: colorsProvider.whiteColor
