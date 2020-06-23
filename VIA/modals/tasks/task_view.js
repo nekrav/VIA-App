@@ -282,35 +282,7 @@ export class ViewTask extends React.Component {
 
     /* #endregion */
 
-    // /* #region  Complete Button Section */
-
-    // renderCompleteButton() {
-    //     return (<TouchableOpacity
-    //         style={styles.completeButtonBody}
-    //         onLongPress={() => {
-    //             this.setState({ percentVal: 0 })
-    //             this.props.editCompleted("false")
-    //             this.props.editPercentageDone(0)
-    //         }
-    //         }
-    //         onPress={() => {
-    //             this.setState({ percentVal: 100 })
-    //             this.props.editPercentageDone(100)
-    //             this.props.editCompleted("true")
-
-    //         }
-    //         }>
-    //         {this.renderCompleteButtonText()}
-    //     </TouchableOpacity>)
-    // }
-
-    // renderCompleteButtonText() {
-    //     if (this.state.selectedItem.completed == "true")
-    //         return (<Text style={styles.completeButtonText}>Done</Text>)
-    //     else
-    //         return (<Text style={styles.completeButtonText}>Complete</Text>)
-    // }
-    // /* #endregion */
+   
 
     /* #region  Complete Button and Trash Button Section */
     renderCompleteAndTrashButton() {
@@ -393,7 +365,6 @@ export class ViewTask extends React.Component {
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
                 {this.renderShowDate()}
-                {this.showProjectSelectionModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>

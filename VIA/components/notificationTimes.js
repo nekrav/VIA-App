@@ -112,7 +112,17 @@ export class NotificationTimes extends React.Component {
 
     renderNotificationTimes() {
         var daysWithNotifications = '';
-        var jsonArr = JSON.parse(this.state.notificationTimes);
+        var jsonArr = ''
+        console.warn(this.state.notificationTimes)
+        if (this.state.notificationTimes != "") {
+            console.warn("has")
+            jsonArr = JSON.parse(this.state.notificationTimes);
+        } else {
+            console.warn("has not")
+            console.warn(emptyTimes)
+            jsonArr = emptyTimes
+        }
+        
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {

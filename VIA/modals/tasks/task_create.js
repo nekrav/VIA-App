@@ -36,6 +36,51 @@ const dateFormat = 'dd/mm/yy'
 const todayDate = new Date();
 const styles = require('./styles');
 
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
+
 export class CreateTask extends React.Component {
     constructor(props) {
         super(props);
@@ -199,172 +244,101 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Project Selection Region */
-    showProjectSelectionModal() {
-        if (this.state.projectSelectionModalVisible) {
-            return (
-                <SelectionModal
-                    animationType="fade"
-                    items={this.state.items}
-                    itemName="Project"
-                    titleTextColor={colorsProvider.projectsComplimentaryColor}
-                    titleContainerColor={colorsProvider.projectsMainColor}
-                    transparent={true}
-                    selectItem={item => {
-                        this.props.project(item.value.id, item.value.name);
-                        this.setState({ projName: item.value.name, proj: item.value.id }, () => { });
-                        this.state.newTaskFromProject.project = item.value.name;
-                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-                    }}
-                    closeModal={() => {
-                        this.setProjectSelectionModalVisibility(false);
-                    }}
-                ></SelectionModal>
-            );
-        }
-    }
 
-    setProjectSelectionModalVisibility(visible) {
-        this.setState({ projectSelectionModalVisible: visible });
-    }
+ /* #region  Notification Times Region */
 
-    renderProjectSelection() {
-        if (this.state.fromProjectName != '') {
-            if (this.state.theSelectedProject != '') {
-                this.props.project = this.state.theSelectedProject;
-                return (
-                    <View style={styles.projectSectionContainer}>
-                        <TouchableOpacity
-                            style={styles.hasProjectSelectionContainer}
-                            onPress={() => {
-                                Keyboard.dismiss()
-                                this.setProjectSelectionModalVisibility(true);
-                            }}
-                        >
-                            <Text style={styles.hasProjectSelectionButtonText}>
-                                {this.state.theSelectedProject}
-                            </Text>
-                            <Text style={styles.notificationTimeButtonText}>
-                                <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                );
-            }
-            return (
-                <View style={styles.projectSectionContainer}>
-                    <TouchableOpacity
-                        style={styles.hasProjectSelectionContainer}
-                        onPress={() => {
-                            Keyboard.dismiss()
-                            this.setProjectSelectionModalVisibility(true);
-                        }}>
-                        <Text style={styles.hasProjectSelectionButtonText}>
-                            {this.state.fromProjectName}
-                        </Text>
-                        <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color={colorsProvider.tasksComplimentaryColor} />
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            );
-        }
-        else {
-            return (
-                <View style={styles.projectSectionContainer}>
-                    <TouchableOpacity
-                        style={styles.createProjectSelectionContainer}
-                        onPress={() => {
-                            Keyboard.dismiss()
-                            this.setProjectSelectionModalVisibility(true)
-                        }}>
-                        <Text style={styles.createProjectSelectionButtonText}>
-                            Is this part of a bigger project?</Text>
-                        <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="layers" size={20} color={colorsProvider.tasksPlaceholderColor} />
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            );
-        }
-    }
-    /* #endregion */
+ renderNotificationTimes() {
+    return (<NotificationTimes
+        notificationTimes={this.state.notificationTimes}
+        onPress={() => {
+            this.setNotificationTimesVisibility(true);
+        }}
+        addNotificationTime={item => {
+            this.props.notification_time(item);
+            this.setState({ notificationTimes: item })
+            this.props.save();
+            notifier.scheduleAllNotifications();
+        }}
+    />
+    )
+}
+/* #endregion */
 
     /* #region  Notification Times Region */
-    setNotificationTimesVisibility(visible) {
-        this.setState({ notificationTimesModal: visible });
-    }
+    // setNotificationTimesVisibility(visible) {
+    //     this.setState({ notificationTimesModal: visible });
+    // }
 
-    renderNotificationTimesModal() {
-        if (this.state.notificationTimesModal) {
-            return (
-                <NotificationTimesModal
-                    animationType="fade"
-                    transparent={true}
-                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-                    setDate={item => {
-                        this.props.notification_time(item);
-                        this.setState({ itemNotificationTimes: item });
+    // renderNotificationTimesModal() {
+    //     if (this.state.notificationTimesModal) {
+    //         return (
+    //             <NotificationTimesModal
+    //                 animationType="fade"
+    //                 transparent={true}
+    //                 saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+    //                 disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
+    //                 setDate={item => {
+    //                     this.props.notification_time(item);
+    //                     this.setState({ itemNotificationTimes: item });
 
-                    }}
-                    closeModal={() => {
-                        this.setNotificationTimesVisibility(false);
-                    }}
-                ></NotificationTimesModal>
-            );
-        }
-        return null;
-    }
+    //                 }}
+    //                 closeModal={() => {
+    //                     this.setNotificationTimesVisibility(false);
+    //                 }}
+    //             ></NotificationTimesModal>
+    //         );
+    //     }
+    //     return null;
+    // }
 
-    renderNotificationTimes() {
-        var daysWithNotifications = '';
-        var arr = this.state.itemNotificationTimes;
+    // renderNotificationTimes() {
+    //     var daysWithNotifications = '';
+    //     var arr = this.state.itemNotificationTimes;
 
-        Object.keys(arr).map(key => {
-            if (arr[key].times.length > 0 && arr[key].checked == true) {
-                daysWithNotifications = daysWithNotifications.concat(
-                    arr[key].name + ', '
-                );
-            }
-        });
-        if (daysWithNotifications != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotificationTimesButtonContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setNotificationTimesVisibility(true);
-                    }}
-                >
-                    <Text style={styles.hasNotificationTimeButtonText}>
-                        {daysWithNotifications}
-                    </Text>
+    //     Object.keys(arr).map(key => {
+    //         if (arr[key].times.length > 0 && arr[key].checked == true) {
+    //             daysWithNotifications = daysWithNotifications.concat(
+    //                 arr[key].name + ', '
+    //             );
+    //         }
+    //     });
+    //     if (daysWithNotifications != '') {
+    //         return (
+    //             <TouchableOpacity
+    //                 style={styles.hasNotificationTimesButtonContainer}
+    //                 onPress={() => {
+    //                     Keyboard.dismiss()
+    //                     this.setNotificationTimesVisibility(true);
+    //                 }}
+    //             >
+    //                 <Text style={styles.hasNotificationTimeButtonText}>
+    //                     {daysWithNotifications}
+    //                 </Text>
 
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.notificationTimesButtonContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setNotificationTimesVisibility(true);
-                }}
-            >
-                <Text style={styles.notificationTimeButtonText}>
-                    When would you like to be notified?
-        </Text>
+    //                 <Text style={styles.notificationTimeButtonText}>
+    //                     <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
+    //                 </Text>
+    //             </TouchableOpacity>
+    //         );
+    //     }
+    //     return (
+    //         <TouchableOpacity
+    //             style={styles.notificationTimesButtonContainer}
+    //             onPress={() => {
+    //                 Keyboard.dismiss()
+    //                 this.setNotificationTimesVisibility(true);
+    //             }}
+    //         >
+    //             <Text style={styles.notificationTimeButtonText}>
+    //                 When would you like to be notified?
+    //     </Text>
 
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
-                </Text>
-            </TouchableOpacity>
-        );
-    }
+    //             <Text style={styles.notificationTimeButtonText}>
+    //                 <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
+    //             </Text>
+    //         </TouchableOpacity>
+    //     );
+    // }
     /* #endregion */
 
     /* #region  Notes Region */
@@ -470,8 +444,6 @@ export class CreateTask extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
 
-                {this.showProjectSelectionModal()}
-                {this.renderNotificationTimesModal()}
                 {this.renderNotesModal()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
