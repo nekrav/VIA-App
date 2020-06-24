@@ -74,7 +74,6 @@ export class TopBar extends React.Component {
     }
 
     renderParent(parent) {
-        console.warn(this.state.parent)
         if (this.props.hasParent) {
             return <ParentSelection
                 parentName={parent}
