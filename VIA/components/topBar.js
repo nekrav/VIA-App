@@ -22,6 +22,12 @@ export class TopBar extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (this.props.fromCreate) {
+            this.nameTextInput.focus()
+        } 
+    }
+
 
     getDueDate(date) {
         if (this.getNumberOfDaysLeft(date) === 0) {
@@ -68,6 +74,7 @@ export class TopBar extends React.Component {
     }
 
     renderParent(parent) {
+        console.warn(this.state.parent)
         if (this.props.hasParent) {
             return <ParentSelection
                 parentName={parent}

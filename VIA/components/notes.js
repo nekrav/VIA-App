@@ -72,6 +72,7 @@ export class Notes extends React.Component {
                 }}
                     style={{
                         // flex: 2,
+                        alignSelf: 'stretch',
                         flexDirection: 'column',
                         height: "58%",
                         marginLeft: 10,

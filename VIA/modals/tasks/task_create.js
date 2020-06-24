@@ -123,6 +123,7 @@ export class CreateTask extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
+            fromCreate={true}
             nameOfItem={this.state.newTaskName}
             dueDate={this.state.dueDate}
             importance={this.state.newTaskImportance}
@@ -499,7 +500,6 @@ export class CreateTask extends React.Component {
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
 

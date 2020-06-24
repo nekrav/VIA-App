@@ -149,7 +149,7 @@ export class ParentSelection extends React.Component {
                 </TouchableOpacity>
             );
         }
-        else if (this.state.name != "null") {
+        else if (this.state.name != "") {
             return (
                 <TouchableOpacity
                     style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
