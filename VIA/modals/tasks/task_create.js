@@ -256,10 +256,10 @@ export class CreateTask extends React.Component {
                 this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
-                this.props.notification_time(item);
+                // this.props.notification_time(item);
                 this.setState({ notificationTimes: item })
-                this.props.save();
-                notifier.scheduleAllNotifications();
+                // this.props.save();
+                // notifier.scheduleAllNotifications();
             }}
         />
         )
@@ -471,6 +471,9 @@ export class CreateTask extends React.Component {
                 }
                 onPress={() => {
                     notifier.scheduleAllNotifications();
+                    this.props.notification_time(this.state.notificationTimes);
+                    this.props.save();
+
                     if (this.props.fromProject)
                         this.props.saveFromProject(this.state.newTaskFromProject)
                     else

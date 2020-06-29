@@ -101,7 +101,6 @@ export class NotificationTimes extends React.Component {
                     onPress={() => {
                         this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
                         this.RBSheet.open()
-                        // this.setAddNotifTimeModalVisibility(true)
                     }}
                     style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.noNotificationTime, justifyContent: 'center', alignContent: 'center' }}>
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
@@ -111,7 +110,7 @@ export class NotificationTimes extends React.Component {
     }
 
     renderNotificationTimes() {
-        var daysWithNotifications = '';
+        // var daysWithNotifications = '';
         var jsonArr = ''
         if (this.state.notificationTimes != "") {
             jsonArr = JSON.parse(this.state.notificationTimes);
@@ -146,7 +145,10 @@ export class NotificationTimes extends React.Component {
                     contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                     style={{}}
                     renderItem={({ item }) =>
-                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} />
+                    this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} 
+                    renderItem={({ item }) =>
+                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} 
+                        />
             </View>
         );
     }
@@ -217,16 +219,6 @@ export class NotificationTimes extends React.Component {
                             <TouchableOpacity onPress={() => {
                                 var index = this.state.dayNotificationTimes.indexOf(item)
                                 if (index !== -1) {
-                                    // var oldArr = this.state.dayNotificationTimes
-                                    // oldArr.splice(index, 1)
-                                    // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                    // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                    // selectedDay.times = oldArr
-                                    // var newTimes = JSON.stringify(arrayOfAllTimes)
-                                    // this.props.addNotificationTime(newTimes)
-                                    // this.setState({ dayNotificationTimes: oldArr })
-
-
                                     var oldArr = this.state.dayNotificationTimes
                                     oldArr.splice(index, 1)
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
@@ -279,10 +271,11 @@ export class NotificationTimes extends React.Component {
                             newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                            // selectedDay.times = newArr
-                            // var newTimes = JSON.stringify(arrayOfAllTimes)
-                            // this.props.addNotificationTime(newTimes)
-                            // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                           
+                            selectedDay.times = newArr
+                            var newTimes = JSON.stringify(arrayOfAllTimes)
+                            this.props.addNotificationTime(newTimes)
+                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
                         }}>
                         <Text style={{
                             marginRight: 5,
