@@ -135,9 +135,9 @@ export class TasksScreen extends React.Component {
                 }}
                 time_spent={(text) => { newTask.time_spent = text }}
                 notes={(text) => { newTask.notes = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        newTask.notification_time = text
+                notification_time={(times) => {
+                    if (times) {
+                        newTask.notification_time = times
                     } else {
                         newTask.notification_time = emptyTimes
                     }
