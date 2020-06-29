@@ -472,7 +472,6 @@ export class CreateTask extends React.Component {
                 onPress={() => {
                     notifier.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
-                    this.props.save();
 
                     if (this.props.fromProject)
                         this.props.saveFromProject(this.state.newTaskFromProject)
