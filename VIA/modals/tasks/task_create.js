@@ -170,10 +170,10 @@ export class CreateTask extends React.Component {
                 Keyboard.dismiss();
                 this.setProjectSelectionModalVisibility(true);
             }}
-            selectDueDate={() => {
-                this.props.due_date(item);
-                this.setState({ itemDate: item });
-                this.state.newTaskFromProject.due_date = item
+            selectDueDate={date => {
+                this.props.due_date(date);
+                this.setState({ dueDate: date });
+                this.state.newTaskFromProject.due_date = date
                 this.setState({ newTaskFromProject: this.state.newTaskFromProject })
             }}
         />
