@@ -90,7 +90,6 @@ export class CreateTask extends React.Component {
             projectSelectionModalVisible: false,
             items: [],
             theSelectedProject: '',
-            showDate: false,
             itemDate: '',
             itemNotificationTimes: '',
             newTaskImportance: 0,
@@ -171,6 +170,12 @@ export class CreateTask extends React.Component {
                 Keyboard.dismiss();
                 this.setProjectSelectionModalVisibility(true);
             }}
+            selectDueDate={() => {
+                this.props.due_date(item);
+                this.setState({ itemDate: item });
+                this.state.newTaskFromProject.due_date = item
+                this.setState({ newTaskFromProject: this.state.newTaskFromProject })
+            }}
         />
     }
     /* #endregion */
@@ -248,7 +253,6 @@ export class CreateTask extends React.Component {
 
 
     /* #region  Notification Times Region */
-
     renderNotificationTimes() {
         return (<NotificationTimes
             notificationTimes={this.state.notificationTimes}
@@ -266,148 +270,15 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Notification Times Region */
-    // setNotificationTimesVisibility(visible) {
-    //     this.setState({ notificationTimesModal: visible });
-    // }
-
-    // renderNotificationTimesModal() {
-    //     if (this.state.notificationTimesModal) {
-    //         return (
-    //             <NotificationTimesModal
-    //                 animationType="fade"
-    //                 transparent={true}
-    //                 saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-    //                 disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-    //                 setDate={item => {
-    //                     this.props.notification_time(item);
-    //                     this.setState({ itemNotificationTimes: item });
-
-    //                 }}
-    //                 closeModal={() => {
-    //                     this.setNotificationTimesVisibility(false);
-    //                 }}
-    //             ></NotificationTimesModal>
-    //         );
-    //     }
-    //     return null;
-    // }
-
-    // renderNotificationTimes() {
-    //     var daysWithNotifications = '';
-    //     var arr = this.state.itemNotificationTimes;
-
-    //     Object.keys(arr).map(key => {
-    //         if (arr[key].times.length > 0 && arr[key].checked == true) {
-    //             daysWithNotifications = daysWithNotifications.concat(
-    //                 arr[key].name + ', '
-    //             );
-    //         }
-    //     });
-    //     if (daysWithNotifications != '') {
-    //         return (
-    //             <TouchableOpacity
-    //                 style={styles.hasNotificationTimesButtonContainer}
-    //                 onPress={() => {
-    //                     Keyboard.dismiss()
-    //                     this.setNotificationTimesVisibility(true);
-    //                 }}
-    //             >
-    //                 <Text style={styles.hasNotificationTimeButtonText}>
-    //                     {daysWithNotifications}
-    //                 </Text>
-
-    //                 <Text style={styles.notificationTimeButtonText}>
-    //                     <SIcon name="bell" size={20} color={colorsProvider.tasksComplimentaryColor} />
-    //                 </Text>
-    //             </TouchableOpacity>
-    //         );
-    //     }
-    //     return (
-    //         <TouchableOpacity
-    //             style={styles.notificationTimesButtonContainer}
-    //             onPress={() => {
-    //                 Keyboard.dismiss()
-    //                 this.setNotificationTimesVisibility(true);
-    //             }}
-    //         >
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 When would you like to be notified?
-    //     </Text>
-
-    //             <Text style={styles.notificationTimeButtonText}>
-    //                 <SIcon name="bell" size={20} color={colorsProvider.tasksPlaceholderColor} />
-    //             </Text>
-    //         </TouchableOpacity>
-    //     );
-    // }
-    /* #endregion */
-
     /* #region  Notes Region */
-    // setNotesModalVisibility(visible) {
-    //     this.setState({ notesModalVisible: visible });
-    // }
 
-    // renderNotesModal() {
-    //     if (this.state.notesModalVisible) {
-    //         return (
-    //             <NotesModal
-    //                 animationType="slide"
-    //                 transparent={true}
-    //                 existingNotes={this.state.itemNotes}
-    //                 backgroundColor={colorsProvider.tasksMainColor}
-    //                 buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
-    //                 buttonContainerTextNotChangedColor={colorsProvider.tasksComplimentaryColor}
-    //                 textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
-    //                 textChangedColor={colorsProvider.tasksComplimentaryColor}
-    //                 placeholder={'Notes...'}
-    //                 setNotes={item => {
-    //                     this.props.notes(item);
-    //                     this.setState({ itemNotes: item });
-    //                     this.state.newTaskFromProject.n
-    //                 }}
-    //                 closeModal={() => {
-    //                     this.setNotesModalVisibility(false);
-    //                 }}
-    //             ></NotesModal>
-    //         );
-    //     }
-    //     return null;
-    // }
-
-    // renderNotesSection() {
-    //     if (this.state.itemNotes != '') {
-    //         return (
-    //             <TouchableOpacity
-    //                 style={styles.hasNotesContainer}
-    //                 onPress={() => {
-    //                     Keyboard.dismiss
-    //                     this.setNotesModalVisibility(true);
-    //                 }}>
-    //                 <Text
-    //                     style={styles.hasNotesText}
-    //                     multiline={true}
-    //                     onChangeText={this.props.notes}>
-    //                     {this.state.itemNotes}
-    //                 </Text>
-    //             </TouchableOpacity>
-    //         );
-    //     }
-    //     return (
-    //         <TouchableOpacity
-    //             style={styles.createNotesContainer}
-    //             onPress={() => {
-    //                 Keyboard.dismiss
-    //                 this.setNotesModalVisibility(true);
-    //             }}>
-    //             <Text
-    //                 style={styles.createNotesText}
-    //                 multiline={true}
-    //                 onChangeText={this.props.notes}>
-    //                 Notes ...</Text>
-    //         </TouchableOpacity>
-    //     );
-    // }
+    renderNotesSection() {
+        return <Notes
+            notes={this.state.notes}
+            editNotes={value => {
+                this.props.notes(value);
+            }} />
+    }
     /* #endregion */
 
     /* #region  Bottom Buttons Section */
@@ -484,17 +355,6 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Notes Region */
-
-    renderNotesSection() {
-        return <Notes
-            notes={this.state.notes}
-            editNotes={value => {
-                this.props.notes(value);
-            }} />
-    }
-    /* #endregion */
-
     render() {
         return (
             <Modal
@@ -506,9 +366,6 @@ export class CreateTask extends React.Component {
                     <View style={styles.outerView}>
 
                         {this.renderTopBar()}
-
-                        {/* { SLIDER SECTION} */}
-                        {/* {this.renderSliderSection()} */}
 
                         {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}

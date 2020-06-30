@@ -46,7 +46,7 @@ export class ParentSelection extends React.Component {
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.topBarColor,
                     fontSize: colorsProvider.fontSizeMain
-                }}>Select Project</Text>
+                }}>Project</Text>
             </View>
             <FlatList
                 data={this.state.allParents}

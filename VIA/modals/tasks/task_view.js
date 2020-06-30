@@ -98,10 +98,10 @@ export class ViewTask extends React.Component {
                 notifier.scheduleAllNotifications()
             }}
             hasImportance={true}
-
-            editDueDate={() => {
-                Keyboard.dismiss()
-                this.setDateModalVisibility(true)
+            selectDueDate={date => {
+                this.props.editDueDate(date)
+                this.setState({ dueDate: date })
+                this.props.save();
             }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
@@ -147,37 +147,7 @@ export class ViewTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Project Selection Region */
-    setProjectSelectionModalVisibility(visible) {
-        this.setState({ projectSelectionModalVisible: visible })
-    }
-
-
-    showProjectSelectionModal() {
-        if (this.state.projectSelectionModalVisible) {
-            return <SelectionModal
-                animationType="fade"
-                items={this.state.items}
-                itemName="Project"
-                titleTextColor={colorsProvider.projectsComplimentaryColor}
-                titleContainerColor={colorsProvider.projectsMainColor}
-                transparent={true}
-                selectItem={(item) => {
-                    this.props.editProject(item.value.id, item.value.name)
-                    this.setState({ projName: item.value.name })
-                    this.props.save();
-                }}
-                closeModal={() => { this.setProjectSelectionModalVisibility(false) }}>
-            </SelectionModal>
-        }
-        return null;
-    }
-
     /* #region  Due Date Region */
-    setDateModalVisibility(visible) {
-        this.setState({ showDate: visible })
-    }
-
     renderShowDate() {
         if (this.state.showDate) {
             return <DateModal
@@ -195,94 +165,13 @@ export class ViewTask extends React.Component {
                 onSubmit={item => {
                     this.props.editDueDate(item);
                     this.setState({ dueDate: item });
-                    this.setDateModalVisibility(false);
                 }}
-                closeModal={() => { this.setDateModalVisibility(false) }}>
+                closeModal={() => {}}>
             </DateModal>
         }
         return null;
     }
     /* #endregion */
-
-    /* #region  Slider Region */
-    renderSliderSection() {
-        return (
-            <View style={styles.slidersSection}>
-                <View style={styles.slidersTitlesContainer}>
-                    <View style={styles.sliderTitleContainerLeft}>
-                        <Text
-                            style={
-                                this.state.selectedItem.percentage_done > 0
-                                    ? styles.sliderTitle
-                                    : styles.sliderTitleNull
-                            }>
-                            % Done
-                    </Text>
-                    </View>
-                    <View style={styles.sliderTitleContainerRight}>
-                        <Text
-                            style={
-                                this.state.selectedItem.importance > 0
-                                    ? styles.sliderTitle
-                                    : styles.sliderTitleNull
-                            }>
-                            Importance
-                    </Text>
-                    </View>
-                </View>
-                <View style={styles.slidersContainer}>
-                    <View style={styles.sliderContainerLeft}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            thumbTintColor={this.state.selectedItem.percentage_done > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
-                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
-                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.selectedItem.percentage_done)}
-
-                            onSlidingComplete={(value) => {
-                                this.props.editPercentageDone(value)
-                                if (value == 100) {
-                                    this.finishTask();
-                                }
-                                this.props.save();
-                            }}
-                            onValueChange={(value) => {
-                                Keyboard.dismiss()
-                                this.props.editPercentageDone(value);
-                            }}
-                        />
-
-                    </View>
-                    <View style={styles.sliderContainerRight}>
-                        <Slider
-                            style={{ width: 250, height: 1, transform: [{ rotate: '270deg' }] }}
-                            minimumValue={0}
-                            maximumValue={100}
-                            thumbTintColor={this.state.selectedItem.importance > 0 ? colorsProvider.projectsComplimentaryColor : colorsProvider.projectsPlaceholderColor}
-                            minimumTrackTintColor={colorsProvider.tasksComplimentaryColor}
-                            maximumTrackTintColor={colorsProvider.tasksPlaceholderColor}
-                            value={parseInt(this.state.selectedItem.importance)}
-                            onValueChange={(value) => {
-                                Keyboard.dismiss()
-                                this.props.save();
-                                this.props.editImportance(value);
-                            }}
-                            onSlidingComplete={(value) => {
-                                this.props.editImportance(value)
-                            }}
-                        />
-                    </View>
-                </View>
-            </View>
-        )
-
-    }
-
-    /* #endregion */
-
-   
 
     /* #region  Complete Button and Trash Button Section */
     renderCompleteAndTrashButton() {

@@ -71,17 +71,12 @@ export class NotificationTimes extends React.Component {
         super(props);
         this.state = {
             notificationTimes: this.props.notificationTimes,
-            notificationTimesModal: false,
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
             dayNotificationTimes: '',
             newNotifTimeDate: todayDate,
             newNotifTimeString: '',
         };
-    }
-
-    setAddNotifTimeModalVisibility(visible) {
-        this.setState({ notifTimeModalVisibility: visible })
     }
 
     renderSingleDay(checked, name, times) {
