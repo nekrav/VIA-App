@@ -83,7 +83,7 @@ export class TopBar extends React.Component {
             <View style={{
                 marginTop: 10,
                 marginLeft: 20,
-                flexDirection: 'column-reverse',
+                flexDirection: 'column',
                 justifyContent: 'space-around'
             }}>
                 <Text style={{
@@ -91,7 +91,13 @@ export class TopBar extends React.Component {
                     color: colorsProvider.topBarColor,
                     fontSize: colorsProvider.fontSizeMain
                 }}>Due Date</Text>
-                <Text>{this.state.dueDate}</Text>
+                <Text style={{
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.shadowColor,
+                    fontSize: colorsProvider.fontSizeSmall,
+                    marginTop: 10,
+                    marginBottom: 10,
+                }}>{this.state.dueDate}</Text>
             </View>
 
             <View style={{ flexDirection: 'column', }}>
