@@ -146,10 +146,6 @@ export class CreateTask extends React.Component {
             }}
             hasImportance={true}
             hasParent={true}
-            editDueDate={() => {
-                Keyboard.dismiss()
-                this.setDateModalVisibility(true)
-            }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
                 this.props.setImportanceNN(1)

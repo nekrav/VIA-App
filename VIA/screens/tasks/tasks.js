@@ -139,13 +139,15 @@ export class TasksScreen extends React.Component {
                     if (times) {
                         newTask.notification_time = times
                     } else {
-                        newTask.notification_time = emptyTimes
+                        newTask.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
                     if (!newTask.notification_time) {
-                        newTask.notification_time = JSON.stringify(emptyTimes)
+                        newTask.notification_time = emptyTimes
+                        console.warn(newTask.notification_time)
+                        // newTask.notification_time = emptyTimes
                     }
                     this.saveNew(newTask)
                 }}

@@ -8,6 +8,8 @@ import { ImportanceRadio } from './importanceRadio';
 import { ParentSelection } from './parentSelection';
 import RBSheet from "react-native-raw-bottom-sheet";
 import DatePicker from 'react-native-date-picker'
+import KeyboardListener from 'react-native-keyboard-listener';
+
 
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -41,6 +43,9 @@ export class TopBar extends React.Component {
         else if (this.getNumberOfDaysLeft(date) < 0) {
             return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
                 <TouchableOpacity onPress={() => {
+                    if (this.state.keyboardOpen) {
+                        Keyboard.dismiss()
+                    }
                     this.RBSheet.open()
                 }}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
@@ -51,6 +56,9 @@ export class TopBar extends React.Component {
         else if (date) {
             return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
                 <TouchableOpacity onPress={() => {
+                    if (this.state.keyboardOpen) {
+                        Keyboard.dismiss()
+                    }
                     this.RBSheet.open()
                 }}>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
@@ -60,6 +68,9 @@ export class TopBar extends React.Component {
         }
         else {
             return <TouchableOpacity onPress={() => {
+                if (this.state.keyboardOpen) {
+                    Keyboard.dismiss()
+                }
                 this.RBSheet.open()
             }}>
                 <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop: 15, marginRight: 15, marginLeft: 10, textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
@@ -112,7 +123,7 @@ export class TopBar extends React.Component {
                         mode="date"
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
-                            this.setState({ dueDate: date.toString()})
+                            this.setState({ dueDate: date.toString() })
                         }}
                     />
                 </View>
@@ -187,60 +198,6 @@ export class TopBar extends React.Component {
                     </TouchableOpacity>
 
                 </View>
-                {/* <View style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                }}>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.setButtonColor
-                        }}
-                        onPress={() => {
-                            var oldArr = this.state.dayNotificationTimes
-                            var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
-                            newArr = oldArr.concat(dateTime)
-                            var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-
-                            selectedDay.times = newArr
-                            var newTimes = JSON.stringify(arrayOfAllTimes)
-                            this.props.addNotificationTime(newTimes)
-                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Set</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.closeButtonColor
-                        }}
-                        onPress={() => {
-                            this.RBSheet.close()
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Close</Text>
-                    </TouchableOpacity>
-                </View> */}
             </View>
         </RBSheet>)
     }
@@ -285,7 +242,10 @@ export class TopBar extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
                     {this.renderBottomSlidingPane()}
-
+                    <KeyboardListener
+                        onWillShow={() => { this.setState({ keyboardOpen: true }); }}
+                        onWillHide={() => { this.setState({ keyboardOpen: false }); }}
+                    />
                     <View style={{ marginTop: '10%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                         <TouchableOpacity
                             onPress={() => { this.props.closeModal() }}
