@@ -14,6 +14,8 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
+import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
+
 var uuid = require('react-native-uuid');
 
 const notifier = new Notifier;
@@ -24,31 +26,41 @@ const styles = require('./styles');
 
 const empty = ""
 const todayDate = new Date();
-const dateDisplayFormat = 'MMM Do'
-const dateFormat = 'ddd, MMM Do, YY'
 const childTableName = Tasks.TABLE_NAME
 
+
+var date = new Date().getDate(); //Current Date
+var month = new Date().getMonth(); //Current Month
+var year = new Date().getFullYear(); //Current Year
+const dateDisplayFormat = 'MMM Do'
+const dateFormat = 'dd/mm/yy'
+const dateToday = new Date(year, month, date);
 
 
 export class ViewProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: this.props.selectedItem,
-            items: [],
-            proj: null,
-            importance: this.props.selectedItem.importance,
-            showDate: false,
-            dueDate: '',
-            notificationTimesModal: false,
-            percentVal: this.props.selectedItem.percentage_done,
-            importanceVal: this.props.selectedItem.importance,
-            notesModalVisible: false,
-            itemNotificationTimes: this.props.selectedItem.notification_time,
-            childModalVisibility: false,
-            selectedChildItem: '',
+            // selectedItem: this.props.selectedItem,
+            // items: [],
+            // proj: null,
+            // importance: this.props.selectedItem.importance,
+            // showDate: false,
+            // dueDate: '',
+            // notificationTimesModal: false,
+            // percentVal: this.props.selectedItem.percentage_done,
+            // importanceVal: this.props.selectedItem.importance,
+            // notesModalVisible: false,
+            // itemNotificationTimes: this.props.selectedItem.notification_time,
+            // childModalVisibility: false,
+            // selectedChildItem: '',
+            // relatedChildren: [],
+            // tasksCreateModalVisible: false,
             relatedChildren: [],
-            tasksCreateModalVisible: false,
+            selectedItem: this.props.selectedItem,
+            allPossibleChildren: [],
+            dueDate: '',
+            notificationTimes: "",
         };
     }
 
@@ -68,23 +80,50 @@ export class ViewProject extends React.Component {
         this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
-
-
     /* #region  Top Bar Region */
     renderTopBar() {
-        return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton}
-                onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color={colorsProvider.shadowColor} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.trashButton}
-                onPress={() => {
-                    notifier.scheduleAllNotifications();
-                    this.props.delete()
-                }}>
-                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
-            </TouchableOpacity>
-        </View>)
+        return <TopBar
+            color={colorsProvider.projectsMainColor}
+            fromCreate={false}
+            hasParent={false}
+            hasDueDate={true}
+            hasImportance={true}
+            dueDate={this.state.selectedItem.due_date}
+            nameOfItem={this.state.selectedItem.name}
+            importance={this.state.selectedItem.importance}
+            allChildren={this.state.allPossibleChildren}
+            closeModal={this.props.closeModal}
+            selectDueDate={date => {
+                this.props.editDueDate(date)
+                this.setState({ dueDate: date })
+                this.props.save();
+            }}
+            editName={item => {
+                this.props.editName(item);
+                this.props.save();
+                notifier.scheduleAllNotifications()
+            }}
+            setImportanceNN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNN(1)
+                this.props.save();
+            }}
+            setImportanceNU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNU(2)
+                this.props.save();
+            }}
+            setImportanceIN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIN(3)
+                this.props.save();
+            }}
+            setImportanceIU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIU(4)
+                this.props.save();
+            }}
+        />
     }
     /* #endregion */
 
@@ -789,32 +828,13 @@ export class ViewProject extends React.Component {
 
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
-                        <SafeAreaView style={this.getStyleIfDone()}>
+                        <View style={this.getStyleIfDone()}>
                             {/* Top Bar Section */}
                             {this.renderTopBar()}
 
-                            {/* Name Section */}
-                            {this.renderNameSection()}
 
-                            {/* Project Section*/}
-                            {this.renderAllChildrenSection()}
 
-                            {/* Due Date Section*/}
-                            {this.renderDueDate()}
-
-                            {/* Sliders Section*/}
-                            {this.renderSliderSection()}
-
-                            {/* Complete Button Section */}
-                            {this.renderCompleteButton()}
-
-                            {/* Notification Times Section */}
-                            {this.renderNotificationTimesSection()}
-
-                            {/* {NOTES SECTION} */}
-                            {this.renderNotesSection()}
-
-                        </SafeAreaView>
+                        </View>
                     </TouchableWithoutFeedback>
                 </Modal>
             );
