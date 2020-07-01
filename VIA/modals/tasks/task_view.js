@@ -62,7 +62,6 @@ export class ViewTask extends React.Component {
 
     componentWillUnmount() {
         _isMounted = false;
-        // controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
 
     finishTask() {

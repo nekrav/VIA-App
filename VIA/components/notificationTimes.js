@@ -105,9 +105,7 @@ export class NotificationTimes extends React.Component {
     }
 
     renderNotificationTimes() {
-        // var daysWithNotifications = '';
         var jsonArr = ''
-        // console.warn(this.state.notificationTimes)
         if (this.state.notificationTimes != "") {
             jsonArr = JSON.parse(this.state.notificationTimes);
         } else {
