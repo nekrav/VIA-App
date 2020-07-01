@@ -156,6 +156,18 @@ export class HabitsScreen extends React.Component {
                         theHabit.name = text;
                         this.setState({ selectedItem: theHabit })
                     }}
+                    setImportanceNN={(text) => {
+                        theHabit.importance = 1;
+                    }}
+                    setImportanceNU={(text) => {
+                        theHabit.importance = 2;
+                    }}
+                    setImportanceIN={(text) => {
+                        theHabit.importance = 3;
+                    }}
+                    setImportanceIU={(text) => {
+                        theHabit.importance = 4;
+                    }}
                     editStartTime={(text) => {
                         theHabit.start_time = text;
                         this.setState({ selectedItem: theHabit })
@@ -184,11 +196,12 @@ export class HabitsScreen extends React.Component {
                         theHabit.time_to_spend = text;
                         this.setState({ selectedItem: theHabit })
                     }}
-                    editNotificationTime={(text) => {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
-                        theHabit.notification_time = times
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theHabit.notification_time = times
+                        } else {
+                            theHabit.notification_time = JSON.stringify(emptyTimes)
+                        }
                         this.setState({ selectedTask: theHabit })
                     }}
                     editRoutine={(text, name) => {
