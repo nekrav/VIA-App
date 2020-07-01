@@ -10,6 +10,50 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
 
 const notifier = new Notifier;
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 
 const styles = require('./styles');
@@ -40,7 +84,7 @@ export class RoutinesScreen extends React.Component {
 
     saveNew(routine) {
         let newRoutine = {}
-        newRoutine.id = routine.id;
+        newRoutine.id = uuid.v4();
         newRoutine.name = routine.name;
         newRoutine.created_date = new Date().getDate();
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
@@ -61,14 +105,26 @@ export class RoutinesScreen extends React.Component {
                 transparent={false}
                 id={(text) => { newRoutine.id = text}}
                 name={(text) => { newRoutine.name = text }}
+                setImportanceNN={(text) => {
+                    newRoutine.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newRoutine.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newRoutine.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newRoutine.importance = 4;
+                }}
                 start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}
-                notification_time={(text) => { 
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notes={(text) => { newRoutine.notes = text }}
+                notification_time={(times) => { 
+                    if (times) {
                         newRoutine.notification_time = times
+                    } else {
+                        newRoutine.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -88,6 +144,22 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.name = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
+                    setImportanceNN={(text) => {
+                        theRoutine.importance = 1;
+                        his.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceNU={(text) => {
+                        theRoutine.importance = 2;
+                        his.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceIN={(text) => {
+                        theRoutine.importance = 3;
+                        his.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceIU={(text) => {
+                        theRoutine.importance = 4;
+                        his.setState({ selectedRoutine: theRoutine })
+                    }}
                     editStartTime={(text) => {
                         theRoutine.start_time = text;
                         this.setState({ selectedRoutine: theRoutine })
@@ -104,11 +176,16 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.finished_date = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
-                    editNotificationTime={(text) => {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
-                        theRoutine.notification_time = times
+                    editNotes={(text) => {
+                        theRoutine.notes = text;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theRoutine.notification_time = times
+                        } else {
+                            theRoutine.notification_time = JSON.stringify(emptyTimes)
+                        }
                         this.setState({ selectedRoutine: theRoutine })
 
                     }}

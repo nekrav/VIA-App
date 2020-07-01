@@ -86,7 +86,7 @@ export class HabitsScreen extends React.Component {
 
     saveNew(habit) {
         let newHabit = {}
-        newHabit.id = uuid.v4();;
+        newHabit.id = uuid.v4();
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
         newHabit.start_time = habit.start_time ? habit.start_time : ''

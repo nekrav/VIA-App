@@ -1,16 +1,8 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
-import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
-import { DateModal } from '../dateModal/dateModal'
-import { NotesModal } from '../notesModal/notesModal';
-import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal'
 import { Database, Routines, Tasks } from '../../db'
-import { SelectionModal } from '../selectionModal/selectionModal';
 import { Controller } from '../controller'
-import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import Moment from 'moment';
-import Slider from '@react-native-community/slider';
 import { TopBar, NotificationTimes, Notes } from '../../components'
 
 import { Notifier } from '../../notifier/notifier'
@@ -83,23 +75,6 @@ export class CreateHabit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // newHabit: this.props.newHabit,
-            // newHabitName: '',
-            // routineSelectionModalVisible: false,
-            // showStartDate: false,
-            // showEndDate: false,
-            // items: [],
-            // theSelectedRoutine: "",
-            // habitId: uuid.v4(),
-            // itemDate: '',
-            // itemNotificationTimes: '',
-            // notificationTimesModal: false,
-            // itemStartDate: '',
-            // itemEndDate: '',
-            // fromRoutineID: this.props.fromRoutine ? this.props.fromRoutine : '',
-            // fromRoutineName: this.props.fromRoutineName ? this.props.fromRoutineName : ''
-
-
             allPossibleParents: [],
             name: '',
             routine: null,
@@ -570,9 +545,6 @@ export class CreateHabit extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.habitsMainColor}
             notificationTimes={this.state.notificationTimes}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-            }}
             addNotificationTime={item => {
                 this.setState({ notificationTimes: item })
             }}
