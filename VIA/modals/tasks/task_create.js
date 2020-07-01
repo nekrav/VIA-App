@@ -5,24 +5,14 @@ import {
     View,
     TouchableOpacity,
     Modal,
-    TextInput,
-    SafeAreaView,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native'; // Version can be specified in package.json
-import KeyboardListener from 'react-native-keyboard-listener';
-import { SelectionModal } from '../selectionModal/selectionModal';
-import { DateModal } from '../dateModal/dateModal';
-import { NotesModal } from '../notesModal/notesModal';
 import { Projects } from '../../db';
 import { Controller } from '../controller';
-import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import Moment from 'moment';
-import Slider from '@react-native-community/slider';
-import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
-
-
+import { TopBar, NotificationTimes, Notes } from '../../components'
 import { Notifier } from '../../notifier/notifier'
+
 const empty = ""
 var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
@@ -112,8 +102,10 @@ export class CreateTask extends React.Component {
         return <TopBar
             fromCreate={true}
             nameOfItem={this.state.name}
+            hasDueDate={true}
             dueDate={this.state.dueDate}
             importance={this.state.importance}
+            parentType={"project"}
             parent={this.state.proj}
             parentName={this.state.projName}
             allParents={this.state.allPossibleParents}

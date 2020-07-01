@@ -74,8 +74,10 @@ export class ViewTask extends React.Component {
         return <TopBar
         fromCreate={false}
             nameOfItem={this.state.selectedItem.name}
+            hasDueDate={true}
             dueDate={this.state.selectedItem.due_date}
             importance={this.state.selectedItem.importance}
+            parentType={"project"}
             parent={this.state.selectedItem.project}
             parentName={this.state.selectedItem.projectName}
             setParent={(id, name) => {

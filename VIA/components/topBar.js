@@ -37,46 +37,47 @@ export class TopBar extends React.Component {
 
 
     getDueDate(date) {
-        if (this.getNumberOfDaysLeft(date) === 0) {
-            return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
-        }
-        else if (this.getNumberOfDaysLeft(date) < 0) {
-            return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
-                <TouchableOpacity onPress={() => {
+        if (this.props.hasDueDate) {
+            if (this.getNumberOfDaysLeft(date) === 0) {
+                return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
+            }
+            else if (this.getNumberOfDaysLeft(date) < 0) {
+                return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => {
+                        if (this.state.keyboardOpen) {
+                            Keyboard.dismiss()
+                        }
+                        this.RBSheet.open()
+                    }}>
+                        <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
+                    </TouchableOpacity>
+                    <Text style={{ color: colorsProvider.whiteColor }}>{Math.abs(this.getNumberOfDaysLeft(date))} days late</Text>
+                </View>)
+            }
+            else if (date) {
+                return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => {
+                        if (this.state.keyboardOpen) {
+                            Keyboard.dismiss()
+                        }
+                        this.RBSheet.open()
+                    }}>
+                        <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
+                    </TouchableOpacity>
+                    <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', }}>{this.getNumberOfDaysLeft(date)} days {"\n"}till due</Text>
+                </View>)
+            }
+            else {
+                return <TouchableOpacity onPress={() => {
                     if (this.state.keyboardOpen) {
                         Keyboard.dismiss()
                     }
                     this.RBSheet.open()
                 }}>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop: 15, marginRight: 15, marginLeft: 10, textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
                 </TouchableOpacity>
-                <Text style={{ color: colorsProvider.whiteColor }}>{Math.abs(this.getNumberOfDaysLeft(date))} days late</Text>
-            </View>)
+            }
         }
-        else if (date) {
-            return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
-                <TouchableOpacity onPress={() => {
-                    if (this.state.keyboardOpen) {
-                        Keyboard.dismiss()
-                    }
-                    this.RBSheet.open()
-                }}>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>{Moment(date).format('DD/MM/YY')}</Text>
-                </TouchableOpacity>
-                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', }}>{this.getNumberOfDaysLeft(date)} days {"\n"}till due</Text>
-            </View>)
-        }
-        else {
-            return <TouchableOpacity onPress={() => {
-                if (this.state.keyboardOpen) {
-                    Keyboard.dismiss()
-                }
-                this.RBSheet.open()
-            }}>
-                <Text style={{ color: colorsProvider.whiteColor, textAlign: 'center', marginTop: 15, marginRight: 15, marginLeft: 10, textDecorationLine: 'underline' }}>No due {"\n"}date set</Text>
-            </TouchableOpacity>
-        }
-
     }
 
 
@@ -223,6 +224,7 @@ export class TopBar extends React.Component {
             return <ParentSelection
                 parentName={parent}
                 parent={this.state.parent}
+                parentType={this.props.parentType}
                 selectParent={this.props.selectParent}
                 allParents={this.props.allParents}
                 addParent={(id, name) => {
@@ -254,7 +256,7 @@ export class TopBar extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => { this.nameTextInput.focus(); }}
-                            style={{ width: '60%', marginBottom: 10, }}>
+                            style={{ width: this.props.hasDueDate ? '60%' : '80%', marginBottom: 10, }}>
                             <TextInput
                                 ref={(input) => { this.nameTextInput = input; }}
                                 maxLength={40}

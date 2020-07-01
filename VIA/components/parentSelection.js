@@ -11,6 +11,7 @@ const todayDate = new Date();
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 const screenHeight = Math.round(Dimensions.get('window').height);
+var parentTypeCapitalized = ""
 
 export class ParentSelection extends React.Component {
 
@@ -30,6 +31,9 @@ export class ParentSelection extends React.Component {
     }
 
     renderBottomSlidingPane() {
+
+        parentTypeCapitalized = this.props.parentType.charAt(0).toUpperCase() + this.props.parentType.slice(1)
+
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -46,7 +50,7 @@ export class ParentSelection extends React.Component {
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.topBarColor,
                     fontSize: colorsProvider.fontSizeMain
-                }}>Project</Text>
+                }}>{parentTypeCapitalized}</Text>
             </View>
             <FlatList
                 data={this.state.allParents}
@@ -101,7 +105,7 @@ export class ParentSelection extends React.Component {
                         fontSize: colorsProvider.fontSizeChildren,
                         fontFamily: colorsProvider.fontFamily,
                         color: colorsProvider.whiteColor
-                    }}>Remove From Project</Text>
+                    }}>Remove From {parentTypeCapitalized}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={{
@@ -130,7 +134,7 @@ export class ParentSelection extends React.Component {
         </RBSheet>)
     }
 
-    renderProjectText() {
+    renderParentText() {
         if (this.state.name == null || this.state.name == "null") {
             return (
                 <TouchableOpacity
@@ -143,7 +147,7 @@ export class ParentSelection extends React.Component {
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
                     <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
-                        Is this part of a bigger project?
+                        Is this part of a bigger {this.props.parentType}?
                     </Text>
 
                 </TouchableOpacity>
@@ -177,7 +181,7 @@ export class ParentSelection extends React.Component {
                     <Text style={{ marginRight: 5 }}>
                         <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
                     </Text>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>Is this part of a bigger project?
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>Is this part of a bigger {this.props.parentType}?
           </Text>
                 </TouchableOpacity>
             );
@@ -187,7 +191,7 @@ export class ParentSelection extends React.Component {
 
     render() {
         return (<View>
-            {this.renderProjectText()}
+            {this.renderParentText()}
             {this.renderBottomSlidingPane()}
 
         </View>)
