@@ -118,7 +118,7 @@ export class Notes extends React.Component {
     }
 
     render() {
-        return <View style={{ flex: 1, marginBottom: 10, }}>
+        return <View style={{ flex: 1, marginBottom: 10 }}>
             <KeyboardListener
                 onWillShow={() => { this.setState({ keyboardOpen: true }); }}
                 onWillHide={() => { this.setState({ keyboardOpen: false }); }}

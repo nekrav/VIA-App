@@ -202,7 +202,11 @@ export class HabitsScreen extends React.Component {
                         } else {
                             theHabit.notification_time = JSON.stringify(emptyTimes)
                         }
-                        this.setState({ selectedTask: theHabit })
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editNotes={(text) => {
+                        theHabit.notes = text;
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editRoutine={(text, name) => {
                         theHabit.routineName = name;

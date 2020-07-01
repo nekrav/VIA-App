@@ -187,7 +187,7 @@ export class ViewHabit extends React.Component {
             color={colorsProvider.habitsMainColor}
             notes={this.state.notes}
             editNotes={value => {
-                this.props.notes(value);
+                this.props.editNotes(value);
             }} />
     }
     /* #endregion */
@@ -347,8 +347,7 @@ export class ViewHabit extends React.Component {
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <View style={this.getStyleIfDone()}>
-                        <View>
+                    <View style={styles.outerView}>
                             {/* Top Bar Section */}
                             {this.renderTopBar()}
 
@@ -370,7 +369,6 @@ export class ViewHabit extends React.Component {
                             {/* {NOTES SECTION} */}
                             {/* {this.renderNotesSection()} */}
 
-                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </Modal>

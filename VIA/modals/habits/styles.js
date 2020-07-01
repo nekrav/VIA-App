@@ -14,12 +14,6 @@ module.exports = StyleSheet.create({
     flex: 1,
     backgroundColor: colorsProvider.whiteColor,
   },
-  outerViewDone: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: colorsProvider.habitsMainColor,
-    justifyContent: 'space-between',
-  },
   /* #endregion */
 
   /* #region  Top Navigation */
