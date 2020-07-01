@@ -211,6 +211,7 @@ export class TopBar extends React.Component {
     renderImportance(importance) {
         if (this.props.hasImportance)
             return (<ImportanceRadio
+                color={this.props.color}
                 importance={importance}
                 setImportanceNN={this.props.setImportanceNN}
                 setImportanceNU={this.props.setImportanceNU}
@@ -222,6 +223,7 @@ export class TopBar extends React.Component {
     renderParent(parent) {
         if (this.props.hasParent) {
             return <ParentSelection
+                color={this.props.parentColor}
                 parentName={parent}
                 parent={this.state.parent}
                 parentType={this.props.parentType}
@@ -242,7 +244,7 @@ export class TopBar extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: colorsProvider.topBarColor }}>
+                <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color}}>
                     {this.renderBottomSlidingPane()}
                     <KeyboardListener
                         onWillShow={() => { this.setState({ keyboardOpen: true }); }}

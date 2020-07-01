@@ -48,7 +48,7 @@ export class ParentSelection extends React.Component {
             }}>
                 <Text style={{
                     fontFamily: colorsProvider.font,
-                    color: colorsProvider.topBarColor,
+                    color: this.props.color,
                     fontSize: colorsProvider.fontSizeMain
                 }}>{parentTypeCapitalized}</Text>
             </View>
@@ -60,7 +60,7 @@ export class ParentSelection extends React.Component {
                     <View style={{
                         flex: 1,
                         borderRadius: 10,
-                        backgroundColor: colorsProvider.topBarColor,
+                        backgroundColor: this.props.color,
                         marginTop: 10,
                         marginBottom: 10,
                     }}>

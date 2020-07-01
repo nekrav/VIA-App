@@ -43,7 +43,7 @@ export class HabitsScreen extends React.Component {
 
     saveNew(habit) {
         let newHabit = {}
-        newHabit.id = habit.id;
+        newHabit.id = uuid.v4();;
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
         newHabit.start_time = habit.start_time ? habit.start_time : ''
@@ -96,6 +96,7 @@ export class HabitsScreen extends React.Component {
                 }}
                 routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
+                notes={(text) => { newHabit.notes = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newHabit) }}
             ></CreateHabit>

@@ -131,6 +131,8 @@ export class CreateHabit extends React.Component {
      /* #region  Top Bar Region */
      renderTopBar() {
         return <TopBar
+            color={colorsProvider.habitsMainColor}
+            parentColor={colorsProvider.routinesMainColor}
             fromCreate={true}
             nameOfItem={this.state.name}
             hasDueDate={false}
@@ -563,6 +565,92 @@ export class CreateHabit extends React.Component {
     // }
     /* #endregion */
 
+        /* #region  Notes Region */
+
+        renderNotesSection() {
+            return <Notes
+            color={colorsProvider.habitsMainColor}
+                notes={this.state.notes}
+                editNotes={value => {
+                    this.props.notes(value);
+                }} />
+        }
+        /* #endregion */
+
+    /* #region  Bottom Buttons Section */
+    renderBottomButtons() {
+        return (<View style={{
+            // paddingTop: 18,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 50,
+        }}>
+            <TouchableOpacity
+                style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    marginRight: 10,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderRadius: 20,
+                    backgroundColor: colorsProvider.closeButtonColor
+                }}
+                onPress={this.props.closeModal}>
+                <Text style={{
+                    fontSize: 18,
+                    textAlign: 'center',
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.whiteColor,
+                    margin: 10,
+                }}>Close</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                disabled={this.state.name != '' ? false : true}
+                style={
+                    this.state.name != ''
+                        ? {
+                            flex: 2,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginLeft: 10,
+                            marginRight: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            borderRadius: 20,
+                            borderWidth: 2,
+                            borderColor: colorsProvider.completeButtonColor,
+                            backgroundColor: colorsProvider.completeButtonColor
+                        }
+                        : {
+                            flex: 2,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginLeft: 10,
+                            marginRight: 10,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            borderWidth: 2,
+                            borderRadius: 20,
+                            borderColor: colorsProvider.completeButtonColor,
+                        }
+                }
+                onPress={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.notification_time(this.state.notificationTimes);
+
+                    if (this.props.fromProject)
+                        this.props.saveFromProject(this.state.newTaskFromProject)
+                    else
+                        this.props.save()
+                }}>
+                <Text style={this.state.name != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
+            </TouchableOpacity>
+        </View>)
+    }
+    /* #endregion */
+
     render() {
         return (
             <Modal
@@ -578,7 +666,6 @@ export class CreateHabit extends React.Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
-                        <View>
                         {this.renderTopBar()}
                             {/* {TOP NAVIGATION REGION} */}
                             {/* {this.renderTopBar()} */}
@@ -601,7 +688,12 @@ export class CreateHabit extends React.Component {
                             {/* {NOTES SECTION} */}
                             {/* {this.renderNotesSection()} */}
 
-                        </View>
+
+                        {/* {NOTES SECTION} */}
+                        {this.renderNotesSection()}
+
+                        {/* {BOTTOM BUTTONS SECTION} */}
+                        {this.renderBottomButtons()}
 
                         {/* {BOTTOM BUTTONS SECTION} */}
                         {/* {this.renderBottomButtons()} */}

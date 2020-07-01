@@ -9,11 +9,7 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 module.exports = StyleSheet.create({
     /* #region Outer Structure */
     outerView: {
-        // marginTop: 0,
         flex: 1,
-        // flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignContent: 'center',
         backgroundColor: colorsProvider.whiteColor,
     },
     outerViewDone: {

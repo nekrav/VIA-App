@@ -12,9 +12,7 @@ module.exports = StyleSheet.create({
   /* #region Outer Structure */
   outerView: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: colorsProvider.habitsMainColor,
-    justifyContent: 'space-between'
+    backgroundColor: colorsProvider.whiteColor,
   },
   outerViewDone: {
     flex: 1,

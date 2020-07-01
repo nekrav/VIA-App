@@ -73,6 +73,8 @@ export class ViewTask extends React.Component {
     renderTopBar() {
         return <TopBar
         fromCreate={false}
+            color={colorsProvider.tasksMainColor}
+            parentColor={colorsProvider.projectsMainColor}
             nameOfItem={this.state.selectedItem.name}
             hasDueDate={true}
             dueDate={this.state.selectedItem.due_date}

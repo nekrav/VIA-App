@@ -16,6 +16,9 @@ export const trash = 'trash'
 export const close = 'close'
 /* #endregion */
 
+export const tasksMainColor = '#1A9ED8'
+export const habitsMainColor = "#D6A2AD"
+
 /* #region NewColors */
 export const topBarColor = '#1A9ED8'
 export const doneSliderNotFinished = '#D4D9DB'
@@ -53,7 +56,6 @@ export const routinesBottomTabHighlightColor = "#9C7639";
 /* #endregion */
 
 /* #region  Habits */
-export const habitsMainColor = "#D6A2AD"
 export const habitsComplimentaryColor = "#711E30";
 export const habitsPlaceholderColor = "#8f6d78";
 /* #endregion */
@@ -72,7 +74,6 @@ export const projectsPlaceholderColor = "#35689C";
 /* #endregion */
 
 /* #region  Tasks */
-export const tasksMainColor = "#58AAF9"
 export const tasksComplimentaryColor = "#045CB1";
 export const tasksPlaceholderColor = "#4485C8";
 export const tasksBottomTabHighlightColor = "#0F7EE9"

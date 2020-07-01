@@ -100,6 +100,8 @@ export class CreateTask extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
+            color={colorsProvider.tasksMainColor}
+            parentColor={colorsProvider.projectsMainColor}
             fromCreate={true}
             nameOfItem={this.state.name}
             hasDueDate={true}

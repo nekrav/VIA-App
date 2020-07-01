@@ -57,7 +57,7 @@ export class ImportanceRadio extends React.Component {
 
 
     renderImportance() {
-        return (<View style={{ flexDirection: 'row', marginBottom: 10, backgroundColor: colorsProvider.topBarColor, justifyContent: 'space-around' }}>
+        return (<View style={{ flexDirection: 'row', marginBottom: 10, backgroundColor: this.props.color, justifyContent: 'space-around' }}>
             <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                 <TouchableOpacity
                     onPress={() => {

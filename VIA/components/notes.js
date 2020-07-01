@@ -77,7 +77,7 @@ export class Notes extends React.Component {
                         marginLeft: 10,
                         marginRight: 10,
                         marginTop: 10,
-                        backgroundColor: colorsProvider.topBarColor,
+                        backgroundColor: this.props.color,
                         borderRadius: 20
                     }}>
                     <Text style={{
@@ -108,7 +108,7 @@ export class Notes extends React.Component {
                         marginLeft: 10,
                         marginRight: 10,
                         marginTop: 10,
-                        backgroundColor: colorsProvider.topBarColor,
+                        backgroundColor: this.props.color,
                         borderRadius: 20
                     }}>
                     <Text style={{
