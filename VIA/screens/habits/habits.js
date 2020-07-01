@@ -10,7 +10,50 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
 
 const notifier = new Notifier;
-
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 const styles = require('./styles');
 
@@ -86,12 +129,11 @@ export class HabitsScreen extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notification_time={(times) => {
+                    if (times) {
                         newHabit.notification_time = times
+                    } else {
+                        newHabit.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 routine={(text) => { newHabit.routine = text }}
