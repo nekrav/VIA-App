@@ -87,7 +87,7 @@ export class NotificationTimes extends React.Component {
                     this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
                     this.RBSheet.open()
                 }}
-                style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: colorsProvider.topBarColor, justifyContent: 'center', alignContent: 'center' }}>
+                style={{ borderRadius: 20, width: 45, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
                 <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>{shortenedName}</Text>
             </TouchableOpacity>)
         else
@@ -125,8 +125,8 @@ export class NotificationTimes extends React.Component {
         return (
             <View style={{ flexDirection: 'column' }}>
                 <View style={{ flexDirection: 'row', marginRight: 10, marginLeft: 10, marginTop: 10 }}>
-                    <SIcon name="bell" size={20} color={colorsProvider.topBarColor} />
-                    <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.topBarColor }}>
+                    <SIcon name="bell" size={20} color={this.props.color} />
+                    <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: this.props.color }}>
                         Notification Times
                 </Text>
 
@@ -184,7 +184,7 @@ export class NotificationTimes extends React.Component {
             }}>
                 <Text style={{
                     fontFamily: colorsProvider.font,
-                    color: colorsProvider.topBarColor,
+                    color: this.props.color,
                     fontSize: colorsProvider.fontSizeMain
                 }}>{this.state.dayOfTheWeek}</Text>
             </View>
@@ -196,7 +196,7 @@ export class NotificationTimes extends React.Component {
                     <View style={{
                         flex: 1,
                         borderRadius: 10,
-                        backgroundColor: colorsProvider.topBarColor,
+                        backgroundColor: this.props.color,
                         marginTop: 10,
                         marginBottom: 10,
                     }}>
@@ -235,7 +235,7 @@ export class NotificationTimes extends React.Component {
                     flex: 2,
                     flexDirection: 'row',
                     alignItems: 'center',
-                    backgroundColor: colorsProvider.topBarColor,
+                    backgroundColor: this.props.color,
                 }}>
                     <DatePicker
                         textColor={colorsProvider.whiteColor}

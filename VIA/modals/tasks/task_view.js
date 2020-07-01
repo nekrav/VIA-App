@@ -216,6 +216,7 @@ export class ViewTask extends React.Component {
 
     renderNotificationTimes() {
         return (<NotificationTimes
+            color={colorsProvider.tasksMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);

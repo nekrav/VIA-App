@@ -565,6 +565,22 @@ export class CreateHabit extends React.Component {
     // }
     /* #endregion */
 
+    /* #region  Notification Times Region */
+    renderNotificationTimes() {
+        return (<NotificationTimes
+            color={colorsProvider.habitsMainColor}
+            notificationTimes={this.state.notificationTimes}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}
+            addNotificationTime={item => {
+                this.setState({ notificationTimes: item })
+            }}
+        />
+        )
+    }
+    /* #endregion */
+
     /* #region  Notes Region */
 
     renderNotesSection() {
@@ -697,6 +713,8 @@ export class CreateHabit extends React.Component {
 
                         {/* {NOTES SECTION} */}
                         {/* {this.renderNotesSection()} */}
+
+                        {this.renderNotificationTimes()}
 
 
                         {/* {NOTES SECTION} */}

@@ -161,6 +161,7 @@ export class CreateTask extends React.Component {
     /* #region  Notification Times Region */
     renderNotificationTimes() {
         return (<NotificationTimes
+            color={colorsProvider.tasksMainColor}
             notificationTimes={this.state.notificationTimes}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
