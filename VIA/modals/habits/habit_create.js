@@ -153,7 +153,7 @@ export class CreateHabit extends React.Component {
                 this.setState({ name: item });
                 this.props.name(item);
                 this.state.newHabitFromRoutine.name = item;
-                this.setState({ newTaskFromRoutine: this.state.newTaskFromRoutine })
+                this.setState({ newHabitFromRoutine: this.state.newHabitFromRoutine })
             }}
             hasImportance={true}
             hasParent={true}

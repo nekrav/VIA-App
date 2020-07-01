@@ -72,16 +72,16 @@ export class HabitsScreen extends React.Component {
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
                 setImportanceNN={(text) => {
-                    newTask.importance = 1;
+                    newHabit.importance = 1;
                 }}
                 setImportanceNU={(text) => {
-                    newTask.importance = 2;
+                    newHabit.importance = 2;
                 }}
                 setImportanceIN={(text) => {
-                    newTask.importance = 3;
+                    newHabit.importance = 3;
                 }}
                 setImportanceIU={(text) => {
-                    newTask.importance = 4;
+                    newHabit.importance = 4;
                 }}
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
