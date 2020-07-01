@@ -35,13 +35,7 @@ export class Notes extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.notes}
-                    backgroundColor={colorsProvider.tasksMainColor}
-                    buttonContainerNotChangedColor={colorsProvider.tasksPlaceholderColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.tasksMainColor}
-                    textPlaceholderColor={colorsProvider.tasksPlaceholderColor}
-                    textChangedColor={colorsProvider.tasksComplimentaryColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-                    buttonTextPlaceholderColor={colorsProvider.whiteColor}
+                    color={this.props.color}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         this.setState({ notes: item })

@@ -128,8 +128,8 @@ export class CreateHabit extends React.Component {
         controller.getParents(this, Routines.TABLE_NAME);
     }
 
-     /* #region  Top Bar Region */
-     renderTopBar() {
+    /* #region  Top Bar Region */
+    renderTopBar() {
         return <TopBar
             color={colorsProvider.habitsMainColor}
             parentColor={colorsProvider.routinesMainColor}
@@ -565,17 +565,17 @@ export class CreateHabit extends React.Component {
     // }
     /* #endregion */
 
-        /* #region  Notes Region */
+    /* #region  Notes Region */
 
-        renderNotesSection() {
-            return <Notes
+    renderNotesSection() {
+        return <Notes
             color={colorsProvider.habitsMainColor}
-                notes={this.state.notes}
-                editNotes={value => {
-                    this.props.notes(value);
-                }} />
-        }
-        /* #endregion */
+            notes={this.state.notes}
+            editNotes={value => {
+                this.props.notes(value);
+            }} />
+    }
+    /* #endregion */
 
     /* #region  Bottom Buttons Section */
     renderBottomButtons() {
@@ -645,7 +645,17 @@ export class CreateHabit extends React.Component {
                     else
                         this.props.save()
                 }}>
-                <Text style={this.state.name != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
+                <Text style={this.state.name != '' ? {
+                    fontSize: colorsProvider.fontButtonSize,
+                    textAlign: 'center',
+                    fontFamily: colorsProvider.font,
+                    color: colorsProvider.homeTextColor,
+                } : {
+                        fontSize: colorsProvider.fontButtonSize,
+                        textAlign: 'center',
+                        fontFamily: colorsProvider.font,
+                        color: colorsProvider.homeTextColor,
+                    }}> Save</Text>
             </TouchableOpacity>
         </View>)
     }
@@ -658,7 +668,7 @@ export class CreateHabit extends React.Component {
                 transparent={this.props.transparent}
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
-{/* 
+                {/* 
                 {this.showRoutineSelectionModal()}
                 {this.renderEndDateModal()}
                 {this.renderStartDateModal()}
@@ -667,26 +677,26 @@ export class CreateHabit extends React.Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
                         {this.renderTopBar()}
-                            {/* {TOP NAVIGATION REGION} */}
-                            {/* {this.renderTopBar()} */}
+                        {/* {TOP NAVIGATION REGION} */}
+                        {/* {this.renderTopBar()} */}
 
-                            {/* {NAME CONTAINER} */}
-                            {/* {this.renderNameInputSection()} */}
+                        {/* {NAME CONTAINER} */}
+                        {/* {this.renderNameInputSection()} */}
 
-                            {/* {Start Date SECTION} */}
-                            {/* {this.renderStartDate()} */}
+                        {/* {Start Date SECTION} */}
+                        {/* {this.renderStartDate()} */}
 
-                            {/* {End Date SECTION} */}
-                            {/* {this.renderEndDate()} */}
+                        {/* {End Date SECTION} */}
+                        {/* {this.renderEndDate()} */}
 
-                            {/* {PROJECT SELECTION SECTION} */}
-                            {/* {this.renderRoutineSelection()} */}
+                        {/* {PROJECT SELECTION SECTION} */}
+                        {/* {this.renderRoutineSelection()} */}
 
-                            {/* {NOTIFICATION TIMES SECTION} */}
-                            {/* {this.renderNotificationTimes()} */}
+                        {/* {NOTIFICATION TIMES SECTION} */}
+                        {/* {this.renderNotificationTimes()} */}
 
-                            {/* {NOTES SECTION} */}
-                            {/* {this.renderNotesSection()} */}
+                        {/* {NOTES SECTION} */}
+                        {/* {this.renderNotesSection()} */}
 
 
                         {/* {NOTES SECTION} */}

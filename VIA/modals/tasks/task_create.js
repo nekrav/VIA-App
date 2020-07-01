@@ -177,6 +177,7 @@ export class CreateTask extends React.Component {
 
     renderNotesSection() {
         return <Notes
+            color={colorsProvider.tasksMainColor}
             notes={this.state.notes}
             editNotes={value => {
                 this.props.notes(value);

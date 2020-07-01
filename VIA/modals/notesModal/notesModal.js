@@ -40,17 +40,27 @@ export class NotesModal extends React.Component {
 
     getButtonContainerStyles() {
         if (this.state.notes != this.state.startingNotes) {
-            return [styles.modifiedBottomButtonContainer, { borderColor: this.props.textChangedColor, backgroundColor: this.props.textChangedColor}]
+            return [styles.modifiedBottomButtonContainer, { borderColor: "#045CB1", backgroundColor: colorsProvider.setButtonColor}]
         }
-        return [styles.modifiedBottomButtonContainer, {  backgroundColor: this.props.buttonContainerNotChangedColor}]
+        return [styles.modifiedBottomButtonContainer, {  backgroundColor: colorsProvider.closeButtonColor}]
 
     }
 
     getButtonTextStyles() {
         if (this.state.notes != this.state.startingNotes) {
-            return [styles.modifiedBottomButtonText, { color: colorsProvider.whiteColor }]
+            return [{
+                fontSize: 18,
+                textAlign: 'center',
+                fontFamily: colorsProvider.font,
+                color: colorsProvider.whiteColor,
+            }, { color: colorsProvider.whiteColor }]
         } else {
-            return [styles.bottomButtonText, { color: colorsProvider.whiteColor }]
+            return [{
+                fontSize: 18,
+                textAlign: 'center',
+                fontFamily: colorsProvider.font,
+                color: colorsProvider.homeTextColor,
+            }, { color: colorsProvider.whiteColor }]
         }
     }
 
@@ -63,7 +73,7 @@ export class NotesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={[styles.outerView, { backgroundColor: colorsProvider.topBarColor }]}>
+                    <SafeAreaView style={[styles.outerView, { backgroundColor: this.props.color }]}>
                         <TouchableOpacity
                             onPress={() => {
                                 if (this.notesTextInput.isFocused) {
@@ -74,7 +84,7 @@ export class NotesModal extends React.Component {
                             style={styles.notesContainer}>
                             <TextInput ref={(input) => { this.notesTextInput = input; }}
                                 multiline={true}
-                                placeholderTextColor={this.props.textPlaceholderColor}
+                                placeholderTextColor={colorsProvider.whiteColor}
                                 placeholder={this.props.placeholder}
                                 style={[styles.notesTextInput, { color: colorsProvider.whiteColor }]}
                                 value={this.state.notes}

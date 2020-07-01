@@ -72,7 +72,7 @@ export class ViewTask extends React.Component {
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
-        fromCreate={false}
+            fromCreate={false}
             color={colorsProvider.tasksMainColor}
             parentColor={colorsProvider.projectsMainColor}
             nameOfItem={this.state.selectedItem.name}
@@ -169,7 +169,7 @@ export class ViewTask extends React.Component {
                     this.props.editDueDate(item);
                     this.setState({ dueDate: item });
                 }}
-                closeModal={() => {}}>
+                closeModal={() => { }}>
             </DateModal>
         }
         return null;
@@ -235,6 +235,7 @@ export class ViewTask extends React.Component {
 
     renderNotesSection() {
         return <Notes
+            color={colorsProvider.tasksMainColor}
             notes={this.state.selectedItem.notes}
             editNotes={value => {
                 this.props.editNotes(value);
