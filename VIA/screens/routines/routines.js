@@ -87,9 +87,11 @@ export class RoutinesScreen extends React.Component {
         newRoutine.id = uuid.v4();
         newRoutine.name = routine.name;
         newRoutine.created_date = new Date().getDate();
+        // newRoutine.importance = routine.importance ? routine.importance : "";
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
         newRoutine.end_time = routine.end_time ? routine.end_time : "";
         newRoutine.notification_time = routine.notification_time ? routine.notification_time : "";
+        newRoutine.notes = routine.notes ? routine.notes : "";
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -128,7 +130,7 @@ export class RoutinesScreen extends React.Component {
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newRoutine) }}
+                save={() => { console.warn(newRoutine);this.saveNew(newRoutine) }}
             ></CreateRoutine>
         }
     }
@@ -146,19 +148,19 @@ export class RoutinesScreen extends React.Component {
                     }}
                     setImportanceNN={(text) => {
                         theRoutine.importance = 1;
-                        his.setState({ selectedRoutine: theRoutine })
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     setImportanceNU={(text) => {
                         theRoutine.importance = 2;
-                        his.setState({ selectedRoutine: theRoutine })
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     setImportanceIN={(text) => {
                         theRoutine.importance = 3;
-                        his.setState({ selectedRoutine: theRoutine })
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     setImportanceIU={(text) => {
                         theRoutine.importance = 4;
-                        his.setState({ selectedRoutine: theRoutine })
+                        this.setState({ selectedRoutine: theRoutine })
                     }}
                     editStartTime={(text) => {
                         theRoutine.start_time = text;

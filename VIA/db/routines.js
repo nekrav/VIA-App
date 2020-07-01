@@ -5,6 +5,7 @@ export class Routines {
         this.id = uuid.v4
         this.name = props.name
         this.created_date = props.created_date
+        this.importance = props.importance
         this.start_time = props.start_time
         this.end_time = props.end_time
         this.completed = props.completed
@@ -19,6 +20,7 @@ export class Routines {
             'id text not null primary key unique, ' +
             'name text NOT NULL, ' +
             'created_date text NOT NULL, ' +
+            'importance text, ' +
             'finished_date text, ' +
             'start_time text, ' +
             'end_time text, ' +

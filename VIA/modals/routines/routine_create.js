@@ -665,7 +665,6 @@ export class CreateRoutine extends React.Component {
 
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<View style={styles.outerView}>
-						{/* {TOP NAVIGATION REGION} */}
 						{this.renderTopBar()}
 
 						{this.renderNotificationTimes()}

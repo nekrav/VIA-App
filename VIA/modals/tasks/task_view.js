@@ -38,14 +38,11 @@ export class ViewTask extends React.Component {
         super(props);
         this.state = {
             selectedItem: this.props.selectedItem,
-            projectSelectionModalVisible: false,
             allPossibleParents: [],
             proj: null,
             projName: empty,
-            showDate: false,
             dueDate: '',
             notificationTimes: "",
-            notesModalVisible: false,
         };
     }
 
@@ -150,32 +147,6 @@ export class ViewTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Due Date Region */
-    renderShowDate() {
-        if (this.state.showDate) {
-            return <DateModal
-                animationType="fade"
-                itemDate={this.props.selectedItem.due_date ? this.props.selectedItem.due_date : empty}
-                itemName="Project"
-                disabledSaveButtonBackgroundColor={colorsProvider.tasksMainColor}
-                saveButtonBackgroundColor={colorsProvider.tasksMainColor}
-                transparent={true}
-                setDate={(item) => {
-                    this.props.editDueDate(item)
-                    this.setState({ dueDate: item })
-                    this.props.save();
-                }}
-                onSubmit={item => {
-                    this.props.editDueDate(item);
-                    this.setState({ dueDate: item });
-                }}
-                closeModal={() => { }}>
-            </DateModal>
-        }
-        return null;
-    }
-    /* #endregion */
-
     /* #region  Complete Button and Trash Button Section */
     renderCompleteAndTrashButton() {
         return (<View style={{ flexDirection: 'row' }}>
@@ -258,7 +229,6 @@ export class ViewTask extends React.Component {
                 style={{ margin: 0, }}
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
-                {this.renderShowDate()}
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
