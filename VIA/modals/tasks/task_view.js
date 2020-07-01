@@ -39,7 +39,7 @@ export class ViewTask extends React.Component {
         this.state = {
             selectedItem: this.props.selectedItem,
             projectSelectionModalVisible: false,
-            items: [],
+            allPossibleParents: [],
             proj: null,
             projName: empty,
             showDate: false,
@@ -51,7 +51,7 @@ export class ViewTask extends React.Component {
 
     componentDidMount() {
         _isMounted = true;
-        controller.loadAll(this, Projects.TABLE_NAME);
+        controller.getParents(this, Projects.TABLE_NAME);
         notifier.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
@@ -88,7 +88,7 @@ export class ViewTask extends React.Component {
                 this.setState({ projName: null })
                 this.props.save();
             }}
-            allParents={this.state.items}
+            allParents={this.state.allPossibleParents}
             hasParent={true}
             closeModal={this.props.closeModal}
             editName={item => {

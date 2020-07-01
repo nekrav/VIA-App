@@ -14,7 +14,6 @@ import KeyboardListener from 'react-native-keyboard-listener';
 import { SelectionModal } from '../selectionModal/selectionModal';
 import { DateModal } from '../dateModal/dateModal';
 import { NotesModal } from '../notesModal/notesModal';
-import { NotificationTimesModal } from '../notificationTimes/notificationTimesModal';
 import { Projects } from '../../db';
 import { Controller } from '../controller';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
@@ -86,49 +85,38 @@ export class CreateTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newTask: this.props.newTask,
-            projectSelectionModalVisible: false,
-            items: [],
-            theSelectedProject: '',
-            itemDate: '',
-            itemNotificationTimes: '',
-            newTaskImportance: 0,
-            notificationTimesModal: false,
-            newTaskName: '',
-            itemNotes: '',
+            allPossibleParents: [],
+            name: '',
+            proj: null,
+            projName: null,
+            importance: 0,
+            dueDate: '',
+            notificationTimes: "",
+            notes: "",
             fromProjectID: this.props.fromProject ? this.props.fromProject : '',
             fromProjectName: this.props.fromProjectName ? this.props.fromProjectName : '',
             newTaskFromProject: {},
-            proj: null,
-            projName: null,
-            showDate: false,
-            dueDate: '',
-            notificationTimes: "",
-            notesModalVisible: false,
-            notes: ""
         };
     }
 
     componentDidMount() {
-        controller.loadAll(this, Projects.TABLE_NAME);
+        controller.getParents(this, Projects.TABLE_NAME);
         if (this.state.fromProjectID) {
             this.state.newTaskFromProject.project = this.state.fromProjectID
             this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-
         }
-
     }
 
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
             fromCreate={true}
-            nameOfItem={this.state.newTaskName}
+            nameOfItem={this.state.name}
             dueDate={this.state.dueDate}
-            importance={this.state.newTaskImportance}
+            importance={this.state.importance}
             parent={this.state.proj}
             parentName={this.state.projName}
-            allParents={this.state.items}
+            allParents={this.state.allPossibleParents}
             setParent={(id, name) => {
                 this.props.project(id, name);
                 this.setState({ projName: name, proj: id });
@@ -139,7 +127,7 @@ export class CreateTask extends React.Component {
             }}
             closeModal={this.props.closeModal}
             editName={item => {
-                this.setState({ newTaskName: item });
+                this.setState({ name: item });
                 this.props.name(item);
                 this.state.newTaskFromProject.name = item;
                 this.setState({ newTaskFromProject: this.state.newTaskFromProject })
@@ -176,78 +164,6 @@ export class CreateTask extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Due Date Region */
-    setDueDateModalVisibility(visible) {
-        this.setState({ showDate: visible });
-    }
-
-    renderDueDateModal() {
-        if (this.state.showDate) {
-            return (
-                <DateModal
-                    pickerMode="date"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-                    saveButtonBackgroundColor={colorsProvider.tasksComplimentaryColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.due_date(item);
-                        this.setState({ itemDate: item });
-                        this.state.newTaskFromProject.due_date = item
-                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-
-                    }}
-                    onSubmit={item => {
-                        this.props.due_date(item);
-                        this.setState({ itemDate: item });
-                        this.setDueDateModalVisibility(false);
-                        this.state.newTaskFromProject.due_date = item
-                        this.setState({ newTaskFromProject: this.state.newTaskFromProject })
-
-                    }}
-                    closeModal={() => {
-                        this.setDueDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderDueDate() {
-        if (this.state.itemDate != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setDueDateModalVisibility(true)
-                    }}>
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.itemDate)).format(dateFormat)}
-                    </Text>
-
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.itemDate)).diff({ todayDate }, 'days') +
-                            ' days left'}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
-                Keyboard.dismiss()
-                this.setDueDateModalVisibility(true)
-            }}>
-                <Text style={styles.createDateText}>
-                    When do you want to finish this?
-  </Text>
-            </TouchableOpacity>
-        );
-    }
-    /* #endregion */
-
-
     /* #region  Notification Times Region */
     renderNotificationTimes() {
         return (<NotificationTimes
@@ -256,10 +172,7 @@ export class CreateTask extends React.Component {
                 this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
-                // this.props.notification_time(item);
                 this.setState({ notificationTimes: item })
-                // this.props.save();
-                // notifier.scheduleAllNotifications();
             }}
         />
         )
@@ -307,9 +220,9 @@ export class CreateTask extends React.Component {
                 }}>Close</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                disabled={this.state.newTaskName != '' ? false : true}
+                disabled={this.state.name != '' ? false : true}
                 style={
-                    this.state.newTaskName != ''
+                    this.state.name != ''
                         ? {
                             flex: 2,
                             alignItems: 'center',
@@ -345,7 +258,7 @@ export class CreateTask extends React.Component {
                     else
                         this.props.save()
                 }}>
-                <Text style={this.state.newTaskName != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
+                <Text style={this.state.name != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>
             </TouchableOpacity>
         </View>)
     }

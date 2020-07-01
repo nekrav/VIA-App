@@ -26,6 +26,22 @@ export class Controller extends React.Component {
             })
     }
 
+    getParents(object, tableName) {
+        const itemsArr = []
+        Database.getAll(tableName)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                object.setState({
+                    allPossibleParents: itemsArr
+                })
+            })
+    }
+
     loadOne(object, item, tableName) {
         Database.getOne(tableName, item).then((res) => {
             // selectedItem = res.rows.item(0)
