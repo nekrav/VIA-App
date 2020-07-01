@@ -19,6 +19,50 @@ const controller = new Controller;
 
 const dbTableName = Projects.TABLE_NAME
 
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 const childTableName = Tasks.TABLE_NAME
 
@@ -74,15 +118,25 @@ export class ProjectsScreen extends React.Component {
                 id={(text) => { newProject.id = text }}
                 name={(text) => { newProject.name = text }}
                 due_date={(text) => { newProject.due_date = text }}
-                importance={(text) => { newProject.importance = text }}
+                setImportanceNN={(text) => {
+                    newProject.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newProject.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newProject.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newProject.importance = 4;
+                }}
                 time_spent={(text) => { newProject.time_spent = text }}
                 notes={(text) => { newProject.notes = text }}
                 notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                    if (times) {
                         newProject.notification_time = times
+                    } else {
+                        newProject.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -107,9 +161,21 @@ export class ProjectsScreen extends React.Component {
                         theProject.due_date = text;
                         this.setState({ selectedProject: theProject })
                     }}
-                    editImportance={(text) => {
-                        theProject.importance = text;
-                        this.setState({ selectedProject: theProject })
+                    setImportanceNN={(text) => {
+                        theProject.importance = 1;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceNU={(text) => {
+                        theProject.importance = 2;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceIN={(text) => {
+                        theProject.importance = 3;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceIU={(text) => {
+                        theProject.importance = 4;
+                        this.setState({ selectedTask: theProject })
                     }}
                     editCompleted={(text) => {
                         theProject.completed = text;
@@ -133,10 +199,7 @@ export class ProjectsScreen extends React.Component {
                     }}
                     editNotificationTime={(text) => {
                         if (text) {
-                            var times = text.map(function (time) {
-                                return JSON.stringify(time)
-                            })
-                            theProject.notification_time = times
+                            theProject.notification_time = text
                             this.setState({ selectedProject: theProject })
                         }
                     }}
@@ -219,7 +282,7 @@ export class ProjectsScreen extends React.Component {
                     }}
 
                     closeModal={() => {
-                        this.setState({ childOfListItemModalVisible: false})
+                        this.setState({ childOfListItemModalVisible: false })
                         controller.setViewModalVisible(this, true)
                     }}>
                 </ViewTaskFromProject>
