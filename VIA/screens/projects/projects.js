@@ -91,7 +91,7 @@ export class ProjectsScreen extends React.Component {
 
     saveNew(project) {
         let newProject = {}
-        newProject.id = project.id;
+        newProject.id = uuid.v4();
         newProject.name = project.name;
         newProject.created_date = new Date().getDate();
         newProject.due_date = project.due_date ? project.due_date : "";
@@ -132,7 +132,7 @@ export class ProjectsScreen extends React.Component {
                 }}
                 time_spent={(text) => { newProject.time_spent = text }}
                 notes={(text) => { newProject.notes = text }}
-                notification_time={(text) => {
+                notification_time={(times) => {
                     if (times) {
                         newProject.notification_time = times
                     } else {
