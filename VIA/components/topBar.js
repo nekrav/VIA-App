@@ -1,8 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions } from "react-native";
+import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import { Database } from '../db'
 import Moment from 'moment';
 import { ImportanceRadio } from './importanceRadio';
 import { ParentSelection } from './parentSelection';

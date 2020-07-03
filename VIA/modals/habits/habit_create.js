@@ -3,7 +3,7 @@ import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
 import { Database, Routines, Tasks } from '../../db'
 import { Controller } from '../controller'
-import { TopBar, NotificationTimes, Notes } from '../../components'
+import { TopBar, NotificationTimes, Notes, StartEndTime } from '../../components'
 
 import { Notifier } from '../../notifier/notifier'
 const controller = new Controller;
@@ -80,7 +80,8 @@ export class CreateHabit extends React.Component {
             routine: null,
             routineName: null,
             importance: 0,
-            dueDate: '',
+            startTime: '',
+            endTime: '',
             notificationTimes: "",
             notes: "",
             fromRoutineID: this.props.fromRoutine ? this.props.fromRoutine : '',
@@ -159,52 +160,26 @@ export class CreateHabit extends React.Component {
     }
     /* #endregion */
 
-
-    /* #region  Top Bar Region */
-    // renderTopBar() {
-    //     return (<View style={styles.topNav}>
-    //         <TouchableOpacity
-    //             style={styles.topNavBackButton}
-    //             onPress={this.props.closeModal}>
-    //             <SIcon
-    //                 name="arrow-left"
-    //                 size={30}
-    //                 color={colorsProvider.habitsComplimentaryColor}
-    //             />
-    //         </TouchableOpacity>
-    //     </View>)
-    // }
-    /* #endregion */
-
-    /* #region  Name Input Region */
-    renderNameInputSection() {
-        return (<TouchableOpacity
-            onPress={() => {
-                this.nameTextInput.focus();
+    /* #region  StartEndTime */
+    renderStartEndTime() {
+        return (<StartEndTime
+            startTime={this.state.startTime}
+            endTime={this.state.endTime}
+            color={colorsProvider.habitsMainColor}
+            setStartTime={item => {
+                this.props.start_time(item);
+                this.setState({ startTime: item });
             }}
-            style={
-                this.state.newHabitName != ''
-                    ? styles.hasNameTextInputContainer
-                    : styles.createNameContainer
-            }
-        >
-            <TextInput
-                ref={input => {
-                    this.nameTextInput = input;
-                }}
-                maxLength={40}
-                style={styles.createNameText}
-                multiline={true}
-                placeholder={'Name'}
-                onChangeText={value => {
-                    this.setState({ newHabitName: value });
-                    this.props.name(value);
-                    this.props.id(this.state.habitId);
-                }}
-            ></TextInput>
-        </TouchableOpacity>)
+            setEndTime={item => {
+                this.props.end_time(item);
+                this.setState({ endTime: item });
+            }}
+        />)
+
     }
+
     /* #endregion */
+
 
     /* #region  Start Date Region */
     // setStartDateModalVisibility(visible) {
@@ -685,6 +660,8 @@ export class CreateHabit extends React.Component {
 
                         {/* {NOTES SECTION} */}
                         {/* {this.renderNotesSection()} */}
+
+                        {this.renderStartEndTime()}
 
                         {this.renderNotificationTimes()}
 
