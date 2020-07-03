@@ -218,7 +218,7 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedItem: theHabit })
                     }}
 
-                    save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
+                    save={() => { console.warn(theHabit);controller.saveExisting(this, dbTableName, theHabit) }}
 
                     selectedItem={theHabit}
 

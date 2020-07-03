@@ -12,7 +12,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
-
+const timeFormat = "hh:mm A"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 export class StartEndTime extends React.Component {
@@ -22,12 +22,9 @@ export class StartEndTime extends React.Component {
         this.state = {
             startTime: this.props.startTime,
             endTime: this.props.endTime,
+            datePickerStartTime : this.props.startTime != "" ? this.props.startTime : todayDate,
+            datePickerEndTime : this.props.endTime != "" ? this.props.endTime : todayDate
         };
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (newProps != null)
-            this.setState({ value: parseInt(this.props.percentageDone) });
     }
 
     renderStartDateBottomPane() {
@@ -51,14 +48,14 @@ export class StartEndTime extends React.Component {
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.topBarColor,
                     fontSize: colorsProvider.fontSizeMain
-                }}>Start Date</Text>
+                }}>Start Time</Text>
                 <Text style={{
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.shadowColor,
                     fontSize: colorsProvider.fontSizeSmall,
                     marginTop: 10,
                     marginBottom: 10,
-                }}>{this.state.dueDate}</Text>
+                }}>{this.state.startTime}</Text>
             </View>
 
             <View style={{ flexDirection: 'column', }}>
@@ -70,10 +67,10 @@ export class StartEndTime extends React.Component {
                 }}>
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
-                        mode="date"
+                        mode="time"
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
-                            this.setState({ dueDate: date.toString() })
+                            this.setState({ startTime: Moment(date).format(timeFormat) })
                         }}
                     />
                 </View>
@@ -88,8 +85,8 @@ export class StartEndTime extends React.Component {
                             alignContent: 'center',
                         }}
                         onPress={() => {
-                            this.props.selectDueDate("");
-                            this.RBSheet.close()
+                            this.setState({startTime: ''});
+                            this.RBStartSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -99,7 +96,7 @@ export class StartEndTime extends React.Component {
                             fontSize: colorsProvider.fontSizeChildren,
                             fontFamily: colorsProvider.fontFamily,
                             color: colorsProvider.whiteColor
-                        }}>Delete Due Date</Text>
+                        }}>Delete Start Time</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
@@ -111,7 +108,7 @@ export class StartEndTime extends React.Component {
                             borderRadius: 10,
                         }}
                         onPress={() => {
-                            this.RBSheet.close()
+                            this.RBStartSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -133,8 +130,8 @@ export class StartEndTime extends React.Component {
                             borderRadius: 10,
                         }}
                         onPress={() => {
-                            this.props.selectDueDate(this.state.dueDate)
-                            this.RBSheet.close()
+                            this.props.setStartTime(this.state.startTime)
+                            this.RBStartSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -173,14 +170,14 @@ export class StartEndTime extends React.Component {
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.topBarColor,
                     fontSize: colorsProvider.fontSizeMain
-                }}>Start Date</Text>
+                }}>End Date</Text>
                 <Text style={{
                     fontFamily: colorsProvider.font,
                     color: colorsProvider.shadowColor,
                     fontSize: colorsProvider.fontSizeSmall,
                     marginTop: 10,
                     marginBottom: 10,
-                }}>{this.state.dueDate}</Text>
+                }}>{this.state.endTime}</Text>
             </View>
 
             <View style={{ flexDirection: 'column', }}>
@@ -192,10 +189,11 @@ export class StartEndTime extends React.Component {
                 }}>
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
-                        mode="date"
+                        mode="time"
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
-                            this.setState({ dueDate: date.toString() })
+                            this.props.setEndTime(date)
+                            this.setState({ endTime: Moment(date).format(timeFormat)  })
                         }}
                     />
                 </View>
@@ -210,8 +208,8 @@ export class StartEndTime extends React.Component {
                             alignContent: 'center',
                         }}
                         onPress={() => {
-                            this.props.selectDueDate("");
-                            this.RBSheet.close()
+                            this.props.setEndTime('');
+                            this.RBEndSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -233,7 +231,7 @@ export class StartEndTime extends React.Component {
                             borderRadius: 10,
                         }}
                         onPress={() => {
-                            this.RBSheet.close()
+                            this.RBEndSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -255,8 +253,8 @@ export class StartEndTime extends React.Component {
                             borderRadius: 10,
                         }}
                         onPress={() => {
-                            this.props.selectDueDate(this.state.dueDate)
-                            this.RBSheet.close()
+                            this.props.setEndTime(this.state.endTime)
+                            this.RBEndSheet.close()
                         }}>
                         <Text style={{
                             marginRight: 10,
@@ -299,8 +297,21 @@ export class StartEndTime extends React.Component {
                     <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>End Time</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
-                    <TouchableOpacity onPress={() => { this.RBSheet.open(); setState({whichDate: startDate})}}style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}><Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>{this.state.startTime ? this.state.startTime : "No start time"}</Text></TouchableOpacity>
-                    <TouchableOpacity style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}><Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font, }}>{this.state.startTime ? this.state.startTime : "No end time"}</Text></TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { this.RBStartSheet.open()}}
+                        style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}>
+                        <Text
+                            style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>
+                            {this.state.startTime ? this.state.startTime : "No start time"}
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { this.RBEndSheet.open();}}
+                        style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}>
+                        <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font, }}>
+                            {this.state.endTime ? this.state.endTime : "No end time"}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             // </View>

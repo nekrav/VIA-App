@@ -9,7 +9,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
+import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes, StartEndTime } from '../../components'
 
 
 const notifier = new Notifier;
@@ -38,6 +38,8 @@ export class ViewHabit extends React.Component {
             showDate: false,
             dueDate: '',
             notificationTimes: "",
+            startTime: '',
+            endTime: '',
             notesModalVisible: false,
         };
     }
@@ -123,6 +125,29 @@ export class ViewHabit extends React.Component {
             }}
         />
     }
+    /* #endregion */
+
+    /* #region  StartEndTime */
+    renderStartEndTime() {
+        return (<StartEndTime
+            startTime={this.state.selectedItem.start_time}
+            endTime={this.state.selectedItem.end_time}
+            color={colorsProvider.habitsMainColor}
+            setStartTime={item => {
+                console.warn(item)
+                this.props.editStartTime(item);
+                this.setState({ startTime: item });
+                this.props.save();
+            }}
+            setEndTime={item => {
+                this.props.editEndTime(item);
+                this.setState({ endTime: item });
+                this.props.save();
+            }}
+        />)
+
+    }
+
     /* #endregion */
 
     /* #region  Complete Button and Trash Button Section */
@@ -350,6 +375,7 @@ export class ViewHabit extends React.Component {
                     <View style={styles.outerView}>
                             {/* Top Bar Section */}
                             {this.renderTopBar()}
+                            {this.renderStartEndTime()}
 
                             {this.renderCompleteAndTrashButton()}
 
