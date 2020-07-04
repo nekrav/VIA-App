@@ -23,11 +23,21 @@ export class ChildrenContainer extends React.Component {
     }
 
     render() {
-        return (
-            <ScrollView style={{flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5,}}>
-                <FlatList 
-                data={this.state.allChildren}/>
-            </ScrollView>
-        )
+        console.warn(this.state.allChildren)
+        if (this.state.allChildren != []) {
+            return (
+                <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
+                    <FlatList
+                        horizontal={true}
+                        scrollEnabled={true}
+                        data={this.state.allChildren}
+                        contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
+                        style={{}}
+                        renderItem={({ item }) => { return <Text>{item.value.name}</Text> }}
+                    />
+                </ScrollView>
+            )
+        }
+
     }
 }
