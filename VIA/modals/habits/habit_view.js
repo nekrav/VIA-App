@@ -134,7 +134,6 @@ export class ViewHabit extends React.Component {
             endTime={this.state.selectedItem.end_time}
             color={colorsProvider.habitsMainColor}
             setStartTime={item => {
-                console.warn(item)
                 this.props.editStartTime(item);
                 this.setState({ startTime: item });
                 this.props.save();

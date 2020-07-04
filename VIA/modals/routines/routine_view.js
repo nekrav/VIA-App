@@ -11,7 +11,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime } from '../../components'
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
 
 
 const notifier = new Notifier;
@@ -117,8 +117,8 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-     /* #region  StartEndTime */
-     renderStartEndTime() {
+    /* #region  StartEndTime */
+    renderStartEndTime() {
         return (<StartEndTime
             startTime={this.state.selectedItem.start_time}
             endTime={this.state.selectedItem.end_time}
@@ -174,6 +174,14 @@ export class ViewRoutine extends React.Component {
     /* #endregion */
 
     /* #region  Notification Times Region */
+    renderChildren() {
+        return(<ChildrenContainer
+        allChildren={this.state.relatedChildren}
+        borderColor={colorsProvider.habitsMainColor}/>)
+    }
+    /* #endregion */
+
+    /* #region  Notification Times Region */
 
     renderNotificationTimes() {
         return (<NotificationTimes
@@ -196,7 +204,6 @@ export class ViewRoutine extends React.Component {
     /* #region  Notes Region */
 
     renderNotesSection() {
-        console.warn(this.state.selectedItem)
         return <Notes
             color={colorsProvider.routinesMainColor}
             notes={this.state.selectedItem.notes}
@@ -511,6 +518,8 @@ export class ViewRoutine extends React.Component {
                             {this.renderStartEndTime()}
 
                             {this.renderCompleteAndTrashButton()}
+
+                            {this.renderChildren()}
 
                             {this.renderNotificationTimes()}
 

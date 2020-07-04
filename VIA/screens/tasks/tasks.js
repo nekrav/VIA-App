@@ -146,7 +146,6 @@ export class TasksScreen extends React.Component {
                 save={() => {
                     if (!newTask.notification_time) {
                         newTask.notification_time = emptyTimes
-                        console.warn(newTask.notification_time)
                         // newTask.notification_time = emptyTimes
                     }
                     this.saveNew(newTask)
