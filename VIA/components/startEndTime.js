@@ -22,9 +22,19 @@ export class StartEndTime extends React.Component {
         this.state = {
             startTime: this.props.startTime,
             endTime: this.props.endTime,
-            datePickerStartTime : this.props.startTime != "" ? this.props.startTime : todayDate,
-            datePickerEndTime : this.props.endTime != "" ? this.props.endTime : todayDate
+            datePickerStartTime: this.props.startTime != "" ? this.props.startTime : todayDate,
+            datePickerEndTime: this.props.endTime != "" ? this.props.endTime : todayDate,
+            differenceBetweenDates: ''
         };
+    }
+
+    getDifferenceBetweenTimes(startTime, endTime) {
+        const start = new Date("01/01/2007 " + startTime);
+        const end = new Date("01/01/2007 " + endTime);
+        diffMs = (end.getTime() - start.getTime()) / 1000;
+        var diffMins = Math.round(((diffMs % 1000) % 3600000) / 60); // minutes
+        // this.setState({differenceBetweenDates: diffMins})
+        return diffMins;
     }
 
     renderStartDateBottomPane() {
@@ -85,7 +95,7 @@ export class StartEndTime extends React.Component {
                             alignContent: 'center',
                         }}
                         onPress={() => {
-                            this.setState({startTime: ''});
+                            this.setState({ startTime: '' });
                             this.RBStartSheet.close()
                         }}>
                         <Text style={{
@@ -193,7 +203,7 @@ export class StartEndTime extends React.Component {
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
                             this.props.setEndTime(date)
-                            this.setState({ endTime: Moment(date).format(timeFormat)  })
+                            this.setState({ endTime: Moment(date).format(timeFormat) })
                         }}
                     />
                 </View>
@@ -294,19 +304,23 @@ export class StartEndTime extends React.Component {
                 }} /> */}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
                     <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Start Time</Text>
+                    <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Duration</Text>
+
                     <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>End Time</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
                     <TouchableOpacity
-                        onPress={() => { this.RBStartSheet.open()}}
+                        onPress={() => { this.RBStartSheet.open() }}
                         style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}>
                         <Text
                             style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>
                             {this.state.startTime ? this.state.startTime : "No start time"}
                         </Text>
                     </TouchableOpacity>
+
+                    <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>{this.getDifferenceBetweenTimes(this.state.startTime, this.state.endTime)} {this.getDifferenceBetweenTimes(this.state.startTime, this.state.endTime) ? "minutes" : ""} </Text>
                     <TouchableOpacity
-                        onPress={() => { this.RBEndSheet.open();}}
+                        onPress={() => { this.RBEndSheet.open(); }}
                         style={{ borderBottomWidth: 1, borderBottomColor: this.props.color }}>
                         <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font, }}>
                             {this.state.endTime ? this.state.endTime : "No end time"}
