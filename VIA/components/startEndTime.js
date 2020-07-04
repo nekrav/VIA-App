@@ -285,23 +285,7 @@ export class StartEndTime extends React.Component {
 
     renderDates() {
         return (
-            // <View style={{ margin: 10, flexDirection: 'row', }}>
             <View style={{ margin: 10, flexDirection: 'column', }}>
-                {/* <Slider
-                thumbStyle={{ width: 45, height: 45, borderRadius: 45, backgroundColor: colorsProvider.topBarColor }}
-                trackStyle={{ width: '100%', height: 35, borderRadius: 35, }}
-                minimumValue={0}
-                maximumTrackTintColor={colorsProvider.doneSliderNotFinished}
-                minimumTrackTintColor={colorsProvider.completeColor}
-                step={1}
-                maximumValue={10}
-                animationType={'timing'}
-                value={this.state.value}
-                onSlidingComplete={value => this.props.onSlidingComplete(value)}
-                onValueChange={value => {
-                    this.setState({ value })
-                    this.props.onValueChange(value)
-                }} /> */}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 4 }}>
                     <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Start Time</Text>
                     <Text style={{ color: this.props.color, fontSize: colorsProvider.fontButtonSize, fontFamily: colorsProvider.font }}>Duration</Text>
@@ -328,7 +312,6 @@ export class StartEndTime extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
-            // </View>
         )
     }
 

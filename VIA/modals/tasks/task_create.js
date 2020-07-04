@@ -229,7 +229,7 @@ export class CreateTask extends React.Component {
                             marginBottom: 10,
                             borderRadius: 20,
                             borderWidth: 2,
-                            borderColor: colorsProvider.completeButtonColor,
+                            borderColor: colorsProvider.setButtonColor,
                             backgroundColor: colorsProvider.completeButtonColor
                         }
                         : {
