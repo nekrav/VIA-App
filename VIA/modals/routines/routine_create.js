@@ -9,7 +9,7 @@ import { Database, Habits, Routines } from '../../db'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
-import { TopBar, NotificationTimes, Notes } from '../../components'
+import { TopBar, NotificationTimes, Notes, StartEndTime } from '../../components'
 
 import { Notifier } from '../../notifier/notifier'
 
@@ -98,6 +98,8 @@ export class CreateRoutine extends React.Component {
 			allPossibleChildren: [],
 			name: '',
 			importance: 0,
+			startTime: '',
+			endTIme: '',
 			notificationTimes: "",
 			notes: "",
 		};
@@ -146,6 +148,24 @@ export class CreateRoutine extends React.Component {
 		/>
 	}
 	/* #endregion */
+
+	/* #region  StartEndTime */
+	renderStartEndTime() {
+		return (<StartEndTime
+			startTime={this.state.startTime}
+			endTime={this.state.endTime}
+			color={colorsProvider.routinesMainColor}
+			setStartTime={item => {
+				this.props.start_time(item);
+				this.setState({ startTime: item });
+			}}
+			setEndTime={item => {
+				this.props.end_time(item);
+				this.setState({ endTime: item });
+			}}
+		/>)
+
+	}
 
 	/* #region  Notification Times Region */
 	renderNotificationTimes() {
@@ -263,6 +283,8 @@ export class CreateRoutine extends React.Component {
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 					<View style={styles.outerView}>
 						{this.renderTopBar()}
+
+						{this.renderStartEndTime()}
 
 						{this.renderNotificationTimes()}
 

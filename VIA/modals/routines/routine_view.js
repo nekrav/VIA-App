@@ -11,7 +11,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton } from '../../components'
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime } from '../../components'
 
 
 const notifier = new Notifier;
@@ -115,6 +115,28 @@ export class ViewRoutine extends React.Component {
             }}
         />
     }
+    /* #endregion */
+
+     /* #region  StartEndTime */
+     renderStartEndTime() {
+        return (<StartEndTime
+            startTime={this.state.selectedItem.start_time}
+            endTime={this.state.selectedItem.end_time}
+            color={colorsProvider.routinesMainColor}
+            setStartTime={item => {
+                this.props.editStartTime(item);
+                this.setState({ startTime: item });
+                this.props.save();
+            }}
+            setEndTime={item => {
+                this.props.editEndTime(item);
+                this.setState({ endTime: item });
+                this.props.save();
+            }}
+        />)
+
+    }
+
     /* #endregion */
 
     /* #region  Complete Button and Trash Button Section */
@@ -466,125 +488,7 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Start Date Region */
-    setStartDateModalVisibility(visible) {
-        this.setState({ showStartDate: visible });
-    }
 
-    renderStartDateModal() {
-        if (this.state.showStartDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                        this.setStartDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setStartDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderStartDate() {
-        if (this.state.selectedItem.start_time != '') {
-            return (<TouchableOpacity
-                style={styles.createDueDateContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setStartDateModalVisibility(true)
-                }}>
-                <Text style={styles.createSelectedDateText}>
-                    {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
-                </Text>
-            </TouchableOpacity>
-            );
-        }
-        return (<TouchableOpacity style={styles.createNameContainer}
-            onPress={() => {
-                Keyboard.dismiss()
-                this.setStartDateModalVisibility(true)
-            }}>
-            <Text style={styles.createDateText}>
-                When do you want this routine to start?
-          </Text>
-        </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
-
-    /* #region  End Date Region */
-    setEndDateModalVisibility(visible) {
-        this.setState({ showEndDate: visible });
-    }
-
-    renderEndDateModal() {
-        if (this.state.showEndDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                        this.setEndDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setEndDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderEndDate() {
-        if (this.state.selectedItem.end_time != '') {
-            return (<TouchableOpacity
-                style={styles.createDueDateContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setEndDateModalVisibility(true)
-                }}>
-                <Text style={styles.createSelectedDateText}>
-                    {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
-                </Text>
-            </TouchableOpacity>
-            );
-        }
-        return (<TouchableOpacity style={styles.createNameContainer}
-            onPress={() => {
-                Keyboard.dismiss()
-                this.setEndDateModalVisibility(true)
-            }}>
-            <Text style={styles.createDateText}>
-                When do you want this routine to end?
-          </Text>
-        </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
 
 
     render() {
@@ -603,6 +507,8 @@ export class ViewRoutine extends React.Component {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                         <View style={styles.outerView}>
                             {this.renderTopBar()}
+
+                            {this.renderStartEndTime()}
 
                             {this.renderCompleteAndTrashButton()}
 
