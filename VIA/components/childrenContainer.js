@@ -6,6 +6,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { ChildItem } from '../components'
 
 const todayDate = new Date();
 
@@ -23,12 +24,17 @@ export class ChildrenContainer extends React.Component {
         };
     }
 
+    renderChildItem(name) {
+        return (<ChildItem 
+            name={name}
+        />)
+    }
+
     render() {
         console.warn(this.state.allChildren)
         if (this.state.allChildren.length > 0) {
             return (
                 <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
-                {/* <TouchableWithoutFeedback onPress={() => { }}> */}
                     <View style={{}}>
                     <FlatList
                         horizontal={false}
@@ -36,10 +42,11 @@ export class ChildrenContainer extends React.Component {
                         data={this.state.allChildren}
                         style={{flex: 1}}
                         // contentContainerStyle={{ backgroundColor: colorsProvider.habitsComplimentaryColor, borderWidth: 1, borderColor: colorsProvider.habitsMainColor, borderRadius: 10,  marginLeft: 2, marginRight: 2, marginBottom: 3, marginTop: 10, }}
-                        renderItem={({ item }) => { return <TouchableOpacity style={{flex: 2, backgroundColor: colorsProvider.habitsMainColor, margin: 10, }}><Text>{item.value.name}</Text></TouchableOpacity> }}
+                        renderItem={({ item }) => { return <ChildItem 
+                            name={item.value.name}
+                        /> }}
                     /></View>
                  </ScrollView>
-                //  {/* </TouchableWithoutFeedback> */}
             )
         } else {
             return(<Text>No Children</Text>)
