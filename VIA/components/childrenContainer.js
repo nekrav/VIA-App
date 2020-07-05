@@ -27,7 +27,7 @@ export class ChildrenContainer extends React.Component {
         console.warn(this.state.allChildren)
         if (this.state.allChildren.length > 0) {
             return (
-                <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
+                <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                 {/* <TouchableWithoutFeedback onPress={() => { }}> */}
                     <View style={{}}>
                     <FlatList
