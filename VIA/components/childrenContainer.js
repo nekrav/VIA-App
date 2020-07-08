@@ -24,6 +24,11 @@ export class ChildrenContainer extends React.Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps != null)
+            this.setState({ allChildren: this.props.allChildren });
+    }
+
     renderChildItem(name) {
         return (<ChildItem 
             name={name}
