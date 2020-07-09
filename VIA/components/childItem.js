@@ -7,6 +7,7 @@ import { Database } from '../db'
 import Moment from 'moment';
 import IIcon from 'react-native-vector-icons/dist/Ionicons';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/FontAwesome';
 const isAndroid = Platform.OS === "android";
 
 if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -30,7 +31,6 @@ export class ChildItem extends React.Component {
 
 
     getImportanceColor(importance) {
-        console.warn(importance === "1")
         switch (parseInt(importance)) {
             case 1:
                 return colorsProvider.notINotUColor
@@ -40,8 +40,8 @@ export class ChildItem extends React.Component {
                 return colorsProvider.iNotUColor
             case 4:
                 return colorsProvider.iUColor
-            default :
-            return colorsProvider.whiteColor
+            default:
+                return colorsProvider.whiteColor
         }
     }
 
@@ -81,12 +81,18 @@ export class ChildItem extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={() => { }}>
                 <View
-                    style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10, padding: 5 }}>
-                    <View style={{backgroundColor: this.getImportanceColor(this.props.item.value.importance)}}><Text>awe</Text></View>
+                    style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10 }}>
+                    
+                        
+                    <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.value.importance)} style={{margin: 3}}/>
                     <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.whiteColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
-                    <TouchableOpacity><SIcon name={colorsProvider.trash} /></TouchableOpacity>
-                    <IIcon name="ios-arrow-forward" />
-
+                    <View style={{ flexDirection: 'row' }}>
+                        <TouchableOpacity><SIcon name={colorsProvider.trash} />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <IIcon name="ios-arrow-forward" />
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 {/* <SwipeableItem
         key={this.props.itemKey}
