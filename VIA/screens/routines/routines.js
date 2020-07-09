@@ -130,7 +130,7 @@ export class RoutinesScreen extends React.Component {
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { console.warn(newRoutine);this.saveNew(newRoutine) }}
+                save={() => { this.saveNew(newRoutine) }}
             ></CreateRoutine>
         }
     }

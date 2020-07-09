@@ -36,7 +36,6 @@ export class ChildrenContainer extends React.Component {
     }
 
     render() {
-        console.warn(this.state.allChildren)
         if (this.state.allChildren.length > 0) {
             return (
                 <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
@@ -47,8 +46,10 @@ export class ChildrenContainer extends React.Component {
                         data={this.state.allChildren}
                         style={{flex: 1}}
                         // contentContainerStyle={{ backgroundColor: colorsProvider.habitsComplimentaryColor, borderWidth: 1, borderColor: colorsProvider.habitsMainColor, borderRadius: 10,  marginLeft: 2, marginRight: 2, marginBottom: 3, marginTop: 10, }}
-                        renderItem={({ item }) => { return <ChildItem 
+                        renderItem={({ item }) => { return <ChildItem
+                            itemKey={item.value.id} 
                             name={item.value.name}
+                            item={item}
                         /> }}
                     /></View>
                  </ScrollView>
