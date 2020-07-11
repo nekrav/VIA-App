@@ -29,8 +29,30 @@ export class ChildrenContainer extends React.Component {
             this.setState({ allChildren: this.props.allChildren });
     }
 
+    deleteItem(item) {
+        var array = this.state.allChildren
+        var index = array.indexOf(item)
+        this.state.allChildren.splice(index, 1)
+        console.warn(index)
+        if (index !== -1) {
+            array.splice(index, 1);
+            this.setState({allChildren: array});
+            this.props.deleteItem(item)
+          }
+    }
+
+    goToItem(itemId) {
+
+    }
+
     renderChildItem(name) {
-        return (<ChildItem 
+        return (<ChildItem
+            deleteItem={itemId => {
+                this.deleteItem(itemId)
+            }}
+            goToItem={itemId => {
+                this.goToItem(itemId)
+            }}
             name={name}
         />)
     }
@@ -40,21 +62,29 @@ export class ChildrenContainer extends React.Component {
             return (
                 <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                     <View style={{}}>
-                    <FlatList
-                        horizontal={false}
-                        scrollEnabled={true}
-                        data={this.state.allChildren}
-                        style={{flex: 1}}
-                        renderItem={({ item }) => { return <ChildItem
-                            itemKey={item.value.id} 
-                            name={item.value.name}
-                            item={item}
-                        /> }}
-                    /></View>
-                 </ScrollView>
+                        <FlatList
+                            horizontal={false}
+                            scrollEnabled={true}
+                            data={this.state.allChildren}
+                            style={{ flex: 1 }}
+                            renderItem={({ item }) => {
+                                return <ChildItem
+                                    itemKey={item.value.id}
+                                    name={item.value.name}
+                                    item={item}
+                                    deleteItem={()=> {
+                                        this.deleteItem(item)
+                                    }}
+                                    goToItem={() => {
+                                        this.goToItem(item.value.id)
+                                    }}
+                                />
+                            }}
+                        /></View>
+                </ScrollView>
             )
         } else {
-            return(<Text>No Children</Text>)
+            return (<Text>No Children</Text>)
             // return (
             //     // <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
             //     <TouchableWithoutFeedback onPress={() => { }}>

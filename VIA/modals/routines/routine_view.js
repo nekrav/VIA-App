@@ -173,11 +173,14 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Notification Times Region */
+
+
+    /* #region  Children Region */
     renderChildren() {
         return(<ChildrenContainer
         allChildren={this.state.relatedChildren}
-        borderColor={colorsProvider.habitsMainColor}/>)
+        borderColor={colorsProvider.habitsMainColor}
+        deleteItem={() => {this.deleteChildItem(item)}}/>)
     }
     /* #endregion */
 

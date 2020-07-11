@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox, colors } from 'react-native-elements'
+import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Routines } from '../../db'
 import { CreateRoutine, ViewRoutine } from '../../modals'
