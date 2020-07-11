@@ -45,7 +45,6 @@ export class ChildrenContainer extends React.Component {
                         scrollEnabled={true}
                         data={this.state.allChildren}
                         style={{flex: 1}}
-                        // contentContainerStyle={{ backgroundColor: colorsProvider.habitsComplimentaryColor, borderWidth: 1, borderColor: colorsProvider.habitsMainColor, borderRadius: 10,  marginLeft: 2, marginRight: 2, marginBottom: 3, marginTop: 10, }}
                         renderItem={({ item }) => { return <ChildItem
                             itemKey={item.value.id} 
                             name={item.value.name}

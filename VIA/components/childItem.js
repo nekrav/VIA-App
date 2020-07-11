@@ -75,22 +75,29 @@ export class ChildItem extends React.Component {
     //     );
     //   };
 
-
+    goToItem() {
+        console.warn(this.props.item)
+    }
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={() => { }}>
                 <View
-                    style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10 }}>
-                    
-                        
-                    <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.value.importance)} style={{margin: 3}}/>
-                    <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.whiteColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity><SIcon name={colorsProvider.trash} />
+                    style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 2, borderColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10 }}>
+
+
+                    <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.value.importance)} style={{ margin: 3 }} />
+                    <TouchableOpacity onPress={() => {
+                        this.goToItem();
+                    }}>
+                        <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <IIcon name="ios-arrow-forward" />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <TouchableOpacity style={{ justifyContent: 'center', }}>
+                            <SIcon color={colorsProvider.habitsMainColor} style={{ marginLeft: 10, marginRight: 10, }} size={20} name={colorsProvider.trash} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ justifyContent: 'center', }}>
+                            <IIcon size={20} style={{ marginLeft: 10, marginRight: 10, }} color={colorsProvider.habitsMainColor} name="ios-arrow-forward" />
                         </TouchableOpacity>
                     </View>
                 </View>
