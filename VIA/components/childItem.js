@@ -104,11 +104,16 @@ export class ChildItem extends React.Component {
                         size={colorsProvider.checkboxIconSize}
                         onPress={() => {
                             this.state.item.value.completed = !this.getChecked(this.state.item)
+                            var newItem =this.state.item;
+                            newItem.value.complete = !this.getChecked(this.state.item)
+                            this.setState({item: newItem})
                             if (this.state.item.value.completed == true) {
-                                this.state.item.value.finished_date = new Date(Date.now())
+                                newItem.value.finished_date = new Date(Date.now())
                             } else {
-                                this.state.item.value.finished_date == ""
+                                newItem.value.finished_date == ""
                             }
+                            controller.saveExisting(this, this.props.childItemTableName, item.value)
+
                         }}
                         checked={this.getChecked(this.state.item)} /></View>
                     <TouchableOpacity onPress={this.props.goToItem}>

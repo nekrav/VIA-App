@@ -20,7 +20,7 @@ export class ChildrenContainer extends React.Component {
             percentageDone: this.props.percentageDone,
             completed: this.props.completed,
             finishedDate: this.props.finishedDate,
-            allChildren: this.props.allChildren
+            allChildren: this.props.allChildren,
         };
     }
 
@@ -72,6 +72,7 @@ export class ChildrenContainer extends React.Component {
                                     itemKey={item.value.id}
                                     name={item.value.name}
                                     item={item}
+                                    childItemTableName={this.props.childItemTableName}
                                     deleteItem={()=> {
                                         this.deleteItem(item)
                                     }}

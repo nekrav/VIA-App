@@ -180,6 +180,13 @@ export class ViewRoutine extends React.Component {
         return(<ChildrenContainer
         allChildren={this.state.relatedChildren}
         borderColor={colorsProvider.habitsMainColor}
+        childTableName={childTableName}
+        childUpdateImportance={() => {
+
+        }}
+        goToItem={() => {
+            
+        }}
         deleteItem={() => {this.deleteChildItem(item)}}/>)
     }
     /* #endregion */
