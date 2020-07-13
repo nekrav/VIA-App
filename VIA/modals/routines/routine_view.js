@@ -181,7 +181,7 @@ export class ViewRoutine extends React.Component {
         allChildren={this.state.relatedChildren}
         borderColor={colorsProvider.habitsMainColor}
         childTableName={childTableName}
-        childUpdateImportance={() => {
+        childUpdateImportance={itemId => {
             controller.saveExisting(this, childTableName, theHabit) 
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
         }}

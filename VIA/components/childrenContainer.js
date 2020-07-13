@@ -36,9 +36,9 @@ export class ChildrenContainer extends React.Component {
         console.warn(index)
         if (index !== -1) {
             array.splice(index, 1);
-            this.setState({allChildren: array});
+            this.setState({ allChildren: array });
             this.props.deleteItem(item)
-          }
+        }
     }
 
     goToItem(itemId) {
@@ -48,7 +48,10 @@ export class ChildrenContainer extends React.Component {
     renderChildItem(name) {
         return (<ChildItem
             deleteItem={itemId => {
-                this.deleteItem(itemId)
+                this.props.deleteItem(itemId)
+            }}
+            updateImportance={itemId => {
+                this.props.updateImportance(itemId);
             }}
             goToItem={itemId => {
                 this.goToItem(itemId)
@@ -73,11 +76,15 @@ export class ChildrenContainer extends React.Component {
                                     name={item.value.name}
                                     item={item}
                                     childItemTableName={this.props.childItemTableName}
-                                    deleteItem={()=> {
-                                        this.deleteItem(item)
+                                    deleteItem={item => {
+                                        this.props.deleteItem(item)
+
                                     }}
-                                    goToItem={() => {
-                                        this.goToItem(item.value.id)
+                                    updateImportance={item => {
+                                        this.props.updateImportance(item);
+                                    }}
+                                    goToItem={item => {
+                                        this.goToItem(item)
                                     }}
                                 />
                             }}
