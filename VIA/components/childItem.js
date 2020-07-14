@@ -89,9 +89,9 @@ export class ChildItem extends React.Component {
                         <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <TouchableOpacity onPress={this.props.deleteItem} style={{ justifyContent: 'center', }}>
+                        {/* <TouchableOpacity onPress={this.props.deleteItem} style={{ justifyContent: 'center', }}>
                             <SIcon color={colorsProvider.habitsMainColor} style={{ marginLeft: 10, marginRight: 10, }} size={20} name={colorsProvider.trash} />
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         <TouchableOpacity style={{ justifyContent: 'center', }}>
                             <IIcon size={20} style={{ marginLeft: 10, marginRight: 10, }} color={colorsProvider.habitsMainColor} name="ios-arrow-forward" />
                         </TouchableOpacity>
