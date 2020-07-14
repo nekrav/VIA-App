@@ -33,7 +33,7 @@ export class ChildrenContainer extends React.Component {
         var array = this.state.allChildren
         var index = array.indexOf(item)
         this.state.allChildren.splice(index, 1)
-        console.warn(index)
+
         if (index !== -1) {
             array.splice(index, 1);
             this.setState({ allChildren: array });
@@ -74,13 +74,19 @@ export class ChildrenContainer extends React.Component {
                                 return <ChildItem
                                     itemKey={item.value.id}
                                     name={item.value.name}
-                                    item={item}
+                                    item={item.value}
                                     childItemTableName={this.props.childItemTableName}
                                     deleteItem={item => {
                                         this.props.deleteItem(item)
                                     }}
-                                    updateImportance={item => {
-                                        this.props.updateImportance(item);
+                                    childUpdateImportance={item => {
+                                        var index = this.state.allChildren.indexOf(item)
+                                        if (index !== -1) {
+                                            var oldArr = this.state.allChildren
+                                            oldArr.splice(index, 1)
+                                            this.setState({ allChildren: oldArr })
+                                        }
+                                        this.props.childUpdateImportance(item);
                                     }}
                                     goToItem={item => {
                                         this.goToItem(item)

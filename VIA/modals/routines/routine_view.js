@@ -182,8 +182,10 @@ export class ViewRoutine extends React.Component {
         borderColor={colorsProvider.habitsMainColor}
         childTableName={childTableName}
         childUpdateImportance={item => {
+
             controller.saveExisting(this, childTableName, item) 
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            this.props.save();
         }}
         goToItem={() => {
             
@@ -191,6 +193,7 @@ export class ViewRoutine extends React.Component {
         deleteItem={item => {
             controller.delete(this, childTableName, item)
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            this.props.save();
         }}/>)
     }
     /* #endregion */

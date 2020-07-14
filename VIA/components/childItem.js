@@ -47,44 +47,15 @@ export class ChildItem extends React.Component {
         }
     }
 
-    // renderOverlay = ({ item, openLeft, openRight, openDirection, close }) => {
-    //     // const { text, backgroundColor, hasLeft, hasRight } = item.item;
-    //     // console.warn(item)
-    //     return (
-    //       <View style={{}}>
-    //         <View style={{}}>
-    //           {/* {hasRight && (
-    //             <PlatformTouchable
-    //               onPressOut={!!openDirection ? close : () => openRight(1)}
-    //             >
-    //               <Text style={styles.text}>{`<`}</Text>
-    //             </PlatformTouchable>
-    //           )} */}
-    //         </View>
-    //         <PlatformTouchable style={{}}
-    //         // onLongPress={item.drag}
-    //         >
-    //           <Text style={{}}>{text}</Text>
-    //         </PlatformTouchable>
-    //         <View style={{}}>
-    //           {/* {hasLeft && (
-    //             <PlatformTouchable onPressOut={!!openDirection ? close : openLeft}>
-    //               <Text sstyle={{}}>{`>`}</Text>
-    //             </PlatformTouchable>
-    //           )} */}
-    //         </View>
-    //       </View>
-    //     );
-    //   };
-
     goToItem() {
-        console.warn(this.props.item)
+
     }
 
     getChecked(item) {
         if (item != null)
             var checked = false
-        return checked = item.value.completed === "true"
+        console.warn(checked = item.completed === "true")
+        return checked = item.completed === "true"
     }
 
     render() {
@@ -92,30 +63,31 @@ export class ChildItem extends React.Component {
             <TouchableWithoutFeedback onPress={() => { }}>
                 <View
                     style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 2, borderColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10 }}>
-                    <View  style={{flexDirection: 'row'}}>
-                    <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.value.importance)} style={{ margin: 3 }} />
-                    <CheckBox
-                        center
-                        checkedIcon={colorsProvider.checkboxIcon}
-                        uncheckedIcon={colorsProvider.checkboxIcon}
-                        checkedColor={colorsProvider.finishedBackgroundColor}
-                        uncheckedColor={colorsProvider.routinesComplimentaryColor}
-                        containerStyle={colorsProvider.checkboxContainerStyle}
-                        size={colorsProvider.checkboxIconSize}
-                        onPress={() => {
-                            this.state.item.value.completed = !this.getChecked(this.state.item)
-                            var newItem =this.state.item;
-                            newItem.value.complete = !this.getChecked(this.state.item)
-                            this.setState({item: newItem})
-                            if (this.state.item.value.completed == true) {
-                                newItem.value.finished_date = new Date(Date.now())
-                            } else {
-                                newItem.value.finished_date == ""
-                            }
-                            controller.saveExisting(this, this.props.childItemTableName, item.value)
-
-                        }}
-                        checked={this.getChecked(this.state.item)} /></View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.importance)} style={{ margin: 3 }} />
+                        <CheckBox
+                            center
+                            checkedIcon={colorsProvider.checkboxIcon}
+                            uncheckedIcon={colorsProvider.checkboxIcon}
+                            checkedColor={colorsProvider.finishedBackgroundColor}
+                            uncheckedColor={colorsProvider.routinesComplimentaryColor}
+                            containerStyle={colorsProvider.checkboxContainerStyle}
+                            size={colorsProvider.checkboxIconSize}
+                            onPress={() => {
+                                console.warn("before" + this.state.item.completed)
+                                var newItem = this.state.item;
+                                newItem.completed = !this.getChecked(this.state.item)
+                                console.warn("after" + newItem.completed)
+                                this.setState({ item: newItem, importance: this.state.item.completed })
+                                this.props.childUpdateImportance(newItem)
+                                if (this.state.item.completed == true) {
+                                    newItem.finished_date = new Date(Date.now())
+                                } else {
+                                    newItem.finished_date == ""
+                                }
+                                // controller.saveExisting(this, this.props.childItemTableName, item.value)
+                            }}
+                            checked={this.getChecked(this.state.item)} /></View>
                     <TouchableOpacity onPress={this.props.goToItem}>
                         <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
