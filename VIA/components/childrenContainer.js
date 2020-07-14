@@ -78,7 +78,6 @@ export class ChildrenContainer extends React.Component {
                                     childItemTableName={this.props.childItemTableName}
                                     deleteItem={item => {
                                         this.props.deleteItem(item)
-
                                     }}
                                     updateImportance={item => {
                                         this.props.updateImportance(item);

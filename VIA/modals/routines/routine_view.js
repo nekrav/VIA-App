@@ -181,15 +181,15 @@ export class ViewRoutine extends React.Component {
         allChildren={this.state.relatedChildren}
         borderColor={colorsProvider.habitsMainColor}
         childTableName={childTableName}
-        childUpdateImportance={itemId => {
-            controller.saveExisting(this, childTableName, theHabit) 
+        childUpdateImportance={item => {
+            controller.saveExisting(this, childTableName, item) 
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
         }}
         goToItem={() => {
             
         }}
-        deleteItem={() => {
-            controller.delete(this, childTableName, theHabit)
+        deleteItem={item => {
+            controller.delete(this, childTableName, item)
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
         }}/>)
     }
