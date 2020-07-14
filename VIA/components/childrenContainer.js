@@ -75,18 +75,19 @@ export class ChildrenContainer extends React.Component {
                                     itemKey={item.value.id}
                                     name={item.value.name}
                                     item={item.value}
+                                    completed={item.value.completed}
                                     childItemTableName={this.props.childItemTableName}
                                     deleteItem={item => {
                                         this.props.deleteItem(item)
                                     }}
-                                    childUpdateImportance={item => {
-                                        var index = this.state.allChildren.indexOf(item)
-                                        if (index !== -1) {
-                                            var oldArr = this.state.allChildren
-                                            oldArr.splice(index, 1)
-                                            this.setState({ allChildren: oldArr })
-                                        }
-                                        this.props.childUpdateImportance(item);
+                                    childUpdateCompleted={item => {
+                                        // var index = this.state.allChildren.indexOf(item)
+                                        // if (index !== -1) {
+                                        //     var oldArr = this.state.allChildren
+                                        //     oldArr.splice(index, 1)
+                                        //     this.setState({ allChildren: oldArr })
+                                        // }
+                                        this.props.childUpdateCompleted(item);
                                     }}
                                     goToItem={item => {
                                         this.goToItem(item)

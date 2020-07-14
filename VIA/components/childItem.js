@@ -26,6 +26,7 @@ export class ChildItem extends React.Component {
         super(props);
         this.state = {
             importance: this.props.importance,
+            completed: this.props.completed,
             name: this.props.name,
             item: this.props.item,
         };
@@ -54,8 +55,7 @@ export class ChildItem extends React.Component {
     getChecked(item) {
         if (item != null)
             var checked = false
-        console.warn(checked = item.completed === "true")
-        return checked = item.completed === "true"
+        return checked = item === "true"
     }
 
     render() {
@@ -73,21 +73,18 @@ export class ChildItem extends React.Component {
                             uncheckedColor={colorsProvider.routinesComplimentaryColor}
                             containerStyle={colorsProvider.checkboxContainerStyle}
                             size={colorsProvider.checkboxIconSize}
+                            checked={this.getChecked(this.props.item.completed)}
                             onPress={() => {
-                                console.warn("before" + this.state.item.completed)
                                 var newItem = this.state.item;
-                                newItem.completed = !this.getChecked(this.state.item)
-                                console.warn("after" + newItem.completed)
-                                this.setState({ item: newItem, importance: this.state.item.completed })
-                                this.props.childUpdateImportance(newItem)
+                                newItem.completed = !this.getChecked(this.state.completed)
+                                this.setState({ item: newItem, completed: newItem.completed })
+                                this.props.childUpdateCompleted(newItem)
                                 if (this.state.item.completed == true) {
                                     newItem.finished_date = new Date(Date.now())
                                 } else {
                                     newItem.finished_date == ""
                                 }
-                                // controller.saveExisting(this, this.props.childItemTableName, item.value)
-                            }}
-                            checked={this.getChecked(this.state.item)} /></View>
+                            }}/></View>
                     <TouchableOpacity onPress={this.props.goToItem}>
                         <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
