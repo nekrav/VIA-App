@@ -3,6 +3,8 @@ import * as colorsProvider from './colorsProvider';
 import { Slider, colors } from 'react-native-elements';
 import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/Feather';
+
 import { Database } from '../db'
 import Moment from 'moment';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -65,6 +67,9 @@ export class ChildrenContainer extends React.Component {
             return (
                 <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                     <View style={{}}>
+                        <View style={{flexDirection: 'row-reverse'}}>
+                            <FIcon style={{ marginTop: 10, marginRight: 5, }} name="plus" />
+                        </View>
                         <FlatList
                             horizontal={false}
                             scrollEnabled={true}
@@ -94,7 +99,8 @@ export class ChildrenContainer extends React.Component {
                                     }}
                                 />
                             }}
-                        /></View>
+                        />
+                    </View>
                 </ScrollView>
             )
         } else {
