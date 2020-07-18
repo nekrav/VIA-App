@@ -1,17 +1,18 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider, colors } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList, Dimensions } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import ActionButton from 'react-native-action-button';
-
+import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
 
 const todayDate = new Date();
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -48,6 +49,165 @@ export class ChildrenContainer extends React.Component {
 
     }
 
+    renderBottomSlidingPane() {
+
+        // parentTypeCapitalized = this.props.parentType.charAt(0).toUpperCase() + this.props.parentType.slice(1)
+
+        return (<RBSheet
+            ref={ref => {
+                this.RBSheet = ref;
+            }}
+            closeOnPressMask={true}
+            dragFromTopOnly={true}
+            height={screenHeight / 1.36}
+            openDuration={250}>
+            <View style={{
+                marginTop: 10,
+                marginLeft: 20,
+            }}>
+                <Text style={{
+                    fontFamily: colorsProvider.font,
+                    color: this.props.color,
+                    fontSize: colorsProvider.fontSizeMain
+                }}></Text>
+            </View>
+            <FlatList
+                data={this.state.allChildren}
+                contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                style={{ marginLeft: 10, marginRight: 10 }}
+                renderItem={({ item }) =>
+                    <View style={{
+                        flex: 1,
+                        borderRadius: 10,
+                        backgroundColor: this.props.color,
+                        marginTop: 10,
+                        marginBottom: 10,
+                    }}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                // this.props.addParent(item.value.id, item.value.name);
+                                this.RBSheet.close()
+                            }}
+                            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>{item.value.name}</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+            />
+            <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 50, justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: colorsProvider.redColor,
+                        margin: 10,
+                        borderRadius: 10,
+                        alignContent: 'center',
+                    }}
+                    onPress={() => {
+                        // this.props.removeParent();
+                        this.RBSheet.close()
+                    }}>
+                    <Text style={{
+                        marginRight: 10,
+                        marginLeft: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        fontSize: colorsProvider.fontSizeChildren,
+                        fontFamily: colorsProvider.fontFamily,
+                        color: colorsProvider.whiteColor
+                    }}>Remove From </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        alignContent: 'center',
+                        backgroundColor: colorsProvider.closeButtonColor,
+                        margin: 10,
+                        borderRadius: 10,
+                    }}
+                    onPress={() => {
+                        this.RBSheet.close()
+                    }}>
+                    <Text style={{
+                        marginRight: 10,
+                        marginLeft: 10,
+                        marginTop: 10,
+                        marginBottom: 10,
+                        fontSize: colorsProvider.fontSizeChildren,
+                        fontFamily: colorsProvider.fontFamily,
+                        color: colorsProvider.whiteColor
+                    }}>Close</Text>
+                </TouchableOpacity>
+
+            </View>
+        </RBSheet>)
+    }
+
+    renderParentText() {
+        if (this.state.name == null || this.state.name == "null") {
+            return (
+                <TouchableOpacity
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.RBSheet.open()
+                    }}>
+                    <Text style={{ marginRight: 5 }}>
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                    </Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
+                        Is this part of a bigger ?
+                    </Text>
+
+                </TouchableOpacity>
+            );
+        }
+        else if (this.state.name != "") {
+            return (
+                <TouchableOpacity
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.RBSheet.open()
+                    }}>
+                    <Text style={{ marginRight: 5 }}>
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                    </Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
+                        {this.state.name}
+                    </Text>
+
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity
+                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
+                    onPress={() => {
+                        Keyboard.dismiss()
+                        this.RBSheet.open()
+                    }}>
+                    <Text style={{ marginRight: 5 }}>
+                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
+                    </Text>
+                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>Is this part of a bigger ?
+          </Text>
+                </TouchableOpacity>
+            );
+        }
+    }
+
+
     renderChildItem(name) {
         return (<ChildItem
             deleteItem={itemId => {
@@ -67,6 +227,7 @@ export class ChildrenContainer extends React.Component {
         if (this.state.allChildren.length > 0) {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
+                    {this.renderBottomSlidingPane()}
                     <ScrollView >
                         <View style={{}}>
                             {/* <View style={{ flexDirection: 'row-reverse' }}>
@@ -112,7 +273,9 @@ export class ChildrenContainer extends React.Component {
                         offsetY={5}
                         offsetX={10}
                         buttonColor={colorsProvider.habitsMainColor}
-                        onPress={() => { console.log("hi") }}
+                        onPress={() => {
+                            this.RBSheet.open()
+                        }}
                     />
                 </View>
             )
