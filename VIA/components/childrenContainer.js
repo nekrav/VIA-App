@@ -335,8 +335,6 @@ export class ChildrenContainer extends React.Component {
     showViewModal() {
         if (this.state.viewChildModalVisible) {
             if (this.state.selectedChild) {
-                console.warn("aiweuh")
-                console.warn(this.state.selectedChild)
                 theHabit = this.state.selectedChild
                     return <ViewHabit
                         animationType="slide"
@@ -407,13 +405,13 @@ export class ChildrenContainer extends React.Component {
                             this.setState({ selectedItem: theHabit })
                         }}
 
-                        save={() => {controller.saveExisting(this, dbTableName, theHabit) }}
+                        save={() => {controller.saveExisting(this, 'habits', theHabit) }}
 
                         selectedItem={theHabit}
 
-                        delete={() => { controller.delete(this, dbTableName, theHabit) }}
+                        delete={() => { controller.delete(this, 'habits', theHabit) }}
 
-                        closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                        closeModal={() => { this.setState({viewChildModalVisible: false})}}>
                     </ViewHabit>
             }
         }
