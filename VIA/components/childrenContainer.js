@@ -341,7 +341,7 @@ export class ChildrenContainer extends React.Component {
                         transparent={false}
                         editName={(text) => {
                             theHabit.name = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         setImportanceNN={(text) => {
                             theHabit.importance = 1;
@@ -357,31 +357,31 @@ export class ChildrenContainer extends React.Component {
                         }}
                         editStartTime={(text) => {
                             theHabit.start_time = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editEndTime={(text) => {
                             theHabit.end_time = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editImportance={(text) => {
                             theHabit.importance = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editPercentageDone={(text) => {
                             theHabit.percentage_done = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editCompleted={(text) => {
                             theHabit.completed = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editFinishedDate={(text) => {
                             theHabit.finished_date = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editTimeToSpend={(text) => {
                             theHabit.time_to_spend = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editNotificationTime={(times) => {
                             if (times) {
@@ -389,20 +389,20 @@ export class ChildrenContainer extends React.Component {
                             } else {
                                 theHabit.notification_time = JSON.stringify(emptyTimes)
                             }
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editNotes={(text) => {
                             theHabit.notes = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editRoutine={(text, name) => {
                             theHabit.routineName = name;
                             theHabit.routine = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
                         editDaysToDo={(text) => {
                             theHabit.days_to_do = text;
-                            this.setState({ selectedItem: theHabit })
+                            // this.setState({ selectedItem: theHabit })
                         }}
 
                         save={() => {controller.saveExisting(this, 'habits', theHabit) }}
