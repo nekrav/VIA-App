@@ -67,10 +67,10 @@ export class ChildrenContainer extends React.Component {
                 marginLeft: 20,
             }}>
                 <Text style={{
-                    fontFamily: colorsProvider.font,
-                    color: this.props.color,
-                    fontSize: colorsProvider.fontSizeMain
-                }}></Text>
+                    
+                }}>
+                    <FIcon name="plus" color={colorsProvider.habitsMainColor} size={colorsProvider.fontSizeAddButton} />
+                </Text>
             </View>
             <FlatList
                 data={this.state.allChildren}
@@ -257,8 +257,8 @@ export class ChildrenContainer extends React.Component {
                 routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 notes={(text) => { newHabit.notes = text }}
-                closeModal={() => { 
-                    this.setState({addModalVisible: false}) 
+                closeModal={() => {
+                    this.setState({ addModalVisible: false })
                 }}
                 save={() => { this.saveNew(newHabit) }}
             ></CreateHabit>
