@@ -55,7 +55,6 @@ export class ViewRoutine extends React.Component {
     }
 
     finishTask() {
-        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 
@@ -86,7 +85,7 @@ export class ViewRoutine extends React.Component {
             hasImportance={true}
             nameOfItem={this.state.selectedItem.name}
             importance={this.state.selectedItem.importance}
-            allChildren={this.state.allPossibleChildren}
+            allChildren={this.state.relatedChildren}
             closeModal={this.props.closeModal}
             editName={item => {
                 this.props.editName(item);
@@ -151,7 +150,6 @@ export class ViewRoutine extends React.Component {
                     this.setState({ percentVal: 0 })
                     this.props.editCompleted("false")
                     this.props.editFinishedDate("null")
-                    this.setState({ selectedItem })
                     this.props.save();
 
                 }}
@@ -161,7 +159,6 @@ export class ViewRoutine extends React.Component {
                     this.props.editCompleted("true")
                     this.props.editFinishedDate(new Date(Date.now()));
                     this.props.save();
-                    this.setState({ selectedItem })
                 }}
             />
             <TrashButton

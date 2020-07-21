@@ -56,7 +56,6 @@ export class ViewTaskFromProject extends React.Component {
     }
 
     finishTask() {
-        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 

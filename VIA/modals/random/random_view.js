@@ -60,7 +60,6 @@ export class ViewRandom extends React.Component {
     }
 
     finishTask() {
-        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 

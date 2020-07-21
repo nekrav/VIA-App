@@ -62,7 +62,6 @@ export class ViewTask extends React.Component {
     }
 
     finishTask() {
-        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 
@@ -160,7 +159,6 @@ export class ViewTask extends React.Component {
                     this.props.editCompleted("false")
                     this.props.editPercentageDone(0)
                     this.props.editFinishedDate("null")
-                    this.setState({ selectedItem })
                     this.props.save();
 
                 }}
@@ -171,7 +169,6 @@ export class ViewTask extends React.Component {
                     this.props.editCompleted("true")
                     this.props.editFinishedDate(new Date(Date.now()));
                     this.props.save();
-                    this.setState({ selectedItem })
                 }}
             />
             <TrashButton

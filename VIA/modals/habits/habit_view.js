@@ -62,7 +62,6 @@ export class ViewHabit extends React.Component {
     }
 
     finishTask() {
-        this.setState({ selectedItem })
         this.props.editCompleted("true")
     }
 
@@ -162,7 +161,6 @@ export class ViewHabit extends React.Component {
                     this.props.editCompleted("false")
                     this.props.editPercentageDone(0)
                     this.props.editFinishedDate("null")
-                    // this.setState({ selectedItem })
                     this.props.save();
 
                 }}
@@ -173,7 +171,6 @@ export class ViewHabit extends React.Component {
                     this.props.editCompleted("true")
                     this.props.editFinishedDate(new Date(Date.now()));
                     this.props.save();
-                    // this.setState({ selectedItem })
                 }}
             />
             <TrashButton
@@ -209,154 +206,13 @@ export class ViewHabit extends React.Component {
      renderNotesSection() {
         return <Notes
             color={colorsProvider.habitsMainColor}
-            notes={this.state.notes}
+            notes={this.state.selectedItem.notes}
             editNotes={value => {
                 this.props.editNotes(value);
+                this.props.save();
             }} />
     }
     /* #endregion */
-
-
-
-  
-    /* #region  Start Date Region */
-    setStartDateModalVisibility(visible) {
-        this.setState({ showStartDate: visible });
-    }
-
-    renderStartDateModal() {
-        if (this.state.showStartDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    saveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                        this.setStartDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setStartDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderStartDate() {
-        if (this.state.selectedItem.start_time != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        this.setStartDateModalVisibility(true)
-                    }}>
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-play" size={20} color={colorsProvider.habitsComplimentaryColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
-                Keyboard.dismiss();
-                this.setStartDateModalVisibility(true)
-            }}>
-                <Text style={styles.createDateText}>
-                    When do you want this habit to start?
-                </Text>
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-play" size={20} color={colorsProvider.habitsPlaceholderColor} />
-                </Text>
-            </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
-
-    /* #region  End Date Region */
-    setEndDateModalVisibility(visible) {
-        this.setState({ showEndDate: visible });
-    }
-
-    renderEndDateModal() {
-        if (this.state.showEndDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    saveButtonBackgroundColor={colorsProvider.habitsMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                        this.setEndDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setEndDateModalVisibility(false);
-                    }}>
-                </DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderEndDate() {
-        if (this.state.selectedItem.end_time != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.createDueDateContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setEndDateModalVisibility(true)
-                    }}>
-                    <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
-                    </Text>
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="control-end" size={20} color={colorsProvider.habitsComplimentaryColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity style={styles.createNameContainer} onPress={() => {
-                Keyboard.dismiss()
-                this.setEndDateModalVisibility(true)
-            }}>
-                <Text style={styles.createDateText}>
-                    When do you want this habit to end?
-          </Text>
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="control-end" size={20} color={colorsProvider.habitsPlaceholderColor} />
-                </Text>
-            </TouchableOpacity>
-
-        );
-    }
-
-    /* #endregion */
-
-   
-
-   
 
     render() {
         return (
