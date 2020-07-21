@@ -68,7 +68,6 @@ export class ViewHabit extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        console.warn(this.state.selectedItem)
         return <TopBar
             color={colorsProvider.habitsMainColor}
             parentColor={colorsProvider.routinesMainColor}

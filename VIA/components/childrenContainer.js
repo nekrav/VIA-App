@@ -10,7 +10,7 @@ import { Database } from '../db'
 import { Controller } from '../screens/controller'
 
 import Moment from 'moment';
-import { CreateHabit } from '../modals'
+import { CreateHabit, ViewHabit } from '../modals'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
 const todayDate = new Date();
@@ -74,6 +74,8 @@ export class ChildrenContainer extends React.Component {
             finishedDate: this.props.finishedDate,
             allChildren: this.props.allChildren,
             addModalVisible: false,
+            viewChildModalVisible: false,
+            selectedChild: '',
         };
     }
 
@@ -94,8 +96,8 @@ export class ChildrenContainer extends React.Component {
         }
     }
 
-    goToItem(itemId) {
-
+    goToItem(item) {
+        this.setState({ viewChildModalVisible: true, selectedChild: item })
     }
 
     renderBottomSlidingPane() {
@@ -257,22 +259,6 @@ export class ChildrenContainer extends React.Component {
         }
     }
 
-
-    renderChildItem(name) {
-        return (<ChildItem
-            deleteItem={itemId => {
-                this.props.deleteItem(itemId)
-            }}
-            updateImportance={itemId => {
-                this.props.updateImportance(itemId);
-            }}
-            goToItem={itemId => {
-                this.goToItem(itemId)
-            }}
-            name={name}
-        />)
-    }
-
     saveNew(habit) {
         let newHabit = {}
         newHabit.id = uuid.v4();
@@ -335,16 +321,101 @@ export class ChildrenContainer extends React.Component {
                 closeModal={() => {
                     this.setState({ addModalVisible: false })
                 }}
-                save={() => { 
-                    if(!newHabit.routine){
+                save={() => {
+                    if (!newHabit.routine) {
                         newHabit.routine = this.props.parentId
                         newHabit.routineName = this.props.parentName
                     }
-                        
-                    console.warn(newHabit)
-                    this.saveNew(newHabit) 
+                    this.saveNew(newHabit)
                 }}
             ></CreateHabit>
+        }
+    }
+
+    showViewModal() {
+        if (this.state.viewChildModalVisible) {
+            if (this.state.selectedChild) {
+                console.warn("aiweuh")
+                console.warn(this.state.selectedChild)
+                theHabit = this.state.selectedChild
+                    return <ViewHabit
+                        animationType="slide"
+                        transparent={false}
+                        editName={(text) => {
+                            theHabit.name = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        setImportanceNN={(text) => {
+                            theHabit.importance = 1;
+                        }}
+                        setImportanceNU={(text) => {
+                            theHabit.importance = 2;
+                        }}
+                        setImportanceIN={(text) => {
+                            theHabit.importance = 3;
+                        }}
+                        setImportanceIU={(text) => {
+                            theHabit.importance = 4;
+                        }}
+                        editStartTime={(text) => {
+                            theHabit.start_time = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editEndTime={(text) => {
+                            theHabit.end_time = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editImportance={(text) => {
+                            theHabit.importance = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editPercentageDone={(text) => {
+                            theHabit.percentage_done = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editCompleted={(text) => {
+                            theHabit.completed = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editFinishedDate={(text) => {
+                            theHabit.finished_date = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editTimeToSpend={(text) => {
+                            theHabit.time_to_spend = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotificationTime={(times) => {
+                            if (times) {
+                                theHabit.notification_time = times
+                            } else {
+                                theHabit.notification_time = JSON.stringify(emptyTimes)
+                            }
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotes={(text) => {
+                            theHabit.notes = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editRoutine={(text, name) => {
+                            theHabit.routineName = name;
+                            theHabit.routine = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        editDaysToDo={(text) => {
+                            theHabit.days_to_do = text;
+                            this.setState({ selectedItem: theHabit })
+                        }}
+
+                        save={() => {controller.saveExisting(this, dbTableName, theHabit) }}
+
+                        selectedItem={theHabit}
+
+                        delete={() => { controller.delete(this, dbTableName, theHabit) }}
+
+                        closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                    </ViewHabit>
+            }
         }
     }
 
@@ -354,11 +425,9 @@ export class ChildrenContainer extends React.Component {
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                     {this.renderBottomSlidingPane()}
                     {this.showAddModal()}
+                    {this.showViewModal()}
                     <ScrollView >
                         <View style={{}}>
-                            {/* <View style={{ flexDirection: 'row-reverse' }}>
-                                <FIcon style={{ marginTop: 10, marginRight: 20, }} size={colorsProvider.fontSizeMain} name="plus" color={colorsProvider.habitsMainColor} />
-                            </View> */}
                             <FlatList
                                 horizontal={false}
                                 scrollEnabled={true}

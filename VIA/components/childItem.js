@@ -85,7 +85,9 @@ export class ChildItem extends React.Component {
                                     newItem.finished_date == ""
                                 }
                             }}/></View>
-                    <TouchableOpacity onPress={this.props.goToItem}>
+                    <TouchableOpacity onPress={(item) => {
+                        this.props.goToItem(this.state.item)
+                    }}>
                         <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
