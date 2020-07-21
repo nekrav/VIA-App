@@ -283,6 +283,7 @@ export class ChildrenContainer extends React.Component {
         newHabit.importance = habit.importance ? habit.importance : ''
         newHabit.percentage_done = 0
         newHabit.routine = habit.routine ? habit.routine : '';
+        newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
@@ -334,7 +335,15 @@ export class ChildrenContainer extends React.Component {
                 closeModal={() => {
                     this.setState({ addModalVisible: false })
                 }}
-                save={() => { this.saveNew(newHabit) }}
+                save={() => { 
+                    if(!newHabit.routine){
+                        newHabit.routine = this.props.parentId
+                        newHabit.routineName = this.props.parentName
+                    }
+                        
+                    console.warn(newHabit)
+                    this.saveNew(newHabit) 
+                }}
             ></CreateHabit>
         }
     }

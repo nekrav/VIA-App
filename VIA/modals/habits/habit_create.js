@@ -102,7 +102,7 @@ export class CreateHabit extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        console.warn(this.state.routineName)
+        console.warn(this.state.routine)
         return <TopBar
             color={colorsProvider.habitsMainColor}
             parentColor={colorsProvider.routinesMainColor}
