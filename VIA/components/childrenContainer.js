@@ -7,12 +7,60 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 import ActionButton from 'react-native-action-button';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
+import { Controller } from '../screens/controller'
+
 import Moment from 'moment';
 import { CreateHabit } from '../modals'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
+const controller = new Controller;
+var uuid = require('react-native-uuid');
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -66,11 +114,12 @@ export class ChildrenContainer extends React.Component {
                 marginTop: 10,
                 marginLeft: 20,
             }}>
-                <Text style={{
-                    
+                <TouchableOpacity onPress={() => {
+                    this.RBSheet.close();
+                    this.setState({ addModalVisible: true })
                 }}>
                     <FIcon name="plus" color={colorsProvider.habitsMainColor} size={colorsProvider.fontSizeAddButton} />
-                </Text>
+                </TouchableOpacity>
             </View>
             <FlatList
                 data={this.state.allChildren}
@@ -224,6 +273,29 @@ export class ChildrenContainer extends React.Component {
         />)
     }
 
+    saveNew(habit) {
+        let newHabit = {}
+        newHabit.id = uuid.v4();
+        newHabit.name = habit.name;
+        newHabit.created_date = new Date().getDate();
+        newHabit.start_time = habit.start_time ? habit.start_time : ''
+        newHabit.end_time = habit.end_time ? habit.end_time : ''
+        newHabit.importance = habit.importance ? habit.importance : ''
+        newHabit.percentage_done = 0
+        newHabit.routine = habit.routine ? habit.routine : '';
+        newHabit.completed = "false"
+        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
+        newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
+        newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
+
+        Database.save('habits', newHabit).then(() => {
+            // controller.setAddModalVisible(this, false)
+            this.setState({ addModalVisible: false })
+            controller.loadAll(this, 'habits')
+            // notifier.scheduleAllNotifications()
+        })
+    }
+
     showAddModal() {
         let newHabit = {};
         if (this.state.addModalVisible) {
@@ -317,7 +389,8 @@ export class ChildrenContainer extends React.Component {
                         offsetX={10}
                         buttonColor={colorsProvider.habitsMainColor}
                         onPress={() => {
-                            this.RBSheet.open()
+                            this.setState({ addModalVisible: true })
+                            // this.RBSheet.open()
                         }}
                     />
                 </View>
