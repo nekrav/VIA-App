@@ -94,6 +94,7 @@ export class HabitsScreen extends React.Component {
         newHabit.importance = habit.importance ? habit.importance : ''
         newHabit.percentage_done = 0
         newHabit.routine = habit.routine ? habit.routine : '';
+        newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
@@ -136,7 +137,7 @@ export class HabitsScreen extends React.Component {
                         newHabit.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
-                routine={(text) => { newHabit.routine = text }}
+                routine={(text, name) => { newHabit.routine = text; newHabit.routineName = name }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 notes={(text) => { newHabit.notes = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
