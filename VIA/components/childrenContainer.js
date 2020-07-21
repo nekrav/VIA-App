@@ -302,6 +302,8 @@ export class ChildrenContainer extends React.Component {
             return <CreateHabit
                 animationType="slide"
                 transparent={false}
+                parentId={this.props.parentId}
+                parentName={this.props.parentName}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
                 setImportanceNN={(text) => {

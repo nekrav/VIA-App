@@ -66,10 +66,6 @@ const emptyTimes = [
     },
 ]
 
-
-
-
-
 export class CreateHabit extends React.Component {
 
     constructor(props) {
@@ -77,8 +73,8 @@ export class CreateHabit extends React.Component {
         this.state = {
             allPossibleParents: [],
             name: '',
-            routine: null,
-            routineName: null,
+            routine: this.props.parentId ? this.props.parentId : null,
+            routineName: this.props.parentName ? this.props.parentName : null,
             importance: 0,
             startTime: '',
             endTime: '',
@@ -106,6 +102,7 @@ export class CreateHabit extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
+        console.warn(this.state.routineName)
         return <TopBar
             color={colorsProvider.habitsMainColor}
             parentColor={colorsProvider.routinesMainColor}

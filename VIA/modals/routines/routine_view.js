@@ -178,6 +178,8 @@ export class ViewRoutine extends React.Component {
     /* #region  Children Region */
     renderChildren() {
         return(<ChildrenContainer
+        parentId={this.state.selectedItem.id}
+        parentName={this.state.selectedItem.name}
         allChildren={this.state.relatedChildren}
         borderColor={colorsProvider.habitsMainColor}
         childTableName={childTableName}
