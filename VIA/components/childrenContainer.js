@@ -8,9 +8,9 @@ import ActionButton from 'react-native-action-button';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
+import { CreateHabit } from '../modals'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
-
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
 
@@ -25,6 +25,7 @@ export class ChildrenContainer extends React.Component {
             completed: this.props.completed,
             finishedDate: this.props.finishedDate,
             allChildren: this.props.allChildren,
+            addModalVisible: false,
         };
     }
 
@@ -223,11 +224,53 @@ export class ChildrenContainer extends React.Component {
         />)
     }
 
+    showAddModal() {
+        let newHabit = {};
+        if (this.state.addModalVisible) {
+            return <CreateHabit
+                animationType="slide"
+                transparent={false}
+                id={(text) => { newHabit.id = text }}
+                name={(text) => { newHabit.name = text }}
+                setImportanceNN={(text) => {
+                    newHabit.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newHabit.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newHabit.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newHabit.importance = 4;
+                }}
+                time_to_spend={(text) => { newHabit.time_to_spend = text }}
+                start_time={(text) => { newHabit.start_time = text }}
+                end_time={(text) => { newHabit.end_time = text }}
+                notification_time={(times) => {
+                    if (times) {
+                        newHabit.notification_time = times
+                    } else {
+                        newHabit.notification_time = JSON.stringify(emptyTimes)
+                    }
+                }}
+                routine={(text) => { newHabit.routine = text }}
+                days_to_do={(text) => { newHabit.days_to_do = text }}
+                notes={(text) => { newHabit.notes = text }}
+                closeModal={() => { 
+                    this.setState({addModalVisible: false}) 
+                }}
+                save={() => { this.saveNew(newHabit) }}
+            ></CreateHabit>
+        }
+    }
+
     render() {
         if (this.state.allChildren.length > 0) {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                     {this.renderBottomSlidingPane()}
+                    {this.showAddModal()}
                     <ScrollView >
                         <View style={{}}>
                             {/* <View style={{ flexDirection: 'row-reverse' }}>
