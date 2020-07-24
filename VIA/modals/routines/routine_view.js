@@ -42,37 +42,41 @@ export class ViewRoutine extends React.Component {
         };
     }
 
-    componentDidMount() {
-        notifier.scheduleAllNotifications();
-        controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-    }
+    // componentDidMount() {
+    //     notifier.scheduleAllNotifications();
+    //     // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+    // }
 
-    getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
-            return styles.outerViewDone
-        }
-        return styles.outerView;
-    }
-
-    finishTask() {
-        this.props.editCompleted("true")
-    }
-
-    getHabits() {
+    getChildren(childTableName, selectedParent, parentType) {
         const itemsArr = []
-        Database.getAll(Habits.TABLE_NAME)
+        const relatedChildren = []
+        Database.getAll(childTableName)
             .then((res) => {
                 const len = res.rows.length;
                 let item = {}
                 for (let i = 0; i < len; i++) {
                     item = res.rows.item(i)
+                    itemParentId = res.rows.item(i)[parentType].replace(/\\/g, '')
+                    itemParentId = itemParentId.replace(/['"]+/g, "")
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                    if (itemParentId == selectedParent) {
+                        relatedChildren.push({ key: JSON.stringify(item.id), value: item })
+                    }
                 }
-                this.setState({
-                    children: itemsArr
-                })
+                this.setState({ relatedChildren: relatedChildren })
             })
 
+    }
+
+    async fetch() {
+        this.setState({ isFetching: true });
+        this.setState({ relatedChildren: b, isFetching: false });
+    }
+
+
+    componentDidMount() {
+        notifier.scheduleAllNotifications();
+        this.getChildren(Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
     }
 
     /* #region  Top Bar Region */
@@ -170,29 +174,28 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-
-
     /* #region  Children Region */
     renderChildren() {
-        return(<ChildrenContainer
-        parentId={this.state.selectedItem.id}
-        parentName={this.state.selectedItem.name}
-        allChildren={this.state.relatedChildren}
-        borderColor={colorsProvider.habitsMainColor}
-        childTableName={childTableName}
-        childUpdateCompleted={item => {
-            controller.saveExisting(this, childTableName, item) 
-            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-            this.props.save();
-        }}
-        goToItem={() => {
-            
-        }}
-        deleteItem={item => {
-            controller.delete(this, childTableName, item)
-            controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-            this.props.save();
-        }}/>)
+        console.warn(this.state.relatedChildren)
+        return (<ChildrenContainer
+            parentId={this.state.selectedItem.id}
+            parentName={this.state.selectedItem.name}
+            relatedChildren={this.state.relatedChildren}
+            borderColor={colorsProvider.habitsMainColor}
+            childTableName={childTableName}
+            childUpdateCompleted={item => {
+                controller.saveExisting(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                this.props.save();
+            }}
+            saveItem={() => {
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            }}
+            deleteItem={item => {
+                controller.delete(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                this.props.save();
+            }} />)
     }
     /* #endregion */
 
