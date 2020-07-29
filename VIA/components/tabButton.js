@@ -3,6 +3,8 @@ import * as colorsProvider from './colorsProvider';
 import { Animated, TouchableOpacity, View, Image, Text } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database} from '../db'
+import { Controller } from '../screens/controller'
+const controller = new Controller;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -34,6 +36,7 @@ class TabButton extends React.Component {
                         onPress={() => {
                             this.isCurrentRoute(this.props.routeName)
                             this.props.nav.navigate(this.props.elementName)
+                            Database.getAll('routines')
                             Database.init()
                         }
                         }

@@ -77,6 +77,14 @@ export class HabitsScreen extends React.Component {
         };
     }
 
+    componentDidUpdate(prevProps) {
+        // console.warn(prevProps)
+        // if (prevProps.relatedChildren !== this.props.relatedChildren) {
+        //   this.fetch();
+        // }
+    }
+
+
     componentDidMount() {
         this.props.navigation.addListener('willFocus', (playload) => {
         });
