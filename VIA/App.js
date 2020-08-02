@@ -39,6 +39,7 @@ const TabNavigator = createBottomTabNavigator({
           inactiveColor={colorsProvider.whiteColor}
           tintColor={ tintColor }
           routeName={'Habits'}
+          getAllItems={() => {Database.getAll('habits')}}
           iconName={'reload'}
           elementName={'Habits'}
           nav={navigation} ></TabButton>
@@ -60,9 +61,11 @@ const TabNavigator = createBottomTabNavigator({
           activeColor={colorsProvider.routinesBottomTabHighlightColor}
           inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
+          getAllItems={() => {Database.getAll('routines')}}
           routeName={'Routines'}
           iconName={'refresh'}
           elementName={'Routines'}
+
           nav={navigation} ></TabButton>
       ),})
   },
@@ -102,6 +105,7 @@ const TabNavigator = createBottomTabNavigator({
           tintColor={{ tintColor }}
           routeName={'Projects'}
           iconName={'layers'}
+          getAllItems={() => {Database.getAll('projects')}}
           elementName={'Projects'}
           nav={navigation} ></TabButton>
       ),})
@@ -123,6 +127,7 @@ const TabNavigator = createBottomTabNavigator({
           inactiveColor={colorsProvider.whiteColor}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
+          getAllItems={() => {Database.getAll('tasks')}}
           iconName={'refresh'}
           elementName={'Tasks'}
           nav={navigation} ></TabButton>
