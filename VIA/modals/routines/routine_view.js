@@ -176,7 +176,6 @@ export class ViewRoutine extends React.Component {
 
     /* #region  Children Region */
     renderChildren() {
-        console.warn(this.state.relatedChildren)
         return (<ChildrenContainer
             parentId={this.state.selectedItem.id}
             parentName={this.state.selectedItem.name}

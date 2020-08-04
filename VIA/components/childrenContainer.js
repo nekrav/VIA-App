@@ -493,7 +493,11 @@ export class ChildrenContainer extends React.Component {
                 </View>
             )
         } else {
-            return (<Text>No Children</Text>)
+            return (
+                <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
+
+            <Text>No Children</Text>
+            </View>)
             // return (
             //     // <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
             //     <TouchableWithoutFeedback onPress={() => { }}>
