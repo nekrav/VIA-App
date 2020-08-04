@@ -87,7 +87,7 @@ export class ChildrenContainer extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.relatedChildren !== this.props.relatedChildren) {
-          this.fetch();
+            this.fetch();
         }
     }
 
@@ -494,10 +494,10 @@ export class ChildrenContainer extends React.Component {
             )
         } else {
             return (
-                <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
-
-            <Text>No Children</Text>
-            </View>)
+                <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{color: this.props.borderColor}}>No Children</Text>
+                </View>
+            )
             // return (
             //     // <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
             //     <TouchableWithoutFeedback onPress={() => { }}>
