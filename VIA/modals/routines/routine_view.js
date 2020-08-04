@@ -181,6 +181,7 @@ export class ViewRoutine extends React.Component {
             parentName={this.state.selectedItem.name}
             relatedChildren={this.state.relatedChildren}
             borderColor={colorsProvider.habitsMainColor}
+            childType={'Habits'}
             childTableName={childTableName}
             childUpdateCompleted={item => {
                 controller.saveExisting(this, childTableName, item)

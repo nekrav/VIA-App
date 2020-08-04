@@ -275,7 +275,7 @@ export class ChildrenContainer extends React.Component {
         }
     }
 
-    saveNew(habit) {
+    saveNewHabit(habit) {
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
@@ -293,7 +293,6 @@ export class ChildrenContainer extends React.Component {
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
         Database.save('habits', newHabit).then(() => {
-            // controller.setAddModalVisible(this, false)
             this.setState({ addModalVisible: false })
             controller.loadAll(this, 'habits')
             this.props.saveItem();
@@ -306,51 +305,97 @@ export class ChildrenContainer extends React.Component {
 
     showAddModal() {
         let newHabit = {};
-        if (this.state.addModalVisible) {
-            return <CreateHabit
-                animationType="slide"
-                transparent={false}
-                parentId={this.props.parentId}
-                parentName={this.props.parentName}
-                id={(text) => { newHabit.id = text }}
-                name={(text) => { newHabit.name = text }}
-                setImportanceNN={(text) => {
-                    newHabit.importance = 1;
-                }}
-                setImportanceNU={(text) => {
-                    newHabit.importance = 2;
-                }}
-                setImportanceIN={(text) => {
-                    newHabit.importance = 3;
-                }}
-                setImportanceIU={(text) => {
-                    newHabit.importance = 4;
-                }}
-                time_to_spend={(text) => { newHabit.time_to_spend = text }}
-                start_time={(text) => { newHabit.start_time = text }}
-                end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(times) => {
-                    if (times) {
-                        newHabit.notification_time = times
-                    } else {
-                        newHabit.notification_time = JSON.stringify(emptyTimes)
-                    }
-                }}
-                routine={(text) => { newHabit.routine = text }}
-                days_to_do={(text) => { newHabit.days_to_do = text }}
-                notes={(text) => { newHabit.notes = text }}
-                closeModal={() => {
-                    this.setState({ addModalVisible: false })
-                }}
-                save={() => {
-                    if (!newHabit.routine) {
-                        newHabit.routine = this.props.parentId
-                        newHabit.routineName = this.props.parentName
-                    }
-                    this.saveNew(newHabit)
-                }}
-            />
-            // </CreateHabit>
+        if (this.state.addModalVisible) {        
+            console.warn("awegerth")    
+            if (this.props.childType == 'Habits') {
+                return <CreateHabit
+                    animationType="slide"
+                    transparent={false}
+                    parentId={this.props.parentId}
+                    parentName={this.props.parentName}
+                    id={(text) => { newHabit.id = text }}
+                    name={(text) => { newHabit.name = text }}
+                    setImportanceNN={(text) => {
+                        newHabit.importance = 1;
+                    }}
+                    setImportanceNU={(text) => {
+                        newHabit.importance = 2;
+                    }}
+                    setImportanceIN={(text) => {
+                        newHabit.importance = 3;
+                    }}
+                    setImportanceIU={(text) => {
+                        newHabit.importance = 4;
+                    }}
+                    time_to_spend={(text) => { newHabit.time_to_spend = text }}
+                    start_time={(text) => { newHabit.start_time = text }}
+                    end_time={(text) => { newHabit.end_time = text }}
+                    notification_time={(times) => {
+                        if (times) {
+                            newHabit.notification_time = times
+                        } else {
+                            newHabit.notification_time = JSON.stringify(emptyTimes)
+                        }
+                    }}
+                    routine={(text) => { newHabit.routine = text }}
+                    days_to_do={(text) => { newHabit.days_to_do = text }}
+                    notes={(text) => { newHabit.notes = text }}
+                    closeModal={() => {
+                        this.setState({ addModalVisible: false })
+                    }}
+                    save={() => {
+                        if (!newHabit.routine) {
+                            newHabit.routine = this.props.parentId
+                            newHabit.routineName = this.props.parentName
+                        }
+                        this.saveNewHabit(newHabit)
+                    }}
+                />
+            }
+            if (this.props.childType == 'tasks') {
+                return <CreateTask
+                    animationType="slide"
+                    transparent={false}
+                    name={(text) => { newTask.name = text }}
+                    due_date={(text) => {
+                        newTask.due_date = text
+                    }}
+                    setImportanceNN={(text) => {
+                        newTask.importance = 1;
+                    }}
+                    setImportanceNU={(text) => {
+                        newTask.importance = 2;
+                    }}
+                    setImportanceIN={(text) => {
+                        newTask.importance = 3;
+                    }}
+                    setImportanceIU={(text) => {
+                        newTask.importance = 4;
+                    }}
+                    importance={(text) => { newTask.importance = text }}
+                    project={(id, name) => {
+                        newTask.projectName = name;
+                        newTask.project = id
+                    }}
+                    time_spent={(text) => { newTask.time_spent = text }}
+                    notes={(text) => { newTask.notes = text }}
+                    notification_time={(times) => {
+                        if (times) {
+                            newTask.notification_time = times
+                        } else {
+                            newTask.notification_time = JSON.stringify(emptyTimes)
+                        }
+                    }}
+                    closeModal={() => { controller.setAddModalVisible(this, false) }}
+                    save={() => {
+                        if (!newTask.notification_time) {
+                            newTask.notification_time = emptyTimes
+                            // newTask.notification_time = emptyTimes
+                        }
+                        this.saveNew(newTask)
+                    }}
+                ></CreateTask>
+            }
         }
     }
 
@@ -446,7 +491,7 @@ export class ChildrenContainer extends React.Component {
                     {this.renderBottomSlidingPane()}
                     {this.showAddModal()}
                     {this.showViewModal()}
-                    <ScrollView >
+                    <ScrollView>
                         <View style={{}}>
                             <FlatList
                                 horizontal={false}
@@ -464,12 +509,6 @@ export class ChildrenContainer extends React.Component {
                                             this.props.deleteItem(item)
                                         }}
                                         childUpdateCompleted={item => {
-                                            // var index = this.state.allChildren.indexOf(item)
-                                            // if (index !== -1) {
-                                            //     var oldArr = this.state.allChildren
-                                            //     oldArr.splice(index, 1)
-                                            //     this.setState({ allChildren: oldArr })
-                                            // }
                                             this.props.childUpdateCompleted(item);
                                         }}
                                         goToItem={item => {
@@ -480,7 +519,6 @@ export class ChildrenContainer extends React.Component {
                                 }}
                             />
                         </View>
-
                     </ScrollView>
                     <ActionButton
                         size={45}
@@ -490,7 +528,6 @@ export class ChildrenContainer extends React.Component {
                         buttonColor={colorsProvider.habitsMainColor}
                         onPress={() => {
                             this.setState({ addModalVisible: true })
-                            // this.RBSheet.open()
                         }}
                     />
                 </View>
@@ -498,7 +535,8 @@ export class ChildrenContainer extends React.Component {
         } else {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontFamily: colorsProvider.font, color: this.props.borderColor }}>No Children</Text>
+                                        {this.showAddModal()}
+                    <Text style={{ fontFamily: colorsProvider.font, color: this.props.borderColor }}>No {this.props.childType}</Text>
                     <ActionButton
                         size={45}
                         hideShadow={false}
@@ -507,7 +545,6 @@ export class ChildrenContainer extends React.Component {
                         buttonColor={colorsProvider.habitsMainColor}
                         onPress={() => {
                             this.setState({ addModalVisible: true })
-                            // this.RBSheet.open()
                         }}
                     />
                 </View>
