@@ -495,24 +495,9 @@ export class ChildrenContainer extends React.Component {
         } else {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{color: this.props.borderColor}}>No Children</Text>
+                    <Text style={{fontFamily: colorsProvider.font, color: this.props.borderColor}}>No Children</Text>
                 </View>
             )
-            // return (
-            //     // <ScrollView style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, }}>
-            //     <TouchableWithoutFeedback onPress={() => { }}>
-
-            //         <FlatList
-            //             horizontal={false}
-            //             scrollEnabled={true}
-            //             data={this.state.allChildren}
-            //             contentContainerStyle={{  borderWidth: 1, borderColor: colorsProvider.habitsMainColor, borderRadius: 10,  marginLeft: 2, marginRight: 2, marginBottom: 3, marginTop: 10, }}
-            //             renderItem={({ item }) => { return <TouchableOpacity style={{flex: 1, backgroundColor: colorsProvider.habitsMainColor, margin: 10, }}><Text>{item.value.name}</Text></TouchableOpacity> }}
-            //         />
-            //     {/* // </ScrollView> */}
-            //     </TouchableWithoutFeedback>
-            // )
         }
-
     }
 }
