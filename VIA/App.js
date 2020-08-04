@@ -83,6 +83,7 @@ const TabNavigator = createBottomTabNavigator({
       tabBarIcon:({ focused, tintColor }) => (
         <HomeButton
         focused={focused}
+        getAllItems={() => {Database.getAll('random')}}
         activeColor={colorsProvider.homePlaceholderColor}
           nav={navigation} ></HomeButton>  ),})
     

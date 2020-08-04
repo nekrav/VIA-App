@@ -37,7 +37,6 @@ class TabButton extends React.Component {
                             this.isCurrentRoute(this.props.routeName)
                             this.props.nav.navigate(this.props.elementName)
                             this.props.getAllItems();
-                            // Database.getAll('routines')
                             Database.init()
                         }
                         }
