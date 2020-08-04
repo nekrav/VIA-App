@@ -10,7 +10,7 @@ import { Database } from '../db'
 import { Controller } from '../screens/controller'
 
 import Moment from 'moment';
-import { CreateHabit, ViewHabit } from '../modals'
+import { CreateHabit, ViewHabit, ViewTask, CreateTask } from '../modals'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
 const todayDate = new Date();
@@ -59,6 +59,7 @@ const emptyTimes = [
         times: []
     },
 ]
+
 const controller = new Controller;
 var uuid = require('react-native-uuid');
 
@@ -76,7 +77,8 @@ export class ChildrenContainer extends React.Component {
             addModalVisible: false,
             viewChildModalVisible: false,
             selectedChild: '',
-            isFetching: true
+            isFetching: true,
+            childCreateComponentName: 'CreateHabit'
         };
     }
 
@@ -118,9 +120,6 @@ export class ChildrenContainer extends React.Component {
     }
 
     renderBottomSlidingPane() {
-
-        // parentTypeCapitalized = this.props.parentType.charAt(0).toUpperCase() + this.props.parentType.slice(1)
-
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -301,6 +300,9 @@ export class ChildrenContainer extends React.Component {
             // notifier.scheduleAllNotifications()
         })
     }
+    capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
     showAddModal() {
         let newHabit = {};
@@ -347,7 +349,8 @@ export class ChildrenContainer extends React.Component {
                     }
                     this.saveNew(newHabit)
                 }}
-            ></CreateHabit>
+            />
+            // </CreateHabit>
         }
     }
 
@@ -495,7 +498,18 @@ export class ChildrenContainer extends React.Component {
         } else {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{fontFamily: colorsProvider.font, color: this.props.borderColor}}>No Children</Text>
+                    <Text style={{ fontFamily: colorsProvider.font, color: this.props.borderColor }}>No Children</Text>
+                    <ActionButton
+                        size={45}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.habitsMainColor}
+                        onPress={() => {
+                            this.setState({ addModalVisible: true })
+                            // this.RBSheet.open()
+                        }}
+                    />
                 </View>
             )
         }
