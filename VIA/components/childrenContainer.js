@@ -84,6 +84,7 @@ export class ChildrenContainer extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.relatedChildren !== this.props.relatedChildren) {
+            console.warn(prevProps.relatedChildren)
             this.fetch();
         }
     }
@@ -440,9 +441,15 @@ export class ChildrenContainer extends React.Component {
                         selectedItem={theHabit}
 
                         delete={() => {
-                            this.setState({ viewChildModalVisible: false })
-                            controller.delete(this, 'habits', theHabit);
-                            controller.loadAll(this, 'habits')
+                            // this.setState({ viewChildModalVisible: false })
+                            // controller.delete(this, 'habits', theHabit);
+                            // controller.loadAll(this, 'habits')
+                            this.props.deleteItem()
+                            Database.deleteOne('habits', theHabit.id).then(() => {
+                                controller.loadAll(this, 'habits')
+                                this.setState({ viewChildModalVisible: false })
+                                controller.loadAll(this, 'habits')
+                            })
                         }}
 
                         closeModal={() => {
@@ -512,15 +519,15 @@ export class ChildrenContainer extends React.Component {
                                 this.setState({ selectedTask: theTask })
                             }
                         }}
-    
+
                         save={() => {
                             controller.saveExisting(this, dbTableName, theTask)
                         }}
-    
+
                         selectedItem={theTask}
-    
+
                         delete={() => { controller.delete(this, dbTableName, theTask) }}
-    
+
                         closeModal={() => { controller.setViewModalVisible(this, false) }}>
                     </ViewTask>
                 }
@@ -559,7 +566,6 @@ export class ChildrenContainer extends React.Component {
                                             this.goToItem(item)
                                         }}
                                     />
-
                                 }}
                             />
                         </View>
