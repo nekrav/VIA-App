@@ -234,10 +234,6 @@ export class ViewHabit extends React.Component {
 
                             {this.renderCompleteAndTrashButton()}
 
-               
-
-
-
                             {/* Sliders Section*/}
                             {/* {this.renderSliderSection()} */}
 

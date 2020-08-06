@@ -82,11 +82,6 @@ export class ChildrenContainer extends React.Component {
         };
     }
 
-    // componentWillReceiveProps(newProps) {
-    //     if (newProps != null)
-    //         this.setState({ allChildren: this.props.allChildren });
-    // }
-
     componentDidUpdate(prevProps) {
         if (prevProps.relatedChildren !== this.props.relatedChildren) {
             this.fetch();
@@ -221,60 +216,6 @@ export class ChildrenContainer extends React.Component {
         </RBSheet>)
     }
 
-    renderParentText() {
-        if (this.state.name == null || this.state.name == "null") {
-            return (
-                <TouchableOpacity
-                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.RBSheet.open()
-                    }}>
-                    <Text style={{ marginRight: 5 }}>
-                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
-                    </Text>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
-                        Is this part of a bigger ?
-                    </Text>
-
-                </TouchableOpacity>
-            );
-        }
-        else if (this.state.name != "") {
-            return (
-                <TouchableOpacity
-                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.RBSheet.open()
-                    }}>
-                    <Text style={{ marginRight: 5 }}>
-                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
-                    </Text>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>
-                        {this.state.name}
-                    </Text>
-
-                </TouchableOpacity>
-            );
-        } else {
-            return (
-                <TouchableOpacity
-                    style={{ marginLeft: "14%", flexDirection: 'row', marginBottom: '3%' }}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.RBSheet.open()
-                    }}>
-                    <Text style={{ marginRight: 5 }}>
-                        <SIcon name="layers" size={20} color={colorsProvider.whiteColor} />
-                    </Text>
-                    <Text style={{ color: colorsProvider.whiteColor, textDecorationLine: 'underline' }}>Is this part of a bigger ?
-          </Text>
-                </TouchableOpacity>
-            );
-        }
-    }
-
     saveNewHabit(habit) {
         let newHabit = {}
         newHabit.id = uuid.v4();
@@ -296,17 +237,39 @@ export class ChildrenContainer extends React.Component {
             this.setState({ addModalVisible: false })
             controller.loadAll(this, 'habits')
             this.props.saveItem();
-            // notifier.scheduleAllNotifications()
         })
     }
-    capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
+
+    saveNewTask(task) {
+        let newTask = {}
+        newTask.id = uuid.v4();
+        newTask.name = task.name;
+        newTask.created_date = new Date().getDate();
+        newTask.due_date = task.due_date ? task.due_date : "";
+        newTask.importance = task.importance ? task.importance : 0;
+        newTask.percentage_done = 0;
+        newTask.completed = "false";
+        newTask.project = task.project ? task.project : "";
+        newTask.projectName = task.projectName ? task.projectName : "";
+        newTask.time_spent = 0;
+        newTask.notes = task.notes ? task.notes : "";
+        newTask.notification_time = task.notification_time ? task.notification_time : ''
+        Database.save(dbTableName, newTask).then(() => {
+            controller.setAddModalVisible(this, false)
+            controller.loadAll(this, dbTableName)
+            notifier.scheduleAllNotifications()
+        })
+
+        Database.save('tasks', newTask).then(() => {
+            this.setState({ addModalVisible: false })
+            controller.loadAll(this, 'tasks')
+            this.props.saveItem();
+        })
     }
 
     showAddModal() {
         let newHabit = {};
-        if (this.state.addModalVisible) {        
-            console.warn("awegerth")    
+        if (this.state.addModalVisible) {
             if (this.props.childType == 'Habits') {
                 return <CreateHabit
                     animationType="slide"
@@ -352,7 +315,7 @@ export class ChildrenContainer extends React.Component {
                     }}
                 />
             }
-            if (this.props.childType == 'tasks') {
+            if (this.props.childType == 'Tasks') {
                 return <CreateTask
                     animationType="slide"
                     transparent={false}
@@ -390,7 +353,6 @@ export class ChildrenContainer extends React.Component {
                     save={() => {
                         if (!newTask.notification_time) {
                             newTask.notification_time = emptyTimes
-                            // newTask.notification_time = emptyTimes
                         }
                         this.saveNew(newTask)
                     }}
@@ -402,84 +364,166 @@ export class ChildrenContainer extends React.Component {
     showViewModal() {
         if (this.state.viewChildModalVisible) {
             if (this.state.selectedChild) {
-                theHabit = this.state.selectedChild
-                return <ViewHabit
-                    animationType="slide"
-                    transparent={false}
-                    editName={(text) => {
-                        theHabit.name = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    setImportanceNN={(text) => {
-                        theHabit.importance = 1;
-                    }}
-                    setImportanceNU={(text) => {
-                        theHabit.importance = 2;
-                    }}
-                    setImportanceIN={(text) => {
-                        theHabit.importance = 3;
-                    }}
-                    setImportanceIU={(text) => {
-                        theHabit.importance = 4;
-                    }}
-                    editStartTime={(text) => {
-                        theHabit.start_time = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editEndTime={(text) => {
-                        theHabit.end_time = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editImportance={(text) => {
-                        theHabit.importance = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editPercentageDone={(text) => {
-                        theHabit.percentage_done = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editCompleted={(text) => {
-                        theHabit.completed = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editFinishedDate={(text) => {
-                        theHabit.finished_date = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editTimeToSpend={(text) => {
-                        theHabit.time_to_spend = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editNotificationTime={(times) => {
-                        if (times) {
-                            theHabit.notification_time = times
-                        } else {
-                            theHabit.notification_time = JSON.stringify(emptyTimes)
-                        }
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editNotes={(text) => {
-                        theHabit.notes = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editRoutine={(text, name) => {
-                        theHabit.routineName = name;
-                        theHabit.routine = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
-                    editDaysToDo={(text) => {
-                        theHabit.days_to_do = text;
-                        // this.setState({ selectedItem: theHabit })
-                    }}
+                if (this.props.childType == 'Habits') {
+                    theHabit = this.state.selectedChild
+                    return <ViewHabit
+                        animationType="slide"
+                        transparent={false}
+                        editName={(text) => {
+                            theHabit.name = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        setImportanceNN={(text) => {
+                            theHabit.importance = 1;
+                        }}
+                        setImportanceNU={(text) => {
+                            theHabit.importance = 2;
+                        }}
+                        setImportanceIN={(text) => {
+                            theHabit.importance = 3;
+                        }}
+                        setImportanceIU={(text) => {
+                            theHabit.importance = 4;
+                        }}
+                        editStartTime={(text) => {
+                            theHabit.start_time = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editEndTime={(text) => {
+                            theHabit.end_time = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editImportance={(text) => {
+                            theHabit.importance = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editPercentageDone={(text) => {
+                            theHabit.percentage_done = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editCompleted={(text) => {
+                            theHabit.completed = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editFinishedDate={(text) => {
+                            theHabit.finished_date = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editTimeToSpend={(text) => {
+                            theHabit.time_to_spend = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotificationTime={(times) => {
+                            if (times) {
+                                theHabit.notification_time = times
+                            } else {
+                                theHabit.notification_time = JSON.stringify(emptyTimes)
+                            }
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotes={(text) => {
+                            theHabit.notes = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editRoutine={(text, name) => {
+                            theHabit.routineName = name;
+                            theHabit.routine = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editDaysToDo={(text) => {
+                            theHabit.days_to_do = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
 
-                    save={() => { controller.saveExisting(this, 'habits', theHabit) }}
+                        save={() => { controller.saveExisting(this, 'habits', theHabit) }}
 
-                    selectedItem={theHabit}
+                        selectedItem={theHabit}
 
-                    delete={() => { controller.delete(this, 'habits', theHabit) }}
+                        delete={() => {
+                            this.setState({ viewChildModalVisible: false })
+                            controller.delete(this, 'habits', theHabit);
+                            controller.loadAll(this, 'habits')
+                        }}
 
-                    closeModal={() => { this.setState({ viewChildModalVisible: false }) }}>
-                </ViewHabit>
+                        closeModal={() => {
+                            this.setState({ viewChildModalVisible: false })
+                            this.fetch();
+                        }}>
+                    </ViewHabit>
+                }
+                if (this.props.childType == 'Tasks') {
+                    theTask = this.state.selectedItem
+                    return <ViewTask
+                        animationType="slide"
+                        visible={this.state.viewModalVisible}
+                        transparent={false}
+                        editName={(text) => {
+                            theTask.name = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editDueDate={(text) => {
+                            theTask.due_date = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        setImportanceNN={(text) => {
+                            theTask.importance = 1;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        setImportanceNU={(text) => {
+                            theTask.importance = 2;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        setImportanceIN={(text) => {
+                            theTask.importance = 3;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        setImportanceIU={(text) => {
+                            theTask.importance = 4;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editPercentageDone={(text) => {
+                            theTask.percentage_done = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editCompleted={(text) => {
+                            theTask.completed = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editFinishedDate={(text) => {
+                            theTask.finished_date = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editProject={(text, name) => {
+                            theTask.projectName = name
+                            theTask.project = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editTimeSpent={(text) => {
+                            theTask.time_spent = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editNotes={(text) => {
+                            theTask.notes = text;
+                            this.setState({ selectedTask: theTask })
+                        }}
+                        editNotificationTime={(text) => {
+                            if (text) {
+                                theTask.notification_time = text
+                                this.setState({ selectedTask: theTask })
+                            }
+                        }}
+    
+                        save={() => {
+                            controller.saveExisting(this, dbTableName, theTask)
+                        }}
+    
+                        selectedItem={theTask}
+    
+                        delete={() => { controller.delete(this, dbTableName, theTask) }}
+    
+                        closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                    </ViewTask>
+                }
             }
         }
     }
@@ -535,7 +579,7 @@ export class ChildrenContainer extends React.Component {
         } else {
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {this.showAddModal()}
+                    {this.showAddModal()}
                     <Text style={{ fontFamily: colorsProvider.font, color: this.props.borderColor }}>No {this.props.childType}</Text>
                     <ActionButton
                         size={45}
