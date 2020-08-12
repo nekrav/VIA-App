@@ -17,7 +17,7 @@ export const close = 'close'
 /* #endregion */
 
 export const tasksMainColor = '#1A9ED8'
-export const habitsMainColor = "#EA3E49"
+export const habitsMainColor = "#F1637A"
 
 /* #region NewColors */
 export const topBarColor = '#1A9ED8'
@@ -29,7 +29,7 @@ export const iNotUColor = '#fb8201'
 export const iUColor = '#ec4d4d'
 export const completeColor = "#3FE81D"
 export const completeButtonColor = '#3FE81D'
-export const incompleteColor = '#F1637A'
+export const incompleteColor = '#EA3E49'
 /* #endregion */
 /* #region  Button Colors  */
 export const setButtonColor = "#19AF0F"
