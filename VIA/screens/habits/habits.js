@@ -1,6 +1,7 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox } from 'react-native-elements'
+
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
@@ -80,13 +81,22 @@ export class HabitsScreen extends React.Component {
     componentDidUpdate(prevProps) {
     }
 
-
     componentDidMount() {
-        this.props.navigation.addListener('willFocus', (playload) => {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
+            controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
         });
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications()
     }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
+    }
+
 
     saveNew(habit) {
         let newHabit = {}
@@ -102,7 +112,7 @@ export class HabitsScreen extends React.Component {
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notes = habit.notes ? habit.notes : '',
-        newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
+            newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
         Database.save(dbTableName, newHabit).then(() => {
@@ -225,7 +235,8 @@ export class HabitsScreen extends React.Component {
                     }}
 
                     save={() => {
-                        controller.saveExisting(this, dbTableName, theHabit) }}
+                        controller.saveExisting(this, dbTableName, theHabit)
+                    }}
 
                     selectedItem={theHabit}
 

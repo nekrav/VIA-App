@@ -78,9 +78,21 @@ export class RoutinesScreen extends React.Component {
     }
 
     componentDidMount() {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
+            controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
+          });
+
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications() 
     }
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
+      }
+
 
     saveNew(routine) {
         let newRoutine = {}

@@ -78,11 +78,20 @@ export class TasksScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.props.navigation.addListener('willFocus', (playload) => {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
         });
+
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications()
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
     }
 
     saveNew(task) {
