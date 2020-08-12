@@ -66,8 +66,6 @@ export class Controller extends React.Component {
                         relatedChildren.push({ key: JSON.stringify(item.id), value: item })
                     }
                 }
-                console.warn("Get children called")
-                console.warn(relatedChildren.length)
                 object.setState({
                     relatedChildren: relatedChildren,
                     items: itemsArr

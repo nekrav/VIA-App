@@ -66,7 +66,6 @@ export class ViewRoutine extends React.Component {
                     }
                     
                 }
-                console.warn(relatedChildren.length)
                 this.setState({ relatedChildren: relatedChildren })
             })
 
@@ -202,7 +201,6 @@ export class ViewRoutine extends React.Component {
                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
             }}
             deleteItem={item => {
-                console.warn(item)
                 controller.delete(this, childTableName, item)
                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
                 this.props.save();
