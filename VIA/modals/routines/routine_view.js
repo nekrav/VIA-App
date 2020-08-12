@@ -21,6 +21,7 @@ const dateDisplayFormat = 'MMM Do'
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 const childTableName = Habits.TABLE_NAME
+let numberOfChildren = 0;
 
 
 export class ViewRoutine extends React.Component {
@@ -61,8 +62,11 @@ export class ViewRoutine extends React.Component {
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
                     if (itemParentId == selectedParent) {
                         relatedChildren.push({ key: JSON.stringify(item.id), value: item })
+                        numberOfChildren = numberOfChildren++
                     }
+                    
                 }
+                console.warn(relatedChildren.length)
                 this.setState({ relatedChildren: relatedChildren })
             })
 
@@ -77,6 +81,12 @@ export class ViewRoutine extends React.Component {
     componentDidMount() {
         notifier.scheduleAllNotifications();
         this.getChildren(Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.relatedChildren !== this.props.relatedChildren) {
+            this.fetch();
+        }
     }
 
     /* #region  Top Bar Region */
@@ -192,6 +202,7 @@ export class ViewRoutine extends React.Component {
                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
             }}
             deleteItem={item => {
+                console.warn(item)
                 controller.delete(this, childTableName, item)
                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
                 this.props.save();
