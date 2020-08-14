@@ -17,7 +17,7 @@ export const close = 'close'
 /* #endregion */
 
 export const tasksMainColor = '#1A9ED8'
-export const habitsMainColor = "#F1637A"
+export const habitsMainColor = "#e05e5e"
 
 /* #region NewColors */
 export const topBarColor = '#1A9ED8'
