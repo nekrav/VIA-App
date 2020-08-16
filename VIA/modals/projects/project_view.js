@@ -276,6 +276,7 @@ export class ViewProject extends React.Component {
             relatedChildren={this.state.relatedChildren}
             borderColor={colorsProvider.tasksMainColor}
             addButtonColor={colorsProvider.tasksMainColor}
+            parentComplimentaryColor={colorsProvider.projectsComplimentaryColor}
             childType={'Tasks'}
             childTableName={childTableName}
             childUpdateCompleted={item => {

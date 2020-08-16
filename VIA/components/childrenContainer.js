@@ -557,6 +557,7 @@ export class ChildrenContainer extends React.Component {
                                         childMainColor={this.props.addButtonColor}
                                         item={item.value}
                                         completed={item.value.completed}
+                                        parentComplimentaryColor={this.props.parentComplimentaryColor}
                                         childItemTableName={this.props.childItemTableName}
                                         deleteItem={item => {
                                             this.props.deleteItem(item)
