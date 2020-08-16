@@ -58,6 +58,7 @@ export class ViewProject extends React.Component {
             // tasksCreateModalVisible: false,
             relatedChildren: [],
             selectedItem: this.props.selectedItem,
+            selectedChildItem: '',
             allPossibleChildren: [],
             dueDate: '',
             notificationTimes: "",
