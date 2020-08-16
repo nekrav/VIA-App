@@ -111,6 +111,7 @@ export class ChildrenContainer extends React.Component {
     }
 
     goToItem(item) {
+        console.warn(item)
         this.setState({ viewChildModalVisible: true, selectedChild: item })
     }
 
@@ -131,7 +132,7 @@ export class ChildrenContainer extends React.Component {
                     this.RBSheet.close();
                     this.setState({ addModalVisible: true })
                 }}>
-                    <FIcon name="plus" color={colorsProvider.habitsMainColor} size={colorsProvider.fontSizeAddButton} />
+                    <FIcon name="plus" color={this.props.addButtonColor} size={colorsProvider.fontSizeAddButton} />
                 </TouchableOpacity>
             </View>
             <FlatList
@@ -459,7 +460,6 @@ export class ChildrenContainer extends React.Component {
                 }
                 if (this.props.childType == 'Tasks') {
                     theTask = this.state.selectedItem
-                    console.warn(theTask)
 
                     // return <ViewTask
                     //     animationType="slide"
@@ -551,6 +551,7 @@ export class ChildrenContainer extends React.Component {
                                 data={this.state.relatedChildren}
                                 style={{ flex: 1 }}
                                 renderItem={({ item }) => {
+                                    console.warn(item)
                                     return <ChildItem
                                         itemKey={item.value.id}
                                         name={item.value.name}
@@ -566,6 +567,7 @@ export class ChildrenContainer extends React.Component {
                                             this.props.childUpdateCompleted(item);
                                         }}
                                         goToItem={item => {
+                                            console.warn(item)
                                             this.goToItem(item)
                                         }}
                                     />
@@ -580,7 +582,6 @@ export class ChildrenContainer extends React.Component {
                         offsetX={10}
                         buttonColor={this.props.addButtonColor}
                         onPress={() => {
-                            console.warn("aweiofg")
                             this.setState({ addModalVisible: true })
                         }}
                     />
@@ -596,9 +597,8 @@ export class ChildrenContainer extends React.Component {
                         hideShadow={false}
                         offsetY={5}
                         offsetX={10}
-                        buttonColor={colorsProvider.habitsMainColor}
+                        buttonColor={this.props.addButtonColor}
                         onPress={() => {
-                            console.warn("aweiofg")
                             this.setState({ addModalVisible: true })
                         }}
                     />
