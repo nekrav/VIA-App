@@ -459,76 +459,78 @@ export class ChildrenContainer extends React.Component {
                 }
                 if (this.props.childType == 'Tasks') {
                     theTask = this.state.selectedItem
-                    return <ViewTask
-                        animationType="slide"
-                        visible={this.state.viewModalVisible}
-                        transparent={false}
-                        editName={(text) => {
-                            theTask.name = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editDueDate={(text) => {
-                            theTask.due_date = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        setImportanceNN={(text) => {
-                            theTask.importance = 1;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        setImportanceNU={(text) => {
-                            theTask.importance = 2;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        setImportanceIN={(text) => {
-                            theTask.importance = 3;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        setImportanceIU={(text) => {
-                            theTask.importance = 4;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editPercentageDone={(text) => {
-                            theTask.percentage_done = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editCompleted={(text) => {
-                            theTask.completed = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editFinishedDate={(text) => {
-                            theTask.finished_date = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editProject={(text, name) => {
-                            theTask.projectName = name
-                            theTask.project = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editTimeSpent={(text) => {
-                            theTask.time_spent = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editNotes={(text) => {
-                            theTask.notes = text;
-                            this.setState({ selectedTask: theTask })
-                        }}
-                        editNotificationTime={(text) => {
-                            if (text) {
-                                theTask.notification_time = text
-                                this.setState({ selectedTask: theTask })
-                            }
-                        }}
+                    console.warn(theTask)
 
-                        save={() => {
-                            controller.saveExisting(this, dbTableName, theTask)
-                        }}
+                    // return <ViewTask
+                    //     animationType="slide"
+                    //     visible={this.state.viewModalVisible}
+                    //     transparent={false}
+                    //     editName={(text) => {
+                    //         theTask.name = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editDueDate={(text) => {
+                    //         theTask.due_date = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     setImportanceNN={(text) => {
+                    //         theTask.importance = 1;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     setImportanceNU={(text) => {
+                    //         theTask.importance = 2;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     setImportanceIN={(text) => {
+                    //         theTask.importance = 3;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     setImportanceIU={(text) => {
+                    //         theTask.importance = 4;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editPercentageDone={(text) => {
+                    //         theTask.percentage_done = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editCompleted={(text) => {
+                    //         theTask.completed = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editFinishedDate={(text) => {
+                    //         theTask.finished_date = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editProject={(text, name) => {
+                    //         theTask.projectName = name
+                    //         theTask.project = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editTimeSpent={(text) => {
+                    //         theTask.time_spent = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editNotes={(text) => {
+                    //         theTask.notes = text;
+                    //         this.setState({ selectedTask: theTask })
+                    //     }}
+                    //     editNotificationTime={(text) => {
+                    //         if (text) {
+                    //             theTask.notification_time = text
+                    //             this.setState({ selectedTask: theTask })
+                    //         }
+                    //     }}
 
-                        selectedItem={theTask}
+                    //     save={() => {
+                    //         controller.saveExisting(this, dbTableName, theTask)
+                    //     }}
 
-                        delete={() => { controller.delete(this, dbTableName, theTask) }}
+                    //     selectedItem={theTask}
 
-                        closeModal={() => { controller.setViewModalVisible(this, false) }}>
-                    </ViewTask>
+                    //     delete={() => { controller.delete(this, dbTableName, theTask) }}
+
+                    //     closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                    // </ViewTask>
                 }
             }
         }
