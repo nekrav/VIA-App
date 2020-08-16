@@ -62,7 +62,7 @@ export class ChildItem extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={() => { }}>
                 <View
-                    style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 2, borderColor: colorsProvider.habitsMainColor, margin: 10, borderRadius: 10 }}>
+                    style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 2, borderColor: this.props.childMainColor, margin: 10, borderRadius: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <FIcon name="exclamation-circle" size={20} color={this.getImportanceColor(this.props.item.importance)} style={{ margin: 3 }} />
                         <CheckBox
@@ -88,14 +88,14 @@ export class ChildItem extends React.Component {
                     <TouchableOpacity onPress={(item) => {
                         this.props.goToItem(this.state.item)
                     }}>
-                        <Text style={{ fontFamily: colorsProvider.font, color: colorsProvider.habitsMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
+                        <Text style={{ fontFamily: colorsProvider.font, color: this.props.childMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         {/* <TouchableOpacity onPress={this.props.deleteItem} style={{ justifyContent: 'center', }}>
                             <SIcon color={colorsProvider.habitsMainColor} style={{ marginLeft: 10, marginRight: 10, }} size={20} name={colorsProvider.trash} />
                         </TouchableOpacity> */}
                         <TouchableOpacity style={{ justifyContent: 'center', }}>
-                            <IIcon size={20} style={{ marginLeft: 10, marginRight: 10, }} color={colorsProvider.habitsMainColor} name="ios-arrow-forward" />
+                            <IIcon size={20} style={{ marginLeft: 10, marginRight: 10, }} color={this.props.childMainColor} name="ios-arrow-forward" />
                         </TouchableOpacity>
                     </View>
                 </View>

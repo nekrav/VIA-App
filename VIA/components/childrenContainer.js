@@ -552,6 +552,7 @@ export class ChildrenContainer extends React.Component {
                                     return <ChildItem
                                         itemKey={item.value.id}
                                         name={item.value.name}
+                                        childMainColor={this.props.addButtonColor}
                                         item={item.value}
                                         completed={item.value.completed}
                                         childItemTableName={this.props.childItemTableName}
