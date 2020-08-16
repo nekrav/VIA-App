@@ -563,7 +563,8 @@ export class ChildrenContainer extends React.Component {
                                         childUpdateCompleted={item => {
                                             this.props.childUpdateCompleted(item);
                                         }}
-                                        goToItem={item => {
+                                        goToItem={() => {
+                                            console.warn(item)
                                             this.goToItem(item)
                                         }}
                                     />
