@@ -190,6 +190,7 @@ export class ViewRoutine extends React.Component {
             parentName={this.state.selectedItem.name}
             relatedChildren={this.state.relatedChildren}
             borderColor={colorsProvider.habitsMainColor}
+            addButtonColor={colorsProvider.habitsMainColor}
             childType={'Habits'}
             childTableName={childTableName}
             childUpdateCompleted={item => {

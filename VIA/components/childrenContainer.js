@@ -574,7 +574,7 @@ export class ChildrenContainer extends React.Component {
                         hideShadow={false}
                         offsetY={5}
                         offsetX={10}
-                        buttonColor={colorsProvider.habitsMainColor}
+                        buttonColor={this.props.addButtonColor}
                         onPress={() => {
                             this.setState({ addModalVisible: true })
                         }}

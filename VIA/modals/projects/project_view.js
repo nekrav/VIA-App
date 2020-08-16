@@ -14,7 +14,7 @@ import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
 import { Notifier } from '../../notifier/notifier'
-import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
+import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes, ChildrenContainer } from '../../components'
 
 var uuid = require('react-native-uuid');
 
@@ -266,6 +266,34 @@ export class ViewProject extends React.Component {
             ></CreateTask>
         }
     }
+
+
+    /* #region  Children Region */
+    renderChildren() {
+        return (<ChildrenContainer
+            parentId={this.state.selectedItem.id}
+            parentName={this.state.selectedItem.name}
+            relatedChildren={this.state.relatedChildren}
+            borderColor={colorsProvider.tasksMainColor}
+            addButtonColor={colorsProvider.tasksMainColor}
+            childType={'Projects'}
+            childTableName={childTableName}
+            childUpdateCompleted={item => {
+                controller.saveExisting(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                this.props.save();
+            }}
+            saveItem={() => {
+                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+            }}
+            deleteItem={item => {
+                controller.delete(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+                this.props.save();
+            }} />)
+    }
+    /* #endregion */
+
 
     // renderChildItemModal() {
     //     if (this.state.childModalVisibility) {
@@ -535,6 +563,8 @@ export class ViewProject extends React.Component {
                             {this.renderDoneSlider()}
 
                             {this.renderCompleteAndTrashButton()}
+
+                            {this.renderChildren()}
 
                             {this.renderNotificationTimes()}
 
