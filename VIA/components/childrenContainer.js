@@ -381,99 +381,99 @@ export class ChildrenContainer extends React.Component {
     showViewModal() {
         if (this.state.viewChildModalVisible) {
             if (this.state.selectedChild) {
-                // if (this.props.childType == 'Habits') {
-                //     theHabit = this.state.selectedChild
-                //     return <ViewHabit
-                //         animationType="slide"
-                //         transparent={false}
-                //         editName={(text) => {
-                //             theHabit.name = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         setImportanceNN={(text) => {
-                //             theHabit.importance = 1;
-                //         }}
-                //         setImportanceNU={(text) => {
-                //             theHabit.importance = 2;
-                //         }}
-                //         setImportanceIN={(text) => {
-                //             theHabit.importance = 3;
-                //         }}
-                //         setImportanceIU={(text) => {
-                //             theHabit.importance = 4;
-                //         }}
-                //         editStartTime={(text) => {
-                //             theHabit.start_time = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editEndTime={(text) => {
-                //             theHabit.end_time = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editImportance={(text) => {
-                //             theHabit.importance = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editPercentageDone={(text) => {
-                //             theHabit.percentage_done = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editCompleted={(text) => {
-                //             theHabit.completed = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editFinishedDate={(text) => {
-                //             theHabit.finished_date = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editTimeToSpend={(text) => {
-                //             theHabit.time_to_spend = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editNotificationTime={(times) => {
-                //             if (times) {
-                //                 theHabit.notification_time = times
-                //             } else {
-                //                 theHabit.notification_time = JSON.stringify(emptyTimes)
-                //             }
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editNotes={(text) => {
-                //             theHabit.notes = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editRoutine={(text, name) => {
-                //             theHabit.routineName = name;
-                //             theHabit.routine = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
-                //         editDaysToDo={(text) => {
-                //             theHabit.days_to_do = text;
-                //             // this.setState({ selectedItem: theHabit })
-                //         }}
+                if (this.props.childType == 'Habits') {
+                    theHabit = this.state.selectedChild
+                    return <ViewHabit
+                        animationType="slide"
+                        transparent={false}
+                        editName={(text) => {
+                            theHabit.name = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        setImportanceNN={(text) => {
+                            theHabit.importance = 1;
+                        }}
+                        setImportanceNU={(text) => {
+                            theHabit.importance = 2;
+                        }}
+                        setImportanceIN={(text) => {
+                            theHabit.importance = 3;
+                        }}
+                        setImportanceIU={(text) => {
+                            theHabit.importance = 4;
+                        }}
+                        editStartTime={(text) => {
+                            theHabit.start_time = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editEndTime={(text) => {
+                            theHabit.end_time = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editImportance={(text) => {
+                            theHabit.importance = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editPercentageDone={(text) => {
+                            theHabit.percentage_done = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editCompleted={(text) => {
+                            theHabit.completed = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editFinishedDate={(text) => {
+                            theHabit.finished_date = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editTimeToSpend={(text) => {
+                            theHabit.time_to_spend = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotificationTime={(times) => {
+                            if (times) {
+                                theHabit.notification_time = times
+                            } else {
+                                theHabit.notification_time = JSON.stringify(emptyTimes)
+                            }
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editNotes={(text) => {
+                            theHabit.notes = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editRoutine={(text, name) => {
+                            theHabit.routineName = name;
+                            theHabit.routine = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
+                        editDaysToDo={(text) => {
+                            theHabit.days_to_do = text;
+                            // this.setState({ selectedItem: theHabit })
+                        }}
 
-                //         save={() => { controller.saveExisting(this, 'habits', theHabit) }}
+                        save={() => { controller.saveExisting(this, 'habits', theHabit) }}
 
-                //         selectedItem={theHabit}
+                        selectedItem={theHabit}
 
-                //         delete={() => {
-                //             // this.setState({ viewChildModalVisible: false })
-                //             // controller.delete(this, 'habits', theHabit);
-                //             // controller.loadAll(this, 'habits')
-                //             this.props.deleteItem(theHabit)
-                //             Database.deleteOne('habits', theHabit.id).then(() => {
-                //                 controller.loadAll(this, 'habits')
-                //                 this.setState({ viewChildModalVisible: false })
-                //                 controller.loadAll(this, 'habits')
-                //             })
-                //         }}
+                        delete={() => {
+                            // this.setState({ viewChildModalVisible: false })
+                            // controller.delete(this, 'habits', theHabit);
+                            // controller.loadAll(this, 'habits')
+                            this.props.deleteItem(theHabit)
+                            Database.deleteOne('habits', theHabit.id).then(() => {
+                                controller.loadAll(this, 'habits')
+                                this.setState({ viewChildModalVisible: false })
+                                controller.loadAll(this, 'habits')
+                            })
+                        }}
 
-                //         closeModal={() => {
-                //             this.setState({ viewChildModalVisible: false })
-                //             this.fetch();
-                //         }}>
-                //     </ViewHabit>
-                // }
+                        closeModal={() => {
+                            this.setState({ viewChildModalVisible: false })
+                            this.fetch();
+                        }}>
+                    </ViewHabit>
+                }
                 if (this.props.childType == 'Tasks') {
                     theTask = this.state.selectedChild
                     return (<ViewTask
@@ -537,14 +537,15 @@ export class ChildrenContainer extends React.Component {
                         }}
 
                         save={() => {
-                            controller.saveExisting(this, dbTableName, theTask)
+                            controller.saveExisting(this, 'tasks', theTask)
                         }}
 
                         selectedItem={theTask}
 
-                        delete={() => { controller.delete(this, dbTableName, theTask) }}
+                        delete={() => { controller.delete(this, 'tasks', theTask) }}
 
-                        closeModal={() => { controller.setViewModalVisible(this, false) }}>
+                        closeModal={() => {  this.setState({ viewChildModalVisible: false })
+                        this.fetch(); }}>
                     </ViewTask>)
                 }
             }
