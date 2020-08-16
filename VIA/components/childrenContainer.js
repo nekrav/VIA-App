@@ -577,6 +577,7 @@ export class ChildrenContainer extends React.Component {
                         offsetX={10}
                         buttonColor={this.props.addButtonColor}
                         onPress={() => {
+                            console.warn("aweiofg")
                             this.setState({ addModalVisible: true })
                         }}
                     />
@@ -594,6 +595,7 @@ export class ChildrenContainer extends React.Component {
                         offsetX={10}
                         buttonColor={colorsProvider.habitsMainColor}
                         onPress={() => {
+                            console.warn("aweiofg")
                             this.setState({ addModalVisible: true })
                         }}
                     />

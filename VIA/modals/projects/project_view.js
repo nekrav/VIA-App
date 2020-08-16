@@ -276,7 +276,7 @@ export class ViewProject extends React.Component {
             relatedChildren={this.state.relatedChildren}
             borderColor={colorsProvider.tasksMainColor}
             addButtonColor={colorsProvider.tasksMainColor}
-            childType={'Projects'}
+            childType={'Tasks'}
             childTableName={childTableName}
             childUpdateCompleted={item => {
                 controller.saveExisting(this, childTableName, item)
