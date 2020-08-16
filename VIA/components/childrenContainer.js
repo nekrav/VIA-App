@@ -78,7 +78,6 @@ export class ChildrenContainer extends React.Component {
             viewChildModalVisible: false,
             selectedChild: '',
             isFetching: true,
-            childCreateComponentName: 'CreateHabit'
         };
     }
 
@@ -111,7 +110,6 @@ export class ChildrenContainer extends React.Component {
     }
 
     goToItem(item) {
-        console.warn(item)
         this.setState({ viewChildModalVisible: true, selectedChild: item })
     }
 
@@ -460,7 +458,6 @@ export class ChildrenContainer extends React.Component {
                 }
                 if (this.props.childType == 'Tasks') {
                     theTask = this.state.selectedItem
-
                     // return <ViewTask
                     //     animationType="slide"
                     //     visible={this.state.viewModalVisible}
@@ -567,7 +564,6 @@ export class ChildrenContainer extends React.Component {
                                             this.props.childUpdateCompleted(item);
                                         }}
                                         goToItem={item => {
-                                            console.warn(item)
                                             this.goToItem(item)
                                         }}
                                     />
