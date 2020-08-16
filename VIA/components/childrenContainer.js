@@ -8,6 +8,7 @@ import ActionButton from 'react-native-action-button';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import { Controller } from '../screens/controller'
+import { Notifier } from '../notifier/notifier'
 
 import Moment from 'moment';
 import { CreateHabit, ViewHabit, ViewTask, CreateTask } from '../modals'
@@ -62,6 +63,7 @@ const emptyTimes = [
 
 const controller = new Controller;
 var uuid = require('react-native-uuid');
+const notifier = new Notifier;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -228,7 +230,7 @@ export class ChildrenContainer extends React.Component {
         newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.notes = habit.notes ? habit.notes : '',
-            newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
+        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
@@ -253,9 +255,9 @@ export class ChildrenContainer extends React.Component {
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
-        Database.save(dbTableName, newTask).then(() => {
+        Database.save('tasks', newTask).then(() => {
             controller.setAddModalVisible(this, false)
-            controller.loadAll(this, dbTableName)
+            controller.loadAll(this, 'tasks')
             notifier.scheduleAllNotifications()
         })
 
@@ -315,9 +317,12 @@ export class ChildrenContainer extends React.Component {
                 />
             }
             if (this.props.childType == 'Tasks') {
+                let newTask = {};
                 return <CreateTask
                     animationType="slide"
                     transparent={false}
+                    parentId={this.props.parentId}
+                    parentName={this.props.parentName}
                     name={(text) => { newTask.name = text }}
                     due_date={(text) => {
                         newTask.due_date = text
@@ -350,10 +355,14 @@ export class ChildrenContainer extends React.Component {
                     }}
                     closeModal={() => { controller.setAddModalVisible(this, false) }}
                     save={() => {
+                        if (!newTask.routine) {
+                            newTask.project = this.props.parentId
+                            newTask.projectName = this.props.parentName
+                        }
                         if (!newTask.notification_time) {
                             newTask.notification_time = emptyTimes
                         }
-                        this.saveNew(newTask)
+                        this.saveNewTask(newTask)
                     }}
                 ></CreateTask>
             }
@@ -548,7 +557,6 @@ export class ChildrenContainer extends React.Component {
                                 data={this.state.relatedChildren}
                                 style={{ flex: 1 }}
                                 renderItem={({ item }) => {
-                                    console.warn(item)
                                     return <ChildItem
                                         itemKey={item.value.id}
                                         name={item.value.name}
@@ -563,9 +571,16 @@ export class ChildrenContainer extends React.Component {
                                         childUpdateCompleted={item => {
                                             this.props.childUpdateCompleted(item);
                                         }}
-                                        goToItem={() => {
-                                            console.warn(item)
-                                            this.goToItem(item)
+                                        goToItem={child => {
+                                            if (this.props.childType == 'Tasks')
+                                            {
+                                                console.warn("Tasks")
+                                                console.warn(child)
+                                                this.goToItem(child)
+                                            } else {
+                                                console.warn(child)
+                                            this.goToItem(child)
+                                            }
                                         }}
                                     />
                                 }}

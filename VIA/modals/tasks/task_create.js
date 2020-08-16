@@ -77,8 +77,10 @@ export class CreateTask extends React.Component {
         this.state = {
             allPossibleParents: [],
             name: '',
-            proj: null,
-            projName: null,
+            proj: this.props.parentId ? this.props.parentId : null,
+            projName: this.props.parentName ? this.props.parentName : null,
+            // proj: null,
+            // projName: null,
             importance: 0,
             dueDate: '',
             notificationTimes: "",
@@ -99,6 +101,7 @@ export class CreateTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
+        console.warn(this.state.projectName)
         return <TopBar
             color={colorsProvider.tasksMainColor}
             parentColor={colorsProvider.projectsMainColor}

@@ -59,8 +59,6 @@ export class ChildItem extends React.Component {
     }
 
     render() {
-        console.warn(this.props.item)
-
         return (
             <TouchableWithoutFeedback onPress={() => { }}>
                 <View
