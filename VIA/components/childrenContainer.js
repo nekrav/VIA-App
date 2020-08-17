@@ -239,7 +239,7 @@ export class ChildrenContainer extends React.Component {
         newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.notes = habit.notes ? habit.notes : '',
-        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
+            newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
@@ -541,11 +541,19 @@ export class ChildrenContainer extends React.Component {
                         }}
 
                         selectedItem={theTask}
+                        delete={() => {
+                            this.props.deleteItem(theTask)
+                            Database.deleteOne('tasks', theTask.id).then(() => {
+                                controller.loadAll(this, 'tasks')
+                                this.setState({ viewChildModalVisible: false })
+                                controller.loadAll(this, 'tasks')
+                            })
+                        }}
 
-                        delete={() => { controller.delete(this, 'tasks', theTask) }}
-
-                        closeModal={() => {  this.setState({ viewChildModalVisible: false })
-                        this.fetch(); }}>
+                        closeModal={() => {
+                            this.setState({ viewChildModalVisible: false })
+                            this.fetch();
+                        }}>
                     </ViewTask>)
                 }
             }

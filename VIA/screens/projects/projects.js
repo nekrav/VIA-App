@@ -221,7 +221,7 @@ export class ProjectsScreen extends React.Component {
 
                     selectedItem={theProject}
 
-                    delete={() => { controller.delete(this, dbTableName, theProject) }}
+                    delete={() => { controller.delete(this, dbTableName, theProject); controller.setViewModalVisible(this, false) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewProject>

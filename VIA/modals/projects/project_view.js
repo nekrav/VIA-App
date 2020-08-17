@@ -174,8 +174,17 @@ export class ViewProject extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    notifier.scheduleAllNotifications();
-                    this.props.delete()
+                    for (i = 0; i < this.state.relatedChildren.length; i++) {
+                        console.warn(this.state.relatedChildren[i].value)
+                        this.state.relatedChildren[i].value.projectName = 'null'
+                        this.state.relatedChildren[i].value.project = 'null'
+                        console.warn(this.state.relatedChildren[i].value.project)
+                        Database.update('tasks', this.state.relatedChildren[i].value).then(() => {
+                            notifier.scheduleAllNotifications();
+                            this.props.delete()
+                        })
+                    }
+
                 }} />
         </View>)
     }
