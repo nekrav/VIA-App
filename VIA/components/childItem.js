@@ -84,11 +84,11 @@ export class ChildItem extends React.Component {
                                 } else {
                                     newItem.finished_date == ""
                                 }
-                            }}/></View>
-                    <TouchableOpacity onPress={(item) => {
+                            }} /></View>
+                    <TouchableOpacity style={{width: '70%'}} onPress={(item) => {
                         this.props.goToItem(this.state.item)
                     }}>
-                        <Text style={{ fontFamily: colorsProvider.font, color: this.props.childMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
+                        <Text  numberOfLines={1} style={{ fontFamily: colorsProvider.font, color: this.props.childMainColor, fontSize: 18, marginLeft: 5, }}>{this.props.name}</Text>
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <TouchableOpacity style={{ justifyContent: 'center', }}>
@@ -96,31 +96,6 @@ export class ChildItem extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {/* <SwipeableItem
-        key={this.props.itemKey}
-        item={{ item, drag }}
-        // ref={ref => {
-        //   if (ref && !this.itemRefs.get(item.key)) {
-        //     this.itemRefs.set(item.key, ref);
-        //   }
-        // }}
-        // onChange={({ open }) => {
-        //   if (open) {
-        //     // Close all other open items
-        //     [...this.itemRefs.entries()].forEach(([key, ref]) => {
-        //       if (key !== this.props.item.key && ref) ref.close();
-        //     });
-        //   }
-        // }}
-        overSwipe={50}
-        renderUnderlayLeft={this.renderUnderlayLeft}
-        // snapPointsLeft={item.hasLeft ? [100] : undefined}
-        renderUnderlayRight={this.renderUnderlayRight}
-        // snapPointsRight={item.hasRight ? [100, width] : undefined}
-        renderOverlay={item => {
-            <View><Text>awoefua</Text></View>
-        }}
-      /> */}
             </TouchableWithoutFeedback>
         )
     }
