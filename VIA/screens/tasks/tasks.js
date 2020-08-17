@@ -8,6 +8,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import ActionButton from 'react-native-action-button';
+import { ListTopBar } from '../../components'
 
 import { Notifier } from '../../notifier/notifier'
 const emptyTimes = [
@@ -115,6 +116,21 @@ export class TasksScreen extends React.Component {
             notifier.scheduleAllNotifications()
         })
     }
+
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Tasks"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.tasksMainColor}
+            secondaryColor={colorsProvider.tasksComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
 
     showAddModal() {
         let newTask = {};
@@ -259,7 +275,7 @@ export class TasksScreen extends React.Component {
                     {this.showViewTask()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Tasks</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -268,7 +284,9 @@ export class TasksScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
+
+                    {this.renderTopBar()}
 
                     {/* List Region */}
                     <FlatList
@@ -302,17 +320,25 @@ export class TasksScreen extends React.Component {
                                             <Text
                                                 numberOfLines={1}
                                                 multiline={false}
-                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         <TouchableOpacity
-                                            style={styles.listItemActionButton}
+                                            style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.tasksComplimentaryColor} />
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                                <ActionButton
+                    <ActionButton
                         size={65}
                         hideShadow={false}
                         offsetY={10}

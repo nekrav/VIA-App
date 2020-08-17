@@ -9,6 +9,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
 import ActionButton from 'react-native-action-button';
+import { ListTopBar } from '../../components'
 
 const notifier = new Notifier;
 const emptyTimes = [
@@ -111,6 +112,21 @@ export class RoutinesScreen extends React.Component {
             notifier.scheduleAllNotifications() 
         })
     }
+
+      /* #region  Top Bar Region */
+      renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Routines"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.routinesMainColor}
+            secondaryColor={colorsProvider.routinesComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
 
     showAddModal() {
         let newRoutine = {};
@@ -237,7 +253,7 @@ export class RoutinesScreen extends React.Component {
                     {this.showViewRoutine()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Routines</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -246,8 +262,9 @@ export class RoutinesScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
 
+                    {this.renderTopBar()}
                     {/* List Region */}
                     <FlatList
                         data={this.state.items}
@@ -277,13 +294,21 @@ export class RoutinesScreen extends React.Component {
                                         <Text
                                             numberOfLines={1}
                                             multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
+                                            style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
-                                        style={styles.listItemActionButton}
+                                        style={{
+                                            color: colorsProvider.whiteColor,
+                                            fontFamily: colorsProvider.font,
+                                            fontSize: colorsProvider.fontSizeChildren,
+                                        }}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.routinesComplimentaryColor} />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity></TouchableWithoutFeedback>} />

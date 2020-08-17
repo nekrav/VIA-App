@@ -9,6 +9,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
 import ActionButton from 'react-native-action-button';
+import { ListTopBar } from '../../components'
 
 const notifier = new Notifier;
 
@@ -89,7 +90,7 @@ export class ProjectsScreen extends React.Component {
         this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
             this.setState({ count: 0 });
-          });
+        });
 
         controller.loadAll(this, dbTableName)
     }
@@ -97,7 +98,7 @@ export class ProjectsScreen extends React.Component {
     componentWillUnmount() {
         this.focusListener.remove();
         clearTimeout(this.t);
-      }
+    }
 
     saveNew(project) {
         let newProject = {}
@@ -118,6 +119,21 @@ export class ProjectsScreen extends React.Component {
             notifier.scheduleAllNotifications()
         })
     }
+
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Projects"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.projectsMainColor}
+            secondaryColor={colorsProvider.projectsComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
 
     showAddModal() {
         let newProject = {};
@@ -319,7 +335,7 @@ export class ProjectsScreen extends React.Component {
                     {this.renderChildItemModal()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Projects</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -328,7 +344,10 @@ export class ProjectsScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
+
+
+                    {this.renderTopBar()}
 
                     {/* List Region */}
 
@@ -361,17 +380,25 @@ export class ProjectsScreen extends React.Component {
                                             <Text
                                                 numberOfLines={1}
                                                 multiline={false}
-                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         <TouchableOpacity
-                                            style={styles.listItemActionButton}
+                                             style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                                <ActionButton
+                    <ActionButton
                         size={65}
                         hideShadow={false}
                         offsetY={10}
