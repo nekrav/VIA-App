@@ -174,15 +174,15 @@ export class ViewProject extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    for (i = 0; i < this.state.relatedChildren.length; i++) {
-                        console.warn(this.state.relatedChildren[i].value)
-                        this.state.relatedChildren[i].value.projectName = 'null'
-                        this.state.relatedChildren[i].value.project = 'null'
-                        console.warn(this.state.relatedChildren[i].value.project)
-                        Database.update('tasks', this.state.relatedChildren[i].value).then(() => {
-                            notifier.scheduleAllNotifications();
-                            this.props.delete()
-                        })
+                    if (this.state.relatedChildren.length > 0) {
+                        for (i = 0; i < this.state.relatedChildren.length; i++) {
+                            this.state.relatedChildren[i].value.projectName = 'null'
+                            this.state.relatedChildren[i].value.project = 'null'
+                            Database.update('tasks', this.state.relatedChildren[i].value).then(() => {
+                                notifier.scheduleAllNotifications();
+                                this.props.delete()
+                            })
+                        }
                     }
 
                 }} />

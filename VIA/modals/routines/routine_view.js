@@ -176,8 +176,19 @@ export class ViewRoutine extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    notifier.scheduleAllNotifications();
-                    this.props.delete()
+                    if (this.state.relatedChildren.length > 0) {
+                        for (i = 0; i < this.state.relatedChildren.length; i++) {
+                            this.state.relatedChildren[i].value.routineName = null
+                            this.state.relatedChildren[i].value.routine = null
+                            Database.update('habits', this.state.relatedChildren[i].value).then(() => {
+                                notifier.scheduleAllNotifications();
+                                this.props.delete()
+                            })
+                        }
+                    }
+                  
+                    // notifier.scheduleAllNotifications();
+                    // this.props.delete()
                 }} />
         </View>)
     }
