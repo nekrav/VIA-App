@@ -282,18 +282,6 @@ export class HabitsScreen extends React.Component {
                     {this.showAddModal()}
                     {this.showViewHabit()}
 
-                    {/* /* #region Top Navigation Section  */}
-                    {/* <View style={styles.topNav}>
-                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Habits</Text></View>
-                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
-                        <TouchableOpacity style={styles.addItemButtonContainer}
-                            onPress={() => {
-                                controller.setAddModalVisible(this, true);
-                            }}>
-                            <FIcon style={styles.addItemButtonText} name="plus" />
-                        </TouchableOpacity>
-                    </View> */}
-
                     {this.renderTopBar()}
 
                     {/* List Region */}
@@ -325,7 +313,11 @@ export class HabitsScreen extends React.Component {
                                             <Text
                                                 numberOfLines={1}
                                                 multiline={false}
-                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         {/* <TouchableOpacity
@@ -341,11 +333,14 @@ export class HabitsScreen extends React.Component {
                                     }}>
                                     <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
                                 </TouchableOpacity> */}
-
                                         <TouchableOpacity
                                             style={styles.listItemActionButton}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
+                                            <SIcon style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity>
@@ -353,7 +348,7 @@ export class HabitsScreen extends React.Component {
                     <ActionButton
                         size={65}
                         hideShadow={false}
-                        offsetY={5}
+                        offsetY={10}
                         offsetX={10}
                         buttonColor={colorsProvider.habitsMainColor}
                         onPress={() => {

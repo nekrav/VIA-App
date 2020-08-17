@@ -315,9 +315,9 @@ export class TasksScreen extends React.Component {
                                 <ActionButton
                         size={65}
                         hideShadow={false}
-                        offsetY={5}
+                        offsetY={10}
                         offsetX={10}
-                        buttonColor={colorsProvider.habitsMainColor}
+                        buttonColor={colorsProvider.tasksMainColor}
                         onPress={() => {
                             controller.setAddModalVisible(this, true);
                         }}
