@@ -103,6 +103,7 @@ export class HabitsScreen extends React.Component {
         return <ListTopBar
             typeOfItem={"Habits"}
             numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
             color={colorsProvider.habitsMainColor}
             secondaryColor={colorsProvider.habitsComplimentaryColor}
             onAddPress={() => {

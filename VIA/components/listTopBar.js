@@ -50,15 +50,32 @@ export class ListTopBar extends React.Component {
 
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color }}>
-                    <View style={{ marginTop: '10%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
-                        <Text style={{}}>{this.props.typeOfItem}</Text>
-                        <Text style={{}}>{this.props.numberOfItems}</Text>
-                        <TouchableOpacity style={{}}
+                    <View style={{ marginTop: '10%', marginLeft: 10, marginRight: 10, flexDirection: 'row', backgroundColor: this.props.color, alignItems: 'center', justifyContent: 'space-between', marginBottom: "10%" }}>
+                        <Text style={{
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeMain,
+                            color: colorsProvider.whiteColor,
+                            // marginLeft: "10%",
+                            // marginRight: "10%",
+                            alignItems: "center",
+                            alignContent: "center",
+                        }}>{this.props.typeOfItem}</Text>
+                        <Text style={{
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeMain,
+                            color: colorsProvider.whiteColor,
+                        }}>{this.props.numberOfCompletedItems} / {this.props.numberOfItems}</Text>
+                        {/* <TouchableOpacity style={{}}
                             onPress={() => {
                                 this.props.onAddPress();
                             }}>
-                            <FIcon style={{}} name="plus" />
-                        </TouchableOpacity>
+                            <FIcon style={{
+                                fontFamily: colorsProvider.font,
+                                fontSize: colorsProvider.fontSizeAddButton,
+
+                                color: this.props.secondaryColor,
+                            }} name="plus" />
+                        </TouchableOpacity> */}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
