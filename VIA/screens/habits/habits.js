@@ -10,6 +10,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
 import { ListTopBar } from '../../components'
+import ActionButton from 'react-native-action-button';
 
 const notifier = new Notifier;
 const emptyTimes = [
@@ -301,7 +302,6 @@ export class HabitsScreen extends React.Component {
                         renderItem={({ item }) =>
                             <TouchableWithoutFeedback onPress={() => { }}>
                                 <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
-
                                     <View style={styles.checkboxAndNameContainer}>
                                         <CheckBox
                                             center
@@ -348,7 +348,18 @@ export class HabitsScreen extends React.Component {
                                             <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
                                         </TouchableOpacity>
                                     </View>
-                                </TouchableOpacity></TouchableWithoutFeedback>} />
+                                </TouchableOpacity>
+                            </TouchableWithoutFeedback>} />
+                    <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.habitsMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         );
