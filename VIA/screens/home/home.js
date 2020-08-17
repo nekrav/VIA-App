@@ -425,7 +425,7 @@ export class HomeScreen extends React.Component {
                     {/* {this.renderSelectTaskModal()} */}
 
                     {/* Tab Bar Region */}
-                    {this.renderTopBar()}
+                    {/* {this.renderTopBar()} */}
 
                     {/* List Region */}
 
@@ -434,7 +434,7 @@ export class HomeScreen extends React.Component {
 
 
                     {this.renderNotesSection()}
-                    {this.renderRandomTasksSection()}
+                    {/* {this.renderRandomTasksSection()} */}
                 </SafeAreaView>
             </TouchableWithoutFeedback>
         );
