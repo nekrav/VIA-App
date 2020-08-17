@@ -9,6 +9,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
+import { ListTopBar } from '../../components'
 
 const notifier = new Notifier;
 const emptyTimes = [
@@ -96,6 +97,21 @@ export class HabitsScreen extends React.Component {
         this.focusListener.remove();
         clearTimeout(this.t);
     }
+
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Habits"}
+            numberOfItems={this.state.numberOfItems}
+            color={colorsProvider.habitsMainColor}
+            secondaryColor={colorsProvider.habitsComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
+
 
 
     saveNew(habit) {
@@ -258,14 +274,14 @@ export class HabitsScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
 
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewHabit()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Habits</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -274,7 +290,9 @@ export class HabitsScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
+
+                    {this.renderTopBar()}
 
                     {/* List Region */}
                     <FlatList
@@ -330,7 +348,7 @@ export class HabitsScreen extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }

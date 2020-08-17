@@ -1,5 +1,6 @@
 export { NotificationService } from './notificationService'
 export { TopBar } from './topBar'
+export { ListTopBar } from './listTopBar'
 export { ImportanceRadio } from './importanceRadio'
 export { DoneSlider } from './doneSlider'
 export { CompleteButton } from './completeButton'
