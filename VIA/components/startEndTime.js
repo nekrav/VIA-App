@@ -33,15 +33,10 @@ export class StartEndTime extends React.Component {
         const end = new Date("01/01/2007 " + endTime);
         diffMs = (end.getTime() - start.getTime()) / 1000;
         var diffMins = Math.round(((diffMs % 1000) % 3600000) / 60); // minutes
-        // this.setState({differenceBetweenDates: diffMins})
-        console.warn(diffMins > undefined)
-        if (diffMins > 0)
-        {
+        if (diffMins > 0) 
             return diffMins
-        } else {
+        else 
             return 0;
-        }
-      
     }
 
     renderStartDateBottomPane() {

@@ -590,17 +590,7 @@ export class ChildrenContainer extends React.Component {
                                             this.props.childUpdateCompleted(item);
                                         }}
                                         goToItem={item => {
-                                            console.warn(item)
                                             this.goToItem(item)
-                                            // if (this.props.childType == 'Tasks')
-                                            // {
-
-
-                                            //     this.goToItem(child)
-                                            // } else {
-
-                                            // this.goToItem(child)
-                                            // }
                                         }}
                                     />
                                 }}

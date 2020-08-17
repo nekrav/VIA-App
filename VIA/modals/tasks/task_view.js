@@ -215,7 +215,6 @@ export class ViewTask extends React.Component {
 
 
     render() {
-        console.warn(this.props.visible)
         return (
             <Modal
                 backdropOpacity={0}

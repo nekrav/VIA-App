@@ -101,7 +101,6 @@ export class CreateTask extends React.Component {
 
     /* #region  Top Bar Region */
     renderTopBar() {
-        console.warn(this.state.projectName)
         return <TopBar
             color={colorsProvider.tasksMainColor}
             parentColor={colorsProvider.projectsMainColor}

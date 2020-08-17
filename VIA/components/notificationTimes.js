@@ -110,9 +110,9 @@ export class NotificationTimes extends React.Component {
             jsonArr = JSON.parse(this.state.notificationTimes);
         } else {
             jsonArr = emptyTimes
-            this.setState({notificationTimes: JSON.stringify(emptyTimes)})
+            this.setState({ notificationTimes: JSON.stringify(emptyTimes) })
         }
-        
+
         if (this.state.notificationTimes != '') {
             Object.keys(jsonArr).map(key => {
                 if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
@@ -139,10 +139,10 @@ export class NotificationTimes extends React.Component {
                     contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                     style={{}}
                     renderItem={({ item }) =>
-                    this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} 
+                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)}
                     renderItem={({ item }) =>
-                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)} 
-                        />
+                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)}
+                />
             </View>
         );
     }
@@ -265,7 +265,7 @@ export class NotificationTimes extends React.Component {
                             newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                           
+
                             selectedDay.times = newArr
                             var newTimes = JSON.stringify(arrayOfAllTimes)
                             this.props.addNotificationTime(newTimes)
