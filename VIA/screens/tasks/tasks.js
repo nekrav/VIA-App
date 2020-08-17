@@ -7,6 +7,7 @@ import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
+import ActionButton from 'react-native-action-button';
 
 import { Notifier } from '../../notifier/notifier'
 const emptyTimes = [
@@ -251,7 +252,7 @@ export class TasksScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
 
                     {/* Modals Region */}
                     {this.showAddModal()}
@@ -311,7 +312,17 @@ export class TasksScreen extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                                <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.habitsMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }

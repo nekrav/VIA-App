@@ -8,6 +8,7 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
+import ActionButton from 'react-native-action-button';
 
 const notifier = new Notifier;
 
@@ -311,7 +312,7 @@ export class ProjectsScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewProject()}
@@ -370,7 +371,17 @@ export class ProjectsScreen extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                                <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.habitsMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }
