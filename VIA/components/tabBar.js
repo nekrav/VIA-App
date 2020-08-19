@@ -10,17 +10,6 @@ import {
 
 const windowWidth = Dimensions.get("window").width;
 const tabWidth = windowWidth / 4;
-// const SpotLight = posed.View({
-//   route0: { x: 0 },
-//   route1: { x: tabWidth },
-//   route2: { x: tabWidth * 2 },
-//   route3: { x: tabWidth * 3 }
-// });
-
-// const Scaler = posed.View({
-//   active: { scale: 1.25 },
-//   inactive: { scale: 1 }
-// });
 
 const S = StyleSheet.create({
   container: {
@@ -58,15 +47,16 @@ const TabBar = props => {
   const { routes, index: activeRouteIndex } = navigation.state;
 
   return (
-    <View style={S.container}>
-      <View style={StyleSheet.absoluteFillObject}>
+    <View >
+      <View 
+      style={{}}>
     
-          <View style={S.spotLightInner} />
+          <View  />
       </View>
 
       {routes.map((route, routeIndex) => {
-        const isRouteActive = routeIndex === activeRouteIndex;
-        const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
+        // const isRouteActive = routeIndex === activeRouteIndex;
+        // const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
 
         return (
           <TouchableOpacity
@@ -80,7 +70,6 @@ const TabBar = props => {
             }}
             accessibilityLabel={getAccessibilityLabel({ route })}
           >
-           
               {renderIcon({ route, focused: isRouteActive, tintColor })}
 
           </TouchableOpacity>

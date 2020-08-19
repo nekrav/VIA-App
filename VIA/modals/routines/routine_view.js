@@ -64,7 +64,7 @@ export class ViewRoutine extends React.Component {
                         relatedChildren.push({ key: JSON.stringify(item.id), value: item })
                         numberOfChildren = numberOfChildren++
                     }
-                    
+
                 }
                 this.setState({ relatedChildren: relatedChildren })
             })
@@ -186,9 +186,6 @@ export class ViewRoutine extends React.Component {
                             })
                         }
                     }
-                  
-                    // notifier.scheduleAllNotifications();
-                    // this.props.delete()
                 }} />
         </View>)
     }

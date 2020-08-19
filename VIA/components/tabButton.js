@@ -31,6 +31,7 @@ class TabButton extends React.Component {
                     width: '100%', height: '300%',
                     marginTop: "25%", alignItems: 'center',
                     justifyContent: 'center',
+                    backgroundColor:colorsProvider.whiteColor
                 }}>
                     <TouchableOpacity
                         onPress={() => {

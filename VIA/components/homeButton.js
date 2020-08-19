@@ -16,45 +16,46 @@ class HomeButton extends React.Component {
     render() {
         return (
             <View style={{
-                marginTop: "10%",
+                // marginTop: "10%",
                 position: 'absolute',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor: colorsProvider.whiteColor
             }}>
                 <TouchableHighlight
                     onPress={() => this.props.nav.navigate('Home')}
                     style={this.props.focused ? {
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        width: SIZE,
-                        height: SIZE,
-                        borderWidth: 2,
-                        borderColor: colorsProvider.homeComplimentaryColor,
-                        borderRadius: SIZE / 2,
-                        backgroundColor: colorsProvider.homeComplimentaryColor,
-                        shadowColor: colorsProvider.shadowColor,
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                        shadowOffset: {
-                            height: 1,
-                            width: 0
-                        }
+                        // alignItems: 'center',
+                        // justifyContent: 'center',
+                        // width: SIZE,
+                        // height: SIZE,
+                        // borderWidth: 2,
+                        // borderColor: colorsProvider.homeComplimentaryColor,
+                        // borderRadius: SIZE / 2,
+                        // backgroundColor: colorsProvider.homeComplimentaryColor,
+                        // shadowColor: colorsProvider.shadowColor,
+                        // shadowOpacity: 0.8,
+                        // shadowRadius: 2,
+                        // shadowOffset: {
+                        //     height: 1,
+                        //     width: 0
+                        // }
 
                     } : {
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        width: SIZE,
-                        height: SIZE,
-                        borderWidth: 2,
-                        borderColor: colorsProvider.homeComplimentaryColor,
-                        borderRadius: SIZE / 2,
-                        backgroundColor: colorsProvider.homeComplimentaryColor,
-                        shadowColor: colorsProvider.shadowColor,
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                        shadowOffset: {
-                            height: 1,
-                            width: 0
-                        }
+                        // alignItems: 'center',
+                        // justifyContent: 'center',
+                        // width: SIZE,
+                        // height: SIZE,
+                        // borderWidth: 2,
+                        // borderColor: colorsProvider.homeComplimentaryColor,
+                        // borderRadius: SIZE / 2,
+                        // backgroundColor: colorsProvider.homeComplimentaryColor,
+                        // shadowColor: colorsProvider.shadowColor,
+                        // shadowOpacity: 0.8,
+                        // shadowRadius: 2,
+                        // shadowOffset: {
+                        //     height: 1,
+                        //     width: 0
+                        // }
 
                     } }
                 >

@@ -137,6 +137,13 @@ const TabNavigator = createBottomTabNavigator({
   },
 },
   {
+    tabBarOptions: {
+      // activeTintColor: colorsProvider.whiteColor,
+      // inactiveTintColor: colorsProvider.whiteColor,
+      // style: {
+      //   // backgroundColor: colorsProvider.whiteColor,
+      // },
+    },
     initialRouteName: 'Home',
   },
   
