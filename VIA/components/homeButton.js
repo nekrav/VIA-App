@@ -3,6 +3,7 @@ import * as colorsProvider from './colorsProvider';
 import { NavigationActions } from 'react-navigation';
 import { Animated, TouchableHighlight, View, Image } from "react-native";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { colors } from 'react-native-elements';
 const SIZE = 80;
 // const navigate = this.props.navigation;
 class HomeButton extends React.Component {
@@ -24,6 +25,7 @@ class HomeButton extends React.Component {
                 <TouchableHighlight
                     onPress={() => this.props.nav.navigate('Home')}
                     style={this.props.focused ? {
+                        backgroundColor: colorsProvider.whiteColor
                         // alignItems: 'center',
                         // justifyContent: 'center',
                         // width: SIZE,
