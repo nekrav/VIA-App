@@ -27,9 +27,11 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.habitsMainColor
+        //  backgroundColor: colorsProvider.habitsMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
@@ -50,9 +52,11 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.routinesMainColor
+        //  backgroundColor: colorsProvider.routinesMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
@@ -75,6 +79,8 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "",
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
          backgroundColor: colorsProvider.homeComplimentaryColor
@@ -93,9 +99,10 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.projectsMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
@@ -116,9 +123,10 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.tasksMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
@@ -137,13 +145,13 @@ const TabNavigator = createBottomTabNavigator({
   },
 },
   {
-    tabBarOptions: {
-      // activeTintColor: colorsProvider.whiteColor,
-      // inactiveTintColor: colorsProvider.whiteColor,
-      // style: {
-      //   // backgroundColor: colorsProvider.whiteColor,
-      // },
-    },
+    // tabBarOptions: {
+    //   // activeTintColor: colorsProvider.whiteColor,
+    //   // inactiveTintColor: colorsProvider.whiteColor,
+    //   // style: {
+    //   //   // backgroundColor: colorsProvider.whiteColor,
+    //   // },
+    // },
     initialRouteName: 'Home',
   },
   
