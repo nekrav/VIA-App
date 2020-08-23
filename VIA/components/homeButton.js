@@ -63,7 +63,7 @@ class HomeButton extends React.Component {
                 >
                     <Animated.View style={{
                     }}>
-                        <Image style={{ width: 50, height: 50, tintColor: this.props.focused ? colorsProvider.homePlaceholderColor : colorsProvider.whiteColor }} source={require('../components/via_logo.png')} />
+                        <Image style={{ width: 50, height: 50, }} source={require('../components/logo_colored_no_background.png')} />
                     </Animated.View>
                 </TouchableHighlight>
             </View>
