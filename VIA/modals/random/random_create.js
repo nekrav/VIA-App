@@ -69,22 +69,13 @@ export class CreateRandom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newRandom: this.props.newRandom,
-            items: [],
             name: '',
-            theSelectedProject: '',
-            showDate: false,
-            itemDate: '',
-            itemNotificationTimes: '',
-            newRandomImportance: 0,
+            dueDate: '',
+            importance: '',
             notificationTimes: "",
-            newRandomName: '',
-            itemNotes: '',
+            notes: '',
             onlyTodayChecked: false,
         };
-    }
-    componentDidMount() {
-        controller.loadAll(this, Projects.TABLE_NAME);
     }
 
     /* #region  Top Bar Region */
