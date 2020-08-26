@@ -246,7 +246,7 @@ export class HomeScreen extends React.Component {
             parentId={this.state.selectedItem.id}
             parentName={this.state.selectedItem.name}
             relatedChildren={this.state.relatedChildren}
-            borderColor={colorsProvider.habitsMainColor}
+            borderColor={colorsProvider.randomMain}
             addButtonColor={colorsProvider.habitsMainColor}
             parentComplimentaryColor={colorsProvider.routinesComplimentaryColor}
             childType={childDBTableName}
@@ -373,7 +373,7 @@ export class HomeScreen extends React.Component {
         //     );
 
         return (
-            <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
+            <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: colorsProvider.randomMainColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
                 {/* {this.renderBottomSlidingPane()}
                 {this.showAddModal()}
                 {this.showViewModal()} */}
@@ -412,7 +412,7 @@ export class HomeScreen extends React.Component {
                     hideShadow={false}
                     offsetY={5}
                     offsetX={10}
-                    buttonColor={this.props.addButtonColor}
+                    buttonColor={colorsProvider.randomMainColor}
                     onPress={() => {
                         this.setState({ addModalVisible: true })
                     }}
@@ -421,15 +421,15 @@ export class HomeScreen extends React.Component {
         )
     } else {
         return (
-            <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: this.props.borderColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: colorsProvider.randomMainColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
                 {/* {this.showAddModal()} */}
-                <Text style={{ fontFamily: colorsProvider.font, color: this.props.borderColor }}>No {this.props.childType}</Text>
+                <Text style={{ color: colorsProvider.randomMainColor, fontFamily: colorsProvider.font }}>Done all your popup tasks for the day!</Text>
                 <ActionButton
                     size={45}
                     hideShadow={false}
                     offsetY={5}
                     offsetX={10}
-                    buttonColor={this.props.addButtonColor}
+                    buttonColor={colorsProvider.randomMainColor}
                     onPress={() => {
                         this.setState({ addModalVisible: true })
                     }}

@@ -18,7 +18,7 @@ export const close = 'close'
 
 export const tasksMainColor = '#1A9ED8'
 export const habitsMainColor = "#e05e5e"
-
+export const randomMainColor = "#788087"
 export const inactiveTabColor = '#808080'
 
 /* #region NewColors */
