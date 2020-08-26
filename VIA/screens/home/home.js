@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox } from 'react-native-elements'
+import { CheckBox, colors } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
 import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
@@ -143,36 +143,6 @@ export class HomeScreen extends React.Component {
     setViewRandomModalVisibility(visible) {
         this.setState({ viewRandomModalVisibility: visible })
     }
-
-    /* #region  Notes Region */
-
-    renderNotesSection() {
-        let homeObject = this.state.homeObject
-        console.warn(homeObject.notes)
-        if (this.state.homeObject.notes != undefined) {
-            console.warn("aliweuf")
-            return <Notes
-                color={colorsProvider.randomMainColor}
-                notes={this.state.homeObject.notes}
-                editNotes={item => {
-                    homeNotes = item
-                    homeObject.notes = item
-                    this.saveHomeObject(homeObject)
-                }} />
-        } else {
-            return <Notes
-                color={colorsProvider.randomMainColor}
-                notes={this.state.homeObject.notes}
-                editNotes={item => {
-                    homeNotes = item
-                    homeObject.notes = item
-                    this.saveHomeObject(homeObject)
-                }} />
-        }
-
-    }
-    /* #endregion */
-
 
     renderCreateNewRandomModal() {
         let newRandom = {};
@@ -536,7 +506,13 @@ export class HomeScreen extends React.Component {
                         this.setHomeNotesModalVisibility(true);
                     }}>
                     <Text
-                        style={styles.hasNotesText}
+                        style={{
+                            color: colorsProvider.randomMainColor,
+                            marginTop: 5,
+                            marginLeft: 7,
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeChildren
+                        }}
                         multiline={true}>
                         {this.state.homeObject.notes}
                     </Text>
@@ -550,7 +526,13 @@ export class HomeScreen extends React.Component {
                     this.setHomeNotesModalVisibility(true);
                 }}>
                 <Text
-                    style={styles.createNotesText}
+                    style={{
+                        color: colorsProvider.randomMainColor,
+                        marginTop: 5,
+                        marginLeft: 7,
+                        fontFamily: colorsProvider.font,
+                        fontSize: colorsProvider.fontSizeChildren
+                    }}
                     multiline={true}
                     // placeholder="Notes..."
                     onChangeText={this.props.notes}>
