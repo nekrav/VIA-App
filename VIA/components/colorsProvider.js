@@ -19,6 +19,8 @@ export const close = 'close'
 export const tasksMainColor = '#1A9ED8'
 export const habitsMainColor = "#e05e5e"
 
+export const inactiveTabColor = '#808080'
+
 /* #region NewColors */
 export const topBarColor = '#1A9ED8'
 export const doneSliderNotFinished = '#D4D9DB'

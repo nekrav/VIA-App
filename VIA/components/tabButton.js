@@ -4,6 +4,7 @@ import { Animated, TouchableOpacity, View, Image, Text } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import { Controller } from '../screens/controller'
+import { colors } from 'react-native-elements';
 const controller = new Controller;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -21,16 +22,19 @@ class TabButton extends React.Component {
         if (routeName != '') {
             return routeName == this.props.nav.state.routeName
         }
-
     }
 
     render() {
         if (this.props.routeName && this.props.nav.state.routeName) {
             return (
                 <View style={{
-                    width: '100%', height: '300%',
-                    marginTop: "25%", alignItems: 'center',
+                    width: '100%', 
+                    height: '200%',
+                    marginTop: "25%", 
+                    alignItems: 'center',
                     justifyContent: 'center',
+                    // borderWidth: 2,
+                    // borderColor: colorsProvider.inactiveTabColor
                      // backgroundColor:colorsProvider.whiteColor
                 }}>
                     <TouchableOpacity
@@ -44,6 +48,7 @@ class TabButton extends React.Component {
                         style={{
                             alignItems: 'center',
                             justifyContent: 'center',
+                            
                         }}>
                         <SIcon name={this.props.iconName} size={30} color={this.props.focused ? this.props.activeColor : this.props.inactiveColor} />
                     </TouchableOpacity>
