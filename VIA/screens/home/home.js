@@ -9,10 +9,12 @@ import { Notifier } from '../../notifier/notifier'
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
 
 const notifier = new Notifier;
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
+const todayDate = new Date();
 
 const newHomeObject = {
     id: 'homeID1',
@@ -236,6 +238,37 @@ export class HomeScreen extends React.Component {
             return checked = item.value.completed === "true"
     }
 
+      /* #region  Children Region */
+      renderChildren() {
+        return (<ChildrenContainer
+            parentId={this.state.selectedItem.id}
+            parentName={this.state.selectedItem.name}
+            relatedChildren={this.state.relatedChildren}
+            borderColor={colorsProvider.habitsMainColor}
+            addButtonColor={colorsProvider.habitsMainColor}
+            parentComplimentaryColor={colorsProvider.routinesComplimentaryColor}
+            childType={childDBTableName}
+            childTableName={childTableName}
+            childUpdateCompleted={item => {
+                // controller.saveExisting(this, childTableName, item)
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                // this.props.save();
+
+                item.value.completed = !this.getChecked(item)
+                controller.saveExisting(this, childDBTableName, item.value)
+                this.getRandomTasks();
+            }}
+            saveItem={() => {
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            }}
+            deleteItem={item => {
+                // controller.delete(this, childTableName, item)
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                // this.props.save();
+            }} />)
+    }
+    /* #endregion */
+
     renderRandomTasksSection() {
         if (this.state.randomTasks.length > 0) {
             return (
@@ -435,7 +468,8 @@ export class HomeScreen extends React.Component {
 
 
                     {this.renderNotesSection()}
-                    {/* {this.renderRandomTasksSection()} */}
+                    {/* {this.renderChildren()} */}
+                    {this.renderRandomTasksSection()}
                 </View>
             </TouchableWithoutFeedback>
         );
