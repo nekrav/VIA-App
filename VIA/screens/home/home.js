@@ -6,7 +6,7 @@ import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../..
 import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
 import { Controller } from '../controller'
 import ActionButton from 'react-native-action-button';
-import { NotesModal} from '../../modals/notesModal/notesModal'
+import { NotesModal } from '../../modals/notesModal/notesModal'
 
 import { Notifier } from '../../notifier/notifier'
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
@@ -93,7 +93,6 @@ export class HomeScreen extends React.Component {
             numberOfItems: 0,
             numberOfFinishedItems: 0,
             selectedItem: {},
-            createRandomModalVisibility: false,
             viewRandomModalVisibility: false,
             viewTaskSelectionVisible: false,
             homeNotesModalVisibility: false,
@@ -102,6 +101,7 @@ export class HomeScreen extends React.Component {
             selectedRandom: {},
             mainGoalSelected: '',
             mainGoalSaveAction: '',
+            selectedChild: '',
         };
     }
 
@@ -146,8 +146,8 @@ export class HomeScreen extends React.Component {
                         this.setState({ homeObject: item })
                     }
                 }
-            })
-        // });
+            // })
+        });
     }
 
     /* #region  Top Bar Region */
@@ -173,13 +173,8 @@ export class HomeScreen extends React.Component {
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : "false"
         Database.save(childDBTableName, newRandom).then(() => {
-            this.setCreateRandomModalVisibility(false)
             this.getRandomTasks();
         })
-    }
-
-    setCreateRandomModalVisibility(visible) {
-        this.setState({ createRandomModalVisibility: visible })
     }
 
 
@@ -207,7 +202,8 @@ export class HomeScreen extends React.Component {
                 }}
                 setImportanceIU={(text) => {
                     newRandom.importance = 4;
-                }}                time_spent={(text) => { newRandom.time_spent = text }}
+                }}
+                time_spent={(text) => { newRandom.time_spent = text }}
                 notes={(text) => { newRandom.notes = text }}
                 notification_time={(times) => {
                     if (times) {
@@ -218,7 +214,11 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
-                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); this.setState({ addModalVisible: false })  }}>
+                save={() => {
+                    this.saveNewRandom(newRandom);
+                    notifier.scheduleAllNotifications();
+                    this.setState({ addModalVisible: false })
+                }}>
             </CreateRandom>
         }
     }
@@ -226,7 +226,8 @@ export class HomeScreen extends React.Component {
     renderViewRandomModal() {
         if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedRandom != {}) {
-                theRandom = this.state.selectedRandom
+                theRandom = this.state.selectedChild
+                console.warn(theRandom)
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
@@ -326,110 +327,8 @@ export class HomeScreen extends React.Component {
 
     renderRandomTasksSection() {
         if (this.state.randomTasks.length > 0) {
-            //     return (
-            //         <View style={styles.childrenItemsContainer}>
-            //             <View style={styles.childrenItemsTitleContainer}>
-            //                 <View style={styles.childrenItemsTitleTextContainer}>
-            //                     <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-            //                         Random tasks
-            //                     </Text>
-            //                 </View>
-            //                 <TouchableOpacity style={styles.addTimeButtonContainer}
-            //                     onPress={() => {
-            //                         this.setCreateRandomModalVisibility(true)
-            //                     }}>
-            //                     <View style={styles.addTimeButtonContainerView}>
-            //                         <SIcon style={{ marginLeft: 10, }} name="plus" size={colorsProvider.fontSizeChildren} color={colorsProvider.whiteColor} />
-            //                         <Text style={styles.addTimeButtonText}> Add Random</Text>
-            //                     </View>
-            //                 </TouchableOpacity>
-            //             </View>
-            //             <FlatList
-            //                 data={this.state.randomTasks}
-            //                 extraData={this.state}
-            //                 contentContainerStyle={styles.childrenContainer}
-            //                 renderItem={({ item }) =>
-            //                     <TouchableWithoutFeedback onPress={() => { }}>
-            //                         <TouchableOpacity onPress={() => {
-            //                             this.setViewRandomModalVisibility(true)
-            //                             this.setState({ selectedRandom: item.value }, () => {
-            //                                 this.setViewRandomModalVisibility(true)
-            //                             })
-            //                         }} style={styles.childContainer}>
-            //                             <CheckBox
-            //                                 center
-            //                                 checkedIcon={colorsProvider.checkboxIcon}
-            //                                 uncheckedIcon={colorsProvider.checkboxIcon}
-            //                                 containerStyle={colorsProvider.checkboxContainerStyle}
-            //                                 checkedColor={colorsProvider.finishedBackgroundColor}
-            //                                 uncheckedColor={colorsProvider.homePlaceholderColor}
-            //                                 size={colorsProvider.checkboxIconSize}
-            //                                 onPress={() => {
-            //                                     item.value.completed = !this.getChecked(item)
-            //                                     controller.saveExisting(this, childDBTableName, item.value)
-            //                                     this.getRandomTasks();
-            //                                 }}
-            //                                 checked={this.getChecked(item)}
-            //                             />
-            //                             <View style={styles.childTitleContainer}>
-            //                                 <Text
-            //                                     numberOfLines={1}
-            //                                     multiline={false}
-            //                                     style={styles.childTitleText}>{item.value.name} </Text>
-            //                             </View>
-            //                             <View style={styles.childActionButtonsContainer}>
-            //                                 {/* <TouchableOpacity
-            //                                 style={styles.childActionButton}
-            //                                 onPress={() => {
-            //                                     controller.delete(this, childDBTableName, item.value)
-            //                                     this.getRandomTasks()
-            //                                     notifier.scheduleAllNotifications();
-            //                                 }}>
-            //                                 <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-            //                             </TouchableOpacity> */}
-
-            //                                 <TouchableOpacity
-            //                                     style={styles.childActionButton}
-            //                                     onPress={() => {
-            //                                         // this.setDateModalVisibility(true)
-            //                                         this.setViewRandomModalVisibility(true)
-            //                                         this.setState({ selectedRandom: item.value }, () => {
-            //                                             this.setViewRandomModalVisibility(true)
-            //                                         })
-            //                                     }}>
-            //                                     <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
-            //                                 </TouchableOpacity>
-            //                             </View>
-            //                         </TouchableOpacity></TouchableWithoutFeedback>
-            //                 } />
-            //         </View>
-            //     );
-            // } else {
-            //     return (
-            //         <View style={styles.childrenItemsContainer}>
-            //             <View style={styles.childrenItemsTitleContainer}>
-            //                 <Text style={styles.childrenItemsTitleText}>
-            //                     No tasks
-            //                 </Text>
-            //                 <TouchableOpacity style={styles.addTimeButtonContainer}
-            //                     onPress={() => {
-            //                         this.setCreateRandomModalVisibility(true)
-            //                     }}>
-            //                     <View style={styles.addTimeButtonContainerView}>
-            //                         <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-            //                         <Text style={styles.addTimeButtonText}> Add Task</Text>
-            //                     </View>
-            //                 </TouchableOpacity>
-            //             </View>
-            //             <Text style={styles.createProjectSelectionButtonText}>Done all your popup tasks for the day!</Text>
-            //         </View>
-            //     );
-
             return (
                 <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: colorsProvider.randomMainColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
-                    {/* {this.renderBottomSlidingPane()}
-                {this.showAddModal()}
-                {this.showViewModal()} */}
                     <ScrollView>
                         <View style={{}}>
                             <FlatList
@@ -453,7 +352,7 @@ export class HomeScreen extends React.Component {
                                             this.props.childUpdateCompleted(item);
                                         }}
                                         goToItem={item => {
-                                            this.goToItem(item)
+                                            this.setState({ viewChildModalVisible: true, selectedChild: item, viewRandomModalVisibility: true })
                                         }}
                                     />
                                 }}
@@ -507,27 +406,6 @@ export class HomeScreen extends React.Component {
     renderNotesModal() {
         if (this.state.homeNotesModalVisibility) {
             let homeObject = this.state.homeObject
-            // return (
-            //     <NotesModal
-            //         animationType="slide"
-            //         transparent={true}
-            //         existingNotes={this.state.homeObject.notes}
-            //         backgroundColor={colorsProvider.homeMainColor}
-            //         buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
-            //         buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
-            //         textPlaceholderColor={colorsProvider.homeTextColor}
-            //         textChangedColor={colorsProvider.homeComplimentaryColor}
-            //         placeholder={'Notes...'}
-            //         setNotes={item => {
-            //             homeNotes = item
-            //             homeObject.notes = item
-            //             this.saveHomeObject(homeObject)
-            //         }}
-            //         closeModal={() => {
-            //             this.setHomeNotesModalVisibility(false);
-            //         }}
-            //     ></NotesModal>
-            // );
             return (
                 <NotesModal
                     animationType="slide"
@@ -586,14 +464,13 @@ export class HomeScreen extends React.Component {
                         fontSize: colorsProvider.fontSizeChildren
                     }}
                     multiline={true}
-                    // placeholder="Notes..."
                     onChangeText={this.props.notes}>
                     Notes ...
                 </Text>
             </TouchableOpacity>
         );
     }
-    // /* #endregion */
+    /* #endregion */
 
     render() {
         return (
