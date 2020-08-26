@@ -18,7 +18,50 @@ const notifier = new Notifier;
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
 const todayDate = new Date();
-
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 const newHomeObject = {
     id: 'homeID1',
     main_goal_1: '',
@@ -153,20 +196,29 @@ export class HomeScreen extends React.Component {
                 id={(text) => { newRandom.id = text }}
                 name={(text) => { newRandom.name = text }}
                 due_date={(text) => { newRandom.due_date = text }}
-                importance={(text) => { newRandom.importance = text }}
-                time_spent={(text) => { newRandom.time_spent = text }}
+                setImportanceNN={(text) => {
+                    newRandom.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newRandom.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newRandom.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newRandom.importance = 4;
+                }}                time_spent={(text) => { newRandom.time_spent = text }}
                 notes={(text) => { newRandom.notes = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notification_time={(times) => {
+                    if (times) {
                         newRandom.notification_time = times
+                    } else {
+                        newRandom.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
-                save={() => { console.warn(newRandom); this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
+                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
             </CreateRandom>
         }
     }

@@ -11,7 +11,6 @@ module.exports = StyleSheet.create({
   outerView: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: colorsProvider.homeMainColor,
   },
   outerViewDone: {
     flex: 1,
