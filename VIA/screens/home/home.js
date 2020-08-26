@@ -416,7 +416,8 @@ export class HomeScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={{    flex: 1,
+        flexDirection: 'column', marginTop: 40}}>
 
                     {/* Modals Region */}
                     {this.renderCreateNewRandomModal()}
@@ -435,7 +436,7 @@ export class HomeScreen extends React.Component {
 
                     {this.renderNotesSection()}
                     {/* {this.renderRandomTasksSection()} */}
-                </SafeAreaView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }
