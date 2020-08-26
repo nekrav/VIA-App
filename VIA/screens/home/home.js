@@ -218,7 +218,7 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
-                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
+                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); this.setState({ addModalVisible: false })  }}>
             </CreateRandom>
         }
     }

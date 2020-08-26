@@ -72,6 +72,7 @@ export class CreateRandom extends React.Component {
         this.state = {
             newRandom: this.props.newRandom,
             items: [],
+            name: '',
             theSelectedProject: '',
             showDate: false,
             itemDate: '',
@@ -281,20 +282,14 @@ renderTopBar() {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
 
-                        {/* {TOP NAVIGATION REGION} */}
                         {this.renderTopBar()}
 
+                        {/* {this.renderOnlyForToday()} */}
 
-                        {this.renderOnlyForToday()}
-                        {/* {NOTIFICATION TIMES SECTION} */}
                         {this.renderNotificationTimes()}
 
-
-                        {/* {NOTES SECTION} */}
                         {this.renderNotesSection()}
 
-
-                        {/* {BOTTOM BUTTONS SECTION} */}
                         {this.renderBottomButtons()}
                     </View>
                 </TouchableWithoutFeedback>
