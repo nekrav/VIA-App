@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox, colors } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput, ScrollView } from 'react-native';
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
 import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
 import { Controller } from '../controller'
@@ -12,7 +12,7 @@ import { Notifier } from '../../notifier/notifier'
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
-import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer, ChildItem } from '../../components'
 
 const notifier = new Notifier;
 var uuid = require('react-native-uuid');
@@ -166,7 +166,7 @@ export class HomeScreen extends React.Component {
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
-                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
+                save={() => { console.warn(newRandom); this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
             </CreateRandom>
         }
     }
@@ -383,7 +383,7 @@ export class HomeScreen extends React.Component {
                             <FlatList
                                 horizontal={false}
                                 scrollEnabled={true}
-                                data={this.state.relatedChildren}
+                                data={this.state.randomTasks}
                                 style={{ flex: 1 }}
                                 renderItem={({ item }) => {
                                     return <ChildItem
