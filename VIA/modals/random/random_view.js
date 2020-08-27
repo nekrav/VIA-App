@@ -258,87 +258,6 @@ export class ViewRandom extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Notification Times Region */
-    setNotificationTimesVisibility(visible) {
-        this.setState({ notificationTimesModal: visible })
-    }
-
-    renderNotificationTimesModal() {
-        if (this.state.notificationTimesModal) {
-            return (
-                <NotificationTimesModal
-                    animationType="fade"
-                    transparent={true}
-                    saveButtonBackgroundColor={colorsProvider.homeComplimentaryColor}
-                    disabledSaveButtonBackgroundColor={colorsProvider.homePlaceholderColor}
-                    saveButtonTextColor={colorsProvider.homeComplimentaryColor}
-                    disabledSaveButtonTextColor={colorsProvider.homeComplimentaryColor}
-                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
-                    setDate={item => {
-                        this.props.editNotificationTime(item);
-                        // this.setState({ itemNotificationTimes: item });
-                    }}
-                    closeModal={() => {
-                        this.setNotificationTimesVisibility(false);
-                    }}
-                ></NotificationTimesModal>
-            );
-        }
-        return null;
-    }
-
-
-    renderNotificationTimesSection() {
-        if (this.state.selectedItem.notification_time != '') {
-            var daysWithNotifications = '';
-
-            var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
-
-            Object.keys(jsonArr).map(key => {
-                if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-                    daysWithNotifications = daysWithNotifications.concat(
-                        jsonArr[key].name + ', '
-                    );
-                }
-            });
-            if (daysWithNotifications != '') {
-                return (
-                    <TouchableOpacity
-                        style={styles.hasNotificationTimesButtonContainer}
-                        onPress={() => {
-                            Keyboard.dismiss()
-                            this.setNotificationTimesVisibility(true);
-                        }}>
-                        <Text style={styles.hasNotificationTimeButtonText}>
-                            {daysWithNotifications}
-                        </Text>
-
-                        <Text style={styles.notificationTimeButtonText}>
-                            <SIcon name="bell" size={20} color={colorsProvider.homeMainColor} />
-                        </Text>
-                    </TouchableOpacity>
-                );
-            }
-        }
-        return (
-            <TouchableOpacity
-                style={styles.notificationTimesButtonContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setNotificationTimesVisibility(true);
-                }}>
-                <Text style={styles.notificationTimeButtonText}>
-                    When would you like to be notified?
-        </Text>
-
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.whitePlaceholderColor} />
-                </Text>
-            </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
 
     /* #region  Only for Today Section */
     getChecked(item) {
@@ -368,77 +287,41 @@ export class ViewRandom extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Notes Region */
-    setNotesModalVisibility(visible) {
-        this.setState({ notesModalVisible: visible });
-    }
+     /* #region  Notification Times Region */
 
-    renderNotesModal() {
-        if (this.state.notesModalVisible) {
-            return (
-                <NotesModal
-                    animationType="slide"
-                    transparent={true}
-                    existingNotes={this.state.selectedItem.notes}
-                    backgroundColor={colorsProvider.whiteColor}
-                    buttonContainerNotChangedColor={colorsProvider.whiteColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-                    textPlaceholderColor={colorsProvider.whitePlaceholderColor}
-                    textChangedColor={colorsProvider.homeComplimentaryColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.whitePlaceholderColor}
-                    buttonTextPlaceholderColor={colorsProvider.homePlaceholderColor}
-                    placeholder={'Notes...'}
-                    setNotes={item => {
-                        this.props.editNotes(item)
-                    }}
-                    closeModal={() => {
-                        this.setNotesModalVisibility(false);
-                    }}
-                ></NotesModal>
-            );
-        }
-        return null;
-    }
-
-    renderNotesSection() {
-        if (this.state.selectedItem.notes != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotesContainer}
-                    onPress={() => {
-                        Keyboard.dismiss()
-                        this.setNotesModalVisibility(true);
-                    }}
-                >
-                    <Text
-                        style={styles.hasNotesText}
-                        multiline={true}
-                        onChangeText={this.props.notes}
-                    >
-                        {this.state.selectedItem.notes}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.createNotesContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setNotesModalVisibility(true);
-                }}
-            >
-                <Text
-                    style={styles.createNotesText}
-                    multiline={true}
-                    onChangeText={this.props.notes}
-                >
-                    Notes ...
-    </Text>
-            </TouchableOpacity>
-        );
+     renderNotificationTimes() {
+        return (<NotificationTimes
+            color={colorsProvider.randomMainColor}
+            notificationTimes={this.props.selectedItem.notification_time}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}
+            addNotificationTime={item => {
+                this.props.editNotificationTime(item);
+                this.setState({ notificationTimes: item })
+                this.props.save();
+                notifier.scheduleAllNotifications();
+            }}
+        />
+        )
     }
     /* #endregion */
+
+    /* #region  Notes Region */
+
+    renderNotesSection() {
+        return <Notes
+            color={colorsProvider.randomMainColor}
+            notes={this.state.selectedItem.notes}
+            editNotes={value => {
+                this.props.editNotes(value);
+                this.props.save();
+            }} />
+    }
+    /* #endregion */
+
+  
+ 
 
     render() {
         return (
@@ -463,9 +346,9 @@ export class ViewRandom extends React.Component {
 
                         {this.renderCompleteAndTrashButton()}
 
-                        {/* {this.renderNotificationTimesSection()} */}
+                        {this.renderNotificationTimes()}
 
-                        {/* {this.renderNotesSection()} */}
+                        {this.renderNotesSection()}
 
                     </View>
                 </TouchableWithoutFeedback>

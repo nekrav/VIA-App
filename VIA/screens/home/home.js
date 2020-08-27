@@ -172,6 +172,7 @@ export class HomeScreen extends React.Component {
         newRandom.notes = random.notes ? random.notes : '';
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : "false"
+        console.warn(newRandom)
         Database.save(childDBTableName, newRandom).then(() => {
             this.getRandomTasks();
         })
