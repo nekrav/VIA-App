@@ -242,19 +242,23 @@ export class HomeScreen extends React.Component {
                     }}
                     setImportanceNN={(text) => {
                         theRandom.importance = 1;
-                        this.setState({ selectedTask: theRandom })
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     setImportanceNU={(text) => {
                         theRandom.importance = 2;
-                        this.setState({ selectedTask: theRandom })
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     setImportanceIN={(text) => {
                         theRandom.importance = 3;
-                        this.setState({ selectedTask: theRandom })
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     setImportanceIU={(text) => {
                         theRandom.importance = 4;
-                        this.setState({ selectedTask: theRandom })
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    editFinishedDate={(text) => {
+                        theRandom.finished_date = text;
+                        this.setState({ selectedRandom: theRandom })
                     }}
                     editTimeSpent={(text) => {
                         theRandom.time_spent = text;
@@ -489,7 +493,7 @@ export class HomeScreen extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={{
                     flex: 1,
-                    flexDirection: 'column', marginTop: 40
+                    flexDirection: 'column', 
                 }}>
 
                     {/* Modals Region */}

@@ -102,10 +102,10 @@ export class ViewRandom extends React.Component {
             parent={null}
             parentName={null}
             setParent={(id, name) => {
-               
+
             }}
             removeParent={() => {
-               
+
             }}
             hasParent={false}
             closeModal={this.props.closeModal}
@@ -144,8 +144,61 @@ export class ViewRandom extends React.Component {
     }
     /* #endregion */
 
+    /* #region  Done Slider Region */
+    renderDoneSlider() {
+        return (<DoneSlider
+            percentageDone={this.state.selectedItem.percentage_done}
+            onSlidingComplete={(value) => {
+                this.props.editPercentageDone(value)
+                if (value == 10) {
+                    this.finishTask();
+                }
+                this.props.save();
+            }}
+            onValueChange={(value) => {
+                Keyboard.dismiss()
+                this.props.editPercentageDone(value);
+                this.props.save();
+            }}
+        />)
+    }
+    /* #endregion */
 
-  
+    /* #region  Complete Button and Trash Button Section */
+    renderCompleteAndTrashButton() {
+        return (<View style={{ flexDirection: 'row' }}>
+            <CompleteButton
+                percentageDone={this.state.selectedItem.percentage_done}
+                completed={this.state.selectedItem.completed}
+                // finishedDate={this.state.selectedItem.finished_date}
+                onUnCompletePressed={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editPercentageDone(0)
+                    this.props.editFinishedDate("null")
+                    this.props.save();
+
+                }}
+                onCompletePressed={() => {
+                    Keyboard.dismiss();
+                    this.setState({ percentVal: 10 })
+                    this.props.editPercentageDone(10)
+                    this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
+                    this.props.save();
+                }}
+            />
+            <TrashButton
+                delete={() => {
+                    notifier.scheduleAllNotifications();
+                    this.props.delete()
+                }} />
+        </View>)
+    }
+    /* #endregion */
+
+
     /* #region  Complete Button Section */
     // renderCompleteButton() {
     // return (<TouchableOpacity
@@ -399,23 +452,20 @@ export class ViewRandom extends React.Component {
                 style={{ margin: 0 }}
                 onSwipeComplete={this.props.closeModal}
                 swipeDirection={"right"}>
-
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
 
-                        {/* Top Bar Section */}
                         {this.renderTopBar()}
 
                         {/* {this.renderOnlyForToday()} */}
 
-                        {/* Complete Button Section */}
-                        {this.renderCompleteButton()}
+                        {this.renderDoneSlider()}
 
-                        {/* Notification Times Section */}
+                        {this.renderCompleteAndTrashButton()}
+
                         {/* {this.renderNotificationTimesSection()} */}
 
-                        {/* {NOTES SECTION} */}
-                        {this.renderNotesSection()}
+                        {/* {this.renderNotesSection()} */}
 
                     </View>
                 </TouchableWithoutFeedback>
