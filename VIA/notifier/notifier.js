@@ -103,7 +103,6 @@ export class Notifier extends React.Component {
     scheduleProjectNotifications() {
         this.getAllObjectNotificationTimes(Projects.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {

@@ -172,7 +172,6 @@ export class HomeScreen extends React.Component {
         newRandom.notes = random.notes ? random.notes : '';
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : "false"
-        console.warn(newRandom)
         Database.save(childDBTableName, newRandom).then(() => {
             this.getRandomTasks();
         })
@@ -228,7 +227,6 @@ export class HomeScreen extends React.Component {
         if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedRandom != {}) {
                 theRandom = this.state.selectedChild
-                console.warn(theRandom)
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
