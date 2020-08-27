@@ -6,8 +6,6 @@ const oneDay = 60 * 60 * 24 * 1000;
 
 export class Controller extends React.Component {
 
-
-
     setAddModalVisible(object, visible) {
         object.setState({ addModalVisible: visible });
     }

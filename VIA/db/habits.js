@@ -5,6 +5,7 @@ export class Habits {
         this.id = uuid.v4
         this.name = props.name
         this.created_date = props.created_date
+        this.start_time = props.start_time
         this.end_time = props.end_time
         this.importance = props.importance
         this.percentage_done = props.percentage_done
@@ -15,6 +16,7 @@ export class Habits {
         this.notification_time = props.notification_time
         this.days_to_do = props.days_to_do
         this.routine = props.routine
+        this.routineName = props.routineName
         this.properties = props.properties
         this.notes = props.notes
     }
@@ -35,6 +37,7 @@ export class Habits {
             'notification_time text, ' +
             'days_to_do text, ' +
             'routine text, ' +
+            'routineName text, ' +
             'properties text, ' +
             'notes text ' +
             ')'

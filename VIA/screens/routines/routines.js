@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox, colors } from 'react-native-elements'
+import { CheckBox } from 'react-native-elements'
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Routines } from '../../db'
 import { CreateRoutine, ViewRoutine } from '../../modals'
@@ -8,8 +8,54 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
+import ActionButton from 'react-native-action-button';
+import { ListTopBar } from '../../components'
 
 const notifier = new Notifier;
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 
 const styles = require('./styles');
@@ -34,24 +80,53 @@ export class RoutinesScreen extends React.Component {
     }
 
     componentDidMount() {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
+            controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
+          });
+
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications() 
     }
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
+      }
+
 
     saveNew(routine) {
         let newRoutine = {}
-        newRoutine.id = routine.id;
+        newRoutine.id = uuid.v4();
         newRoutine.name = routine.name;
         newRoutine.created_date = new Date().getDate();
+        newRoutine.importance = routine.importance ? routine.importance : "";
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
         newRoutine.end_time = routine.end_time ? routine.end_time : "";
         newRoutine.notification_time = routine.notification_time ? routine.notification_time : "";
+        newRoutine.notes = routine.notes ? routine.notes : "";
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
             notifier.scheduleAllNotifications() 
         })
     }
+
+      /* #region  Top Bar Region */
+      renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Routines"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.routinesMainColor}
+            secondaryColor={colorsProvider.routinesComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
 
     showAddModal() {
         let newRoutine = {};
@@ -61,14 +136,26 @@ export class RoutinesScreen extends React.Component {
                 transparent={false}
                 id={(text) => { newRoutine.id = text}}
                 name={(text) => { newRoutine.name = text }}
+                setImportanceNN={(text) => {
+                    newRoutine.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newRoutine.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newRoutine.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newRoutine.importance = 4;
+                }}
                 start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}
-                notification_time={(text) => { 
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notes={(text) => { newRoutine.notes = text }}
+                notification_time={(times) => { 
+                    if (times) {
                         newRoutine.notification_time = times
+                    } else {
+                        newRoutine.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -88,6 +175,22 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.name = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
+                    setImportanceNN={(text) => {
+                        theRoutine.importance = 1;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceNU={(text) => {
+                        theRoutine.importance = 2;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceIN={(text) => {
+                        theRoutine.importance = 3;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
+                    setImportanceIU={(text) => {
+                        theRoutine.importance = 4;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
                     editStartTime={(text) => {
                         theRoutine.start_time = text;
                         this.setState({ selectedRoutine: theRoutine })
@@ -104,11 +207,16 @@ export class RoutinesScreen extends React.Component {
                         theRoutine.finished_date = text;
                         this.setState({ selectedRoutine: theRoutine })
                     }}
-                    editNotificationTime={(text) => {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
-                        theRoutine.notification_time = times
+                    editNotes={(text) => {
+                        theRoutine.notes = text;
+                        this.setState({ selectedRoutine: theRoutine })
+                    }}
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theRoutine.notification_time = times
+                        } else {
+                            theRoutine.notification_time = JSON.stringify(emptyTimes)
+                        }
                         this.setState({ selectedRoutine: theRoutine })
 
                     }}
@@ -138,14 +246,14 @@ export class RoutinesScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
 
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewRoutine()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Routines</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -154,8 +262,9 @@ export class RoutinesScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
 
+                    {this.renderTopBar()}
                     {/* List Region */}
                     <FlatList
                         data={this.state.items}
@@ -185,17 +294,35 @@ export class RoutinesScreen extends React.Component {
                                         <Text
                                             numberOfLines={1}
                                             multiline={false}
-                                            style={styles.listItemText}>{item.value.name} </Text></View>
+                                            style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }}>{item.value.name} </Text></View>
                                 </View>
                                 <View style={styles.listItemActionButtonsContainer}>
                                     <TouchableOpacity
-                                        style={styles.listItemActionButton}
+                                        style={{
+                                            color: colorsProvider.whiteColor,
+                                            fontFamily: colorsProvider.font,
+                                            fontSize: colorsProvider.fontSizeChildren,
+                                        }}
                                         onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.routinesComplimentaryColor} />
+                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                            <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={10}
+                        offsetX={10}
+                        buttonColor={colorsProvider.routinesMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }

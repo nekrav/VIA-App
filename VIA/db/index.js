@@ -285,8 +285,6 @@ export class Database {
                 })
                 .then(resolve)
                 .catch(err => {
-                    console.warn("Error")
-                    console.warn(err)
                     reject(err)
                 })
         })

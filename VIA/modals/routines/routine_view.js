@@ -1,7 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList, ScrollView, StatusBar } from 'react-native'; // Version can be specified in package.json
-import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
 import { ViewHabit, CreateHabit } from '../'
@@ -11,8 +10,9 @@ import { CheckBox } from 'react-native-elements'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
-import Slider from '@react-native-community/slider';
 import { Notifier } from '../../notifier/notifier'
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
+
 
 const notifier = new Notifier;
 const controller = new Controller;
@@ -21,6 +21,7 @@ const dateDisplayFormat = 'MMM Do'
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 const childTableName = Habits.TABLE_NAME
+let numberOfChildren = 0;
 
 
 export class ViewRoutine extends React.Component {
@@ -28,10 +29,7 @@ export class ViewRoutine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            canEdit: false,
             selectedItem: this.props.selectedItem,
-            tasksSelectionModalVisible: false,
-            childModalVisibility: false,
             items: [],
             relatedChildren: [],
             children: [],
@@ -39,87 +37,222 @@ export class ViewRoutine extends React.Component {
             showEndDate: false,
             itemStartDate: '',
             itemEndDate: '',
-            itemNotificationTimes: '',
-            newProjectImportance: 0,
-            notificationTimesModal: false,
-            newRoutineName: '',
-            itemNotes: '',
-            numberOfTasks: '',
-            tasks: [],
-            projectId: uuid.v4(),
             selectedChildItem: '',
+            allPossibleChildren: [],
+            notificationTimes: "",
         };
     }
 
-    componentDidMount() {
-        notifier.scheduleAllNotifications();
-        controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-    }
+    // componentDidMount() {
+    //     notifier.scheduleAllNotifications();
+    //     // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+    // }
 
-    getStyleIfDone() {
-        if (this.props.selectedItem.completed == "true") {
-            return styles.outerViewDone
-        }
-        return styles.outerView;
-    }
-
-    finishTask() {
-        this.setState({ selectedItem })
-        this.props.editCompleted("true")
-    }
-
-    getHabits() {
+    getChildren(childTableName, selectedParent, parentType) {
         const itemsArr = []
-        Database.getAll(Habits.TABLE_NAME)
+        const relatedChildren = []
+        Database.getAll(childTableName)
             .then((res) => {
                 const len = res.rows.length;
                 let item = {}
                 for (let i = 0; i < len; i++) {
                     item = res.rows.item(i)
+                    itemParentId = res.rows.item(i)[parentType].replace(/\\/g, '')
+                    itemParentId = itemParentId.replace(/['"]+/g, "")
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                    if (itemParentId == selectedParent) {
+                        relatedChildren.push({ key: JSON.stringify(item.id), value: item })
+                        numberOfChildren = numberOfChildren++
+                    }
+
                 }
-                this.setState({
-                    children: itemsArr
-                })
+                this.setState({ relatedChildren: relatedChildren })
             })
 
     }
 
+    async fetch() {
+        this.setState({ isFetching: true });
+        this.setState({ relatedChildren: b, isFetching: false });
+    }
+
+
+    componentDidMount() {
+        notifier.scheduleAllNotifications();
+        this.getChildren(Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.relatedChildren !== this.props.relatedChildren) {
+            this.fetch();
+        }
+    }
+
     /* #region  Top Bar Region */
     renderTopBar() {
-        return (<View style={styles.topNav}>
-            <TouchableOpacity style={styles.topNavBackButton}
-                onPress={this.props.closeModal}>
-                <SIcon name="arrow-left" size={30} color={colorsProvider.routinesComplimentaryColor} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.trashButton}
-                onPress={() => {
+        return <TopBar
+            color={colorsProvider.routinesMainColor}
+            fromCreate={false}
+            hasParent={false}
+            hasDueDate={false}
+            hasImportance={true}
+            nameOfItem={this.state.selectedItem.name}
+            importance={this.state.selectedItem.importance}
+            allChildren={this.state.relatedChildren}
+            closeModal={this.props.closeModal}
+            editName={item => {
+                this.props.editName(item);
+                this.props.save();
+                notifier.scheduleAllNotifications()
+            }}
+            setImportanceNN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNN(1)
+                this.props.save();
+            }}
+            setImportanceNU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceNU(2)
+                this.props.save();
+            }}
+            setImportanceIN={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIN(3)
+                this.props.save();
+            }}
+            setImportanceIU={() => {
+                Keyboard.dismiss()
+                this.props.setImportanceIU(4)
+                this.props.save();
+            }}
+        />
+    }
+    /* #endregion */
+
+    /* #region  StartEndTime */
+    renderStartEndTime() {
+        return (<StartEndTime
+            startTime={this.state.selectedItem.start_time}
+            endTime={this.state.selectedItem.end_time}
+            color={colorsProvider.routinesMainColor}
+            setStartTime={item => {
+                this.props.editStartTime(item);
+                this.setState({ startTime: item });
+                this.props.save();
+            }}
+            setEndTime={item => {
+                this.props.editEndTime(item);
+                this.setState({ endTime: item });
+                this.props.save();
+            }}
+        />)
+
+    }
+
+    /* #endregion */
+
+    /* #region  Complete Button and Trash Button Section */
+    renderCompleteAndTrashButton() {
+        return (<View style={{ flexDirection: 'row' }}>
+            <CompleteButton
+                percentageDone={this.state.selectedItem.percentage_done}
+                completed={this.state.selectedItem.completed}
+                // finishedDate={this.state.selectedItem.finished_date}
+                onUnCompletePressed={() => {
+                    Keyboard.dismiss()
+                    this.setState({ percentVal: 0 })
+                    this.props.editCompleted("false")
+                    this.props.editFinishedDate("null")
+                    this.props.save();
+
+                }}
+                onCompletePressed={() => {
+                    Keyboard.dismiss();
+                    this.setState({ percentVal: 10 })
+                    this.props.editCompleted("true")
+                    this.props.editFinishedDate(new Date(Date.now()));
+                    this.props.save();
+                }}
+            />
+            <TrashButton
+                delete={() => {
+                    // console.warn("alwieuh")
+                    if (this.state.relatedChildren.length > 0) {
+                        for (i = 0; i < this.state.relatedChildren.length; i++) {
+                            this.state.relatedChildren[i].value.routineName = null
+                            this.state.relatedChildren[i].value.routine = null
+                            Database.update('habits', this.state.relatedChildren[i].value).then(() => {
+                                notifier.scheduleAllNotifications();
+                                this.props.delete()
+                            })
+                        }
+                    }
                     notifier.scheduleAllNotifications();
                     this.props.delete()
-                }}>
-                <SIcon name="trash" size={30} color={colorsProvider.redColor} />
-            </TouchableOpacity>
+
+                }} />
         </View>)
     }
     /* #endregion */
 
-    /* #region  Name Region */
-    renderNameSection() {
-        return (<TouchableOpacity
-            onPress={() => { this.nameTextInput.focus(); }}
-            style={this.state.newTaskName != "" ? styles.hasNameTextInputContainer : styles.createNameContainer}>
-            <TextInput
-                ref={(input) => { this.nameTextInput = input; }}
-                maxLength={40}
-                onEndEditing={this.props.save()}
-                style={styles.createNameText}
-                multiline={true}
-                value={this.props.selectedItem.name}
-                onChangeText={this.props.editName}>
-            </TextInput>
-        </TouchableOpacity>)
+    /* #region  Children Region */
+    renderChildren() {
+        return (<ChildrenContainer
+            parentId={this.state.selectedItem.id}
+            parentName={this.state.selectedItem.name}
+            relatedChildren={this.state.relatedChildren}
+            borderColor={colorsProvider.habitsMainColor}
+            addButtonColor={colorsProvider.habitsMainColor}
+            parentComplimentaryColor={colorsProvider.routinesComplimentaryColor}
+            childType={'Habits'}
+            childTableName={childTableName}
+            childUpdateCompleted={item => {
+                controller.saveExisting(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                this.props.save();
+            }}
+            saveItem={() => {
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            }}
+            deleteItem={item => {
+                controller.delete(this, childTableName, item)
+                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                this.props.save();
+            }} />)
     }
+    /* #endregion */
 
+    /* #region  Notification Times Region */
+
+    renderNotificationTimes() {
+        return (<NotificationTimes
+            color={colorsProvider.routinesMainColor}
+            notificationTimes={this.state.selectedItem.notification_time}
+            onPress={() => {
+                this.setNotificationTimesVisibility(true);
+            }}
+            addNotificationTime={item => {
+                this.props.editNotificationTime(item);
+                this.setState({ notificationTimes: item })
+                this.props.save();
+                notifier.scheduleAllNotifications();
+            }}
+        />
+        )
+    }
+    /* #endregion */
+
+    /* #region  Notes Region */
+
+    renderNotesSection() {
+        return <Notes
+            color={colorsProvider.routinesMainColor}
+            notes={this.state.selectedItem.notes}
+            editNotes={value => {
+                this.props.editNotes(value);
+                this.props.save();
+            }} />
+    }
     /* #endregion */
 
     /* #region  Habit Selection Region */
@@ -173,7 +306,8 @@ export class ViewRoutine extends React.Component {
                         theHabit.notification_time = times
                         this.setState({ selectedChildItem: theHabit })
                     }}
-                    editRoutine={(text) => {
+                    editRoutine={(text, name) => {
+                        theHabit.routineName = name
                         theHabit.routine = text;
                         this.setState({ selectedChildItem: theHabit })
                     }}
@@ -298,46 +432,46 @@ export class ViewRoutine extends React.Component {
                         </View>
                     </View>
                     <ScrollView>
-                    <FlatList
-                        data={this.state.relatedChildren}
-                        extraData={this.state}
-                        contentContainerStyle={styles.childrenContainer}
-                        renderItem={({ item }) =>
-                            <TouchableWithoutFeedback onPress={() => { }}>
-                                <TouchableOpacity style={styles.childContainer}
-                                    onPress={() => {
-                                        this.setState({ selectedChildItem: item.value }, () => {
-                                            this.setChildItemModalVisibility(true)
-                                        })
-                                    }}>
-                                    <View style={styles.childTitleContainer}>
-                                        <CheckBox
-                                            center
-                                            checkedIcon={colorsProvider.checkboxIcon}
-                                            uncheckedIcon={colorsProvider.checkboxIcon}
-                                            containerStyle={colorsProvider.checkboxContainerStyle}
-                                            checkedColor={colorsProvider.finishedBackgroundColor}
-                                            uncheckedColor={colorsProvider.habitsPlaceholderColor}
-                                            size={colorsProvider.checkboxIconSize}
-                                            onPress={() => {
-                                                item.value.completed = !this.getChecked(item)
-                                                if (item.value.completed == true) {
-                                                    item.value.finished_date = new Date(Date.now())
-                                                } else {
-                                                    item.value.finished_date == ""
-                                                }
-                                                controller.saveExisting(this, childTableName, item.value)
-                                                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-                                                controller.loadAll(this, Habits.TABLE_NAME)
-                                            }}
-                                            checked={this.getChecked(item)} />
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.childTitleText}>{item.value.name} </Text>
-                                    </View>
-                                    {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
-                                    {/* <TouchableOpacity
+                        <FlatList
+                            data={this.state.relatedChildren}
+                            extraData={this.state}
+                            contentContainerStyle={styles.childrenContainer}
+                            renderItem={({ item }) =>
+                                <TouchableWithoutFeedback onPress={() => { }}>
+                                    <TouchableOpacity style={styles.childContainer}
+                                        onPress={() => {
+                                            this.setState({ selectedChildItem: item.value }, () => {
+                                                this.setChildItemModalVisibility(true)
+                                            })
+                                        }}>
+                                        <View style={styles.childTitleContainer}>
+                                            <CheckBox
+                                                center
+                                                checkedIcon={colorsProvider.checkboxIcon}
+                                                uncheckedIcon={colorsProvider.checkboxIcon}
+                                                containerStyle={colorsProvider.checkboxContainerStyle}
+                                                checkedColor={colorsProvider.finishedBackgroundColor}
+                                                uncheckedColor={colorsProvider.habitsPlaceholderColor}
+                                                size={colorsProvider.checkboxIconSize}
+                                                onPress={() => {
+                                                    item.value.completed = !this.getChecked(item)
+                                                    if (item.value.completed == true) {
+                                                        item.value.finished_date = new Date(Date.now())
+                                                    } else {
+                                                        item.value.finished_date == ""
+                                                    }
+                                                    controller.saveExisting(this, childTableName, item.value)
+                                                    controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
+                                                    controller.loadAll(this, Habits.TABLE_NAME)
+                                                }}
+                                                checked={this.getChecked(item)} />
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={styles.childTitleText}>{item.value.name} </Text>
+                                        </View>
+                                        {/* <TouchableOpacity style={styles.childActionButtonsContainer}> */}
+                                        {/* <TouchableOpacity
                                             style={styles.childActionButton}
                                             onPress={() => {
                                                 controller.delete(this, childTableName, item.value)
@@ -347,20 +481,20 @@ export class ViewRoutine extends React.Component {
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                         </TouchableOpacity> */}
 
-                                    <TouchableOpacity
-                                        style={styles.childActionButtonsContainer}
-                                        onPress={() => {
-                                            Keyboard.dismiss()
-                                            this.setState({ selectedChildItem: item.value }, () => {
-                                                this.setChildItemModalVisibility(true)
-                                            })
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
+                                        <TouchableOpacity
+                                            style={styles.childActionButtonsContainer}
+                                            onPress={() => {
+                                                Keyboard.dismiss()
+                                                this.setState({ selectedChildItem: item.value }, () => {
+                                                    this.setChildItemModalVisibility(true)
+                                                })
+                                            }}>
+                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.habitsComplimentaryColor} />
+                                        </TouchableOpacity>
                                     </TouchableOpacity>
-                                </TouchableOpacity>
-                                {/* </TouchableOpacity> */}
-                            </TouchableWithoutFeedback>
-                        } /></ScrollView>
+                                    {/* </TouchableOpacity> */}
+                                </TouchableWithoutFeedback>
+                            } /></ScrollView>
                     <View style={{ alignItems: 'center', marginTop: 5, marginBottom: 10 }}>
                         <TouchableOpacity style={styles.addTimeButtonContainer}
                             onPress={() => {
@@ -402,318 +536,7 @@ export class ViewRoutine extends React.Component {
     }
     /* #endregion */
 
-    /* #region  Start Date Region */
-    setStartDateModalVisibility(visible) {
-        this.setState({ showStartDate: visible });
-    }
 
-    renderStartDateModal() {
-        if (this.state.showStartDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editStartTime(item);
-                        this.setState({ itemStartDate: item });
-                        this.setStartDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setStartDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderStartDate() {
-        if (this.state.selectedItem.start_time != '') {
-            return (<TouchableOpacity
-                style={styles.createDueDateContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setStartDateModalVisibility(true)
-                }}>
-                <Text style={styles.createSelectedDateText}>
-                    {Moment(new Date(this.state.selectedItem.start_time)).format(timeDisplayFormat)}
-                </Text>
-            </TouchableOpacity>
-            );
-        }
-        return (<TouchableOpacity style={styles.createNameContainer}
-            onPress={() => {
-                Keyboard.dismiss()
-                this.setStartDateModalVisibility(true)
-            }}>
-            <Text style={styles.createDateText}>
-                When do you want this routine to start?
-          </Text>
-        </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
-
-    /* #region  End Date Region */
-    setEndDateModalVisibility(visible) {
-        this.setState({ showEndDate: visible });
-    }
-
-    renderEndDateModal() {
-        if (this.state.showEndDate) {
-            return (
-                <DateModal
-                    pickerMode="time"
-                    animationType="fade"
-                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    transparent={true}
-                    setDate={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                    }}
-                    onSubmit={item => {
-                        this.props.editEndTime(item);
-                        this.setState({ itemEndDate: item });
-                        this.setEndDateModalVisibility(false);
-                    }}
-                    closeModal={() => {
-                        this.setEndDateModalVisibility(false);
-                    }}
-                ></DateModal>
-            );
-        }
-        return null;
-    }
-
-    renderEndDate() {
-        if (this.state.selectedItem.end_time != '') {
-            return (<TouchableOpacity
-                style={styles.createDueDateContainer}
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setEndDateModalVisibility(true)
-                }}>
-                <Text style={styles.createSelectedDateText}>
-                    {Moment(new Date(this.state.selectedItem.end_time)).format(timeDisplayFormat)}
-                </Text>
-            </TouchableOpacity>
-            );
-        }
-        return (<TouchableOpacity style={styles.createNameContainer}
-            onPress={() => {
-                Keyboard.dismiss()
-                this.setEndDateModalVisibility(true)
-            }}>
-            <Text style={styles.createDateText}>
-                When do you want this routine to end?
-          </Text>
-        </TouchableOpacity>
-        );
-    }
-
-    /* #endregion */
-
-    /* #region  Complete Button Section */
-
-    renderCompleteButton() {
-        if (this.state.selectedItem.completed == "true") {
-            return (<TouchableOpacity
-                style={styles.completeButtonBodyDone}
-                onLongPress={() => {
-                    Keyboard.dismiss()
-                    this.setState({ percentVal: 0 })
-                    this.props.editCompleted("false")
-                }
-                }
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setState({ percentVal: 100 })
-                    this.props.editCompleted("true")
-                    this.props.editFinishedDate(new Date(Date.now()));
-                }
-                }>
-                {this.renderCompleteButtonText()}
-            </TouchableOpacity>);
-        } else {
-            return (<TouchableOpacity
-                style={styles.completeButtonBody}
-                onLongPress={() => {
-                    Keyboard.dismiss()
-                    this.setState({ percentVal: 0 })
-                    this.props.editCompleted("false")
-                    this.props.editFinishedDate("");
-
-                }
-                }
-                onPress={() => {
-                    Keyboard.dismiss()
-                    this.setState({ percentVal: 100 })
-                    this.props.editCompleted("true")
-                    this.props.editFinishedDate(new Date(Date.now()));
-                }
-                }>
-                {this.renderCompleteButtonText()}
-            </TouchableOpacity>);
-        }
-    }
-
-    renderCompleteButtonText() {
-        if (this.state.selectedItem.completed == "true")
-            return (<Text style={styles.completeButtonText}>Done <Text style={{ fontSize: 14, fontFamily: colorsProvider.font }}>(finished on: {Moment(new Date(this.state.selectedItem.finished_date.toString())).format(dateDisplayFormat)})</Text></Text>
-            )
-        else
-            return (<Text style={styles.completeButtonText}>Complete</Text>)
-    }
-    /* #endregion */
-
-    /* #region  Notification Times Region */
-    setNotificationTimesVisibility(visible) {
-        this.setState({ notificationTimesModal: visible });
-    }
-
-    renderNotificationTimesModal() {
-        if (this.state.notificationTimesModal) {
-            return (
-                <NotificationTimesModal
-                    animationType="fade"
-                    transparent={true}
-                    saveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    disabledSaveButtonBackgroundColor={colorsProvider.routinesMainColor}
-                    times={this.state.selectedItem.notification_time ? JSON.parse('[' + this.state.selectedItem.notification_time + ']') : ''}
-                    setDate={item => {
-                        this.props.editNotificationTime(item);
-                        this.setState({ itemNotificationTimes: item });
-                    }}
-                    closeModal={() => {
-                        notifier.scheduleAllNotifications();
-                        this.setNotificationTimesVisibility(false);
-                    }}
-                ></NotificationTimesModal>
-            );
-        }
-        return null;
-    }
-
-    renderNotificationTimes() {
-        var daysWithNotifications = '';
-        var jsonArr = JSON.parse("[" + this.state.selectedItem.notification_time + "]");
-
-
-        Object.keys(jsonArr).map(key => {
-            if (jsonArr[key].times.length > 0 && jsonArr[key].checked == true) {
-                daysWithNotifications = daysWithNotifications.concat(
-                    jsonArr[key].name + ', '
-                );
-            }
-        });
-        if (daysWithNotifications != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotificationTimesButtonContainer}
-                    onPress={() => {
-                        this.setNotificationTimesVisibility(true);
-                    }}
-                >
-                    <Text style={styles.hasNotificationTimeButtonText}>
-                        {daysWithNotifications}
-                    </Text>
-
-                    <Text style={styles.notificationTimeButtonText}>
-                        <SIcon name="bell" size={20} color={colorsProvider.routinesComplimentaryColor} />
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.notificationTimesButtonContainer}
-                onPress={() => {
-                    this.setNotificationTimesVisibility(true);
-                }}
-            >
-                <Text style={styles.notificationTimeButtonText}>
-                    When would you like to be notified?
-        </Text>
-
-                <Text style={styles.notificationTimeButtonText}>
-                    <SIcon name="bell" size={20} color={colorsProvider.routinesPlaceholderColor} />
-                </Text>
-            </TouchableOpacity>
-        );
-    }
-    /* #endregion */
-
-    /* #region  Notes Region */
-    setNotesModalVisibility(visible) {
-        this.setState({ notesModalVisible: visible });
-    }
-
-    renderNotesModal() {
-        if (this.state.notesModalVisible) {
-            return (
-                <NotesModal
-                    animationType="slide"
-                    transparent={true}
-                    existingNotes={this.state.itemNotes}
-                    placeholder={'Notes...'}
-                    setNotes={item => {
-                        this.props.notes(item);
-                        this.setState({ itemNotes: item });
-                    }}
-                    closeModal={() => {
-                        this.setNotesModalVisibility(false);
-                    }}
-                ></NotesModal>
-            );
-        }
-        return null;
-    }
-
-    renderNotesSection() {
-        if (this.state.itemNotes != '') {
-            return (
-                <TouchableOpacity
-                    style={styles.hasNotesContainer}
-                    onPress={() => {
-                        this.setNotesModalVisibility(true);
-                    }}
-                >
-                    <Text
-                        style={styles.hasNotesText}
-                        multiline={true}
-                        onChangeText={this.props.notes}
-                    >
-                        {this.state.itemNotes}
-                    </Text>
-                </TouchableOpacity>
-            );
-        }
-        return (
-            <TouchableOpacity
-                style={styles.createNotesContainer}
-                onPress={() => {
-                    this.setNotesModalVisibility(true);
-                }}>
-                <Text
-                    style={styles.createNotesText}
-                    multiline={true}
-                    onChangeText={this.props.notes}
-                >
-                    Notes ...
-	</Text>
-            </TouchableOpacity>
-        );
-    }
-    /* #endregion */
 
 
     render() {
@@ -729,38 +552,21 @@ export class ViewRoutine extends React.Component {
                     onSwipeComplete={this.props.closeModal}
                     swipeDirection={"right"}>
 
-                    {this.renderStartDateModal()}
-                    {this.renderEndDateModal()}
-                    {this.showTasksSelectionModal()}
-                    {this.renderChildItemModal()}
-                    {this.renderNotificationTimesModal()}
-
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                        <SafeAreaView style={this.getStyleIfDone()}>
-
-                            {/* Top Bar Section */}
+                        <View style={styles.outerView}>
                             {this.renderTopBar()}
 
-                            {/* Name Section */}
-                            {this.renderNameSection()}
+                            {this.renderStartEndTime()}
 
-                            {/* Start Date Section*/}
-                            {this.renderStartDate()}
+                            {this.renderCompleteAndTrashButton()}
 
-                            {/* End Date Section*/}
-                            {this.renderEndDate()}
+                            {this.renderChildren()}
 
-                            {/* Sliders Section*/}
-                            {/* {this.renderSliderSection()} */}
-                            {this.renderAllChildrenSection()}
-
-                            {/* Complete Button Section */}
-                            {this.renderCompleteButton()}
-
-                            {/* Notification Times Section */}
                             {this.renderNotificationTimes()}
 
-                        </SafeAreaView>
+                            {this.renderNotesSection()}
+
+                        </View>
                     </TouchableWithoutFeedback>
                 </Modal>
             );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Database, Habits, Routines, Projects, Tasks, Random } from '../db'
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import { Controller } from '../screens/controller'
+import Moment from 'moment';
 
 var PushNotification = require("react-native-push-notification");
 
@@ -60,38 +61,33 @@ export class Notifier extends React.Component {
                         let notificationTimes = [];
                         item = res.rows.item(i)
                         if (item.notification_time != '') {
-                            nt = JSON.parse('[' + item.notification_time + ']')
+                            nt = JSON.parse(item.notification_time)
                             for (let j = 0; j < nt.length; j++) {
-                                if (nt[j].checked == true) {
-                                    dayWithTimes = nt[j]
-                                    ntTimes = nt[j].times
-                                    for (let k = 0; k < ntTimes.length; k++) {
-                                        let day = dayWithTimes.key
-                                        let hour = ntTimes[k].split(':')[0]
-                                        let minute = ntTimes[k].split(':')[1]
-                                        let ampm = minute.slice(-2);
-                                        if (ampm == 'PM') {
-                                            hour = parseInt(hour) + 12;
-                                        }
-                                        var date = new Date();
-
-                                        var currentDay = date.getDay();
-
-                                        var distance = parseInt(day) - currentDay;
-
-                                        date.setDate(date.getDate() + distance);
-                                        date.setHours(parseInt(hour))
-                                        date.setMinutes(parseInt(minute))
-                                        date.setSeconds(0)
-
-                                        // if (date < new Date()) {
-                                        //     date.setDate(date.getDate() + 7)
-                                        // }
-                                        notificationTimes.push(date.toString())
-
+                                dayWithTimes = nt[j]
+                                ntTimes = nt[j].times
+                                for (let k = 0; k < ntTimes.length; k++) {
+                                    let day = dayWithTimes.key
+                                    let hour = ntTimes[k].split(':')[0]
+                                    let minute = ntTimes[k].split(':')[1]
+                                    let ampm = minute.slice(-2);
+                                    if (ampm == 'PM') {
+                                        hour = parseInt(hour) + 12;
                                     }
-                                    let it = { name: item.name, notificationTimes: notificationTimes }
+                                    var date = new Date();
+                                    var currentDay = date.getDay();
+
+                                    var distance = parseInt(day) - currentDay;
+
+                                    // date.setDate(date.getDate() + distance);
+                                    date.setDate(date.getDate());
+                                    date.setHours(parseInt(hour))
+                                    date.setMinutes(parseInt(minute))
+                                    date.setSeconds(0)
+
+                                    notificationTimes.push(date.toString())
+
                                 }
+                                let it = { name: item.name, notificationTimes: notificationTimes }
                             }
                             if (notificationTimes.length > 0) {
                                 itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
@@ -107,7 +103,6 @@ export class Notifier extends React.Component {
     scheduleProjectNotifications() {
         this.getAllObjectNotificationTimes(Projects.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
@@ -127,7 +122,6 @@ export class Notifier extends React.Component {
     scheduleTaskNotifications() {
         this.getAllObjectNotificationTimes(Tasks.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
                 let title = "Time to start your task: " + res[i].item.name
                 let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {

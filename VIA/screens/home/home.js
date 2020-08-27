@@ -1,19 +1,67 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
+import { CheckBox, colors } from 'react-native-elements'
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput, ScrollView } from 'react-native';
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
-import { CreateProject, ViewProject, CreateRandom, ViewRandom, NotesModal } from '../../modals'
+import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
 import { Controller } from '../controller'
+import ActionButton from 'react-native-action-button';
+import { NotesModal } from '../../modals/notesModal/notesModal'
+
 import { Notifier } from '../../notifier/notifier'
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
+import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer, ChildItem } from '../../components'
 
 const notifier = new Notifier;
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
-
+const todayDate = new Date();
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 const newHomeObject = {
     id: 'homeID1',
     main_goal_1: '',
@@ -45,7 +93,6 @@ export class HomeScreen extends React.Component {
             numberOfItems: 0,
             numberOfFinishedItems: 0,
             selectedItem: {},
-            createRandomModalVisibility: false,
             viewRandomModalVisibility: false,
             viewTaskSelectionVisible: false,
             homeNotesModalVisibility: false,
@@ -54,6 +101,7 @@ export class HomeScreen extends React.Component {
             selectedRandom: {},
             mainGoalSelected: '',
             mainGoalSaveAction: '',
+            selectedChild: '',
         };
     }
 
@@ -98,8 +146,8 @@ export class HomeScreen extends React.Component {
                         this.setState({ homeObject: item })
                     }
                 }
-            })
-        // });
+            // })
+        });
     }
 
     /* #region  Top Bar Region */
@@ -125,13 +173,8 @@ export class HomeScreen extends React.Component {
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : "false"
         Database.save(childDBTableName, newRandom).then(() => {
-            this.setCreateRandomModalVisibility(false)
             this.getRandomTasks();
         })
-    }
-
-    setCreateRandomModalVisibility(visible) {
-        this.setState({ createRandomModalVisibility: visible })
     }
 
 
@@ -141,27 +184,41 @@ export class HomeScreen extends React.Component {
 
     renderCreateNewRandomModal() {
         let newRandom = {};
-        if (this.state.createRandomModalVisibility) {
+        if (this.state.addModalVisible) {
             return <CreateRandom
                 animationType="slide"
                 transparent={false}
                 id={(text) => { newRandom.id = text }}
                 name={(text) => { newRandom.name = text }}
                 due_date={(text) => { newRandom.due_date = text }}
-                importance={(text) => { newRandom.importance = text }}
+                setImportanceNN={(text) => {
+                    newRandom.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newRandom.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newRandom.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newRandom.importance = 4;
+                }}
                 time_spent={(text) => { newRandom.time_spent = text }}
                 notes={(text) => { newRandom.notes = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notification_time={(times) => {
+                    if (times) {
                         newRandom.notification_time = times
+                    } else {
+                        newRandom.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
-                closeModal={() => { this.setCreateRandomModalVisibility(false) }}
-                save={() => { this.saveNewRandom(newRandom); notifier.scheduleAllNotifications(); }}>
+                closeModal={() => { this.setState({ addModalVisible: false }) }}
+                save={() => {
+                    this.saveNewRandom(newRandom);
+                    notifier.scheduleAllNotifications();
+                    this.setState({ addModalVisible: false })
+                }}>
             </CreateRandom>
         }
     }
@@ -169,7 +226,7 @@ export class HomeScreen extends React.Component {
     renderViewRandomModal() {
         if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedRandom != {}) {
-                theRandom = this.state.selectedRandom
+                theRandom = this.state.selectedChild
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
@@ -182,8 +239,24 @@ export class HomeScreen extends React.Component {
                         theRandom.due_date = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
-                    editImportance={(text) => {
-                        theRandom.importance = text;
+                    setImportanceNN={(text) => {
+                        theRandom.importance = 1;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    setImportanceNU={(text) => {
+                        theRandom.importance = 2;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    setImportanceIN={(text) => {
+                        theRandom.importance = 3;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    setImportanceIU={(text) => {
+                        theRandom.importance = 4;
+                        this.setState({ selectedRandom: theRandom })
+                    }}
+                    editFinishedDate={(text) => {
+                        theRandom.finished_date = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
                     editTimeSpent={(text) => {
@@ -236,106 +309,100 @@ export class HomeScreen extends React.Component {
             return checked = item.value.completed === "true"
     }
 
+    /* #region  Children Region */
+    renderChildren() {
+        return (<ChildrenContainer
+            parentId={this.state.selectedItem.id}
+            parentName={this.state.selectedItem.name}
+            relatedChildren={this.state.relatedChildren}
+            borderColor={colorsProvider.randomMain}
+            addButtonColor={colorsProvider.habitsMainColor}
+            parentComplimentaryColor={colorsProvider.routinesComplimentaryColor}
+            childType={childDBTableName}
+            childTableName={childTableName}
+            childUpdateCompleted={item => {
+                // controller.saveExisting(this, childTableName, item)
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                // this.props.save();
+
+                item.value.completed = !this.getChecked(item)
+                controller.saveExisting(this, childDBTableName, item.value)
+                this.getRandomTasks();
+            }}
+            saveItem={() => {
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+            }}
+            deleteItem={item => {
+                // controller.delete(this, childTableName, item)
+                // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
+                // this.props.save();
+            }} />)
+    }
+    /* #endregion */
+
     renderRandomTasksSection() {
         if (this.state.randomTasks.length > 0) {
             return (
-                <View style={styles.childrenItemsContainer}>
-                    <View style={styles.childrenItemsTitleContainer}>
-                        <View style={styles.childrenItemsTitleTextContainer}>
-                            <Text numberOfLines={1} style={styles.childrenItemsTitleText}>
-                                Random tasks
-                            </Text>
-                        </View>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setCreateRandomModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={colorsProvider.fontSizeChildren} color={colorsProvider.whiteColor} />
-                                <Text style={styles.addTimeButtonText}> Add Random</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <FlatList
-                        data={this.state.randomTasks}
-                        extraData={this.state}
-                        contentContainerStyle={styles.childrenContainer}
-                        renderItem={({ item }) =>
-                            <TouchableWithoutFeedback onPress={() => { }}>
-                                <TouchableOpacity onPress={() => {
-                                    this.setViewRandomModalVisibility(true)
-                                    this.setState({ selectedRandom: item.value }, () => {
-                                        this.setViewRandomModalVisibility(true)
-                                    })
-                                }} style={styles.childContainer}>
-                                    <CheckBox
-                                        center
-                                        checkedIcon={colorsProvider.checkboxIcon}
-                                        uncheckedIcon={colorsProvider.checkboxIcon}
-                                        containerStyle={colorsProvider.checkboxContainerStyle}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.homePlaceholderColor}
-                                        size={colorsProvider.checkboxIconSize}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            controller.saveExisting(this, childDBTableName, item.value)
-                                            this.getRandomTasks();
+                <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: colorsProvider.randomMainColor, marginRight: 5, marginLeft: 5, marginBottom: 10, }}>
+                    <ScrollView>
+                        <View style={{}}>
+                            <FlatList
+                                horizontal={false}
+                                scrollEnabled={true}
+                                data={this.state.randomTasks}
+                                style={{ flex: 1 }}
+                                renderItem={({ item }) => {
+                                    return <ChildItem
+                                        itemKey={item.value.id}
+                                        name={item.value.name}
+                                        childMainColor={this.props.addButtonColor}
+                                        item={item.value}
+                                        completed={item.value.completed}
+                                        parentComplimentaryColor={this.props.parentComplimentaryColor}
+                                        childItemTableName={this.props.childItemTableName}
+                                        deleteItem={item => {
+                                            this.props.deleteItem(item)
                                         }}
-                                        checked={this.getChecked(item)}
+                                        childUpdateCompleted={item => {
+                                            this.props.childUpdateCompleted(item);
+                                        }}
+                                        goToItem={item => {
+                                            this.setState({ viewChildModalVisible: true, selectedChild: item, viewRandomModalVisibility: true })
+                                        }}
                                     />
-                                    <View style={styles.childTitleContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
-                                            style={styles.childTitleText}>{item.value.name} </Text>
-                                    </View>
-                                    <View style={styles.childActionButtonsContainer}>
-                                        {/* <TouchableOpacity
-                                        style={styles.childActionButton}
-                                        onPress={() => {
-                                            controller.delete(this, childDBTableName, item.value)
-                                            this.getRandomTasks()
-                                            notifier.scheduleAllNotifications();
-                                        }}>
-                                        <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
-                                    </TouchableOpacity> */}
-
-                                        <TouchableOpacity
-                                            style={styles.childActionButton}
-                                            onPress={() => {
-                                                // this.setDateModalVisibility(true)
-                                                this.setViewRandomModalVisibility(true)
-                                                this.setState({ selectedRandom: item.value }, () => {
-                                                    this.setViewRandomModalVisibility(true)
-                                                })
-                                            }}>
-                                            <SIcon style={styles.childActionButtonText} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
-                                        </TouchableOpacity>
-                                    </View>
-                                </TouchableOpacity></TouchableWithoutFeedback>
-                        } />
+                                }}
+                            />
+                        </View>
+                    </ScrollView>
+                    <ActionButton
+                        size={45}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.randomMainColor}
+                        onPress={() => {
+                            this.setState({ addModalVisible: true })
+                        }}
+                    />
                 </View>
-            );
+            )
         } else {
             return (
-                <View style={styles.childrenItemsContainer}>
-                    <View style={styles.childrenItemsTitleContainer}>
-                        <Text style={styles.childrenItemsTitleText}>
-                            No tasks
-                        </Text>
-                        <TouchableOpacity style={styles.addTimeButtonContainer}
-                            onPress={() => {
-                                this.setCreateRandomModalVisibility(true)
-                            }}>
-                            <View style={styles.addTimeButtonContainerView}>
-                                <SIcon style={{ marginLeft: 10, }} name="plus" size={16} color={colorsProvider.shadowColor} />
-                                <Text style={styles.addTimeButtonText}> Add Task</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles.createProjectSelectionButtonText}>Done all your popup tasks for the day!</Text>
+                <View style={{ flex: 1, borderWidth: 2, borderRadius: 20, borderColor: colorsProvider.randomMainColor, marginRight: 5, marginLeft: 5, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                    {/* {this.showAddModal()} */}
+                    <Text style={{ color: colorsProvider.randomMainColor, fontFamily: colorsProvider.font }}>Done all your popup tasks for the day!</Text>
+                    <ActionButton
+                        size={45}
+                        hideShadow={false}
+                        offsetY={5}
+                        offsetX={10}
+                        buttonColor={colorsProvider.randomMainColor}
+                        onPress={() => {
+                            this.setState({ addModalVisible: true })
+                        }}
+                    />
                 </View>
-            );
+            )
         }
     }
     /* #endregion */
@@ -359,11 +426,7 @@ export class HomeScreen extends React.Component {
                     animationType="slide"
                     transparent={true}
                     existingNotes={this.state.homeObject.notes}
-                    backgroundColor={colorsProvider.homeMainColor}
-                    buttonContainerNotChangedColor={colorsProvider.homePlaceholderColor}
-                    buttonContainerTextNotChangedColor={colorsProvider.homeComplimentaryColor}
-                    textPlaceholderColor={colorsProvider.homeTextColor}
-                    textChangedColor={colorsProvider.homeComplimentaryColor}
+                    color={colorsProvider.randomMainColor}
                     placeholder={'Notes...'}
                     setNotes={item => {
                         homeNotes = item
@@ -388,7 +451,13 @@ export class HomeScreen extends React.Component {
                         this.setHomeNotesModalVisibility(true);
                     }}>
                     <Text
-                        style={styles.hasNotesText}
+                        style={{
+                            color: colorsProvider.randomMainColor,
+                            marginTop: 5,
+                            marginLeft: 7,
+                            fontFamily: colorsProvider.font,
+                            fontSize: colorsProvider.fontSizeChildren
+                        }}
                         multiline={true}>
                         {this.state.homeObject.notes}
                     </Text>
@@ -402,9 +471,14 @@ export class HomeScreen extends React.Component {
                     this.setHomeNotesModalVisibility(true);
                 }}>
                 <Text
-                    style={styles.createNotesText}
+                    style={{
+                        color: colorsProvider.randomMainColor,
+                        marginTop: 5,
+                        marginLeft: 7,
+                        fontFamily: colorsProvider.font,
+                        fontSize: colorsProvider.fontSizeChildren
+                    }}
                     multiline={true}
-                    // placeholder="Notes..."
                     onChangeText={this.props.notes}>
                     Notes ...
                 </Text>
@@ -416,7 +490,10 @@ export class HomeScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column', 
+                }}>
 
                     {/* Modals Region */}
                     {this.renderCreateNewRandomModal()}
@@ -425,7 +502,7 @@ export class HomeScreen extends React.Component {
                     {/* {this.renderSelectTaskModal()} */}
 
                     {/* Tab Bar Region */}
-                    {this.renderTopBar()}
+                    {/* {this.renderTopBar()} */}
 
                     {/* List Region */}
 
@@ -434,8 +511,9 @@ export class HomeScreen extends React.Component {
 
 
                     {this.renderNotesSection()}
+                    {/* {this.renderChildren()} */}
                     {this.renderRandomTasksSection()}
-                </SafeAreaView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }

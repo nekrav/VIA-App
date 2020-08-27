@@ -10,8 +10,7 @@ module.exports = StyleSheet.create({
     /* #region Outer Structure */
     outerView: {
         flex: 1,
-        flexDirection: 'column',
-        backgroundColor: colorsProvider.tasksMainColor,
+        backgroundColor: colorsProvider.whiteColor,
     },
     outerViewDone: {
         flex: 1,
@@ -420,7 +419,7 @@ module.exports = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontFamily: fontFamily,
-        color: colorsProvider.tasksMainColor,
+        color: colorsProvider.whiteColor,
     },
     /* #endregion */
 

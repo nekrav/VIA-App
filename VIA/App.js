@@ -16,7 +16,7 @@ import { HomeButton } from '../VIA/components/homeButton'
 const notifier = new Notifier;
 const controller = new Controller;
 
-console.disableYellowBox = true;
+console.disableYellowBox = false;
 
 notifier.registerNotificationService();
 
@@ -27,19 +27,21 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.habitsMainColor
+        //  backgroundColor: colorsProvider.habitsMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          // loadElements={Database.init()}
-          activeColor={colorsProvider.habitsComplimentaryColor}
-          inactiveColor={colorsProvider.whiteColor}
+          activeColor={colorsProvider.habitsMainColor}
+          inactiveColor={colorsProvider.inactiveTabColor}
           tintColor={ tintColor }
           routeName={'Habits'}
+          getAllItems={() => {Database.getAll('habits')}}
           iconName={'reload'}
           elementName={'Habits'}
           nav={navigation} ></TabButton>
@@ -50,20 +52,24 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.routinesMainColor
+        //  backgroundColor: colorsProvider.routinesMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={colorsProvider.routinesBottomTabHighlightColor}
-          inactiveColor={colorsProvider.whiteColor}
+          activeColor={colorsProvider.routinesMainColor}
+          inactiveColor={colorsProvider.inactiveTabColor}
           tintColor={{ tintColor }}
+          getAllItems={() => {Database.getAll('routines')}}
           routeName={'Routines'}
           iconName={'refresh'}
           elementName={'Routines'}
+
           nav={navigation} ></TabButton>
       ),})
   },
@@ -73,14 +79,17 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: "",
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.inactiveTabColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.homeComplimentaryColor
         }
       },
       tabBarIcon:({ focused, tintColor }) => (
         <HomeButton
         focused={focused}
+        routeName={'Home'}
+        getAllItems={() => {Database.getAll('random')}}
         activeColor={colorsProvider.homePlaceholderColor}
           nav={navigation} ></HomeButton>  ),})
     
@@ -90,19 +99,21 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.inactiveTabColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.projectsMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={colorsProvider.projectsComplimentaryColor}
-          inactiveColor={colorsProvider.whiteColor}
+          activeColor={colorsProvider.projectsMainColor}
+          inactiveColor={colorsProvider.inactiveTabColor}
           tintColor={{ tintColor }}
           routeName={'Projects'}
           iconName={'layers'}
+          getAllItems={() => {Database.getAll('projects')}}
           elementName={'Projects'}
           nav={navigation} ></TabButton>
       ),})
@@ -112,18 +123,20 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '',
       tabBarOptions: {
+        activeColor: colorsProvider.whiteColor,
+        inactiveTintColor: colorsProvider.whiteColor,
         style: {
          height: 55,
-         backgroundColor: colorsProvider.tasksMainColor
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
         <TabButton
           focused={focused}
-          activeColor={colorsProvider.tasksPlaceholderColor}
-          inactiveColor={colorsProvider.whiteColor}
+          activeColor={colorsProvider.tasksMainColor}
+          inactiveColor={colorsProvider.inactiveTabColor}
           tintColor={{ tintColor }}
           routeName={'Tasks'}
+          getAllItems={() => {Database.getAll('tasks')}}
           iconName={'refresh'}
           elementName={'Tasks'}
           nav={navigation} ></TabButton>
@@ -132,6 +145,13 @@ const TabNavigator = createBottomTabNavigator({
   },
 },
   {
+    // tabBarOptions: {
+    //   // activeTintColor: colorsProvider.whiteColor,
+    //   // inactiveTintColor: colorsProvider.whiteColor,
+    //   // style: {
+    //   //   // backgroundColor: colorsProvider.whiteColor,
+    //   // },
+    // },
     initialRouteName: 'Home',
   },
   

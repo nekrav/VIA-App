@@ -12,7 +12,7 @@ module.exports = StyleSheet.create({
     outerView: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: colorsProvider.homeComplimentaryColor,
+        // backgroundColor: colorsProvider.homeComplimentaryColor,
     },
     /* #endregion */
 
@@ -346,7 +346,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-        marginTop: 2,
+        marginTop: 40,
         justifyContent: 'space-between',
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,
@@ -366,7 +366,7 @@ module.exports = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10,
         marginBottom: 5,
-        marginTop: 2,
+        marginTop: 40,
         justifyContent: 'space-between',
         shadowColor: colorsProvider.shadowColor,
         shadowOpacity: 0.8,

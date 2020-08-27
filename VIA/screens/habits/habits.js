@@ -1,6 +1,7 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox } from 'react-native-elements'
+
 import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
 import { Database, Habits } from '../../db'
 import { CreateHabit, ViewHabit } from '../../modals'
@@ -8,9 +9,54 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
+import { ListTopBar } from '../../components'
+import ActionButton from 'react-native-action-button';
 
 const notifier = new Notifier;
-
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 const styles = require('./styles');
 
@@ -34,16 +80,45 @@ export class HabitsScreen extends React.Component {
         };
     }
 
+    componentDidUpdate(prevProps) {
+    }
+
     componentDidMount() {
-        this.props.navigation.addListener('willFocus', (playload) => {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
+            controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
         });
         controller.loadAll(this, dbTableName)
         notifier.scheduleAllNotifications()
     }
 
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
+    }
+
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Habits"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.habitsMainColor}
+            secondaryColor={colorsProvider.habitsComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
+
+
+
     saveNew(habit) {
         let newHabit = {}
-        newHabit.id = habit.id;
+        newHabit.id = uuid.v4();
         newHabit.name = habit.name;
         newHabit.created_date = new Date().getDate();
         newHabit.start_time = habit.start_time ? habit.start_time : ''
@@ -51,9 +126,11 @@ export class HabitsScreen extends React.Component {
         newHabit.importance = habit.importance ? habit.importance : ''
         newHabit.percentage_done = 0
         newHabit.routine = habit.routine ? habit.routine : '';
+        newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
-        newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
+        newHabit.notes = habit.notes ? habit.notes : '',
+            newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
 
         Database.save(dbTableName, newHabit).then(() => {
@@ -71,20 +148,31 @@ export class HabitsScreen extends React.Component {
                 transparent={false}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
-                importance={(text) => { newHabit.importance = text }}
+                setImportanceNN={(text) => {
+                    newHabit.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newHabit.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newHabit.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newHabit.importance = 4;
+                }}
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notification_time={(times) => {
+                    if (times) {
                         newHabit.notification_time = times
+                    } else {
+                        newHabit.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
-                routine={(text) => { newHabit.routine = text }}
+                routine={(text, name) => { newHabit.routine = text; newHabit.routineName = name }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
+                notes={(text) => { newHabit.notes = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newHabit) }}
             ></CreateHabit>
@@ -101,6 +189,18 @@ export class HabitsScreen extends React.Component {
                     editName={(text) => {
                         theHabit.name = text;
                         this.setState({ selectedItem: theHabit })
+                    }}
+                    setImportanceNN={(text) => {
+                        theHabit.importance = 1;
+                    }}
+                    setImportanceNU={(text) => {
+                        theHabit.importance = 2;
+                    }}
+                    setImportanceIN={(text) => {
+                        theHabit.importance = 3;
+                    }}
+                    setImportanceIU={(text) => {
+                        theHabit.importance = 4;
                     }}
                     editStartTime={(text) => {
                         theHabit.start_time = text;
@@ -130,14 +230,20 @@ export class HabitsScreen extends React.Component {
                         theHabit.time_to_spend = text;
                         this.setState({ selectedItem: theHabit })
                     }}
-                    editNotificationTime={(text) => {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
-                        theHabit.notification_time = times
-                        this.setState({ selectedTask: theHabit })
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theHabit.notification_time = times
+                        } else {
+                            theHabit.notification_time = JSON.stringify(emptyTimes)
+                        }
+                        this.setState({ selectedItem: theHabit })
                     }}
-                    editRoutine={(text) => {
+                    editNotes={(text) => {
+                        theHabit.notes = text;
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    editRoutine={(text, name) => {
+                        theHabit.routineName = name;
                         theHabit.routine = text;
                         this.setState({ selectedItem: theHabit })
                     }}
@@ -146,7 +252,9 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedItem: theHabit })
                     }}
 
-                    save={() => { controller.saveExisting(this, dbTableName, theHabit) }}
+                    save={() => {
+                        controller.saveExisting(this, dbTableName, theHabit)
+                    }}
 
                     selectedItem={theHabit}
 
@@ -168,23 +276,13 @@ export class HabitsScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
 
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewHabit()}
 
-                    {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
-                        <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Habits</Text></View>
-                        <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
-                        <TouchableOpacity style={styles.addItemButtonContainer}
-                            onPress={() => {
-                                controller.setAddModalVisible(this, true);
-                            }}>
-                            <FIcon style={styles.addItemButtonText} name="plus" />
-                        </TouchableOpacity>
-                    </View>
+                    {this.renderTopBar()}
 
                     {/* List Region */}
                     <FlatList
@@ -192,7 +290,6 @@ export class HabitsScreen extends React.Component {
                         renderItem={({ item }) =>
                             <TouchableWithoutFeedback onPress={() => { }}>
                                 <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainer : styles.listItemContainer}>
-
                                     <View style={styles.checkboxAndNameContainer}>
                                         <CheckBox
                                             center
@@ -216,7 +313,11 @@ export class HabitsScreen extends React.Component {
                                             <Text
                                                 numberOfLines={1}
                                                 multiline={false}
-                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         {/* <TouchableOpacity
@@ -232,15 +333,29 @@ export class HabitsScreen extends React.Component {
                                     }}>
                                     <SIcon style={styles.listItemActionButton} name="bell" size={30} color={colorsProvider.shadowColor} />
                                 </TouchableOpacity> */}
-
                                         <TouchableOpacity
                                             style={styles.listItemActionButton}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
+                                            <SIcon style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }} name="arrow-right" size={colorsProvider.checkboxIconSize} color={colorsProvider.habitsComplimentaryColor} />
                                         </TouchableOpacity>
                                     </View>
-                                </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                                </TouchableOpacity>
+                            </TouchableWithoutFeedback>} />
+                    <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={10}
+                        offsetX={10}
+                        buttonColor={colorsProvider.habitsMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }

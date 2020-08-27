@@ -21,22 +21,6 @@ module.exports = StyleSheet.create({
     },
     /* #endregion */
 
-    /* #region  Top Navigation */
-    topNav: {
-        marginBottom: 5,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-    },
-    trashButton: {
-        marginRight: "8%",
-        justifyContent: "center",
-
-    },
-    topNavBackButton: {
-        marginLeft: "8%",
-    },
-    /* #endregion */
-
     /* #region  Notes Section */
     notesContainer: {
         flex: 1,
@@ -61,10 +45,6 @@ module.exports = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         marginRight: 50,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
     },
     modifiedBottomButtonContainer: {
         marginLeft: 50,
@@ -74,10 +54,6 @@ module.exports = StyleSheet.create({
         paddingBottom: 10,
         borderRadius: 20,
         marginRight: 50,
-        shadowColor: colorsProvider.shadowColor,
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: colorsProvider.shadow
     },
     bottomButtonText: {
         fontSize: 18,

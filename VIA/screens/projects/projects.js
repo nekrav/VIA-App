@@ -8,6 +8,8 @@ import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { Notifier } from '../../notifier/notifier'
+import ActionButton from 'react-native-action-button';
+import { ListTopBar } from '../../components'
 
 const notifier = new Notifier;
 
@@ -19,6 +21,50 @@ const controller = new Controller;
 
 const dbTableName = Projects.TABLE_NAME
 
+const emptyTimes = [
+    {
+        key: "1",
+        name: "Monday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "2",
+        name: "Tuesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "3",
+        name: "Wednesday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "4",
+        name: "Thursday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "5",
+        name: "Friday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "6",
+        name: "Saturday",
+        checked: false,
+        times: []
+    },
+    {
+        key: "7",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+]
 
 const childTableName = Tasks.TABLE_NAME
 
@@ -39,15 +85,24 @@ export class ProjectsScreen extends React.Component {
 
     componentDidMount() {
         notifier.scheduleAllNotifications()
-        this.props.navigation.addListener('willFocus', (payload) => {
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
+            this.setState({ count: 0 });
         });
+
         controller.loadAll(this, dbTableName)
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        clearTimeout(this.t);
     }
 
     saveNew(project) {
         let newProject = {}
-        newProject.id = project.id;
+        newProject.id = uuid.v4();
         newProject.name = project.name;
         newProject.created_date = new Date().getDate();
         newProject.due_date = project.due_date ? project.due_date : "";
@@ -65,6 +120,21 @@ export class ProjectsScreen extends React.Component {
         })
     }
 
+    /* #region  Top Bar Region */
+    renderTopBar() {
+        return <ListTopBar
+            typeOfItem={"Projects"}
+            numberOfItems={this.state.numberOfItems}
+            numberOfCompletedItems={this.state.numberOfFinishedItems}
+            color={colorsProvider.projectsMainColor}
+            secondaryColor={colorsProvider.projectsComplimentaryColor}
+            onAddPress={() => {
+                controller.setAddModalVisible(this, true);
+            }}
+        />
+    }
+    /* #endregion */
+
     showAddModal() {
         let newProject = {};
         if (this.state.addModalVisible) {
@@ -74,15 +144,25 @@ export class ProjectsScreen extends React.Component {
                 id={(text) => { newProject.id = text }}
                 name={(text) => { newProject.name = text }}
                 due_date={(text) => { newProject.due_date = text }}
-                importance={(text) => { newProject.importance = text }}
+                setImportanceNN={(text) => {
+                    newProject.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newProject.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newProject.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newProject.importance = 4;
+                }}
                 time_spent={(text) => { newProject.time_spent = text }}
                 notes={(text) => { newProject.notes = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                notification_time={(times) => {
+                    if (times) {
                         newProject.notification_time = times
+                    } else {
+                        newProject.notification_time = JSON.stringify(emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -107,9 +187,21 @@ export class ProjectsScreen extends React.Component {
                         theProject.due_date = text;
                         this.setState({ selectedProject: theProject })
                     }}
-                    editImportance={(text) => {
-                        theProject.importance = text;
-                        this.setState({ selectedProject: theProject })
+                    setImportanceNN={(text) => {
+                        theProject.importance = 1;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceNU={(text) => {
+                        theProject.importance = 2;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceIN={(text) => {
+                        theProject.importance = 3;
+                        this.setState({ selectedTask: theProject })
+                    }}
+                    setImportanceIU={(text) => {
+                        theProject.importance = 4;
+                        this.setState({ selectedTask: theProject })
                     }}
                     editCompleted={(text) => {
                         theProject.completed = text;
@@ -133,10 +225,7 @@ export class ProjectsScreen extends React.Component {
                     }}
                     editNotificationTime={(text) => {
                         if (text) {
-                            var times = text.map(function (time) {
-                                return JSON.stringify(time)
-                            })
-                            theProject.notification_time = times
+                            theProject.notification_time = text
                             this.setState({ selectedProject: theProject })
                         }
                     }}
@@ -149,7 +238,7 @@ export class ProjectsScreen extends React.Component {
 
                     selectedItem={theProject}
 
-                    delete={() => { controller.delete(this, dbTableName, theProject) }}
+                    delete={() => { controller.delete(this, dbTableName, theProject); controller.setViewModalVisible(this, false) }}
 
                     closeModal={() => { controller.setViewModalVisible(this, false) }}>
                 </ViewProject>
@@ -186,7 +275,8 @@ export class ProjectsScreen extends React.Component {
                         theTask.completed = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    editProject={(text) => {
+                    editProject={(text, name) => {
+                        theTask.projectname = name;
                         theTask.project = text;
                         this.setState({ selectedTask: theTask })
                     }}
@@ -218,7 +308,7 @@ export class ProjectsScreen extends React.Component {
                     }}
 
                     closeModal={() => {
-                        this.setState({ childOfListItemModalVisible: false})
+                        this.setState({ childOfListItemModalVisible: false })
                         controller.setViewModalVisible(this, true)
                     }}>
                 </ViewTaskFromProject>
@@ -238,14 +328,14 @@ export class ProjectsScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <SafeAreaView style={styles.outerView}>
+                <View style={styles.outerView}>
                     {/* Modals Region */}
                     {this.showAddModal()}
                     {this.showViewProject()}
                     {this.renderChildItemModal()}
 
                     {/* /* #region Top Navigation Section  */}
-                    <View style={styles.topNav}>
+                    {/* <View style={styles.topNav}>
                         <View style={styles.centerTitleContainer}><Text style={styles.topNavLeftTitleText}>Projects</Text></View>
                         <Text style={styles.topNavCenterTitleText}>{this.state.numberOfItems}</Text>
                         <TouchableOpacity style={styles.addItemButtonContainer}
@@ -254,7 +344,10 @@ export class ProjectsScreen extends React.Component {
                             }}>
                             <FIcon style={styles.addItemButtonText} name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
+
+
+                    {this.renderTopBar()}
 
                     {/* List Region */}
 
@@ -287,17 +380,35 @@ export class ProjectsScreen extends React.Component {
                                             <Text
                                                 numberOfLines={1}
                                                 multiline={false}
-                                                style={styles.listItemText}>{item.value.name} </Text></View>
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         <TouchableOpacity
-                                            style={styles.listItemActionButton}
+                                             style={{
+                                                color: colorsProvider.whiteColor,
+                                                fontFamily: colorsProvider.font,
+                                                fontSize: colorsProvider.fontSizeChildren,
+                                            }}
                                             onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.shadowColor} />
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
                                         </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity></TouchableWithoutFeedback>} />
-                </SafeAreaView>
+                    <ActionButton
+                        size={65}
+                        hideShadow={false}
+                        offsetY={10}
+                        offsetX={10}
+                        buttonColor={colorsProvider.projectsMainColor}
+                        onPress={() => {
+                            controller.setAddModalVisible(this, true);
+                        }}
+                    />
+                </View>
             </TouchableWithoutFeedback>
         );
     }
