@@ -52,7 +52,7 @@ export const checkboxIcon = 'check-square'
 
 /* #region  Routines */
 export const routinesMainColor = "#f2c238"
-export const routinesComplimentaryColor = "#73521C";
+export const routinesComplimentaryColor = "#788087";
 export const routinesPlaceholderColor = "#B09B7A";
 export const routinesBottomTabHighlightColor = "#9C7639";
 /* #endregion */

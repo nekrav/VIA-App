@@ -176,6 +176,7 @@ export class ViewRoutine extends React.Component {
             />
             <TrashButton
                 delete={() => {
+                    // console.warn("alwieuh")
                     if (this.state.relatedChildren.length > 0) {
                         for (i = 0; i < this.state.relatedChildren.length; i++) {
                             this.state.relatedChildren[i].value.routineName = null
@@ -186,6 +187,9 @@ export class ViewRoutine extends React.Component {
                             })
                         }
                     }
+                    notifier.scheduleAllNotifications();
+                    this.props.delete()
+
                 }} />
         </View>)
     }

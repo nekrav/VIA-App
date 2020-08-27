@@ -184,6 +184,8 @@ export class ViewProject extends React.Component {
                             })
                         }
                     }
+                    notifier.scheduleAllNotifications();
+                    this.props.delete()
 
                 }} />
         </View>)
