@@ -240,9 +240,21 @@ export class HomeScreen extends React.Component {
                         theRandom.due_date = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
-                    editImportance={(text) => {
-                        theRandom.importance = text;
-                        this.setState({ selectedRandom: theRandom })
+                    setImportanceNN={(text) => {
+                        theRandom.importance = 1;
+                        this.setState({ selectedTask: theRandom })
+                    }}
+                    setImportanceNU={(text) => {
+                        theRandom.importance = 2;
+                        this.setState({ selectedTask: theRandom })
+                    }}
+                    setImportanceIN={(text) => {
+                        theRandom.importance = 3;
+                        this.setState({ selectedTask: theRandom })
+                    }}
+                    setImportanceIU={(text) => {
+                        theRandom.importance = 4;
+                        this.setState({ selectedTask: theRandom })
                     }}
                     editTimeSpent={(text) => {
                         theRandom.time_spent = text;
