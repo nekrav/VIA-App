@@ -20,8 +20,7 @@ console.disableYellowBox = false;
 
 notifier.registerNotificationService();
 
-const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 75 : 55
-console.warn(PixelRatio.get())
+const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 75 :55
 const TabNavigator = createBottomTabNavigator({
   Habits: {
     screen: HabitsScreen,

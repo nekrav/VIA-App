@@ -1,13 +1,14 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, Dimensions } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, Dimensions, PixelRatio } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
 import DatePicker from 'react-native-date-picker'
 
 import RBSheet from "react-native-raw-bottom-sheet";
+const HEIGHT_DIVISION = PixelRatio.get() < 3 ? 1.80 : 2.10
 
 
 const todayDate = new Date();
@@ -48,7 +49,7 @@ export class StartEndTime extends React.Component {
             onClose={() => {
             }}
             dragFromTopOnly={true}
-            height={screenHeight / 2.10}
+            height={screenHeight / HEIGHT_DIVISION}
             openDuration={250}>
             <View style={{
                 marginTop: 10,
@@ -170,7 +171,7 @@ export class StartEndTime extends React.Component {
             onClose={() => {
             }}
             dragFromTopOnly={true}
-            height={screenHeight / 2.10}
+            height={screenHeight / HEIGHT_DIVISION}
             openDuration={250}>
             <View style={{
                 marginTop: 10,
