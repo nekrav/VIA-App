@@ -137,7 +137,7 @@ const TabNavigator = createBottomTabNavigator({
           tintColor={{ tintColor }}
           routeName={'Tasks'}
           getAllItems={() => {Database.getAll('tasks')}}
-          iconName={'refresh'}
+          iconName={'note'}
           elementName={'Tasks'}
           nav={navigation} ></TabButton>
       ),
