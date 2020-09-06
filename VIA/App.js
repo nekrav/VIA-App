@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './components/colorsProvider';
-import { Text, View, Button, TouchableOpacity, FlatList, CheckBox } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, CheckBox, PixelRatio} from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Database, Habits } from './db'
 import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen, HomeScreen } from './screens'
@@ -20,6 +20,8 @@ console.disableYellowBox = false;
 
 notifier.registerNotificationService();
 
+const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 75 : 55
+console.warn(PixelRatio.get())
 const TabNavigator = createBottomTabNavigator({
   Habits: {
     screen: HabitsScreen,
@@ -82,7 +84,8 @@ const TabNavigator = createBottomTabNavigator({
         activeColor: colorsProvider.whiteColor,
         inactiveTintColor: colorsProvider.inactiveTabColor,
         style: {
-         height: 55,
+         height: BOTTOM_MARGIN,
+        //  marginBottom: "4%",
         }
       },
       tabBarIcon:({ focused, tintColor }) => (

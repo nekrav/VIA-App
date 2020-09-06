@@ -85,15 +85,15 @@ export class RoutinesScreen extends React.Component {
         this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
             this.setState({ count: 0 });
-          });
+        });
 
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications() 
+        notifier.scheduleAllNotifications()
     }
     componentWillUnmount() {
         this.focusListener.remove();
         clearTimeout(this.t);
-      }
+    }
 
 
     saveNew(routine) {
@@ -109,12 +109,12 @@ export class RoutinesScreen extends React.Component {
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications() 
+            notifier.scheduleAllNotifications()
         })
     }
 
-      /* #region  Top Bar Region */
-      renderTopBar() {
+    /* #region  Top Bar Region */
+    renderTopBar() {
         return <ListTopBar
             typeOfItem={"Routines"}
             numberOfItems={this.state.numberOfItems}
@@ -134,7 +134,7 @@ export class RoutinesScreen extends React.Component {
             return <CreateRoutine
                 animationType="slide"
                 transparent={false}
-                id={(text) => { newRoutine.id = text}}
+                id={(text) => { newRoutine.id = text }}
                 name={(text) => { newRoutine.name = text }}
                 setImportanceNN={(text) => {
                     newRoutine.importance = 1;
@@ -151,7 +151,7 @@ export class RoutinesScreen extends React.Component {
                 start_time={(text) => { newRoutine.start_time = text }}
                 end_time={(text) => { newRoutine.end_time = text }}
                 notes={(text) => { newRoutine.notes = text }}
-                notification_time={(times) => { 
+                notification_time={(times) => {
                     if (times) {
                         newRoutine.notification_time = times
                     } else {
@@ -246,7 +246,10 @@ export class RoutinesScreen extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={styles.outerView}>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'column',
+                }}>
 
                     {/* Modals Region */}
                     {this.showAddModal()}
@@ -269,50 +272,50 @@ export class RoutinesScreen extends React.Component {
                     <FlatList
                         data={this.state.items}
                         renderItem={({ item }) =>
-                        <TouchableWithoutFeedback onPress={() => {}}>
-                            <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
-                                <View style={styles.checkboxAndNameContainer}>
-                                    <CheckBox
-                                        center
-                                        checkedIcon={colorsProvider.checkboxIcon}
-                                        uncheckedIcon={colorsProvider.checkboxIcon}
-                                        checkedColor={colorsProvider.finishedBackgroundColor}
-                                        uncheckedColor={colorsProvider.routinesComplimentaryColor}
-                                        containerStyle={colorsProvider.checkboxContainerStyle}
-                                        size={colorsProvider.checkboxIconSize}
-                                        onPress={() => {
-                                            item.value.completed = !this.getChecked(item)
-                                            if (item.value.completed == true) {
-                                                item.value.finished_date = new Date(Date.now())
-                                            } else {
-                                                item.value.finished_date == ""
-                                            }
-                                            controller.saveExisting(this, dbTableName, item.value)
-                                        }}
-                                        checked={this.getChecked(item)}/>
-                                    <View style={styles.listItemTextContainer}>
-                                        <Text
-                                            numberOfLines={1}
-                                            multiline={false}
+                            <TouchableWithoutFeedback onPress={() => { }}>
+                                <TouchableOpacity onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }} style={item.value.completed == 'true' ? styles.listItemContainerFinished : styles.listItemContainer}>
+                                    <View style={styles.checkboxAndNameContainer}>
+                                        <CheckBox
+                                            center
+                                            checkedIcon={colorsProvider.checkboxIcon}
+                                            uncheckedIcon={colorsProvider.checkboxIcon}
+                                            checkedColor={colorsProvider.finishedBackgroundColor}
+                                            uncheckedColor={colorsProvider.routinesComplimentaryColor}
+                                            containerStyle={colorsProvider.checkboxContainerStyle}
+                                            size={colorsProvider.checkboxIconSize}
+                                            onPress={() => {
+                                                item.value.completed = !this.getChecked(item)
+                                                if (item.value.completed == true) {
+                                                    item.value.finished_date = new Date(Date.now())
+                                                } else {
+                                                    item.value.finished_date == ""
+                                                }
+                                                controller.saveExisting(this, dbTableName, item.value)
+                                            }}
+                                            checked={this.getChecked(item)} />
+                                        <View style={styles.listItemTextContainer}>
+                                            <Text
+                                                numberOfLines={1}
+                                                multiline={false}
+                                                style={{
+                                                    color: colorsProvider.whiteColor,
+                                                    fontFamily: colorsProvider.font,
+                                                    fontSize: colorsProvider.fontSizeChildren,
+                                                }}>{item.value.name} </Text></View>
+                                    </View>
+                                    <View style={styles.listItemActionButtonsContainer}>
+                                        <TouchableOpacity
                                             style={{
                                                 color: colorsProvider.whiteColor,
                                                 fontFamily: colorsProvider.font,
                                                 fontSize: colorsProvider.fontSizeChildren,
-                                            }}>{item.value.name} </Text></View>
-                                </View>
-                                <View style={styles.listItemActionButtonsContainer}>
-                                    <TouchableOpacity
-                                        style={{
-                                            color: colorsProvider.whiteColor,
-                                            fontFamily: colorsProvider.font,
-                                            fontSize: colorsProvider.fontSizeChildren,
-                                        }}
-                                        onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
-                                        <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
-                                    </TouchableOpacity>
-                                </View>
-                            </TouchableOpacity></TouchableWithoutFeedback>} />
-                            <ActionButton
+                                            }}
+                                            onPress={() => { controller.goToItem(this, dbTableName, item.value.id) }}>
+                                            <SIcon style={styles.listItemActionButton} name="arrow-right" size={30} color={colorsProvider.whiteColor} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </TouchableOpacity></TouchableWithoutFeedback>} />
+                    <ActionButton
                         size={65}
                         hideShadow={false}
                         offsetY={10}

@@ -50,7 +50,7 @@ export class ListTopBar extends React.Component {
 
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color }}>
-                    <View style={{ marginTop: '10%', marginLeft: 10, marginRight: 10, flexDirection: 'row', backgroundColor: this.props.color, alignItems: 'center', justifyContent: 'space-between', marginBottom: "10%" }}>
+                    <View style={{ marginBottom: "10%", marginTop: '10%', marginLeft: 10, marginRight: 10, flexDirection: 'row', backgroundColor: this.props.color, alignItems: 'center', justifyContent: 'space-between',  }}>
                         <Text style={{
                             fontFamily: colorsProvider.font,
                             fontSize: colorsProvider.fontSizeMain,
