@@ -31,7 +31,7 @@ const TabNavigator = createBottomTabNavigator({
         activeColor: colorsProvider.whiteColor,
         inactiveTintColor: colorsProvider.whiteColor,
         style: {
-         height: 55,
+         height: BOTTOM_MARGIN,
         //  backgroundColor: colorsProvider.habitsMainColor
         }
       },
@@ -56,7 +56,7 @@ const TabNavigator = createBottomTabNavigator({
         activeColor: colorsProvider.whiteColor,
         inactiveTintColor: colorsProvider.whiteColor,
         style: {
-         height: 55,
+         height: BOTTOM_MARGIN,
         //  backgroundColor: colorsProvider.routinesMainColor
         }
       },
@@ -104,7 +104,7 @@ const TabNavigator = createBottomTabNavigator({
         activeColor: colorsProvider.whiteColor,
         inactiveTintColor: colorsProvider.inactiveTabColor,
         style: {
-         height: 55,
+         height: BOTTOM_MARGIN,
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
@@ -128,7 +128,7 @@ const TabNavigator = createBottomTabNavigator({
         activeColor: colorsProvider.whiteColor,
         inactiveTintColor: colorsProvider.whiteColor,
         style: {
-         height: 55,
+         height: BOTTOM_MARGIN,
         }
       },
       tabBarIcon: ({ focused, tintColor }) => (
