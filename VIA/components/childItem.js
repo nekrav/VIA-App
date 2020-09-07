@@ -12,9 +12,9 @@ import { CheckBox } from 'react-native-elements'
 
 const isAndroid = Platform.OS === "android";
 
-if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+// if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+// }
 const todayDate = new Date();
 const PlatformTouchable = isAndroid ? TouchableOpacity : TouchableOpacity;
 
