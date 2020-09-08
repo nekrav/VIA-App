@@ -81,6 +81,10 @@ export class StartEndTime extends React.Component {
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
                         mode="time"
+                        dividerHeight={ 100}
+                        androidVariant="iosClone"
+                        fadeToColor='none'
+
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
                             this.setState({ startTime: Moment(date).format(timeFormat) })
@@ -203,6 +207,9 @@ export class StartEndTime extends React.Component {
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
                         mode="time"
+                        androidVariant="iosClone"
+                        dividerHeight={ 100}
+                        fadeToColor='none'
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
                             this.props.setEndTime(date)
