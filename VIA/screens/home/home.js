@@ -513,6 +513,7 @@ export class HomeScreen extends React.Component {
                     {this.renderNotesSection()}
                     {/* {this.renderChildren()} */}
                     {this.renderRandomTasksSection()}
+                    <TouchableOpacity onPress={() => notifier.launchNotification()}><Text>NOTIFICATION PRESS</Text></TouchableOpacity>
                 </View>
             </TouchableWithoutFeedback>
         );

@@ -211,7 +211,7 @@ export class Notifier extends React.Component {
 
 
     launchNotification() {
-        this.getAllProjectTimes()
+        console.warn("aiowehf")
         PushNotification.localNotificationSchedule({
             title: "My Notification Title", // (optional)
             date: new Date(Date.now() + 5 * 1000), //in 5 seconds
