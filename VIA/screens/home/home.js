@@ -9,6 +9,8 @@ import ActionButton from 'react-native-action-button';
 import { NotesModal } from '../../modals/notesModal/notesModal'
 
 import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
+
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
@@ -85,6 +87,12 @@ const controller = new Controller;
 export class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
+
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+          );
+        
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -111,6 +119,18 @@ export class HomeScreen extends React.Component {
         this.getHomeData();
         controller.loadAll(this, Tasks.TABLE_NAME);
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
 
     getRandomTasks() {
         const itemsArr = []
@@ -513,6 +533,9 @@ export class HomeScreen extends React.Component {
                     {this.renderNotesSection()}
                     {/* {this.renderChildren()} */}
                     {this.renderRandomTasksSection()}
+
+                    <TouchableOpacity onPress={() => this.notif.launchNotification()}><Text>NOTIFICATION PRESS</Text></TouchableOpacity>
+
                 </View>
             </TouchableWithoutFeedback>
         );
