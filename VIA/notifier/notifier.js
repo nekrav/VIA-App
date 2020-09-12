@@ -164,7 +164,6 @@ export class Notifier extends React.Component {
 
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
-
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
                         title: title,

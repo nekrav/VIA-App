@@ -12,6 +12,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { TabButton } from '../VIA/components/tabButton'
 import { TabBar } from '../VIA/components/tabBar'
 import { HomeButton } from '../VIA/components/homeButton'
+import NotifService from './notifier/newNotifier';
 
 const notifier = new Notifier;
 const controller = new Controller;
@@ -158,6 +159,8 @@ const TabNavigator = createBottomTabNavigator({
   },
   
 );
+
+
 
 Database.init();
 
