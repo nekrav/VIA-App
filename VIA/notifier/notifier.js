@@ -210,7 +210,6 @@ export class Notifier extends React.Component {
 
 
     launchNotification() {
-        this.getAllProjectTimes()
         PushNotification.localNotificationSchedule({
             title: "My Notification Title", // (optional)
             date: new Date(Date.now() + 5 * 1000), //in 5 seconds
