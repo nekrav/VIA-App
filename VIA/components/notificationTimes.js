@@ -239,9 +239,11 @@ export class NotificationTimes extends React.Component {
                 }}>
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
+                        fadeToColor='none'
                         mode="time"
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
+                            
                             dateDate = date;
                             dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
                             this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
@@ -262,9 +264,9 @@ export class NotificationTimes extends React.Component {
                         onPress={() => {
                             var oldArr = this.state.dayNotificationTimes
                             var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
-                            newArr = oldArr.concat(dateTime)
+                            var newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                            var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
 
                             selectedDay.times = newArr
                             var newTimes = JSON.stringify(arrayOfAllTimes)
