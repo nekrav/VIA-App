@@ -140,8 +140,6 @@ export class NotificationTimes extends React.Component {
                     style={{}}
                     renderItem={({ item }) =>
                         this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)}
-                    renderItem={({ item }) =>
-                        this.renderSingleDay(jsonArr[item].checked, jsonArr[item].name, jsonArr[item].times)}
                 />
             </View>
         );
