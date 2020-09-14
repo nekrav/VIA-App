@@ -7,11 +7,13 @@ import {
     Modal,
     TouchableWithoutFeedback,
     Keyboard,
+    PixelRatio
 } from 'react-native'; // Version can be specified in package.json
 import { Projects } from '../../db';
 import { Controller } from '../controller';
 import { TopBar, NotificationTimes, Notes } from '../../components'
 import { Notifier } from '../../notifier/notifier'
+const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50;
 
 const empty = ""
 var date = new Date().getDate(); //Current Date
@@ -194,7 +196,7 @@ export class CreateTask extends React.Component {
             // paddingTop: 18,
             flexDirection: "row",
             justifyContent: "space-between",
-            marginBottom: 50,
+            marginBottom: TOP_MARGIN,
         }}>
             <TouchableOpacity
                 style={{
