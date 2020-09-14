@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, FlatList, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TouchableHighlight, TextInput, PixelRatio, FlatList, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native'; // Version can be specified in package.json
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment'
 import { TabView, SceneMap } from 'react-native-tab-view';
@@ -11,6 +11,7 @@ import { DateModal } from '../dateModal/dateModal'
 
 
 const styles = require('./styles');
+const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 100 : 100
 
 var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
@@ -40,10 +41,30 @@ export class NotesModal extends React.Component {
 
     getButtonContainerStyles() {
         if (this.state.notes != this.state.startingNotes) {
-            return [styles.modifiedBottomButtonContainer, { borderColor: "#045CB1", backgroundColor: colorsProvider.setButtonColor}]
+            return {
+                marginLeft: 50,
+                paddingLeft: 35,
+                paddingRight: 35,
+                paddingTop: 10,
+                paddingBottom: 10,
+                borderRadius: 20,
+                marginRight: 50,
+                borderColor: "#045CB1",
+                marginBotton: BOTTOM_MARGIN,
+                backgroundColor: colorsProvider.setButtonColor
+            }
         }
-        return [styles.modifiedBottomButtonContainer, {  backgroundColor: colorsProvider.closeButtonColor}]
-
+        return {
+            marginLeft: 50,
+            paddingLeft: 35,
+            paddingRight: 35,
+            paddingTop: 10,
+            paddingBottom: 10,
+            borderRadius: 20,
+            marginRight: 50,
+            marginBotton: 10,
+            backgroundColor: colorsProvider.closeButtonColor
+        }
     }
 
     getButtonTextStyles() {
@@ -94,12 +115,13 @@ export class NotesModal extends React.Component {
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
+                        <View style={PixelRatio.get() < 3 ? {marginBottom: 10,} : {marginBottom: 0,}}>
                         <TouchableOpacity style={this.getButtonContainerStyles()}
                             onPress={() => {
                                 this.props.closeModal()
                             }}>
                             <Text style={this.getButtonTextStyles()}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity></View>
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </Modal>
