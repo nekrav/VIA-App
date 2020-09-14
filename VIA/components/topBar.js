@@ -88,6 +88,34 @@ export class TopBar extends React.Component {
         }
     }
 
+    renderDatePickerDependingOnDevice() {
+        if (isAndroid) {
+            return <DatePicker
+                textColor={colorsProvider.whiteColor}
+                mode="date"
+                androidVariant='iosClone'
+                fadeToColor='none'
+                date={this.state.dueDate ? Date.parse(this.state.dueDate) : todayDate}
+                onDateChange={date => {
+                    console.warn(date.toString())
+                    this.setState({ dueDate: date.toString() })
+                }}
+            />
+        } else {
+            return <DatePicker
+                textColor={colorsProvider.whiteColor}
+                mode="date"
+                androidVariant='iosClone'
+                fadeToColor='none'
+                date={this.state.newNotifDate}
+                onDateChange={date => {
+                    console.warn(date.toString())
+                    this.setState({ dueDate: date.toString() })
+                }}
+            />
+        }
+    }
+
 
     renderBottomSlidingPane() {
         console.warn(Date.parse(this.state.dueDate))
@@ -128,17 +156,7 @@ export class TopBar extends React.Component {
                     justifyContent: 'center',
                     backgroundColor: colorsProvider.topBarColor,
                 }}>
-                    <DatePicker
-                        textColor={colorsProvider.whiteColor}
-                        mode="date"
-                        androidVariant='iosClone'
-                        fadeToColor='none'
-                        date={this.state.dueDate ? Date.parse(this.state.dueDate) : todayDate}
-                        onDateChange={date => {
-                            console.warn(date.toString())
-                            this.setState({ dueDate: date.toString() })
-                        }}
-                    />
+                  {this.renderDatePickerDependingOnDevice()}
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 50, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity
