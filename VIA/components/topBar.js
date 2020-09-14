@@ -40,7 +40,14 @@ export class TopBar extends React.Component {
     getDueDate(date) {
         if (this.props.hasDueDate) {
             if (this.getNumberOfDaysLeft(date) === 0) {
-                return <Text style={{ color: colorsProvider.whiteColor }}>Due Today</Text>
+                return <TouchableOpacity
+                    style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}
+                    onPress={() => {
+                        if (this.state.keyboardOpen) {
+                            Keyboard.dismiss()
+                        }
+                        this.RBSheet.open()
+                    }}><Text style={{ textDecorationLine: 'underline', color: colorsProvider.whiteColor }}>Due Today</Text></TouchableOpacity>
             }
             else if (this.getNumberOfDaysLeft(date) < 0) {
                 return (<View style={{ flexDirection: 'column', marginTop: 15, marginRight: 15, marginLeft: 10, alignItems: 'center' }}>
@@ -83,6 +90,7 @@ export class TopBar extends React.Component {
 
 
     renderBottomSlidingPane() {
+        console.warn(this.state.dueDate)
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -110,7 +118,7 @@ export class TopBar extends React.Component {
                     fontSize: colorsProvider.fontSizeSmall,
                     marginTop: 10,
                     marginBottom: 10,
-                }}>{this.state.dueDate}</Text>
+                }}></Text>
             </View>
 
             <View style={{ flexDirection: 'column', }}>
@@ -123,9 +131,11 @@ export class TopBar extends React.Component {
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
                         mode="date"
+                        androidVariant='iosClone'
                         fadeToColor='none'
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
+                            console.warn(date.toString())
                             this.setState({ dueDate: date.toString() })
                         }}
                     />
@@ -186,7 +196,11 @@ export class TopBar extends React.Component {
                             borderRadius: 10,
                         }}
                         onPress={() => {
-                            this.props.selectDueDate(this.state.dueDate)
+                            if (this.state.dueDate != "")
+                                this.props.selectDueDate(this.state.dueDate)
+                            else
+                                this.props.selectDueDate(todayDate)
+
                             this.RBSheet.close()
                         }}>
                         <Text style={{
