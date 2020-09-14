@@ -11,7 +11,7 @@ import KeyboardListener from 'react-native-keyboard-listener';
 
 const TOP_MARGIN = PixelRatio.get() < 3 ? '2%' : '10%'
 const HEIGHT_DIVISION = PixelRatio.get() < 3 ? 1.90 : 2.10
-
+const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 0 : 10
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
 const isAndroid = Platform.OS === "android"
@@ -281,38 +281,43 @@ export class TopBar extends React.Component {
                         onWillShow={() => { this.setState({ keyboardOpen: true }); }}
                         onWillHide={() => { this.setState({ keyboardOpen: false }); }}
                     />
-                    <View style={{ marginBottom: "1%", 
-                    marginTop: TOP_MARGIN, 
-                    flexDirection: 'row', 
-                    alignItems: 'center', 
-                    justifyContent: 'space-between' }}>
+                    <View style={{
+                        marginBottom: "1%",
+                        marginTop: TOP_MARGIN,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                    }}>
                         <TouchableOpacity
                             onPress={() => { this.props.closeModal() }}
                             style={{ margin: 5 }}>
                             <SIcon name={colorsProvider.backIcon} size={30} color={colorsProvider.whiteColor} />
                         </TouchableOpacity>
-                        <TouchableOpacity
+                        {/* <TouchableOpacity
                             onPress={() => { this.nameTextInput.focus(); }}
-                            style={{ width: this.props.hasDueDate ? '60%' : '80%', marginBottom: 10, }}>
-                            <TextInput
-                                ref={(input) => { this.nameTextInput = input; }}
-                                maxLength={40}
-                                numberOfLines={2}
-                                placeholder={"Name"}
-                                onSubmitEditing={Keyboard.dismiss}
-                                style={[{
-                                    color: colorsProvider.whiteColor,
-                                    fontFamily: colorsProvider.font,
-                                    fontSize: colorsProvider.fontSizeMain,
-                                }, isAndroid ? {} : {
-                                    borderBottomColor: colorsProvider.whiteColor,
-                                    borderBottomWidth: 1
-                                }]}
-                                multiline={true}
-                                value={this.props.nameOfItem}
-                                onChangeText={this.props.editName}>
-                            </TextInput>
-                        </TouchableOpacity>
+                            style={{ width: this.props.hasDueDate ? '60%' : '80%', marginBottom: 10, }}> */}
+                        <TextInput
+                            ref={(input) => { this.nameTextInput = input; }}
+                            maxLength={40}
+                            numberOfLines={2}
+                            placeholder={"Name"}
+                            onSubmitEditing={Keyboard.dismiss}
+                            style={[{
+                                width: this.props.hasDueDate ? '60%' : '80%',
+                                marginBottom: BOTTOM_MARGIN,
+                                color: colorsProvider.whiteColor,
+                                fontFamily: colorsProvider.font,
+                                fontSize: colorsProvider.fontSizeMain,
+
+                            }, isAndroid ? { marginTop: 10, } : {
+                                borderBottomColor: colorsProvider.whiteColor,
+                                borderBottomWidth: 1
+                            }]}
+                            multiline={true}
+                            value={this.props.nameOfItem}
+                            onChangeText={this.props.editName}>
+                        </TextInput>
+                        {/* </TouchableOpacity> */}
                         <View style={{ flexDirection: 'column' }}>
                             {this.getDueDate(this.props.dueDate)}
                         </View>

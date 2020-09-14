@@ -6,7 +6,7 @@ import { Database } from '../db'
 import Moment from 'moment';
 
 const todayDate = new Date();
-const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 20;
+const TOP_MARGIN = PixelRatio.get() < 3 ? -10 : 20;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
