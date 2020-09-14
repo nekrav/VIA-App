@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
-import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'; // Version can be specified in package.json
+import { Text, View, TouchableOpacity, Modal, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard, PixelRatio } from 'react-native'; // Version can be specified in package.json
 import { MultipleSelectionModal } from '../selectionModal/multipleSelectionModal'
 import { DateModal } from '../dateModal/dateModal'
 import { NotesModal } from '../notesModal/notesModal';
@@ -14,6 +14,7 @@ var uuid = require('react-native-uuid');
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
 import { Notifier } from '../../notifier/notifier'
 
+const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50;
 
 const empty = ""
 var date = new Date().getDate(); //Current Date
@@ -200,7 +201,7 @@ export class CreateProject extends React.Component {
 			// paddingTop: 18,
 			flexDirection: "row",
 			justifyContent: "space-between",
-			marginBottom: 50,
+			marginBottom: TOP_MARGIN,
 		}}>
 			<TouchableOpacity
 				style={{
