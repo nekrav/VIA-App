@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions } from "react-native";
+import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions, PixelRatio } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { ImportanceRadio } from './importanceRadio';
@@ -10,6 +10,7 @@ import DatePicker from 'react-native-date-picker'
 import KeyboardListener from 'react-native-keyboard-listener';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 
+const TOP_MARGIN = PixelRatio.get() < 3 ? '5%' : '10%';
 
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -50,7 +51,7 @@ export class ListTopBar extends React.Component {
 
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color }}>
-                    <View style={{ marginBottom: "10%", marginTop: '10%', marginLeft: 10, marginRight: 10, flexDirection: 'row', backgroundColor: this.props.color, alignItems: 'center', justifyContent: 'space-between',  }}>
+                    <View style={{ marginBottom: "10%", marginTop: TOP_MARGIN, marginLeft: 10, marginRight: 10, flexDirection: 'row', backgroundColor: this.props.color, alignItems: 'center', justifyContent: 'space-between',  }}>
                         <Text style={{
                             fontFamily: colorsProvider.font,
                             fontSize: colorsProvider.fontSizeMain,

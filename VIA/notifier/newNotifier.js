@@ -201,8 +201,10 @@ export default class NotifService {
     }
 
     scheduleProjectNotifications() {
+        console.warn("awieufh")
         this.getAllObjectNotificationTimes(Projects.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
+                console.warn(res)
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
@@ -300,6 +302,7 @@ export default class NotifService {
     }
 
     scheduleAllNotifications() {
+        console.warn('aliweghf')
         this.cancelAllNotifications();
         this.scheduleHabitsNotifications();
         this.scheduleTaskNotifications();
