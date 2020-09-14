@@ -90,7 +90,7 @@ export class TopBar extends React.Component {
 
 
     renderBottomSlidingPane() {
-        console.warn(this.state.dueDate)
+        console.warn(Date.parse(this.state.dueDate))
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -133,7 +133,7 @@ export class TopBar extends React.Component {
                         mode="date"
                         androidVariant='iosClone'
                         fadeToColor='none'
-                        date={this.state.newNotifTimeDate}
+                        date={this.state.dueDate ? Date.parse(this.state.dueDate) : todayDate}
                         onDateChange={date => {
                             console.warn(date.toString())
                             this.setState({ dueDate: date.toString() })
