@@ -94,7 +94,7 @@ export class NotesModal extends React.Component {
                 visible={this.props.visible}
                 onRequestClose={this.props.onRequestClose}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                    <SafeAreaView style={[styles.outerView, { backgroundColor: this.props.color }]}>
+                    <View style={[styles.outerView, { backgroundColor: this.props.color }]}>
                         <TouchableOpacity
                             onPress={() => {
                                 if (this.notesTextInput.isFocused) {
@@ -122,7 +122,7 @@ export class NotesModal extends React.Component {
                             }}>
                             <Text style={this.getButtonTextStyles()}>{this.state.notes != this.state.startingNotes ? "Save" : "Close"}</Text>
                         </TouchableOpacity></View>
-                    </SafeAreaView>
+                    </View>
                 </TouchableWithoutFeedback>
             </Modal>
         );

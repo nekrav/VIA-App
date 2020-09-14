@@ -555,7 +555,7 @@ export class ViewRoutine extends React.Component {
                         <View style={styles.outerView}>
                             {this.renderTopBar()}
 
-                            {this.renderStartEndTime()}
+                            {/* {this.renderStartEndTime()} */}
 
                             {this.renderCompleteAndTrashButton()}
 

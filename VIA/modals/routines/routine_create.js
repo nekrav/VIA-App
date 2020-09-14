@@ -285,7 +285,7 @@ export class CreateRoutine extends React.Component {
 					<View style={styles.outerView}>
 						{this.renderTopBar()}
 
-						{this.renderStartEndTime()}
+						{/* {this.renderStartEndTime()} */}
 
 						{this.renderNotificationTimes()}
 

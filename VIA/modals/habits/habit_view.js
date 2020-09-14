@@ -230,7 +230,7 @@ export class ViewHabit extends React.Component {
                     <View style={styles.outerView}>
                             {/* Top Bar Section */}
                             {this.renderTopBar()}
-                            {this.renderStartEndTime()}
+                            {/* {this.renderStartEndTime()} */}
 
                             {this.renderCompleteAndTrashButton()}
 
