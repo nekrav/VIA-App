@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions, PixelRatio } from "react-native";
+import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions, PixelRatio, Platform } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { ImportanceRadio } from './importanceRadio';
@@ -10,10 +10,11 @@ import DatePicker from 'react-native-date-picker'
 import KeyboardListener from 'react-native-keyboard-listener';
 
 const TOP_MARGIN = PixelRatio.get() < 3 ? '2%' : '10%'
+const HEIGHT_DIVISION = PixelRatio.get() < 3 ? 1.90 : 2.10
 
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
-
+const isAndroid = Platform.OS === "android"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 export class TopBar extends React.Component {
@@ -90,7 +91,7 @@ export class TopBar extends React.Component {
             onClose={() => {
             }}
             dragFromTopOnly={true}
-            height={screenHeight / 2.10}
+            height={screenHeight / HEIGHT_DIVISION}
             openDuration={250}>
             <View style={{
                 marginTop: 10,
@@ -245,7 +246,7 @@ export class TopBar extends React.Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color}}>
+                <View style={{ flexDirection: 'column', marginBottom: 10, backgroundColor: this.props.color }}>
                     {this.renderBottomSlidingPane()}
                     <KeyboardListener
                         onWillShow={() => { this.setState({ keyboardOpen: true }); }}
@@ -266,13 +267,14 @@ export class TopBar extends React.Component {
                                 numberOfLines={2}
                                 placeholder={"Name"}
                                 onSubmitEditing={Keyboard.dismiss}
-                                style={{
+                                style={[{
                                     color: colorsProvider.whiteColor,
                                     fontFamily: colorsProvider.font,
                                     fontSize: colorsProvider.fontSizeMain,
+                                }, isAndroid ? {} : {
                                     borderBottomColor: colorsProvider.whiteColor,
                                     borderBottomWidth: 1
-                                }}
+                                }]}
                                 multiline={true}
                                 value={this.props.nameOfItem}
                                 onChangeText={this.props.editName}>
