@@ -1,6 +1,6 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions } from "react-native";
+import { TouchableOpacity, View, Text, TextInput, Keyboard, TouchableWithoutFeedback, Dimensions, PixelRatio } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { ImportanceRadio } from './importanceRadio';
@@ -9,6 +9,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import DatePicker from 'react-native-date-picker'
 import KeyboardListener from 'react-native-keyboard-listener';
 
+const TOP_MARGIN = PixelRatio.get() < 3 ? '2%' : '10%'
 
 const todayDate = new Date();
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -121,6 +122,7 @@ export class TopBar extends React.Component {
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
                         mode="date"
+                        fadeToColor='none'
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
                             this.setState({ dueDate: date.toString() })
@@ -249,7 +251,7 @@ export class TopBar extends React.Component {
                         onWillShow={() => { this.setState({ keyboardOpen: true }); }}
                         onWillHide={() => { this.setState({ keyboardOpen: false }); }}
                     />
-                    <View style={{ marginTop: '10%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
+                    <View style={{ marginTop: TOP_MARGIN, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
                         <TouchableOpacity
                             onPress={() => { this.props.closeModal() }}
                             style={{ margin: 5 }}>
