@@ -1,11 +1,12 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput } from "react-native";
+import { Animated, TouchableOpacity, View, Image, Text, TextInput, PixelRatio } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
 
 const todayDate = new Date();
+const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 20;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -57,7 +58,7 @@ export class ImportanceRadio extends React.Component {
 
 
     renderImportance() {
-        return (<View style={{ flexDirection: 'row', marginBottom: 10, marginTop: 20, backgroundColor: this.props.color, justifyContent: 'space-around' }}>
+        return (<View style={{ flexDirection: 'row', marginBottom: 10, marginTop: TOP_MARGIN, backgroundColor: this.props.color, justifyContent: 'space-around' }}>
             <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                 <TouchableOpacity
                     onPress={() => {

@@ -97,7 +97,6 @@ export class TopBar extends React.Component {
                 fadeToColor='none'
                 date={this.state.dueDate ? Date.parse(this.state.dueDate) : todayDate}
                 onDateChange={date => {
-                    console.warn(date.toString())
                     this.setState({ dueDate: date.toString() })
                 }}
             />
@@ -109,7 +108,6 @@ export class TopBar extends React.Component {
                 fadeToColor='none'
                 date={this.state.newNotifDate}
                 onDateChange={date => {
-                    console.warn(date.toString())
                     this.setState({ dueDate: date.toString() })
                 }}
             />
@@ -118,7 +116,6 @@ export class TopBar extends React.Component {
 
 
     renderBottomSlidingPane() {
-        console.warn(Date.parse(this.state.dueDate))
         return (<RBSheet
             ref={ref => {
                 this.RBSheet = ref;
@@ -156,7 +153,7 @@ export class TopBar extends React.Component {
                     justifyContent: 'center',
                     backgroundColor: colorsProvider.topBarColor,
                 }}>
-                  {this.renderDatePickerDependingOnDevice()}
+                    {this.renderDatePickerDependingOnDevice()}
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 10, marginBottom: 50, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity
@@ -284,7 +281,11 @@ export class TopBar extends React.Component {
                         onWillShow={() => { this.setState({ keyboardOpen: true }); }}
                         onWillHide={() => { this.setState({ keyboardOpen: false }); }}
                     />
-                    <View style={{ marginTop: TOP_MARGIN, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: "1%" }}>
+                    <View style={{ marginBottom: "1%", 
+                    marginTop: TOP_MARGIN, 
+                    flexDirection: 'row', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between' }}>
                         <TouchableOpacity
                             onPress={() => { this.props.closeModal() }}
                             style={{ margin: 5 }}>
