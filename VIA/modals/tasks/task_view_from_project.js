@@ -11,9 +11,9 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 
-const notifier = new Notifier;
+
 
 const controller = new Controller;
 
@@ -68,7 +68,7 @@ export class ViewTaskFromProject extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.visible = false;
                     this.props.delete()
                 }}>
@@ -435,7 +435,7 @@ export class ViewTaskFromProject extends React.Component {
                         // this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
-                        notifier.scheduleAllNotifications();
+                        this.notif.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>

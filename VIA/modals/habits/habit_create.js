@@ -5,7 +5,7 @@ import { Database, Routines, Tasks } from '../../db'
 import { Controller } from '../controller'
 import { TopBar, NotificationTimes, Notes, StartEndTime } from '../../components'
 
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
 const todayDate = new Date();
@@ -20,7 +20,7 @@ var year = new Date().getFullYear(); //Current Year
 const timeDisplayFormat = 'hh:mm A'
 const dateToday = new Date(year, month, date);
 
-const notifier = new Notifier;
+
 
 const emptyTimes = [
     {
@@ -71,6 +71,10 @@ export class CreateHabit extends React.Component {
 
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             allPossibleParents: [],
             name: '',
@@ -100,6 +104,19 @@ export class CreateHabit extends React.Component {
         this.getFromRoutine(this.props.fromRoutine)
         controller.getParents(this, Routines.TABLE_NAME);
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     /* #region  Top Bar Region */
     renderTopBar() {
@@ -261,7 +278,7 @@ export class CreateHabit extends React.Component {
                         }
                 }
                 onPress={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
 
                     if (this.props.fromProject)

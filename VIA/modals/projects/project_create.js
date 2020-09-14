@@ -12,7 +12,7 @@ import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 var uuid = require('react-native-uuid');
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 
 const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50;
 
@@ -23,7 +23,7 @@ var year = new Date().getFullYear(); //Current Year
 const timeDisplayFormat = 'hh:mm A'
 const dateToday = new Date(year, month, date);
 
-const notifier = new Notifier;
+
 const controller = new Controller();
 const dateFormat = 'dd/mm/yy'
 const todayDate = new Date();
@@ -78,6 +78,10 @@ const emptyTimes = [
 export class CreateProject extends React.Component {
 	constructor(props) {
 		super(props);
+		this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
 		this.state = {
 			// newProject: this.props.newProject,
 			// tasksSelectionModalVisible: false,
@@ -101,6 +105,19 @@ export class CreateProject extends React.Component {
 			notes: "",
 		};
 	}
+
+	onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
 	componentDidMount() {
 		controller.loadAll(this, Tasks.TABLE_NAME);
@@ -255,7 +272,7 @@ export class CreateProject extends React.Component {
 						}
 				}
 				onPress={() => {
-					notifier.scheduleAllNotifications();
+					this.notif.scheduleAllNotifications();
 					this.props.notification_time(this.state.notificationTimes);
 					this.props.save()
 				}}>
@@ -303,7 +320,7 @@ export class CreateProject extends React.Component {
 				this.state.tasks[i].item.value.project = projectID
 				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Tasks.TABLE_NAME);
-					notifier.scheduleAllNotifications()
+					this.notif.scheduleAllNotifications()
 				})
 			}
 		}

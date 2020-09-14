@@ -10,13 +10,13 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import Slider from '@react-native-community/slider';
 import { CheckBox } from 'react-native-elements'
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
 
 
 
 const controller = new Controller();
-const notifier = new Notifier;
+
 const dateFormat = 'ddd, MMM Do, YY';
 const todayDate = new Date();
 const styles = require('./styles');
@@ -68,6 +68,10 @@ const emptyTimes = [
 export class CreateRandom extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             name: '',
             dueDate: '',
@@ -77,6 +81,19 @@ export class CreateRandom extends React.Component {
             onlyTodayChecked: false,
         };
     }
+    
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     /* #region  Top Bar Region */
     renderTopBar() {
@@ -243,7 +260,7 @@ export class CreateRandom extends React.Component {
                         }
                 }
                 onPress={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
 
 

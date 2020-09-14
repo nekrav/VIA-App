@@ -5,7 +5,7 @@ import Moment from 'moment'
 import { CheckBox } from 'react-native-elements'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { DateModal } from '../dateModal/dateModal'
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 
 const styles = require('./styles');
 
@@ -17,7 +17,7 @@ const timeFormat = "hh:mm A"
 
 const currentTime = hours + ":" + min
 
-const notifier = new Notifier;
+
 
 
 export class NotificationTimesModal extends React.Component {

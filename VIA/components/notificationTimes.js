@@ -10,11 +10,12 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Database } from '../db'
 import Moment from 'moment';
 import DatePicker from 'react-native-date-picker'
-import { Notifier } from '../notifier/notifier'
+import NotifService from '../notifier/newNotifier';
+
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const todayDate = new Date();
-const notifier = new Notifier;
+
 const timeFormat = "hh:mm A"
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -69,6 +70,10 @@ export class NotificationTimes extends React.Component {
     constructor(props) {
 
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             notificationTimes: this.props.notificationTimes,
             notifTimeModalVisibility: false,
@@ -78,6 +83,19 @@ export class NotificationTimes extends React.Component {
             newNotifTimeString: '',
         };
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     renderSingleDay(checked, name, times) {
         var shortenedName = name.substring(0, 3)
@@ -171,7 +189,7 @@ export class NotificationTimes extends React.Component {
             }}
             closeOnPressMask={true}
             onClose={() => {
-                notifier.scheduleAllNotifications();
+                this.notif.scheduleAllNotifications();
             }}
             dragFromTopOnly={true}
             height={screenHeight / 1.36}
@@ -291,7 +309,7 @@ export class NotificationTimes extends React.Component {
                         onPress={() => {
                             this.RBSheet.close()
                             this.setState({ dayNotificationTimes: '' })
-                            notifier.scheduleAllNotifications();
+                            this.notif.scheduleAllNotifications();
                         }}>
                         <Text style={{
                             marginRight: 5,

@@ -8,11 +8,11 @@ import { SelectionModal } from '../selectionModal/selectionModal';
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes, StartEndTime } from '../../components'
 
 
-const notifier = new Notifier;
+
 const controller = new Controller;
 const timeDisplayFormat = 'hh:mm A'
 const dateDisplayFormat = 'MMM Do'
@@ -29,6 +29,10 @@ export class ViewHabit extends React.Component {
 
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             selectedItem: this.props.selectedItem,
             routineSelectionModalVisible: false,
@@ -51,8 +55,21 @@ export class ViewHabit extends React.Component {
                 this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
             })
         }
-        notifier.scheduleAllNotifications()
+        this.notif.scheduleAllNotifications()
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     getStyleIfDone() {
         if (this.props.selectedItem.completed == "true") {
@@ -175,7 +192,7 @@ export class ViewHabit extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.delete()
                 }} />
         </View>)
@@ -195,7 +212,7 @@ export class ViewHabit extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                notifier.scheduleAllNotifications();            }}
+                this.notif.scheduleAllNotifications();            }}
         />
         )
     }

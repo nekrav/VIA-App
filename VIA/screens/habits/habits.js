@@ -8,11 +8,11 @@ import { CreateHabit, ViewHabit } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { ListTopBar } from '../../components'
 import ActionButton from 'react-native-action-button';
 
-const notifier = new Notifier;
+
 const emptyTimes = [
     {
         key: "1",
@@ -70,6 +70,10 @@ export class HabitsScreen extends React.Component {
 
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+          );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -91,8 +95,21 @@ export class HabitsScreen extends React.Component {
             this.setState({ count: 0 });
         });
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications()
+        this.notif.scheduleAllNotifications()
     }
+
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
 
     componentWillUnmount() {
         this.focusListener.remove();
@@ -136,7 +153,7 @@ export class HabitsScreen extends React.Component {
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 
@@ -322,7 +339,7 @@ export class HabitsScreen extends React.Component {
                                     <View style={styles.listItemActionButtonsContainer}>
                                         {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value); notifier.scheduleAllNotifications()}}>
+                                        onPress={() => { controller.delete(this, dbTableName, item.value); this.notif.scheduleAllNotifications()}}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity> */}
 

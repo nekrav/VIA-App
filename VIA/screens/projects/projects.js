@@ -7,11 +7,11 @@ import { CreateProject, ViewProject, ViewTask, ViewTaskFromProject } from '../..
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
-const notifier = new Notifier;
+
 
 const styles = require('./styles');
 
@@ -71,6 +71,10 @@ const childTableName = Tasks.TABLE_NAME
 export class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -84,12 +88,12 @@ export class ProjectsScreen extends React.Component {
     }
 
     componentDidMount() {
-        notifier.scheduleAllNotifications()
         const { navigation } = this.props;
 
         this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
             this.setState({ count: 0 });
+            this.notif.scheduleAllNotifications()
         });
 
         controller.loadAll(this, dbTableName)
@@ -99,6 +103,19 @@ export class ProjectsScreen extends React.Component {
         this.focusListener.remove();
         clearTimeout(this.t);
     }
+
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
 
     saveNew(project) {
         let newProject = {}
@@ -116,7 +133,7 @@ export class ProjectsScreen extends React.Component {
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 
@@ -388,7 +405,7 @@ export class ProjectsScreen extends React.Component {
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
                                         <TouchableOpacity
-                                             style={{
+                                            style={{
                                                 color: colorsProvider.whiteColor,
                                                 fontFamily: colorsProvider.font,
                                                 fontSize: colorsProvider.fontSizeChildren,

@@ -63,7 +63,7 @@ const emptyTimes = [
 
 const controller = new Controller;
 var uuid = require('react-native-uuid');
-const notifier = new Notifier;
+
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -267,7 +267,7 @@ export class ChildrenContainer extends React.Component {
         Database.save('tasks', newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, 'tasks')
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
 
         Database.save('tasks', newTask).then(() => {

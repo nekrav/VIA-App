@@ -11,7 +11,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
 import { TopBar, NotificationTimes, Notes, StartEndTime } from '../../components'
 
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
@@ -27,7 +27,7 @@ var year = new Date().getFullYear(); //Current Year
 const timeDisplayFormat = 'hh:mm A'
 const dateToday = new Date(year, month, date);
 
-const notifier = new Notifier;
+
 
 const emptyTimes = [
 	{
@@ -79,6 +79,10 @@ export class CreateRoutine extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
 		this.state = {
 			// newRoutine: this.props.newRoutine,
 			// habitsSelectionModalVisibility: false,
@@ -105,6 +109,19 @@ export class CreateRoutine extends React.Component {
 			notes: "",
 		};
 	}
+
+	onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
 	componentDidMount() {
 		controller.loadAll(this, Habits.TABLE_NAME);
@@ -253,7 +270,7 @@ export class CreateRoutine extends React.Component {
 						}
 				}
 				onPress={() => {
-					notifier.scheduleAllNotifications();
+					this.notif.scheduleAllNotifications();
 					this.props.notification_time(this.state.notificationTimes);
 					this.props.save()
 				}}>

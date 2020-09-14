@@ -10,7 +10,7 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 const emptyTimes = [
     {
         key: "1",
@@ -56,7 +56,7 @@ const emptyTimes = [
     },
 ]
 
-const notifier = new Notifier;
+
 
 const styles = require('./styles');
 
@@ -69,6 +69,10 @@ const dbTableName = Tasks.TABLE_NAME
 export class TasksScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -88,8 +92,20 @@ export class TasksScreen extends React.Component {
         });
 
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications()
+        this.notif.scheduleAllNotifications()
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
 
     componentWillUnmount() {
         this.focusListener.remove();
@@ -113,7 +129,7 @@ export class TasksScreen extends React.Component {
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 

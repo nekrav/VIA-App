@@ -7,19 +7,16 @@ import { HabitsScreen, ProjectsScreen, RoutinesScreen, TasksScreen, HomeScreen }
 import { CreateHabit } from './modals'
 import { Controller } from './screens/controller'
 
-import { Notifier } from './notifier/notifier'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { TabButton } from '../VIA/components/tabButton'
 import { TabBar } from '../VIA/components/tabBar'
 import { HomeButton } from '../VIA/components/homeButton'
 import NotifService from './notifier/newNotifier';
 
-const notifier = new Notifier;
+
 const controller = new Controller;
 
 console.disableYellowBox = false;
-
-notifier.registerNotificationService();
 
 const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 75 :55
 const TabNavigator = createBottomTabNavigator({
@@ -160,10 +157,10 @@ const TabNavigator = createBottomTabNavigator({
   
 );
 
-
-
 Database.init();
 
 // Database.updateTablesWithNewVariable(Habits.TABLE_NAME, 'finished_date')
 
 export default createAppContainer(TabNavigator);
+
+

@@ -263,7 +263,8 @@ export default class NotifService {
     scheduleHabitsNotifications() {
         this.getAllObjectNotificationTimes(Habits.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
+                console.warn("aowieu")
+                console.warn(res)
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
@@ -302,7 +303,6 @@ export default class NotifService {
     }
 
     scheduleAllNotifications() {
-        console.warn('aliweghf')
         this.cancelAllNotifications();
         this.scheduleHabitsNotifications();
         this.scheduleTaskNotifications();

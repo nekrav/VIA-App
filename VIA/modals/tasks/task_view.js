@@ -10,11 +10,11 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
 
 
-const notifier = new Notifier;
+
 
 const controller = new Controller;
 
@@ -36,6 +36,10 @@ export class ViewTask extends React.Component {
     _isMounted = false;
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             selectedItem: this.props.selectedItem,
             allPossibleParents: [],
@@ -46,10 +50,23 @@ export class ViewTask extends React.Component {
         };
     }
 
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
+
     componentDidMount() {
         _isMounted = true;
         controller.getParents(this, Projects.TABLE_NAME);
-        notifier.scheduleAllNotifications()
+        this.notif.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
@@ -94,7 +111,7 @@ export class ViewTask extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                notifier.scheduleAllNotifications()
+                this.notif.scheduleAllNotifications()
             }}
             hasImportance={true}
             selectDueDate={date => {
@@ -173,7 +190,7 @@ export class ViewTask extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.delete()
                 }} />
         </View>)
@@ -193,7 +210,7 @@ export class ViewTask extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                notifier.scheduleAllNotifications();
+                this.notif.scheduleAllNotifications();
             }}
         />
         )

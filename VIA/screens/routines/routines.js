@@ -7,11 +7,11 @@ import { CreateRoutine, ViewRoutine } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
-const notifier = new Notifier;
+
 const emptyTimes = [
     {
         key: "1",
@@ -69,6 +69,14 @@ const dbTableName = Routines.TABLE_NAME
 export class RoutinesScreen extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+          );
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+          );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -88,12 +96,25 @@ export class RoutinesScreen extends React.Component {
         });
 
         controller.loadAll(this, dbTableName)
-        notifier.scheduleAllNotifications()
+        this.notif.scheduleAllNotifications()
     }
     componentWillUnmount() {
         this.focusListener.remove();
         clearTimeout(this.t);
     }
+
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
 
 
     saveNew(routine) {
@@ -109,7 +130,7 @@ export class RoutinesScreen extends React.Component {
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 

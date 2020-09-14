@@ -12,7 +12,7 @@ import {
 import { Projects } from '../../db';
 import { Controller } from '../controller';
 import { TopBar, NotificationTimes, Notes } from '../../components'
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50;
 
 const empty = ""
@@ -22,7 +22,7 @@ var year = new Date().getFullYear(); //Current Year
 const timeDisplayFormat = 'hh:mm A'
 const dateToday = new Date(year, month, date);
 
-const notifier = new Notifier;
+
 const controller = new Controller();
 const dateFormat = 'dd/mm/yy'
 const todayDate = new Date();
@@ -76,6 +76,10 @@ const emptyTimes = [
 export class CreateTask extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             allPossibleParents: [],
             name: '',
@@ -92,6 +96,19 @@ export class CreateTask extends React.Component {
             newTaskFromProject: {},
         };
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     componentDidMount() {
         controller.getParents(this, Projects.TABLE_NAME);
@@ -250,7 +267,7 @@ export class CreateTask extends React.Component {
                         }
                 }
                 onPress={() => {
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
 
                     if (this.props.fromProject)

@@ -10,11 +10,11 @@ import { CheckBox } from 'react-native-elements'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Moment from 'moment';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer } from '../../components'
 
 
-const notifier = new Notifier;
+
 const controller = new Controller;
 const timeDisplayFormat = 'hh:mm A'
 const dateDisplayFormat = 'MMM Do'
@@ -28,6 +28,10 @@ export class ViewRoutine extends React.Component {
 
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             selectedItem: this.props.selectedItem,
             items: [],
@@ -44,9 +48,22 @@ export class ViewRoutine extends React.Component {
     }
 
     // componentDidMount() {
-    //     notifier.scheduleAllNotifications();
+    //     this.notif.scheduleAllNotifications();
     //     // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
     // }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     getChildren(childTableName, selectedParent, parentType) {
         const itemsArr = []
@@ -78,7 +95,7 @@ export class ViewRoutine extends React.Component {
 
 
     componentDidMount() {
-        notifier.scheduleAllNotifications();
+        this.notif.scheduleAllNotifications();
         this.getChildren(Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
     }
 
@@ -103,7 +120,7 @@ export class ViewRoutine extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                notifier.scheduleAllNotifications()
+                this.notif.scheduleAllNotifications()
             }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
@@ -181,12 +198,12 @@ export class ViewRoutine extends React.Component {
                             this.state.relatedChildren[i].value.routineName = null
                             this.state.relatedChildren[i].value.routine = null
                             Database.update('habits', this.state.relatedChildren[i].value).then(() => {
-                                notifier.scheduleAllNotifications();
+                                this.notif.scheduleAllNotifications();
                                 this.props.delete()
                             })
                         }
                     }
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.delete()
 
                 }} />
@@ -234,7 +251,7 @@ export class ViewRoutine extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                notifier.scheduleAllNotifications();
+                this.notif.scheduleAllNotifications();
             }}
         />
         )
@@ -349,7 +366,7 @@ export class ViewRoutine extends React.Component {
         Database.save(childTableName, newHabit).then(() => {
             this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 
@@ -407,7 +424,7 @@ export class ViewRoutine extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Habits.TABLE_NAME);
-                    notifier.scheduleAllNotifications()
+                    this.notif.scheduleAllNotifications()
                 })
             }
         }
@@ -475,7 +492,7 @@ export class ViewRoutine extends React.Component {
                                             onPress={() => {
                                                 controller.delete(this, childTableName, item.value)
                                                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-                                                notifier.scheduleAllNotifications();
+                                                this.notif.scheduleAllNotifications();
                                             }}>
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                         </TouchableOpacity> */}

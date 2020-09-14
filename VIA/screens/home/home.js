@@ -8,7 +8,6 @@ import { Controller } from '../controller'
 import ActionButton from 'react-native-action-button';
 import { NotesModal } from '../../modals/notesModal/notesModal'
 
-import { Notifier } from '../../notifier/notifier'
 import NotifService from '../../notifier/newNotifier';
 
 import { SelectionModal } from '../../modals/selectionModal/selectionModal';
@@ -16,7 +15,6 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer, ChildItem } from '../../components'
 
-const notifier = new Notifier;
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
 const todayDate = new Date();
@@ -114,7 +112,7 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        notifier.scheduleAllNotifications();
+        this.notif.scheduleAllNotifications();
         this.getRandomTasks();
         this.getHomeData();
         controller.loadAll(this, Tasks.TABLE_NAME);
@@ -236,7 +234,7 @@ export class HomeScreen extends React.Component {
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
                     this.saveNewRandom(newRandom);
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.setState({ addModalVisible: false })
                 }}>
             </CreateRandom>
@@ -534,7 +532,7 @@ export class HomeScreen extends React.Component {
                     {/* {this.renderChildren()} */}
                     {this.renderRandomTasksSection()}
 
-                    <TouchableOpacity style={{margin: 10}}onPress={() => this.notif.launchNotification()}><Text>NOTIFICATION PRESS</Text></TouchableOpacity>
+                    {/* <TouchableOpacity style={{margin: 10}}onPress={() => this.notif.launchNotification()}><Text>NOTIFICATION PRESS</Text></TouchableOpacity> */}
                 </View>
             </TouchableWithoutFeedback>
         );

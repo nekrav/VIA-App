@@ -13,12 +13,12 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import Slider from '@react-native-community/slider';
 import Modal from "react-native-modal";
 import Moment from 'moment';
-import { Notifier } from '../../notifier/notifier'
+import NotifService from '../../notifier/newNotifier';
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes, ChildrenContainer } from '../../components'
 
 var uuid = require('react-native-uuid');
 
-const notifier = new Notifier;
+
 
 const controller = new Controller;
 
@@ -40,6 +40,10 @@ const dateToday = new Date(year, month, date);
 export class ViewProject extends React.Component {
     constructor(props) {
         super(props);
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+        );
         this.state = {
             // selectedItem: this.props.selectedItem,
             // items: [],
@@ -69,6 +73,19 @@ export class ViewProject extends React.Component {
         _isMounted = true;
         controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project");
     }
+
+    onRegister(token) {
+        this.setState({registerToken: token.token, fcmRegistered: true});
+      }
+    
+      onNotif(notif) {
+        Alert.alert(notif.title, notif.message);
+      }
+    
+      handlePerm(perms) {
+        Alert.alert('Permissions', JSON.stringify(perms));
+      }
+
 
     getStyleIfDone() {
         if (this.props.selectedItem.completed == "true") {
@@ -101,7 +118,7 @@ export class ViewProject extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                notifier.scheduleAllNotifications()
+                this.notif.scheduleAllNotifications()
             }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
@@ -179,12 +196,12 @@ export class ViewProject extends React.Component {
                             this.state.relatedChildren[i].value.projectName = 'null'
                             this.state.relatedChildren[i].value.project = 'null'
                             Database.update('tasks', this.state.relatedChildren[i].value).then(() => {
-                                notifier.scheduleAllNotifications();
+                                this.notif.scheduleAllNotifications();
                                 this.props.delete()
                             })
                         }
                     }
-                    notifier.scheduleAllNotifications();
+                    this.notif.scheduleAllNotifications();
                     this.props.delete()
 
                 }} />
@@ -206,7 +223,7 @@ export class ViewProject extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                notifier.scheduleAllNotifications();
+                this.notif.scheduleAllNotifications();
             }}
         />
         )
@@ -237,7 +254,7 @@ export class ViewProject extends React.Component {
             this.setCreateTaskModalVisibility(false)
             controller.loadAll(this, childTableName)
             controller.loadAllChildrenAndGetRelatedChildren(this, childTableName, this.state.selectedItem.id, "project");
-            notifier.scheduleAllNotifications()
+            this.notif.scheduleAllNotifications()
         })
     }
 
@@ -394,7 +411,7 @@ export class ViewProject extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Tasks.TABLE_NAME);
-                    notifier.scheduleAllNotifications()
+                    this.notif.scheduleAllNotifications()
                 })
             }
         }
@@ -451,7 +468,7 @@ export class ViewProject extends React.Component {
                                 onPress={() => {
                                     controller.delete(this, childTableName, item.value)
                                     controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                                    notifier.scheduleAllNotifications();
+                                    this.notif.scheduleAllNotifications();
                                 }}>
                                 <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                             </TouchableOpacity>
