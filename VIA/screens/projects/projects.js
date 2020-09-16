@@ -110,11 +110,11 @@ export class ProjectsScreen extends React.Component {
       }
     
       onNotif(notif) {
-        Alert.alert(notif.title, notif.message);
+        //Alert.alert(notif.title, notif.message);
       }
     
       handlePerm(perms) {
-        Alert.alert('Permissions', JSON.stringify(perms));
+        //Alert.alert('Permissions', JSON.stringify(perms));
       }
 
     saveNew(project) {
