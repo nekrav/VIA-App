@@ -283,7 +283,6 @@ export class NotificationTimes extends React.Component {
                             var newArr = oldArr.concat(dateTime)
                             var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                             var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-
                             selectedDay.times = newArr
                             var newTimes = JSON.stringify(arrayOfAllTimes)
                             this.props.addNotificationTime(newTimes)

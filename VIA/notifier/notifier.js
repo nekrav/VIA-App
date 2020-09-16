@@ -77,7 +77,6 @@ export class Notifier extends React.Component {
                                     var currentDay = date.getDay();
 
                                     var distance = parseInt(day) - currentDay;
-
                                     // date.setDate(date.getDate() + distance);
                                     date.setDate(date.getDate());
                                     date.setHours(parseInt(hour))
@@ -210,7 +209,6 @@ export class Notifier extends React.Component {
 
 
     launchNotification() {
-        console.warn("aiowehf")
         PushNotification.localNotificationSchedule({
             title: "My Notification Title", // (optional)
             date: new Date(Date.now() + 5 * 1000), //in 5 seconds

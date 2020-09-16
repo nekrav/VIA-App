@@ -161,7 +161,7 @@ export default class NotifService {
                         let notificationTimes = [];
                         item = res.rows.item(i)
                         if (item.notification_time != '') {
-                            nt = JSON.parse(item.notification_time)
+                            var nt = JSON.parse(item.notification_time)
                             for (let j = 0; j < nt.length; j++) {
                                 dayWithTimes = nt[j]
                                 ntTimes = nt[j].times
@@ -177,12 +177,14 @@ export default class NotifService {
                                     var currentDay = date.getDay();
 
                                     var distance = parseInt(day) - currentDay;
-
-                                    // date.setDate(date.getDate() + distance);
+                                    // console.warn(distance)
+                                    date.setDate(date.getDate() + distance);
                                     date.setDate(date.getDate());
                                     date.setHours(parseInt(hour))
                                     date.setMinutes(parseInt(minute))
                                     date.setSeconds(0)
+
+                                    console.warn(date)
 
                                     notificationTimes.push(date.toString())
 
@@ -201,10 +203,8 @@ export default class NotifService {
     }
 
     scheduleProjectNotifications() {
-        console.warn("awieufh")
         this.getAllObjectNotificationTimes(Projects.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-                console.warn(res)
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
@@ -263,7 +263,6 @@ export default class NotifService {
     scheduleHabitsNotifications() {
         this.getAllObjectNotificationTimes(Habits.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-                console.warn("aowieu")
                 console.warn(res)
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
