@@ -176,15 +176,11 @@ export default class NotifService {
                                     var date = new Date();
                                     var currentDay = date.getDay();
 
-                                    var distance = parseInt(day) - currentDay;
-                                    // console.warn(distance)
+                                    var distance = parseInt(day) - currentDay;   //To get the day of the notification
                                     date.setDate(date.getDate() + distance);
-                                    date.setDate(date.getDate());
                                     date.setHours(parseInt(hour))
                                     date.setMinutes(parseInt(minute))
                                     date.setSeconds(0)
-
-                                    console.warn(date)
 
                                     notificationTimes.push(date.toString())
 
@@ -263,7 +259,6 @@ export default class NotifService {
     scheduleHabitsNotifications() {
         this.getAllObjectNotificationTimes(Habits.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-                console.warn(res)
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
