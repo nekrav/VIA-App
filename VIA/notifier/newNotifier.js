@@ -21,10 +21,6 @@ export default class NotifService {
                 PushNotification.setApplicationIconBadgeNumber(0);
             }
         });
-
-        // PushNotification.getChannels(function (channels) {
-        //     console.log(channels);
-        // });
     }
 
     createOrUpdateChannel() {
