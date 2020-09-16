@@ -14,56 +14,13 @@ import NotifService from '../notifier/newNotifier';
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
-const todayDate = new Date();
+
 
 const timeFormat = "hh:mm A"
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
+
 
 export class NotificationTimes extends React.Component {
 
@@ -79,7 +36,7 @@ export class NotificationTimes extends React.Component {
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
             dayNotificationTimes: '',
-            newNotifTimeDate: todayDate,
+            newNotifTimeDate: global.todayDate,
             newNotifTimeString: '',
         };
     }
@@ -127,8 +84,8 @@ export class NotificationTimes extends React.Component {
         if (this.state.notificationTimes != "") {
             jsonArr = JSON.parse(this.state.notificationTimes);
         } else {
-            jsonArr = emptyTimes
-            this.setState({ notificationTimes: JSON.stringify(emptyTimes) })
+            jsonArr = global.emptyTimes
+            this.setState({ notificationTimes: JSON.stringify(global.emptyTimes) })
         }
 
         if (this.state.notificationTimes != '') {

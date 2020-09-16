@@ -26,7 +26,7 @@ var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
 var year = new Date().getFullYear(); //Current Year
 const dateDisplayFormat = 'MMM Do'
-const todayDate = new Date();
+
 const dateFormat = 'ddd, MMM Do, YY'
 const dateToday = new Date(year, month, date);
 
@@ -205,7 +205,7 @@ export class ViewTaskFromProject extends React.Component {
                     </Text>
 
                     <Text style={styles.createSelectedDateText}>
-                        {Moment(new Date(this.state.selectedItem.due_date)).diff({ todayDate }, 'days') +
+                        {Moment(new Date(this.state.selectedItem.due_date)).diff(global.todayDate , 'days') +
                             ' days left'}
                     </Text>
                 </TouchableOpacity>

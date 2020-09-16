@@ -7,7 +7,7 @@ import { Database } from '../db'
 import Moment from 'moment';
 import RBSheet from "react-native-raw-bottom-sheet";
 
-const todayDate = new Date();
+
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 const screenHeight = Math.round(Dimensions.get('window').height);

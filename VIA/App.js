@@ -12,7 +12,7 @@ import { TabButton } from '../VIA/components/tabButton'
 import { TabBar } from '../VIA/components/tabBar'
 import { HomeButton } from '../VIA/components/homeButton'
 import NotifService from './notifier/newNotifier';
-
+import './components/global'
 
 const controller = new Controller;
 

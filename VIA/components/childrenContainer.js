@@ -14,52 +14,9 @@ import Moment from 'moment';
 import { CreateHabit, ViewHabit, ViewTask, CreateTask } from '../modals'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ChildItem } from '../components'
-const todayDate = new Date();
+
 const screenHeight = Math.round(Dimensions.get('window').height);
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
+
 
 const controller = new Controller;
 var uuid = require('react-native-uuid');
@@ -307,7 +264,7 @@ export class ChildrenContainer extends React.Component {
                         if (times) {
                             newHabit.notification_time = times
                         } else {
-                            newHabit.notification_time = JSON.stringify(emptyTimes)
+                            newHabit.notification_time = JSON.stringify(global.emptyTimes)
                         }
                     }}
                     routine={(text) => { newHabit.routine = text }}
@@ -359,7 +316,7 @@ export class ChildrenContainer extends React.Component {
                         if (times) {
                             newTask.notification_time = times
                         } else {
-                            newTask.notification_time = JSON.stringify(emptyTimes)
+                            newTask.notification_time = JSON.stringify(global.emptyTimes)
                         }
                     }}
                     closeModal={() => { controller.setAddModalVisible(this, false) }}
@@ -369,7 +326,7 @@ export class ChildrenContainer extends React.Component {
                             newTask.projectName = this.props.parentName
                         }
                         if (!newTask.notification_time) {
-                            newTask.notification_time = emptyTimes
+                            newTask.notification_time = global.emptyTimes
                         }
                         this.saveNewTask(newTask)
                     }}
@@ -434,7 +391,7 @@ export class ChildrenContainer extends React.Component {
                             if (times) {
                                 theHabit.notification_time = times
                             } else {
-                                theHabit.notification_time = JSON.stringify(emptyTimes)
+                                theHabit.notification_time = JSON.stringify(global.emptyTimes)
                             }
                             // this.setState({ selectedItem: theHabit })
                         }}

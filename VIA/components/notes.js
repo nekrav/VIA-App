@@ -10,7 +10,7 @@ import KeyboardListener from 'react-native-keyboard-listener';
 
 import Moment from 'moment';
 
-const todayDate = new Date();
+
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 

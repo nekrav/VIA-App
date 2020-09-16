@@ -11,50 +11,7 @@ import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
 import NotifService from '../../notifier/newNotifier';
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
+
 
 
 
@@ -181,14 +138,14 @@ export class TasksScreen extends React.Component {
                     if (times) {
                         newTask.notification_time = times
                     } else {
-                        newTask.notification_time = JSON.stringify(emptyTimes)
+                        newTask.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
                     if (!newTask.notification_time) {
-                        newTask.notification_time = emptyTimes
-                        // newTask.notification_time = emptyTimes
+                        newTask.notification_time = global.emptyTimes
+                        // newTask.notification_time = global.emptyTimes
                     }
                     this.saveNew(newTask)
                 }}

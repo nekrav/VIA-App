@@ -15,7 +15,7 @@ const isAndroid = Platform.OS === "android";
 // if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
 //     UIManager.setLayoutAnimationEnabledExperimental(true);
 // }
-const todayDate = new Date();
+
 const PlatformTouchable = isAndroid ? TouchableOpacity : TouchableOpacity;
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font

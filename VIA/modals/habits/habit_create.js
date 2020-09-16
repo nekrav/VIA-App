@@ -8,7 +8,7 @@ import { TopBar, NotificationTimes, Notes, StartEndTime } from '../../components
 import NotifService from '../../notifier/newNotifier';
 const controller = new Controller;
 const dateFormat = 'hh:mm A'
-const todayDate = new Date();
+
 const styles = require('./styles');
 var uuid = require('react-native-uuid');
 const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50;
@@ -22,50 +22,7 @@ const dateToday = new Date(year, month, date);
 
 
 
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
+
 
 export class CreateHabit extends React.Component {
 

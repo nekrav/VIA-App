@@ -12,7 +12,7 @@ import KeyboardListener from 'react-native-keyboard-listener';
 const TOP_MARGIN = PixelRatio.get() < 3 ? '2%' : '10%'
 const HEIGHT_DIVISION = PixelRatio.get() < 3 ? 1.90 : 2.10
 const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 0 : 10
-const todayDate = new Date();
+
 const screenHeight = Math.round(Dimensions.get('window').height);
 const isAndroid = Platform.OS === "android"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -95,7 +95,7 @@ export class TopBar extends React.Component {
                 mode="date"
                 androidVariant='iosClone'
                 fadeToColor='none'
-                date={this.state.dueDate ? Date.parse(this.state.dueDate) : todayDate}
+                date={this.state.dueDate ? Date.parse(this.state.dueDate) : global.todayDate}
                 onDateChange={date => {
                     this.setState({ dueDate: date.toString() })
                 }}
@@ -214,7 +214,7 @@ export class TopBar extends React.Component {
                             if (this.state.dueDate != "")
                                 this.props.selectDueDate(this.state.dueDate)
                             else
-                                this.props.selectDueDate(todayDate)
+                                this.props.selectDueDate(global.todayDate)
 
                             this.RBSheet.close()
                         }}>
@@ -236,7 +236,7 @@ export class TopBar extends React.Component {
 
     getNumberOfDaysLeft(date) {
         if (date)
-            return (Moment(new Date(date)).diff({ todayDate }, 'days'))
+            return (Moment(new Date(date)).diff(global.todayDate, 'days'))
     }
 
     renderImportance(importance) {

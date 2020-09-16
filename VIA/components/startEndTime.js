@@ -11,7 +11,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 const HEIGHT_DIVISION = PixelRatio.get() < 3 ? 1.80 : 2.10
 
 
-const todayDate = new Date();
+
 const screenHeight = Math.round(Dimensions.get('window').height);
 const timeFormat = "hh:mm A"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
@@ -23,8 +23,8 @@ export class StartEndTime extends React.Component {
         this.state = {
             startTime: this.props.startTime,
             endTime: this.props.endTime,
-            datePickerStartTime: this.props.startTime != "" ? this.props.startTime : todayDate,
-            datePickerEndTime: this.props.endTime != "" ? this.props.endTime : todayDate,
+            datePickerStartTime: this.props.startTime != "" ? this.props.startTime : global.todayDate,
+            datePickerEndTime: this.props.endTime != "" ? this.props.endTime : global.todayDate,
             differenceBetweenDates: ''
         };
     }

@@ -25,7 +25,7 @@ const controller = new Controller;
 const styles = require('./styles');
 
 const empty = ""
-const todayDate = new Date();
+
 const childTableName = Tasks.TABLE_NAME
 
 

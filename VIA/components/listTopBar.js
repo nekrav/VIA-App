@@ -12,7 +12,7 @@ import FIcon from 'react-native-vector-icons/dist/Feather';
 
 const TOP_MARGIN = PixelRatio.get() < 3 ? '5%' : '10%';
 
-const todayDate = new Date();
+
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font

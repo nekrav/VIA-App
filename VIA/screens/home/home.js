@@ -17,51 +17,8 @@ import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEnd
 
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
-const todayDate = new Date();
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
+
+
 const newHomeObject = {
     id: 'homeID1',
     main_goal_1: '',
@@ -227,7 +184,7 @@ export class HomeScreen extends React.Component {
                     if (times) {
                         newRandom.notification_time = times
                     } else {
-                        newRandom.notification_time = JSON.stringify(emptyTimes)
+                        newRandom.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}

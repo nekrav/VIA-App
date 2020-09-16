@@ -26,77 +26,19 @@ const dateToday = new Date(year, month, date);
 
 const controller = new Controller();
 const dateFormat = 'dd/mm/yy'
-const todayDate = new Date();
+
 const styles = require('./styles');
-
-const emptyTimes = [
-	{
-		key: "1",
-		name: "Monday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "2",
-		name: "Tuesday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "3",
-		name: "Wednesday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "4",
-		name: "Thursday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "5",
-		name: "Friday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "6",
-		name: "Saturday",
-		checked: false,
-		times: []
-	},
-	{
-		key: "7",
-		name: "Sunday",
-		checked: false,
-		times: []
-	},
-]
-
 
 export class CreateProject extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.notif = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
-        );
+		);
+		
 		this.state = {
-			// newProject: this.props.newProject,
-			// tasksSelectionModalVisible: false,
-			// items: [],
-			// showDate: false,
-			// itemDate: '',
-			// itemNotificationTimes: '',
-			// newProjectImportance: 0,
-			// notificationTimesModal: false,
-			// newProjectName: '',
-			// itemNotes: '',
-			// numberOfTasks: '',
-			// tasks: [],
-			// projectId: uuid.v4(),
-
 			allPossibleChildren: [],
 			name: '',
 			importance: 0,

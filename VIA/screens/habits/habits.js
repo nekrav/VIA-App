@@ -12,52 +12,6 @@ import NotifService from '../../notifier/newNotifier';
 import { ListTopBar } from '../../components'
 import ActionButton from 'react-native-action-button';
 
-
-const emptyTimes = [
-    {
-        key: "1",
-        name: "Monday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "2",
-        name: "Tuesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "3",
-        name: "Wednesday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "4",
-        name: "Thursday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "5",
-        name: "Friday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "6",
-        name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
-        checked: false,
-        times: []
-    },
-]
-
 const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
@@ -184,7 +138,7 @@ export class HabitsScreen extends React.Component {
                     if (times) {
                         newHabit.notification_time = times
                     } else {
-                        newHabit.notification_time = JSON.stringify(emptyTimes)
+                        newHabit.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
                 routine={(text, name) => { newHabit.routine = text; newHabit.routineName = name }}
@@ -251,7 +205,7 @@ export class HabitsScreen extends React.Component {
                         if (times) {
                             theHabit.notification_time = times
                         } else {
-                            theHabit.notification_time = JSON.stringify(emptyTimes)
+                            theHabit.notification_time = JSON.stringify(global.emptyTimes)
                         }
                         this.setState({ selectedItem: theHabit })
                     }}

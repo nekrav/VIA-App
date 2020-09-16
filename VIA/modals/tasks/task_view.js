@@ -27,7 +27,7 @@ var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
 var year = new Date().getFullYear(); //Current Year
 const dateDisplayFormat = 'MMM Do'
-const todayDate = new Date();
+
 const dateFormat = 'dd/mm/yy'
 const dateToday = new Date(year, month, date);
 

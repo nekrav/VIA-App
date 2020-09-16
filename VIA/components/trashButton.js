@@ -6,7 +6,7 @@ import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { Database } from '../db'
 import Moment from 'moment';
 
-const todayDate = new Date();
+
 
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
