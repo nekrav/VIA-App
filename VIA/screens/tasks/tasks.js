@@ -1,19 +1,15 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput } from 'react-native';
-import { Database, Projects, Tasks } from '../../db'
+import { Text, View, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Database, Tasks } from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
-import FIcon from 'react-native-vector-icons/dist/Feather';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
 import NotifService from '../../notifier/newNotifier';
-
-
-
 
 const styles = require('./styles');
 
@@ -73,7 +69,7 @@ export class TasksScreen extends React.Component {
         let newTask = {}
         newTask.id = uuid.v4();
         newTask.name = task.name;
-        newTask.created_date = new Date().getDate();
+        newTask.created_date = global.todayDate.toString();
         newTask.due_date = task.due_date ? task.due_date : "";
         newTask.importance = task.importance ? task.importance : 0;
         newTask.percentage_done = 0;

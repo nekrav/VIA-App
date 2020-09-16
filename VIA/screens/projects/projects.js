@@ -78,7 +78,7 @@ export class ProjectsScreen extends React.Component {
         let newProject = {}
         newProject.id = uuid.v4();
         newProject.name = project.name;
-        newProject.created_date = new Date().getDate();
+        newProject.created_date = global.todayDate.toString();
         newProject.due_date = project.due_date ? project.due_date : "";
         newProject.importance = project.importance ? project.importance : 0;
         newProject.percentage_done = 0;

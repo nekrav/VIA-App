@@ -78,7 +78,7 @@ export class RoutinesScreen extends React.Component {
         let newRoutine = {}
         newRoutine.id = uuid.v4();
         newRoutine.name = routine.name;
-        newRoutine.created_date = new Date().getDate();
+        newRoutine.created_date = global.todayDate.toString();
         newRoutine.importance = routine.importance ? routine.importance : "";
         newRoutine.start_time = routine.start_time ? routine.start_time : "";
         newRoutine.end_time = routine.end_time ? routine.end_time : "";

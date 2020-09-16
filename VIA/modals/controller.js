@@ -1,5 +1,6 @@
 import React from 'react';
 import { Database } from '../db'
+
 export class Controller extends React.Component {
 
     setAddModalVisible(object, visible) {
@@ -40,13 +41,6 @@ export class Controller extends React.Component {
                     allPossibleParents: itemsArr
                 })
             })
-    }
-
-    loadOne(object, item, tableName) {
-        Database.getOne(tableName, item).then((res) => {
-            // selectedItem = res.rows.item(0)
-            // object.setState({ selectedItem: selectedItem })
-        })
     }
 
     loadAllChildrenAndGetRelatedChildren(object, tableName, parentId, parent) {

@@ -1,37 +1,23 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
-import { Slider } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, TouchableWithoutFeedback } from "react-native";
-import SwipeableItem from 'react-native-swipeable-item'
-import { Database } from '../db'
-import Moment from 'moment';
+import { TouchableOpacity, View, Text, TouchableWithoutFeedback } from "react-native";
 import IIcon from 'react-native-vector-icons/dist/Ionicons';
-import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/FontAwesome';
 import { CheckBox } from 'react-native-elements'
+import { Controller } from '../screens/controller'
 
-const isAndroid = Platform.OS === "android";
+const controller = new Controller;
 
-// if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
-//     UIManager.setLayoutAnimationEnabledExperimental(true);
-// }
-
-const PlatformTouchable = isAndroid ? TouchableOpacity : TouchableOpacity;
-
-const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-itemRefs = new Map();
 export class ChildItem extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            importance: this.props.importance,
-            completed: this.props.completed,
             name: this.props.name,
             item: this.props.item,
+            importance: this.props.importance,
+            completed: this.props.completed,
         };
     }
-
 
     getImportanceColor(importance) {
         switch (parseInt(importance)) {
@@ -46,16 +32,6 @@ export class ChildItem extends React.Component {
             default:
                 return colorsProvider.whiteColor
         }
-    }
-
-    goToItem() {
-
-    }
-
-    getChecked(item) {
-        if (item != null)
-            var checked = false
-        return checked = item === "true"
     }
 
     render() {
@@ -73,10 +49,10 @@ export class ChildItem extends React.Component {
                             uncheckedColor={colorsProvider.routinesComplimentaryColor}
                             containerStyle={colorsProvider.checkboxContainerStyle}
                             size={colorsProvider.checkboxIconSize}
-                            checked={this.getChecked(this.props.item.completed)}
+                            checked={controller.getChecked(this.props.item.completed)}
                             onPress={() => {
                                 var newItem = this.state.item;
-                                newItem.completed = !this.getChecked(this.state.completed)
+                                newItem.completed = !controller.getChecked(this.state.completed)
                                 this.setState({ item: newItem, completed: newItem.completed })
                                 this.props.childUpdateCompleted(newItem)
                                 if (this.state.item.completed == true) {

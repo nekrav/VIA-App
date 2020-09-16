@@ -91,7 +91,7 @@ export class HabitsScreen extends React.Component {
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
-        newHabit.created_date = new Date().getDate();
+        newHabit.created_date = global.todayDate.toString();
         newHabit.start_time = habit.start_time ? habit.start_time : ''
         newHabit.end_time = habit.end_time ? habit.end_time : ''
         newHabit.importance = habit.importance ? habit.importance : ''

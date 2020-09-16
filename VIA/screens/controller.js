@@ -83,4 +83,10 @@ export class Controller extends React.Component {
             }
         }
     }
+
+    getChecked(item) {
+        if (item != null)
+            var checked = false
+        return checked = item === "true"
+    }
 }

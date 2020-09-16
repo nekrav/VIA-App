@@ -241,7 +241,7 @@ export class ViewProject extends React.Component {
         let newTask = {}
         newTask.id = uuid.v4();
         newTask.name = task.name;
-        newTask.created_date = new Date().getDate();
+        newTask.created_date = global.todayDate.toString();
         newTask.due_date = task.due_date ? task.due_date : "";
         newTask.importance = task.importance ? task.importance : 0;
         newTask.percentage_done = 0;

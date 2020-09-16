@@ -187,7 +187,7 @@ export class ChildrenContainer extends React.Component {
         let newHabit = {}
         newHabit.id = uuid.v4();
         newHabit.name = habit.name;
-        newHabit.created_date = new Date().getDate();
+        newHabit.created_date = global.todayDate.toString();
         newHabit.start_time = habit.start_time ? habit.start_time : ''
         newHabit.end_time = habit.end_time ? habit.end_time : ''
         newHabit.importance = habit.importance ? habit.importance : ''
@@ -211,7 +211,7 @@ export class ChildrenContainer extends React.Component {
         let newTask = {}
         newTask.id = uuid.v4();
         newTask.name = task.name;
-        newTask.created_date = new Date().getDate();
+        newTask.created_date = global.todayDate.toString();
         newTask.due_date = task.due_date ? task.due_date : "";
         newTask.importance = task.importance ? task.importance : 0;
         newTask.percentage_done = 0;
@@ -222,6 +222,7 @@ export class ChildrenContainer extends React.Component {
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
         Database.save('tasks', newTask).then(() => {
+            console.warn(newTask)
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, 'tasks')
             this.notif.scheduleAllNotifications()

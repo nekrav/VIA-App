@@ -138,7 +138,7 @@ export class HomeScreen extends React.Component {
         let newRandom = {}
         newRandom.id = uuid.v4();
         newRandom.name = random.name;
-        newRandom.created_date = new Date().getDate();
+        newRandom.created_date = global.todayDate.toString();
         newRandom.due_date = random.due_date ? random.due_date : '';
         newRandom.importance = random.importance ? random.importance : 0;
         newRandom.percentage_done = 0;
@@ -279,11 +279,6 @@ export class HomeScreen extends React.Component {
         }
     }
 
-    getChecked(item) {
-        if (item != null)
-            return checked = item.value.completed === "true"
-    }
-
     /* #region  Children Region */
     renderChildren() {
         return (<ChildrenContainer
@@ -300,7 +295,7 @@ export class HomeScreen extends React.Component {
                 // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
                 // this.props.save();
 
-                item.value.completed = !this.getChecked(item)
+                item.value.completed = !controller.getChecked(item)
                 controller.saveExisting(this, childDBTableName, item.value)
                 this.getRandomTasks();
             }}
