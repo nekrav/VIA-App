@@ -11,7 +11,9 @@ import { DateModal } from '../dateModal/dateModal'
 
 
 const styles = require('./styles');
-const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 100 : 100
+const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 10 : 20
+
+const TOP_MARGIN = PixelRatio.get() <= 3 ? 40 : 0
 
 var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
@@ -107,7 +109,7 @@ export class NotesModal extends React.Component {
                                 multiline={true}
                                 placeholderTextColor={colorsProvider.whiteColor}
                                 placeholder={this.props.placeholder}
-                                style={[styles.notesTextInput, { color: colorsProvider.whiteColor }]}
+                                style={[styles.notesTextInput, { marginTop: TOP_MARGIN, color: colorsProvider.whiteColor }]}
                                 value={this.state.notes}   
                                 onChangeText={value => {
                                     this.setState({ notes: value })
@@ -115,7 +117,7 @@ export class NotesModal extends React.Component {
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
-                        <View style={PixelRatio.get() <= 3 ? {marginBottom: 10,} : {marginBottom: 0,}}>
+                        <View style={{marginBottom: BOTTOM_MARGIN}}>
                         <TouchableOpacity style={this.getButtonContainerStyles()}
                             onPress={() => {
                                 this.props.closeModal()
