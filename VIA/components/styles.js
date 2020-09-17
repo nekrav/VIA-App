@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars*/
 import React from 'react';
 /* eslint-enable no-unused-vars*/
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as colorsProvider from '../components/colorsProvider';
-import {colors} from 'react-native-elements';
+import { colors } from 'react-native-elements';
 
 module.exports = StyleSheet.create({
   /* #region   Child Container */
@@ -29,9 +29,16 @@ module.exports = StyleSheet.create({
   },
   childItemText: {
     fontFamily: colorsProvider.font,
-    color: this.props.childMainColor,
     fontSize: 18,
     marginLeft: 5,
+  },
+  childItemArrowIconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  childItemArrowIcon: {
+    marginLeft: 10,
+    marginRight: 10
   },
 
   /* #endregion */
