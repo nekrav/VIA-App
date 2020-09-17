@@ -1,4 +1,4 @@
-package com.via;
+package com.fossware.myvia;
 
 import android.app.Application;
 

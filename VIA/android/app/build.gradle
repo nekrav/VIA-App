@@ -114,7 +114,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.via"
+        applicationId "com.fossware.myvia"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
