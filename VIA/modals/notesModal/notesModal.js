@@ -13,7 +13,7 @@ import { DateModal } from '../dateModal/dateModal'
 const styles = require('./styles');
 const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 10 : 20
 
-const TOP_MARGIN = PixelRatio.get() <= 3 ? 40 : 0
+const TOP_MARGIN = PixelRatio.get() < 3 ? 0 : 50
 
 var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth(); //Current Month
@@ -89,6 +89,7 @@ export class NotesModal extends React.Component {
 
 
     render() {
+        console.warn(PixelRatio.get())
         return (
             <Modal
                 animationType={this.props.animationType}

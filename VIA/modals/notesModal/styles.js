@@ -25,7 +25,6 @@ module.exports = StyleSheet.create({
     notesContainer: {
         flex: 1,
         alignItems: 'flex-start',
-
     },
     notesTextInput: {
         fontSize: 24,
