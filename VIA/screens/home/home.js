@@ -46,8 +46,8 @@ export class HomeScreen extends React.Component {
         this.notif = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
-          );
-        
+        );
+
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -76,16 +76,16 @@ export class HomeScreen extends React.Component {
     }
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
     getRandomTasks() {
         const itemsArr = []
@@ -121,8 +121,8 @@ export class HomeScreen extends React.Component {
                         this.setState({ homeObject: item })
                     }
                 }
-            // })
-        });
+                // })
+            });
     }
 
     /* #region  Top Bar Region */
@@ -457,13 +457,29 @@ export class HomeScreen extends React.Component {
     }
     /* #endregion */
 
+    scrollToBottom() {
+        this.ScrollView.scrollToEnd({animated: true})
+    }
+
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'column', 
-                }}>
+                {/* <View  style={{
+                        flex : 1,
+                        // flexGrow: 2,
+                        // flexDirection: 'column',
+                    }}> */}
+                <ScrollView
+                       ref={ref => {
+                        this.ScrollView = ref;
+                    }}
+                    // scrollEnabled={false}
+                    contentContainerStyle={{ flex: 1, flexGrow: 1 }}
+                    style={{
+                        // flex: 1,
+                        flexGrow: 2,
+                        flexDirection: 'column',
+                    }}>
 
                     {/* Modals Region */}
                     {this.renderCreateNewRandomModal()}
@@ -479,13 +495,21 @@ export class HomeScreen extends React.Component {
                     {/* 3 Main Goals Region */}
                     {/* {this.render3MainGoalSection()} */}
 
+                    <View style={{ height: '100%' }}>
+                        {this.renderNotesSection()}
+                        {/* {this.renderChildren()} */}
+                        {this.renderRandomTasksSection()}
+                        <TouchableOpacity style={{ margin: 10 }} onPress={() =>  this.ScrollView.scrollToEnd({ animated: true })}><Text>NOTIFICATION PRESS</Text></TouchableOpacity>
+                    </View>
+                    <View style={{ height: '100%' }}>
+                        {this.renderNotesSection()}
+                        {/* {this.renderChildren()} */}
+                        {this.renderRandomTasksSection()}
+                    </View>
 
-                    {this.renderNotesSection()}
-                    {/* {this.renderChildren()} */}
-                    {this.renderRandomTasksSection()}
-
-                    {/* <TouchableOpacity style={{margin: 10}}onPress={() => this.notif.launchNotification()}><Text>NOTIFICATION PRESS</Text></TouchableOpacity> */}
-                </View>
+                 
+                </ScrollView>
+                {/* </View> */}
             </TouchableWithoutFeedback>
         );
     }

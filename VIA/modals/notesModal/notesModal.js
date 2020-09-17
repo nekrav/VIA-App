@@ -50,7 +50,7 @@ export class NotesModal extends React.Component {
                 borderRadius: 20,
                 marginRight: 50,
                 borderColor: "#045CB1",
-                marginBotton: BOTTOM_MARGIN,
+                marginBottom: BOTTOM_MARGIN,
                 backgroundColor: colorsProvider.setButtonColor
             }
         }
@@ -108,14 +108,14 @@ export class NotesModal extends React.Component {
                                 placeholderTextColor={colorsProvider.whiteColor}
                                 placeholder={this.props.placeholder}
                                 style={[styles.notesTextInput, { color: colorsProvider.whiteColor }]}
-                                value={this.state.notes}
+                                value={this.state.notes}   
                                 onChangeText={value => {
                                     this.setState({ notes: value })
                                     this.props.setNotes(value)
                                 }}>
                             </TextInput>
                         </TouchableOpacity>
-                        <View style={PixelRatio.get() < 3 ? {marginBottom: 10,} : {marginBottom: 0,}}>
+                        <View style={PixelRatio.get() <= 3 ? {marginBottom: 10,} : {marginBottom: 0,}}>
                         <TouchableOpacity style={this.getButtonContainerStyles()}
                             onPress={() => {
                                 this.props.closeModal()
