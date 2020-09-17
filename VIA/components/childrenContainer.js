@@ -222,7 +222,6 @@ export class ChildrenContainer extends React.Component {
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
         Database.save('tasks', newTask).then(() => {
-            console.warn(newTask)
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, 'tasks')
             this.notif.scheduleAllNotifications()
