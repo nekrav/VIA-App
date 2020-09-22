@@ -89,7 +89,6 @@ export class NotesModal extends React.Component {
 
 
     render() {
-        console.warn(PixelRatio.get())
         return (
             <Modal
                 animationType={this.props.animationType}
