@@ -12,6 +12,8 @@
 #import <React/RCTRootView.h>
 #import <RNCPushNotificationIOS.h>
 #import <RNCPushNotificationIOS.h>
+#import <React/RCTCxxBridgeDelegate.h>
+#import <ReactCommon/RCTTurboModuleManager.h>
 
 @implementation AppDelegate
 
