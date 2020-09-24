@@ -159,6 +159,8 @@ const TabNavigator = createBottomTabNavigator({
 
 Database.init();
 
+global.notifier = new NotifService;
+
 // Database.updateTablesWithNewVariable(Habits.TABLE_NAME, 'finished_date')
 
 export default createAppContainer(TabNavigator);

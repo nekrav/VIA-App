@@ -65,7 +65,7 @@ class HomeButton extends React.Component {
                             } : {
                                 width: 75, height: 75,  tintColor: 'gray',  
                                 }]}
-                        source={activeImage} />
+                                source={require('../components/logo_colored_no_background.png')} />
                         <Image 
                         // style={{ width: 55, height: 60, [this.isCurrentRoute(this.props.routeName) ? {}}} 
                             style={[this.isCurrentRoute(this.props.routeName) ? {

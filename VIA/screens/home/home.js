@@ -30,7 +30,7 @@ const newHomeObject = {
     main_goal: '',
     main_goal_date: '',
     quote: '',
-    notes: ''
+    notes: '',
 }
 
 var uuid = require('react-native-uuid');
@@ -65,12 +65,20 @@ export class HomeScreen extends React.Component {
             mainGoalSelected: '',
             mainGoalSaveAction: '',
             selectedChild: '',
+            habits: [],
+            routines: [],
+            projects: [],
+            tasks: [],
         };
     }
 
     componentDidMount() {
         this.notif.scheduleAllNotifications();
         this.getRandomTasks();
+        this.getAllHabits();
+        this.getAllRoutines();
+        this.getAllProjects();
+        this.getAllTasks();
         this.getHomeData();
         controller.loadAll(this, Tasks.TABLE_NAME);
     }
@@ -99,6 +107,70 @@ export class HomeScreen extends React.Component {
                 }
                 this.setState({
                     randomTasks: itemsArr
+                })
+            })
+    }
+
+    getAllHabits() {
+        const itemsArr = []
+        Database.getAll(Habits.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    habits: itemsArr
+                })
+            })
+    }
+
+    getAllRoutines() {
+        const itemsArr = []
+        Database.getAll(Routines.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    routines: itemsArr
+                })
+            })
+    }
+
+    getAllProjects() {
+        const itemsArr = []
+        Database.getAll(Projects.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    projects: itemsArr
+                })
+            })
+    }
+
+    getAllTasks() {
+        const itemsArr = []
+        Database.getAll(Tasks.TABLE_NAME)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                for (let i = 0; i < len; i++) {
+                    item = res.rows.item(i)
+                    itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                }
+                this.setState({
+                    tasks: itemsArr
                 })
             })
     }
@@ -458,58 +530,66 @@ export class HomeScreen extends React.Component {
     /* #endregion */
 
     scrollToBottom() {
-        this.ScrollView.scrollToEnd({animated: true})
+        this.ScrollView.scrollToEnd({ animated: true })
     }
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                {/* <View  style={{
-                        flex : 1,
-                        // flexGrow: 2,
-                        // flexDirection: 'column',
-                    }}> */}
-                <ScrollView
-                       ref={ref => {
-                        this.ScrollView = ref;
-                    }}
-                    // scrollEnabled={false}
-                    contentContainerStyle={{ flex: 1, flexGrow: 1 }}
-                    style={{
-                        // flex: 1,
-                        flexGrow: 2,
-                        flexDirection: 'column',
-                    }}>
-
-                    {/* Modals Region */}
-                    {this.renderCreateNewRandomModal()}
-                    {this.renderViewRandomModal()}
-                    {this.renderNotesModal()}
-                    {/* {this.renderSelectTaskModal()} */}
-
-                    {/* Tab Bar Region */}
-                    {/* {this.renderTopBar()} */}
-
-                    {/* List Region */}
-
-                    {/* 3 Main Goals Region */}
-                    {/* {this.render3MainGoalSection()} */}
-
-                    <View style={{ height: '100%' }}>
-                        {this.renderNotesSection()}
-                        {/* {this.renderChildren()} */}
-                        {this.renderRandomTasksSection()}
-                        <TouchableOpacity style={{ margin: 10 }} onPress={() =>  this.ScrollView.scrollToEnd({ animated: true })}><Text>NOTIFICATION PRESS</Text></TouchableOpacity>
+                <View style={{
+                    flex: 1,
+                    // flexGrow: 2,
+                    // flexDirection: 'column',
+                }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text></Text>
+                        <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.inactiveTabColor} size={35} name="options" /></TouchableOpacity>
                     </View>
-                    <View style={{ height: '100%' }}>
-                        {this.renderNotesSection()}
-                        {/* {this.renderChildren()} */}
-                        {this.renderRandomTasksSection()}
-                    </View>
+                    <ScrollView
+                        ref={ref => {
+                            this.ScrollView = ref;
+                        }}
+                        // scrollEnabled={false}
+                        contentContainerStyle={{ flex: 1, flexGrow: 1 }}
+                        style={{
+                            // flex: 1,
+                            flexGrow: 2,
+                            flexDirection: 'column',
+                        }}>
 
-                 
-                </ScrollView>
-                {/* </View> */}
+                        {/* Modals Region */}
+                        {this.renderCreateNewRandomModal()}
+                        {this.renderViewRandomModal()}
+                        {this.renderNotesModal()}
+                        {/* {this.renderSelectTaskModal()} */}
+
+                        {/* Tab Bar Region */}
+                        {/* {this.renderTopBar()} */}
+
+                        {/* List Region */}
+
+                        {/* 3 Main Goals Region */}
+                        {/* {this.render3MainGoalSection()} */}
+
+                        <View style={{ height: '100%' }}>
+                            {this.renderNotesSection()}
+                            {/* {this.renderChildren()} */}
+                            {this.renderRandomTasksSection()}
+                            <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+                                global.notifier.launchNotification();
+                                this.ScrollView.scrollToEnd({ animated: true })
+                            }}>
+                                <Text>NOTIFICATION PRESS</Text></TouchableOpacity>
+                        </View>
+                        <View style={{ height: '100%' }}>
+                            {this.renderNotesSection()}
+                            {/* {this.renderChildren()} */}
+                            {this.renderRandomTasksSection()}
+                        </View>
+
+
+                    </ScrollView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }
