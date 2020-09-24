@@ -10,7 +10,7 @@ export class Routines {
         this.end_time = props.end_time
         this.completed = props.completed
         this.time_spent = props.time_spent
-        global.notifierication_time = props.notification_time
+        this.notification_time = props.notification_time
         this.properties = props.properties
         this.notes = props.notes
     }

@@ -40,10 +40,7 @@ const dateToday = new Date(year, month, date);
 export class ViewProject extends React.Component {
     constructor(props) {
         super(props);
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+        
         this.state = {
             // selectedItem: this.props.selectedItem,
             // items: [],

@@ -22,10 +22,7 @@ const dbTableName = Tasks.TABLE_NAME
 export class TasksScreen extends React.Component {
     constructor(props) {
         super(props);
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+        
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,

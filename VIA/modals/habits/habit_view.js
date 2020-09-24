@@ -29,10 +29,7 @@ export class ViewHabit extends React.Component {
 
     constructor(props) {
         super(props);
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+        
         this.state = {
             selectedItem: this.props.selectedItem,
             routineSelectionModalVisible: false,

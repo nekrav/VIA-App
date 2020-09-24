@@ -226,7 +226,6 @@ export class ChildrenContainer extends React.Component {
             controller.loadAll(this, 'tasks')
             global.notifier.scheduleAllNotifications()
         })
-
         Database.save('tasks', newTask).then(() => {
             this.setState({ addModalVisible: false })
             controller.loadAll(this, 'tasks')

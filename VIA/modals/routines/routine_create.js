@@ -34,10 +34,7 @@ export class CreateRoutine extends React.Component {
 
 	constructor(props) {
 		super(props);
-		global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+		
 		this.state = {
 			// newRoutine: this.props.newRoutine,
 			// habitsSelectionModalVisibility: false,

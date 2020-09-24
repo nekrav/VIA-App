@@ -43,10 +43,7 @@ export class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
 
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+        
 
         this.state = {
             addModalVisible: false,
@@ -541,9 +538,9 @@ export class HomeScreen extends React.Component {
                     // flexGrow: 2,
                     // flexDirection: 'column',
                 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: colorsProvider.randomMainColor }}>
                         <Text></Text>
-                        <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.inactiveTabColor} size={35} name="options" /></TouchableOpacity>
+                        <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.whiteColor} size={35} name="options" /></TouchableOpacity>
                     </View>
                     <ScrollView
                         ref={ref => {

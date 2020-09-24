@@ -13,7 +13,7 @@ export class Random {
         this.notes = props.notes
         this.only_today = props.only_today
         this.properties = props.properties
-        global.notifierication_time = props.notification_time
+        this.notification_time = props.notification_time
     }
 
     static get TABLE_CREATE() {

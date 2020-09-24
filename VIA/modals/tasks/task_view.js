@@ -36,10 +36,7 @@ export class ViewTask extends React.Component {
     _isMounted = false;
     constructor(props) {
         super(props);
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
+        
         this.state = {
             selectedItem: this.props.selectedItem,
             allPossibleParents: [],

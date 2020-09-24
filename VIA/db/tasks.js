@@ -12,7 +12,7 @@ export class Tasks {
         this.project = props.project
         this.projectName = props.projectName
         this.time_spent = props.time_spent
-        global.notifierication_time = props.notification_time
+        this.notification_time = props.notification_time
         this.properties = props.properties
         this.notes = props.notes
         

@@ -27,10 +27,6 @@ export class NotificationTimes extends React.Component {
     constructor(props) {
 
         super(props);
-        global.notifier = new NotifService(
-            this.onRegister.bind(this),
-            this.onNotif.bind(this),
-        );
         this.state = {
             notificationTimes: this.props.notificationTimes,
             notifTimeModalVisibility: false,
@@ -42,16 +38,16 @@ export class NotificationTimes extends React.Component {
     }
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
 
     renderSingleDay(checked, name, times) {
@@ -212,11 +208,11 @@ export class NotificationTimes extends React.Component {
                 }}>
                     <DatePicker
                         textColor={colorsProvider.whiteColor}
-                        fadeToColor='none'
+                        // fadeToColor='none'
                         mode="time"
+                        androidVariant="iosClone"
                         date={this.state.newNotifTimeDate}
                         onDateChange={date => {
-                            
                             dateDate = date;
                             dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
                             this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
