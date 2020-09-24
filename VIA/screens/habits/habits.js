@@ -24,7 +24,7 @@ export class HabitsScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
           );
@@ -49,7 +49,7 @@ export class HabitsScreen extends React.Component {
             this.setState({ count: 0 });
         });
         controller.loadAll(this, dbTableName)
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
     }
 
 
@@ -107,7 +107,7 @@ export class HabitsScreen extends React.Component {
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -293,7 +293,7 @@ export class HabitsScreen extends React.Component {
                                     <View style={styles.listItemActionButtonsContainer}>
                                         {/* <TouchableOpacity
                                         style={styles.listItemActionButton}
-                                        onPress={() => { controller.delete(this, dbTableName, item.value); this.notif.scheduleAllNotifications()}}>
+                                        onPress={() => { controller.delete(this, dbTableName, item.value); global.notifier.scheduleAllNotifications()}}>
                                         <SIcon style={styles.listItemActionButton} name="trash" size={30} color={colorsProvider.habitsComplimentaryColor} />
                                     </TouchableOpacity> */}
 

@@ -40,7 +40,7 @@ const dateToday = new Date(year, month, date);
 export class ViewProject extends React.Component {
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -118,7 +118,7 @@ export class ViewProject extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                this.notif.scheduleAllNotifications()
+                global.notifier.scheduleAllNotifications()
             }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
@@ -196,12 +196,12 @@ export class ViewProject extends React.Component {
                             this.state.relatedChildren[i].value.projectName = 'null'
                             this.state.relatedChildren[i].value.project = 'null'
                             Database.update('tasks', this.state.relatedChildren[i].value).then(() => {
-                                this.notif.scheduleAllNotifications();
+                                global.notifier.scheduleAllNotifications();
                                 this.props.delete()
                             })
                         }
                     }
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.delete()
 
                 }} />
@@ -223,7 +223,7 @@ export class ViewProject extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                this.notif.scheduleAllNotifications();
+                global.notifier.scheduleAllNotifications();
             }}
         />
         )
@@ -254,7 +254,7 @@ export class ViewProject extends React.Component {
             this.setCreateTaskModalVisibility(false)
             controller.loadAll(this, childTableName)
             controller.loadAllChildrenAndGetRelatedChildren(this, childTableName, this.state.selectedItem.id, "project");
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -411,7 +411,7 @@ export class ViewProject extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Tasks.TABLE_NAME);
-                    this.notif.scheduleAllNotifications()
+                    global.notifier.scheduleAllNotifications()
                 })
             }
         }
@@ -468,7 +468,7 @@ export class ViewProject extends React.Component {
                                 onPress={() => {
                                     controller.delete(this, childTableName, item.value)
                                     controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                                    this.notif.scheduleAllNotifications();
+                                    global.notifier.scheduleAllNotifications();
                                 }}>
                                 <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                             </TouchableOpacity>

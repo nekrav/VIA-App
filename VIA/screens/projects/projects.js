@@ -28,7 +28,7 @@ const childTableName = Tasks.TABLE_NAME
 export class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -50,7 +50,7 @@ export class ProjectsScreen extends React.Component {
         this.focusListener = navigation.addListener('didFocus', () => {
             controller.loadAll(this, dbTableName)
             this.setState({ count: 0 });
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         });
 
         controller.loadAll(this, dbTableName)
@@ -90,7 +90,7 @@ export class ProjectsScreen extends React.Component {
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 

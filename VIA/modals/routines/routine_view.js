@@ -28,7 +28,7 @@ export class ViewRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -48,7 +48,7 @@ export class ViewRoutine extends React.Component {
     }
 
     // componentDidMount() {
-    //     this.notif.scheduleAllNotifications();
+    //     global.notifier.scheduleAllNotifications();
     //     // controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
     // }
 
@@ -95,7 +95,7 @@ export class ViewRoutine extends React.Component {
 
 
     componentDidMount() {
-        this.notif.scheduleAllNotifications();
+        global.notifier.scheduleAllNotifications();
         this.getChildren(Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
     }
 
@@ -120,7 +120,7 @@ export class ViewRoutine extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                this.notif.scheduleAllNotifications()
+                global.notifier.scheduleAllNotifications()
             }}
             setImportanceNN={() => {
                 Keyboard.dismiss()
@@ -198,12 +198,12 @@ export class ViewRoutine extends React.Component {
                             this.state.relatedChildren[i].value.routineName = null
                             this.state.relatedChildren[i].value.routine = null
                             Database.update('habits', this.state.relatedChildren[i].value).then(() => {
-                                this.notif.scheduleAllNotifications();
+                                global.notifier.scheduleAllNotifications();
                                 this.props.delete()
                             })
                         }
                     }
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.delete()
 
                 }} />
@@ -251,7 +251,7 @@ export class ViewRoutine extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                this.notif.scheduleAllNotifications();
+                global.notifier.scheduleAllNotifications();
             }}
         />
         )
@@ -366,7 +366,7 @@ export class ViewRoutine extends React.Component {
         Database.save(childTableName, newHabit).then(() => {
             this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -424,7 +424,7 @@ export class ViewRoutine extends React.Component {
                 this.state.tasks[i].item.value.routine = projectID
                 Database.update(Habits.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
                     controller.loadAll(this, Habits.TABLE_NAME);
-                    this.notif.scheduleAllNotifications()
+                    global.notifier.scheduleAllNotifications()
                 })
             }
         }
@@ -492,7 +492,7 @@ export class ViewRoutine extends React.Component {
                                             onPress={() => {
                                                 controller.delete(this, childTableName, item.value)
                                                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-                                                this.notif.scheduleAllNotifications();
+                                                global.notifier.scheduleAllNotifications();
                                             }}>
                                             <SIcon style={styles.childActionButtonText} name="trash" size={30} color={colorsProvider.redColor} />
                                         </TouchableOpacity> */}

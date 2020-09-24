@@ -68,7 +68,7 @@ export class ViewTaskFromProject extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity style={styles.trashButton}
                 onPress={() => {
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.visible = false;
                     this.props.delete()
                 }}>
@@ -435,7 +435,7 @@ export class ViewTaskFromProject extends React.Component {
                         // this.setState({ itemNotificationTimes: item });
                     }}
                     closeModal={() => {
-                        this.notif.scheduleAllNotifications();
+                        global.notifier.scheduleAllNotifications();
                         this.setNotificationTimesVisibility(false);
                     }}
                 ></NotificationTimesModal>

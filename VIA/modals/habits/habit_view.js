@@ -29,7 +29,7 @@ export class ViewHabit extends React.Component {
 
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -55,7 +55,7 @@ export class ViewHabit extends React.Component {
                 this.setState({ routine: res.rows.item(0), routineName: res.rows.item(0).name })
             })
         }
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
     }
 
     onRegister(token) {
@@ -192,7 +192,7 @@ export class ViewHabit extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.delete()
                 }} />
         </View>)
@@ -212,7 +212,7 @@ export class ViewHabit extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                this.notif.scheduleAllNotifications();            }}
+                global.notifier.scheduleAllNotifications();            }}
         />
         )
     }

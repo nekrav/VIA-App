@@ -36,7 +36,7 @@ export class ViewTask extends React.Component {
     _isMounted = false;
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -66,7 +66,7 @@ export class ViewTask extends React.Component {
     componentDidMount() {
         _isMounted = true;
         controller.getParents(this, Projects.TABLE_NAME);
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
         if (this.state.selectedItem.project != empty) {
             Database.getOne(Projects.TABLE_NAME, this.state.selectedItem.project).then((res) => {
                 this.setState({ proj: res.rows.item(0), projName: res.rows.item(0).name })
@@ -111,7 +111,7 @@ export class ViewTask extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                this.notif.scheduleAllNotifications()
+                global.notifier.scheduleAllNotifications()
             }}
             hasImportance={true}
             selectDueDate={date => {
@@ -190,7 +190,7 @@ export class ViewTask extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.delete()
                 }} />
         </View>)
@@ -210,7 +210,7 @@ export class ViewTask extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                this.notif.scheduleAllNotifications();
+                global.notifier.scheduleAllNotifications();
             }}
         />
         )

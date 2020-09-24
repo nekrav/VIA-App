@@ -33,7 +33,7 @@ export class CreateProject extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.notif = new NotifService(
+		global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
 		);
@@ -214,7 +214,7 @@ export class CreateProject extends React.Component {
 						}
 				}
 				onPress={() => {
-					this.notif.scheduleAllNotifications();
+					global.notifier.scheduleAllNotifications();
 					this.props.notification_time(this.state.notificationTimes);
 					this.props.save()
 				}}>
@@ -262,7 +262,7 @@ export class CreateProject extends React.Component {
 				this.state.tasks[i].item.value.project = projectID
 				Database.update(Tasks.TABLE_NAME, this.state.tasks[i].item.value).then(() => {
 					controller.loadAll(this, Tasks.TABLE_NAME);
-					this.notif.scheduleAllNotifications()
+					global.notifier.scheduleAllNotifications()
 				})
 			}
 		}

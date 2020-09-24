@@ -22,7 +22,7 @@ const dbTableName = Tasks.TABLE_NAME
 export class TasksScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -45,7 +45,7 @@ export class TasksScreen extends React.Component {
         });
 
         controller.loadAll(this, dbTableName)
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
     }
 
     onRegister(token) {
@@ -82,7 +82,7 @@ export class TasksScreen extends React.Component {
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 

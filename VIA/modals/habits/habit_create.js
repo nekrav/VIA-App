@@ -28,7 +28,7 @@ export class CreateHabit extends React.Component {
 
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -235,7 +235,7 @@ export class CreateHabit extends React.Component {
                         }
                 }
                 onPress={() => {
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
 
                     if (this.props.fromProject)

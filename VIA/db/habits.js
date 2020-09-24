@@ -13,7 +13,7 @@ export class Habits {
         this.finished_date = props.finished_date
         this.time_to_spend = props.time_to_spend
         this.time_spent = props.time_spent
-        this.notification_time = props.notification_time
+        global.notifierication_time = props.notification_time
         this.days_to_do = props.days_to_do
         this.routine = props.routine
         this.routineName = props.routineName

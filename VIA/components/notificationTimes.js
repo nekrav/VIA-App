@@ -27,7 +27,7 @@ export class NotificationTimes extends React.Component {
     constructor(props) {
 
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -146,7 +146,7 @@ export class NotificationTimes extends React.Component {
             }}
             closeOnPressMask={true}
             onClose={() => {
-                this.notif.scheduleAllNotifications();
+                global.notifier.scheduleAllNotifications();
             }}
             dragFromTopOnly={true}
             height={screenHeight / 1.36}
@@ -265,7 +265,7 @@ export class NotificationTimes extends React.Component {
                         onPress={() => {
                             this.RBSheet.close()
                             this.setState({ dayNotificationTimes: '' })
-                            this.notif.scheduleAllNotifications();
+                            global.notifier.scheduleAllNotifications();
                         }}>
                         <Text style={{
                             marginRight: 5,

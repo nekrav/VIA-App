@@ -26,11 +26,11 @@ const dbTableName = Routines.TABLE_NAME
 export class RoutinesScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
           );
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
           );
@@ -53,7 +53,7 @@ export class RoutinesScreen extends React.Component {
         });
 
         controller.loadAll(this, dbTableName)
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
     }
     componentWillUnmount() {
         this.focusListener.remove();
@@ -87,7 +87,7 @@ export class RoutinesScreen extends React.Component {
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            this.notif.scheduleAllNotifications()
+            global.notifier.scheduleAllNotifications()
         })
     }
 

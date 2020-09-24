@@ -43,7 +43,7 @@ export class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
 
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -73,7 +73,7 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.notif.scheduleAllNotifications();
+        global.notifier.scheduleAllNotifications();
         this.getRandomTasks();
         this.getAllHabits();
         this.getAllRoutines();
@@ -263,7 +263,7 @@ export class HomeScreen extends React.Component {
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
                     this.saveNewRandom(newRandom);
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.setState({ addModalVisible: false })
                 }}>
             </CreateRandom>

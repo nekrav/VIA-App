@@ -30,7 +30,7 @@ export class ViewRandom extends React.Component {
 
     constructor(props) {
         super(props);
-        this.notif = new NotifService(
+        global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
         );
@@ -42,7 +42,7 @@ export class ViewRandom extends React.Component {
     }
 
     componentDidMount() {
-        this.notif.scheduleAllNotifications()
+        global.notifier.scheduleAllNotifications()
     }
 
     finishTask() {
@@ -86,7 +86,7 @@ export class ViewRandom extends React.Component {
             editName={item => {
                 this.props.editName(item);
                 this.props.save();
-                this.notif.scheduleAllNotifications()
+                global.notifier.scheduleAllNotifications()
             }}
             hasImportance={true}
             selectDueDate={date => {
@@ -165,7 +165,7 @@ export class ViewRandom extends React.Component {
             />
             <TrashButton
                 delete={() => {
-                    this.notif.scheduleAllNotifications();
+                    global.notifier.scheduleAllNotifications();
                     this.props.delete()
                 }} />
         </View>)
@@ -274,7 +274,7 @@ export class ViewRandom extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                this.notif.scheduleAllNotifications();
+                global.notifier.scheduleAllNotifications();
             }}
         />
         )
