@@ -546,7 +546,7 @@ export class HomeScreen extends React.Component {
                         ref={ref => {
                             this.ScrollView = ref;
                         }}
-                        // scrollEnabled={false}
+                        scrollEnabled={false}
                         contentContainerStyle={{ flex: 1, flexGrow: 1 }}
                         style={{
                             // flex: 1,

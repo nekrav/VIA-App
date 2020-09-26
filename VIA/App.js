@@ -160,6 +160,7 @@ const TabNavigator = createBottomTabNavigator({
 Database.init();
 
 global.notifier = new NotifService;
+global.notifier.scheduleAllNotifications();
 
 // Database.updateTablesWithNewVariable(Habits.TABLE_NAME, 'finished_date')
 
