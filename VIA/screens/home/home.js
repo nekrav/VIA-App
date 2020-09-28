@@ -517,18 +517,19 @@ export class HomeScreen extends React.Component {
     }
 
     renderDueProjectsSection() {
-        const fakeTasks = [{ key: 1, name: "Task 1" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
+        const fakeTasks = [{ key: 1, name: "Task 1ssrethserhesrhserhsrtjhrstsrjetawergaerheasherhehsrtjhsrtjsregsehsarejsrjrsjrsdjsrjsrtjstujsdthfynrtmf" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
         const double = this.state.projectsDueToday
         return <View style={{ flex: 1, backgroundColor: colorsProvider.whiteColor, margin: 5, borderWidth: 1, borderRadius: 5, borderColor: colorsProvider.projectsMainColor }}>
             <FlatList
                 horizontal={false}
                 scrollEnabled={true}
                 data={double}
+                horizontal={true}
                 // style={{ flex: 1 }}
-                // contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
+                contentContainerStyle={{ flex: 1, margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
-                    return <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}>
+                    return <View style={{  margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}>
                         <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
                         <FlatList
                             horizontal={false}
