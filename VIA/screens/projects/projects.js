@@ -137,7 +137,7 @@ export class ProjectsScreen extends React.Component {
                     }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newProject) }}
+                save={() => { this.saveNew(newProject); this.forceUpdate() }}
             ></CreateProject>
         }
     }

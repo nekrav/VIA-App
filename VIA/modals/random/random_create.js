@@ -61,14 +61,6 @@ export class CreateRandom extends React.Component {
             parent={null}
             parentName={null}
             allParents={null}
-            setParent={(id, name) => {
-                this.props.project(id, name);
-                this.setState({ projName: name, proj: id });
-            }}
-            removeParent={() => {
-                this.props.project(null, null)
-                this.setState({ projName: null, proj: null });
-            }}
             closeModal={this.props.closeModal}
             editName={item => {
                 this.setState({ name: item });
@@ -216,8 +208,6 @@ export class CreateRandom extends React.Component {
                 onPress={() => {
                     global.notifier.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
-
-
                     this.props.save()
                 }}>
                 <Text style={this.state.name != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>

@@ -83,6 +83,23 @@ export class HomeScreen extends React.Component {
         controller.loadAll(this, Tasks.TABLE_NAME);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (!this.state.addModalVisible) {
+            if (prevState.projectsDueToday != this.state.projectsDueToday) {
+                this.getAllProjects();
+            }
+        }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        // if (this.state.projectsDueToday)
+        // this.setState({projectsDueToday: prevState.projectsDueToday})
+        return {
+            projectsDueToday: prevState.projectsDueToday,
+            // ... other derived state properties
+        };
+    }
+
     onRegister(token) {
         this.setState({ registerToken: token.token, fcmRegistered: true });
     }
@@ -240,7 +257,7 @@ export class HomeScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 id={(text) => { newRandom.id = text }}
-                name={(text) => { newRandom.name = text }}
+                name={(text) => { console.warn(text); newRandom.name = text }}
                 due_date={(text) => { newRandom.due_date = text }}
                 setImportanceNN={(text) => {
                     newRandom.importance = 1;
@@ -266,6 +283,7 @@ export class HomeScreen extends React.Component {
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
+                    console.warn(newRandom)
                     this.saveNewRandom(newRandom);
                     global.notifier.scheduleAllNotifications();
                     this.setState({ addModalVisible: false })
@@ -499,15 +517,37 @@ export class HomeScreen extends React.Component {
     }
 
     renderDueProjectsSection() {
-        return <View style={{ flex: 0, backgroundColor: colorsProvider.projectsMainColor }}>
+        const fakeTasks = [{ key: 1, name: "Task 1" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
+
+        return <View style={{ flex: 1, backgroundColor: colorsProvider.whiteColor, margin: 5, borderWidth: 1, borderRadius: 5, borderColor: colorsProvider.projectsMainColor }}>
             <FlatList
                 horizontal={false}
                 scrollEnabled={true}
                 data={this.state.projectsDueToday}
-                // style={{ flex: 1 }}
+                style={{ flex: 1 }}
+                contentContainerStyle={{ flex: 0, margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
-                    return <View><Text>{item.name}</Text></View>
+                    return <View >
+                        <View>
+                            <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
+                            <FlatList
+                                horizontal={false}
+                                scrollEnabled={true}
+                                data={fakeTasks}
+                                style={{ backgroundColor: colorsProvider.whiteColor }}
+                                keyExtractor={item => item.id}
+                                renderItem={({ item }) => {
+                                    return <View>
+                                        <View>
+                                            <Text>{item.name}</Text>
+
+                                        </View>
+                                    </View>
+                                }}
+                            />
+                        </View>
+                    </View>
                 }}
             />
 
@@ -603,10 +643,10 @@ export class HomeScreen extends React.Component {
                         {this.renderDueProjectsSection()}
                         {/* <View style={{ height: '100%' }}> */}
 
-                            {this.renderNotesSection()}
-                            {/* {this.renderChildren()} */}
-                            {this.renderRandomTasksSection()}
-                            {/* <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+                        {this.renderNotesSection()}
+                        {/* {this.renderChildren()} */}
+                        {this.renderRandomTasksSection()}
+                        {/* <TouchableOpacity style={{ margin: 10 }} onPress={() => {
                                 global.notifier.launchNotification();
                                 this.ScrollView.scrollToEnd({ animated: true })
                             }}>
