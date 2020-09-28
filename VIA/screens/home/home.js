@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from '../../components/colorsProvider';
 import { CheckBox, colors } from 'react-native-elements'
-import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput, ScrollView } from 'react-native';
+import { Text, View, Button, TouchableOpacity, FlatList, StatusBar, TouchableWithoutFeedback, SafeAreaView, Keyboard, TextInput, ScrollView, TouchableHighlightBase } from 'react-native';
 import { Database, Routines, Habits, Projects, Tasks, Home, Random } from '../../db'
 import { CreateProject, ViewProject, CreateRandom, ViewRandom } from '../../modals'
 import { Controller } from '../controller'
@@ -518,14 +518,14 @@ export class HomeScreen extends React.Component {
 
     renderDueProjectsSection() {
         const fakeTasks = [{ key: 1, name: "Task 1" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
-
+        const double = this.state.projectsDueToday 
         return <View style={{ flex: 1, backgroundColor: colorsProvider.whiteColor, margin: 5, borderWidth: 1, borderRadius: 5, borderColor: colorsProvider.projectsMainColor }}>
             <FlatList
                 horizontal={false}
                 scrollEnabled={true}
-                data={this.state.projectsDueToday}
-                style={{ flex: 1 }}
-                contentContainerStyle={{ flex: 0, margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
+                data={double}
+                // style={{ flex: 1 }}
+                contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
                     return <View >
@@ -604,9 +604,9 @@ export class HomeScreen extends React.Component {
     }
 
     render() {
-        return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={{
+        // return (
+            // <View onPress={Keyboard.dismiss} accessible={false}>
+              return (  <View style={{
                     flex: 1,
                     // flexGrow: 2,
                     // flexDirection: 'column',
@@ -662,7 +662,7 @@ export class HomeScreen extends React.Component {
 
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            // </View>
         );
     }
 }
