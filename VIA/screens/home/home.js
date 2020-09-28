@@ -518,35 +518,32 @@ export class HomeScreen extends React.Component {
 
     renderDueProjectsSection() {
         const fakeTasks = [{ key: 1, name: "Task 1" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
-        const double = this.state.projectsDueToday 
+        const double = this.state.projectsDueToday
         return <View style={{ flex: 1, backgroundColor: colorsProvider.whiteColor, margin: 5, borderWidth: 1, borderRadius: 5, borderColor: colorsProvider.projectsMainColor }}>
             <FlatList
                 horizontal={false}
                 scrollEnabled={true}
                 data={double}
                 // style={{ flex: 1 }}
-                contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
+                // contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
-                    return <View >
-                        <View>
-                            <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
-                            <FlatList
-                                horizontal={false}
-                                scrollEnabled={true}
-                                data={fakeTasks}
-                                style={{ backgroundColor: colorsProvider.whiteColor }}
-                                keyExtractor={item => item.id}
-                                renderItem={({ item }) => {
-                                    return <View>
-                                        <View>
-                                            <Text>{item.name}</Text>
-
-                                        </View>
+                    return <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}>
+                        <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
+                        <FlatList
+                            horizontal={false}
+                            scrollEnabled={true}
+                            data={fakeTasks}
+                            style={{ backgroundColor: colorsProvider.whiteColor }}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) => {
+                                return <View>
+                                    <View>
+                                        <Text>{item.name}</Text>
                                     </View>
-                                }}
-                            />
-                        </View>
+                                </View>
+                            }}
+                        />
                     </View>
                 }}
             />
@@ -605,63 +602,63 @@ export class HomeScreen extends React.Component {
 
     render() {
         // return (
-            // <View onPress={Keyboard.dismiss} accessible={false}>
-              return (  <View style={{
+        // <View onPress={Keyboard.dismiss} accessible={false}>
+        return (<View style={{
+            flex: 1,
+            // flexGrow: 2,
+            // flexDirection: 'column',
+        }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: colorsProvider.randomMainColor }}>
+                <View style={{ flex: 1, marginRight: 5 }}></View>
+                <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.whiteColor} size={35} name="options" /></TouchableOpacity>
+            </View>
+            <View
+                ref={ref => {
+                    this.ScrollView = ref;
+                }}
+                scrollEnabled={false}
+                // contentContainerStyle={{ flex: 1, flexGrow: 1 }}
+                style={{
                     flex: 1,
                     // flexGrow: 2,
-                    // flexDirection: 'column',
+                    flexDirection: 'column',
                 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: colorsProvider.randomMainColor }}>
-                        <View style={{ flex: 1, marginRight: 5 }}></View>
-                        <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.whiteColor} size={35} name="options" /></TouchableOpacity>
-                    </View>
-                    <View
-                        ref={ref => {
-                            this.ScrollView = ref;
-                        }}
-                        scrollEnabled={false}
-                        // contentContainerStyle={{ flex: 1, flexGrow: 1 }}
-                        style={{
-                            flex: 1,
-                            // flexGrow: 2,
-                            flexDirection: 'column',
-                        }}>
 
-                        {/* Modals Region */}
-                        {this.renderCreateNewRandomModal()}
-                        {this.renderViewRandomModal()}
-                        {this.renderNotesModal()}
-                        {/* {this.renderSelectTaskModal()} */}
+                {/* Modals Region */}
+                {this.renderCreateNewRandomModal()}
+                {this.renderViewRandomModal()}
+                {this.renderNotesModal()}
+                {/* {this.renderSelectTaskModal()} */}
 
-                        {/* Tab Bar Region */}
-                        {/* {this.renderTopBar()} */}
+                {/* Tab Bar Region */}
+                {/* {this.renderTopBar()} */}
 
-                        {/* List Region */}
+                {/* List Region */}
 
-                        {/* 3 Main Goals Region */}
-                        {/* {this.render3MainGoalSection()} */}
-                        {this.renderDueProjectsSection()}
-                        {/* <View style={{ height: '100%' }}> */}
+                {/* 3 Main Goals Region */}
+                {/* {this.render3MainGoalSection()} */}
+                {this.renderDueProjectsSection()}
+                {/* <View style={{ height: '100%' }}> */}
 
-                        {this.renderNotesSection()}
-                        {/* {this.renderChildren()} */}
-                        {this.renderRandomTasksSection()}
-                        {/* <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+                {this.renderNotesSection()}
+                {/* {this.renderChildren()} */}
+                {this.renderRandomTasksSection()}
+                {/* <TouchableOpacity style={{ margin: 10 }} onPress={() => {
                                 global.notifier.launchNotification();
                                 this.ScrollView.scrollToEnd({ animated: true })
                             }}>
                                 <Text>NOTIFICATION PRESS</Text>
                             </TouchableOpacity> */}
-                        {/* </View> */}
-                        {/* <View style={{ height: '100%' }}>
+                {/* </View> */}
+                {/* <View style={{ height: '100%' }}>
                             {this.renderNotesSection()}
                             {this.renderChildren()}
                             {this.renderRandomTasksSection()}
                         </View> */}
 
 
-                    </View>
-                </View>
+            </View>
+        </View>
             // </View>
         );
     }
