@@ -14,6 +14,7 @@ import { SelectionModal } from '../../modals/selectionModal/selectionModal';
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/Feather';
 import { TopBar, NotificationTimes, Notes, CompleteButton, TrashButton, StartEndTime, ChildrenContainer, ChildItem } from '../../components'
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 var uuid = require('react-native-uuid');
 const styles = require('./styles');
@@ -43,7 +44,7 @@ export class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
 
-        
+
 
         this.state = {
             addModalVisible: false,
@@ -66,6 +67,8 @@ export class HomeScreen extends React.Component {
             routines: [],
             projects: [],
             tasks: [],
+            projectsDueToday: [],
+            tasksDueToday: [],
         };
     }
 
@@ -142,6 +145,7 @@ export class HomeScreen extends React.Component {
 
     getAllProjects() {
         const itemsArr = []
+        const dueToday = []
         Database.getAll(Projects.TABLE_NAME)
             .then((res) => {
                 const len = res.rows.length;
@@ -149,9 +153,12 @@ export class HomeScreen extends React.Component {
                 for (let i = 0; i < len; i++) {
                     item = res.rows.item(i)
                     itemsArr.push({ key: JSON.stringify(item.id), value: item })
+                    if (this.isDueToday(item.due_date))
+                        dueToday.push(item)
                 }
                 this.setState({
-                    projects: itemsArr
+                    projects: itemsArr,
+                    projectsDueToday: dueToday
                 })
             })
     }
@@ -481,6 +488,32 @@ export class HomeScreen extends React.Component {
         return null;
     }
 
+    isDueToday(date) {
+        if (date != null) {
+            var dueDate = new Date(date)
+            if (dueDate.getDate() == global.todayDate.getDate())
+                return true
+        }
+
+        return false
+    }
+
+    renderDueProjectsSection() {
+        return <View style={{ flex: 0, backgroundColor: colorsProvider.projectsMainColor }}>
+            <FlatList
+                horizontal={false}
+                scrollEnabled={true}
+                data={this.state.projectsDueToday}
+                // style={{ flex: 1 }}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => {
+                    return <View><Text>{item.name}</Text></View>
+                }}
+            />
+
+        </View>
+    }
+
     renderNotesSection() {
         if (this.state.homeObject.notes != '') {
             return (
@@ -539,18 +572,18 @@ export class HomeScreen extends React.Component {
                     // flexDirection: 'column',
                 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: colorsProvider.randomMainColor }}>
-                        <Text></Text>
+                        <View style={{ flex: 1, marginRight: 5 }}></View>
                         <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.whiteColor} size={35} name="options" /></TouchableOpacity>
                     </View>
-                    <ScrollView
+                    <View
                         ref={ref => {
                             this.ScrollView = ref;
                         }}
                         scrollEnabled={false}
-                        contentContainerStyle={{ flex: 1, flexGrow: 1 }}
+                        // contentContainerStyle={{ flex: 1, flexGrow: 1 }}
                         style={{
-                            // flex: 1,
-                            flexGrow: 2,
+                            flex: 1,
+                            // flexGrow: 2,
                             flexDirection: 'column',
                         }}>
 
@@ -567,25 +600,27 @@ export class HomeScreen extends React.Component {
 
                         {/* 3 Main Goals Region */}
                         {/* {this.render3MainGoalSection()} */}
+                        {this.renderDueProjectsSection()}
+                        {/* <View style={{ height: '100%' }}> */}
 
-                        <View style={{ height: '100%' }}>
                             {this.renderNotesSection()}
                             {/* {this.renderChildren()} */}
                             {this.renderRandomTasksSection()}
-                            <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+                            {/* <TouchableOpacity style={{ margin: 10 }} onPress={() => {
                                 global.notifier.launchNotification();
                                 this.ScrollView.scrollToEnd({ animated: true })
                             }}>
-                                <Text>NOTIFICATION PRESS</Text></TouchableOpacity>
-                        </View>
-                        <View style={{ height: '100%' }}>
+                                <Text>NOTIFICATION PRESS</Text>
+                            </TouchableOpacity> */}
+                        {/* </View> */}
+                        {/* <View style={{ height: '100%' }}>
                             {this.renderNotesSection()}
-                            {/* {this.renderChildren()} */}
+                            {this.renderChildren()}
                             {this.renderRandomTasksSection()}
-                        </View>
+                        </View> */}
 
 
-                    </ScrollView>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );
