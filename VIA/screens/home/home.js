@@ -257,7 +257,7 @@ export class HomeScreen extends React.Component {
                 animationType="slide"
                 transparent={false}
                 id={(text) => { newRandom.id = text }}
-                name={(text) => { console.warn(text); newRandom.name = text }}
+                name={(text) => { newRandom.name = text }}
                 due_date={(text) => { newRandom.due_date = text }}
                 setImportanceNN={(text) => {
                     newRandom.importance = 1;
@@ -283,7 +283,6 @@ export class HomeScreen extends React.Component {
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
-                    console.warn(newRandom)
                     this.saveNewRandom(newRandom);
                     global.notifier.scheduleAllNotifications();
                     this.setState({ addModalVisible: false })
@@ -517,35 +516,38 @@ export class HomeScreen extends React.Component {
     }
 
     renderDueProjectsSection() {
-        const fakeTasks = [{ key: 1, name: "Task 1ssrethserhesrhserhsrtjhrstsrjetawergaerheasherhehsrtjhsrtjsregsehsarejsrjrsjrsdjsrjsrtjstujsdthfynrtmf" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }];
+        const fakeTasks = [{ key: 1, name: "Task 1" }, { key: 2, name: "Task 2" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }, { key: 3, name: "Task 3" }];
         const double = this.state.projectsDueToday
+
         return <View style={{ flex: 1, backgroundColor: colorsProvider.whiteColor, margin: 5, borderWidth: 1, borderRadius: 5, borderColor: colorsProvider.projectsMainColor }}>
+            <Text>Projects due today: </Text>
             <FlatList
                 horizontal={false}
                 scrollEnabled={true}
                 data={double}
                 horizontal={true}
-                // style={{ flex: 1 }}
-                contentContainerStyle={{ flex: 1, margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}
+                // style={{ marginBottom: 1 }}
+                // contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsMainColor, borderWidth: 0, }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
-                    return <View style={{  margin: 5, borderRadius: 5, borderColor: colorsProvider.projectsMainColor, borderWidth: 2 }}>
+                    return (
+                    <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsComplimentaryColor, borderWidth: 2 }}>
                         <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
-                        <FlatList
+                        {/* <FlatList
                             horizontal={false}
                             scrollEnabled={true}
                             data={fakeTasks}
-                            style={{ backgroundColor: colorsProvider.whiteColor }}
+                            style={{}}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
-                                return <View>
-                                    <View>
-                                        <Text>{item.name}</Text>
+                                return <View style={{}}>
+                                    <View style={{}}>
+                                        <Text style={{}}>{item.name}</Text>
                                     </View>
                                 </View>
                             }}
-                        />
-                    </View>
+                        /> */}
+                    </View>)
                 }}
             />
 
