@@ -200,14 +200,16 @@ export default class NotifService {
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    PushNotification.localNotificationSchedule({
-                        title: title,
-                        date: new Date(res[i].notificationTimes[j]),
-                        message: message,
-                        playSound: true,
-                        soundName: 'default',
-                        repeatType: 'week',
-                    });
+                    if (!res[i].item.completed) {
+                        PushNotification.localNotificationSchedule({
+                            title: title,
+                            date: new Date(res[i].notificationTimes[j]),
+                            message: message,
+                            playSound: true,
+                            soundName: 'default',
+                            repeatType: 'week',
+                        });
+                    }
                 }
             }
         })
@@ -219,14 +221,16 @@ export default class NotifService {
                 let title = "Time to start your task: " + res[i].item.name
                 let message = "This task is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    PushNotification.localNotificationSchedule({
-                        title: title,
-                        date: new Date(res[i].notificationTimes[j]),
-                        message: message,
-                        playSound: true,
-                        soundName: 'default',
-                        repeatType: 'week',
-                    });
+                    if (res[i].item.completed == "false") {
+                        PushNotification.localNotificationSchedule({
+                            title: title,
+                            date: new Date(res[i].notificationTimes[j]),
+                            message: message,
+                            playSound: true,
+                            soundName: 'default',
+                            repeatType: 'week',
+                        });
+                    }
                 }
             }
         })
@@ -235,7 +239,6 @@ export default class NotifService {
     scheduleRoutineNotifications() {
         this.getAllObjectNotificationTimes(Routines.TABLE_NAME).then((res) => {
             for (let i = 0; i < res.length; i++) {
-
                 let title = "Time to start your routine: " + res[i].item.name
                 let message = "You can do it!"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
@@ -299,6 +302,46 @@ export default class NotifService {
         this.scheduleRoutineNotifications();
         this.scheduleProjectNotifications();
         this.scheduleRandomNotifications();
+    }
+
+    scheduleSpecificDateNotification(notificationTime, item, tableName) {
+        this.getAllObjectNotificationTimes(tableName).then((res) => {
+            for (let i = 0; i < res.length; i++) {
+
+                let title = ""
+                let message = ""
+
+                switch (name) {
+                    case 'habit':
+                        title = "Time to start your habit: " + res[i].item.name
+                        break;
+                    case 'routine':
+                        title = "Time to start your routine: " + res[i].item.name
+                        break;
+                    case 'project':
+                        title = "Time to start your habit: " + res[i].item.name
+                        break;
+                    case 'task':
+                        title = "Time to start your routine: " + res[i].item.name
+                        break;
+                    default:
+                        title = "Time to start your popup task: " + res[i].item.name
+                }
+
+                message = "Things pop up!"
+
+                for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    PushNotification.localNotificationSchedule({
+                        title: title,
+                        date: new Date(res[i].notificationTimes[j]),
+                        message: message,
+                        playSound: true,
+                        soundName: 'default',
+                        repeatType: 'week',
+                    });
+                }
+            }
+        })
     }
 
     launchNotification() {

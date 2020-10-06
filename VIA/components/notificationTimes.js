@@ -25,7 +25,6 @@ const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.f
 export class NotificationTimes extends React.Component {
 
     constructor(props) {
-
         super(props);
         this.state = {
             notificationTimes: this.props.notificationTimes,
@@ -95,11 +94,17 @@ export class NotificationTimes extends React.Component {
         }
         return (
             <View style={{ flexDirection: 'column' }}>
-                <View style={{ flexDirection: 'row', marginRight: 10, marginLeft: 10, marginTop: 10 }}>
+                <View style={{ flexDirection: 'row', marginRight: 10, marginLeft: 10, marginTop: 10, justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row',}}>
                     <SIcon name="bell" size={20} color={this.props.color} />
                     <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: this.props.color }}>
                         Notification Times
                 </Text>
+                </View>
+                    <TouchableOpacity>
+                        <SIcon name="plus" size={20} color={this.props.color} />
+                    </TouchableOpacity>
+
 
                 </View>
                 <FlatList

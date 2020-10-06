@@ -88,7 +88,6 @@ class HomeButton extends React.Component {
                         justifyContent: 'center',
 
                     }]}>{this.props.elementName}</Text> */}
-
             </View>
         );
         // return (

@@ -527,26 +527,26 @@ export class HomeScreen extends React.Component {
                 data={double}
                 horizontal={true}
                 // style={{ marginBottom: 1 }}
-                // contentContainerStyle={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsMainColor, borderWidth: 0, }}
+                // contentContainerStyle={{flex: 0, margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsMainColor, borderWidth: 0, }}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
                     return (
                     <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsComplimentaryColor, borderWidth: 2 }}>
                         <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
-                        {/* <FlatList
+                        <FlatList
                             horizontal={false}
                             scrollEnabled={true}
                             data={fakeTasks}
                             style={{}}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
-                                return <View style={{}}>
+                                return <View style={{flex: 0, flexGrow: 1, }}>
                                     <View style={{}}>
                                         <Text style={{}}>{item.name}</Text>
                                     </View>
                                 </View>
                             }}
-                        /> */}
+                        />
                     </View>)
                 }}
             />

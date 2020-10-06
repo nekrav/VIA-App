@@ -77,6 +77,7 @@ export class CompleteButton extends React.Component {
                     onPress={() => {
                         this.setState({ completed: "true", finishedDate: new Date(Date.now()).toString(), percentageDone: 10 })
                         this.props.onCompletePressed()
+                        global.notifier.scheduleAllNotifications()
                     }}>
                     <Text style={{
                         marginLeft: 10,
