@@ -33,6 +33,7 @@ export class NotificationTimes extends React.Component {
             dayNotificationTimes: '',
             newNotifTimeDate: global.todayDate,
             newNotifTimeString: '',
+            isSpecificDate: false
         };
     }
 
@@ -95,14 +96,22 @@ export class NotificationTimes extends React.Component {
         return (
             <View style={{ flexDirection: 'column' }}>
                 <View style={{ flexDirection: 'row', marginRight: 10, marginLeft: 10, marginTop: 10, justifyContent: 'space-between' }}>
-                    <View style={{ flexDirection: 'row',}}>
-                    <SIcon name="bell" size={20} color={this.props.color} />
-                    <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: this.props.color }}>
-                        Notification Times
+                    <View style={{ flexDirection: 'row', }}>
+                        <SIcon name="bell" size={20} color={this.props.color} />
+                        <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: this.props.color }}>
+                            Notification Times
                 </Text>
-                </View>
-                    <TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
+
+                        this.setState({ isSpecificDate: true }, () => this.RBSheet.open())
+                    }}>
+
                         <SIcon name="plus" size={20} color={this.props.color} />
+                        <Text style={{ marginLeft: 10, marginBottom: 5, fontFamily: colorsProvider.font, fontSize: 16, color: this.props.color }}>
+                            Specific Date
+
+                        </Text>
                     </TouchableOpacity>
 
 
@@ -141,40 +150,112 @@ export class NotificationTimes extends React.Component {
 
 
     renderBottomSlidingPane() {
-        return (<RBSheet
-            ref={ref => {
-                this.RBSheet = ref;
-            }}
-            closeOnPressMask={true}
-            onClose={() => {
-                global.notifier.scheduleAllNotifications();
-            }}
-            dragFromTopOnly={true}
-            height={screenHeight / 1.36}
-            openDuration={250}>
-            <View style={{
-                marginTop: 10,
-                marginLeft: 20,
-            }}>
-                <Text style={{
-                    fontFamily: colorsProvider.font,
-                    color: this.props.color,
-                    fontSize: colorsProvider.fontSizeMain
-                }}>{this.state.dayOfTheWeek}</Text>
-            </View>
-            <FlatList
-                data={this.state.dayNotificationTimes}
-                contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
-                style={{ marginLeft: 10, marginRight: 10 }}
-                renderItem={({ item }) =>
+        if (this.state.isSpecificDate) {
+            return (<RBSheet
+                ref={ref => {
+                    this.RBSheet = ref;
+                }}
+                closeOnPressMask={true}
+                onClose={() => {
+                    global.notifier.scheduleAllNotifications();
+                }}
+                dragFromTopOnly={true}
+                height={screenHeight / 1.36}
+                openDuration={250}>
+                <View style={{
+                    marginTop: 10,
+                    marginLeft: 20,
+                }}>
+                    <Text style={{
+                        fontFamily: colorsProvider.font,
+                        color: this.props.color,
+                        fontSize: colorsProvider.fontSizeMain
+                    }}>{this.state.dayOfTheWeek}</Text>
+                </View>
+                <FlatList
+                    data={this.state.dayNotificationTimes}
+                    contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                    style={{ marginLeft: 10, marginRight: 10 }}
+                    renderItem={({ item }) =>
+                        <View style={{
+                            flex: 1,
+                            borderRadius: 10,
+                            backgroundColor: this.props.color,
+                            marginTop: 10,
+                            marginBottom: 10,
+                        }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Text style={{
+                                    marginRight: 5,
+                                    marginLeft: 10,
+                                    marginTop: 10,
+                                    marginBottom: 10,
+                                    fontSize: colorsProvider.fontSizeChildren,
+                                    fontFamily: colorsProvider.fontFamily,
+                                    color: colorsProvider.whiteColor
+                                }}>{item}</Text>
+                                <TouchableOpacity onPress={() => {
+                                    var index = this.state.dayNotificationTimes.indexOf(item)
+                                    if (index !== -1) {
+                                        var oldArr = this.state.dayNotificationTimes
+                                        oldArr.splice(index, 1)
+                                        var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                        selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                        selectedDay.times = oldArr
+                                        var newTimes = JSON.stringify(arrayOfAllTimes)
+
+                                        this.props.addNotificationTime(newTimes)
+                                        this.setState({ dayNotificationTimes: oldArr, notificationTimes: newTimes })
+                                    }
+                                }}>
+                                    <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+                <View style={{ flexDirection: 'row', }}>
+                    <View style={{
+                        flex: 2,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        backgroundColor: this.props.color,
+                    }}>
+                        <DatePicker
+                            textColor={colorsProvider.whiteColor}
+                            // fadeToColor='none'
+                            mode="time"
+                            androidVariant="iosClone"
+                            date={this.state.newNotifTimeDate}
+                            onDateChange={date => {
+                                dateDate = date;
+                                dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
+                                this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
+                            }}
+                        />
+                    </View>
                     <View style={{
                         flex: 1,
-                        borderRadius: 10,
-                        backgroundColor: this.props.color,
-                        marginTop: 10,
-                        marginBottom: 10,
+                        flexDirection: 'column',
                     }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: colorsProvider.setButtonColor
+                            }}
+                            onPress={() => {
+                                var oldArr = this.state.dayNotificationTimes
+                                var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
+                                var newArr = oldArr.concat(dateTime)
+                                var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                selectedDay.times = newArr
+                                var newTimes = JSON.stringify(arrayOfAllTimes)
+                                this.props.addNotificationTime(newTimes)
+                                this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                            }}>
                             <Text style={{
                                 marginRight: 5,
                                 marginLeft: 10,
@@ -183,104 +264,175 @@ export class NotificationTimes extends React.Component {
                                 fontSize: colorsProvider.fontSizeChildren,
                                 fontFamily: colorsProvider.fontFamily,
                                 color: colorsProvider.whiteColor
-                            }}>{item}</Text>
-                            <TouchableOpacity onPress={() => {
-                                var index = this.state.dayNotificationTimes.indexOf(item)
-                                if (index !== -1) {
-                                    var oldArr = this.state.dayNotificationTimes
-                                    oldArr.splice(index, 1)
-                                    var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                    selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                    selectedDay.times = oldArr
-                                    var newTimes = JSON.stringify(arrayOfAllTimes)
-
-                                    this.props.addNotificationTime(newTimes)
-                                    this.setState({ dayNotificationTimes: oldArr, notificationTimes: newTimes })
-                                }
+                            }}>Set</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: colorsProvider.closeButtonColor
+                            }}
+                            onPress={() => {
+                                this.RBSheet.close()
+                                this.setState({ dayNotificationTimes: '' })
+                                global.notifier.scheduleAllNotifications();
                             }}>
-                                <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
-                            </TouchableOpacity>
-                        </View>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>Close</Text>
+                        </TouchableOpacity>
                     </View>
-                }
-            />
-            <View style={{ flexDirection: 'row', }}>
-                <View style={{
-                    flex: 2,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    backgroundColor: this.props.color,
-                }}>
-                    <DatePicker
-                        textColor={colorsProvider.whiteColor}
-                        // fadeToColor='none'
-                        mode="time"
-                        androidVariant="iosClone"
-                        date={this.state.newNotifTimeDate}
-                        onDateChange={date => {
-                            dateDate = date;
-                            dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                            this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
-                        }}
-                    />
                 </View>
+            </RBSheet>)
+        } else {
+            return (<RBSheet
+                ref={ref => {
+                    this.RBSheet = ref;
+                }}
+                closeOnPressMask={true}
+                onClose={() => {
+                    global.notifier.scheduleAllNotifications();
+                }}
+                dragFromTopOnly={true}
+                height={screenHeight / 1.36}
+                openDuration={250}>
                 <View style={{
-                    flex: 1,
-                    flexDirection: 'column',
+                    marginTop: 10,
+                    marginLeft: 20,
                 }}>
-                    <TouchableOpacity
-                        style={{
+                    <Text style={{
+                        fontFamily: colorsProvider.font,
+                        color: this.props.color,
+                        fontSize: colorsProvider.fontSizeMain
+                    }}>{this.state.dayOfTheWeek}</Text>
+                </View>
+                <FlatList
+                    data={this.state.dayNotificationTimes}
+                    contentContainerStyle={{ marginLeft: 10, marginRight: 10, alignContent: 'center' }}
+                    style={{ marginLeft: 10, marginRight: 10 }}
+                    renderItem={({ item }) =>
+                        <View style={{
                             flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.setButtonColor
-                        }}
-                        onPress={() => {
-                            var oldArr = this.state.dayNotificationTimes
-                            var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
-                            var newArr = oldArr.concat(dateTime)
-                            var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                            selectedDay.times = newArr
-                            var newTimes = JSON.stringify(arrayOfAllTimes)
-                            this.props.addNotificationTime(newTimes)
-                            this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
-                        }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
+                            borderRadius: 10,
+                            backgroundColor: this.props.color,
                             marginTop: 10,
                             marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Set</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: colorsProvider.closeButtonColor
-                        }}
-                        onPress={() => {
-                            this.RBSheet.close()
-                            this.setState({ dayNotificationTimes: '' })
-                            global.notifier.scheduleAllNotifications();
                         }}>
-                        <Text style={{
-                            marginRight: 5,
-                            marginLeft: 10,
-                            marginTop: 10,
-                            marginBottom: 10,
-                            fontSize: colorsProvider.fontSizeChildren,
-                            fontFamily: colorsProvider.fontFamily,
-                            color: colorsProvider.whiteColor
-                        }}>Close</Text>
-                    </TouchableOpacity>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Text style={{
+                                    marginRight: 5,
+                                    marginLeft: 10,
+                                    marginTop: 10,
+                                    marginBottom: 10,
+                                    fontSize: colorsProvider.fontSizeChildren,
+                                    fontFamily: colorsProvider.fontFamily,
+                                    color: colorsProvider.whiteColor
+                                }}>{item}</Text>
+                                <TouchableOpacity onPress={() => {
+                                    var index = this.state.dayNotificationTimes.indexOf(item)
+                                    if (index !== -1) {
+                                        var oldArr = this.state.dayNotificationTimes
+                                        oldArr.splice(index, 1)
+                                        var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                        selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                        selectedDay.times = oldArr
+                                        var newTimes = JSON.stringify(arrayOfAllTimes)
+
+                                        this.props.addNotificationTime(newTimes)
+                                        this.setState({ dayNotificationTimes: oldArr, notificationTimes: newTimes })
+                                    }
+                                }}>
+                                    <SIcon style={{ marginRight: 10, }} name={colorsProvider.trash} size={colorsProvider.fontSizeMain} color={"#B61D1D"} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+                <View style={{ flexDirection: 'row', }}>
+                    <View style={{
+                        flex: 2,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        backgroundColor: this.props.color,
+                    }}>
+                        <DatePicker
+                            textColor={colorsProvider.whiteColor}
+                            // fadeToColor='none'
+                            mode="time"
+                            androidVariant="iosClone"
+                            date={this.state.newNotifTimeDate}
+                            onDateChange={date => {
+                                dateDate = date;
+                                dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
+                                this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
+                            }}
+                        />
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        flexDirection: 'column',
+                    }}>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: colorsProvider.setButtonColor
+                            }}
+                            onPress={() => {
+                                var oldArr = this.state.dayNotificationTimes
+                                var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
+                                var newArr = oldArr.concat(dateTime)
+                                var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                                var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                selectedDay.times = newArr
+                                var newTimes = JSON.stringify(arrayOfAllTimes)
+                                this.props.addNotificationTime(newTimes)
+                                this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                            }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>Set</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: colorsProvider.closeButtonColor
+                            }}
+                            onPress={() => {
+                                this.RBSheet.close()
+                                this.setState({ dayNotificationTimes: '' })
+                                global.notifier.scheduleAllNotifications();
+                            }}>
+                            <Text style={{
+                                marginRight: 5,
+                                marginLeft: 10,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                fontSize: colorsProvider.fontSizeChildren,
+                                fontFamily: colorsProvider.fontFamily,
+                                color: colorsProvider.whiteColor
+                            }}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        </RBSheet>)
+            </RBSheet>)
+        }
     }
 
     render() {
