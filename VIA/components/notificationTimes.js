@@ -14,10 +14,9 @@ import NotifService from '../notifier/newNotifier';
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
-
-
 const timeFormat = "hh:mm A"
-
+const dateTimeFormat = "YY-MM-DDTHH:mm"
+const dateFormat =  "YY-MM-DD"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 
@@ -33,7 +32,8 @@ export class NotificationTimes extends React.Component {
             dayNotificationTimes: '',
             newNotifTimeDate: global.todayDate,
             newNotifTimeString: '',
-            isSpecificDate: false
+            isSpecificDate: false,
+            newSpecificDate: global.todayDate.toString(),
         };
     }
 
@@ -170,7 +170,7 @@ export class NotificationTimes extends React.Component {
                         fontFamily: colorsProvider.font,
                         color: this.props.color,
                         fontSize: colorsProvider.fontSizeMain
-                    }}>{this.state.dayOfTheWeek}</Text>
+                    }}>Date: {Moment(this.state.newSpecificDate).format(dateFormat)} {Moment(this.state.newSpecificDate).format(timeFormat)}</Text>
                 </View>
                 <FlatList
                     data={this.state.dayNotificationTimes}
@@ -224,13 +224,13 @@ export class NotificationTimes extends React.Component {
                         <DatePicker
                             textColor={colorsProvider.whiteColor}
                             // fadeToColor='none'
-                            mode="time"
+                            mode="datetime"
                             androidVariant="iosClone"
                             date={this.state.newNotifTimeDate}
                             onDateChange={date => {
                                 dateDate = date;
                                 dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                                this.setState({ newNotifTimeString: dateString, newNotifTimeDate: dateDate })
+                                this.setState({ newSpecificDate: date, newNotifTimeDate: dateDate })
                             }}
                         />
                     </View>
