@@ -264,6 +264,7 @@ export class ViewRandom extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.randomMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
+            specificNotificationDates={this.props.selectedItem.properties ? this.props.selectedItem.properties.specificNotificationDates : []}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}

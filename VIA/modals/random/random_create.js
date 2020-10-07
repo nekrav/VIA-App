@@ -33,6 +33,7 @@ export class CreateRandom extends React.Component {
             notificationTimes: "",
             notes: '',
             onlyTodayChecked: false,
+            specificNotificationDates: [],
         };
     }
     
@@ -101,11 +102,12 @@ export class CreateRandom extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.randomMainColor}
             notificationTimes={this.state.notificationTimes}
+            specificNotificationDates={this.state.specificNotificationDates}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
-                this.setState({ notificationTimes: item })
+                this.setState({ notificationTimes: item,  })
             }}
         />
         )

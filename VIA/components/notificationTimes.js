@@ -15,7 +15,7 @@ import NotifService from '../notifier/newNotifier';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const timeFormat = "hh:mm A"
-const dateTimeFormat = "DD/MM - HH:mm"
+const dateTimeFormat = "DD/MM - HH:mm A"
 const dateFormat = "DD/MM/YY"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
@@ -90,7 +90,7 @@ export class NotificationTimes extends React.Component {
                         })
 
                         // this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
-                    
+                      
                     }}
                 >
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>
@@ -99,7 +99,7 @@ export class NotificationTimes extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        // this.setState({ openedSpecificDate: dateTime })
+                        this.setState({ openedSpecificDate: dateTime })
                         // this.RBSheet.open()
                     }}>
                     <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.habitsComplimentaryColor, textAlign: 'center' }} name="minus-circle" color={colorsProvider.whiteColor} />
@@ -203,7 +203,6 @@ export class NotificationTimes extends React.Component {
     renderBottomSlidingPane() {
         console.warn(this.state.openedSpecificDate)
         if (this.state.isSpecificDate) {
-            console.warn("aliwef")
             return (<RBSheet
                 ref={ref => {
                     this.RBSheet = ref;
@@ -224,6 +223,7 @@ export class NotificationTimes extends React.Component {
                         color: this.props.color,
                         fontSize: colorsProvider.fontSizeMain
                     }}>Date: {this.state.openedSpecificDate}</Text>
+                    {/* }}>Date: {Moment(this.state.openedSpecificDate).format(dateFormat)} {Moment(this.state.newSpecificDate).format(timeFormat)}</Text> */}
                 </View>
                 <FlatList
                     data={this.state.dayNotificationTimes}
@@ -284,6 +284,7 @@ export class NotificationTimes extends React.Component {
                                 dateDate = date;
                                 dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
                                 this.setState({ newSpecificDate: date, newNotifTimeDate: dateDate })
+                                this.setState({openedSpecificDate: Moment(date).format(dateTimeFormat)})
                             }}
                         />
                     </View>
@@ -309,7 +310,7 @@ export class NotificationTimes extends React.Component {
                                 // selectedDay.times = newArr
                                 // var newTimes = JSON.stringify(arrayOfAllTimes)
                                 // this.props.addNotificationTime(newTimes)
-                                // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                                this.setState({  isSpecificDate: false  })
                             }}>
                             <Text style={{
                                 marginRight: 5,
@@ -332,6 +333,7 @@ export class NotificationTimes extends React.Component {
                                 this.RBSheet.close()
                                 this.setState({ dayNotificationTimes: '' })
                                 global.notifier.scheduleAllNotifications();
+                                this.setState({  isSpecificDate: false  })
                             }}>
                             <Text style={{
                                 marginRight: 5,
