@@ -85,10 +85,12 @@ export class NotificationTimes extends React.Component {
             <View style={{ flexDirection: 'row', borderRadius: 20, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.setState({ openedSpecificDate: time })
+                        this.setState({ openedSpecificDate: time, isSpecificDate: true }, () => {
+                            this.RBSheet.open()
+                        })
 
                         // this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
-                        this.RBSheet.open()
+                    
                     }}
                 >
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>
@@ -97,10 +99,10 @@ export class NotificationTimes extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        this.setState({ openedSpecificDate: dateTime })
+                        // this.setState({ openedSpecificDate: dateTime })
                         // this.RBSheet.open()
                     }}>
-                    <SIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }} name="trash" size={20} color={colorsProvider.whiteColor} />
+                    <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.habitsComplimentaryColor, textAlign: 'center' }} name="minus-circle" color={colorsProvider.whiteColor} />
 
                 </TouchableOpacity>
             </View>
@@ -201,6 +203,7 @@ export class NotificationTimes extends React.Component {
     renderBottomSlidingPane() {
         console.warn(this.state.openedSpecificDate)
         if (this.state.isSpecificDate) {
+            console.warn("aliwef")
             return (<RBSheet
                 ref={ref => {
                     this.RBSheet = ref;
@@ -220,7 +223,7 @@ export class NotificationTimes extends React.Component {
                         fontFamily: colorsProvider.font,
                         color: this.props.color,
                         fontSize: colorsProvider.fontSizeMain
-                    }}>Date: {Moment(this.state.openedSpecificDate).format(dateFormat)} {Moment(this.state.newSpecificDate).format(timeFormat)}</Text>
+                    }}>Date: {this.state.openedSpecificDate}</Text>
                 </View>
                 <FlatList
                     data={this.state.dayNotificationTimes}
