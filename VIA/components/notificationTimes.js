@@ -19,9 +19,6 @@ const dateTimeFormat = "DD/MM - HH:mm A"
 const dateFormat = "DD/MM/YY"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
-const testCustomTimes = ["30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM",]
-
-
 
 export class NotificationTimes extends React.Component {
 
@@ -165,13 +162,12 @@ export class NotificationTimes extends React.Component {
     }
 
     renderSpecificDateNotificationTimes() {
-        var jsonArr = testCustomTimes
         return (
             <FlatList
                 horizontal={true}
                 // keyExtractor={(item) => jsonArr[item].key}
                 scrollEnabled={true}
-                data={jsonArr}
+                data={this.state.specificNotificationDates}
                 contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                 style={{}}
                 renderItem={({ item }) =>
