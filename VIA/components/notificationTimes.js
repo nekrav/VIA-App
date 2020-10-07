@@ -15,9 +15,11 @@ import NotifService from '../notifier/newNotifier';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const timeFormat = "hh:mm A"
-const dateTimeFormat = "DD/MM/YYTHH:mm"
-const dateFormat =  "DD/MM/YY"
+const dateTimeFormat = "DD/MM - HH:mm"
+const dateFormat = "DD/MM/YY"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
+
+const testCustomTimes = ["30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM", "30/12 - 12:55 AM",]
 
 
 
@@ -34,6 +36,8 @@ export class NotificationTimes extends React.Component {
             newNotifTimeString: '',
             isSpecificDate: false,
             newSpecificDate: global.todayDate.toString(),
+            specificNotificationDates: this.props.specificNotificationDates ? this.props.specificNotificationDates : [],
+            openedSpecificDate: ''
         };
     }
 
@@ -73,6 +77,34 @@ export class NotificationTimes extends React.Component {
                 </TouchableOpacity>
             )
 
+    }
+
+    renderSpecificSingleDay(time) {
+        var dateTime = Moment(new Date()).format(dateTimeFormat)
+        return (
+            <View style={{ flexDirection: 'row', borderRadius: 20, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.setState({ openedSpecificDate: time })
+
+                        // this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
+                        this.RBSheet.open()
+                    }}
+                >
+                    <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>
+                        {time}
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.setState({ openedSpecificDate: dateTime })
+                        // this.RBSheet.open()
+                    }}>
+                    <SIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }} name="trash" size={20} color={colorsProvider.whiteColor} />
+
+                </TouchableOpacity>
+            </View>
+        )
     }
 
     renderNotificationTimes() {
@@ -130,6 +162,23 @@ export class NotificationTimes extends React.Component {
         );
     }
 
+    renderSpecificDateNotificationTimes() {
+        var jsonArr = testCustomTimes
+        return (
+            <FlatList
+                horizontal={true}
+                // keyExtractor={(item) => jsonArr[item].key}
+                scrollEnabled={true}
+                data={jsonArr}
+                contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
+                style={{}}
+                renderItem={({ item }) =>
+                    this.renderSpecificSingleDay(item)
+                }
+            />
+        );
+    }
+
     formatAMPM(date) {
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -150,6 +199,7 @@ export class NotificationTimes extends React.Component {
 
 
     renderBottomSlidingPane() {
+        console.warn(this.state.openedSpecificDate)
         if (this.state.isSpecificDate) {
             return (<RBSheet
                 ref={ref => {
@@ -170,7 +220,7 @@ export class NotificationTimes extends React.Component {
                         fontFamily: colorsProvider.font,
                         color: this.props.color,
                         fontSize: colorsProvider.fontSizeMain
-                    }}>Date: {Moment(this.state.newSpecificDate).format(dateFormat)} {Moment(this.state.newSpecificDate).format(timeFormat)}</Text>
+                    }}>Date: {Moment(this.state.openedSpecificDate).format(dateFormat)} {Moment(this.state.newSpecificDate).format(timeFormat)}</Text>
                 </View>
                 <FlatList
                     data={this.state.dayNotificationTimes}
@@ -250,11 +300,13 @@ export class NotificationTimes extends React.Component {
                                 var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
                                 var newArr = oldArr.concat(dateTime)
                                 var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                selectedDay.times = newArr
-                                var newTimes = JSON.stringify(arrayOfAllTimes)
-                                this.props.addNotificationTime(newTimes)
-                                this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
+                                var selectedDay = global.daysOfTheWeek[new Date(this.state.newSpecificDate).getDay()];
+                                console.warn(selectedDay)
+                                // var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+                                // selectedDay.times = newArr
+                                // var newTimes = JSON.stringify(arrayOfAllTimes)
+                                // this.props.addNotificationTime(newTimes)
+                                // this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
                             }}>
                             <Text style={{
                                 marginRight: 5,
@@ -342,6 +394,7 @@ export class NotificationTimes extends React.Component {
                                         oldArr.splice(index, 1)
                                         var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                         selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+
                                         selectedDay.times = oldArr
                                         var newTimes = JSON.stringify(arrayOfAllTimes)
 
@@ -393,6 +446,7 @@ export class NotificationTimes extends React.Component {
                                 var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                 var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
                                 selectedDay.times = newArr
+                                console.warn(selectedDay)
                                 var newTimes = JSON.stringify(arrayOfAllTimes)
                                 this.props.addNotificationTime(newTimes)
                                 this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
@@ -438,6 +492,7 @@ export class NotificationTimes extends React.Component {
     render() {
         return (<View>
             {this.renderNotificationTimes()}
+            {this.renderSpecificDateNotificationTimes()}
             {this.renderBottomSlidingPane()}
         </View>)
     }

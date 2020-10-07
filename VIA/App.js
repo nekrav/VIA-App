@@ -18,6 +18,8 @@ const controller = new Controller;
 
 console.disableYellowBox = false;
 
+
+
 const BOTTOM_MARGIN = PixelRatio.get() < 3 ? 75 :55
 const TabNavigator = createBottomTabNavigator({
   Habits: {
@@ -157,6 +159,7 @@ const TabNavigator = createBottomTabNavigator({
   
 );
 global.notifier = new NotifService;
+global.daysOfTheWeek
 Database.init().then(() => {
 
 

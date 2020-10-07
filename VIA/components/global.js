@@ -45,3 +45,5 @@ global.emptyTimes = [
 
 global.todayDate = new Date();
 
+global.daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
