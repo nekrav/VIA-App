@@ -15,8 +15,8 @@ import NotifService from '../notifier/newNotifier';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const timeFormat = "hh:mm A"
-const dateTimeFormat = "YY-MM-DDTHH:mm"
-const dateFormat =  "YY-MM-DD"
+const dateTimeFormat = "DD/MM/YYTHH:mm"
+const dateFormat =  "DD/MM/YY"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
 
 
