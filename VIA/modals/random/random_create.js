@@ -103,6 +103,9 @@ export class CreateRandom extends React.Component {
             color={colorsProvider.randomMainColor}
             notificationTimes={this.state.notificationTimes}
             specificNotificationDates={this.state.specificNotificationDates}
+            saveSpecificNotificationDates={(dates) =>{
+                this.props.saveSpecificNotificationDates(dates);
+            }}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}
