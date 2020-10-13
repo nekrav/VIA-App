@@ -307,6 +307,7 @@ export class NotificationTimes extends React.Component {
                                     // selectedDay.times = newArr
                                     // var newTimes = JSON.stringify(arrayOfAllTimes)
                                     // this.props.addNotificationTime(newTimes)
+                                    this.props.saveSpecificNotificationDates(newArr)
                                     this.setState({ isSpecificDate: false, specificNotificationDates: newArr }, () => {
                                         this.RBSheet.close()
 

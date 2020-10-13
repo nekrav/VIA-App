@@ -347,6 +347,9 @@ export class HomeScreen extends React.Component {
                         theRandom.only_today = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
+                    saveSpecificNotificationDates ={(text) =>{
+                        
+                    }}
                     editNotificationTime={(text) => {
                         if (text) {
                             var times = text.map(function (time) {
