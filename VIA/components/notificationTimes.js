@@ -197,8 +197,6 @@ export class NotificationTimes extends React.Component {
 
 
     renderBottomSlidingPane() {
-        console.warn(this.state.newNotifTimeDate)
-        console.warn(this.state.newNotifTimeDate == global.todayDate)
         if (this.state.newNotifTimeDate !== "") {
             if (this.state.isSpecificDate) {
                 return (<RBSheet
@@ -278,12 +276,11 @@ export class NotificationTimes extends React.Component {
                                 androidVariant="iosClone"
                                 date={this.state.newNotifTimeDate}
                                 onDateChange={date => {
-                                    dateDate = date;
+                                    var dateDate = date.toString();
                                     var array = this.state.specificNotificationDates;
                                     var newArr = array.concat(date)
                                     dateString = date.getHours().toString() + ":" + date.getMinutes().toString();
-                                    this.setState({ newSpecificDate: date, newNotifTimeDate: dateDate })
-                                    this.setState({ openedSpecificDate: Moment(date).format(dateTimeFormat) })
+                                    this.setState({ newSpecificDate: dateDate, newNotifTimeDate: date, openedSpecificDate: dateDate })
                                 }}
                             />
                         </View>
@@ -300,17 +297,20 @@ export class NotificationTimes extends React.Component {
                                 }}
                                 onPress={() => {
                                     var oldArr = this.state.specificNotificationDates
-                                    var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(timeFormat)
+                                    var theTime = this.state.newNotifTimeDate.toString();
+                                    var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(dateTimeFormat)
                                     var newArr = oldArr.concat(dateTime)
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                     var selectedDay = global.daysOfTheWeek[new Date(this.state.newSpecificDate).getDay()];
-                                    console.warn(newArr)
                                     
                                     // var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
                                     // selectedDay.times = newArr
                                     // var newTimes = JSON.stringify(arrayOfAllTimes)
                                     // this.props.addNotificationTime(newTimes)
-                                    this.setState({ isSpecificDate: false, specificNotificationDates: newArr })
+                                    this.setState({ isSpecificDate: false, specificNotificationDates: newArr }, () => {
+                                        this.RBSheet.close()
+
+                                    })
                                     
                                 }}>
                                 <Text style={{
@@ -452,7 +452,6 @@ export class NotificationTimes extends React.Component {
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                     var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
                                     selectedDay.times = newArr
-                                    console.warn(selectedDay)
                                     var newTimes = JSON.stringify(arrayOfAllTimes)
                                     this.props.addNotificationTime(newTimes)
                                     this.setState({ dayNotificationTimes: newArr, notificationTimes: newTimes })
