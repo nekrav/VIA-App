@@ -171,7 +171,7 @@ export class NotificationTimes extends React.Component {
                 contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                 style={{}}
                 renderItem={({ item }) =>
-                    this.renderSpecificSingleDay(item)
+                    this.renderSpecificSingleDay(Moment(item).format(dateTimeFormat))
                 }
             />
         );
@@ -299,7 +299,7 @@ export class NotificationTimes extends React.Component {
                                     var oldArr = this.state.specificNotificationDates
                                     var theTime = this.state.newNotifTimeDate.toString();
                                     var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(dateTimeFormat)
-                                    var newArr = oldArr.concat(dateTime)
+                                    var newArr = oldArr.concat(this.state.newNotifTimeDate.toString())
                                     var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
                                     var selectedDay = global.daysOfTheWeek[new Date(this.state.newSpecificDate).getDay()];
                                     

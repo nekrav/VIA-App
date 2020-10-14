@@ -280,6 +280,12 @@ export class HomeScreen extends React.Component {
                         newRandom.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
+                saveSpecificNotificationDates ={(text) =>{
+                    theRandom.properties = []
+                    theRandom.properties.specificNotificationDates = []
+                    theRandom.properties.specificNotificationDates = text;
+                    this.setState({ selectedRandom: theRandom })
+                }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
@@ -349,8 +355,9 @@ export class HomeScreen extends React.Component {
                     }}
                     saveSpecificNotificationDates ={(text) =>{
                         theRandom.properties = []
-                        theRandom.properties.specificNotificationDates = []
-                        theRandom.properties.specificNotificationDates = text;
+                        var t = theRandom.properties.concat({specificNotificationDates: text ? text : []})
+                        // theRandom.properties.specificNotificationDates = []
+                        theRandom.properties.specificNotificationDates = t;
                         this.setState({ selectedRandom: theRandom })
                     }}
                     editNotificationTime={(text) => {
@@ -362,7 +369,9 @@ export class HomeScreen extends React.Component {
                             this.setState({ selectedRandom: theRandom })
                         }
                     }}
-                    save={() => { controller.saveExisting(this, childDBTableName, theRandom) }}
+                    save={() => { 
+                        console.warn(theRandom)
+                        controller.saveExisting(this, childDBTableName, theRandom) }}
 
                     selectedItem={theRandom}
 

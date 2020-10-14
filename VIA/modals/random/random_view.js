@@ -267,6 +267,7 @@ export class ViewRandom extends React.Component {
             specificNotificationDates={this.props.selectedItem.properties ? this.props.selectedItem.properties.specificNotificationDates : []}
             saveSpecificNotificationDates={(dates) =>{
                 this.props.saveSpecificNotificationDates(dates);
+                this.props.save();
             }}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
