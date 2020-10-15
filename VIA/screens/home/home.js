@@ -301,6 +301,7 @@ export class HomeScreen extends React.Component {
         if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedRandom != {}) {
                 theRandom = this.state.selectedChild
+                console.warn(theRandom)
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
@@ -357,7 +358,7 @@ export class HomeScreen extends React.Component {
                         theRandom.properties = []
                         var t = theRandom.properties.concat({specificNotificationDates: text ? text : []})
                         // theRandom.properties.specificNotificationDates = []
-                        theRandom.properties.specificNotificationDates = t;
+                        theRandom.properties = JSON.stringify(t);
                         this.setState({ selectedRandom: theRandom })
                     }}
                     editNotificationTime={(text) => {
@@ -370,7 +371,6 @@ export class HomeScreen extends React.Component {
                         }
                     }}
                     save={() => { 
-                        console.warn(theRandom)
                         controller.saveExisting(this, childDBTableName, theRandom) }}
 
                     selectedItem={theRandom}
