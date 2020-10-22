@@ -30,7 +30,7 @@ export class ViewRandom extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             selectedItem: this.props.selectedItem,
             dueDate: '',
@@ -47,16 +47,16 @@ export class ViewRandom extends React.Component {
     }
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
 
     /* #region  Top Bar Region */
@@ -258,14 +258,14 @@ export class ViewRandom extends React.Component {
     }
     /* #endregion */
 
-     /* #region  Notification Times Region */
+    /* #region  Notification Times Region */
 
-     renderNotificationTimes() {
+    renderNotificationTimes() {
         return (<NotificationTimes
             color={colorsProvider.randomMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
-            specificNotificationDates={this.props.selectedItem.properties ? this.props.selectedItem.properties.specificNotificationDates : []}
-            saveSpecificNotificationDates={(dates) =>{
+            specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
+            saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
             }}
@@ -296,8 +296,8 @@ export class ViewRandom extends React.Component {
     }
     /* #endregion */
 
-  
- 
+
+
 
     render() {
         return (
