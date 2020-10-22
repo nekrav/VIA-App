@@ -142,6 +142,9 @@ export class HabitsScreen extends React.Component {
                         newHabit.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
+                saveSpecificNotificationDates={(text) => {
+                    newHabit.properties = {specificNotificationDates: text ? text : []} 
+                }}
                 routine={(text, name) => { newHabit.routine = text; newHabit.routineName = name }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 notes={(text) => { newHabit.notes = text }}

@@ -137,6 +137,9 @@ export class RoutinesScreen extends React.Component {
                         newRoutine.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
+                saveSpecificNotificationDates={(text) => {
+                    newRoutine.properties = {specificNotificationDates: text ? text : []} 
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newRoutine) }}
             ></CreateRoutine>

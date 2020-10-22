@@ -242,7 +242,6 @@ export class HomeScreen extends React.Component {
         newRandom.only_today = random.only_today ? random.only_today : "false"
         newRandom.properties = random.properties ? random.properties : JSON.stringify({ specificNotificationDates: [] })
         Database.save(childDBTableName, newRandom).then(() => {
-            console.warn(newRandom)
             this.getRandomTasks();
         })
     }
@@ -283,10 +282,7 @@ export class HomeScreen extends React.Component {
                     }
                 }}
                 saveSpecificNotificationDates={(text) => {
-                    theRandom.properties = []
-                    theRandom.properties.specificNotificationDates = []
-                    theRandom.properties.specificNotificationDates = text;
-                    this.setState({ selectedRandom: theRandom })
+                    newRandom.properties = {specificNotificationDates: text ? text : []} 
                 }}
                 only_today={(text) => { newRandom.only_today = JSON.stringify(text) }}
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
@@ -357,7 +353,6 @@ export class HomeScreen extends React.Component {
                     }}
                     saveSpecificNotificationDates={(text) => {
                         if (theRandom.properties = null) {
-                            console.warn("laiewu")
                             // theRandom.properties = []
                             // var t = theRandom.properties.concat({ specificNotificationDates: text ? text : [] })
 

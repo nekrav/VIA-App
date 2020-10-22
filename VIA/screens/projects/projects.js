@@ -137,6 +137,9 @@ export class ProjectsScreen extends React.Component {
                         newProject.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
+                saveSpecificNotificationDates={(text) => {
+                    newProject.properties = {specificNotificationDates: text ? text : []} 
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { this.saveNew(newProject); this.forceUpdate() }}
             ></CreateProject>

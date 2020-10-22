@@ -135,6 +135,9 @@ export class TasksScreen extends React.Component {
                         newTask.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
+                saveSpecificNotificationDates={(text) => {
+                    newTask.properties = {specificNotificationDates: text ? text : []} 
+                }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
                     if (!newTask.notification_time) {

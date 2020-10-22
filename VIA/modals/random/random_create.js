@@ -54,9 +54,6 @@ export class CreateRandom extends React.Component {
         return newArr;
     }
 
-
-
-
     /* #region  Top Bar Region */
     renderTopBar() {
         return <TopBar
