@@ -240,7 +240,9 @@ export class HomeScreen extends React.Component {
         newRandom.notes = random.notes ? random.notes : '';
         newRandom.notification_time = random.notification_time ? random.notification_time : ''
         newRandom.only_today = random.only_today ? random.only_today : "false"
+        newRandom.properties = random.properties ? random.properties : JSON.stringify({ specificNotificationDates: [] })
         Database.save(childDBTableName, newRandom).then(() => {
+            console.warn(newRandom)
             this.getRandomTasks();
         })
     }
@@ -280,7 +282,7 @@ export class HomeScreen extends React.Component {
                         newRandom.notification_time = JSON.stringify(global.emptyTimes)
                     }
                 }}
-                saveSpecificNotificationDates ={(text) =>{
+                saveSpecificNotificationDates={(text) => {
                     theRandom.properties = []
                     theRandom.properties.specificNotificationDates = []
                     theRandom.properties.specificNotificationDates = text;
@@ -301,7 +303,6 @@ export class HomeScreen extends React.Component {
         if (this.state.viewRandomModalVisibility) {
             if (this.state.selectedRandom != {}) {
                 theRandom = this.state.selectedChild
-                console.warn(theRandom)
                 return <ViewRandom
                     animationType="slide"
                     visible={this.state.viewRandomModalVisibility}
@@ -354,9 +355,15 @@ export class HomeScreen extends React.Component {
                         theRandom.only_today = text;
                         this.setState({ selectedRandom: theRandom })
                     }}
-                    saveSpecificNotificationDates ={(text) =>{
+                    saveSpecificNotificationDates={(text) => {
+                        if (theRandom.properties = null) {
+                            console.warn("laiewu")
+                            // theRandom.properties = []
+                            // var t = theRandom.properties.concat({ specificNotificationDates: text ? text : [] })
+
+                        }
                         theRandom.properties = []
-                        var t = theRandom.properties.concat({specificNotificationDates: text ? text : []})
+                        var t = theRandom.properties.concat({ specificNotificationDates: text ? text : [] })
                         // theRandom.properties.specificNotificationDates = []
                         theRandom.properties = JSON.stringify(t);
                         this.setState({ selectedRandom: theRandom })
@@ -370,8 +377,9 @@ export class HomeScreen extends React.Component {
                             this.setState({ selectedRandom: theRandom })
                         }
                     }}
-                    save={() => { 
-                        controller.saveExisting(this, childDBTableName, theRandom) }}
+                    save={() => {
+                        controller.saveExisting(this, childDBTableName, theRandom)
+                    }}
 
                     selectedItem={theRandom}
 
@@ -546,23 +554,23 @@ export class HomeScreen extends React.Component {
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
                     return (
-                    <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsComplimentaryColor, borderWidth: 2 }}>
-                        <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
-                        <FlatList
-                            horizontal={false}
-                            scrollEnabled={true}
-                            data={fakeTasks}
-                            style={{}}
-                            keyExtractor={item => item.id}
-                            renderItem={({ item }) => {
-                                return <View style={{flex: 0, flexGrow: 1, }}>
-                                    <View style={{}}>
-                                        <Text style={{}}>{item.name}</Text>
+                        <View style={{ margin: 5, borderRadius: 5, borderColor: colorsProvider.habitsComplimentaryColor, borderWidth: 2 }}>
+                            <Text style={{ backgroundColor: colorsProvider.projectsMainColor }}>{item.name}</Text>
+                            <FlatList
+                                horizontal={false}
+                                scrollEnabled={true}
+                                data={fakeTasks}
+                                style={{}}
+                                keyExtractor={item => item.id}
+                                renderItem={({ item }) => {
+                                    return <View style={{ flex: 0, flexGrow: 1, }}>
+                                        <View style={{}}>
+                                            <Text style={{}}>{item.name}</Text>
+                                        </View>
                                     </View>
-                                </View>
-                            }}
-                        />
-                    </View>)
+                                }}
+                            />
+                        </View>)
                 }}
             />
 

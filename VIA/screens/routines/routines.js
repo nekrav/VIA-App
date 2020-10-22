@@ -84,6 +84,7 @@ export class RoutinesScreen extends React.Component {
         newRoutine.end_time = routine.end_time ? routine.end_time : "";
         newRoutine.notification_time = routine.notification_time ? routine.notification_time : "";
         newRoutine.notes = routine.notes ? routine.notes : "";
+        newRoutine.properties = routine.properties ? routine.properties : JSON.stringify({ specificNotificationDates: [] })
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)

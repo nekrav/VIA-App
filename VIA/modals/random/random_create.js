@@ -25,7 +25,7 @@ const styles = require('./styles');
 export class CreateRandom extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             name: '',
             dueDate: '',
@@ -36,18 +36,25 @@ export class CreateRandom extends React.Component {
             specificNotificationDates: [],
         };
     }
-    
+
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
+
+    addToArray(arr, toAdd) {
+        var newArr = arr.concat(toAdd)
+        return newArr;
+    }
+
+
 
 
     /* #region  Top Bar Region */
@@ -103,14 +110,14 @@ export class CreateRandom extends React.Component {
             color={colorsProvider.randomMainColor}
             notificationTimes={this.state.notificationTimes}
             specificNotificationDates={this.state.specificNotificationDates}
-            saveSpecificNotificationDates={(dates) =>{
+            saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
             }}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
-                this.setState({ notificationTimes: item,  })
+                this.setState({ notificationTimes: item, })
             }}
         />
         )

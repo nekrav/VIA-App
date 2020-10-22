@@ -48,7 +48,6 @@ export class Controller extends React.Component {
     }
 
     saveExisting(object, tableName, item) {
-        console.warn(item)
         Database.update(tableName, item).then(() => {
             this.loadAll(object, tableName);
         })
