@@ -309,8 +309,9 @@ export class ViewRandom extends React.Component {
                 animationOutTiming={400}
                 isVisible={this.props.visible}
                 style={{ margin: 0 }}
-                onSwipeComplete={this.props.closeModal}
-                swipeDirection={"right"}>
+                // onSwipeComplete={this.props.closeModal}
+                // swipeDirection={"right"}
+                >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={styles.outerView}>
 
