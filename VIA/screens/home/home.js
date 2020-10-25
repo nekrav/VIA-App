@@ -352,15 +352,7 @@ export class HomeScreen extends React.Component {
                         this.setState({ selectedRandom: theRandom })
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        if (theRandom.properties = null) {
-                            // theRandom.properties = []
-                            // var t = theRandom.properties.concat({ specificNotificationDates: text ? text : [] })
-
-                        }
-                        theRandom.properties = []
-                        var t = theRandom.properties.concat({ specificNotificationDates: text ? text : [] })
-                        // theRandom.properties.specificNotificationDates = []
-                        theRandom.properties = JSON.stringify(t);
+                        theRandom.properties.specificNotificationDates = text
                         this.setState({ selectedRandom: theRandom })
                     }}
                     editNotificationTime={(text) => {
