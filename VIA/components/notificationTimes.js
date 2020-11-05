@@ -76,13 +76,13 @@ export class NotificationTimes extends React.Component {
 
     }
 
-    renderSpecificSingleDay(time) {
+    renderSpecificSingleDay(item) {
         var dateTime = Moment(new Date()).format(dateTimeFormat)
         return (
             <View style={{ flexDirection: 'row', borderRadius: 20, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.setState({ openedSpecificDate: time, isSpecificDate: true }, () => {
+                        this.setState({ openedSpecificDate: Moment(item).format(dateTimeFormat), isSpecificDate: true }, () => {
                             this.RBSheet.open()
                         })
 
@@ -91,13 +91,26 @@ export class NotificationTimes extends React.Component {
                     }}
                 >
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>
-                        {time}
+                        {Moment(item).format(dateTimeFormat)}
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
                         this.setState({ openedSpecificDate: dateTime })
                         // this.RBSheet.open()
+                        if (index !== -1) {
+                            var index = this.state.specificNotificationDates.indexOf(item)
+                            var oldArr = this.state.specificNotificationDates
+                            oldArr.splice(index, 1)
+                            // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
+                            // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
+
+                            // selectedDay.times = oldArr
+                            // var newTimes = JSON.stringify(arrayOfAllTimes)
+
+                            // this.props.addNotificationTime(newTimes)
+                            this.setState({ specificNotificationDates: oldArr })
+                        }
                     }}>
                     <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.habitsComplimentaryColor, textAlign: 'center' }} name="minus-circle" color={colorsProvider.whiteColor} />
 
@@ -171,7 +184,7 @@ export class NotificationTimes extends React.Component {
                 contentContainerStyle={{ alignItems: 'center', marginLeft: 2, marginRight: 2, marginBottom: 10, }}
                 style={{}}
                 renderItem={({ item }) =>
-                    this.renderSpecificSingleDay(Moment(item).format(dateTimeFormat))
+                    this.renderSpecificSingleDay(item)
                 }
             />
         );
