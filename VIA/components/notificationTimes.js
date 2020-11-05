@@ -81,6 +81,7 @@ export class NotificationTimes extends React.Component {
         return (
             <View style={{ flexDirection: 'row', borderRadius: 20, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
                 <TouchableOpacity
+                style={{justifyContent: 'center', alignContent: 'center' }}
                     onPress={() => {
                         this.setState({ openedSpecificDate: Moment(item).format(dateTimeFormat), isSpecificDate: true }, () => {
                             this.RBSheet.open()
@@ -90,11 +91,12 @@ export class NotificationTimes extends React.Component {
 
                     }}
                 >
-                    <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center' }}>
+                    <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center', justifyContent: 'center', alignContent: 'center'  }}>
                         {Moment(item).format(dateTimeFormat)}
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  style={{justifyContent: 'center', alignContent: 'center' }}
                     onPress={() => {
                         this.setState({ openedSpecificDate: dateTime })
                         // this.RBSheet.open()
@@ -102,17 +104,10 @@ export class NotificationTimes extends React.Component {
                             var index = this.state.specificNotificationDates.indexOf(item)
                             var oldArr = this.state.specificNotificationDates
                             oldArr.splice(index, 1)
-                            // var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                            // selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-
-                            // selectedDay.times = oldArr
-                            // var newTimes = JSON.stringify(arrayOfAllTimes)
-
-                            // this.props.addNotificationTime(newTimes)
                             this.setState({ specificNotificationDates: oldArr })
                         }
                     }}>
-                    <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.habitsComplimentaryColor, textAlign: 'center' }} name="minus-circle" color={colorsProvider.whiteColor} />
+                    <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 25, color: colorsProvider.incompleteColor, textAlign: 'center' }} name="times" color={colorsProvider.whiteColor} />
 
                 </TouchableOpacity>
             </View>
