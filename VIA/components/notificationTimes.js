@@ -86,11 +86,7 @@ export class NotificationTimes extends React.Component {
                         this.setState({ openedSpecificDate: Moment(item).format(dateTimeFormat), isSpecificDate: true }, () => {
                             this.RBSheet.open()
                         })
-
-                        // this.setState({ dayOfTheWeek: name, dayNotificationTimes: times })
-
-                    }}
-                >
+                    }}>
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center', justifyContent: 'center', alignContent: 'center'  }}>
                         {Moment(item).format(dateTimeFormat)}
                     </Text>
@@ -226,7 +222,7 @@ export class NotificationTimes extends React.Component {
                             fontFamily: colorsProvider.font,
                             color: this.props.color,
                             fontSize: colorsProvider.fontSizeMain
-                        }}>Date: {this.state.openedSpecificDate ? this.state.openedSpecificDate : Moment(this.state.newNotifTimeDate).format(dateTimeFormat)}</Text>
+                        }}>Date: {this.state.openedSpecificDate ? Moment(this.state.openedSpecificDate).format(dateTimeFormat) : Moment(this.state.newNotifTimeDate).format(dateTimeFormat)}</Text>
                     </View>
                     <FlatList
                         data={this.state.dayNotificationTimes}
@@ -279,7 +275,7 @@ export class NotificationTimes extends React.Component {
                         }}>
                             <DatePicker
                                 textColor={colorsProvider.whiteColor}
-                                // fadeToColor='none'
+                                fadeToColor='none'
                                 mode="datetime"
                                 androidVariant="iosClone"
                                 date={this.state.newNotifTimeDate}
@@ -305,22 +301,11 @@ export class NotificationTimes extends React.Component {
                                 }}
                                 onPress={() => {
                                     var oldArr = this.state.specificNotificationDates
-                                    var theTime = this.state.newNotifTimeDate.toString();
-                                    var dateTime = Moment(new Date(this.state.newNotifTimeDate)).format(dateTimeFormat)
                                     var newArr = oldArr.concat(this.state.newNotifTimeDate.toString())
-                                    var arrayOfAllTimes = JSON.parse(this.state.notificationTimes)
-                                    var selectedDay = global.daysOfTheWeek[new Date(this.state.newSpecificDate).getDay()];
-                                    
-                                    // var selectedDay = arrayOfAllTimes.find(theDay => theDay.name === this.state.dayOfTheWeek)
-                                    // selectedDay.times = newArr
-                                    // var newTimes = JSON.stringify(arrayOfAllTimes)
-                                    // this.props.addNotificationTime(newTimes)
                                     this.props.saveSpecificNotificationDates(newArr)
                                     this.setState({ isSpecificDate: false, specificNotificationDates: newArr }, () => {
                                         this.RBSheet.close()
-
                                     })
-                                    
                                 }}>
                                 <Text style={{
                                     marginRight: 5,
