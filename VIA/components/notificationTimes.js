@@ -107,7 +107,7 @@ export class NotificationTimes extends React.Component {
                             this.setState({ specificNotificationDates: oldArr })
                         }
                     }}>
-                    <FIcon style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 25, color: colorsProvider.incompleteColor, textAlign: 'center' }} name="times" color={colorsProvider.whiteColor} />
+                    <FIcon style={{ margin: 5, marginBottom: 8, fontFamily: colorsProvider.font, fontSize: 25, color: colorsProvider.incompleteColor, textAlign: 'center' }} name="times" color={colorsProvider.whiteColor} />
 
                 </TouchableOpacity>
             </View>
