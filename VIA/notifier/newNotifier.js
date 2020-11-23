@@ -147,7 +147,7 @@ export default class NotifService {
     }
 
     getAllSpecificNotificationTimes(tableName) {
-        return new Promise((resolve, reject) => {
+        // return new Promise((resolve, reject) => {
             Database.getAll(tableName)
                 .then((res) => {
                     const len = res.rows.length;
@@ -165,8 +165,8 @@ export default class NotifService {
                             // console.warn(item.properties.specificNotificationDates)
                         }
                     }
-                    resolve(itemsWithNotifications)
-                })
+                //     resolve(itemsWithNotifications)
+                // })
         })
     }
 
@@ -269,7 +269,6 @@ export default class NotifService {
                 }
             }
         })
-        this.getAllSpecificNotificationTimes(Random.TABLE_NAME)
     }
 
     scheduleTaskNotifications() {
@@ -350,8 +349,7 @@ export default class NotifService {
                 }
             }
         })
-        this.getAllSpecificNotificationTimes(Random.TABLE_NAME).then((res) => {
-        });
+        this.getAllSpecificNotificationTimes(Random.TABLE_NAME);
     }
 
     scheduleAllNotifications() {
@@ -364,14 +362,6 @@ export default class NotifService {
     }
 
     scheduleSpecificDateNotification(notificationTime, itemName, tableName) {
-        console.warn(notificationTime)
-
-        // this.getAllObjectNotificationTimes(tableName).then((res) => {
-        //     for (let i = 0; i < res.length; i++) {
-
-        //         let title = ""
-        //         let message = ""
-
         switch (tableName) {
             case 'habit':
                 title = "Time to start your habit: " + itemName
@@ -396,21 +386,6 @@ export default class NotifService {
             soundName: 'default',
             // repeatType: 'week',
         });
-
-        //         message = "Things pop up!"
-
-        //         for (let j = 0; j < res[i].notificationTimes.length; j++) {
-        //             PushNotification.localNotificationSchedule({
-        //                 title: title,
-        //                 date: new Date(res[i].notificationTimes[j]),
-        //                 message: message,
-        //                 playSound: true,
-        //                 soundName: 'default',
-        //                 repeatType: 'week',
-        //             });
-        //         }
-        //     }
-        // })
     }
 
     launchNotification() {
