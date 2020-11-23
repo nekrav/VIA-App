@@ -116,6 +116,8 @@ export class CreateRandom extends React.Component {
             addNotificationTime={item => {
                 this.setState({ notificationTimes: item, })
             }}
+            tableName={'random'}
+            itemName={this.state.name ? this.state.name : ''}
         />
         )
     }
@@ -217,6 +219,7 @@ export class CreateRandom extends React.Component {
                 onPress={() => {
                     global.notifier.scheduleAllNotifications();
                     this.props.notification_time(this.state.notificationTimes);
+                    console.warn(this.state.notificationTimes)
                     this.props.save()
                 }}>
                 <Text style={this.state.name != '' ? styles.bottomButtonTextDisabled : styles.bottomButtonText}> Save</Text>

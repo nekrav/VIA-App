@@ -304,44 +304,54 @@ export default class NotifService {
         this.scheduleRandomNotifications();
     }
 
-    scheduleSpecificDateNotification(notificationTime, item, tableName) {
-        this.getAllObjectNotificationTimes(tableName).then((res) => {
-            for (let i = 0; i < res.length; i++) {
+    scheduleSpecificDateNotification(notificationTime, itemName, tableName) {
+        console.warn(notificationTime)
 
-                let title = ""
-                let message = ""
+        // this.getAllObjectNotificationTimes(tableName).then((res) => {
+        //     for (let i = 0; i < res.length; i++) {
 
-                switch (name) {
+        //         let title = ""
+        //         let message = ""
+
+                switch (tableName) {
                     case 'habit':
-                        title = "Time to start your habit: " + res[i].item.name
+                        title = "Time to start your habit: " + itemName
                         break;
                     case 'routine':
-                        title = "Time to start your routine: " + res[i].item.name
+                        title = "Time to start your routine: " + itemName
                         break;
                     case 'project':
-                        title = "Time to start your habit: " + res[i].item.name
+                        title = "Time to start your habit: " + itemName
                         break;
                     case 'task':
-                        title = "Time to start your routine: " + res[i].item.name
+                        title = "Time to start your routine: " + itemName
                         break;
                     default:
-                        title = "Time to start your popup task: " + res[i].item.name
+                        title = "Time to start your popup task: " + itemName
                 }
+                PushNotification.localNotificationSchedule({
+                                    title: title,
+                                    date: new Date(notificationTime),
+                                    message: '',
+                                    playSound: true,
+                                    soundName: 'default',
+                                    // repeatType: 'week',
+                                });
 
-                message = "Things pop up!"
+        //         message = "Things pop up!"
 
-                for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    PushNotification.localNotificationSchedule({
-                        title: title,
-                        date: new Date(res[i].notificationTimes[j]),
-                        message: message,
-                        playSound: true,
-                        soundName: 'default',
-                        repeatType: 'week',
-                    });
-                }
-            }
-        })
+        //         for (let j = 0; j < res[i].notificationTimes.length; j++) {
+        //             PushNotification.localNotificationSchedule({
+        //                 title: title,
+        //                 date: new Date(res[i].notificationTimes[j]),
+        //                 message: message,
+        //                 playSound: true,
+        //                 soundName: 'default',
+        //                 repeatType: 'week',
+        //             });
+        //         }
+        //     }
+        // })
     }
 
     launchNotification() {

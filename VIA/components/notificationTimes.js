@@ -18,7 +18,7 @@ const timeFormat = "hh:mm A"
 const dateTimeFormat = "DD/MM - HH:mm A"
 const dateFormat = "DD/MM/YY"
 const fontFamily = Platform.OS == "ios" ? colorsProvider.font : colorsProvider.font
-
+const dateToday =  new Date();
 
 export class NotificationTimes extends React.Component {
 
@@ -29,12 +29,13 @@ export class NotificationTimes extends React.Component {
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
             dayNotificationTimes: '',
-            newNotifTimeDate: global.todayDate,
+            newNotifTimeDate: dateToday,
             newNotifTimeString: '',
             isSpecificDate: false,
-            newSpecificDate: global.todayDate.toString(),
+            newSpecificDate: dateToday.toString(),
             specificNotificationDates: this.props.specificNotificationDates ? this.props.specificNotificationDates : [],
-            openedSpecificDate: ''
+            openedSpecificDate: '',
+            tableName: '',
         };
     }
 
@@ -303,6 +304,8 @@ export class NotificationTimes extends React.Component {
                                     var oldArr = this.state.specificNotificationDates
                                     var newArr = oldArr.concat(this.state.newNotifTimeDate.toString())
                                     this.props.saveSpecificNotificationDates(newArr)
+                                    global.notifier.scheduleSpecificDateNotification(this.state.newSpecificDate,this.props.itemName,this.props.tableName);
+
                                     this.setState({ isSpecificDate: false, specificNotificationDates: newArr }, () => {
                                         this.RBSheet.close()
                                     })
