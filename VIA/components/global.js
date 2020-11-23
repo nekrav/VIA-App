@@ -41,6 +41,7 @@ global.emptyTimes = [
         checked: false,
         times: []
     },
+    specificTimes
 ]
 
 global.todayDate = new Date();

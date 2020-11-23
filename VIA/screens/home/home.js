@@ -288,6 +288,8 @@ export class HomeScreen extends React.Component {
                 closeModal={() => { this.setState({ addModalVisible: false }) }}
                 save={() => {
                     this.saveNewRandom(newRandom);
+                    console.warn(newRandom)
+
                     global.notifier.scheduleAllNotifications();
                     this.setState({ addModalVisible: false })
                 }}>

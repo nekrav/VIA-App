@@ -146,6 +146,60 @@ export default class NotifService {
         PushNotification.getScheduledLocalNotifications(callback);
     }
 
+    getAllSpecificNotificationTimes(tableName) {
+        return new Promise((resolve, reject) => {
+            Database.getAll(tableName)
+                .then((res) => {
+                    const len = res.rows.length;
+                    let item = {}
+                    let itemsWithNotifications = []
+                    for (let i = 0; i < len; i++) {
+                        let notificationTimes = [];
+                        item = res.rows.item(i)
+                        var times =JSON.parse(item.properties)
+                        console.warn(times.specificNotificationDates)
+                        if (item.properties.specificNotificationDates) {
+                            var nt = JSON.parse(item.properties.specificNotificationDates)
+                            // console.warn(item.properties.specificNotificationDates)
+                        }
+                    }
+                    resolve(itemsWithNotifications)
+                })
+        })
+    }
+
+
+    // for (let j = 0; j < nt.length; j++) {
+    //     dayWithTimes = nt[j]
+    //     ntTimes = nt[j].times
+    //     for (let k = 0; k < ntTimes.length; k++) {
+    //         let day = dayWithTimes.key
+    //         let hour = ntTimes[k].split(':')[0]
+    //         let minute = ntTimes[k].split(':')[1]
+    //         let ampm = minute.slice(-2);
+    //         if (ampm == 'PM') {
+    //             hour = parseInt(hour) + 12;
+    //         }
+    //         var date = new Date();
+    //         var currentDay = date.getDay();
+
+    //         var distance = parseInt(day) - currentDay;   //To get the day of the notification
+    //         date.setDate(date.getDate() + distance);
+    //         date.setHours(parseInt(hour))
+    //         date.setMinutes(parseInt(minute))
+    //         date.setSeconds(0)
+
+    //         notificationTimes.push(date.toString())
+
+    //     }
+    //     let it = { name: item.name, notificationTimes: notificationTimes }
+    // }
+    // if (notificationTimes.length > 0) {
+    //     itemsWithNotifications.push({ item: item, notificationTimes: notificationTimes })
+    // }
+
+
+
     getAllObjectNotificationTimes(tableName) {
         return new Promise((resolve, reject) => {
             Database.getAll(tableName)
@@ -213,6 +267,7 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Random.TABLE_NAME)
     }
 
     scheduleTaskNotifications() {
@@ -293,6 +348,8 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Random.TABLE_NAME).then((res) => {
+        });
     }
 
     scheduleAllNotifications() {
@@ -305,7 +362,7 @@ export default class NotifService {
     }
 
     scheduleSpecificDateNotification(notificationTime, itemName, tableName) {
-        console.warn(notificationTime)
+        // console.warn(notificationTime)
 
         // this.getAllObjectNotificationTimes(tableName).then((res) => {
         //     for (let i = 0; i < res.length; i++) {
@@ -313,30 +370,30 @@ export default class NotifService {
         //         let title = ""
         //         let message = ""
 
-                switch (tableName) {
-                    case 'habit':
-                        title = "Time to start your habit: " + itemName
-                        break;
-                    case 'routine':
-                        title = "Time to start your routine: " + itemName
-                        break;
-                    case 'project':
-                        title = "Time to start your habit: " + itemName
-                        break;
-                    case 'task':
-                        title = "Time to start your routine: " + itemName
-                        break;
-                    default:
-                        title = "Time to start your popup task: " + itemName
-                }
-                PushNotification.localNotificationSchedule({
-                                    title: title,
-                                    date: new Date(notificationTime),
-                                    message: '',
-                                    playSound: true,
-                                    soundName: 'default',
-                                    // repeatType: 'week',
-                                });
+        switch (tableName) {
+            case 'habit':
+                title = "Time to start your habit: " + itemName
+                break;
+            case 'routine':
+                title = "Time to start your routine: " + itemName
+                break;
+            case 'project':
+                title = "Time to start your habit: " + itemName
+                break;
+            case 'task':
+                title = "Time to start your routine: " + itemName
+                break;
+            default:
+                title = "Time to start your popup task: " + itemName
+        }
+        PushNotification.localNotificationSchedule({
+            title: title,
+            date: new Date(notificationTime),
+            message: '',
+            playSound: true,
+            soundName: 'default',
+            // repeatType: 'week',
+        });
 
         //         message = "Things pop up!"
 
