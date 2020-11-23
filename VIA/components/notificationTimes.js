@@ -80,7 +80,7 @@ export class NotificationTimes extends React.Component {
         var dateTime = Moment(new Date()).format(dateTimeFormat)
         return (
             <View style={{ flexDirection: 'row', borderRadius: 20, margin: 4, backgroundColor: this.props.color, justifyContent: 'center', alignContent: 'center' }}>
-                <TouchableOpacity
+                <View
                 style={{justifyContent: 'center', alignContent: 'center' }}
                     onPress={() => {
                         this.setState({ openedSpecificDate: Moment(item).format(dateTimeFormat), isSpecificDate: true }, () => {
@@ -90,7 +90,7 @@ export class NotificationTimes extends React.Component {
                     <Text style={{ margin: 5, fontFamily: colorsProvider.font, fontSize: 16, color: colorsProvider.whiteColor, textAlign: 'center', justifyContent: 'center', alignContent: 'center'  }}>
                         {Moment(item).format(dateTimeFormat)}
                     </Text>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity
                   style={{justifyContent: 'center', alignContent: 'center' }}
                     onPress={() => {
