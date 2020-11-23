@@ -157,9 +157,11 @@ export default class NotifService {
                         let notificationTimes = [];
                         item = res.rows.item(i)
                         var times =JSON.parse(item.properties)
-                        console.warn(times.specificNotificationDates)
-                        if (item.properties.specificNotificationDates) {
-                            var nt = JSON.parse(item.properties.specificNotificationDates)
+                        // console.warn(times.specificNotificationDates)
+                        if (times.specificNotificationDates) {
+                            for (let j = 0; j < times.specificNotificationDates.length; j++) {
+                                this.scheduleSpecificDateNotification(times.specificNotificationDates[j], item.name, tableName)
+                            }
                             // console.warn(item.properties.specificNotificationDates)
                         }
                     }
@@ -362,7 +364,7 @@ export default class NotifService {
     }
 
     scheduleSpecificDateNotification(notificationTime, itemName, tableName) {
-        // console.warn(notificationTime)
+        console.warn(notificationTime)
 
         // this.getAllObjectNotificationTimes(tableName).then((res) => {
         //     for (let i = 0; i < res.length; i++) {
