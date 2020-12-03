@@ -202,7 +202,10 @@ export class RoutinesScreen extends React.Component {
                         this.setState({ selectedRoutine: theRoutine })
 
                     }}
-
+                    saveSpecificNotificationDates={(text) => {
+                        theRoutine.properties.specificNotificationDates = text
+                        this.setState({ selectedItem: theRoutine })
+                    }}
 
                     save={() => { controller.saveExisting(this, dbTableName, theRoutine) }}
 

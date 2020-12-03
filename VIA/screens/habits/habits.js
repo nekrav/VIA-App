@@ -151,7 +151,6 @@ export class HabitsScreen extends React.Component {
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { 
                     global.notifier.scheduleAllNotifications();
-
                     this.saveNew(newHabit) }}
             ></CreateHabit>
         }
@@ -214,6 +213,10 @@ export class HabitsScreen extends React.Component {
                         } else {
                             theHabit.notification_time = JSON.stringify(global.emptyTimes)
                         }
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    saveSpecificNotificationDates={(text) => {
+                        theHabit.properties.specificNotificationDates = text
                         this.setState({ selectedItem: theHabit })
                     }}
                     editNotes={(text) => {

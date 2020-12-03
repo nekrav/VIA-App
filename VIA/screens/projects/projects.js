@@ -204,7 +204,10 @@ export class ProjectsScreen extends React.Component {
                             this.setState({ selectedProject: theProject })
                         }
                     }}
-
+                    saveSpecificNotificationDates={(text) => {
+                        theProject.properties.specificNotificationDates = text
+                        this.setState({ selectedItem: theProject })
+                    }}
                     goToChildItem={(passedChildItem) => {
                         this.setState({ selectedChildItem: passedChildItem, childOfListItemModalVisible: true })
                     }}

@@ -213,7 +213,10 @@ export class TasksScreen extends React.Component {
                             this.setState({ selectedTask: theTask })
                         }
                     }}
-
+                    saveSpecificNotificationDates={(text) => {
+                        theTask.properties.specificNotificationDates = text
+                        this.setState({ selectedItem: theTask })
+                    }}
                     save={() => {
                         controller.saveExisting(this, dbTableName, theTask)
                     }}

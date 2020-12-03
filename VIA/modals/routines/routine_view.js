@@ -241,8 +241,13 @@ export class ViewRoutine extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.routinesMainColor}
             notificationTimes={this.state.selectedItem.notification_time}
+            specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
+            }}
+            saveSpecificNotificationDates={(dates) => {
+                this.props.saveSpecificNotificationDates(dates);
+                this.props.save();
             }}
             addNotificationTime={item => {
                 this.props.editNotificationTime(item);
