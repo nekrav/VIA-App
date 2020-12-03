@@ -76,7 +76,7 @@ export class TasksScreen extends React.Component {
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
-        newTask.properties = task.properties ? task.properties : JSON.stringify({ specificNotificationDates: [] })
+        newTask.properties = task.properties ? JSON.stringify(task.properties) : JSON.stringify({ specificNotificationDates: [] })
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)

@@ -83,7 +83,7 @@ export class ProjectsScreen extends React.Component {
         newProject.notification_time = project.notification_time ? project.notification_time : ''
         newProject.time_spent = 0;
         newProject.notes = project.notes ? project.notes : "";
-        newProject.properties = project.properties ? project.properties : JSON.stringify({ specificNotificationDates: [] })
+        newProject.properties = project.properties ? JSON.stringify(project.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)

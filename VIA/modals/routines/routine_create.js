@@ -142,6 +142,9 @@ export class CreateRoutine extends React.Component {
 		return (<NotificationTimes
 			color={colorsProvider.routinesMainColor}
 			notificationTimes={this.state.notificationTimes}
+			saveSpecificNotificationDates={(dates) => {
+                this.props.saveSpecificNotificationDates(dates);
+            }}
 			addNotificationTime={item => {
 				this.setState({ notificationTimes: item })
 			}}

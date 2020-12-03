@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colorsProvider from './colorsProvider';
 import { Slider, colors } from 'react-native-elements';
-import { Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList, Dimensions } from "react-native";
+import { Keyboard, Animated, TouchableOpacity, View, Image, Text, TextInput, ScrollView, FlatList, Dimensions } from "react-native";
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FIcon from 'react-native-vector-icons/dist/FontAwesome';
 
@@ -29,7 +29,7 @@ export class NotificationTimes extends React.Component {
             notifTimeModalVisibility: false,
             dayOfTheWeek: '',
             dayNotificationTimes: '',
-            newNotifTimeDate: dateToday,
+            newNotifTimeDate: new Date(),
             newNotifTimeString: '',
             isSpecificDate: false,
             newSpecificDate: dateToday.toString(),
@@ -101,7 +101,9 @@ export class NotificationTimes extends React.Component {
                             var index = this.state.specificNotificationDates.indexOf(item)
                             var oldArr = this.state.specificNotificationDates
                             oldArr.splice(index, 1)
-                            this.setState({ specificNotificationDates: oldArr })
+                            this.setState({ specificNotificationDates: oldArr }, () => {
+                                global.notifier.scheduleAllNotifications();
+                            })
                         }
                     }}>
                     <FIcon style={{ margin: 5, marginBottom: 8, fontFamily: colorsProvider.font, fontSize: 25, color: colorsProvider.incompleteColor, textAlign: 'center' }} name="times" color={colorsProvider.whiteColor} />
@@ -139,7 +141,7 @@ export class NotificationTimes extends React.Component {
                 </Text>
                     </View>
                     <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
-
+                        Keyboard.dismiss()
                         this.setState({ isSpecificDate: true }, () => this.RBSheet.open())
                     }}>
 

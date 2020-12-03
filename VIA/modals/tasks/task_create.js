@@ -138,6 +138,9 @@ export class CreateTask extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.tasksMainColor}
             notificationTimes={this.state.notificationTimes}
+            saveSpecificNotificationDates={(dates) => {
+                this.props.saveSpecificNotificationDates(dates);
+            }}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
             }}

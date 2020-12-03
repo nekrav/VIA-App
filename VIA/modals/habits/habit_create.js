@@ -153,6 +153,9 @@ export class CreateHabit extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.habitsMainColor}
             notificationTimes={this.state.notificationTimes}
+            saveSpecificNotificationDates={(dates) => {
+                this.props.saveSpecificNotificationDates(dates);
+            }}
             addNotificationTime={item => {
                 this.setState({ notificationTimes: item })
             }}

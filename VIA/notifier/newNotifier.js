@@ -269,6 +269,7 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Projects.TABLE_NAME);
     }
 
     scheduleTaskNotifications() {
@@ -290,6 +291,7 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Tasks.TABLE_NAME);
     }
 
     scheduleRoutineNotifications() {
@@ -309,6 +311,7 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Routines.TABLE_NAME);
     }
 
     scheduleHabitsNotifications() {
@@ -328,6 +331,8 @@ export default class NotifService {
                 }
             }
         })
+        this.getAllSpecificNotificationTimes(Habits.TABLE_NAME);
+
     }
 
     scheduleRandomNotifications() {

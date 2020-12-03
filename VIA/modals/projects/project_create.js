@@ -115,22 +115,9 @@ export class CreateProject extends React.Component {
 		return (<NotificationTimes
 			color={colorsProvider.projectsMainColor}
 			notificationTimes={this.state.notificationTimes}
-			onPress={() => {
-				this.setNotificationTimesVisibility(true);
-			}}
-			addNotificationTime={item => {
-				this.setState({ notificationTimes: item })
-			}}
-		/>
-		)
-	}
-	/* #endregion */
-
-	/* #region  Notification Times Region */
-	renderNotificationTimes() {
-		return (<NotificationTimes
-			color={colorsProvider.projectsMainColor}
-			notificationTimes={this.state.notificationTimes}
+			saveSpecificNotificationDates={(dates) => {
+                this.props.saveSpecificNotificationDates(dates);
+            }}
 			onPress={() => {
 				this.setNotificationTimesVisibility(true);
 			}}

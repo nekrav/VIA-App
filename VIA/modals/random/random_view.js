@@ -259,7 +259,6 @@ export class ViewRandom extends React.Component {
     /* #endregion */
 
     /* #region  Notification Times Region */
-
     renderNotificationTimes() {
         return (<NotificationTimes
             color={colorsProvider.randomMainColor}
