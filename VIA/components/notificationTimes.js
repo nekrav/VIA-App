@@ -102,6 +102,8 @@ export class NotificationTimes extends React.Component {
                             var oldArr = this.state.specificNotificationDates
                             oldArr.splice(index, 1)
                             this.setState({ specificNotificationDates: oldArr }, () => {
+                                console.warn(this.state.specificNotificationDates)
+                                this.props.saveSpecificNotificationDates(this.state.specificNotificationDates)
                                 global.notifier.scheduleAllNotifications();
                             })
                         }

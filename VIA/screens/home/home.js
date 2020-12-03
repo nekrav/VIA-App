@@ -197,7 +197,7 @@ export class HomeScreen extends React.Component {
     }
 
     getHomeData() {
-        Database.clearAll().then(() => {
+        // Database.clearAll().then(() => {
         Database.getFromHome(Home.TABLE_NAME)
             .then((res) => {
                 const len = res.rows.length;
@@ -214,7 +214,7 @@ export class HomeScreen extends React.Component {
                         this.setState({ homeObject: item })
                     }
                 }
-                })
+                // })
             });
     }
 
@@ -352,11 +352,7 @@ export class HomeScreen extends React.Component {
                         this.setState({ selectedRandom: theRandom })
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        console.warn()
                         theRandom.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
-
-                        // theRandom.properties.specificNotificationDates = text
-                        console.warn(theRandom)
                         this.setState({ selectedRandom: theRandom })
                     }}
                     editNotificationTime={(text) => {
