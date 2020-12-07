@@ -216,7 +216,7 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedItem: theHabit })
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theHabit.properties.specificNotificationDates = text
+                        theHabit.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
                         this.setState({ selectedItem: theHabit })
                     }}
                     editNotes={(text) => {

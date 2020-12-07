@@ -341,8 +341,9 @@ export default class NotifService {
 
                 let title = "Time to start your popup task: " + res[i].item.name
                 let message = "Things pop up!"
-
+                
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
+                    console.warn(res[i].notificationTimes[j])
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),

@@ -214,7 +214,7 @@ export class TasksScreen extends React.Component {
                         }
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theTask.properties.specificNotificationDates = text
+                        theTask.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
                         this.setState({ selectedItem: theTask })
                     }}
                     save={() => {

@@ -205,7 +205,7 @@ export class ProjectsScreen extends React.Component {
                         }
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theProject.properties.specificNotificationDates = text
+                        theProject.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
                         this.setState({ selectedItem: theProject })
                     }}
                     goToChildItem={(passedChildItem) => {

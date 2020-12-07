@@ -203,7 +203,7 @@ export class RoutinesScreen extends React.Component {
 
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theRoutine.properties.specificNotificationDates = text
+                        theRoutine.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
                         this.setState({ selectedItem: theRoutine })
                     }}
 

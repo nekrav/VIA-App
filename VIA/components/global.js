@@ -1,5 +1,11 @@
 global.emptyTimes = [
     {
+        key: "0",
+        name: "Sunday",
+        checked: false,
+        times: []
+    },
+    {
         key: "1",
         name: "Monday",
         checked: false,
@@ -32,12 +38,6 @@ global.emptyTimes = [
     {
         key: "6",
         name: "Saturday",
-        checked: false,
-        times: []
-    },
-    {
-        key: "7",
-        name: "Sunday",
         checked: false,
         times: []
     },

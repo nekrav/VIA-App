@@ -199,6 +199,7 @@ export class Notifier extends React.Component {
     }
 
     scheduleAllNotifications() {
+        console.warn("aweoip")
         this.cancelAllNotifications();
         this.scheduleHabitsNotifications();
         this.scheduleTaskNotifications();
