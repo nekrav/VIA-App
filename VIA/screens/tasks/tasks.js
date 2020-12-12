@@ -6,6 +6,7 @@ import { Database, Tasks } from '../../db'
 import { CreateTask, ViewTask } from '../../modals'
 import { Controller } from '../controller'
 import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FIcon from 'react-native-vector-icons/dist/FontAwesome';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
@@ -22,7 +23,7 @@ const dbTableName = Tasks.TABLE_NAME
 export class TasksScreen extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -46,16 +47,16 @@ export class TasksScreen extends React.Component {
     }
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
     componentWillUnmount() {
         this.focusListener.remove();
@@ -77,7 +78,7 @@ export class TasksScreen extends React.Component {
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
         newTask.properties = task.properties ? JSON.stringify(task.properties) : JSON.stringify({ specificNotificationDates: [] })
-       
+
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
@@ -136,7 +137,7 @@ export class TasksScreen extends React.Component {
                     }
                 }}
                 saveSpecificNotificationDates={(text) => {
-                    newTask.properties = {specificNotificationDates: text ? text : []} 
+                    newTask.properties = { specificNotificationDates: text ? text : [] }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
@@ -213,7 +214,7 @@ export class TasksScreen extends React.Component {
                         this.setState({ selectedItem: theTask })
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theTask.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
+                        theTask.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
                         this.setState({ selectedItem: theTask })
                     }}
                     save={() => {
@@ -299,6 +300,14 @@ export class TasksScreen extends React.Component {
                                                 }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
+                                        <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => {
+                                                controller.delete(this, dbTableName, item.value);
+                                                global.notifier.scheduleAllNotifications()
+                                            }}>
+                                            <SIcon style={styles.listItemActionButton} name="trash" size={25} color={colorsProvider.incompleteColor} />
+                                        </TouchableOpacity>
                                         <TouchableOpacity
                                             style={{
                                                 color: colorsProvider.whiteColor,
