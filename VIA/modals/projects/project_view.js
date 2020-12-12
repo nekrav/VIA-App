@@ -210,7 +210,6 @@ export class ViewProject extends React.Component {
     /* #region  Notification Times Region */
 
     renderNotificationTimes() {
-        console.warn(this.props.selectedItem.notification_time)
         return (<NotificationTimes
             color={colorsProvider.projectsMainColor}
             notificationTimes={this.props.selectedItem.notification_time}

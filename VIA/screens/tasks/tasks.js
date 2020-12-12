@@ -77,10 +77,10 @@ export class TasksScreen extends React.Component {
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
         newTask.properties = task.properties ? JSON.stringify(task.properties) : JSON.stringify({ specificNotificationDates: [] })
+       
         Database.save(dbTableName, newTask).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -140,11 +140,8 @@ export class TasksScreen extends React.Component {
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => {
-                    if (!newTask.notification_time) {
-                        newTask.notification_time = global.emptyTimes
-                        // newTask.notification_time = global.emptyTimes
-                    }
                     this.saveNew(newTask)
+                    global.notifier.scheduleAllNotifications();
                 }}
             ></CreateTask>
         }
@@ -207,11 +204,13 @@ export class TasksScreen extends React.Component {
                         theTask.notes = text;
                         this.setState({ selectedTask: theTask })
                     }}
-                    editNotificationTime={(text) => {
-                        if (text) {
-                            theTask.notification_time = text
-                            this.setState({ selectedTask: theTask })
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theTask.notification_time = times
+                        } else {
+                            theTask.notification_time = JSON.stringify(global.emptyTimes)
                         }
+                        this.setState({ selectedItem: theTask })
                     }}
                     saveSpecificNotificationDates={(text) => {
                         theTask.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 

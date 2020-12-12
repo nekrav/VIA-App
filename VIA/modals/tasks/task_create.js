@@ -138,15 +138,15 @@ export class CreateTask extends React.Component {
         return (<NotificationTimes
             color={colorsProvider.tasksMainColor}
             notificationTimes={this.state.notificationTimes}
+            specificNotificationDates={this.state.specificNotificationDates}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
-            }}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
             }}
             addNotificationTime={item => {
                 this.setState({ notificationTimes: item })
             }}
+            tableName={'tasks'}
+            itemName={this.state.name ? this.state.name : ''}
         />
         )
     }

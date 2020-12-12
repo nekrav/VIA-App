@@ -13,9 +13,6 @@ import Moment from 'moment';
 import NotifService from '../../notifier/newNotifier';
 import { TopBar, DoneSlider, CompleteButton, TrashButton, NotificationTimes, Notes } from '../../components'
 
-
-
-
 const controller = new Controller;
 
 const styles = require('./styles');
@@ -201,10 +198,6 @@ export class ViewTask extends React.Component {
             color={colorsProvider.tasksMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-                this.props.save();
-            }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
@@ -215,6 +208,8 @@ export class ViewTask extends React.Component {
                 this.props.save();
                 global.notifier.scheduleAllNotifications();
             }}
+            tableName={'tasks'}
+            itemName={this.state.selectedItem.name ? this.state.selectedItem.name : ''}
         />
         )
     }

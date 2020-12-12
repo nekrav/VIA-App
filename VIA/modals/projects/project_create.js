@@ -124,7 +124,6 @@ export class CreateProject extends React.Component {
 			}}
 			tableName={'projects'}
             itemName={this.state.name ? this.state.name : ''}
-
 		/>
 		)
 	}
