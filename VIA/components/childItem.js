@@ -48,9 +48,8 @@ export class ChildItem extends React.Component {
                 <View
                     style={[
                         styles.childItemOuterContainer,
-                        { borderColor: this.props.childMainColor },
-                    ]}
-                >
+                        { borderColor: this.props.childMainColor, },
+                    ]}>
                     <View style={styles.childItemInnerContainer}>
                         <FIcon
                             name="exclamation-circle"
@@ -80,35 +79,38 @@ export class ChildItem extends React.Component {
                                 }
                             }}
                         />
+                        <TouchableOpacity
+                            style={styles.childItemTextContainer}
+                            onPress={(item) => {
+                                this.props.goToItem(this.state.item);
+                            }}>
+                            <Text
+                                numberOfLines={1}
+                                style={[styles.childItemText, { color: this.props.childMainColor }]}>
+                                {this.props.name}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.childItemTextContainer}
-                        onPress={(item) => {
-                            this.props.goToItem(this.state.item);
-                        }}>
-                        <Text
-                            numberOfLines={1}
-                            style={[styles.childItemText, { color: this.props.childMainColor }]}>
-                            {this.props.name}
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.listItemActionButton}
-                        onPress={(item) => {
-                            this.props.deleteItem(item)
-                            // controller.delete(this, "random", this.state.item);
-                            // global.notifier.scheduleAllNotifications()
-                        }}>
-                        <SIcon style={styles.listItemActionButton} name="trash" size={25} color={colorsProvider.incompleteColor} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.childItemArrowIconContainer}>
-                        <IIcon
-                            size={20}
-                            style={styles.childItemArrowIcon}
-                            color={this.props.childMainColor}
-                            name="ios-arrow-forward"
-                        />
-                    </TouchableOpacity>
+
+                    <View style={{ flex: 0,backgroundColor: 'red', flexDirection: 'row' }}>
+                        <TouchableOpacity
+                            style={{}}
+                            onPress={(item) => {
+                                this.props.deleteItem(item)
+                                // controller.delete(this, "random", this.state.item);
+                                // global.notifier.scheduleAllNotifications()
+                            }}>
+                            <SIcon style={{}} name="trash" size={25} color={colorsProvider.incompleteColor} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ }}>
+                            <IIcon
+                                size={20}
+                                style={styles.childItemArrowIcon}
+                                color={this.props.childMainColor}
+                                name="ios-arrow-forward"
+                            />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );

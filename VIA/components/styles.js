@@ -9,7 +9,7 @@ module.exports = StyleSheet.create({
   /* #region   Child Container */
   childItemOuterContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     alignItems: 'center',
     borderWidth: 2,
     margin: 10,
@@ -17,7 +17,10 @@ module.exports = StyleSheet.create({
   },
 
   childItemInnerContainer: {
+    flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor:'yellow' 
   },
 
   childItemImportanceIcon: {
@@ -34,7 +37,8 @@ module.exports = StyleSheet.create({
   },
   childItemArrowIconContainer: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginRight: 100,
   },
   childItemArrowIcon: {
     marginLeft: 10,
