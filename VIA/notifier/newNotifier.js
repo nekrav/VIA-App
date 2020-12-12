@@ -379,7 +379,7 @@ export default class NotifService {
                 title = "Time to start your project: " + itemName
                 break;
             case 'tasks':
-                title = "Time to start your routine: " + itemName
+                title = "Time to start your task: " + itemName
                 break;
             default:
                 title = "Time to start your popup task: " + itemName
@@ -387,7 +387,7 @@ export default class NotifService {
         var date = new Date(notificationTime).setSeconds(0);
         PushNotification.localNotificationSchedule({
             title: title,
-            date: new Date(notificationTime),
+            date: new Date(date),
             message: '',
             playSound: true,
             soundName: 'default',
