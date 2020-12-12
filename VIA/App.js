@@ -16,7 +16,7 @@ import './components/global'
 
 const controller = new Controller;
 
-console.disableYellowBox = true;
+console.disableYellowBox = false;
 
 
 

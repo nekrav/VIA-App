@@ -196,9 +196,10 @@ export class ChildrenContainer extends React.Component {
         newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.notes = habit.notes ? habit.notes : '',
-            newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
+        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
+        newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save('habits', newHabit).then(() => {
             this.setState({ addModalVisible: false })
@@ -266,6 +267,9 @@ export class ChildrenContainer extends React.Component {
                             newHabit.notification_time = JSON.stringify(global.emptyTimes)
                         }
                     }}
+                    saveSpecificNotificationDates={(text) => {
+                        newHabit.properties = { specificNotificationDates: text ? text : [] }
+                    }}
                     routine={(text) => { newHabit.routine = text }}
                     days_to_do={(text) => { newHabit.days_to_do = text }}
                     notes={(text) => { newHabit.notes = text }}
@@ -278,6 +282,7 @@ export class ChildrenContainer extends React.Component {
                             newHabit.routineName = this.props.parentName
                         }
                         this.saveNewHabit(newHabit)
+                        global.notifier.scheduleAllNotifications();
                     }}
                 />
             }
@@ -317,6 +322,9 @@ export class ChildrenContainer extends React.Component {
                         } else {
                             newTask.notification_time = JSON.stringify(global.emptyTimes)
                         }
+                    }}
+                    saveSpecificNotificationDates={(text) => {
+                        newTask.properties = { specificNotificationDates: text ? text : [] }
                     }}
                     closeModal={() => { controller.setAddModalVisible(this, false) }}
                     save={() => {
@@ -392,7 +400,11 @@ export class ChildrenContainer extends React.Component {
                             } else {
                                 theHabit.notification_time = JSON.stringify(global.emptyTimes)
                             }
-                            // this.setState({ selectedItem: theHabit })
+                            this.setState({ selectedItem: theHabit })
+                        }}
+                        saveSpecificNotificationDates={(text) => {
+                            theHabit.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
+                            this.setState({ selectedItem: theHabit })
                         }}
                         editNotes={(text) => {
                             theHabit.notes = text;
@@ -491,7 +503,10 @@ export class ChildrenContainer extends React.Component {
                                 this.setState({ selectedTask: theTask })
                             }
                         }}
-
+                        saveSpecificNotificationDates={(text) => {
+                            theTask.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
+                            this.setState({ selectedItem: theTask })
+                        }}
                         save={() => {
                             controller.saveExisting(this, 'tasks', theTask)
                         }}

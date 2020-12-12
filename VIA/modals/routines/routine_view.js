@@ -378,6 +378,7 @@ export class ViewRoutine extends React.Component {
         newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save(childTableName, newHabit).then(() => {
+            console.warn("aoiweuhaoweuh")
             this.setState({ tasksSelectionModalVisible: false })
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
         })
@@ -388,14 +389,24 @@ export class ViewRoutine extends React.Component {
             var newHabit = {};
         }
         var newHabit = {};
-        // let newHabit = {};
         if (this.state.tasksSelectionModalVisible) {
             return <CreateHabit
                 animationType="slide"
                 transparent={false}
                 id={(text) => { newHabit.id = text }}
                 name={(text) => { newHabit.name = text }}
-                importance={(text) => { newHabit.importance = text }}
+                setImportanceNN={(text) => {
+                    newHabit.importance = 1;
+                }}
+                setImportanceNU={(text) => {
+                    newHabit.importance = 2;
+                }}
+                setImportanceIN={(text) => {
+                    newHabit.importance = 3;
+                }}
+                setImportanceIU={(text) => {
+                    newHabit.importance = 4;
+                }}                
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
