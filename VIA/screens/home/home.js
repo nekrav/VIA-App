@@ -432,10 +432,15 @@ export class HomeScreen extends React.Component {
                                         completed={item.value.completed}
                                         parentComplimentaryColor={this.props.parentComplimentaryColor}
                                         childItemTableName={this.props.childItemTableName}
-                                        deleteItem={item => {
-                                            controller.delete(this, "random", item)
-                                            // controller.loadAllChildrenAndGetRelatedChildren(this, Random.TABLE_NAME, this.state.selectedItem.id, "random")
-                                            // this.props.save();
+                                        deleteItem={ () => {
+                                            // var arr = this.state.randomTasks
+                                            var index = this.state.randomTasks.indexOf(item)
+                                            controller.delete(this, "random", item.value)
+                                            if (index !== -1) {
+                                                var newArr = this.state.randomTasks
+                                                newArr.splice(index, 1)
+                                                this.setState({ randomTasks: newArr })
+                                            }
                                         }}
                                         childUpdateCompleted={item => {
                                             this.props.childUpdateCompleted(item);

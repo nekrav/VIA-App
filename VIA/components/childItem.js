@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import IIcon from 'react-native-vector-icons/dist/Ionicons';
 import FIcon from 'react-native-vector-icons/dist/FontAwesome';
+import SIcon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import { CheckBox } from 'react-native-elements';
 import { Controller } from '../screens/controller';
 
@@ -91,18 +92,15 @@ export class ChildItem extends React.Component {
                             {this.props.name}
                         </Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity
-                        style={styles.childItemTextContainer}
+                    <TouchableOpacity
+                        style={styles.listItemActionButton}
                         onPress={(item) => {
-                            this.props.deleteItem(this.state.item);
+                            this.props.deleteItem(item)
+                            // controller.delete(this, "random", this.state.item);
+                            // global.notifier.scheduleAllNotifications()
                         }}>
-                       <IIcon
-                            size={20}
-                            style={styles.childItemArrowIcon}
-                            color={this.props.childMainColor}
-                            name="trash"
-                        />
-                    </TouchableOpacity> */}
+                        <SIcon style={styles.listItemActionButton} name="trash" size={25} color={colorsProvider.incompleteColor} />
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.childItemArrowIconContainer}>
                         <IIcon
                             size={20}
