@@ -210,12 +210,14 @@ export class ViewProject extends React.Component {
     /* #region  Notification Times Region */
 
     renderNotificationTimes() {
+        console.warn(this.props.selectedItem.notification_time)
         return (<NotificationTimes
             color={colorsProvider.projectsMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
+                this.props.save();
             }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
@@ -227,6 +229,9 @@ export class ViewProject extends React.Component {
                 this.props.save();
                 global.notifier.scheduleAllNotifications();
             }}
+            tableName={'project'}
+            itemName={this.state.name ? this.state.name : ''}
+
         />
         )
     }

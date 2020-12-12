@@ -27,7 +27,7 @@ export class HabitsScreen extends React.Component {
         global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
-          );
+        );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -54,16 +54,16 @@ export class HabitsScreen extends React.Component {
 
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
     componentWillUnmount() {
         this.focusListener.remove();
@@ -108,7 +108,7 @@ export class HabitsScreen extends React.Component {
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            global.notifier.scheduleAllNotifications()
+            // global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -143,15 +143,16 @@ export class HabitsScreen extends React.Component {
                     }
                 }}
                 saveSpecificNotificationDates={(text) => {
-                    newHabit.properties = {specificNotificationDates: text ? text : []} 
+                    newHabit.properties = { specificNotificationDates: text ? text : [] }
                 }}
                 routine={(text, name) => { newHabit.routine = text; newHabit.routineName = name }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 notes={(text) => { newHabit.notes = text }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { 
+                save={() => {
+                    this.saveNew(newHabit)
                     global.notifier.scheduleAllNotifications();
-                    this.saveNew(newHabit) }}
+                }}
             ></CreateHabit>
         }
     }
@@ -216,7 +217,7 @@ export class HabitsScreen extends React.Component {
                         this.setState({ selectedItem: theHabit })
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theHabit.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
+                        theHabit.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
                         this.setState({ selectedItem: theHabit })
                     }}
                     editNotes={(text) => {
@@ -232,7 +233,6 @@ export class HabitsScreen extends React.Component {
                         theHabit.days_to_do = text;
                         this.setState({ selectedItem: theHabit })
                     }}
-
                     save={() => {
                         controller.saveExisting(this, dbTableName, theHabit)
                     }}

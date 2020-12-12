@@ -133,6 +133,7 @@ export class ProjectsScreen extends React.Component {
                 notification_time={(times) => {
                     if (times) {
                         newProject.notification_time = times
+                        console.warn(times)
                     } else {
                         newProject.notification_time = JSON.stringify(global.emptyTimes)
                     }
@@ -141,7 +142,11 @@ export class ProjectsScreen extends React.Component {
                     newProject.properties = {specificNotificationDates: text ? text : []} 
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newProject); this.forceUpdate() }}
+                save={() => { 
+                    this.saveNew(newProject); 
+                    console.warn(newProject)
+                    global.notifier.scheduleAllNotifications();
+                }}
             ></CreateProject>
         }
     }
@@ -198,11 +203,19 @@ export class ProjectsScreen extends React.Component {
                         theProject.notes = text;
                         this.setState({ selectedProject: theProject })
                     }}
-                    editNotificationTime={(text) => {
-                        if (text) {
-                            theProject.notification_time = text
-                            this.setState({ selectedProject: theProject })
+                    // editNotificationTime={(text) => {
+                    //     if (text) {
+                    //         theProject.notification_time = text
+                    //         this.setState({ selectedProject: theProject })
+                    //     }
+                    // }}
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theProject.notification_time = times
+                        } else {
+                            theProject.notification_time = JSON.stringify(global.emptyTimes)
                         }
+                        this.setState({ selectedProject: theProject })
                     }}
                     saveSpecificNotificationDates={(text) => {
                         theProject.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 

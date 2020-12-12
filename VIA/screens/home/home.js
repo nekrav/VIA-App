@@ -355,15 +355,6 @@ export class HomeScreen extends React.Component {
                         theRandom.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
                         this.setState({ selectedRandom: theRandom })
                     }}
-                    // editNotificationTime={(text) => {
-                    //     if (text) {
-                    //         var times = text.map(function (time) {
-                    //             return JSON.stringify(time)
-                    //         })
-                    //         theRandom.notification_time = times
-                    //         this.setState({ selectedRandom: theRandom })
-                    //     }
-                    // }}
                     editNotificationTime={(times) => {
                         if (times) {
                             theRandom.notification_time = times
@@ -373,7 +364,6 @@ export class HomeScreen extends React.Component {
                         this.setState({ selectedRandom: theRandom })
                     }}
                     save={() => {
-                        console.warn(theRandom)
                         controller.saveExisting(this, childDBTableName, theRandom)
                     }}
 

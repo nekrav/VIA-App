@@ -203,6 +203,7 @@ export class ViewTask extends React.Component {
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
             onPress={() => {
                 this.setNotificationTimesVisibility(true);
+                this.props.save();
             }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);

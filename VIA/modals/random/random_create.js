@@ -110,9 +110,6 @@ export class CreateRandom extends React.Component {
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
             }}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-            }}
             addNotificationTime={item => {
                 this.setState({ notificationTimes: item, })
             }}

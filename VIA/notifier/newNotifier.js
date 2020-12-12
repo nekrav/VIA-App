@@ -343,7 +343,6 @@ export default class NotifService {
                 let message = "Things pop up!"
                 
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    console.warn(res[i].notificationTimes[j])
                     PushNotification.localNotificationSchedule({
                         title: title,
                         date: new Date(res[i].notificationTimes[j]),
@@ -368,22 +367,28 @@ export default class NotifService {
     }
 
     scheduleSpecificDateNotification(notificationTime, itemName, tableName) {
+        console.warn(tableName)
         switch (tableName) {
-            case 'habit':
+            case 'habits':
                 title = "Time to start your habit: " + itemName
                 break;
-            case 'routine':
+            case 'routines':
                 title = "Time to start your routine: " + itemName
                 break;
-            case 'project':
-                title = "Time to start your habit: " + itemName
+            case 'projects':
+                title = "Time to start your project: " + itemName
                 break;
-            case 'task':
+            case 'tasks':
                 title = "Time to start your routine: " + itemName
                 break;
             default:
                 title = "Time to start your popup task: " + itemName
         }
+        var date = new Date(notificationTime).setSeconds(0);
+        // console.warn(new Date(date).getDay())
+        // console.warn(new Date(date).getHours())
+        // console.warn(new Date(date).getMinutes())
+        // console.warn(new Date(date).getSeconds())
         PushNotification.localNotificationSchedule({
             title: title,
             date: new Date(notificationTime),

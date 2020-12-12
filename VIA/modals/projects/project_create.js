@@ -115,6 +115,7 @@ export class CreateProject extends React.Component {
 		return (<NotificationTimes
 			color={colorsProvider.projectsMainColor}
 			notificationTimes={this.state.notificationTimes}
+			specificNotificationDates={this.state.specificNotificationDates}
 			saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
             }}
@@ -124,6 +125,9 @@ export class CreateProject extends React.Component {
 			addNotificationTime={item => {
 				this.setState({ notificationTimes: item })
 			}}
+			tableName={'project'}
+            itemName={this.state.name ? this.state.name : ''}
+
 		/>
 		)
 	}

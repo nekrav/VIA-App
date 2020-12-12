@@ -268,15 +268,14 @@ export class ViewRandom extends React.Component {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
             }}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-            }}
             addNotificationTime={item => {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
                 global.notifier.scheduleAllNotifications();
             }}
+            tableName={'random'}
+            itemName={this.state.name ? this.state.name : ''}
         />
         )
     }

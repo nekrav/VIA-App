@@ -203,9 +203,6 @@ export class ViewHabit extends React.Component {
             color={colorsProvider.habitsMainColor}
             notificationTimes={this.state.selectedItem.notification_time}
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-            }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
@@ -214,7 +211,10 @@ export class ViewHabit extends React.Component {
                 this.props.editNotificationTime(item);
                 this.setState({ notificationTimes: item })
                 this.props.save();
-                global.notifier.scheduleAllNotifications();            }}
+                global.notifier.scheduleAllNotifications()
+            }}
+            tableName={'habits'}
+            itemName={this.state.selectedItem.name ? this.state.selectedItem.name : ''}
         />
         )
     }
