@@ -222,11 +222,8 @@ export class ChildrenContainer extends React.Component {
         newTask.time_spent = 0;
         newTask.notes = task.notes ? task.notes : "";
         newTask.notification_time = task.notification_time ? task.notification_time : ''
-        Database.save('tasks', newTask).then(() => {
-            controller.setAddModalVisible(this, false)
-            controller.loadAll(this, 'tasks')
-            global.notifier.scheduleAllNotifications()
-        })
+        newTask.properties = task.properties ? JSON.stringify(task.properties) : JSON.stringify({ specificNotificationDates: [] })
+
         Database.save('tasks', newTask).then(() => {
             this.setState({ addModalVisible: false })
             controller.loadAll(this, 'tasks')
@@ -497,11 +494,13 @@ export class ChildrenContainer extends React.Component {
                             theTask.notes = text;
                             this.setState({ selectedTask: theTask })
                         }}
-                        editNotificationTime={(text) => {
-                            if (text) {
-                                theTask.notification_time = text
-                                this.setState({ selectedTask: theTask })
+                        editNotificationTime={(times) => {
+                            if (times) {
+                                theTask.notification_time = times
+                            } else {
+                                theTask.notification_time = JSON.stringify(global.emptyTimes)
                             }
+                            this.setState({ selectedItem: theTask })
                         }}
                         saveSpecificNotificationDates={(text) => {
                             theTask.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
