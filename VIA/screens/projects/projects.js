@@ -141,6 +141,7 @@ export class ProjectsScreen extends React.Component {
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { 
+                    console.warn(newProject)
                     this.saveNew(newProject); 
                     global.notifier.scheduleAllNotifications();
                 }}

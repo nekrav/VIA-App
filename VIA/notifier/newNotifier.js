@@ -148,24 +148,24 @@ export default class NotifService {
 
     getAllSpecificNotificationTimes(tableName) {
         // return new Promise((resolve, reject) => {
-            Database.getAll(tableName)
-                .then((res) => {
-                    const len = res.rows.length;
-                    let item = {}
-                    let itemsWithNotifications = []
-                    for (let i = 0; i < len; i++) {
-                        let notificationTimes = [];
-                        item = res.rows.item(i)
-                        var times =JSON.parse(item.properties)
-                        if (times.specificNotificationDates) {
-                            for (let j = 0; j < times.specificNotificationDates.length; j++) {
-                                this.scheduleSpecificDateNotification(times.specificNotificationDates[j], item.name, tableName)
-                            }
+        Database.getAll(tableName)
+            .then((res) => {
+                const len = res.rows.length;
+                let item = {}
+                let itemsWithNotifications = []
+                for (let i = 0; i < len; i++) {
+                    let notificationTimes = [];
+                    item = res.rows.item(i)
+                    var times = JSON.parse(item.properties)
+                    if (times.specificNotificationDates) {
+                        for (let j = 0; j < times.specificNotificationDates.length; j++) {
+                            this.scheduleSpecificDateNotification(times.specificNotificationDates[j], item.name, tableName)
                         }
                     }
+                }
                 //     resolve(itemsWithNotifications)
                 // })
-        })
+            })
     }
 
 
@@ -254,7 +254,7 @@ export default class NotifService {
                 let title = "Time to start your project: " + res[i].item.name
                 let message = "This project is " + Math.trunc(res[i].item.percentage_done) + "%% done"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    if (!res[i].item.completed) {
+                    if (res[i].item.completed == "false") {
                         PushNotification.localNotificationSchedule({
                             title: title,
                             date: new Date(res[i].notificationTimes[j]),
@@ -298,14 +298,16 @@ export default class NotifService {
                 let title = "Time to start your routine: " + res[i].item.name
                 let message = "You can do it!"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    PushNotification.localNotificationSchedule({
-                        title: title,
-                        date: new Date(res[i].notificationTimes[j]),
-                        message: message,
-                        playSound: true,
-                        soundName: 'default',
-                        repeatType: 'week',
-                    });
+                    if (res[i].item.completed == "false") {
+                        PushNotification.localNotificationSchedule({
+                            title: title,
+                            date: new Date(res[i].notificationTimes[j]),
+                            message: message,
+                            playSound: true,
+                            soundName: 'default',
+                            repeatType: 'week',
+                        });
+                    }
                 }
             }
         })
@@ -318,19 +320,20 @@ export default class NotifService {
                 let title = "Time to start your habit: " + res[i].item.name
                 let message = "Good habits are the foundation to success!"
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
-                    PushNotification.localNotificationSchedule({
-                        title: title,
-                        date: new Date(res[i].notificationTimes[j]),
-                        message: message,
-                        playSound: true,
-                        soundName: 'default',
-                        repeatType: 'week',
-                    });
+                    if (res[i].item.completed == "false") {
+                        PushNotification.localNotificationSchedule({
+                            title: title,
+                            date: new Date(res[i].notificationTimes[j]),
+                            message: message,
+                            playSound: true,
+                            soundName: 'default',
+                            repeatType: 'week',
+                        });
+                    }
                 }
             }
         })
         this.getAllSpecificNotificationTimes(Habits.TABLE_NAME);
-
     }
 
     scheduleRandomNotifications() {
@@ -339,7 +342,7 @@ export default class NotifService {
 
                 let title = "Time to start your popup task: " + res[i].item.name
                 let message = "Things pop up!"
-                
+
                 for (let j = 0; j < res[i].notificationTimes.length; j++) {
                     PushNotification.localNotificationSchedule({
                         title: title,
