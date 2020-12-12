@@ -433,7 +433,9 @@ export class HomeScreen extends React.Component {
                                         parentComplimentaryColor={this.props.parentComplimentaryColor}
                                         childItemTableName={this.props.childItemTableName}
                                         deleteItem={item => {
-                                            this.props.deleteItem(item)
+                                            controller.delete(this, "random", item)
+                                            // controller.loadAllChildrenAndGetRelatedChildren(this, Random.TABLE_NAME, this.state.selectedItem.id, "random")
+                                            // this.props.save();
                                         }}
                                         childUpdateCompleted={item => {
                                             this.props.childUpdateCompleted(item);

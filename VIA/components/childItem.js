@@ -91,6 +91,18 @@ export class ChildItem extends React.Component {
                             {this.props.name}
                         </Text>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.childItemTextContainer}
+                        onPress={(item) => {
+                            this.props.deleteItem(this.state.item);
+                        }}>
+                       <IIcon
+                            size={20}
+                            style={styles.childItemArrowIcon}
+                            color={this.props.childMainColor}
+                            name="trash"
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.childItemArrowIconContainer}>
                         <IIcon
                             size={20}
