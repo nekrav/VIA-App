@@ -289,6 +289,14 @@ export class RoutinesScreen extends React.Component {
                                                 }}>{item.value.name} </Text></View>
                                     </View>
                                     <View style={styles.listItemActionButtonsContainer}>
+                                    <TouchableOpacity
+                                            style={styles.listItemActionButton}
+                                            onPress={() => {
+                                                controller.delete(this, dbTableName, item.value);
+                                                global.notifier.scheduleAllNotifications()
+                                            }}>
+                                            <SIcon style={styles.listItemActionButton} name="trash" size={25} color={colorsProvider.incompleteColor} />
+                                        </TouchableOpacity>
                                         <TouchableOpacity
                                             style={{
                                                 color: colorsProvider.whiteColor,
