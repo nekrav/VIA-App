@@ -119,13 +119,10 @@ export class CreateProject extends React.Component {
 			saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
             }}
-			onPress={() => {
-				this.setNotificationTimesVisibility(true);
-			}}
 			addNotificationTime={item => {
 				this.setState({ notificationTimes: item })
 			}}
-			tableName={'project'}
+			tableName={'projects'}
             itemName={this.state.name ? this.state.name : ''}
 
 		/>

@@ -88,7 +88,6 @@ export class ProjectsScreen extends React.Component {
         Database.save(dbTableName, newProject).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -133,7 +132,6 @@ export class ProjectsScreen extends React.Component {
                 notification_time={(times) => {
                     if (times) {
                         newProject.notification_time = times
-                        console.warn(times)
                     } else {
                         newProject.notification_time = JSON.stringify(global.emptyTimes)
                     }
@@ -144,7 +142,6 @@ export class ProjectsScreen extends React.Component {
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
                 save={() => { 
                     this.saveNew(newProject); 
-                    console.warn(newProject)
                     global.notifier.scheduleAllNotifications();
                 }}
             ></CreateProject>
@@ -203,12 +200,6 @@ export class ProjectsScreen extends React.Component {
                         theProject.notes = text;
                         this.setState({ selectedProject: theProject })
                     }}
-                    // editNotificationTime={(text) => {
-                    //     if (text) {
-                    //         theProject.notification_time = text
-                    //         this.setState({ selectedProject: theProject })
-                    //     }
-                    // }}
                     editNotificationTime={(times) => {
                         if (times) {
                             theProject.notification_time = times

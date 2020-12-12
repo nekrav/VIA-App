@@ -28,7 +28,7 @@ export class ViewRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             selectedItem: this.props.selectedItem,
             items: [],
@@ -50,16 +50,16 @@ export class ViewRoutine extends React.Component {
     // }
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
 
     getChildren(childTableName, selectedParent, parentType) {
@@ -242,10 +242,6 @@ export class ViewRoutine extends React.Component {
             color={colorsProvider.routinesMainColor}
             notificationTimes={this.state.selectedItem.notification_time}
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-                this.props.save();
-            }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
@@ -256,6 +252,8 @@ export class ViewRoutine extends React.Component {
                 this.props.save();
                 global.notifier.scheduleAllNotifications();
             }}
+            tableName={'routines'}
+            itemName={this.state.selectedItem.name ? this.state.selectedItem.name : ''}
         />
         )
     }
@@ -318,12 +316,24 @@ export class ViewRoutine extends React.Component {
                         theHabit.time_to_spend = text;
                         this.setState({ selectedChildItem: theHabit })
                     }}
-                    editNotificationTime={(text) => {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
-                        theHabit.notification_time = times
-                        this.setState({ selectedChildItem: theHabit })
+                    // editNotificationTime={(text) => {
+                    //     var times = text.map(function (time) {
+                    //         return JSON.stringify(time)
+                    //     })
+                    //     theHabit.notification_time = times
+                    //     this.setState({ selectedChildItem: theHabit })
+                    // }}
+                    editNotificationTime={(times) => {
+                        if (times) {
+                            theHabit.notification_time = times
+                        } else {
+                            theHabit.notification_time = JSON.stringify(global.emptyTimes)
+                        }
+                        this.setState({ selectedItem: theHabit })
+                    }}
+                    saveSpecificNotificationDates={(text) => {
+                        theHabit.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
+                        this.setState({ selectedItem: theHabit })
                     }}
                     editRoutine={(text, name) => {
                         theHabit.routineName = name
@@ -365,11 +375,11 @@ export class ViewRoutine extends React.Component {
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
+        newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save(childTableName, newHabit).then(() => {
-            this.setState({ tasksSelectionModalVisible: false })            // controller.loadAll(this, childTableName)
+            this.setState({ tasksSelectionModalVisible: false })
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
-            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -389,20 +399,33 @@ export class ViewRoutine extends React.Component {
                 time_to_spend={(text) => { newHabit.time_to_spend = text }}
                 start_time={(text) => { newHabit.start_time = text }}
                 end_time={(text) => { newHabit.end_time = text }}
-                notification_time={(text) => {
-                    if (text) {
-                        var times = text.map(function (time) {
-                            return JSON.stringify(time)
-                        })
+                // notification_time={(text) => {
+                //     if (text) {
+                //         var times = text.map(function (time) {
+                //             return JSON.stringify(time)
+                //         })
+                //         newHabit.notification_time = times
+                //     }
+                // }}
+                notification_time={(times) => {
+                    if (times) {
                         newHabit.notification_time = times
+                    } else {
+                        newHabit.notification_time = JSON.stringify(global.emptyTimes)
                     }
+                }}
+                saveSpecificNotificationDates={(text) => {
+                    newHabit.properties = { specificNotificationDates: text ? text : [] }
                 }}
                 routine={(text) => { newHabit.routine = text }}
                 days_to_do={(text) => { newHabit.days_to_do = text }}
                 fromRoutine={this.props.selectedItem.id}
                 fromRoutineName={this.props.selectedItem.name}
                 closeModal={() => { this.setState({ tasksSelectionModalVisible: false }) }}
-                save={() => { this.saveNewHabit(newHabit) }}
+                save={() => {
+                    this.saveNewHabit(newHabit)
+                    global.notifier.scheduleAllNotifications();
+                }}
             ></CreateHabit>
         }
     }

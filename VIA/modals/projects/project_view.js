@@ -215,10 +215,6 @@ export class ViewProject extends React.Component {
             color={colorsProvider.projectsMainColor}
             notificationTimes={this.props.selectedItem.notification_time}
             specificNotificationDates={JSON.parse(this.props.selectedItem.properties).specificNotificationDates}
-            onPress={() => {
-                this.setNotificationTimesVisibility(true);
-                this.props.save();
-            }}
             saveSpecificNotificationDates={(dates) => {
                 this.props.saveSpecificNotificationDates(dates);
                 this.props.save();
@@ -229,7 +225,7 @@ export class ViewProject extends React.Component {
                 this.props.save();
                 global.notifier.scheduleAllNotifications();
             }}
-            tableName={'project'}
+            tableName={'projects'}
             itemName={this.state.name ? this.state.name : ''}
 
         />

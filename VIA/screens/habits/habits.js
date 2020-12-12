@@ -101,14 +101,13 @@ export class HabitsScreen extends React.Component {
         newHabit.completed = "false"
         newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notes = habit.notes ? habit.notes : '',
-            newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
-        newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
+        newHabit.notification_time = habit.notification_time ? habit.notification_time : '',
+        newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : '',
         newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save(dbTableName, newHabit).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            // global.notifier.scheduleAllNotifications()
         })
     }
 

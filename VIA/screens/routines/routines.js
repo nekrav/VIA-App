@@ -11,10 +11,6 @@ import NotifService from '../../notifier/newNotifier';
 import ActionButton from 'react-native-action-button';
 import { ListTopBar } from '../../components'
 
-
-
-
-
 const styles = require('./styles');
 
 var uuid = require('react-native-uuid');
@@ -29,11 +25,11 @@ export class RoutinesScreen extends React.Component {
         global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
-          );
+        );
         global.notifier = new NotifService(
             this.onRegister.bind(this),
             this.onNotif.bind(this),
-          );
+        );
         this.state = {
             addModalVisible: false,
             viewModalVisible: false,
@@ -62,16 +58,16 @@ export class RoutinesScreen extends React.Component {
 
 
     onRegister(token) {
-        this.setState({registerToken: token.token, fcmRegistered: true});
-      }
-    
-      onNotif(notif) {
+        this.setState({ registerToken: token.token, fcmRegistered: true });
+    }
+
+    onNotif(notif) {
         //Alert.alert(notif.title, notif.message);
-      }
-    
-      handlePerm(perms) {
+    }
+
+    handlePerm(perms) {
         //Alert.alert('Permissions', JSON.stringify(perms));
-      }
+    }
 
 
     saveNew(routine) {
@@ -85,10 +81,10 @@ export class RoutinesScreen extends React.Component {
         newRoutine.notification_time = routine.notification_time ? routine.notification_time : "";
         newRoutine.notes = routine.notes ? routine.notes : "";
         newRoutine.properties = routine.properties ? JSON.stringify(routine.properties) : JSON.stringify({ specificNotificationDates: [] })
+
         Database.save(dbTableName, newRoutine).then(() => {
             controller.setAddModalVisible(this, false)
             controller.loadAll(this, dbTableName)
-            global.notifier.scheduleAllNotifications()
         })
     }
 
@@ -138,10 +134,13 @@ export class RoutinesScreen extends React.Component {
                     }
                 }}
                 saveSpecificNotificationDates={(text) => {
-                    newRoutine.properties = {specificNotificationDates: text ? text : []} 
+                    newRoutine.properties = { specificNotificationDates: text ? text : [] }
                 }}
                 closeModal={() => { controller.setAddModalVisible(this, false) }}
-                save={() => { this.saveNew(newRoutine) }}
+                save={() => {
+                    this.saveNew(newRoutine)
+                    global.notifier.scheduleAllNotifications();
+                }}
             ></CreateRoutine>
         }
     }
@@ -200,14 +199,15 @@ export class RoutinesScreen extends React.Component {
                             theRoutine.notification_time = JSON.stringify(global.emptyTimes)
                         }
                         this.setState({ selectedRoutine: theRoutine })
-
                     }}
                     saveSpecificNotificationDates={(text) => {
-                        theRoutine.properties = JSON.stringify({specificNotificationDates: text ? text : []}) 
+                        theRoutine.properties = JSON.stringify({ specificNotificationDates: text ? text : [] })
                         this.setState({ selectedItem: theRoutine })
                     }}
 
-                    save={() => { controller.saveExisting(this, dbTableName, theRoutine) }}
+                    save={() => {
+                        controller.saveExisting(this, dbTableName, theRoutine)
+                    }}
 
                     selectedItem={theRoutine}
 
