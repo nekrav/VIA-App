@@ -228,10 +228,15 @@ export class ViewRoutine extends React.Component {
                 controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
             }}
             deleteItem={item => {
-                controller.delete(this, childTableName, item)
-                controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine")
-                this.props.save();
-            }} />)
+                var index = this.state.relatedChildren.indexOf(item)
+                controller.delete(this, "tasks", item.value)
+                if (index !== -1) {
+                    var newArr = this.state.relatedChildren
+                    newArr.splice(index, 1)
+                    this.setState({ relatedChildren: newArr })
+                }
+            }}
+            />)
     }
     /* #endregion */
 

@@ -427,7 +427,7 @@ export class HomeScreen extends React.Component {
                                     return <ChildItem
                                         itemKey={item.value.id}
                                         name={item.value.name}
-                                        childMainColor={this.props.addButtonColor}
+                                        childMainColor={colorsProvider.randomMainColor}
                                         item={item.value}
                                         completed={item.value.completed}
                                         parentComplimentaryColor={this.props.parentComplimentaryColor}
@@ -629,7 +629,9 @@ export class HomeScreen extends React.Component {
         }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', backgroundColor: colorsProvider.randomMainColor }}>
                 <View style={{ flex: 1, marginRight: 5 }}></View>
-                <TouchableOpacity><SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.whiteColor} size={35} name="options" /></TouchableOpacity>
+                <TouchableOpacity>
+                    <SIcon style={{ marginRight: 25, marginTop: 30 }} color={colorsProvider.randomMainColor} size={35} name="options" />
+                    </TouchableOpacity>
             </View>
             <View
                 ref={ref => {
@@ -656,7 +658,7 @@ export class HomeScreen extends React.Component {
 
                 {/* 3 Main Goals Region */}
                 {/* {this.render3MainGoalSection()} */}
-                {this.renderDueProjectsSection()}
+                {/* {this.renderDueProjectsSection()} */}
                 {/* <View style={{ height: '100%' }}> */}
 
                 {this.renderNotesSection()}
