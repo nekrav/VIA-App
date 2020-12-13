@@ -196,7 +196,7 @@ export class ChildrenContainer extends React.Component {
         newHabit.routineName = habit.routineName ? habit.routineName : '';
         newHabit.completed = "false"
         newHabit.notes = habit.notes ? habit.notes : '',
-        newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
+            newHabit.time_to_spend = habit.time_to_spend ? habit.time_to_spend : ''
         newHabit.notification_time = habit.notification_time ? habit.notification_time : ''
         newHabit.days_to_do = habit.days_to_do ? habit.days_to_do : ''
         newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
@@ -553,7 +553,7 @@ export class ChildrenContainer extends React.Component {
                                         completed={item.value.completed}
                                         parentComplimentaryColor={this.props.parentComplimentaryColor}
                                         childItemTableName={this.props.childItemTableName}
-                                        deleteItem={item => {
+                                        deleteItem={() => {
                                             this.props.deleteItem(item)
                                         }}
                                         childUpdateCompleted={item => {

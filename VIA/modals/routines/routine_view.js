@@ -378,7 +378,6 @@ export class ViewRoutine extends React.Component {
         newHabit.properties = habit.properties ? JSON.stringify(habit.properties) : JSON.stringify({ specificNotificationDates: [] })
 
         Database.save(childTableName, newHabit).then(() => {
-            console.warn("aoiweuhaoweuh")
             this.setState({ tasksSelectionModalVisible: false })
             controller.loadAllChildrenAndGetRelatedChildren(this, Habits.TABLE_NAME, this.state.selectedItem.id, "routine");
         })

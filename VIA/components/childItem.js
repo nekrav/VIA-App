@@ -92,15 +92,15 @@ export class ChildItem extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{ flex: 0,backgroundColor: 'red', flexDirection: 'row' }}>
+                    <View style={{ flex: 0, flexDirection: 'row', alignItems: 'center', }}>
                         <TouchableOpacity
                             style={{}}
                             onPress={(item) => {
-                                this.props.deleteItem(item)
+                                this.props.deleteItem(this.props.item)
                                 // controller.delete(this, "random", this.state.item);
                                 // global.notifier.scheduleAllNotifications()
                             }}>
-                            <SIcon style={{}} name="trash" size={25} color={colorsProvider.incompleteColor} />
+                            <SIcon style={{marginRight: 10,}} name="trash" size={20} color={colorsProvider.incompleteColor} />
                         </TouchableOpacity>
                         <TouchableOpacity style={{ }}>
                             <IIcon

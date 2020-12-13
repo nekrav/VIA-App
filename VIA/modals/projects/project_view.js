@@ -318,11 +318,23 @@ export class ViewProject extends React.Component {
             saveItem={() => {
                 controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
             }}
+            // deleteItem={() => {
+            //     controller.delete(this, childTableName, this.state.selectedItem)
+            //     controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
+            //     this.props.save();
+            // }}
             deleteItem={item => {
-                controller.delete(this, childTableName, item)
-                controller.loadAllChildrenAndGetRelatedChildren(this, Tasks.TABLE_NAME, this.state.selectedItem.id, "project")
-                this.props.save();
-            }} />)
+                // var arr = this.state.randomTasks
+                var index = this.state.relatedChildren.indexOf(item)
+                console.warn(index)
+                controller.delete(this, "tasks", item.value)
+                if (index !== -1) {
+                    var newArr = this.state.relatedChildren
+                    newArr.splice(index, 1)
+                    this.setState({ relatedChildren: newArr })
+                }
+            }}
+            />)
     }
     /* #endregion */
 
